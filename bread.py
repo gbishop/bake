@@ -48,148 +48,80 @@ Some more text at the end.
 
 """
 
-from arpeggio import Optional, ZeroOrMore, OneOrMore, Not, EOF
-from arpeggio import RegExMatch as _
-from arpeggio import ParserPython, PTNodeVisitor, visit_parse_tree
 import pulp
 
-
-def number():
-    return _(r"\d*\.\d*|\d+")
-
-
-def bp():
-    return number, "bp"
+problem = pulp.LpProblem("bread", pulp.LpMinimize)
+problem += 0
 
 
-def name():
-    return _(r"[a-zA-Z_][a-zA-Z0-9_]*")
+class Lp:
+    vars = {}
 
-
-def atom():
-    return [number, name]
-
-
-def factor():
-    return Optional(["+", "-"]), [atom, ("(", expression, ")")]
-
-
-def term():
-    return [(number, "*", name), bp, number, name]
-
-
-def expression():
-    return term, ZeroOrMore(["+", "-"], term)
-
-
-def text():
-    return ZeroOrMore(_(r"(?!```).*"))
-
-
-def equation():
-    return name, "=", expression
-
-
-def comparison():
-    return name, ["<", ">"], Optional("-"), number
-
-
-def equations():
-    return _(r"^```"), OneOrMore([equation, comparison]), _(r"^```")
-
-
-def chunk():
-    return [equations, text]
-
-
-def chunks():
-    return OneOrMore(chunk), EOF
-
-
-class Visitor(PTNodeVisitor):
-    def __init__(self):
-        super().__init__()
-        self.P = pulp.LpProblem("bread", pulp.LpMinimize)
-        self.vars = {}
-
-    def var(self, name):
+    def __getattr__(self, name):
         if name not in self.vars:
             self.vars[name] = pulp.LpVariable(name, 0, None)
         return self.vars[name]
 
-    def visit_number(self, node, children):
-        return float(node.value)
+    def __setattr__(self, name, value):
+        global problem
+        if name not in self.vars:
+            self.vars[name] = pulp.LpVariable(name, 0, None)
+        problem += self.vars[name] == value
 
-    def visit_bp(self, node, children):
-        return children[0] * 0.01 * self.var("total_flour")
-
-    def visit_name(self, node, children):
-        name = node.value
-        return self.var(name)
-
-    def visit_factor(self, node, children):
-        """
-        Applies a sign to the expression or number.
-        """
-        if len(children) == 1:
-            return children[0]
-        sign = -1 if children[0] == "-" else 1
-        return sign * children[-1]
-
-    def visit_term(self, node, children):
-        """
-        Multiplies factors.
-        Factor nodes will be already evaluated.
-        """
-        term = children[0]
-        if len(children) == 2:
-            term *= children[1]
-        return term
-
-    def visit_expression(self, node, children):
-        """
-        Adds or subtracts terms.
-        Term nodes will be already evaluated.
-        """
-        expr = children[0]
-        for i in range(2, len(children), 2):
-            if i and children[i - 1] == "-":
-                expr -= children[i]
-            else:
-                expr += children[i]
-        return expr
-
-    def visit_equation(self, node, children):
-        """
-        Adds an equation to the problem
-        """
-        self.P += children[0] == children[1]
-
-    def visit_comparison(self, node, children):
-        if children[1] == "<":
-            self.P += children[0] <= children[2]
-        else:
-            self.P += children[0] >= children[2]
-
-    def values(self):
-        # print(self.P)
-        self.P.solve(pulp.PULP_CBC_CMD(msg=False))
-        print(self.P.status)
-        values = {
-            var.name: var.varValue
-            for var in self.P.variables()
-            if not var.name.startswith("_")
-        }
+    def solve(self):
+        global problem
+        problem.solve()
+        values = {var.name: var.varValue for var in problem.variables()}
         result = {var: values[var] for var in self.vars}
         return result
 
 
-parser = ParserPython(chunks, reduce_tree=True, debug=False)
+V = Lp()
 
+V.total_flour = 100
+hydration = 80
+V.bp = 0.01 * V.total_flour
 
-tree = parser.parse(test)
-visitor = Visitor()
-result = visit_parse_tree(tree, visitor)
-values = visitor.values()
-for var in values:
-    print(var, values[var])
+V.total_water = hydration * V.bp
+
+starter_hydration = 1.00
+
+V.biga_flour = 50 * V.bp
+V.biga_flour = V.starter_flour + V.milled_grains
+V.biga_water = 0.5 * V.biga_flour - V.starter_water
+
+V.starter = 0.10 * V.biga_flour
+V.starter_flour = 1.0 / (1 + starter_hydration) * V.starter
+V.starter_water = starter_hydration * V.starter_flour
+
+V.added_water = V.total_water - V.biga_water - V.starter_water
+
+V.total_flour = (
+    V.biga_flour + V.starter_flour + V.potato_flakes + V.flaxseed_meal + V.bread_flour
+)
+
+V.potato_flakes = 3 * V.bp
+V.flaxseed_meal = 2 * V.bp
+
+V.add_ins = V.oil + V.honey + V.improver + V.salt + V.yeast + V.seeds
+
+V.oil = 5 * V.bp
+V.honey = 5 * V.bp
+V.improver = 2 * V.bp
+V.salt = 2 * V.bp
+V.yeast = 0.3 * V.bp
+
+V.seeds = 10 * V.bp
+
+V.milled_grains = V.hard_white + V.hard_red + V.spelt + V.rye
+
+V.hard_white = 4 * V.part
+V.hard_red = 3 * V.part
+V.spelt = 2 * V.part
+V.rye = 1 * V.part
+
+V.tdw = V.total_flour + V.total_water + V.add_ins
+
+result = V.solve()
+for var in result:
+    print(var, result[var])
