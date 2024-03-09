@@ -1,141 +1,54 @@
-# Thinking about equations for bread formulas
-
-# An alternative to spreadsheets.
-
 """
-bp = total_flour * 0.01
+# Rene R's 50% Spelt Biga
 
-biga_flour = 50 * bp
-biga_flour = starter_flour + milled_grains
-biga_water = 0.5 * biga_flour - starter_water
-
-starter_water = starter_flour
-starter_total = starter_water + starter_flour
-starter_total = 0.05 * biga_flour
-
-dough_water = 80 * bp
-added_water = dough_water - biga_water - starter_water
-
-total_flour = biga_flour + starter_flour + potato_flakes + flaxseed_meal + bread_flour
-
-potato_flakes = 3 * bp
-flaxseed_meal = 2 * bp
-
-add_ins = oil + honey + improver + salt + yeast + seeds
-
-oil = 5 * bp
-honey = 5 * bp
-improver = 2 * bp
-salt = 2 * bp
-yeast = 0.3 * bp
-
-seeds = 10 * bp
-
-milled_grains = hard_white + hard_red + spelt + rye
-
-hard_white = 4 * part
-hard_red = 3 * part
-spelt = 2 * part
-rye = 1 * part
-
-tdw = total_flour + dough_water + add_ins
-
-total_flour = 100
-
+And an experiment with LP to replace spreadsheets.
 """
 
-import pulp
-import re
-import types
 
-V = types.SimpleNamespace(
-    **{
-        var: pulp.LpVariable(var, 0, None)
-        for var in re.split(
-            r"\s+",
-            """
-       biga_flour
-       biga_water
-       starter_water
-       starter_flour
-       starter_total
-       dough_water
-       added_water
-       total_flour
-       potato_flakes
-       flaxseed_meal
-       bread_flour
-       add_ins
-       oil
-       honey
-       improver
-       salt
-       yeast
-       milled_grains
-       hard_white
-       hard_red
-       spelt
-       rye
-       tdw
-       total_flour
-       seeds
-       part
-       """,
-        )
-    }
+def water(total, hydration):
+    return total * hydration / (1 + hydration)
+
+
+def flour(total, hydration):
+    return total / (1 + hydration)
+
+
+from recipe import R
+
+R += R.total_flour == 100
+bp = R.total_flour * 0.01
+
+R += R.biga_flour == 50 * bp
+R += R.biga_flour == R.starter_flour + R.spelt
+R += R.biga_water == 0.5 * R.biga_flour - R.starter_water
+
+R += R.starter_water == R.starter_flour
+R += R.starter_total == R.starter_water + R.starter_flour
+R += R.starter_total == 0.05 * R.biga_flour
+
+R += R.dough_water == 80 * bp
+R += R.added_water == R.dough_water - R.biga_water - R.starter_water
+
+R += (
+    R.total_flour
+    == R.biga_flour
+    + R.starter_flour
+    + R.potato_flakes
+    + R.flaxseed_meal
+    + R.bread_flour
 )
 
-bp = V.total_flour * 0.01
+R += R.potato_flakes == 3 * bp
+R += R.flaxseed_meal == 2 * bp
 
-P = pulp.LpProblem("Biga", pulp.LpMinimize)
+R += R.add_ins == R.oil + R.honey + R.improver + R.salt + R.yeast + R.seeds
 
-P += V.tdw - 2 * V.total_flour
+R += R.oil == 5 * bp
+R += R.honey == 5 * bp
+R += R.improver == 2 * bp
+R += R.salt == 2 * bp
+R += R.yeast == 0.3 * bp
 
-P += V.biga_flour == 50 * bp
-P += V.biga_flour == V.starter_flour + V.milled_grains
-P += V.biga_water == 0.5 * V.biga_flour - V.starter_water
+R += R.seeds == 10 * bp
 
-P += V.starter_water == V.starter_flour
-P += V.starter_total == V.starter_water + V.starter_flour
-P += V.starter_total == 0.05 * V.biga_flour
-
-P += V.dough_water == 80 * bp
-P += V.added_water == V.dough_water - V.biga_water - V.starter_water
-
-P += (
-    V.total_flour
-    == V.biga_flour
-    + V.starter_flour
-    + V.potato_flakes
-    + V.flaxseed_meal
-    + V.bread_flour
-)
-
-P += V.potato_flakes == 3 * bp
-P += V.flaxseed_meal == 2 * bp
-
-P += V.add_ins == V.oil + V.honey + V.improver + V.salt + V.yeast + V.seeds
-
-P += V.oil == 5 * bp
-P += V.honey == 5 * bp
-P += V.improver == 2 * bp
-P += V.salt == 2 * bp
-P += V.yeast == 0.3 * bp
-
-P += V.seeds == 10 * bp
-
-P += V.milled_grains == V.hard_white + V.hard_red + V.spelt + V.rye
-
-P += V.hard_white == 4 * V.part
-P += V.hard_red == 3 * V.part
-P += V.spelt == 2 * V.part
-P += V.rye == 1 * V.part
-
-P += V.tdw == V.total_flour + V.dough_water + V.add_ins
-
-P += V.total_flour == 500
-
-P.solve()
-
-for var in P.variables():
-    print(var.name, "=", var.varValue)
+R += R.tdw == R.total_flour + R.dough_water + R.add_ins
