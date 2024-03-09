@@ -4,43 +4,43 @@ test = """
 A description of this loaf.
 
 ```
-total_flour = 100
-hydration = 80bp
+total_flour == 100
+hydration == 80bp
 
-biga_flour = 50bp
-biga_flour = starter_flour + milled_grains
-biga_water = 0.5 * biga_flour - starter_water
+biga_flour == 50bp
+biga_flour == starter_flour + milled_grains
+biga_water == 0.5 * biga_flour - starter_water
 
-starter_water = starter_flour
-starter_total = starter_water + starter_flour
-starter_total = 0.05 * biga_flour
+starter_water == starter_flour
+starter_total == starter_water + starter_flour
+starter_total == 0.05 * biga_flour
 
-added_water = hydration - biga_water - starter_water
+added_water == hydration - biga_water - starter_water
 
-total_flour = biga_flour + starter_flour + 
+total_flour == biga_flour + starter_flour + 
               potato_flakes + flaxseed_meal + bread_flour
 
-potato_flakes = 3bp
-flaxseed_meal = 2bp
+potato_flakes == 3bp
+flaxseed_meal == 2bp
 
-add_ins = oil + honey + improver + salt + yeast + seeds
+add_ins == oil + honey + improver + salt + yeast + seeds
 
-oil = 5bp
-honey = 5bp
-improver = 2bp
-salt = 2bp
-yeast = 0.3bp
+oil == 5bp
+honey == 5bp
+improver == 2bp
+salt == 2bp
+yeast == 0.3bp
 
-seeds = 10bp
+seeds == 10bp
 
-milled_grains = hard_white + hard_red + spelt + rye
+milled_grains == hard_white + hard_red + spelt + rye
 
-hard_white = 4 * part
-hard_red = 3 * part
-spelt = 2 * part
-rye = 1 * part
+hard_white == 4 * part
+hard_red == 3 * part
+spelt == 2 * part
+rye == 1 * part
 
-tdw = total_flour + hydration + add_ins
+tdw == total_flour + hydration + add_ins
 
 ```
 
@@ -87,11 +87,11 @@ def text():
 
 
 def equation():
-    return name, "=", expression
+    return expression, "==", expression
 
 
 def comparison():
-    return name, ["<", ">"], Optional("-"), number
+    return expression, ["<=", ">="], Optional("-"), number
 
 
 def equations():
@@ -166,7 +166,7 @@ class Visitor(PTNodeVisitor):
         self.P += children[0] == children[1]
 
     def visit_comparison(self, node, children):
-        if children[1] == "<":
+        if children[1] == "<=":
             self.P += children[0] <= children[2]
         else:
             self.P += children[0] >= children[2]
