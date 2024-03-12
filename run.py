@@ -15,13 +15,9 @@ problem += R.objective
 for constraint in R.constraints:
     problem += constraint
 
-result = problem.solve(pulp.PULP_CBC_CMD(msg=False))
-values = {
-    var.name: var.varValue
-    for var in problem.variables()
-    if not var.name.startswith("_")
-}
-result = {var: values[var] for var in R.vars}
+problem.solve(pulp.PULP_CBC_CMD(msg=False))
+values = {var.name: var.varValue for var in problem.variables()}
+result = {var: values[var] for var in R.vars if not var.startswith("_")}
 
 for var in result:
     print(var, "=", result[var])

@@ -1,19 +1,6 @@
 import pulp
 
 
-class Base:
-    names = ["flour", "water", "other"]
-    values : (Unknown[]) = [None, None, None]
-
-    def __getattr__(self, name):
-        index = self.names.index(name)
-        return self.values[index]
-
-class Ingredient(Base):
-
-
-
-
 class Recipe:
     vars = {}
     constraints = []
