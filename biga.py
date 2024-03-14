@@ -6,61 +6,36 @@ And an experiment with LP to replace spreadsheets.
 
 
 def water(total, hydration):
-    return total * hydration / (1 + hydration)
+    return total * hydration / (100 + hydration)
 
 
 def flour(total, hydration):
-    return total / (1 + hydration)
+    return total * 100 / (100 + hydration)
 
 
-from recipe import R
+from recipe import R, TBD
 
-R += R.total_flour == 200
-bp = R.total_flour * 0.01
+R.scale = 250  # total flour
 
-R += R.spelt == 50 * bp
-R += R.biga_flour == R._starter_flour + R.spelt
-R += R.biga_water == 0.5 * R.biga_flour - R._starter_water
+R += R.total_flour == 100
+R += R.total_water == 70
 
+R += "Biga"
 
-def mix(name, hydration, total=None, flour=None, water=None):
-    f = f"_{name}_flour"
-    w = f"_{name}_water"
-    result = [
-        R[name] == R[f] + R[w],
-        R[w] == hydration / 100 * R[f],
-    ]
-    if total:
-        result.append(R[name] == total)
-    if flour:
-        result.append(R[f] == flour)
-    if water:
-        result.append(R[water] == hydration * R[flour])
-    return result
+R += R.starter == 0.1 * R.spelt
+R += R.water == 0.5 * R.spelt - water(R.starter, 100)
+R += R.spelt == 50
 
+R += "Dough"
 
-R += mix("starter", total=0.05 * R.spelt, hydration=100)
+R += R.total_water == R.added_water + R.water + water(R.starter, 100)
 
-R += R._dough_water == 70 * bp
-R += R.added_water == R._dough_water - R.biga_water - R._starter_water
-
-R += (
-    R.total_flour
-    == R.biga_flour
-    + R._starter_flour
-    + R.potato_flakes
-    + R.flaxseed_meal
-    + R.bread_flour
+R += R.total_flour == R.sum(
+    R.spelt, flour(R.starter, 100), bread_flour=TBD, potato_flakes=3, flaxseed_meal=2
 )
 
-R += R.potato_flakes == 3 * bp
-R += R.flaxseed_meal == 2 * bp
+additions = R.sum(oil=5, honey=5, improver=2, salt=2)
 
-R += R.add_ins == R.oil + R.honey + R.improver + R.salt
+R += ""
 
-R += R.oil == 5 * bp
-R += R.honey == 5 * bp
-R += R.improver == 2 * bp
-R += R.salt == 2 * bp
-
-R += R.tdw == R.total_flour + R._dough_water + R.add_ins
+R += R.total == 100 + R.total_water + additions
