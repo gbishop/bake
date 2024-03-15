@@ -2,13 +2,18 @@ import sys
 from runpy import run_path
 from recipe import R
 import pulp
+import re
 
 name = sys.argv[1]
-print("running", name)
+text = ""
+if 0:
+    run_path(f"{name}")
+else:
+    text = sys.stdin.read()
+    code = compile(text, name, "exec")
+    exec(code)
 
-run_path(f"{name}.py")
-
-problem = pulp.LpProblem(name)
+problem = pulp.LpProblem(name.replace(".py", ""))
 
 problem += R.objective
 
@@ -17,7 +22,7 @@ for constraint in R.constraints:
 
 problem.solve(pulp.PULP_CBC_CMD(msg=False))
 if problem.status < 1:
-    print(pulp.LpStatus[problem.status])
+    table = pulp.LpStatus[problem.status]
 else:
     values = {
         var.name: var.varValue
@@ -26,4 +31,12 @@ else:
     }
     result = {var: values[var] for var in R.vars if var in values}
 
-    print(R.table(result))
+    table = R.table(result)
+
+start = re.search(r'^"""', text, re.M)
+if start:
+    end = re.search(r'^# |^"""', text[start.end() :], re.M)
+    if end:
+        text = text[: start.end()] + "\n" + table + "\n" + text[end.end() :]
+
+print(text)

@@ -1,6 +1,8 @@
 import pulp
-from itertools import accumulate
-from operator import add
+from tabulate import tabulate, SEPARATING_LINE
+import re
+
+""""""
 
 
 class Recipe:
@@ -47,8 +49,8 @@ class Recipe:
         return result
 
     def table(self, vars: dict):
-        headings = ["", "%", "g", "sum", "+bowl"]
         names = [name.replace("_", " ") for name in vars]
+        nwidth = max(len(name) for name in names)
         pvalues = list(vars.values())
         gvalues = [value * self.scale / 100 for value in pvalues]
         cvalues = []
@@ -60,25 +62,43 @@ class Recipe:
                 csum += gvalues[i]
                 cvalues.append(csum)
         bvalues = [cvalue + self.bowl if cvalue else 0 for cvalue in cvalues]
-        width = max(*(len(name) for name in names))
-        cols = [names, pvalues, gvalues, cvalues, bvalues]
-        rows = [
-            "| {0:^{width}} | {1:^5} | {2:^6} | {0:^{width}} | {3:^7} | {4:^7} |".format(
-                *headings, width=width
-            ),
-        ]
-        lwidth = len(rows[0])
-        rows.append("|" + "-" * (lwidth - 2) + "|")
-        for i, r in enumerate(zip(*cols)):
+        headings = ["", "%  ", "g  ", "", "sum ", "+bowl"]
+
+        cols = [names, pvalues, gvalues, names, cvalues, bvalues]
+        rows = []
+        for i, row in enumerate(zip(*cols)):
             if i in self.divider:
-                rows.append("|" + (lwidth - 2) * " " + "|")
-                rows.append(f"| {self.divider[i]:-<{lwidth-3}}|")
-            rows.append(
-                "| {0:>{width}} | {1:5.1f} | {2:6.1f} | {0:<{width}} | {3:>7.1f} | {4:>7.1f} |".format(
-                    *r, width=width
+                d = self.divider[i]
+                if d:
+                    rows.append([])
+                ld = nwidth - len(d)
+                l = ld // 2
+                r = ld - l
+                rows.append(["─" * l + d + "─" * r])
+                if d:
+                    rows.append([])
+            rows.append(row)
+
+        table = tabulate(
+            rows,
+            headers=headings,
+            floatfmt=".1f",
+            colalign=("right",),
+            tablefmt="simple_outline",
+        )
+        table = table.replace(" 0.0", "    ")
+        table = "\n".join(
+            [
+                (
+                    line.replace(" ", "─").replace("─│─", "─┼─")
+                    if line.startswith("│ ─")
+                    else line
                 )
-            )
-        return "\n".join(rows)
+                for line in table.split("\n")
+            ]
+        )
+
+        return table
 
 
 R = Recipe()
