@@ -35,7 +35,21 @@
 
 # My usual loaf
 
-And an experiment with LP to replace spreadsheets.
+This version was first using my new recipe format. It worked fine.
+This loaf features pecans and walnuts. Really tastes great.
+
+93F water mixed with the 68F starter and flours produced DT = 78F.
+Mixed, rested 30 minutes, kneaded 8, added roughly broken nuts, kneaded 2 more.
+S&F in the bowl every 30 minutes for 1.5 hours. 
+Shaped and into pan. Proof took about 1.5 hours. 
+Baked at 350F starting cold with lid on for 25.
+Beautiful and flavorful loaf. Top a big cracked. A few larger holes.
+
+This is a great result.
+
+Rating=5
+
+14 March 2024
 """
 
 from recipe import R, TBD, water, flour
