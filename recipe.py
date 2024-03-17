@@ -48,8 +48,20 @@ class Recipe:
 
         return result
 
+    def parts(self, **weighted):
+        names = [name for name in weighted]
+        zero = [name for name, value in weighted.items() if value == 0]
+        nonzero = list(set(names) - set(zero))
+        for name1, name2 in zip(nonzero[:-1], nonzero[1:]):
+            self.constraints.append(
+                weighted[name2] * self[name1] == weighted[name1] * self[name2]
+            )
+        for name in zero:
+            self.constraints.append(self[name] == 0)
+        return sum(self[name] for name in nonzero)
+
     def table(self, vars: dict):
-        names = [name.replace("_", " ") for name in vars]
+        names = [re.sub(r"_?\d+$", "", name.replace("_", " ")) for name in vars]
         nwidth = max(len(name) for name in names)
         pvalues = list(vars.values())
         gvalues = [value * self.scale / 100 for value in pvalues]
@@ -86,7 +98,7 @@ class Recipe:
             colalign=("right",),
             tablefmt="simple_outline",
         )
-        table = table.replace(" 0.0", "    ")
+        table = table.replace(" 0.0", "    ").replace(" ", "\u2002")
         table = "\n".join(
             [
                 (

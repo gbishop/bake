@@ -1,58 +1,91 @@
 """
 ┌───────────────┬───────┬───────┬───────────────┬────────┬─────────┐
-│               │   %   │   g   │               │   sum  │   +bowl │
+│               │   %   │   g   │               │   sum  │   +bowl │
 ├───────────────┼───────┼───────┼───────────────┼────────┼─────────┤
-│   total flour │ 100.0 │ 500.0 │ total flour   │        │         │
-│   total water │  65.0 │ 325.0 │ total water   │        │         │
-│               │       │       │               │        │         │
-│─────Biga──────┼───────┼───────┼───────────────┼────────┼─────────│
-│               │       │       │               │        │         │
-│         spelt │  50.0 │ 250.0 │ spelt         │  250.0 │   970.5 │
-│       starter │   5.0 │  25.0 │ starter       │  275.0 │   995.5 │
-│         water │  22.5 │ 112.5 │ water         │  387.5 │  1108.0 │
-│               │       │       │               │        │         │
-│─────Dough─────┼───────┼───────┼───────────────┼────────┼─────────│
-│               │       │       │               │        │         │
-│   added water │  40.0 │ 200.0 │ added water   │  587.5 │  1308.0 │
-│   bread flour │  42.5 │ 212.5 │ bread flour   │  800.0 │  1520.5 │
-│ potato flakes │   3.0 │  15.0 │ potato flakes │  815.0 │  1535.5 │
-│ flaxseed meal │   2.0 │  10.0 │ flaxseed meal │  825.0 │  1545.5 │
-│           oil │   5.0 │  25.0 │ oil           │  850.0 │  1570.5 │
-│         honey │   5.0 │  25.0 │ honey         │  875.0 │  1595.5 │
-│      improver │   2.0 │  10.0 │ improver      │  885.0 │  1605.5 │
-│          salt │   2.0 │  10.0 │ salt          │  895.0 │  1615.5 │
-│         yeast │   0.5 │   2.5 │ yeast         │  897.5 │  1618.0 │
-│───────────────┼───────┼───────┼───────────────┼────────┼─────────│
-│         total │ 179.5 │ 897.5 │ total         │        │         │
+│   total flour │ 100.0 │ 300.0 │ total flour   │        │         │
+│   total water │  60.0 │ 180.0 │ total water   │        │         │
+│               │       │       │               │        │         │
+│ ────Biga───── │       │       │               │        │         │
+│               │       │       │               │        │         │
+│       starter │   6.0 │  18.0 │ starter       │   18.0 │   738.5 │
+│         water │  27.0 │  81.0 │ water         │   99.0 │   819.5 │
+│         spelt │  19.0 │  57.0 │ spelt         │  156.0 │   876.5 │
+│  bronze chief │  19.0 │  57.0 │ bronze chief  │  213.0 │   933.5 │
+│  prairie gold │  19.0 │  57.0 │ prairie gold  │  270.0 │   990.5 │
+│          salt │   0.3 │   0.9 │ salt          │  270.9 │   991.4 │
+│               │       │       │               │        │         │
+│ ────Dough──── │       │       │               │        │         │
+│               │       │       │               │        │         │
+│         water │  30.0 │  90.0 │ water         │  360.9 │  1081.4 │
+│   bread flour │  35.0 │ 105.0 │ bread flour   │  465.9 │  1186.4 │
+│ potato flakes │   3.0 │   9.0 │ potato flakes │  474.9 │  1195.4 │
+│           vwg │   2.0 │   6.0 │ vwg           │  480.9 │  1201.4 │
+│           oil │   5.0 │  15.0 │ oil           │  495.9 │  1216.4 │
+│         honey │   5.0 │  15.0 │ honey         │  510.9 │  1231.4 │
+│      improver │   1.0 │   3.0 │ improver      │  513.9 │  1234.4 │
+│          salt │   1.7 │   5.1 │ salt          │  519.0 │  1239.5 │
+│         yeast │   0.5 │   1.5 │ yeast         │  520.5 │  1241.0 │
+│ ───────────── │       │       │               │        │         │
+│         total │ 173.2 │ 519.6 │ total         │        │         │
 └───────────────┴───────┴───────┴───────────────┴────────┴─────────┘
 
-# Rene R's 50% Spelt Biga
+# 60% Biga Multigrain
 
-And an experiment with LP to replace spreadsheets.
+Inspired by: https://www.thefreshloaf.com/node/68024/biga-controversy
+
+## Changes
+
+* Multiple grains
+* Biga is 60%
+* Adding salt to slow down the biga
+* Adding potato flakes, oil and honey for softness and browning.
+* Adding a little yeast to help the final rise.
+* Try not mixing the biga at all.
+
+## Biga
+
+Mix the starter and water thoroughly then sprinkle the grains over it and mix gently. Store for 24 hours.
+
+**FAIL** after 24 hours the biga smelled strongly of acetone. I threw it away. Needs
+* Lower temperature,
+* Less starter, or
+* Less time.
+
+## Dough
+
+Mix the liquids into the biga thoroughly, then add the remaining ingredients.
+
 """
 
 from recipe import R, TBD, water, flour
 
-R.scale = 500  # total flour
+R.scale = 300  # total flour
 
 R += R.total_flour == 100
-R += R.total_water == 65
+R += R.total_water == 60
 
 R += "Biga"
 
-R += R.spelt == 50
-R += R.starter == 0.1 * R.spelt
-R += R.water == 0.5 * R.spelt - water(R.starter, 100)
+biga_flour = 60
+biga_hydration = 50 / 100
+
+R += R.starter == 0.1 * biga_flour
+R += R.water1 == biga_hydration * biga_flour - water(R.starter, 100)
+
+grains = R.parts(prairie_gold=1, bronze_chief=1, spelt=1)
+
+R += biga_flour == flour(R.starter, 100) + grains
+
+R += R.salt1 == 0.005 * biga_flour
 
 R += "Dough"
 
-R += R.total_water == R.added_water + R.water + water(R.starter, 100)
+R += R.total_water == R.water1 + R.water2 + water(R.starter, 100)
 
-R += 100 == R.sum(
-    R.spelt, flour(R.starter, 100), bread_flour=TBD, potato_flakes=3, flaxseed_meal=2
-)
+R += 100 == R.sum(biga_flour, bread_flour=TBD, potato_flakes=3, vwg=2)
 
-additions = R.sum(oil=5, honey=5, improver=2, salt=2, yeast=0.5)
+additions = R.sum(oil=5, honey=5, improver=1, salt2=TBD, yeast=0.5)
+R += 2 == R.salt1 + R.salt2
 
 R += ""
 
