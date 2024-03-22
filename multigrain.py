@@ -54,7 +54,7 @@ Only 4 hours from start to finish today! Not including the leaven, of course,
 which had 12 hours. Loaf looks great. 6 inches tall. Baked weight is 947.6
 before cooling.
 
-Good flavor. Much better strength.
+Good flavor. Much better strength
 
 19 March 2024
 """
