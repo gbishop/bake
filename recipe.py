@@ -61,14 +61,17 @@ class Recipe:
         return sum(self[name] for name in nonzero)
 
     def table(self, vars: dict):
-        names = [re.sub(r"_?\d+$", "", name.replace("_", " ")) for name in vars]
+        names = [
+            re.sub(r"_?\d+$", "", name.replace("__", "/").replace("_", " "))
+            for name in vars
+        ]
         nwidth = max(len(name) for name in names)
         pvalues = list(vars.values())
         gvalues = [value * self.scale / 100 for value in pvalues]
         cvalues = []
         csum = 0
         for i, name in enumerate(names):
-            if "total" in name:
+            if "total" in name or "/" in name:
                 cvalues.append(0)
             else:
                 csum += gvalues[i]
