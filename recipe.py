@@ -11,7 +11,7 @@ class Recipe:
     objective = 0
     divider = {}
     bowl = 720.5
-    scale = 500
+    scale = 500.0
 
     def __getattr__(self, name):
         if name not in self.vars:
