@@ -10,7 +10,7 @@ class Recipe:
     constraints = []
     objective = 0
     divider = {}
-    bowl = 720.5
+    bowl = 725.1
     scale = 500.0
 
     def __getattr__(self, name):
