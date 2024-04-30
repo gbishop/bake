@@ -2,31 +2,32 @@
 ┌──────────────┬───────┬───────┬──────────────┬────────┬─────────┐
 │              │   %   │   g   │              │   sum  │   +bowl │
 ├──────────────┼───────┼───────┼──────────────┼────────┼─────────┤
-│  total flour │ 100.0 │ 300.0 │ total flour  │        │         │
-│  total water │  66.3 │ 198.8 │ total water  │        │         │
+│  total flour │ 100.0 │ 200.0 │ total flour  │        │         │
+│  total water │  66.0 │ 132.0 │ total water  │        │         │
 │              │       │       │              │        │         │
 │ ────Wet───── │       │       │              │        │         │
 │              │       │       │              │        │         │
-│       leaven │  25.6 │  76.8 │ leaven       │   76.8 │   801.9 │
-│ water/leaven │  12.8 │  38.4 │ water/leaven │        │         │
-│   warm water │  53.5 │ 160.4 │ warm water   │  237.1 │   962.2 │
-│     molasses │  15.9 │  47.6 │ molasses     │  284.7 │  1009.8 │
-│       butter │  12.7 │  38.1 │ butter       │  322.8 │  1047.9 │
+│       leaven │  25.0 │  50.0 │ leaven       │   50.0 │   775.1 │
+│ water/leaven │  12.5 │  25.0 │ water/leaven │        │         │
+│   warm water │  53.5 │ 107.0 │ warm water   │  157.0 │   882.1 │
+│     molasses │  16.0 │  32.0 │ molasses     │  189.0 │   914.1 │
+│       butter │  13.0 │  26.0 │ butter       │  215.0 │   940.1 │
 │              │       │       │              │        │         │
 │ ───Flours─── │       │       │              │        │         │
 │              │       │       │              │        │         │
-│           ap │  39.6 │ 118.9 │ ap           │  441.7 │  1166.8 │
-│          rye │  30.6 │  91.7 │ rye          │  533.4 │  1258.5 │
-│ prairie gold │  17.0 │  51.0 │ prairie gold │  584.4 │  1309.5 │
-│    ww/leaven │  12.8 │  38.4 │ ww/leaven    │        │         │
+│          rye │  30.0 │  60.0 │ rye          │  275.0 │  1000.1 │
+│ prairie gold │  17.0 │  34.0 │ prairie gold │  309.0 │  1034.1 │
+│    ww/leaven │  12.5 │  25.0 │ ww/leaven    │        │         │
+│ red rye malt │   3.0 │   6.0 │ red rye malt │  315.0 │  1040.1 │
+│           ap │  37.5 │  75.0 │ ap           │  390.0 │  1115.1 │
 │              │       │       │              │        │         │
 │ ────Add───── │       │       │              │        │         │
 │              │       │       │              │        │         │
-│  brown sugar │   2.9 │   8.8 │ brown sugar  │  593.2 │  1318.3 │
-│ cacao powder │   6.8 │  20.4 │ cacao powder │  613.6 │  1338.7 │
-│         salt │   1.8 │   5.4 │ salt         │  619.0 │  1344.1 │
-│        yeast │   0.4 │   1.2 │ yeast        │  620.2 │  1345.3 │
-│        total │ 206.7 │ 620.2 │ total        │        │         │
+│  brown sugar │   3.0 │   6.0 │ brown sugar  │  396.0 │  1121.1 │
+│ cacao powder │   4.0 │   8.0 │ cacao powder │  404.0 │  1129.1 │
+│         salt │   1.8 │   3.6 │ salt         │  407.6 │  1132.7 │
+│        yeast │   0.4 │   0.8 │ yeast        │  408.4 │  1133.5 │
+│        total │ 204.2 │ 408.4 │ total        │        │         │
 └──────────────┴───────┴───────┴──────────────┴────────┴─────────┘
 
 # Faux (American) Pumpernickle
@@ -59,39 +60,38 @@ Really good loaf. Delicious. Very soft and tall. The flavor is a bit too
 chocolate forward for my taste. Next time I'll try reducing the cacao and
 adding some red rye malt to take the flavor in that direction.
 
-26 April 2024
+27 April 2024
 """
 
 from recipe import R, TBD, water, flour
 
-R.scale = 300
-
-S = 100 / (113 / 2 + 175 + 135 + 75)
+R.scale = 200
 
 R += R.total_flour == 100
-R += R.total_water == S * (236 + 113 / 2)
+R += R.total_water == 66
 
 R += "Wet"
 
-R += R.leaven == S * 113
+R += R.leaven == 25
 R += R.total_water == R.sum(water__leaven=water(R.leaven, 100), warm_water=TBD)
-wet = R.sum(molasses=S * 70, butter=S * 56)
+wet = R.sum(molasses=16, butter=13)
 
 R += "Flours"
 
 R += 100 == R.sum(
-    ap=S * 175,
-    rye=S * 135,
-    prairie_gold=S * 75,
+    rye=30,
+    prairie_gold=17,
     ww__leaven=flour(R.leaven, 100),
+    red_rye_malt=3,
+    ap=TBD,
 )
 
 R += "Add"
 
 dry = R.sum(
-    brown_sugar=S * 13,
-    cacao_powder=S * 30,
-    salt=S * 8,
+    brown_sugar=3,
+    cacao_powder=4,
+    salt=1.8,
     yeast=0.4,
 )
 
