@@ -15,11 +15,11 @@
 │               │       │        │               │        │         │
 │ ───Flours──── │       │        │               │        │         │
 │               │       │        │               │        │         │
-│  prairie gold │  30.0 │  150.0 │ prairie gold  │  600.0 │  1325.1 │
-│  bronze chief │  30.0 │  150.0 │ bronze chief  │  750.0 │  1475.1 │
-│         spelt │  10.0 │   50.0 │ spelt         │  800.0 │  1525.1 │
+│  prairie gold │  35.0 │  175.0 │ prairie gold  │  625.0 │  1350.1 │
+│  bronze chief │  30.0 │  150.0 │ bronze chief  │  775.0 │  1500.1 │
+│         spelt │  10.0 │   50.0 │ spelt         │  825.0 │  1550.1 │
 │     ww/leaven │  10.0 │   50.0 │ ww/leaven     │        │         │
-│          oats │  10.0 │   50.0 │ oats          │  850.0 │  1575.1 │
+│          oats │   5.0 │   25.0 │ oats          │  850.0 │  1575.1 │
 │ flaxseed meal │   5.0 │   25.0 │ flaxseed meal │  875.0 │  1600.1 │
 │ potato flakes │   3.0 │   15.0 │ potato flakes │  890.0 │  1615.1 │
 │           vwg │   2.0 │   10.0 │ vwg           │  900.0 │  1625.1 │
@@ -33,9 +33,9 @@
 │ ─Inclusions── │       │        │               │        │         │
 │               │       │        │               │        │         │
 │          nuts │  15.0 │   75.0 │ nuts          │  992.0 │  1717.1 │
-│         glaze │  20.0 │  100.0 │ glaze         │ 1092.0 │  1817.1 │
+│         glaze │  15.0 │   75.0 │ glaze         │ 1067.0 │  1792.1 │
 │ ───────────── │       │        │               │        │         │
-│         total │ 218.4 │ 1092.0 │ total         │        │         │
+│         total │ 213.4 │ 1067.0 │ total         │        │         │
 └───────────────┴───────┴────────┴───────────────┴────────┴─────────┘
 
 # My usual loaf with glazed nuts
@@ -51,21 +51,21 @@ accounted for. In the variable names I use __ (2 underscores) to indicate this.
 I rearranged the order so I could be sure everything is well mixed.
 
 This loaf has glazed nuts added. I started with 75g of 50/50 pecan/walnuts and
-glazed them with 100g of brown sugar, 30g water and 1.5g salt in a non-stick
+glazed them with 75g of brown sugar, 25g water and 1.0g salt in a non-stick
 pan. https://www.fifteenspatulas.com/quick-stovetop-candied-pecans/
-I failed to weigh the result but it must have been about 175g.
+I failed to weigh the result but it must have been about 150g.
 
 93F water mixed with the 68F starter and flours produced DT = 78F. Mixed,
 rested 30 minutes, kneaded 8, added glazed nuts, kneaded 3 more. S&F in
 the bowl every 45 minutes for 3 cycles.
 
 Shaped and into pan. Proof took about 60 minutes. Baked at 350F starting cold
-with lid on for 30 off for 20.
+with lid on for 30 off for 20 plus 7 out of the pan.
 
-Really good loaf. Delicious. Very soft and tall. Not at much flavor pop from
-the glazed nuts as I had hoped but it is really good. 
+This one turned out at good as the first. I think lowering the oats helps
+the texture. 
 
-29 April 2024
+2 May 2024
 """
 
 from recipe import R, TBD, water, flour
@@ -88,7 +88,7 @@ R += 100 == R.sum(
     bronze_chief=30,
     spelt=10,
     ww__leaven=flour(R.leaven, 100),
-    oats=10,
+    oats=5,
     flaxseed_meal=5,
     potato_flakes=3,
     vwg=2,
@@ -104,7 +104,7 @@ dry = R.sum(
 
 R += "Inclusions"
 
-inclusions = R.sum(nuts=15, glaze=20)
+inclusions = R.sum(nuts=15, glaze=15)
 
 R += ""
 
