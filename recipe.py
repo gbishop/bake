@@ -90,8 +90,6 @@ class Recipe:
                 l = ld // 2
                 r = ld - l
                 rows.append(["─" * l + d + "─" * r])
-                if d:
-                    rows.append([])
             rows.append(row)
 
         table = tabulate(
