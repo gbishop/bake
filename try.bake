@@ -1,0 +1,37 @@
+flour = 250g;
+hydration = 70%;
+
+soaker:
+  polenta
+  boiling_water = 2.5 * flour
+  diastatic_malt = 0.015 * flour
+;
+starter:
+  rye
+  water = flour
+;
+sponge:
+  rye
+  starter = 0.1 * flour
+  water = flour
+;
+dry:
+  prairie_gold
+  bronze_chief = 0.5 * prairie_gold
+  flaxseed_meal = 5%
+  potato_flakes = 2%
+  vwg = 3%
+  improver = 1%
+  salt = 2%
+  yeast = 0.4%
+;
+wet:
+  water
+  soaker[flour = 10%]
+  sponge = 30%
+;
+total:
+  wet
+  dry
+  nuts = 15%
+;
