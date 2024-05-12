@@ -1,5 +1,5 @@
-flour = 250g;
-hydration = 70%;
+flour = 250;
+hydration = 70;
 
 soaker:
   polenta
@@ -13,25 +13,25 @@ starter:
 sponge:
   rye
   starter = 0.1 * flour
-  water = flour
+  warm_water = flour - starter.water
 ;
 dry:
   prairie_gold
   bronze_chief = 0.5 * prairie_gold
-  flaxseed_meal = 5%
-  potato_flakes = 2%
-  vwg = 3%
-  improver = 1%
-  salt = 2%
-  yeast = 0.4%
+  flaxseed_meal = 5
+  potato_flakes = 2
+  vwg = 3
+  improver = 1
+  salt = 2
+  yeast = 0.4
 ;
 wet:
   water
-  soaker[flour = 10%]
-  sponge = 30%
+  soaker[flour = 10]
+  sponge = 30
 ;
 total:
   wet
   dry
-  nuts = 15%
+  nuts = 15
 ;

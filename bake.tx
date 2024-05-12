@@ -2,24 +2,27 @@ Recipe: statements *= Statement;
 
 Statement: ( Setting | Part ) ';' ;
 
-Setting: setting=ID '=' value=Value;
+Setting: setting=ID '=' val=Value;
 
-Part: name=ID ':' ingredients*=Ingredient ;
+Part: part=PartName ':' ingredients*=Ingredient ;
+
+PartName: name=ID;
 
 Ingredient: name=ID (('[' parameter=Parameter ']') | ('=' expr=Expression))?;
 
-Parameter: name=ID '=' value=Value;
+Parameter: name=ID '=' val=Value;
 
-Expression: val=Sum;
+Expression: value=Sum;
 
-Sum: value=Product sums*=Sums;
+Sum: term=Product sums*=Sums;
 
-Sums: op=/[+-]/ value=Product;
+Sums: op=/[+-]/ term=Product;
 
-Product: value=Value products*=Products;
+Product: factor=Value products*=Products;
 
-Products: ('*' value=Value);
+Products: '*' factor=Value;
+
+Value: value=NUMBER | named=NamedValue | '(' expr=Expression ')';
 
 NamedValue: part=ID ('.' ingredient=ID)?;
 
-Value: NUMBER ('%' | 'g')? | NamedValue;
