@@ -2,49 +2,49 @@
 ┌────────────────────┬───────┬───────┬────────────────────┬────────┬─────────┐
 │                    │   %   │   g   │                    │   sum  │   +bowl │
 ├────────────────────┼───────┼───────┼────────────────────┼────────┼─────────┤
-│        total flour │ 100.0 │ 250.0 │ total flour        │        │         │
-│        total water │  70.0 │ 175.0 │ total water        │        │         │
+│        total flour │ 100.0 │ 500.0 │ total flour        │        │         │
+│        total water │  70.0 │ 350.0 │ total water        │        │         │
 │                    │       │       │                    │        │         │
 │ ──────Soaker────── │       │       │                    │        │         │
-│            polenta │  10.0 │  25.0 │ polenta            │   25.0 │   750.1 │
-│              water │  25.0 │  62.5 │ water              │   87.5 │   812.6 │
-│     diastatic malt │   0.1 │   0.4 │ diastatic malt     │   87.9 │   813.0 │
+│            polenta │  10.0 │  50.0 │ polenta            │   50.0 │   775.1 │
+│              water │  25.0 │ 125.0 │ water              │  175.0 │   900.1 │
+│     diastatic malt │   0.1 │   0.8 │ diastatic malt     │  175.8 │   900.9 │
 │ ────────────────── │       │       │                    │        │         │
-│       soaker total │  35.1 │  87.9 │ soaker total       │        │         │
+│       soaker total │  35.1 │ 175.8 │ soaker total       │        │         │
 │                    │       │       │                    │        │         │
 │ ──────Sponge────── │       │       │                    │        │         │
-│        rye starter │   1.0 │   2.5 │ rye starter        │   90.4 │   815.5 │
-│              water │  14.5 │  36.2 │ water              │  126.6 │   851.7 │
-│          rye flour │  14.5 │  36.2 │ rye flour          │  162.9 │   888.0 │
+│        rye starter │   1.0 │   5.0 │ rye starter        │  180.8 │   905.9 │
+│              water │  14.5 │  72.5 │ water              │  253.2 │   978.4 │
+│          rye flour │  14.5 │  72.5 │ rye flour          │  325.8 │  1050.8 │
 │ ────────────────── │       │       │                    │        │         │
-│       sponge total │  30.0 │  75.0 │ sponge total       │        │         │
+│       sponge total │  30.0 │ 150.0 │ sponge total       │        │         │
 │                    │       │       │                    │        │         │
 │ ──────Flours────── │       │       │                    │        │         │
-│     polenta/soaker │  10.0 │  25.0 │ polenta/soaker     │        │         │
-│ rye starter/sponge │   0.5 │   1.2 │ rye starter/sponge │        │         │
-│   rye flour/sponge │  14.5 │  36.2 │ rye flour/sponge   │        │         │
-│       prairie gold │  45.0 │ 112.5 │ prairie gold       │  275.4 │  1000.5 │
-│       bronze chief │  20.0 │  50.0 │ bronze chief       │  325.4 │  1050.5 │
-│      flaxseed meal │   5.0 │  12.5 │ flaxseed meal      │  337.9 │  1063.0 │
-│      potato flakes │   2.0 │   5.0 │ potato flakes      │  342.9 │  1068.0 │
-│                vwg │   3.0 │   7.5 │ vwg                │  350.4 │  1075.5 │
+│     polenta/soaker │  10.0 │  50.0 │ polenta/soaker     │        │         │
+│ rye starter/sponge │   0.5 │   2.5 │ rye starter/sponge │        │         │
+│   rye flour/sponge │  14.5 │  72.5 │ rye flour/sponge   │        │         │
+│       prairie gold │  45.0 │ 225.0 │ prairie gold       │  550.8 │  1275.8 │
+│       bronze chief │  20.0 │ 100.0 │ bronze chief       │  650.8 │  1375.8 │
+│      flaxseed meal │   5.0 │  25.0 │ flaxseed meal      │  675.8 │  1400.8 │
+│      potato flakes │   2.0 │  10.0 │ potato flakes      │  685.8 │  1410.8 │
+│                vwg │   3.0 │  15.0 │ vwg                │  700.8 │  1425.8 │
 │ ────────────────── │       │       │                    │        │         │
-│       flours total │ 100.0 │ 250.0 │ flours total       │        │         │
+│       flours total │ 100.0 │ 500.0 │ flours total       │        │         │
 │                    │       │       │                    │        │         │
 │ ───────Add──────── │       │       │                    │        │         │
-│           improver │   1.0 │   2.5 │ improver           │  352.9 │  1078.0 │
-│               salt │   2.0 │   5.0 │ salt               │  357.9 │  1083.0 │
-│              yeast │   0.4 │   1.0 │ yeast              │  358.9 │  1084.0 │
+│           improver │   1.0 │   5.0 │ improver           │  705.8 │  1430.8 │
+│               salt │   2.0 │  10.0 │ salt               │  715.8 │  1440.8 │
+│              yeast │   0.4 │   2.0 │ yeast              │  717.8 │  1442.8 │
 │                    │       │       │                    │        │         │
 │ ──────Final─────── │       │       │                    │        │         │
-│              water │  30.0 │  75.0 │ water              │  433.9 │  1159.0 │
-│                oil │   5.0 │  12.5 │ oil                │  446.4 │  1171.5 │
-│              honey │   5.0 │  12.5 │ honey              │  458.9 │  1184.0 │
+│              water │  30.0 │ 150.0 │ water              │  867.8 │  1592.8 │
+│                oil │   5.0 │  25.0 │ oil                │  892.8 │  1617.8 │
+│              honey │   5.0 │  25.0 │ honey              │  917.8 │  1642.8 │
 │                    │       │       │                    │        │         │
 │ ────Inclusions──── │       │       │                    │        │         │
-│               nuts │  15.0 │  37.5 │ nuts               │  496.4 │  1221.5 │
+│               nuts │  15.0 │  75.0 │ nuts               │  992.8 │  1717.8 │
 │ ────────────────── │       │       │                    │        │         │
-│              total │ 198.6 │ 496.4 │ total              │        │         │
+│              total │ 198.6 │ 992.8 │ total              │        │         │
 └────────────────────┴───────┴───────┴────────────────────┴────────┴─────────┘
 
 # My usual loaf with polenta
@@ -64,12 +64,12 @@ I rearranged the order so I could be sure everything is well mixed.
 
 Very nice texture and flavor on first taste. This is a keeper.
 
-10 May 2024
+13 May 2024
 """
 
 from recipe import R, TBD, water, flour
 
-R.scale = 250
+R.scale = 500
 
 R += R.total_flour == 100
 R += R.total_water == 70
