@@ -1,18 +1,16 @@
-Recipe: statements *= Statement;
+Recipe: statements *= Statement[/\n+/];
 
-Statement: ( Setting | Part ) ';' ;
+Statement: ( Setting | Part ) ;
 
-Setting: setting=ID '=' val=Value;
+Setting: setting=ID '=' val=NUMBER;
 
-Part: part=PartName ':' ingredients*=Ingredient ;
+Part: part=PartName ':' '\n' ingredients*=Ingredient['\n'];
 
 PartName: name=ID;
 
-Ingredient: name=ID (('[' parameter=Parameter ']') | ('=' expr=Expression))?;
+Ingredient: ('hydration' '=' hydration=NUMBER ) | (name=ID (('[' parameter=Parameter ']') | ('=' expr=Sum))? );
 
 Parameter: name=ID '=' val=Value;
-
-Expression: value=Sum;
 
 Sum: term=Product sums*=Sums;
 
@@ -22,7 +20,8 @@ Product: factor=Value products*=Products;
 
 Products: '*' factor=Value;
 
-Value: value=NUMBER | named=NamedValue | '(' expr=Expression ')';
+Value: value=NUMBER | named=NamedValue | '(' expr=Sum ')';
 
 NamedValue: part=ID ('.' ingredient=ID)?;
 
+Comment: /\/\/.*?\n+|(?ms:\/\*.*?\*\/\n+)/;

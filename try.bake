@@ -1,37 +1,82 @@
-flour = 250;
-hydration = 70;
+// My usual loaf with polenta
+/*+
+soaker.............................(175.8g = 35.1%)
+     50.0 polenta          10.00%
+    125.0 boiling water    25.00%
+      0.8 diastatic malt    0.15%
+
+starter............................(0.1g = 0.0%)
+      0.0 rye               0.00%
+      0.1 water             0.03%
+
+sponge.............................(150.0g = 30.0%)
+      1.5 rye               0.30%
+      0.1 starter           0.03%
+    148.4 water            29.67%
+
+dry................................(465.5g = 93.1%)
+    318.8 prairie gold     63.76%
+     79.7 bronze chief     15.94%
+     25.0 flaxseed meal     5.00%
+     10.0 potato flakes     2.00%
+     15.0 vwg               3.00%
+      5.0 improver          1.00%
+     10.0 salt              2.00%
+      2.0 yeast             0.40%
+
+wet................................(452.2g = 90.4%)
+     76.5 water            15.30%
+    175.8 soaker           35.15%
+    150.0 sponge           30.00%
+     25.0 honey             5.00%
+     25.0 oil               5.00%
+
+dough..............................(992.8g = 198.6%)
+    452.2 wet              90.45%
+    465.5 dry              93.10%
+     75.0 nuts             15.00%
+    500.0 total flour     100.00%
+    350.0 total water      70.00%
++*/
+// This is really good!
+
+flour = 500
+hydration = 70
 
 soaker:
   polenta
-  boiling_water = 2.5 * flour
-  diastatic_malt = 0.015 * flour
-;
+  boiling_water = 2.50 * polenta
+  diastatic_malt = 0.015 * polenta
+
 starter:
+  hydration = 60
   rye
-  water = flour
-;
+  water
+
 sponge:
+  hydration = 100
   rye
-  starter = 0.1 * flour
-  warm_water = flour - starter.water
-;
+  starter = 0.1 * rye
+  water
+
 dry:
   prairie_gold
-  bronze_chief = 0.5 * prairie_gold
+  bronze_chief = 25 * prairie_gold
   flaxseed_meal = 5
   potato_flakes = 2
   vwg = 3
   improver = 1
   salt = 2
   yeast = 0.4
-;
+
 wet:
   water
-  soaker[flour = 10]
+  soaker[polenta = 10]
   sponge = 30
-;
-total:
+  honey = 5
+  oil = 5
+
+dough:
   wet
   dry
   nuts = 15
-;
