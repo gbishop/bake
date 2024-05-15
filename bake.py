@@ -13,6 +13,10 @@ Flours = [
     "flaxseed_meal",
     "potato_flakes",
     "spelt",
+    "whole_wheat",
+    "ap_flour",
+    "red_rye_malt",
+    "oats",
 ]
 
 
@@ -48,13 +52,13 @@ class Part:
     def add(self, constraint):
         self.constraints.append(constraint)
 
-    def print(self, scale):
+    def print(self, scale, last=False):
         result = []
         bp = self.values["total"]
         g = bp * scale
         result.append(f"{self.name:.<35}({g:.1f}g = {100*bp:.1f}%)")
         for var in self.vars:
-            if self.name == "dough" and var != "total" or not var.startswith("total"):
+            if last and var != "total" or not var.startswith("total"):
                 bp = self.values[var]
                 g = bp * scale
                 result.append(f"   {g:6.1f} {var.replace('_', ' '):15} {100*bp:6.2f}%")
@@ -92,9 +96,6 @@ class Bake:
         for part in self.parts.values():
             for constraint in part.constraints:
                 problem += constraint
-        dough = self.parts["dough"]
-        problem += dough.var("total_flour") == 1
-        problem += dough.var("total_water") == self.hydration
 
         problem.solve(pulp.PULP_CBC_CMD(msg=False))
         if problem.status < 1:
@@ -104,7 +105,11 @@ class Bake:
                 if "." in var.name:
                     part, ingredient = var.name.split(".")
                     self.parts[part].values[ingredient] = var.varValue
-            result = "\n".join(part.print(self.scale) for part in self.parts.values())
+            parts = self.parts.values()
+            N = len(parts)
+            result = "\n".join(
+                part.print(self.scale, i == N - 1) for i, part in enumerate(parts)
+            )
             return self.output(result, text)
 
     def output(self, table, text):
@@ -160,10 +165,13 @@ class Bake:
 
     def handleIngredient(self, v):
         if not v.name:
-            self.part.add(
-                self.part.var("total_water")
-                == v.hydration.value * self.part.var("total_flour")
-            )
+            if v.hydration:
+                self.part.add(
+                    self.part.var("total_water")
+                    == v.hydration.value * self.part.var("total_flour")
+                )
+            elif v.scale:
+                self.scale = v.scale.value
             return
 
         name = v.name
