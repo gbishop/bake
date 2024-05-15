@@ -1,6 +1,8 @@
 Recipe: statements *= Statement[/\n+/];
 
-Statement: ( Setting | Part ) ;
+Statement: ( Setting | Part | Text ) ;
+
+Text: /^.*$/ ;
 
 Setting: setting=ID '=' value=BP;
 

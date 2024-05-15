@@ -109,17 +109,17 @@ class Bake:
 
     def output(self, table, text):
         match = re.match(
-            r"(?ms)(?P<title>//.*?\n)?\s*(?P<table>\/\*\+.*?\+\*\/)?(?P<rest>.*)",
+            r"(?ms)(?P<title>.*?\n)?\s*(?P<table>\/\*\+.*?\+\*\/)?(?P<rest>.*)",
             text,
         )
         if match:
-            title = match.group("title") or "\\ title"
+            title = match.group("title") or "the title"
             title = title.strip()
             table = table.strip()
             rest = match.group("rest").strip()
             result = f"{title}\n/*+\n{table}\n+*/\n{rest}"
         else:
-            result = f"\\ title\n/*+\n{table}+*/\n{text}"
+            result = f"title\n/*+\n{table}+*/\n{text}"
         print(result)
 
     def handleSum(self, v):

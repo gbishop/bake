@@ -1,4 +1,4 @@
-// My usual loaf with polenta
+Multigrain including polenta
 /*+
 soaker.............................(175.8g = 35.1%)
      50.0 polenta          10.00%
@@ -39,26 +39,41 @@ dough..............................(992.8g = 198.6%)
     500.0 total flour     100.00%
     350.0 total water      70.00%
 +*/
-// This is really good!
+My usual loaf with saccharified polenta
+
+This is really good!
 
 flour = 500g
 hydration = 70
+
+I poured boiling water over the polenta and let it sit covered at RT until
+it dropped to 150F. Then I added the diastatic malt and stirred. I covered
+it and left it overnight on the counter. In the morning it was quite
+sweet.
 
 soaker:
   polenta
   boiling_water = 250% * polenta
   diastatic_malt = 1.5% * polenta
 
+I keep my NMNF starter at 60% hydration in the fridge.
+
 starter:
   hydration = 60
   rye
   water
+
+I mixed the cold starter into the water and then added the rye. I kept it
+overnight at 86F.
 
 sponge:
   hydration = 100
   rye
   starter = 10% * rye
   water
+
+I like to mix all the flours and dry ingredients together to make sure they
+are properly distributed.
 
 dry:
   prairie_gold
@@ -71,12 +86,17 @@ dry:
   salt = 2
   yeast = 0.4
 
+I also mix the wet ingredients with a mix before adding the dry.
+
 wet:
   water
   soaker[polenta = 10]
   sponge = 30
   honey = 5
   oil = 5
+
+I mix the final dough with the paddle for 1 minute and let it rest
+covered for 30 minutes. I knead for 8 minutes and then add the nuts.
 
 dough:
   wet
