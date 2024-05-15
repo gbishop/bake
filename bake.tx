@@ -2,15 +2,15 @@ Recipe: statements *= Statement[/\n+/];
 
 Statement: ( Setting | Part ) ;
 
-Setting: setting=ID '=' val=NUMBER;
+Setting: setting=ID '=' value=BP;
 
 Part: part=PartName ':' '\n' ingredients*=Ingredient['\n'];
 
 PartName: name=ID;
 
-Ingredient: ('hydration' '=' hydration=NUMBER ) | (name=ID (('[' parameter=Parameter ']') | ('=' expr=Sum))? );
+Ingredient: ('hydration' '=' hydration=BP ) | (name=ID (('[' parameter=Parameter ']') | ('=' expr=Sum))? );
 
-Parameter: name=ID '=' val=Value;
+Parameter: name=ID '=' value=Value;
 
 Sum: term=Product sums*=Sums;
 
@@ -20,7 +20,9 @@ Product: factor=Value products*=Products;
 
 Products: '*' factor=Value;
 
-Value: value=NUMBER | named=NamedValue | '(' expr=Sum ')';
+Value: value=BP | named=NamedValue | '(' expr=Sum ')';
+
+BP: value=NUMBER unit=/[g%]?/;
 
 NamedValue: part=ID ('.' ingredient=ID)?;
 

@@ -12,6 +12,7 @@ Flours = [
     "polenta",
     "flaxseed_meal",
     "potato_flakes",
+    "spelt",
 ]
 
 
@@ -50,13 +51,13 @@ class Part:
     def print(self, scale):
         result = []
         bp = self.values["total"]
-        g = bp * scale / 100
-        result.append(f"{self.name:.<35}({g:.1f}g = {bp:.1f}%)")
+        g = bp * scale
+        result.append(f"{self.name:.<35}({g:.1f}g = {100*bp:.1f}%)")
         for var in self.vars:
             if self.name == "dough" and var != "total" or not var.startswith("total"):
                 bp = self.values[var]
-                g = bp * scale / 100
-                result.append(f"   {g:6.1f} {var.replace('_', ' '):15} {bp:6.2f}%")
+                g = bp * scale
+                result.append(f"   {g:6.1f} {var.replace('_', ' '):15} {100*bp:6.2f}%")
         result.append("")
         return "\n".join(result)
 
@@ -67,6 +68,7 @@ class Bake:
         self.meta.register_obj_processors(
             {
                 "Value": self.handleValue,
+                "BP": self.handleBP,
                 "NamedValue": self.handleNamedValue,
                 "PartName": self.handlePartName,
                 "Sum": self.handleSum,
@@ -77,7 +79,7 @@ class Bake:
             }
         )
         self.parts = {}
-        self.hydration = 100
+        self.hydration = 1
 
     def compile(self):
         text = sys.stdin.read()
@@ -91,7 +93,7 @@ class Bake:
             for constraint in part.constraints:
                 problem += constraint
         dough = self.parts["dough"]
-        problem += dough.var("total_flour") == 100
+        problem += dough.var("total_flour") == 1
         problem += dough.var("total_water") == self.hydration
 
         problem.solve(pulp.PULP_CBC_CMD(msg=False))
@@ -141,7 +143,11 @@ class Bake:
         elif v.expr:
             v.pulp = v.expr.pulp
         else:
-            v.pulp = float(v.value)
+            v.pulp = v.value.value
+
+    def handleBP(self, v):
+        if not v.unit or v.unit == "%":
+            v.value = v.value / 100
 
     def handleNamedValue(self, v):
         if v.ingredient:
@@ -156,7 +162,7 @@ class Bake:
         if not v.name:
             self.part.add(
                 self.part.var("total_water")
-                == v.hydration / 100 * self.part.var("total_flour")
+                == v.hydration.value * self.part.var("total_flour")
             )
             return
 
@@ -168,7 +174,7 @@ class Bake:
             self.part.add(var == otherPart.var("total"))
             if v.parameter:
                 othervar = otherPart.var(v.parameter.name)
-                otherPart.add(othervar == v.parameter.val.pulp)
+                otherPart.add(othervar == v.parameter.value.pulp)
 
         if v.expr:
             self.part.add(var == v.expr.pulp)
@@ -199,9 +205,9 @@ class Bake:
 
     def handleSetting(self, v):
         if v.setting == "flour":
-            self.scale = float(v.val)
+            self.scale = float(v.value.value)
         elif v.setting == "hydration":
-            self.hydration = float(v.val)
+            self.hydration = float(v.value.value)
 
 
 Baker = Bake()

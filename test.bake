@@ -15,9 +15,8 @@ sponge.............................(150.0g = 30.0%)
      72.4 water            14.47%
 
 dry................................(392.0g = 78.4%)
-    191.2 prairie gold     38.24%
-     95.6 bronze chief     19.12%
-     38.2 spelt             7.65%
+    260.0 prairie gold     52.00%
+     65.0 bronze chief     13.00%
      25.0 flaxseed meal     5.00%
      10.0 potato flakes     2.00%
      15.0 vwg               3.00%
@@ -41,13 +40,13 @@ dough..............................(992.8g = 198.6%)
 +*/
 // This is really good!
 
-flour = 500g
+flour = 500
 hydration = 70
 
 soaker:
   polenta
-  boiling_water = 250% * polenta
-  diastatic_malt = 1.5% * polenta
+  boiling_water = 2.5 * polenta
+  diastatic_malt = 0.015 * polenta
 
 starter:
   hydration = 60
@@ -57,13 +56,12 @@ starter:
 sponge:
   hydration = 100
   rye
-  starter = 10% * rye
+  starter = 0.1 * rye
   water
 
 dry:
   prairie_gold
-  bronze_chief = 50% * prairie_gold
-  spelt = 20% * prairie_gold
+  bronze_chief = 0.25 * prairie_gold
   flaxseed_meal = 5
   potato_flakes = 2
   vwg = 3
