@@ -5,18 +5,23 @@ import sys
 
 Flours = [
     "prairie_gold",
+    "hard_white",
     "bronze_chief",
+    "hard_red",
     "vwg",
+    "vital_wheat_gluten",
     "ww",
+    "whole_wheat",
     "rye",
     "polenta",
     "flaxseed_meal",
     "potato_flakes",
     "spelt",
-    "whole_wheat",
     "ap_flour",
     "red_rye_malt",
     "oats",
+    "steel_cut_oats",
+    "bread_flour",
 ]
 
 
@@ -93,19 +98,20 @@ class Bake:
             return self.output(f"Error {e.line}:{e.col} {e.message}", text)
         problem = pulp.LpProblem("bake")
         problem += 0  # objective goes here
-        for part in self.parts.values():
+        parts = list(self.parts.values())
+        parts[-1].constraints.append(parts[-1].var("total_flour") == 1)
+        for part in parts:
             for constraint in part.constraints:
                 problem += constraint
 
         problem.solve(pulp.PULP_CBC_CMD(msg=False))
-        if problem.status < 1:
+        if False and problem.status < 1:
             return self.output("solution failed", text)
         else:
             for var in problem.variables():
                 if "." in var.name:
                     part, ingredient = var.name.split(".")
                     self.parts[part].values[ingredient] = var.varValue
-            parts = self.parts.values()
             N = len(parts)
             result = "\n".join(
                 part.print(self.scale, i == N - 1) for i, part in enumerate(parts)
@@ -121,10 +127,10 @@ class Bake:
             title = match.group("title") or "the title"
             title = title.strip()
             table = table.strip()
-            rest = match.group("rest").strip()
-            result = f"{title}\n/*+\n{table}\n+*/\n{rest}"
+            rest = match.group("rest")
+            result = f"{title}\n/*+\n{table}\n+*/{rest}"
         else:
-            result = f"title\n/*+\n{table}+*/\n{text}"
+            result = f"title\n/*+\n{table}+*/{text}"
         print(result)
 
     def handleSum(self, v):

@@ -28,4 +28,4 @@ BP: value=NUMBER unit=/[g%]?/;
 
 NamedValue: part=ID ('.' ingredient=ID)?;
 
-Comment: /\/\/.*?\n+|(?ms:\/\*.*?\*\/\n+)/;
+Comment: /\/\/.*?$|(?ms:\/\*.*?\*\/\n+)/;

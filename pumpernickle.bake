@@ -1,38 +1,38 @@
 Faux (American) Pumpernickle
 /*+
-sponge.............................(75.0g = 25.0%)
-     35.7 whole wheat      11.90%
-     35.7 water            11.90%
-      3.6 starter           1.19%
+https..............................(0.0g = 0.0%)
 
-wet................................(324.3g = 108.1%)
-    162.3 warm water       54.10%
-     75.0 sponge           25.00%
-     48.0 molasses         16.00%
-     39.0 butter           13.00%
+sponge.............................(50.0g = 25.0%)
+     23.8 whole wheat      11.90%
+     23.8 water            11.90%
+      2.4 starter           1.19%
 
-dry................................(300.9g = 100.3%)
-     90.0 rye              30.00%
-     51.0 prairie gold     17.00%
-    123.3 ap flour         41.10%
-      9.0 brown sugar       3.00%
-     21.0 cacao powder      7.00%
-      5.4 salt              1.80%
-      1.2 yeast             0.40%
+wet................................(216.2g = 108.1%)
+    108.2 warm water       54.10%
+     50.0 sponge           25.00%
+     32.0 molasses         16.00%
+     26.0 butter           13.00%
 
-dough..............................(625.2g = 208.4%)
-    324.3 wet             108.10%
-    300.9 dry             100.30%
-    300.0 total flour     100.00%
-    198.0 total water      66.00%
+dry................................(196.6g = 98.3%)
+     60.0 rye              30.00%
+     34.0 prairie gold     17.00%
+     79.2 ap flour         39.60%
+      3.0 red rye malt      1.50%
+      6.0 brown sugar       3.00%
+     10.0 cacao powder      5.00%
+      3.6 salt              1.80%
+      0.8 yeast             0.40%
+
+dough..............................(412.8g = 206.4%)
+    216.2 wet             108.10%
+    196.6 dry              98.30%
+    132.0 total water      66.00%
+    200.0 total flour     100.00%
 +*/
 https://www.farmhouseonboone.com/sourdough-pumpernickel-bread-recipe
 
 First version was delicious but a bit too chocolate forward. Second version
 added red rye malt but went too far. Next time try this.
-
-flour = 200g
-hydration = 66%
 
 sponge:
     whole_wheat
@@ -59,3 +59,5 @@ dry:
 dough:
     wet
     dry
+    hydration = 66%
+    scale = 200g
