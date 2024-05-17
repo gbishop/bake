@@ -1,4 +1,4 @@
-My usual loaf
+My usual loaf with glazed nuts
 /*+
 starter............................(5.0g = 1.0%)
       3.1 rye               0.62%
@@ -6,8 +6,8 @@ starter............................(5.0g = 1.0%)
 
 sponge.............................(100.0g = 20.0%)
       5.0 starter           1.00%
-     46.9 rye               9.38%
      48.1 warm water        9.62%
+     46.9 whole wheat       9.38%
 
 wet................................(450.0g = 90.0%)
     100.0 sponge           20.00%
@@ -27,12 +27,19 @@ dry................................(467.0g = 93.4%)
      10.0 salt              2.00%
       2.0 yeast             0.40%
 
-dough..............................(917.0g = 183.4%)
+glazed_nuts........................(150.0g = 30.0%)
+     75.0 nuts             15.00%
+     75.0 glaze            15.00%
+
+dough..............................(1067.0g = 213.4%)
     450.0 wet              90.00%
     467.0 dry              93.40%
+    150.0 glazed nuts      30.00%
     500.0 total flour     100.00%
     350.0 total water      70.00%
 +*/
+
+This loaf has glazed nuts added. I started with 75g of 50/50 pecan/walnuts and glazed them with 75g of brown sugar, 25g water and 1.0g salt in a non-stick pan. https://www.fifteenspatulas.com/quick-stovetop-candied-pecans/ I failed to weigh the result but it must have been about 150g.
 
 This one turned out as good as the first. I think lowering the oats helps the texture. 
 
@@ -44,9 +51,9 @@ starter:
   hydration = 60%
 
 sponge:
-  starter = 1%
-  rye
+  starter = 10% * total_flour
   warm_water
+  whole_wheat
   hydration = 100%
 
 wet:
@@ -67,9 +74,14 @@ dry:
   salt = 2%
   yeast = 0.4%
 
+glazed_nuts:
+  nuts = 15%
+  glaze = 15%
+
 dough:
   wet
   dry
+  glazed_nuts
   total_flour = 100%
   hydration = 70%
   scale = 500g

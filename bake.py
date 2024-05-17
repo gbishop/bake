@@ -47,6 +47,8 @@ class Part:
         self.constraints = []
         self.vars = {}
         self.values = {}
+        self.limit = 0
+        self.limitScale = 1
 
     def var(self, name):
         if name not in self.vars:
@@ -88,7 +90,7 @@ class Bake:
             }
         )
         self.parts = {}
-        self.hydration = 1
+        self.limits = []
 
     def compile(self):
         text = sys.stdin.read()
@@ -105,20 +107,18 @@ class Bake:
                 problem += constraint
 
         problem.solve(pulp.PULP_CBC_CMD(msg=False))
-        if False and problem.status < 1:
-            return self.output("solution failed", text)
-        else:
-            for var in problem.variables():
-                if "." in var.name:
-                    part, ingredient = var.name.split(".")
-                    self.parts[part].values[ingredient] = var.varValue
-            N = len(parts)
-            result = "\n".join(
-                part.print(self.scale, i == N - 1) for i, part in enumerate(parts)
-            )
-            return self.output(result, text)
+        failed = problem.status < 1
+        for var in problem.variables():
+            if "." in var.name:
+                part, ingredient = var.name.split(".")
+                self.parts[part].values[ingredient] = var.varValue
+        N = len(parts)
+        result = "\n".join(
+            part.print(self.scale, i == N - 1) for i, part in enumerate(parts)
+        )
+        return self.output(result, text, failed)
 
-    def output(self, table, text):
+    def output(self, table, text, failed=False):
         match = re.match(
             r"(?ms)(?P<title>.*?\n)?\s*(?P<table>\/\*\+.*?\+\*\/)?(?P<rest>.*)",
             text,
@@ -127,6 +127,8 @@ class Bake:
             title = match.group("title") or "the title"
             title = title.strip()
             table = table.strip()
+            if failed:
+                table = re.sub(r"^", "E ", table, 0, re.M)
             rest = match.group("rest")
             result = f"{title}\n/*+\n{table}\n+*/{rest}"
         else:
@@ -170,28 +172,32 @@ class Bake:
         self.part = self.parts[v.name] = Part(v.name)
 
     def handleIngredient(self, v):
+        part = self.part
         if not v.name:
             if v.hydration:
-                self.part.add(
-                    self.part.var("total_water")
-                    == v.hydration.value * self.part.var("total_flour")
+                part.add(
+                    part.var("total_water")
+                    == v.hydration.value * part.var("total_flour")
                 )
             elif v.scale:
                 self.scale = v.scale.value
             return
 
         name = v.name
-        var = self.part.var(name)
+        var = part.var(name)
 
         if name in self.parts:
             otherPart = self.parts[v.name]
-            self.part.add(var == otherPart.var("total"))
-            if v.parameter:
+            part.add(var == part.limitScale * otherPart.var("total"))
+            if v.limit:
+                otherPart.limit = v.limit.value
+                self.limits.append(otherPart)
+            elif v.parameter:
                 othervar = otherPart.var(v.parameter.name)
                 otherPart.add(othervar == v.parameter.value.pulp)
 
         if v.expr:
-            self.part.add(var == v.expr.pulp)
+            part.add(var == part.limitScale * v.expr.pulp)
 
     def handlePart(self, _):
         part = self.part

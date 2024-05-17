@@ -10,7 +10,12 @@ Part: part=PartName ':' '\n' ingredients*=Ingredient['\n'];
 
 PartName: name=ID;
 
-Ingredient: ('hydration' '=' hydration=BP ) | ('scale' '=' scale=BP) | (name=ID (('[' parameter=Parameter ']') | ('=' expr=Sum))? );
+Ingredient: ('hydration' '=' hydration=BP ) |
+            ('scale' '=' scale=BP) | 
+            (name=ID (('[' parameter=Parameter ']') |
+                     ('=' expr=Sum) |
+                     ('<=' limit=BP)
+                     )? );
 
 Parameter: name=ID '=' value=Value;
 
