@@ -13,8 +13,8 @@ PartName: name=ID;
 Ingredient: ('hydration' '=' hydration=BP ) |
             ('scale' '=' scale=BP) | 
             (name=ID (('[' parameter=Parameter ']') |
-                     ('=' expr=Sum) |
-                     ('<=' limit=BP)
+                      ('=' expr=Sum) |
+                      ('limit' limit=BP)
                      )? );
 
 Parameter: name=ID '=' value=Value;

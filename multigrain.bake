@@ -1,37 +1,6 @@
 My usual loaf
 /*+
-starter............................(5.0g = 1.0%)
-      3.1 rye               0.62%
-      1.9 water             0.38%
-
-sponge.............................(100.0g = 20.0%)
-      5.0 starter           1.00%
-     46.9 rye               9.38%
-     48.1 warm water        9.62%
-
-wet................................(450.0g = 90.0%)
-    100.0 sponge           20.00%
-    300.0 warm water       60.00%
-     25.0 oil               5.00%
-     25.0 honey             5.00%
-
-dry................................(467.0g = 93.4%)
-    175.0 prairie gold     35.00%
-    150.0 bronze chief     30.00%
-     50.0 spelt            10.00%
-     25.0 oats              5.00%
-     25.0 flaxseed meal     5.00%
-     15.0 potato flakes     3.00%
-     10.0 vwg               2.00%
-      5.0 improver          1.00%
-     10.0 salt              2.00%
-      2.0 yeast             0.40%
-
-dough..............................(917.0g = 183.4%)
-    450.0 wet              90.00%
-    467.0 dry              93.40%
-    500.0 total flour     100.00%
-    350.0 total water      70.00%
+Error 48:1 Expected ID
 +*/
 
 This one turned out as good as the first. I think lowering the oats helps the texture. 
@@ -73,3 +42,4 @@ dough:
   total_flour = 100%
   hydration = 70%
   scale = 500g
+

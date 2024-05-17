@@ -56,8 +56,9 @@ class Part:
             self.vars[name] = pulp.LpVariable(lpname, 0, None)
         return self.vars[name]
 
-    def add(self, constraint):
-        self.constraints.append(constraint)
+    def add(self, var, op, value):
+        if op == "=":
+            self.constraints.append([var, op, value])
 
     def print(self, scale, last=False):
         result = []
@@ -71,6 +72,12 @@ class Part:
                 result.append(f"   {g:6.1f} {var.replace('_', ' '):15} {100*bp:6.2f}%")
         result.append("")
         return "\n".join(result)
+
+    def applyLimit(self):
+        total = self.values["total"]
+        if total > self.limit:
+            self.limitScale = self.limit / total
+            return True
 
 
 class Bake:
@@ -98,25 +105,40 @@ class Bake:
             self.model = self.meta.model_from_str(text)
         except textx.TextXSyntaxError as e:
             return self.output(f"Error {e.line}:{e.col} {e.message}", text)
-        problem = pulp.LpProblem("bake")
-        problem += 0  # objective goes here
         parts = list(self.parts.values())
-        parts[-1].constraints.append(parts[-1].var("total_flour") == 1)
-        for part in parts:
-            for constraint in part.constraints:
-                problem += constraint
-
-        problem.solve(pulp.PULP_CBC_CMD(msg=False))
-        failed = problem.status < 1
-        for var in problem.variables():
-            if "." in var.name:
-                part, ingredient = var.name.split(".")
-                self.parts[part].values[ingredient] = var.varValue
+        parts[-1].add(parts[-1].var("total_flour"), "=", 1)
+        failed = self.solve()
         N = len(parts)
         result = "\n".join(
             part.print(self.scale, i == N - 1) for i, part in enumerate(parts)
         )
         return self.output(result, text, failed)
+
+    def solve(self):
+        parts = self.parts
+        while True:
+            problem = pulp.LpProblem("bake")
+            problem += 0  # objective goes here
+            for part in parts:
+                for var, op, value in part.constraints:
+                    if op == "=":
+                        problem += var == part.limitScale * value
+
+            problem.solve(pulp.PULP_CBC_CMD(msg=False))
+            failed = problem.status < 1
+            for var in problem.variables():
+                if "." in var.name:
+                    part, ingredient = var.name.split(".")
+                    self.parts[part].values[ingredient] = var.varValue
+            if failed:
+                return failed
+            for part in self.limits:
+                if part.applyLimit():
+                    break
+            else:
+                break
+
+        return failed
 
     def output(self, table, text, failed=False):
         match = re.match(
@@ -176,8 +198,9 @@ class Bake:
         if not v.name:
             if v.hydration:
                 part.add(
-                    part.var("total_water")
-                    == v.hydration.value * part.var("total_flour")
+                    part.var("total_water"),
+                    "=",
+                    v.hydration.value * part.var("total_flour"),
                 )
             elif v.scale:
                 self.scale = v.scale.value
@@ -188,7 +211,7 @@ class Bake:
 
         if name in self.parts:
             otherPart = self.parts[v.name]
-            part.add(var == part.limitScale * otherPart.var("total"))
+            part.add(var, "=", otherPart.var("total"))
             if v.limit:
                 otherPart.limit = v.limit.value
                 self.limits.append(otherPart)
@@ -197,7 +220,7 @@ class Bake:
                 otherPart.add(othervar == v.parameter.value.pulp)
 
         if v.expr:
-            part.add(var == part.limitScale * v.expr.pulp)
+            part.add(var, "=", v.expr.pulp)
 
     def handlePart(self, _):
         part = self.part
@@ -205,7 +228,7 @@ class Bake:
             part.vars[var] for var in part.vars if not var.startswith("total")
         )
         var = part.var("total")
-        part.add(var == total)
+        part.add(var, "=", total)
         flour = 0
         water = 0
         for var in part.vars:
@@ -220,8 +243,8 @@ class Bake:
                     w = waterFraction(var)
                     if w > 0:
                         water += w * part.var(var)
-        part.add(self.part.var("total_flour") == flour)
-        part.add(self.part.var("total_water") == water)
+        part.add(part.var("total_flour"), "=", flour)
+        part.add(part.var("total_water"), "=", water)
 
     def handleSetting(self, v):
         if v.setting == "flour":
