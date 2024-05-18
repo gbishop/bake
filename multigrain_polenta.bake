@@ -5,14 +5,14 @@ soaker.............................(175.8g = 35.1%)
     125.0 boiling water    25.00%
       0.8 diastatic malt    0.15%
 
-starter............................(7.1g = 1.4%)
-      4.4 rye               0.88%
-      2.6 water             0.53%
+starter............................(7.5g = 1.5%)
+      4.7 rye               0.94%
+      2.8 water             0.56%
 
-sponge.............................(150.0g = 30.0%)
-     72.4 water            14.47%
-     70.6 rye              14.12%
-      7.1 starter           1.41%
+sponge.............................(159.4g = 31.9%)
+     76.9 water            15.38%
+     75.0 rye              15.00%
+      7.5 starter           1.50%
 
 dry................................(392.0g = 78.4%)
     191.2 prairie gold     38.24%
@@ -67,7 +67,7 @@ sponge:
   hydration = 100%
   water
   starter = 10% * rye
-  rye
+  rye = 15%
 
 I like to mix all the flours and dry ingredients together to make sure they
 are properly distributed.
@@ -88,7 +88,7 @@ I also mix the wet ingredients with a mix before adding the dry.
 wet:
   water
   soaker[polenta = 10%]
-  sponge = 30%
+  sponge limit 30%
   honey = 5%
   oil = 5%
 

@@ -1,13 +1,13 @@
 My usual loaf with glazed nuts
 /*+
-starter............................(5.0g = 1.0%)
-      3.1 rye               0.62%
-      1.9 water             0.38%
+starter............................(5.3g = 1.1%)
+      3.3 rye               0.67%
+      2.0 water             0.40%
 
-sponge.............................(100.0g = 20.0%)
-      5.0 starter           1.00%
-     48.1 warm water        9.62%
-     46.9 whole wheat       9.38%
+sponge.............................(106.7g = 21.3%)
+      5.3 starter           1.07%
+     51.3 warm water       10.27%
+     50.0 whole wheat      10.00%
 
 wet................................(450.0g = 90.0%)
     100.0 sponge           20.00%
@@ -53,11 +53,11 @@ starter:
 sponge:
   starter = 10% * total_flour
   warm_water
-  whole_wheat
+  whole_wheat = 10%
   hydration = 100%
 
 wet:
-  sponge = 20%
+  sponge limit 20%
   warm_water
   oil = 5%
   honey = 5%

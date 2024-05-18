@@ -1,4 +1,4 @@
-// My usual loaf with polenta
+My usual loaf with polenta
 /*+
 soaker.............................(175.8g = 35.1%)
      50.0 polenta          10.00%
@@ -35,18 +35,18 @@ dough..............................(992.8g = 198.6%)
     525.8 wet             105.15%
     392.0 dry              78.40%
      75.0 nuts             15.00%
-    500.0 total flour     100.00%
     350.0 total water      70.00%
+    500.0 total flour     100.00%
 +*/
-// This is really good!
 
-flour = 500
-hydration = 70
+This one turned out as good as the first. I think lowering the oats helps the texture. 
+
+2 May 2024
 
 soaker:
   polenta
-  boiling_water = 2.5 * polenta
-  diastatic_malt = 0.015 * polenta
+  boiling_water = 250% * polenta
+  diastatic_malt = 1.5% * polenta
 
 starter:
   hydration = 60
@@ -56,12 +56,12 @@ starter:
 sponge:
   hydration = 100
   rye
-  starter = 0.1 * rye
+  starter = 10% * rye
   water
 
 dry:
   prairie_gold
-  bronze_chief = 0.25 * prairie_gold
+  bronze_chief = 25% * prairie_gold
   flaxseed_meal = 5
   potato_flakes = 2
   vwg = 3
@@ -80,3 +80,7 @@ dough:
   wet
   dry
   nuts = 15
+  hydration = 70
+  scale = 500g
+
+

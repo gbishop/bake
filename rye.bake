@@ -1,38 +1,38 @@
 30% rye with red rye malt
 /*+
-E starter............................(0.0g = 0.0%)
-E       0.0 water             0.00%
-E       0.0 rye               0.00%
-E 
-E sponge.............................(0.0g = 0.0%)
-E       0.0 rye               0.00%
-E       0.0 red rye malt      0.00%
-E       0.0 starter           0.00%
-E       0.0 water             0.00%
-E 
-E wet................................(0.0g = 0.0%)
-E       0.0 warm water        0.00%
-E       0.0 sponge            0.00%
-E       0.0 oil               0.00%
-E       0.0 honey             0.00%
-E 
-E dry................................(0.0g = 0.0%)
-E       0.0 rye               0.00%
-E       0.0 prairie gold      0.00%
-E       0.0 bread flour       0.00%
-E       0.0 potato flakes     0.00%
-E       0.0 flaxseed meal     0.00%
-E       0.0 vwg               0.00%
-E       0.0 improver          0.00%
-E       0.0 salt              0.00%
-E       0.0 caraway seeds     0.00%
-E       0.0 yeast             0.00%
-E 
-E dough..............................(0.0g = 0.0%)
-E       0.0 wet               0.00%
-E       0.0 dry               0.00%
-E       0.0 total water       0.00%
-E       0.0 total flour       0.00%
+starter............................(5.0g = 1.0%)
+      1.9 water             0.38%
+      3.1 rye               0.62%
+
+sponge.............................(106.2g = 21.2%)
+     40.0 rye               8.00%
+     10.0 red rye malt      2.00%
+      5.0 starter           1.00%
+     51.2 water            10.25%
+
+wet................................(450.0g = 90.0%)
+    300.0 warm water       60.00%
+    100.0 sponge           20.00%
+     25.0 oil               5.00%
+     25.0 honey             5.00%
+
+dry................................(477.0g = 95.4%)
+    100.0 rye              20.00%
+    175.0 prairie gold     35.00%
+    135.0 bread flour      27.00%
+     15.0 potato flakes     3.00%
+     15.0 flaxseed meal     3.00%
+     10.0 vwg               2.00%
+      5.0 improver          1.00%
+     10.0 salt              2.00%
+     10.0 caraway seeds     2.00%
+      2.0 yeast             0.40%
+
+dough..............................(927.0g = 185.4%)
+    450.0 wet              90.00%
+    477.0 dry              95.40%
+    350.0 total water      70.00%
+    500.0 total flour     100.00%
 +*/
 
 This is a really good rye loaf. I like the flavor, aroma and texture. 
@@ -51,7 +51,7 @@ sponge:
 
 wet:
   warm_water
-  sponge
+  sponge limit 20%
   oil = 5%
   honey = 5%
 
