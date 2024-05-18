@@ -75,7 +75,7 @@ class Part:
 
     def applyLimit(self):
         total = self.values["total"]
-        if total > self.limit:
+        if self.limitScale == 1:
             self.limitScale = self.limit / total
             return True
 
@@ -119,10 +119,36 @@ class Bake:
         while True:
             problem = pulp.LpProblem("bake")
             problem += 0  # objective goes here
-            for part in parts:
+            for part in parts.values():
+                total = 0
+                flour = 0
+                water = 0
+                for var in part.vars:
+                    if "total" in var:
+                        continue
+                    if var in self.parts:
+                        otherPart = self.parts[var]
+                        ls = otherPart.limitScale
+                        total += ls * otherPart.var("total")
+                        water += ls * otherPart.var("total_water")
+                        flour += ls * otherPart.var("total_flour")
+                        problem += part.var(var) == ls * otherPart.var("total")
+                    else:
+                        f = flourFraction(var)
+                        if f > 0:
+                            flour += f * part.var(var)
+                        w = waterFraction(var)
+                        if w > 0:
+                            water += w * part.var(var)
+                        total += part.var(var)
+
                 for var, op, value in part.constraints:
                     if op == "=":
-                        problem += var == part.limitScale * value
+                        problem += var == value
+
+                problem += part.var("total") == total
+                problem += part.var("total_water") == water
+                problem += part.var("total_flour") == flour
 
             problem.solve(pulp.PULP_CBC_CMD(msg=False))
             failed = problem.status < 1
@@ -138,7 +164,7 @@ class Bake:
             else:
                 break
 
-        return failed
+        return False
 
     def output(self, table, text, failed=False):
         match = re.match(
@@ -211,40 +237,40 @@ class Bake:
 
         if name in self.parts:
             otherPart = self.parts[v.name]
-            part.add(var, "=", otherPart.var("total"))
             if v.limit:
                 otherPart.limit = v.limit.value
                 self.limits.append(otherPart)
             elif v.parameter:
                 othervar = otherPart.var(v.parameter.name)
-                otherPart.add(othervar == v.parameter.value.pulp)
+                otherPart.add(othervar, "=", v.parameter.value.pulp)
 
         if v.expr:
             part.add(var, "=", v.expr.pulp)
 
     def handlePart(self, _):
+        return
         part = self.part
-        total = pulp.lpSum(
-            part.vars[var] for var in part.vars if not var.startswith("total")
-        )
-        var = part.var("total")
-        part.add(var, "=", total)
         flour = 0
         water = 0
+        total = 0
         for var in part.vars:
+            if "total" in var:
+                continue
             if var in self.parts:
-                flour += self.parts[var].var("total_flour")
-                water += self.parts[var].var("total_water")
+                otherPart = self.parts[var]
+                flour += otherPart.var("total_flour")
+                water += otherPart.var("total_water")
+                total += otherPart.var("total")
             else:
-                if "total" not in var:
-                    f = flourFraction(var)
-                    if f > 0:
-                        flour += f * part.var(var)
-                    w = waterFraction(var)
-                    if w > 0:
-                        water += w * part.var(var)
+                f = flourFraction(var)
+                if f > 0:
+                    flour += f * part.var(var)
+                w = waterFraction(var)
+                if w > 0:
+                    water += w * part.var(var)
         part.add(part.var("total_flour"), "=", flour)
         part.add(part.var("total_water"), "=", water)
+        part.add(part.var("total"), "=", total)
 
     def handleSetting(self, v):
         if v.setting == "flour":
