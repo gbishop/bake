@@ -75,7 +75,7 @@ class Part:
 
     def applyLimit(self):
         total = self.values["total"]
-        if self.limitScale == 1:
+        if total > self.limit and self.limitScale == 1:
             self.limitScale = self.limit / total
             return True
 
