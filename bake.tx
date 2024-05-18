@@ -1,4 +1,4 @@
-Recipe: statements *= Statement[/\n+/];
+Recipe: statements *= Statement[/\n+/] /\s*/;
 
 Statement: ( Setting | Part | Text ) ;
 
