@@ -92,7 +92,6 @@ class Bake:
                 "Sum": self.handleSum,
                 "Product": self.handleProduct,
                 "Ingredient": self.handleIngredient,
-                "Part": self.handlePart,
                 "Setting": self.handleSetting,
             }
         )
@@ -116,7 +115,7 @@ class Bake:
 
     def solve(self):
         parts = self.parts
-        while True:
+        for _ in range(10):
             problem = pulp.LpProblem("bake")
             problem += 0  # objective goes here
             for part in parts.values():
@@ -246,31 +245,6 @@ class Bake:
 
         if v.expr:
             part.add(var, "=", v.expr.pulp)
-
-    def handlePart(self, _):
-        return
-        part = self.part
-        flour = 0
-        water = 0
-        total = 0
-        for var in part.vars:
-            if "total" in var:
-                continue
-            if var in self.parts:
-                otherPart = self.parts[var]
-                flour += otherPart.var("total_flour")
-                water += otherPart.var("total_water")
-                total += otherPart.var("total")
-            else:
-                f = flourFraction(var)
-                if f > 0:
-                    flour += f * part.var(var)
-                w = waterFraction(var)
-                if w > 0:
-                    water += w * part.var(var)
-        part.add(part.var("total_flour"), "=", flour)
-        part.add(part.var("total_water"), "=", water)
-        part.add(part.var("total"), "=", total)
 
     def handleSetting(self, v):
         if v.setting == "flour":
