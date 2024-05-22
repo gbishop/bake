@@ -1,0 +1,106 @@
+Multigrain including polenta and barley
+/*+
+soaker.............................(175.8g = 35.1%)
+     25.0 polenta           5.00%
+     25.0 barley flour      5.00%
+    125.0 boiling water    25.00%
+      0.8 diastatic malt    0.15%
+
+starter............................(7.3g = 1.5%)
+      4.6 rye               0.91%
+      2.7 water             0.55%
+
+sponge.............................(155.5g = 31.1%)
+     75.0 water            15.00%
+     73.2 rye              14.63%
+      7.3 starter           1.46%
+
+dry................................(392.0g = 78.4%)
+    191.2 prairie gold     38.24%
+     95.6 bronze chief     19.12%
+     38.2 spelt             7.65%
+     25.0 flaxseed meal     5.00%
+     10.0 potato flakes     2.00%
+     15.0 vwg               3.00%
+      5.0 improver          1.00%
+     10.0 salt              2.00%
+      2.0 yeast             0.40%
+
+wet................................(525.8g = 105.2%)
+    150.0 water            30.00%
+    175.8 soaker           35.15%
+    150.0 sponge           30.00%
+     25.0 honey             5.00%
+     25.0 oil               5.00%
+
+dough..............................(992.8g = 198.6%)
+    525.8 wet             105.15%
+    392.0 dry              78.40%
+     75.0 nuts             15.00%
+    350.0 total water      70.00%
+    500.0 total flour     100.00%
++*/
+My usual loaf with saccharified polenta and barley
+
+This is really good!
+
+I poured boiling water over the polenta and let it sit covered at RT until
+it dropped to 150F. Then I added the diastatic malt and stirred. I covered
+it and left it overnight on the counter. In the morning it was quite
+sweet.
+
+soaker:
+  polenta = 5%
+  barley_flour = polenta
+  boiling_water
+  hydration = 250%
+  diastatic_malt = 1.5% * total_flour
+
+I keep my NMNF starter at 60% hydration in the fridge.
+
+starter:
+  hydration = 60
+  rye
+  water
+
+I mixed the cold starter into the water and then added the rye. I kept it
+overnight at 86F.
+
+sponge:
+  hydration = 100%
+  water = 15%
+  starter = 10% * rye
+  rye
+
+I like to mix all the flours and dry ingredients together to make sure they
+are properly distributed.
+
+dry:
+  prairie_gold
+  bronze_chief = 50% * prairie_gold
+  spelt = 20% * prairie_gold
+  flaxseed_meal = 5%
+  potato_flakes = 2%
+  vwg = 3%
+  improver = 1%
+  salt = 2%
+  yeast = 0.4%
+
+I also mix the wet ingredients with a mix before adding the dry.
+
+wet:
+  water
+  soaker limit 35%
+  sponge limit 30%
+  honey = 5%
+  oil = 5%
+
+I mix the final dough with the paddle for 1 minute and let it rest
+covered for 30 minutes. I knead for 8 minutes and then add the nuts.
+
+dough:
+  wet
+  dry
+  nuts = 15%
+  scale = 500g
+  hydration = 70%
