@@ -26,7 +26,7 @@ Flours = [
 
 
 def flourFraction(name):
-    if name in Flours:
+    if name in Flours or "flour" in name:
         return 1.0
     return 0.0
 
