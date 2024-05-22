@@ -5,14 +5,14 @@ soaker.............................(175.8g = 35.1%)
     125.0 boiling water    25.00%
       0.8 diastatic malt    0.15%
 
-starter............................(7.5g = 1.5%)
-      4.7 rye               0.94%
-      2.8 water             0.56%
+starter............................(7.3g = 1.5%)
+      4.6 rye               0.91%
+      2.7 water             0.55%
 
-sponge.............................(159.4g = 31.9%)
-     76.9 water            15.38%
-     75.0 rye              15.00%
-      7.5 starter           1.50%
+sponge.............................(155.5g = 31.1%)
+     75.0 water            15.00%
+     73.2 rye              14.63%
+      7.3 starter           1.46%
 
 dry................................(392.0g = 78.4%)
     191.2 prairie gold     38.24%
@@ -65,9 +65,9 @@ overnight at 86F.
 
 sponge:
   hydration = 100%
-  water
+  water = 15%
   starter = 10% * rye
-  rye = 15%
+  rye
 
 I like to mix all the flours and dry ingredients together to make sure they
 are properly distributed.
