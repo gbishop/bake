@@ -1,0 +1,82 @@
+My usual loaf with toasted sunflower seeds
+/*+
+starter............................(5.0g = 1.0%)
+      3.1 rye               0.62%
+      1.9 water             0.38%
+
+sponge.............................(103.8g = 20.8%)
+      5.0 starter           1.00%
+     48.8 rye               9.75%
+     50.0 warm water       10.00%
+
+wet................................(450.0g = 90.0%)
+    100.0 sponge           20.00%
+    300.0 warm water       60.00%
+     25.0 oil               5.00%
+     25.0 honey             5.00%
+
+dry................................(467.0g = 93.4%)
+    175.0 prairie gold     35.00%
+    150.0 bronze chief     30.00%
+     50.0 spelt            10.00%
+     25.0 oats              5.00%
+     25.0 flaxseed meal     5.00%
+     15.0 potato flakes     3.00%
+     10.0 vwg               2.00%
+      5.0 improver          1.00%
+     10.0 salt              2.00%
+      2.0 yeast             0.40%
+
+dough..............................(967.0g = 193.4%)
+    450.0 wet              90.00%
+    467.0 dry              93.40%
+     50.0 seeds            10.00%
+    350.0 total water      70.00%
+    500.0 total flour     100.00%
++*/
+
+This loaf was tearing itself up after 45 minutes in the pan and it came out
+really ugly. I'm thinking the warmer temperatures are making it become too
+acidic. I'll try getting the dough temperature lower next time. Maybe I should
+switch from rye to whole wheat in the sponge?
+
+The flavor is good and I like the toasted sunflower seeds.
+
+I toasted the sunflower seeds at 350F for 11 minutes.
+
+starter:
+  rye
+  water
+  hydration = 60%
+
+sponge:
+  starter = 1%
+  rye
+  warm_water = 10%
+  hydration = 100%
+
+wet:
+  sponge limit 20%
+  warm_water
+  oil = 5%
+  honey = 5%
+
+dry:
+  prairie_gold
+  bronze_chief = 30%
+  spelt = 10%
+  oats = 5%
+  flaxseed_meal = 5%
+  potato_flakes = 3%
+  vwg = 2%
+  improver = 1%
+  salt = 2%
+  yeast = 0.4%
+
+dough:
+  wet
+  dry
+  seeds = 10%
+  hydration = 70%
+  scale = 500g
+
