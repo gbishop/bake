@@ -7,11 +7,11 @@ starter............................(5.0g = 1.0%)
 sponge.............................(103.8g = 20.8%)
       5.0 starter           1.00%
      48.8 rye               9.75%
-     50.0 warm water       10.00%
+     50.0 water            10.00%
 
 wet................................(450.0g = 90.0%)
     100.0 sponge           20.00%
-    300.0 warm water       60.00%
+    300.0 water            60.00%
      25.0 oil               5.00%
      25.0 honey             5.00%
 
@@ -35,10 +35,7 @@ dough..............................(967.0g = 193.4%)
     500.0 total flour     100.00%
 +*/
 
-This loaf was tearing itself up after 45 minutes in the pan and it came out
-really ugly. I'm thinking the warmer temperatures are making it become too
-acidic. I'll try getting the dough temperature lower next time. Maybe I should
-switch from rye to whole wheat in the sponge?
+2 June 2024. Cooling things off because I think the previous one got too warm.
 
 The flavor is good and I like the toasted sunflower seeds.
 
@@ -49,17 +46,23 @@ starter:
   water
   hydration = 60%
 
+I used cool water this time. Tinitial = 73F at 18:30 into SDH on 82F. At 7:25
+the T of the sponge was only 78F, clearly the SDH is poorly calibrated. The pH
+was 3.75 and it had risen by about 75%.
+
 sponge:
   starter = 1%
   rye
-  warm_water = 10%
+  water = 10%
   hydration = 100%
 
 wet:
   sponge limit 20%
-  warm_water
+  water
   oil = 5%
   honey = 5%
+
+After mixing the dry ingredients together the flour temp was 85F.
 
 dry:
   prairie_gold
@@ -73,6 +76,11 @@ dry:
   salt = 2%
   yeast = 0.4%
 
+I used 76F water (forgot the FF so effectively 0), the T of the just mixed
+dough was 80F before rest and kneading. After 30 minute rest the T was still
+80F. Knead for 6 minutes at speed 2. DT after kneading is 85F. To achieve
+DDT=78F I think I need FF=7F. After 45 minutes the DT=80F. pH=5.0.
+
 dough:
   wet
   dry
@@ -80,3 +88,5 @@ dough:
   hydration = 70%
   scale = 500g
 
+Baked 35 lid on, 15 lid off, 10 out of pan at 350F. Sides and ends are drawn
+in. Why? Much less tearing than last time. I've got to cool things off more.
