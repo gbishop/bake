@@ -15,40 +15,39 @@ wet................................(450.0g = 90.0%)
      25.0 oil               5.00%
      25.0 honey             5.00%
 
-dry................................(467.0g = 93.4%)
-    175.0 prairie gold     35.00%
-    150.0 bronze chief     30.00%
+dry................................(462.0g = 92.4%)
+    125.0 bread flour      25.00%
+    100.0 prairie gold     20.00%
+    100.0 bronze chief     20.00%
      50.0 spelt            10.00%
      25.0 oats              5.00%
      25.0 flaxseed meal     5.00%
      15.0 potato flakes     3.00%
      10.0 vwg               2.00%
-      5.0 improver          1.00%
      10.0 salt              2.00%
       2.0 yeast             0.40%
 
-dough..............................(967.0g = 193.4%)
+dough..............................(962.0g = 192.4%)
     450.0 wet              90.00%
-    467.0 dry              93.40%
+    462.0 dry              92.40%
      50.0 seeds            10.00%
     350.0 total water      70.00%
     500.0 total flour     100.00%
 +*/
 
-2 June 2024. Cooling things off because I think the previous one got too warm.
+7 June 2024. Use the Rise calculator to get the water temp. I'm backing off on
+the freshly milled grain to see if I can eliminate the tearing. I used 70F water
+and temp was still too high. Use lowest from tap next time.
 
-The flavor is good and I like the toasted sunflower seeds.
-
-I toasted the sunflower seeds at 350F for 11 minutes.
+I toasted the sunflower seeds the night before at 350F for 12 minutes.
 
 starter:
   rye
   water
   hydration = 60%
 
-I used cool water this time. Tinitial = 73F at 18:30 into SDH on 82F. At 7:25
-the T of the sponge was only 78F, clearly the SDH is poorly calibrated. The pH
-was 3.75 and it had risen by about 75%.
+I used cool water. Into the SDH set for 84F at 19:30. At 7:25 the T of the
+sponge was only 80F. The pH was 3.8 and it had risen by about 75%.
 
 sponge:
   starter = 1%
@@ -62,24 +61,19 @@ wet:
   oil = 5%
   honey = 5%
 
-After mixing the dry ingredients together the flour temp was 85F.
+After mixing the dry ingredients together the flour temp was 80F.
 
 dry:
-  prairie_gold
-  bronze_chief = 30%
+  bread_flour
+  prairie_gold = 20%
+  bronze_chief = 20%
   spelt = 10%
   oats = 5%
   flaxseed_meal = 5%
   potato_flakes = 3%
   vwg = 2%
-  improver = 1%
   salt = 2%
   yeast = 0.4%
-
-I used 76F water (forgot the FF so effectively 0), the T of the just mixed
-dough was 80F before rest and kneading. After 30 minute rest the T was still
-80F. Knead for 6 minutes at speed 2. DT after kneading is 85F. To achieve
-DDT=78F I think I need FF=7F. After 45 minutes the DT=80F. pH=5.0.
 
 dough:
   wet
@@ -88,5 +82,3 @@ dough:
   hydration = 70%
   scale = 500g
 
-Baked 35 lid on, 15 lid off, 10 out of pan at 350F. Sides and ends are drawn
-in. Why? Much less tearing than last time. I've got to cool things off more.
