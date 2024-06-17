@@ -16,10 +16,10 @@ wet................................(450.0g = 90.0%)
      25.0 honey             5.00%
 
 dry................................(462.0g = 92.4%)
-    125.0 bread flour      25.00%
+    100.0 ww flour         20.00%
     100.0 prairie gold     20.00%
     100.0 bronze chief     20.00%
-     50.0 spelt            10.00%
+     75.0 spelt            15.00%
      25.0 oats              5.00%
      25.0 flaxseed meal     5.00%
      15.0 potato flakes     3.00%
@@ -35,9 +35,20 @@ dough..............................(962.0g = 192.4%)
     500.0 total flour     100.00%
 +*/
 
-7 June 2024. Use the Rise calculator to get the water temp. I'm backing off on
-the freshly milled grain to see if I can eliminate the tearing. I used 70F water
-and temp was still too high. Use lowest from tap next time.
+13 June 2024. Try using cool water for everything.
+
+Sponge was 82F with pH 3.79, rose by 75%
+
+After mixing the DT was 79F using freshly milled flour. RT was 75F.
+
+After kneading 8 minutes + 1 minute after adding seeds the DT was 87F. I'm
+going to have to use refrigerated water if I'm going to get the DT down to 78F
+after kneading.
+
+About 5.1 inches tall, the cooler temps may make a difference. Slight tearing
+on one side but I used oil instead of butter today. After 50 minutes it was
+only 189 inside. I gave it 7 more minutes and got up to 195F. With cooler dough
+I may need to extend the bake time or try convection.
 
 I toasted the sunflower seeds the night before at 350F for 12 minutes.
 
@@ -45,9 +56,6 @@ starter:
   rye
   water
   hydration = 60%
-
-I used cool water. Into the SDH set for 84F at 19:30. At 7:25 the T of the
-sponge was only 80F. The pH was 3.8 and it had risen by about 75%.
 
 sponge:
   starter = 1%
@@ -61,13 +69,11 @@ wet:
   oil = 5%
   honey = 5%
 
-After mixing the dry ingredients together the flour temp was 80F.
-
 dry:
-  bread_flour
+  ww_flour
   prairie_gold = 20%
   bronze_chief = 20%
-  spelt = 10%
+  spelt = 15%
   oats = 5%
   flaxseed_meal = 5%
   potato_flakes = 3%
