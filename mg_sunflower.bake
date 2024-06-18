@@ -1,56 +1,52 @@
 My usual loaf with toasted sunflower seeds
 /*+
-starter............................(5.0g = 1.0%)
-      3.1 rye               0.62%
-      1.9 water             0.38%
+starter............................(2.5g = 1.0%)
+      1.6 rye               0.62%
+      0.9 water             0.38%
 
-sponge.............................(103.8g = 20.8%)
-      5.0 starter           1.00%
-     48.8 rye               9.75%
-     50.0 water            10.00%
+sponge.............................(51.9g = 20.8%)
+      2.5 starter           1.00%
+     24.4 rye               9.75%
+     25.0 water            10.00%
 
-wet................................(450.0g = 90.0%)
-    100.0 sponge           20.00%
-    300.0 water            60.00%
-     25.0 oil               5.00%
-     25.0 honey             5.00%
+wet................................(225.0g = 90.0%)
+     50.0 sponge           20.00%
+    150.0 water            60.00%
+     12.5 oil               5.00%
+     12.5 honey             5.00%
 
-dry................................(462.0g = 92.4%)
-    100.0 ww flour         20.00%
-    100.0 prairie gold     20.00%
-    100.0 bronze chief     20.00%
-     75.0 spelt            15.00%
-     25.0 oats              5.00%
-     25.0 flaxseed meal     5.00%
-     15.0 potato flakes     3.00%
-     10.0 vwg               2.00%
-     10.0 salt              2.00%
-      2.0 yeast             0.40%
+dry................................(232.0g = 92.8%)
+     50.0 ww flour         20.00%
+     50.0 prairie gold     20.00%
+     50.0 bronze chief     20.00%
+     37.5 spelt            15.00%
+     12.5 oats              5.00%
+     12.5 flaxseed meal     5.00%
+      7.5 potato flakes     3.00%
+      5.0 vwg               2.00%
+      1.0 improver          0.40%
+      5.0 salt              2.00%
+      1.0 yeast             0.40%
 
-dough..............................(962.0g = 192.4%)
-    450.0 wet              90.00%
-    462.0 dry              92.40%
-     50.0 seeds            10.00%
-    350.0 total water      70.00%
-    500.0 total flour     100.00%
+dough..............................(482.0g = 192.8%)
+    225.0 wet              90.00%
+    232.0 dry              92.80%
+     25.0 seeds            10.00%
+    175.0 total water      70.00%
+    250.0 total flour     100.00%
 +*/
 
-13 June 2024. Try using cool water for everything.
+17 June 2024. Half size in new pan.
 
-Sponge was 82F with pH 3.79, rose by 75%
+After mixing the DT was 74F using freshly milled flour and water from the
+fridge. RT was 77F.
 
-After mixing the DT was 79F using freshly milled flour. RT was 75F.
+After kneading 8 minutes + 1 minute after adding seeds the DT was 82F. After 45
+minutes them DT was down to 79. Proofed for another 45 minutes then into the
+buttered pan. It took about 1 hour to rise to the top of the pan. It baked up
+4.5 inches tall, 3 inches wide and 6.5 inches long. 
 
-After kneading 8 minutes + 1 minute after adding seeds the DT was 87F. I'm
-going to have to use refrigerated water if I'm going to get the DT down to 78F
-after kneading.
-
-About 5.1 inches tall, the cooler temps may make a difference. Slight tearing
-on one side but I used oil instead of butter today. After 50 minutes it was
-only 189 inside. I gave it 7 more minutes and got up to 195F. With cooler dough
-I may need to extend the bake time or try convection.
-
-I toasted the sunflower seeds the night before at 350F for 12 minutes.
+The slices seem a little too small.
 
 starter:
   rye
@@ -78,6 +74,7 @@ dry:
   flaxseed_meal = 5%
   potato_flakes = 3%
   vwg = 2%
+  improver = 0.4%
   salt = 2%
   yeast = 0.4%
 
@@ -86,5 +83,5 @@ dough:
   dry
   seeds = 10%
   hydration = 70%
-  scale = 500g
+  scale = 250g
 
