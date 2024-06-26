@@ -1,0 +1,99 @@
+Butter Oat & Flaxseeds Sourdough
+/*+
+starter............................(8.0g = 2.0%)
+      5.0 rye               1.25%
+      3.0 water             0.75%
+
+sponge.............................(60.0g = 15.0%)
+      8.0 starter           2.00%
+     25.0 bread flour       6.25%
+     27.0 water             6.75%
+
+soaker.............................(152.0g = 38.0%)
+     48.0 oats             12.00%
+     16.0 flaxseed meal     4.00%
+     24.0 butter            6.00%
+     64.0 water            16.00%
+
+dough..............................(750.0g = 187.5%)
+    274.0 bread flour      68.50%
+     32.0 ww flour          8.00%
+    226.0 water            56.50%
+     60.0 sponge           15.00%
+      6.0 salt              1.50%
+    152.0 soaker           38.00%
+    320.0 total water      80.00%
+    400.0 total flour     100.00%
++*/
+
+from Sourlotti by Abby
+
+starter:
+  rye
+  water
+  hydration = 60%
+
+sponge:
+  starter = 2%
+  bread_flour
+  water
+  hydration = 100%
+
+soaker:
+  oats = 12%
+  flaxseed_meal = 4%
+  butter = 6%
+  water = 16%
+
+Heat a non-stick pan on low. Pour in oats and flaxseed. Toast on low for 2-3 minutes until light golden brown (1:32), stir to avoid burning. Add butter and cook until fully absorbed and golden brown. Remove from heat and transfer to a bowl. Add RT water so grains are covered. Set aside to soak for 1 hour.
+
+dough:
+  bread_flour
+  ww_flour = 8%
+  water
+  sponge = 15%
+  salt = 1.5%
+  soaker
+  hydration = 80%
+  scale = 400g
+
+Instructions
+
+Put flours into bowl wisk to combine, add water, mix with danish dough wisk.
+Scrape down sides and autolyse for 1 hour. 
+
+Pinch in sponge for about 4 minutes. Mist hands if necessary.
+
+Rest 15 minutes.
+
+Dimple in the salt, gently rub if necessary. Another 4 minutes.
+
+Rest 15 minutes.
+
+Stretch and fold in the bowl.
+
+Rest 20 minutes.
+
+Stretch and fold on counter (8:17)
+
+Rest for 30 minutes.
+
+Laminate. Stretch out on counter, try not to tear it. Sprinkle on part of the soaker. Fold over (9:17). Spread the rest of the soaker.
+
+Transfer to oiled baking dish.
+
+Rest for 45 minutes. Coil fold (10:00).
+
+Rest 1 hour. Coil fold.
+
+Rest 1 hour. 
+
+Shape and into pan.  I think I could shape up to 12:10 then into pan.
+
+Her basket is 25cm by 15cm by 8cm outside. I estimate it is about 1cm thick and
+slopes inward by about 3cm to the bottom. So maybe 23cm long at top and 20cm at
+the bottom. Likewise, 13cm wide at top and 10cm wide at bottom. The dough
+appears to fill the basket. I'll estimate its volume as 21.5 * 11.5 * 7 gives
+1730 cm^3. That is about 82% of the volume of my 9x4x4 pan. But she apparently
+gets considerable oven spring. I'm going with 400g total flour for this first
+try. I'm not going to retard it in the fridge.
