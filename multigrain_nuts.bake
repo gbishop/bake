@@ -1,4 +1,4 @@
-My usual loaf with glazed nuts
+My usual loaf with pecans
 /*+
 starter............................(5.3g = 1.1%)
       3.3 rye               0.67%
@@ -6,18 +6,19 @@ starter............................(5.3g = 1.1%)
 
 sponge.............................(106.7g = 21.3%)
       5.3 starter           1.07%
-     51.3 warm water       10.27%
+     51.3 water            10.27%
      50.0 whole wheat      10.00%
 
 wet................................(450.0g = 90.0%)
     100.0 sponge           20.00%
-    300.0 warm water       60.00%
+    300.0 water            60.00%
      25.0 oil               5.00%
      25.0 honey             5.00%
 
 dry................................(467.0g = 93.4%)
-    175.0 prairie gold     35.00%
-    150.0 bronze chief     30.00%
+    113.0 prairie gold     22.60%
+    125.0 bread flour      25.00%
+     87.0 bronze chief     17.40%
      50.0 spelt            10.00%
      25.0 oats              5.00%
      25.0 flaxseed meal     5.00%
@@ -27,23 +28,25 @@ dry................................(467.0g = 93.4%)
      10.0 salt              2.00%
       2.0 yeast             0.40%
 
-glazed_nuts........................(150.0g = 30.0%)
-     75.0 nuts             15.00%
-     75.0 glaze            15.00%
-
-dough..............................(1067.0g = 213.4%)
+dough..............................(967.0g = 193.4%)
     450.0 wet              90.00%
     467.0 dry              93.40%
-    150.0 glazed nuts      30.00%
+     50.0 walnuts          10.00%
     500.0 total flour     100.00%
     350.0 total water      70.00%
 +*/
 
-This loaf has glazed nuts added. I started with 75g of 50/50 pecan/walnuts and glazed them with 75g of brown sugar, 25g water and 1.0g salt in a non-stick pan. https://www.fifteenspatulas.com/quick-stovetop-candied-pecans/ I failed to weigh the result but it must have been about 150g.
+I used the bread machine to mix and knead it. The loaf turned out looking
+pretty good with no tearing. I did used 25% bread flour, perhaps that helped.
+The hydration seemed a little high; I think I need to reduce the hydration when
+using bread flour.
 
-This one turned out as good as the first. I think lowering the oats helps the texture. 
+The odd amount of bronze chief is because I was running out.
 
-2 May 2024
+This tastes great but I did a terrible job incorporating the nuts resulting in
+tunnels.
+
+29 June 2024
 
 starter:
   rye
@@ -52,19 +55,20 @@ starter:
 
 sponge:
   starter = 10% * total_flour
-  warm_water
+  water
   whole_wheat = 10%
   hydration = 100%
 
 wet:
   sponge limit 20%
-  warm_water
+  water
   oil = 5%
   honey = 5%
 
 dry:
   prairie_gold
-  bronze_chief = 30%
+  bread_flour = 25%
+  bronze_chief = 17.4%
   spelt = 10%
   oats = 5%
   flaxseed_meal = 5%
@@ -74,14 +78,10 @@ dry:
   salt = 2%
   yeast = 0.4%
 
-glazed_nuts:
-  nuts = 15%
-  glaze = 15%
-
 dough:
   wet
   dry
-  glazed_nuts
+  walnuts = 10%
   total_flour = 100%
   hydration = 70%
   scale = 500g
