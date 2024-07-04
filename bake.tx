@@ -1,10 +1,10 @@
 Recipe: statements *= Statement[/\n+/] /\s*/;
 
-Statement: ( Setting | Part | Text ) ;
+Statement: ( Units | Part | Text ) ;
 
 Text: /^.*$/ ;
 
-Setting: setting=ID '=' value=BP;
+Units: 'Units' '=' units=/[g%]/;
 
 Part: part=PartName ':' '\n' ingredients*=Ingredient['\n'];
 

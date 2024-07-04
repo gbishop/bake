@@ -49,6 +49,7 @@ class Part:
         self.values = {}
         self.limit = 0
         self.limitScale = 1
+        self.units = "%"
 
     def var(self, name):
         if name not in self.vars:
@@ -60,14 +61,14 @@ class Part:
         if op == "=":
             self.constraints.append([var, op, value])
 
-    def print(self, scale, last=False):
+    def print(self, scale, last=False, total=1):
         result = []
-        bp = self.values["total"]
+        bp = self.values["total"] / total
         g = bp * scale
         result.append(f"{self.name:.<35}({g:.1f}g = {100*bp:.1f}%)")
         for var in self.vars:
             if last and var != "total" or not var.startswith("total"):
-                bp = self.values[var]
+                bp = self.values[var] / total
                 g = bp * scale
                 result.append(f"   {g:6.1f} {var.replace('_', ' '):15} {100*bp:6.2f}%")
         result.append("")
@@ -92,11 +93,12 @@ class Bake:
                 "Sum": self.handleSum,
                 "Product": self.handleProduct,
                 "Ingredient": self.handleIngredient,
-                "Setting": self.handleSetting,
+                "Units": self.handleUnits,
             }
         )
         self.parts = {}
         self.limits = []
+        self.units = "%"
 
     def compile(self):
         text = sys.stdin.read()
@@ -105,11 +107,17 @@ class Bake:
         except textx.TextXSyntaxError as e:
             return self.output(f"Error {e.line}:{e.col} {e.message}", text)
         parts = list(self.parts.values())
-        parts[-1].add(parts[-1].var("total_flour"), "=", 1)
+        if self.units == "%":
+            parts[-1].add(parts[-1].var("total_flour"), "=", 1)
         failed = self.solve()
         N = len(parts)
+        if self.units == "%":
+            total = 1
+        else:
+            total = parts[-1].values["total_flour"]
         result = "\n".join(
-            part.print(self.scale, i == N - 1) for i, part in enumerate(parts)
+            part.print(self.scale, last=i == N - 1, total=total)
+            for i, part in enumerate(parts)
         )
         return self.output(result, text, failed)
 
@@ -246,8 +254,15 @@ class Bake:
         if v.expr:
             part.add(var, "=", v.expr.pulp)
 
+    def handleUnits(self, v):
+        self.units = v.units
+
     def handleSetting(self, v):
-        if v.setting == "flour":
+        print("setting", v)
+        if v.setting == "units":
+            self.units = v.value
+            print(self.units)
+        elif v.setting == "flour":
             self.scale = float(v.value.value)
         elif v.setting == "hydration":
             self.hydration = float(v.value.value)
