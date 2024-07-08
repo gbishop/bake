@@ -31,14 +31,17 @@ def flourFraction(name):
     return 0.0
 
 
+water = {
+    "water": 1.0,
+    "egg": 0.75,
+    "egg_yolk": 0.5,
+    "egg_white": 0.9,
+    "milk": 0.87,
+}
+
+
 def waterFraction(name):
-    if "water" in name:
-        return 1.0
-    if name == "egg":
-        return 0.75
-    if name == "milk":
-        return 0.87
-    return 0.0
+    return water.get(name, 0.0)
 
 
 class Part:
