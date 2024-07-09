@@ -116,7 +116,9 @@ class Bake:
         parts = list(self.parts.values())
         if self.units == "%":
             parts[-1].add(parts[-1].var("total_flour"), "=", 1)
-        failed = self.solve()
+        ok = self.solve()
+        if not ok:
+            return
         N = len(parts)
 
         if self.units == "%":
@@ -127,7 +129,7 @@ class Bake:
             part.print(self.scale, last=i == N - 1, total=total)
             for i, part in enumerate(parts)
         )
-        return self.output(result, text, failed)
+        return self.output(result, text, ok)
 
     def solve(self):
         parts = self.parts
@@ -151,11 +153,9 @@ class Bake:
                         problem.append(part.var(var) - ls * otherPart.var("total"))
                     else:
                         f = flourFraction(var)
-                        if f > 0:
-                            flour += f * part.var(var)
+                        flour += f * part.var(var)
                         w = waterFraction(var)
-                        if w > 0:
-                            water += w * part.var(var)
+                        water += w * part.var(var)
                         total += part.var(var)
 
                 for var, op, value in part.constraints:
@@ -170,10 +170,14 @@ class Bake:
             print(len(problem), problem)
             result = solve(problem, vars, dict=True)
             print(result)
-            for var in result:
-                if "." in var.name:
-                    part, ingredient = var.name.split(".")
-                    self.parts[part].values[ingredient] = result[var]
+            if not result:
+                return False
+            result = result[0]
+            for sym in result.keys():
+                var = sym.name
+                if "." in var:
+                    part, ingredient = var.split(".")
+                    self.parts[part].values[ingredient] = result[sym]
             for part in self.limits:
                 if part.applyLimit():
                     break
