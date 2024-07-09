@@ -1,5 +1,5 @@
 import textx
-import pulp
+from sympy import symbols, solve
 import re
 import sys
 
@@ -54,10 +54,14 @@ class Part:
         self.limitScale = 1
         self.units = "%"
 
+        self.var("total")
+        self.var("total_flour")
+        self.var("total_water")
+
     def var(self, name):
         if name not in self.vars:
             lpname = f"{self.name}.{name}"
-            self.vars[name] = pulp.LpVariable(lpname, 0, None)
+            self.vars[name] = symbols(lpname, positive=True)
         return self.vars[name]
 
     def add(self, var, op, value):
@@ -103,8 +107,8 @@ class Bake:
         self.limits = []
         self.units = "%"
 
-    def compile(self):
-        text = sys.stdin.read()
+    def compile(self, stdin):
+        text = stdin.read()
         try:
             self.model = self.meta.model_from_str(text)
         except textx.TextXSyntaxError as e:
@@ -114,6 +118,7 @@ class Bake:
             parts[-1].add(parts[-1].var("total_flour"), "=", 1)
         failed = self.solve()
         N = len(parts)
+
         if self.units == "%":
             total = 1
         else:
@@ -127,13 +132,14 @@ class Bake:
     def solve(self):
         parts = self.parts
         for _ in range(10):
-            problem = pulp.LpProblem("bake")
-            problem += 0  # objective goes here
+            problem = []
+            vars = []
             for part in parts.values():
                 total = 0
                 flour = 0
                 water = 0
                 for var in part.vars:
+                    vars.append(part.vars[var])
                     if "total" in var:
                         continue
                     if var in self.parts:
@@ -142,7 +148,7 @@ class Bake:
                         total += ls * otherPart.var("total")
                         water += ls * otherPart.var("total_water")
                         flour += ls * otherPart.var("total_flour")
-                        problem += part.var(var) == ls * otherPart.var("total")
+                        problem.append(part.var(var) - ls * otherPart.var("total"))
                     else:
                         f = flourFraction(var)
                         if f > 0:
@@ -154,20 +160,20 @@ class Bake:
 
                 for var, op, value in part.constraints:
                     if op == "=":
-                        problem += var == value
+                        problem.append(var - value)
 
-                problem += part.var("total") == total
-                problem += part.var("total_water") == water
-                problem += part.var("total_flour") == flour
+                problem.append(part.var("total") - total)
+                problem.append(part.var("total_water") - water)
+                problem.append(part.var("total_flour") - flour)
 
-            problem.solve(pulp.PULP_CBC_CMD(msg=False))
-            failed = problem.status < 1
-            for var in problem.variables():
+            print(len(vars), vars)
+            print(len(problem), problem)
+            result = solve(problem, vars, dict=True)
+            print(result)
+            for var in result:
                 if "." in var.name:
                     part, ingredient = var.name.split(".")
-                    self.parts[part].values[ingredient] = var.varValue
-            if failed:
-                return failed
+                    self.parts[part].values[ingredient] = result[var]
             for part in self.limits:
                 if part.applyLimit():
                     break
@@ -272,4 +278,8 @@ class Bake:
 
 
 Baker = Bake()
-Baker.compile()
+if len(sys.argv) == 2:
+    stdin = open(sys.argv[1], "r")
+else:
+    stdin = sys.stdin
+Baker.compile(stdin)
