@@ -41,7 +41,7 @@ water = {
 
 
 def waterFraction(name):
-    return water.get(name, 0.0)
+    return water.get(name, 1.0 if "water" in name else 0.0)
 
 
 class Part:
