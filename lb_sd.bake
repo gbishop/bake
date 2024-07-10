@@ -1,0 +1,69 @@
+Lovely Bell SD
+/*+
+starter............................(98.9g = 43.0%)
+     49.4 water            21.50%
+     49.4 flour            21.50%
+
+wet................................(232.6g = 101.2%)
+     95.3 water            41.45%
+     98.9 starter          43.00%
+     12.4 egg               5.40%
+     16.1 honey             7.00%
+      9.9 oil               4.30%
+
+dry................................(185.2g = 80.5%)
+    173.7 prairie gold     75.50%
+      6.9 vwg               3.00%
+      3.7 salt              1.60%
+      0.9 yeast             0.40%
+
+dough..............................(417.8g = 181.7%)
+    232.6 wet             101.15%
+    185.2 dry              80.50%
+    154.1 total water      67.00%
+    230.0 total flour     100.00%
++*/
+
+From: https://lovelybellbakes.com/super-soft-fresh-milled-sourdough-sandwich-bread/.
+
+I replaced the lecithin with egg as she suggests.
+I converted to baker's percent with a bit of rounding.
+I'm adding yeast to control the rise/sour tradeoff.
+
+Perfect crust and interior. I still need to improve my shaping. Chewier than I'd like.
+What is the key difference from my usual loaf?
+
+* More kneading? I kneaded this until I got a really good window pane, maybe 15
+minutes.
+* No potato flakes? Maybe
+* No flaxseed? Maybe
+* No Rye/Spelt/Oats?
+* The egg? Seems doubtful.
+* More honey, less oil? Seems doubtful.
+* More starter? No way.
+* Slightly lower hydration? Hardly.
+
+starter:
+  water
+  flour
+  hydration = 100%
+
+wet:
+  water
+  starter = 43%
+  egg = 5.4%
+  honey = 7%
+  oil = 4.3%
+
+dry:
+  prairie_gold
+  vwg = 3%
+  salt = 1.6%
+  yeast = 0.4%
+
+dough:
+  wet
+  dry
+  hydration = 67%
+  scale = 230 g
+
