@@ -1,5 +1,5 @@
 import textx
-from sympy import symbols, solve
+import sympy
 import re
 import sys
 
@@ -54,14 +54,10 @@ class Part:
         self.limitScale = 1
         self.units = "%"
 
-        self.var("total")
-        self.var("total_flour")
-        self.var("total_water")
-
     def var(self, name):
         if name not in self.vars:
             lpname = f"{self.name}.{name}"
-            self.vars[name] = symbols(lpname, positive=True)
+            self.vars[name] = sympy.symbols(lpname, positive=True)
         return self.vars[name]
 
     def add(self, var, op, value):
@@ -118,6 +114,7 @@ class Bake:
             parts[-1].add(parts[-1].var("total_flour"), "=", 1)
         failed = self.solve()
         if failed:
+            print("failed")
             return
         N = len(parts)
 
@@ -137,12 +134,10 @@ class Bake:
             problem = []
             vars = []
             for part in parts.values():
-                # sympy solve doesn't like zero for some reason
-                flour = 1e-6
-                water = 1e-6
-                total = 2e-6
+                flour = 0.0
+                water = 0.0
+                total = 0.0
                 for var in part.vars:
-                    vars.append(part.vars[var])
                     if "total" in var:
                         continue
                     if var in self.parts:
@@ -154,33 +149,44 @@ class Bake:
                         problem.append(part.var(var) - ls * otherPart.var("total"))
                     else:
                         f = flourFraction(var)
-                        flour += f * part.var(var)
+                        if f != 0:
+                            flour += f * part.var(var)
                         w = waterFraction(var)
-                        water += w * part.var(var)
+                        if w != 0:
+                            water += w * part.var(var)
                         total += part.var(var)
 
                 for var, op, value in part.constraints:
                     if op == "=":
                         problem.append(var - value)
 
-                problem.append(part.var("total") - total)
                 problem.append(part.var("total_water") - water)
                 problem.append(part.var("total_flour") - flour)
+                problem.append(part.var("total") - total)
 
-            result = solve(problem, vars, dict=True)
+                for var in part.vars:
+                    vars.append(part.vars[var])
+
+            result = sympy.nonlinsolve(problem, vars)
+
             if not result:
                 return True
-            result = result[0]
-            for sym in result.keys():
-                var = sym.name
-                if "." in var:
-                    part, ingredient = var.split(".")
-                    self.parts[part].values[ingredient] = result[sym]
-            for part in self.limits:
-                if part.applyLimit():
+
+            result = result.args[0]
+
+            if isinstance(result, sympy.Tuple):
+                for i, sym in enumerate(vars):
+                    var = sym.name
+                    if "." in var:
+                        part, ingredient = var.split(".")
+                        self.parts[part].values[ingredient] = result[i]
+                for part in self.limits:
+                    if part.applyLimit():
+                        break
+                else:
                     break
             else:
-                break
+                return True
 
         return False
 
@@ -195,10 +201,10 @@ class Bake:
             table = table.strip()
             if failed:
                 table = re.sub(r"^", "E ", table, 0, re.M)
-            rest = match.group("rest")
-            result = f"{title}\n/*+\n{table}\n+*/{rest}"
+            rest = match.group("rest").lstrip()
+            result = f"{title}\n/*+\n{table}\n+*/\n\n{rest}"
         else:
-            result = f"title\n/*+\n{table}+*/{text}"
+            result = f"title\n/*+\n{table}+*/\n{text}"
         print(result)
 
     def handleSum(self, v):
