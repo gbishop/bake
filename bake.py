@@ -116,8 +116,8 @@ class Bake:
         parts = list(self.parts.values())
         if self.units == "%":
             parts[-1].add(parts[-1].var("total_flour"), "=", 1)
-        ok = self.solve()
-        if not ok:
+        failed = self.solve()
+        if failed:
             return
         N = len(parts)
 
@@ -129,7 +129,7 @@ class Bake:
             part.print(self.scale, last=i == N - 1, total=total)
             for i, part in enumerate(parts)
         )
-        return self.output(result, text, ok)
+        return self.output(result, text, failed)
 
     def solve(self):
         parts = self.parts
@@ -137,9 +137,10 @@ class Bake:
             problem = []
             vars = []
             for part in parts.values():
-                total = 0
-                flour = 0
-                water = 0
+                # sympy solve doesn't like zero for some reason
+                flour = 1e-6
+                water = 1e-6
+                total = 2e-6
                 for var in part.vars:
                     vars.append(part.vars[var])
                     if "total" in var:
@@ -166,12 +167,9 @@ class Bake:
                 problem.append(part.var("total_water") - water)
                 problem.append(part.var("total_flour") - flour)
 
-            print(len(vars), vars)
-            print(len(problem), problem)
             result = solve(problem, vars, dict=True)
-            print(result)
             if not result:
-                return False
+                return True
             result = result[0]
             for sym in result.keys():
                 var = sym.name

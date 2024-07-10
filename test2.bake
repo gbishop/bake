@@ -31,12 +31,21 @@ I converted to baker's percent with a bit of rounding.
 I'm adding yeast to control the rise/sour tradeoff.
 
 
+wet:
+  water
+  egg = 5.4%
+  honey = 7%
+  oil = 4.3%
+
 dry:
-  flour
+  prairie_gold
+  vwg = 3%
+  salt = 1.6%
+  yeast = 0.4%
 
 dough:
-  water
+  wet
   dry
-  hydration = 100%
-  scale = 100g
+  hydration = 67%
+  scale = 230 g
 
