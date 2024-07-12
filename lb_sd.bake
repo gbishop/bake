@@ -1,56 +1,78 @@
 Lovely Bell SD
 /*+
-starter............................(98.9g = 43.0%)
-     49.4 water            21.50%
-     49.4 flour            21.50%
+starter............................(4.6g = 2.0%)
+      1.7 water             0.75%
+      2.9 rye               1.25%
 
-wet................................(232.6g = 101.2%)
-     95.3 water            41.45%
-     98.9 starter          43.00%
+sponge.............................(49.4g = 21.5%)
+      4.6 starter           2.00%
+     23.0 water            10.00%
+     21.9 rye               9.50%
+
+wet................................(206.2g = 89.6%)
+    121.8 water            52.95%
+     46.0 sponge           20.00%
      12.4 egg               5.40%
      16.1 honey             7.00%
       9.9 oil               4.30%
 
-dry................................(185.2g = 80.5%)
-    173.7 prairie gold     75.50%
+dry................................(211.6g = 92.0%)
+    200.1 prairie gold     87.00%
       6.9 vwg               3.00%
       3.7 salt              1.60%
       0.9 yeast             0.40%
 
 dough..............................(417.8g = 181.7%)
-    232.6 wet             101.15%
-    185.2 dry              80.50%
+    206.2 wet              89.65%
+    211.6 dry              92.00%
     154.1 total water      67.00%
     230.0 total flour     100.00%
 +*/
 
 From: https://lovelybellbakes.com/super-soft-fresh-milled-sourdough-sandwich-bread/.
 
+Check at 30 minutes next bake.
+
+Jul 12 2024. I'm switching to my usual rye sponge.
+
+This one worked well also. Better flavor with my rye sponge instead of the
+white sponge I used to emulate her approach. 
+
+I kneader for 15 minutes and got a pretty good window pane. Maybe
+push it a bit more next time.
+
 I replaced the lecithin with egg as she suggests.
 I converted to baker's percent with a bit of rounding.
 I'm adding yeast to control the rise/sour tradeoff.
 
-Perfect crust and interior. I still need to improve my shaping. Chewier than I'd like.
+Perfect crust and interior. I still need to improve my shaping. Chewier than
+I'd like.
+
 What is the key difference from my usual loaf?
 
-* More kneading? I kneaded this until I got a really good window pane, maybe 15
-minutes.
-* No potato flakes? Maybe
-* No flaxseed? Maybe
-* No Rye/Spelt/Oats?
-* The egg? Seems doubtful.
-* More honey, less oil? Seems doubtful.
-* More starter? No way.
-* Slightly lower hydration? Hardly.
+✓ More kneading? I kneaded this until I got a good window pane, maybe 15 minutes.
+? No potato flakes? Maybe
+? No flaxseed? Maybe
+? No Rye/Spelt/Oats?
+? The egg? Seems doubtful.
+? More honey, less oil? Seems doubtful.
+x More starter? No way.
+? Slightly lower hydration? Hardly.
 
 starter:
   water
-  flour
+  rye
+  hydration = 60%
+
+sponge:
+  starter = 2%
+  water = 10%
+  rye
   hydration = 100%
 
 wet:
   water
-  starter = 43%
+  sponge limit 20%
   egg = 5.4%
   honey = 7%
   oil = 4.3%
