@@ -1,5 +1,4 @@
 import textx
-import pulp
 import re
 import sys
 
@@ -48,23 +47,29 @@ class Part:
     def __init__(self, name):
         self.name = name
         self.constraints = []
-        self.vars = {}
+        self.pvars = {}
+        self.gvars = {}
         self.values = {}
         self.limit = 0
         self.limitScale = 1
         self.units = "%"
 
-    def var(self, name):
-        if name not in self.vars:
-            lpname = f"{self.name}.{name}"
-            self.vars[name] = pulp.LpVariable(lpname, 0, None)
-        return self.vars[name]
+    def pvar(self, name):
+        if name not in self.pvars:
+            fullname = f"{self.name}.{name}.p"
+            self.pvars[name] = fullname
+        return self.pvars[name]
 
-    def add(self, var, op, value):
-        if op == "=":
-            self.constraints.append([var, op, value])
+    def gvar(self, name):
+        if name not in self.gvars:
+            fullname = f"{self.name}.{name}.g"
+            self.gvars[name] = fullname
+        return self.gvars[name]
 
-    def print(self, scale, last=False, total=1):
+    def add(self, var, value):
+        self.constraints.append([var, value])
+
+    def print(self, last=False):
         result = []
         bp = self.values["total"] / total
         g = bp * scale
@@ -103,8 +108,8 @@ class Bake:
         self.limits = []
         self.units = "%"
 
-    def compile(self):
-        text = sys.stdin.read()
+    def compile(self, stdin):
+        text = stdin.read()
         try:
             self.model = self.meta.model_from_str(text)
         except textx.TextXSyntaxError as e:
@@ -113,7 +118,11 @@ class Bake:
         if self.units == "%":
             parts[-1].add(parts[-1].var("total_flour"), "=", 1)
         failed = self.solve()
+        if failed:
+            print("failed")
+            return
         N = len(parts)
+
         if self.units == "%":
             total = 1
         else:
@@ -127,12 +136,12 @@ class Bake:
     def solve(self):
         parts = self.parts
         for _ in range(10):
-            problem = pulp.LpProblem("bake")
-            problem += 0  # objective goes here
+            problem = []
+            vars = []
             for part in parts.values():
-                total = 0
-                flour = 0
-                water = 0
+                flour = 0.0
+                water = 0.0
+                total = 0.0
                 for var in part.vars:
                     if "total" in var:
                         continue
@@ -142,37 +151,47 @@ class Bake:
                         total += ls * otherPart.var("total")
                         water += ls * otherPart.var("total_water")
                         flour += ls * otherPart.var("total_flour")
-                        problem += part.var(var) == ls * otherPart.var("total")
+                        problem.append(part.var(var) - ls * otherPart.var("total"))
                     else:
                         f = flourFraction(var)
-                        if f > 0:
+                        if f != 0:
                             flour += f * part.var(var)
                         w = waterFraction(var)
-                        if w > 0:
+                        if w != 0:
                             water += w * part.var(var)
                         total += part.var(var)
 
                 for var, op, value in part.constraints:
                     if op == "=":
-                        problem += var == value
+                        problem.append(var - value)
 
-                problem += part.var("total") == total
-                problem += part.var("total_water") == water
-                problem += part.var("total_flour") == flour
+                problem.append(part.var("total_water") - water)
+                problem.append(part.var("total_flour") - flour)
+                problem.append(part.var("total") - total)
 
-            problem.solve(pulp.PULP_CBC_CMD(msg=False))
-            failed = problem.status < 1
-            for var in problem.variables():
-                if "." in var.name:
-                    part, ingredient = var.name.split(".")
-                    self.parts[part].values[ingredient] = var.varValue
-            if failed:
-                return failed
-            for part in self.limits:
-                if part.applyLimit():
+                for var in part.vars:
+                    vars.append(part.vars[var])
+
+            result = sympy.nonlinsolve(problem, vars)
+
+            if not result:
+                return True
+
+            result = result.args[0]
+
+            if isinstance(result, sympy.Tuple):
+                for i, sym in enumerate(vars):
+                    var = sym.name
+                    if "." in var:
+                        part, ingredient = var.split(".")
+                        self.parts[part].values[ingredient] = result[i]
+                for part in self.limits:
+                    if part.applyLimit():
+                        break
+                else:
                     break
             else:
-                break
+                return True
 
         return False
 
@@ -187,14 +206,17 @@ class Bake:
             table = table.strip()
             if failed:
                 table = re.sub(r"^", "E ", table, 0, re.M)
-            rest = match.group("rest")
-            result = f"{title}\n/*+\n{table}\n+*/{rest}"
+            rest = match.group("rest").lstrip()
+            result = f"{title}\n/*+\n{table}\n+*/\n\n{rest}"
         else:
-            result = f"title\n/*+\n{table}+*/{text}"
+            result = f"title\n/*+\n{table}+*/\n{text}"
         print(result)
 
     def handleSum(self, v):
-        result = v.term.pulp
+        result = v.term.expr
+        if len(v.sums) > 0:
+            result
+
         for sum in v.sums:
             if sum.op == "+":
                 result = result + sum.term.pulp
@@ -272,4 +294,8 @@ class Bake:
 
 
 Baker = Bake()
-Baker.compile()
+if len(sys.argv) == 2:
+    stdin = open(sys.argv[1], "r")
+else:
+    stdin = sys.stdin
+Baker.compile(stdin)

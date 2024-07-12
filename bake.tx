@@ -6,9 +6,7 @@ Text: /^.*$/ ;
 
 Units: 'Units' '=' units=/[g%]/;
 
-Part: part=PartName ':' '\n' ingredients*=Ingredient['\n'];
-
-PartName: name=ID;
+Part: name=ID ':' '\n' ingredients*=Ingredient['\n'];
 
 Ingredient: ('hydration' '=' hydration=BP ) |
             ('scale' '=' scale=BP) | 
