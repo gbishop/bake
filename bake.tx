@@ -8,14 +8,11 @@ Units: 'Units' '=' units=/[g%]/;
 
 Part: name=ID ':' '\n' ingredients*=Ingredient['\n'];
 
-Ingredient: ('hydration' '=' hydration=BP ) |
-            ('scale' '=' scale=BP) | 
-            (name=ID (('[' parameter=Parameter ']') |
-                      ('=' expr=Sum) |
+Ingredient: ('hydration' '=' hydration=NUMBER '%' ) |
+            ('scale' '=' scale=NUMBER 'g') | 
+            (name=ID (('=' expr=Sum) |
                       ('limit' limit=BP)
                      )? );
-
-Parameter: name=ID '=' value=Value;
 
 Sum: term=Product sums*=Sums;
 
