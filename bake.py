@@ -221,9 +221,11 @@ class Bake:
 
         c = Constraint(part.name, ingredient.name)
 
-        for sign, term in [[1, expr.term]] + [
+        terms = [[1, expr.term]] + [
             [1 if sum.op == "+" else -1, sum.term] for sum in expr.sums
-        ]:
+        ]
+
+        for sign, term in terms:
             if term.var:
                 if term.var.b:
                     pname = term.var.a
