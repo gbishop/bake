@@ -221,26 +221,31 @@ class Bake:
 
         c = Constraint(part.name, ingredient.name)
 
-        for term in [expr.term] + expr.sums:
+        for sign, term in [[1, expr.term]] + [
+            [1 if sum.op == "+" else -1, sum.term] for sum in expr.sums
+        ]:
             if term.var:
                 if term.var.b:
                     pname = term.var.a
                     iname = term.var.b
+                elif term.var.a in self.parts:
+                    pname = term.var.a
+                    iname = "total"
                 else:
                     pname = part.name
                     iname = term.var.a
                 if term.scalar:
-                    scalar = term.scalar
+                    scalar = sign * term.scalar
                     if term.unit == "%":
                         scalar /= 100
                 else:
-                    scalar = 1
+                    scalar = sign
                 c.addTerm(pname, iname, -1 * scalar)
             else:
                 if term.unit == "%":
-                    c.addBp(-1 * term.scalar)
+                    c.addBp(-sign * term.scalar)
                 else:
-                    c.addConstant(-1 * term.scalar)
+                    c.addConstant(-sign * term.scalar)
 
         return c
 
