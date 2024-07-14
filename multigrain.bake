@@ -1,42 +1,49 @@
 My usual loaf
 /*+
-starter............................(5.0g = 1.0%)
-      3.1 rye               0.62%
-      1.9 water             0.38%
+starter............................(2.5g = 1.0%)
+        2 rye               0.62%
+        1 water             0.38%
 
-sponge.............................(100.0g = 20.0%)
-      5.0 starter           1.00%
-     46.9 rye               9.38%
-     48.1 warm water        9.62%
+sponge.............................(50.0g = 20.0%)
+        2 starter           1.00%
+       23 rye               9.37%
+       24 warm water        9.62%
 
-wet................................(450.0g = 90.0%)
-    100.0 sponge           20.00%
-    300.0 warm water       60.00%
-     25.0 oil               5.00%
-     25.0 honey             5.00%
+wet................................(225.0g = 90.0%)
+       50 sponge           20.00%
+      150 warm water       60.00%
+       12 oil               5.00%
+       12 honey             5.00%
 
-dry................................(467.0g = 93.4%)
-    175.0 prairie gold     35.00%
-    150.0 bronze chief     30.00%
-     50.0 spelt            10.00%
-     25.0 oats              5.00%
-     25.0 flaxseed meal     5.00%
-     15.0 potato flakes     3.00%
-     10.0 vwg               2.00%
-      5.0 improver          1.00%
-     10.0 salt              2.00%
-      2.0 yeast             0.40%
+dry................................(233.5g = 93.4%)
+      100 prairie gold     40.00%
+       75 bronze chief     30.00%
+       25 spelt            10.00%
+       12 flaxseed meal     5.00%
+        8 potato flakes     3.00%
+1 1/2t  5 vwg               2.00%
+  1/2t  2 improver          1.00%
+  3/4t  5 salt              2.00%
+  3/8t  1 yeast             0.40%
 
-dough..............................(917.0g = 183.4%)
-    450.0 wet              90.00%
-    467.0 dry              93.40%
-    500.0 total flour     100.00%
-    350.0 total water      70.00%
+dough..............................(458.5g = 183.4%)
+      225 wet              90.00%
+      234 dry              93.40%
+      250 total flour     100.00%
+      175 total water      70.00%
 +*/
 
-This one turned out as good as the first. I think lowering the oats helps the texture. 
+13 July 2024
 
-2 May 2024
+I'm trying a small loaf to see if kneading more will make the difference I'm looking for in the crust.
+I'm going for a decent window pane. 17 minutes at speed 1 produced a good window pane.
+
+Looks good. No cracking.
+
+Good flavor, texture and appearance. More kneading worked on this small loaf.
+
+I'm thinking of a soaker for the bran and flaxseed meal. 
+
 
 starter:
   rye
@@ -59,7 +66,6 @@ dry:
   prairie_gold
   bronze_chief = 30%
   spelt = 10%
-  oats = 5%
   flaxseed_meal = 5%
   potato_flakes = 3%
   vwg = 2%
@@ -71,5 +77,5 @@ dough:
   wet
   dry
   hydration = 70%
-  scale = 500g
+  scale = 250g
 
