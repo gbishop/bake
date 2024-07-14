@@ -23,6 +23,7 @@ Flours = [
     "oats",
     "steel_cut_oats",
     "bread_flour",
+    "bran",
 ]
 
 
