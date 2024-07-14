@@ -4,11 +4,11 @@ starter............................(5.0g = 1.0%)
       1.9 water             0.38%
       3.1 rye               0.62%
 
-sponge.............................(103.8g = 20.8%)
+sponge.............................(100.0g = 20.0%)
       5.0 starter           1.00%
-     43.8 rye               8.75%
+     41.9 rye               8.38%
       5.0 red rye malt      1.00%
-     50.0 water            10.00%
+     48.1 water             9.62%
 
 wet................................(450.0g = 90.0%)
     300.0 water            60.00%
@@ -31,8 +31,8 @@ dry................................(477.0g = 95.4%)
 dough..............................(927.0g = 185.4%)
     450.0 wet              90.00%
     477.0 dry              95.40%
-    350.0 total water      70.00%
     500.0 total flour     100.00%
+    350.0 total water      70.00%
 +*/
 
 This is a really good rye loaf. I like the flavor, aroma and texture. 
@@ -46,12 +46,12 @@ sponge:
   starter = 1%
   rye
   red_rye_malt = 1%
-  water = 10%
+  water
   hydration = 100%
 
 wet:
   water
-  sponge limit 20%
+  sponge = 20%
   oil = 5%
   honey = 5%
 

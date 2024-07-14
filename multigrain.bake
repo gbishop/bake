@@ -4,10 +4,10 @@ starter............................(5.0g = 1.0%)
       3.1 rye               0.62%
       1.9 water             0.38%
 
-sponge.............................(103.8g = 20.8%)
+sponge.............................(100.0g = 20.0%)
       5.0 starter           1.00%
-     48.8 rye               9.75%
-     50.0 warm water       10.00%
+     46.9 rye               9.38%
+     48.1 warm water        9.62%
 
 wet................................(450.0g = 90.0%)
     100.0 sponge           20.00%
@@ -30,8 +30,8 @@ dry................................(467.0g = 93.4%)
 dough..............................(917.0g = 183.4%)
     450.0 wet              90.00%
     467.0 dry              93.40%
-    350.0 total water      70.00%
     500.0 total flour     100.00%
+    350.0 total water      70.00%
 +*/
 
 This one turned out as good as the first. I think lowering the oats helps the texture. 
@@ -46,11 +46,11 @@ starter:
 sponge:
   starter = 1%
   rye
-  warm_water = 10%
+  warm_water
   hydration = 100%
 
 wet:
-  sponge limit 20%
+  sponge = 20%
   warm_water
   oil = 5%
   honey = 5%

@@ -11,13 +11,13 @@ starter............................(7.3g = 1.5%)
 
 sponge.............................(155.5g = 31.1%)
      75.0 water            15.00%
-     73.2 rye              14.63%
       7.3 starter           1.46%
+     73.2 rye              14.63%
 
-dry................................(392.0g = 78.4%)
-    191.2 prairie gold     38.24%
-     95.6 bronze chief     19.12%
-     38.2 spelt             7.65%
+dry................................(389.3g = 77.9%)
+    189.6 prairie gold     37.91%
+     94.8 bronze chief     18.96%
+     37.9 spelt             7.58%
      25.0 flaxseed meal     5.00%
      10.0 potato flakes     2.00%
      15.0 vwg               3.00%
@@ -25,19 +25,19 @@ dry................................(392.0g = 78.4%)
      10.0 salt              2.00%
       2.0 yeast             0.40%
 
-wet................................(525.8g = 105.2%)
-    150.0 water            30.00%
+wet................................(528.5g = 105.7%)
+    147.3 water            29.45%
     175.8 soaker           35.15%
-    150.0 sponge           30.00%
+    155.5 sponge           31.10%
      25.0 honey             5.00%
      25.0 oil               5.00%
 
 dough..............................(992.8g = 198.6%)
-    525.8 wet             105.15%
-    392.0 dry              78.40%
+    528.5 wet             105.70%
+    389.3 dry              77.85%
      75.0 nuts             15.00%
-    350.0 total water      70.00%
     500.0 total flour     100.00%
+    350.0 total water      70.00%
 +*/
 My usual loaf with saccharified polenta
 
@@ -49,14 +49,14 @@ it and left it overnight on the counter. In the morning it was quite
 sweet.
 
 soaker:
-  polenta
+  polenta = 10%
   boiling_water = 250% * polenta
   diastatic_malt = 1.5% * polenta
 
 I keep my NMNF starter at 60% hydration in the fridge.
 
 starter:
-  hydration = 60
+  hydration = 60%
   rye
   water
 
@@ -87,8 +87,8 @@ I also mix the wet ingredients with a mix before adding the dry.
 
 wet:
   water
-  soaker[polenta = 10%]
-  sponge limit 30%
+  soaker
+  sponge
   honey = 5%
   oil = 5%
 

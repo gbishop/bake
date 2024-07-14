@@ -1,19 +1,19 @@
 Multigrain including polenta and barley
 /*+
-soaker.............................(175.8g = 35.1%)
-     25.0 polenta           5.00%
-     25.0 barley flour      5.00%
-    125.0 boiling water    25.00%
-      0.8 diastatic malt    0.15%
+soaker.............................(175.0g = 35.0%)
+     24.9 polenta           4.99%
+     24.9 barley flour      4.98%
+    124.5 boiling water    24.89%
+      0.7 diastatic malt    0.15%
 
-starter............................(7.3g = 1.5%)
-      4.6 rye               0.91%
-      2.7 water             0.55%
+starter............................(7.1g = 1.4%)
+      4.4 rye               0.88%
+      2.6 water             0.53%
 
-sponge.............................(155.5g = 31.1%)
-     75.0 water            15.00%
-     73.2 rye              14.63%
-      7.3 starter           1.46%
+sponge.............................(150.0g = 30.0%)
+     72.4 water            14.47%
+      7.1 starter           1.41%
+     70.6 rye              14.12%
 
 dry................................(392.2g = 78.4%)
     175.2 prairie gold     35.04%
@@ -27,7 +27,7 @@ dry................................(392.2g = 78.4%)
       2.0 yeast             0.40%
 
 wet................................(525.5g = 105.1%)
-    150.5 water            30.11%
+    150.5 water            30.10%
     175.0 soaker           35.00%
     150.0 sponge           30.00%
      25.0 honey             5.00%
@@ -37,8 +37,8 @@ dough..............................(992.7g = 198.5%)
     525.5 wet             105.11%
     392.2 dry              78.44%
      75.0 nuts             15.00%
-    350.0 total water      70.00%
     500.0 total flour     100.00%
+    350.0 total water      70.00%
 +*/
 My usual loaf with saccharified polenta and barley
 
@@ -59,7 +59,7 @@ soaker:
 I keep my NMNF starter at 60% hydration in the fridge.
 
 starter:
-  hydration = 60
+  hydration = 60%
   rye
   water
 
@@ -68,7 +68,7 @@ overnight at 86F.
 
 sponge:
   hydration = 100%
-  water = 15%
+  water
   starter = 10% * rye
   rye
 
@@ -90,8 +90,8 @@ I also mix the wet ingredients with a wisk before adding the dry.
 
 wet:
   water
-  soaker limit 35%
-  sponge limit 30%
+  soaker = 35%
+  sponge = 30%
   honey = 5%
   oil = 5%
 

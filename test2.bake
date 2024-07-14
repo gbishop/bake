@@ -5,8 +5,8 @@ starter............................(98.9g = 43.0%)
      49.4 flour            21.50%
 
 wet................................(232.6g = 101.2%)
-     95.3 water            41.45%
      98.9 starter          43.00%
+     95.3 water            41.45%
      12.4 egg               5.40%
      16.1 honey             7.00%
       9.9 oil               4.30%
@@ -20,8 +20,8 @@ dry................................(185.2g = 80.5%)
 dough..............................(417.8g = 181.7%)
     232.6 wet             101.15%
     185.2 dry              80.50%
-    154.1 total water      67.00%
     230.0 total flour     100.00%
+    154.1 total water      67.00%
 +*/
 
 From: https://lovelybellbakes.com/super-soft-fresh-milled-sourdough-sandwich-bread/.
@@ -31,12 +31,12 @@ I converted to baker's percent with a bit of rounding.
 I'm adding yeast to control the rise/sour tradeoff.
 
 starter:
-  water = 21.5%
+  water
   flour
   hydration = 100%
 
 wet:
-  starter
+  starter = 43%
   water
   egg = 5.4%
   honey = 7%

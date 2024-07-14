@@ -94,7 +94,6 @@ class Bake:
         self.meta = textx.metamodel_from_file("bake.tx", ws=" ")
         self.vars = Vars
         self.parts = []
-        self.limits = []
         self.constraints = []
 
     def var(self, part, ingredient):
@@ -125,6 +124,9 @@ class Bake:
                         c = Constraint(part.name, ingredient.name)
                         c.addTerm(opart, "total", -1.0)
                         self.constraints.append(c)
+                        if ingredient.expr:
+                            c = self.handleExpr(ingredient, part)
+                            self.constraints.append(c)
                     else:
                         total.addTerm(part.name, ingredient.name, -1.0)
                         f = flourFraction(ingredient.name)
@@ -136,12 +138,12 @@ class Bake:
                         if ingredient.expr:
                             c = self.handleExpr(ingredient, part)
                             self.constraints.append(c)
+
                 elif ingredient.hydration:
                     c = Constraint(part.name, "total_water")
                     c.addTerm(part.name, "total_flour", -ingredient.hydration / 100)
                     self.constraints.append(c)
                 elif ingredient.scale:
-                    print("scale", ingredient.scale)
                     c = Constraint(part.name, "total_flour")
                     c.addConstant(-ingredient.scale)
                     self.constraints.append(c)
@@ -170,11 +172,12 @@ class Bake:
             bp = g * scale
             result.append(f"{partName:.<35}({g:.1f}g = {bp:.1f}%)")
             for var in pvars:
-                if (
-                    i == len(self.parts) - 1
-                    and var != "total"
-                    or not var.startswith("total")
-                ):
+                if not var.startswith("total"):
+                    g = pvars[var]
+                    bp = g * scale
+                    result.append(f"   {g:6.1f} {var.replace('_', ' '):15} {bp:6.2f}%")
+            if i == len(self.parts) - 1:
+                for var in ["total_flour", "total_water"]:
                     g = pvars[var]
                     bp = g * scale
                     result.append(f"   {g:6.1f} {var.replace('_', ' '):15} {bp:6.2f}%")

@@ -1,13 +1,13 @@
 My usual loaf with toasted sunflower seeds
 /*+
 starter............................(2.5g = 1.0%)
-      1.6 rye               0.62%
+      1.6 rye               0.63%
       0.9 water             0.38%
 
-sponge.............................(51.9g = 20.8%)
+sponge.............................(50.0g = 20.0%)
       2.5 starter           1.00%
-     24.4 rye               9.75%
-     25.0 water            10.00%
+     23.4 rye               9.38%
+     24.1 water             9.62%
 
 wet................................(225.0g = 90.0%)
      50.0 sponge           20.00%
@@ -32,8 +32,8 @@ dough..............................(482.0g = 192.8%)
     225.0 wet              90.00%
     232.0 dry              92.80%
      25.0 seeds            10.00%
-    175.0 total water      70.00%
     250.0 total flour     100.00%
+    175.0 total water      70.00%
 +*/
 
 17 June 2024. Half size in new pan.
@@ -56,11 +56,11 @@ starter:
 sponge:
   starter = 1%
   rye
-  water = 10%
+  water
   hydration = 100%
 
 wet:
-  sponge limit 20%
+  sponge = 20%
   water
   oil = 5%
   honey = 5%

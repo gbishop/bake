@@ -4,10 +4,10 @@ starter............................(5.0g = 1.0%)
       3.1 rye               0.62%
       1.9 water             0.38%
 
-sponge.............................(103.8g = 20.8%)
+sponge.............................(100.0g = 20.0%)
       5.0 starter           1.00%
-     48.8 ww flour          9.75%
-     50.0 water            10.00%
+     46.9 ww flour          9.38%
+     48.1 water             9.62%
 
 soaker.............................(190.0g = 38.0%)
      60.0 oats             12.00%
@@ -35,8 +35,8 @@ dough..............................(947.0g = 189.4%)
     370.0 wet              74.00%
     387.0 dry              77.40%
     190.0 soaker           38.00%
-    375.0 total water      75.00%
     500.0 total flour     100.00%
+    375.0 total water      75.00%
 +*/
 
 24 June. Trying a oat-flaxseed-butter soaker.
@@ -49,7 +49,7 @@ starter:
 sponge:
   starter = 1%
   ww_flour
-  water = 10%
+  water
   hydration = 100%
 
 soaker:
@@ -61,7 +61,7 @@ soaker:
 Heat a non-stick pan on low. Pour in oats and flaxseed. Toast on low for 2-3 minutes until light golden brown (1:32), stir to avoid burning. Add butter and cook until fully absorbed and golden brown. Remove from heat and transfer to a bowl. Add RT water so grains are covered. Set aside to soak for 1 hour.
 
 wet:
-  sponge limit 20%
+  sponge = 20%
   water
   honey = 5%
 

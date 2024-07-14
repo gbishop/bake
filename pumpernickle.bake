@@ -1,11 +1,9 @@
 Faux (American) Pumpernickle
 /*+
-https..............................(0.0g = 0.0%)
-
-sponge.............................(52.5g = 26.2%)
-     25.0 whole wheat      12.50%
-     25.0 water            12.50%
-      2.5 starter           1.25%
+sponge.............................(50.0g = 25.0%)
+     23.8 whole wheat      11.90%
+     23.8 water            11.90%
+      2.4 starter           1.19%
 
 wet................................(216.2g = 108.1%)
     108.2 warm water       54.10%
@@ -26,23 +24,24 @@ dry................................(196.6g = 98.3%)
 dough..............................(412.8g = 206.4%)
     216.2 wet             108.10%
     196.6 dry              98.30%
-    132.0 total water      66.00%
     200.0 total flour     100.00%
+    132.0 total water      66.00%
 +*/
-https://www.farmhouseonboone.com/sourdough-pumpernickel-bread-recipe
+
+From https://www.farmhouseonboone.com/sourdough-pumpernickel-bread-recipe
 
 First version was delicious but a bit too chocolate forward. Second version
 added red rye malt but went too far. Next time try this.
 
 sponge:
-    whole_wheat = 12.5%
+    whole_wheat
     water
     starter = 10% * whole_wheat
     hydration = 100%
 
 wet:
     warm_water
-    sponge limit 25%
+    sponge = 25%
     molasses = 16%
     butter = 13%
 

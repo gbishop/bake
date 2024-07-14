@@ -8,9 +8,7 @@ Part: name=ID ':' '\n' ingredients*=Ingredient['\n'];
 
 Ingredient: ('hydration' '=' hydration=NUMBER '%' ) |
             ('scale' '=' scale=NUMBER 'g') | 
-            (name=ID (('=' expr=Sum) |
-                      ('limit' limit=NUMBER unit=/[%g]/)
-                     )? );
+            (name=ID ('=' expr=Sum)? );
 
 Sum: term=Product sums*=Sums;
 
