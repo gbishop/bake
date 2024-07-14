@@ -1,27 +1,27 @@
 Lovely Bell SD
 /*+
 starter............................(98.9g = 43.0%)
-     49.4 water            21.50%
-     49.4 flour            21.50%
+       49 water            21.50%
+       49 flour            21.50%
 
 wet................................(232.6g = 101.2%)
-     98.9 starter          43.00%
-     95.3 water            41.45%
-     12.4 egg               5.40%
-     16.1 honey             7.00%
-      9.9 oil               4.30%
+       99 starter          43.00%
+       95 water            41.45%
+       12 egg               5.40%
+       16 honey             7.00%
+       10 oil               4.30%
 
-dry................................(185.2g = 80.5%)
-    173.7 prairie gold     75.50%
-      6.9 vwg               3.00%
-      3.7 salt              1.60%
-      0.9 yeast             0.40%
+dry................................(185.6g = 80.7%)
+      174 prairie gold     75.50%
+        7 vwg               3.00%
+  3/4t  5 salt              2.00%
+  1/8t  0 yeast             0.20%
 
-dough..............................(417.8g = 181.7%)
-    232.6 wet             101.15%
-    185.2 dry              80.50%
-    230.0 total flour     100.00%
-    154.1 total water      67.00%
+dough..............................(418.3g = 181.9%)
+      233 wet             101.15%
+      186 dry              80.70%
+      230 total flour     100.00%
+      154 total water      67.00%
 +*/
 
 From: https://lovelybellbakes.com/super-soft-fresh-milled-sourdough-sandwich-bread/.
@@ -45,8 +45,8 @@ wet:
 dry:
   prairie_gold
   vwg = 3%
-  salt = 1.6%
-  yeast = 0.4%
+  salt = 2%
+  yeast = 0.2%
 
 dough:
   wet
