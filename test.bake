@@ -1,86 +1,10 @@
-My usual loaf with polenta
-/*+
-soaker.............................(175.8g = 35.1%)
-     50.0 polenta          10.00%
-    125.0 boiling water    25.00%
-      0.8 diastatic malt    0.15%
-
-starter............................(7.1g = 1.4%)
-      4.4 rye               0.88%
-      2.6 water             0.53%
-
-sponge.............................(150.0g = 30.0%)
-     70.6 rye              14.12%
-      7.1 starter           1.41%
-     72.4 water            14.47%
-
-dry................................(392.0g = 78.4%)
-    260.0 prairie gold     52.00%
-     65.0 bronze chief     13.00%
-     25.0 flaxseed meal     5.00%
-     10.0 potato flakes     2.00%
-     15.0 vwg               3.00%
-      5.0 improver          1.00%
-     10.0 salt              2.00%
-      2.0 yeast             0.40%
-
-wet................................(525.8g = 105.2%)
-    150.0 water            30.00%
-    175.8 soaker           35.15%
-    150.0 sponge           30.00%
-     25.0 honey             5.00%
-     25.0 oil               5.00%
-
-dough..............................(992.8g = 198.6%)
-    525.8 wet             105.15%
-    392.0 dry              78.40%
-     75.0 nuts             15.00%
-    350.0 total water      70.00%
-    500.0 total flour     100.00%
-+*/
-
-This one turned out as good as the first. I think lowering the oats helps the texture. 
-
-2 May 2024
-
-soaker:
-  polenta
-  boiling_water = 250% * polenta
-  diastatic_malt = 1.5% * polenta
-
-starter:
-  hydration = 60
-  rye
-  water
-
-sponge:
-  hydration = 100
-  rye
-  starter = 10% * rye
-  water
-
-dry:
-  prairie_gold
-  bronze_chief = 25% * prairie_gold
-  flaxseed_meal = 5
-  potato_flakes = 2
-  vwg = 3
-  improver = 1
-  salt = 2
-  yeast = 0.4
-
-wet:
-  water
-  soaker[polenta = 10]
-  sponge = 30
-  honey = 5
-  oil = 5
+Simple test loaf
 
 dough:
-  wet
-  dry
-  nuts = 15
-  hydration = 70
+  flour
+  water
+  salt = 2%
+  hydration = 70%
   scale = 500g
 
 

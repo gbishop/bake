@@ -1,31 +1,24 @@
 Recipe: statements *= Statement[/\n+/] /\s*/;
 
-Statement: ( Units | Part | Text ) ;
+Statement: ( Part | Text ) ;
 
 Text: /^.*$/ ;
-
-Units: 'Units' '=' units=/[g%]/;
 
 Part: name=ID ':' '\n' ingredients*=Ingredient['\n'];
 
 Ingredient: ('hydration' '=' hydration=NUMBER '%' ) |
             ('scale' '=' scale=NUMBER 'g') | 
             (name=ID (('=' expr=Sum) |
-                      ('limit' limit=BP)
+                      ('limit' limit=NUMBER unit=/[%g]/)
                      )? );
 
 Sum: term=Product sums*=Sums;
 
 Sums: op=/[+-]/ term=Product;
 
-Product: factor=Value products*=Products;
+Product: scalar=NUMBER unit=/[%g]/ ('*' var=Var)? |
+         var=Var;
 
-Products: '*' factor=Value;
-
-Value: value=BP | named=NamedValue | '(' expr=Sum ')';
-
-BP: value=NUMBER unit=/[g%]?/;
-
-NamedValue: part=ID ('.' ingredient=ID)?;
+Var: a=ID ('.' b=ID)?;
 
 Comment: /\/\/.*?$|(?ms:\/\*.*?\*\/\n+)/;

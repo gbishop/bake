@@ -1,7 +1,8 @@
 import textx
-import pulp
 import re
 import sys
+import numpy as np
+import scipy
 
 Flours = [
     "prairie_gold",
@@ -44,148 +45,200 @@ def waterFraction(name):
     return water.get(name, 1.0 if "water" in name else 0.0)
 
 
-class evaluator:
-    def __init__(self, x, index):
-        self.x = x
-        self.index = index
+# Keep track of the mapping from variable names to indicies
 
-    def get(self):
-        return lambda name: self.x[self.index[name]]
-
-    def add(self):
-        return lambda values:
+Vars = {}
 
 
-class Part:
-    def __init__(self, name):
-        self.name = name
-        self.constraints = []
-        self.vars = {}
-        self.values = {}
-        self.limit = 0
-        self.limitScale = 1
-        self.units = "%"
+class Constraint:
+    def __init__(self, part, ingredient):
+        name = (part, ingredient)
+        if name not in Vars:
+            Vars[name] = len(Vars)
+        self.terms = {name: 1.0}
+        self.constant = 0
+        self.bp = 0
 
-    def var(self, name):
-        if name not in self.vars:
-            lpname = f"{self.name}.{name}"
-            self.vars[name] = pulp.LpVariable(lpname, 0, None)
-        return self.vars[name]
+    def addTerm(self, part, ingredient, scale):
+        name = (part, ingredient)
+        if name not in Vars:
+            Vars[name] = len(Vars)
+        self.terms[name] = self.terms.get(name, 0.0) + scale
 
-    def add(self, var, op, value):
-        if op == "=":
-            self.constraints.append([var, op, value])
+    def addConstant(self, value):
+        self.constant += value
 
-    def print(self, scale, last=False, total=1):
-        result = []
-        bp = self.values["total"] / total
-        g = bp * scale
-        result.append(f"{self.name:.<35}({g:.1f}g = {100*bp:.1f}%)")
-        for var in self.vars:
-            if last and var != "total" or not var.startswith("total"):
-                bp = self.values[var] / total
-                g = bp * scale
-                result.append(f"   {g:6.1f} {var.replace('_', ' '):15} {100*bp:6.2f}%")
-        result.append("")
-        return "\n".join(result)
+    def addBp(self, value):
+        self.bp += value
 
-    def applyLimit(self):
-        total = self.values["total"]
-        if total > self.limit and self.limitScale == 1:
-            self.limitScale = self.limit / total
-            return True
+    def __repr__(self):
+        chunks = []
+        for term, scale in self.terms.items():
+            op = " + " if scale > 0 else " - "
+            coeff = "" if abs(scale) == 1.0 else str(abs(scale)) + "*"
+            name = ".".join(term)
+            chunk = f"{op}{coeff}{name}"
+            chunks.append(chunk)
+        s = "".join(chunks)
+        if self.constant != 0:
+            op = " + " if self.constant > 0 else " - "
+            s = s + op + str(abs(self.constant))
+        if self.bp != 0:
+            op = " + " if self.bp > 0 else " - "
+            s = s + op + "BP * " + str(abs(self.bp))
+        return s.strip()
 
 
 class Bake:
     def __init__(self):
         self.meta = textx.metamodel_from_file("bake.tx", ws=" ")
-        self.meta.register_obj_processors(
-            {
-                "Value": self.handleValue,
-                "BP": self.handleBP,
-                "NamedValue": self.handleNamedValue,
-                "Part": self.handlePart,
-                "Sum": self.handleSum,
-                "Product": self.handleProduct,
-                "Units": self.handleUnits,
-            }
-        )
-        self.parts = {}
+        self.vars = Vars
+        self.parts = []
         self.limits = []
-        self.units = "%"
+        self.constraints = []
 
-    def compile(self):
-        text = sys.stdin.read()
+    def var(self, part, ingredient):
+        name = (part, ingredient)
+        self.vars.setdefault(name, len(self.vars))
+        return name
+
+    def compile(self, stdin):
+        text = stdin.read()
         try:
             self.model = self.meta.model_from_str(text)
         except textx.TextXSyntaxError as e:
             return self.output(f"Error {e.line}:{e.col} {e.message}", text)
-        parts = list(self.parts.values())
-        if self.units == "%":
-            parts[-1].add(parts[-1].var("total_flour"), "=", 1)
-        failed = self.solve()
-        N = len(parts)
-        if self.units == "%":
-            total = 1
-        else:
-            total = parts[-1].values["total_flour"]
-        result = "\n".join(
-            part.print(self.scale, last=i == N - 1, total=total)
-            for i, part in enumerate(parts)
-        )
-        return self.output(result, text, failed)
+
+        # build a list of constraints
+        for part in textx.get_children_of_type("Part", self.model):
+            self.parts.append(part.name)
+            total = Constraint(part.name, "total")
+            total_flour = Constraint(part.name, "total_flour")
+            total_water = Constraint(part.name, "total_water")
+            for ingredient in part.ingredients:
+                if ingredient.name:
+                    if ingredient.name in self.parts:
+                        opart = ingredient.name
+                        total.addTerm(opart, "total", -1)
+                        total_flour.addTerm(opart, "total_flour", -1)
+                        total_water.addTerm(opart, "total_water", -1)
+                        c = Constraint(part.name, ingredient.name)
+                        c.addTerm(opart, "total", -1.0)
+                        self.constraints.append(c)
+                    else:
+                        total.addTerm(part.name, ingredient.name, -1.0)
+                        f = flourFraction(ingredient.name)
+                        if f > 0:
+                            total_flour.addTerm(part.name, ingredient.name, -f)
+                        w = waterFraction(ingredient.name)
+                        if w > 0:
+                            total_water.addTerm(part.name, ingredient.name, -w)
+                        if ingredient.expr:
+                            c = self.handleExpr(ingredient, part)
+                            self.constraints.append(c)
+                elif ingredient.hydration:
+                    c = Constraint(part.name, "total_water")
+                    c.addTerm(part.name, "total_flour", -ingredient.hydration / 100)
+                    self.constraints.append(c)
+                elif ingredient.scale:
+                    print("scale", ingredient.scale)
+                    c = Constraint(part.name, "total_flour")
+                    c.addConstant(-ingredient.scale)
+                    self.constraints.append(c)
+                else:
+                    continue
+
+            self.constraints.append(total)
+            self.constraints.append(total_flour)
+            self.constraints.append(total_water)
+
+        # print(self.vars)
+        # for constraint in self.constraints:
+        #     print(constraint)
+
+        opt = self.solve()
+
+        result = []
+        scale = 100 / opt.x[self.vars[(self.parts[-1], "total_flour")]]
+        for i, partName in enumerate(self.parts):
+            pvars = {
+                name[1]: opt.x[self.vars[name]]
+                for name in self.vars
+                if name[0] == partName
+            }
+            g = pvars["total"]
+            bp = g * scale
+            result.append(f"{partName:.<35}({g:.1f}g = {bp:.1f}%)")
+            for var in pvars:
+                if (
+                    i == len(self.parts) - 1
+                    and var != "total"
+                    or not var.startswith("total")
+                ):
+                    g = pvars[var]
+                    bp = g * scale
+                    result.append(f"   {g:6.1f} {var.replace('_', ' '):15} {bp:6.2f}%")
+            result.append("")
+
+        table = "\n".join(result)
+        self.output(table, text, not opt.success or opt.cost > 1)
+
+    def handleExpr(self, ingredient, part):
+        expr = ingredient.expr
+
+        c = Constraint(part.name, ingredient.name)
+
+        for term in [expr.term] + expr.sums:
+            if term.var:
+                if term.var.b:
+                    pname = term.var.a
+                    iname = term.var.b
+                else:
+                    pname = part.name
+                    iname = term.var.a
+                if term.scalar:
+                    scalar = term.scalar
+                    if term.unit == "%":
+                        scalar /= 100
+                else:
+                    scalar = 1
+                c.addTerm(pname, iname, -1 * scalar)
+            else:
+                if term.unit == "%":
+                    c.addBp(-1 * term.scalar)
+                else:
+                    c.addConstant(-1 * term.scalar)
+
+        return c
 
     def solve(self):
-        parts = self.parts
-        for _ in range(10):
-            problem = pulp.LpProblem("bake")
-            problem += 0  # objective goes here
-            for part in parts.values():
-                total = 0
-                flour = 0
-                water = 0
-                for var in part.vars:
-                    if "total" in var:
-                        continue
-                    if var in self.parts:
-                        otherPart = self.parts[var]
-                        ls = otherPart.limitScale
-                        total += ls * otherPart.var("total")
-                        water += ls * otherPart.var("total_water")
-                        flour += ls * otherPart.var("total_flour")
-                        problem += part.var(var) == ls * otherPart.var("total")
-                    else:
-                        f = flourFraction(var)
-                        if f > 0:
-                            flour += f * part.var(var)
-                        w = waterFraction(var)
-                        if w > 0:
-                            water += w * part.var(var)
-                        total += part.var(var)
+        coeff = np.zeros([len(self.constraints), len(self.vars)])
+        const = np.zeros(len(self.constraints))
+        bp = np.zeros(len(self.constraints))
+        x0 = np.ones(len(self.vars)) * 50
 
-                for var, op, value in part.constraints:
-                    if op == "=":
-                        problem += var == value
+        for row, c in enumerate(self.constraints):
+            for name, scale in c.terms.items():
+                col = self.vars[name]
+                coeff[row, col] = scale
+            const[row] = c.constant
+            bp[row] = c.bp
 
-                problem += part.var("total") == total
-                problem += part.var("total_water") == water
-                problem += part.var("total_flour") == flour
+        def cost(
+            x,  # current solution estimate
+            m,  # linear terms
+            n,  # terms scaled by total flour
+            c,  # constant terms
+            ti,  # index of the total flour
+        ):
+            lv = np.dot(m, x)
+            nv = n * x[ti] / 100
+            return lv + nv + c
 
-            problem.solve(pulp.PULP_CBC_CMD(msg=False))
-            failed = problem.status < 1
-            for var in problem.variables():
-                if "." in var.name:
-                    part, ingredient = var.name.split(".")
-                    self.parts[part].values[ingredient] = var.varValue
-            if failed:
-                return failed
-            for part in self.limits:
-                if part.applyLimit():
-                    break
-            else:
-                break
+        ti = self.vars[(self.parts[-1], "total_flour")]
+        opt = scipy.optimize.least_squares(cost, x0, args=(coeff, bp, const, ti))
 
-        return False
+        return opt
 
     def output(self, table, text, failed=False):
         match = re.match(
@@ -204,83 +257,10 @@ class Bake:
             result = f"title\n/*+\n{table}+*/{text}"
         print(result)
 
-    def handleSum(self, v):
-        result = v.term.expr
-        for sum in v.sums:
-            result = [ sum.op, result, sum.term.expr ]
-        v.result = result
-
-    def handleProduct(self, v):
-        result = v.factor.expr
-        for factor in v.products:
-            result = [ '*', result, factor.factor.expr ]
-        v.result = result
-
-    def handleValue(self, v):
-        if v.named:
-            v.result = [ 'get', v.named.result ]
-        elif v.expr:
-            v.result = v.expr.result
-        else:
-            v.result = v.value.result
-
-    def handleBP(self, v):
-        if not v.unit:
-            v.unit = '%'
-        if v.unit == '%':
-            v.value = v.value / 100
-        v.result = [ v.unit, v.value ]
-
-    def handleNamedValue(self, v):
-        if v.ingredient:
-            v.pulp = self.parts[v.part].var(v.ingredient)
-        else:
-            v.pulp = self.part.var(v.part)
-
-    def handlePartName(self, v):
-        self.part = self.parts[v.name] = Part(v.name)
-
-    def handleIngredient(self, v):
-        part = self.part
-        if not v.name:
-            if v.hydration:
-                part.add(
-                    part.var("total_water"),
-                    "=",
-                    v.hydration.value * part.var("total_flour"),
-                )
-            elif v.scale:
-                self.scale = v.scale.value
-            return
-
-        name = v.name
-        var = part.var(name)
-
-        if name in self.parts:
-            otherPart = self.parts[v.name]
-            if v.limit:
-                otherPart.limit = v.limit.value
-                self.limits.append(otherPart)
-            elif v.parameter:
-                othervar = otherPart.var(v.parameter.name)
-                otherPart.add(othervar, "=", v.parameter.value.pulp)
-
-        if v.expr:
-            part.add(var, "=", v.expr.pulp)
-
-    def handleUnits(self, v):
-        self.units = v.units
-
-    def handleSetting(self, v):
-        print("setting", v)
-        if v.setting == "units":
-            self.units = v.value
-            print(self.units)
-        elif v.setting == "flour":
-            self.scale = float(v.value.value)
-        elif v.setting == "hydration":
-            self.hydration = float(v.value.value)
-
 
 Baker = Bake()
-Baker.compile()
+if len(sys.argv) > 1:
+    stdin = open(sys.argv[1], "rt")
+else:
+    stdin = sys.stdin
+Baker.compile(stdin)
