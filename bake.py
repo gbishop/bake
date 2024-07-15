@@ -46,30 +46,16 @@ def waterFraction(name):
     return water.get(name, 1.0 if "water" in name else 0.0)
 
 
-grams_per_t = {
-    "yeast": 9 / 3,
-    "salt": 18 / 3,
-    "vwg": 9 / 3,
-    "improver": 14 / 3,
-}
-
-
-def grams_to_str(name, g):
-    if name not in grams_per_t or g > 5:
-        return f"   {g:6.0f}"
-    gpt = grams_per_t[name]
-    teaspoons = g / gpt
-    whole = int(teaspoons)
-    fraction = teaspoons - whole
-    f = ["", "1/8", "1/4", "3/8", "1/2", "1/2", "3/4", "3/4"][round(fraction * 8)]
-    if whole:
-        r = f"{whole} {f}t  {g:.0f}"
+def fmt_grams(g):
+    if g >= 100:
+        r = f"{g:.0f}   "
+    elif g >= 10:
+        r = f"{g:0.1f} "
     else:
-        r = f"{f}t  {g:.0f}"
+        r = f"{g:0.2f}"
 
-    if len(r) < 9:
-        r = " " * (9 - len(r)) + r
-
+    if len(r) < 8:
+        r = " " * (8 - len(r)) + r
     return r
 
 
@@ -202,15 +188,15 @@ class Bake:
             for var in pvars:
                 if not var.startswith("total"):
                     g = pvars[var]
-                    v = grams_to_str(var, g)
+                    fg = fmt_grams(g)
                     bp = g * scale
-                    result.append(f"{v} {var.replace('_', ' '):15} {bp:6.2f}%")
+                    result.append(f"{fg} {var.replace('_', ' '):15} {bp:6.1f}%")
             if i == len(self.parts) - 1:
                 for var in ["total_flour", "total_water"]:
                     g = pvars[var]
+                    fg = fmt_grams(g)
                     bp = g * scale
-                    v = grams_to_str(var, g)
-                    result.append(f"{v} {var.replace('_', ' '):15} {bp:6.2f}%")
+                    result.append(f"{fg} {var.replace('_', ' '):15} {bp:6.1f}%")
             result.append("")
 
         table = "\n".join(result)
