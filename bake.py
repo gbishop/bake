@@ -286,6 +286,7 @@ class Bake:
             if failed:
                 table = re.sub(r"^", "E ", table, 0, re.M)
             rest = match.group("rest")
+            rest = "\n" + rest.lstrip()
             result = f"{title}\n/*+\n{table}\n+*/{rest}"
         else:
             result = f"title\n/*+\n{table}+*/{text}"
