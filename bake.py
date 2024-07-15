@@ -128,7 +128,7 @@ class Bake:
         self.vars.setdefault(name, len(self.vars))
         return name
 
-    def compile(self, stdin):
+    def compile(self, stdin, rewrite=False):
         text = stdin.read()
         try:
             self.model = self.meta.model_from_str(text)
@@ -213,7 +213,9 @@ class Bake:
             result.append("")
 
         table = "\n".join(result)
-        self.output(table, text, not opt.success or opt.cost > 1)
+        self.output(
+            table, text, not opt.success or opt.cost > 1, scale if rewrite else 0
+        )
 
     def handleExpr(self, ingredient, part):
         expr = ingredient.expr
@@ -279,7 +281,7 @@ class Bake:
 
         return opt
 
-    def output(self, table, text, failed=False):
+    def output(self, table, text, failed=False, scale=0):
         match = re.match(
             r"(?ms)(?P<title>.*?\n)?\s*(?P<table>\/\*\+.*?\+\*\/)?(?P<rest>.*)",
             text,
@@ -292,15 +294,34 @@ class Bake:
                 table = re.sub(r"^", "E ", table, 0, re.M)
             rest = match.group("rest")
             rest = rest.lstrip()
+            if scale > 0:
+                rest = self.rewrite(rest, scale)
             result = f"{title}\n/*+\n{table}\n+*/\n\n{rest}"
         else:
             result = f"title\n/*+\n{table}+*/{text}"
         print(result)
 
+    def rewrite(self, rest, scale):
+        def gtobp(match):
+            if match.group(1) != "scale":
+                f = float(match.group(3)[:-1]) * scale
+                return f"{match.group(1)}{match.group(2)}{f:.1f}%"
+            else:
+                return match.group(0)
+
+        return re.sub(r"(\w+)(\s*=\s*)([\d.]+g)", gtobp, rest)
+
 
 Baker = Bake()
-if len(sys.argv) > 1:
-    stdin = open(sys.argv[1], "rt")
+rewrite = False
+filename = ""
+for arg in sys.argv[1:]:
+    if arg == "-R":
+        rewrite = True
+    else:
+        filename = arg
+if filename:
+    stdin = open(filename, "rt")
 else:
     stdin = sys.stdin
-Baker.compile(stdin)
+Baker.compile(stdin, rewrite)
