@@ -3,6 +3,7 @@ import re
 import sys
 import numpy as np
 import scipy
+import math
 
 Flours = [
     "prairie_gold",
@@ -24,6 +25,7 @@ Flours = [
     "steel_cut_oats",
     "bread_flour",
     "bran",
+    "bulgar",
 ]
 
 
@@ -52,7 +54,11 @@ def fmt_grams(g):
     elif g >= 10:
         r = f"{g:0.1f} "
     else:
-        r = f"{g:0.2f}"
+        f, w = math.modf(g * 10)
+        if f < 0.05:
+            r = f"{g:0.1f} "
+        else:
+            r = f"{g:0.2f}"
 
     if len(r) < 8:
         r = " " * (8 - len(r)) + r
@@ -285,8 +291,8 @@ class Bake:
             if failed:
                 table = re.sub(r"^", "E ", table, 0, re.M)
             rest = match.group("rest")
-            rest = "\n" + rest.lstrip()
-            result = f"{title}\n/*+\n{table}\n+*/{rest}"
+            rest = rest.lstrip()
+            result = f"{title}\n/*+\n{table}\n+*/\n\n{rest}"
         else:
             result = f"title\n/*+\n{table}+*/{text}"
         print(result)
