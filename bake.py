@@ -103,6 +103,14 @@ class Constraint:
         return s.strip()
 
 
+class TotalConstraint(Constraint):
+    def addTerm(self, part, ingredient, scale):
+        name = (part, ingredient)
+        if name not in Vars:
+            Vars[name] = len(Vars)
+        self.terms[name] = scale
+
+
 class Bake:
     def __init__(self):
         self.meta = textx.metamodel_from_file("bake.tx", ws=" ")
@@ -125,9 +133,9 @@ class Bake:
         # build a list of constraints
         for part in textx.get_children_of_type("Part", self.model):
             self.parts.append(part.name)
-            total = Constraint(part.name, "total")
-            total_flour = Constraint(part.name, "total_flour")
-            total_water = Constraint(part.name, "total_water")
+            total = TotalConstraint(part.name, "total")
+            total_flour = TotalConstraint(part.name, "total_flour")
+            total_water = TotalConstraint(part.name, "total_water")
             for ingredient in part.ingredients:
                 if ingredient.name:
                     if ingredient.name in self.parts:
