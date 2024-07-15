@@ -60,7 +60,6 @@ def fmt_grams(g):
 
 
 # Keep track of the mapping from variable names to indicies
-
 Vars = {}
 
 
