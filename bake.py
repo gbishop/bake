@@ -11,6 +11,35 @@ import numpy as np
 import scipy
 import math
 
+# The textx grammar for my recipes
+grammar = r"""
+Recipe: statements *= Statement[/\n+/] /\s*/;
+
+Statement: ( Part | Text ) ;
+
+Text: /^.*$/ ;
+
+Part: name=ID ':' '\n' ingredients*=Ingredient['\n'];
+
+Ingredient: ('hydration' '=' hydration=NUMBER '%' ) |
+            ('scale' '=' scale=NUMBER 'g') | 
+            (name=ID ('=' expr=Sum)? );
+
+Sum: term=Product sums*=Sums;
+
+Sums: op=/[+-]/ term=Product;
+
+Product: scalar=NUMBER unit=/[%g]/ ('*' var=Var)? |
+         var=Var;
+
+Var: a=ID ('.' b=ID)?;
+
+Comment: /\/\/.*?$|(?ms:\/\*.*?\*\/\n+)/;
+"""
+
+# These ingredients are counted in the total flour. I count grains and such
+# that absorb water regardless of where they occur.
+
 Flours = [
     "prairie_gold",
     "hard_white",
@@ -140,7 +169,7 @@ class Bake:
     """The recipe"""
 
     def __init__(self):
-        self.meta = textx.metamodel_from_file("bake.tx", ws=" ")
+        self.meta = textx.metamodel_from_str(grammar, ws=" ")
         self.vars = Vars
         self.parts = []
         self.constraints = []
