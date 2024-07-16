@@ -174,11 +174,6 @@ class Bake:
         self.parts = []
         self.constraints = []
 
-    def var(self, part, ingredient):
-        name = (part, ingredient)
-        self.vars.setdefault(name, len(self.vars))
-        return name
-
     def compile(self, stdin, rewrite=False):
         text = stdin.read()
         try:
