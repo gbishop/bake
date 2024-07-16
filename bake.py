@@ -1,3 +1,9 @@
+"""
+Bake.py - bread recipes using relationships rather than spreadsheets.
+
+Gary Bishop July 2024
+"""
+
 import textx
 import re
 import sys
@@ -30,11 +36,13 @@ Flours = [
 
 
 def flourFraction(name):
+    """Compute the amount of flour in the ingredient"""
     if name in Flours or "flour" in name:
         return 1.0
     return 0.0
 
 
+# These ingredients are counted as water.
 water = {
     "water": 1.0,
     "egg": 0.75,
@@ -45,16 +53,18 @@ water = {
 
 
 def waterFraction(name):
+    """Compute the amount of water in the ingredient"""
     return water.get(name, 1.0 if "water" in name else 0.0)
 
 
 def fmt_grams(g):
+    """Format grams in the table"""
     if g >= 100:
         r = f"{g:.0f}   "
     elif g >= 10:
         r = f"{g:0.1f} "
     else:
-        f, w = math.modf(g * 10)
+        f, _ = math.modf(g * 10)
         if f < 0.05:
             r = f"{g:0.1f} "
         else:
@@ -70,12 +80,19 @@ Vars = {}
 
 
 class Constraint:
+    """One relation for constraining the solution"""
+
     def __init__(self, part, ingredient):
+        # the key for the ingredient
         name = (part, ingredient)
+        # Add it with its index into the matrix we'll construct
         if name not in Vars:
             Vars[name] = len(Vars)
+        # weighted sum of ingredients
         self.terms = {name: 1.0}
+        # any constant term
         self.constant = 0
+        # bakers percentage that must be multipled by total_flour
         self.bp = 0
 
     def addTerm(self, part, ingredient, scale):
@@ -91,6 +108,7 @@ class Constraint:
         self.bp += value
 
     def __repr__(self):
+        """Print the constraints in a readable format"""
         chunks = []
         for term, scale in self.terms.items():
             op = " + " if scale > 0 else " - "
@@ -109,6 +127,8 @@ class Constraint:
 
 
 class TotalConstraint(Constraint):
+    """A constraint that only counts an ingredient once"""
+
     def addTerm(self, part, ingredient, scale):
         name = (part, ingredient)
         if name not in Vars:
@@ -117,6 +137,8 @@ class TotalConstraint(Constraint):
 
 
 class Bake:
+    """The recipe"""
+
     def __init__(self):
         self.meta = textx.metamodel_from_file("bake.tx", ws=" ")
         self.vars = Vars
@@ -144,6 +166,7 @@ class Bake:
             for ingredient in part.ingredients:
                 if ingredient.name:
                     if ingredient.name in self.parts:
+                        # reference to another part
                         opart = ingredient.name
                         total.addTerm(opart, "total", -1)
                         total_flour.addTerm(opart, "total_flour", -1)
@@ -155,6 +178,7 @@ class Bake:
                             c = self.handleExpr(ingredient, part)
                             self.constraints.append(c)
                     else:
+                        # an ordinary ingredient
                         total.addTerm(part.name, ingredient.name, -1.0)
                         f = flourFraction(ingredient.name)
                         if f > 0:
