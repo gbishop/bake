@@ -201,6 +201,11 @@ class Bake:
                         if ingredient.expr:
                             c = self.handleExpr(ingredient, part)
                             self.constraints.append(c)
+                    elif ingredient.name.startswith("_"):
+                        # variables that are not ingredients
+                        if ingredient.expr:
+                            c = self.handleExpr(ingredient, part)
+                            self.constraints.append(c)
                     else:
                         # an ordinary ingredient
                         total.addTerm(part.name, ingredient.name, -1.0)
@@ -241,7 +246,7 @@ class Bake:
             pvars = {
                 name[1]: opt.x[self.vars[name]]
                 for name in self.vars
-                if name[0] == partName
+                if name[0] == partName and not name[1].startswith("_")
             }
             g = pvars["total"]
             bp = g * scale
