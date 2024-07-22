@@ -1,0 +1,76 @@
+A loaf with prunes
+/*+
+starter............................(2.5g = 1.0%)
+    1.56 rye                0.6%
+    0.94 water              0.4%
+
+sponge.............................(50.0g = 20.0%)
+    2.5  starter            1.0%
+   23.4  whole wheat        9.4%
+   24.1  water              9.6%
+
+prune_solution.....................(182.5g = 73.0%)
+   37.5  prunes            15.0%
+  145    water             58.0%
+
+wet................................(257.5g = 103.0%)
+  183    prune solution    73.0%
+   50.0  sponge            20.0%
+   12.5  oil                5.0%
+   12.5  honey              5.0%
+
+dry................................(230.8g = 92.3%)
+  200    whole wheat       80.0%
+   12.5  flaxseed meal      5.0%
+    7.5  potato flakes      3.0%
+    5.0  vwg                2.0%
+    5.0  salt               2.0%
+    0.75 yeast              0.3%
+
+dough..............................(488.3g = 195.3%)
+  258    wet              103.0%
+  231    dry               92.3%
+  250    total flour      100.0%
+  170    total water       68.0%
++*/
+
+20 July 2024
+
+This is an experimental loaf with soaked prunes that are blended with water
+before adding them to the dough.
+
+starter:
+  rye
+  water
+  hydration = 60%
+
+sponge:
+  starter = 1%
+  whole_wheat
+  water
+  hydration = 100%
+
+prune_solution:
+  prunes = 15%
+  water
+
+wet:
+  prune_solution
+  sponge = 20%
+  oil = 5%
+  honey = 5%
+
+dry:
+  whole_wheat
+  flaxseed_meal = 5%
+  potato_flakes = 3%
+  vwg = 2%
+  salt = 2%
+  yeast = 0.3%
+
+dough:
+  wet
+  dry
+  hydration = 68%
+  scale = 250g
+
