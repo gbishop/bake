@@ -1,64 +1,58 @@
-My usual loaf with bran soaker and pecans
+My usual loaf with sifted flour and bran soaker
 /*+
-starter............................(4.7g = 0.9%)
-        3 rye               0.59%
-        2 water             0.35%
+grains.............................(232.7g = 93.1%)
+  133    prairie gold      53.1%
+   50.0  hard red          20.0%
+   37.5  spelt             15.0%
+   12.5  rye                5.0%
 
-sponge.............................(100.0g = 20.0%)
-        5 starter           0.94%
-       47 rye               9.41%
-       48 water             9.65%
+sifted.............................(232.7g = 93.1%)
+   21.0  bran               8.4%
+  212    flour             84.7%
 
-grains.............................(400.0g = 80.0%)
-      275 prairie gold     55.00%
-      100 spelt            20.00%
-       25 oats              5.00%
+starter............................(7.8g = 3.1%)
+    4.85 rye                1.9%
+    2.91 water              1.2%
 
-sifted.............................(400.0g = 80.0%)
-       20 bran              4.00%
-      380 flour            76.00%
+sponge.............................(77.5g = 31.0%)
+    7.75 starter            3.1%
+   48.8  water             19.5%
+   21.0  bran               8.4%
 
-soaker.............................(90.0g = 18.0%)
-       20 bran              4.00%
-       10 salt              2.00%
-       60 boiling water    12.00%
+wet................................(225.8g = 90.3%)
+   77.5  sponge            31.0%
+  123    water             49.3%
+   12.5  oil                5.0%
+   12.5  honey              5.0%
 
-wet................................(480.0g = 96.0%)
-      100 sponge           20.00%
-       90 soaker           18.00%
-      240 water            48.00%
-       25 oil               5.00%
-       25 honey             5.00%
+dry................................(230.2g = 92.1%)
+  212    flour             84.7%
+    7.5  potato flakes      3.0%
+    5.0  vwg                2.0%
+    5.0  salt               2.0%
+    1.0  yeast              0.4%
 
-dry................................(437.0g = 87.4%)
-      380 flour            76.00%
-       25 flaxseed meal     5.00%
-       15 potato flakes     3.00%
-       10 vwg               2.00%
-1 1/8t  5 improver          1.00%
-  1/2t  2 yeast             0.40%
-
-dough..............................(967.0g = 193.4%)
-      480 wet              96.00%
-      437 dry              87.40%
-       50 walnuts          10.00%
-      500 total flour     100.00%
-      350 total water      70.00%
+dough..............................(456.0g = 182.4%)
+  226    wet               90.3%
+  230    dry               92.1%
+  250    total flour      100.0%
+  175    total water       70.0%
 +*/
 
-I'm going to sift the flour and soak the bran. I'll use the large strainer now
-with a 450 micron opening. I've ordered a #40 mesh as recommended. Sifting was
-pretty easy, I thought I lost a significant amount of flour to light dust but
-apparently not as my dry ingredients came in right on the expected weight.
+I'll sift the flour with a #50 mesh and soak the bran.
 
-In this version I'm experimenting with including the sifting in the formula.
+I'll knead it by hand this time. I need the exercise!
 
-I kneaded it on speed 1 for 10 minutes, then added the nuts and kneaded for 2 more.
+grains:
+  prairie_gold
+  hard_red = 20%
+  spelt = 15%
+  rye = 5%
 
-S&F every 30 minutes for 2 hours.
-
-The resulting loaf tastes good and the texture is perfect but it split on one end.
-Are the nuts too large or rough? Did I not strengthen it enough? 
+sifted:
+  bran = 21g
+  flour
+  total_flour = grains.total
 
 starter:
   rye
@@ -66,44 +60,45 @@ starter:
   hydration = 60%
 
 sponge:
-  starter = 10% * rye
+  starter = 10% * total
   water
-  rye
-  hydration = 100%
-
-grains:
-  prairie_gold
-  spelt = 20%
-  oats = 5%
-
-sifted:
-  bran = 20g
-  flour = grains.total_flour - bran
-
-soaker:
   bran = sifted.bran
-  salt = 2%
-  boiling_water
-  hydration = 300%
+  hydration = 200%
 
 wet:
-  sponge = 20%
-  soaker
+  sponge
   water
   oil = 5%
   honey = 5%
 
 dry:
   flour = sifted.flour
-  flaxseed_meal = 5%
   potato_flakes = 3%
   vwg = 2%
-  improver = 1%
+  salt = 2%
   yeast = 0.4%
 
 dough:
   wet
   dry
-  walnuts = 10%
   hydration = 70%
-  scale = 500g
+  scale = 250g
+
+Sifting was easy but messy; fine dust everywhere. I got about 40g of bran on the first pass so I sent
+it through the mill again and got it down to 21g.
+
+pH of the sponge was 4.43. pH after kneading is 5.15. DT=80F.
+
+After 30 minutes the pH is 5.05.
+
+Kneading by hand was a much needed workout and went well. I got a good window
+pane after about 8 minutes. My technique needs work for sure. I was chasing the
+dough and I see that ChainBaker pulls it back on each stroke. More practice.
+
+The pH is 4.63 on the way into the oven after about 1:45 proof.
+
+The bread is good but not special. I can't tell any difference in the texture.
+Sifting for me seems to not worth the effort.
+
+July 22, 2024
+
