@@ -206,6 +206,10 @@ class Bake:
                         if ingredient.expr:
                             c = self.handleExpr(ingredient, part)
                             self.constraints.append(c)
+                    elif "total" in ingredient.name:
+                        if ingredient.expr:
+                            c = self.handleExpr(ingredient, part)
+                            self.constraints.append(c)
                     else:
                         # an ordinary ingredient
                         total.addTerm(part.name, ingredient.name, -1.0)
@@ -234,9 +238,10 @@ class Bake:
             self.constraints.append(total_flour)
             self.constraints.append(total_water)
 
-        # print(self.vars)
-        # for constraint in self.constraints:
-        #     print(constraint)
+        if debug:
+            print(self.vars)
+            for constraint in self.constraints:
+                print(constraint)
 
         opt = self.solve()
 
@@ -367,10 +372,13 @@ class Bake:
 
 Baker = Bake()
 rewrite = False
+debug = False
 filename = ""
 for arg in sys.argv[1:]:
     if arg == "-R":
         rewrite = True
+    elif arg == "-D":
+        debug = True
     else:
         filename = arg
 if filename:
