@@ -1,38 +1,37 @@
 My usual loaf
 /*+
-starter............................(2.5g = 1.0%)
-        2 rye               0.62%
-        1 water             0.38%
+starter............................(5.0g = 1.0%)
+    3.13 rye                0.6%
+    1.88 water              0.4%
 
-sponge.............................(50.0g = 20.0%)
-        2 starter           1.00%
-       23 rye               9.37%
-       24 warm water        9.62%
+sponge.............................(100.0g = 20.0%)
+    5.0  starter            1.0%
+   46.9  rye                9.4%
+   48.1  water              9.6%
 
-wet................................(225.0g = 90.0%)
-       50 sponge           20.00%
-      150 warm water       60.00%
-       12 oil               5.00%
-       12 honey             5.00%
+wet................................(450.0g = 90.0%)
+  100    sponge            20.0%
+  300    water             60.0%
+   25.0  oil                5.0%
+   25.0  honey              5.0%
 
-dry................................(233.5g = 93.4%)
-      100 prairie gold     40.00%
-       75 bronze chief     30.00%
-       25 spelt            10.00%
-       12 flaxseed meal     5.00%
-        8 potato flakes     3.00%
-1 1/2t  5 vwg               2.00%
-  1/2t  2 improver          1.00%
-  3/4t  5 salt              2.00%
-  3/8t  1 yeast             0.40%
+dry................................(466.5g = 93.3%)
+  200    prairie gold      40.0%
+  150    bronze chief      30.0%
+   50.0  spelt             10.0%
+   25.0  flaxseed meal      5.0%
+   15.0  potato flakes      3.0%
+   10.0  vwg                2.0%
+    5.0  improver           1.0%
+   10.0  salt               2.0%
+    1.50 yeast              0.3%
 
-dough..............................(458.5g = 183.4%)
-      225 wet              90.00%
-      234 dry              93.40%
-      250 total flour     100.00%
-      175 total water      70.00%
+dough..............................(916.5g = 183.3%)
+  450    wet               90.0%
+  466    dry               93.3%
+  500    total flour      100.0%
+  350    total water       70.0%
 +*/
-
 13 July 2024
 
 I'm trying a small loaf to see if kneading more will make the difference I'm looking for in the crust.
@@ -51,14 +50,14 @@ starter:
   hydration = 60%
 
 sponge:
-  starter = 1%
+  starter = 5g
   rye
-  warm_water
+  water
   hydration = 100%
 
 wet:
   sponge = 20%
-  warm_water
+  water
   oil = 5%
   honey = 5%
 
@@ -71,11 +70,11 @@ dry:
   vwg = 2%
   improver = 1%
   salt = 2%
-  yeast = 0.4%
+  yeast = 0.3%
 
 dough:
   wet
   dry
   hydration = 70%
-  scale = 250g
+  scale = 500g
 

@@ -1,29 +1,29 @@
 Yeast raised with sunflower seeds
 /*+
 wet................................(400.0g = 80.0%)
-    350.0 water            70.00%
-     25.0 oil               5.00%
-     25.0 honey             5.00%
+  350    water             70.0%
+   25.0  oil                5.0%
+   25.0  honey              5.0%
 
 dry................................(525.0g = 105.0%)
-    225.0 bread flour      45.00%
-    125.0 bronze chief     25.00%
-     50.0 spelt            10.00%
-     25.0 oats              5.00%
-     25.0 rye               5.00%
-     25.0 flaxseed meal     5.00%
-     15.0 potato flakes     3.00%
-     10.0 vwg               2.00%
-      5.0 improver          1.00%
-     10.0 salt              2.00%
-     10.0 yeast             2.00%
+  225    bread flour       45.0%
+  125    bronze chief      25.0%
+   50.0  spelt             10.0%
+   25.0  oats               5.0%
+   25.0  rye                5.0%
+   25.0  flaxseed meal      5.0%
+   15.0  potato flakes      3.0%
+   10.0  vwg                2.0%
+    5.0  improver           1.0%
+   10.0  salt               2.0%
+   10.0  yeast              2.0%
 
 dough..............................(975.0g = 195.0%)
-    400.0 wet              80.00%
-    525.0 dry             105.00%
-     50.0 seeds            10.00%
-    350.0 total water      70.00%
-    500.0 total flour     100.00%
+  400    wet               80.0%
+  525    dry              105.0%
+   50.0  seeds             10.0%
+  500    total flour      100.0%
+  350    total water       70.0%
 +*/
 
 6 June 2024 for Jan, yeasted with sunflower seeds.
