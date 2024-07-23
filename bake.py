@@ -93,11 +93,7 @@ def fmt_grams(g):
     elif g >= 10:
         r = f"{g:0.1f} "
     else:
-        f, _ = math.modf(g * 10)
-        if f < 0.05:
-            r = f"{g:0.1f} "
-        else:
-            r = f"{g:0.2f}"
+        r = f"{g:0.2f}"
 
     if len(r) < 8:
         r = " " * (8 - len(r)) + r
