@@ -1,0 +1,89 @@
+My usual loaf with butter egg & milk
+/*+
+starter............................(2.5g = 1.0%)
+    1.56 rye                0.6%
+    0.94 water              0.4%
+
+sponge.............................(50.0g = 20.0%)
+    2.50 starter            1.0%
+   23.4  whole wheat        9.4%
+   24.1  water              9.6%
+
+wet................................(250.0g = 100.0%)
+   50.0  sponge            20.0%
+   50.0  egg               20.0%
+  113    water             45.0%
+   25.0  butter            10.0%
+   12.5  honey              5.0%
+
+dry................................(253.9g = 101.6%)
+   81.2  prairie gold      32.5%
+   81.3  bronze chief      32.5%
+   37.5  spelt             15.0%
+   22.8  nido               9.1%
+   12.5  flaxseed meal      5.0%
+    7.50 potato flakes      3.0%
+    5.00 vwg                2.0%
+    4.63 salt               1.9%
+    1.50 yeast              0.6%
+
+dough..............................(503.9g = 201.6%)
+  250    wet              100.0%
+  254    dry              101.6%
+  250    total flour      100.0%
+  175    total water       70.0%
++*/
+
+23 July 2024
+
+An experiment with enrichment.
+
+starter:
+  rye
+  water
+  hydration = 60%
+
+sponge:
+  starter = 5% * total
+  whole_wheat
+  water
+  hydration = 100%
+
+wet:
+  sponge = 20%
+  egg = 20% // 1 large egg
+  water
+  butter = 10%
+  honey = 5%
+
+dry:
+  prairie_gold
+  bronze_chief
+  spelt = 15%
+  nido = 13% * wet.total_water // making milk out of all the water
+  flaxseed_meal = 5%
+  potato_flakes = 3%
+  vwg = 2%
+  salt = 2% - 1.5% * wet.butter // subtracting the salt in the butter
+  yeast = 0.6%
+
+dough:
+  wet
+  dry
+  hydration = 70%
+  scale = 250g
+
+I kneaded it in the bread machine. I let it mix 5 minutes to form a ball, 
+stopped it for 20 minutes to hydrate the flour and started it again to run the
+dough cycle. 
+
+After 65 minutes after initial mix the pH is 5.53. The dough looks good. I think
+the bread machine does a better job of kneading than both the KA and me. 
+
+I forgot to try a window pane. Next time...
+
+This tastes good. No sour but I really went straight through on this one. 
+
+This is better than many of my efforts that were much more work. 
+
+
