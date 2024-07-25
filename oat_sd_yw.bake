@@ -1,0 +1,65 @@
+Trailrunner's Oatmeal SD/YW Whole Grain Pullman
+/*+
+starter............................(26.0g = 3.6%)
+   13.0  rye                1.8%
+   13.0  water              1.8%
+
+sponge.............................(149.0g = 20.8%)
+   26.0  starter            3.6%
+   43.0  water              6.0%
+   80.0  hard white        11.1%
+
+soaker.............................(506.0g = 70.5%)
+   89.0  oats              12.4%
+  403    boiling water     56.1%
+   14.0  salt               1.9%
+
+dough..............................(1408.0g = 196.1%)
+  149    sponge            20.8%
+  506    soaker            70.5%
+  200    hard red          27.9%
+  100    spelt             13.9%
+  236    hard white        32.9%
+  100    yeast water       13.9%
+   50.0  olive oil          7.0%
+   67.0  honey              9.3%
+  718    total flour      100.0%
+  559    total water       77.9%
++*/
+
+Mix everything till wet. Cover 30 min. Mix by bowl folding . Rest 30 min.  Bowl
+fold once more. Butter heavily a 13x4x4 Pullman I use the lid and butter well.
+Scrape dough into pan even out with wet spatula. Replace cover don’t close all
+the way rise almost to top. Refrigerate either overnight or while you do
+preheat. Bake 375° 30 min covered 15 min uncovered. Cool thoroughly. I divide in
+3 and freeze 2 pieces. Incredible bread. 
+
+
+starter:
+  rye
+  water
+  hydration = 100%
+
+sponge:
+  starter = 26g
+  water = 43g
+  hard_white = 80g
+
+mix frement overnight, use all
+
+soaker:
+  oats = 89g
+  boiling_water = 403g
+  salt = 14g
+
+Mix and cover overnight.
+
+dough:
+  sponge
+  soaker
+  hard_red = 200g
+  spelt = 100g
+  hard_white = 236g
+  yeast_water = 100g
+  olive_oil = 50g
+  honey = 67g
