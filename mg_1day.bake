@@ -1,0 +1,92 @@
+My usual loaf in one day?
+/*+
+starter............................(10.0g = 4.0%)
+    6.25 rye                2.5%
+    3.75 water              1.5%
+
+sponge.............................(60.9g = 24.4%)
+   10.0  starter            4.0%
+   20.3  rye                8.1%
+   30.6  water             12.2%
+
+wet................................(226.5g = 90.6%)
+   60.9  sponge            24.4%
+  141    water             56.3%
+   12.5  oil                5.0%
+   12.5  honey              5.0%
+
+dry................................(239.4g = 95.8%)
+  103    prairie gold      41.4%
+   75.0  bronze chief      30.0%
+   25.0  spelt             10.0%
+   12.5  flaxseed meal      5.0%
+    5.00 potato flakes      2.0%
+    2.50 vwg                1.0%
+   10.0  improver           4.0%
+    5.00 salt               2.0%
+    1.00 yeast              0.4%
+
+dough..............................(466.0g = 186.4%)
+  227    wet               90.6%
+  239    dry               95.8%
+  250    total flour      100.0%
+  175    total water       70.0%
++*/
+
+27 July 2024
+
+I'm trying to make small loaf in one day by fermenting the sponge at 86F and
+increasing it's hydration.
+
+I'm also going to S&F instead of kneading. 
+
+I'm trying the improver again.
+
+Started at 7. At 8:15 sponge pH=5.22. At 9:20 sponge pH=4.61.
+
+Mixed at 9:35, DT=79F. S&F at 10:05, pH=5.01. S&F at 10:35, pH=4.95, no
+strength. Gradually developed some strength but never a good window pane. I'm
+going to stick with the bread machine for now. 
+
+Baked at 14:00 barely at the top of the pan.
+
+The super slow rise makes me think that maybe I measured something wrong? I
+did not check the total weight so diagnosis is unlikely.
+
+The final weight checks out. I didn't leave out any ingredients.
+
+This tastes fine it is just more dense than usual. Why?
+
+starter:
+  rye
+  water
+  hydration = 60%
+
+sponge:
+  starter = 10g
+  rye = 20.3 g
+  water = 30.6 g
+
+wet:
+  sponge
+  water
+  oil = 5%
+  honey = 5%
+
+dry:
+  prairie_gold
+  bronze_chief = 30%
+  spelt = 10%
+  flaxseed_meal = 5%
+  potato_flakes = 2%
+  vwg = 1%
+  improver = 4%
+  salt = 2%
+  yeast = 0.4%
+
+dough:
+  wet
+  dry
+  hydration = 70%
+  scale = 250g
+
