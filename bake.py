@@ -9,7 +9,6 @@ import re
 import sys
 import numpy as np
 import scipy
-import math
 
 # The textx grammar for my recipes
 grammar = r"""
@@ -21,20 +20,22 @@ Text: /^.*$/ ;
 
 Part: name=ID ':' '\n' ingredients*=Ingredient['\n'];
 
-Ingredient: ('hydration' '=' hydration=NUMBER '%' ) |
-            ('scale' '=' scale=NUMBER 'g') | 
+Ingredient: ('hydration' '=' hydration=Number '%' ) |
+            ('scale' '=' scale=Number 'g') | 
             (name=ID ('=' expr=Sum)? );
 
 Sum: term=Product sums*=Sums;
 
 Sums: op=/[+-]/ term=Product;
 
-Product: scalar=NUMBER unit=/[%g]/ ('*' var=Var)? |
+Product: scalar=Number unit=/[%g]/ ('*' var=Var)? |
          var=Var;
+
+Number: str=/[0-9.]+/;
 
 Var: a=ID ('.' b=ID)?;
 
-Comment: /\/\/.*?$|(?ms:\/\*.*?\*\/\n+)/;
+Comment: /\/\/.*?$|(?ms:\/\*.*?\*\/\n+)|\|.*?\n+/;
 """
 
 # These ingredients are counted in the total flour. I count grains and such
@@ -166,6 +167,7 @@ class Bake:
 
     def __init__(self):
         self.meta = textx.metamodel_from_str(grammar, ws=" ")
+        self.meta.register_obj_processors({"Number": lambda Number: float(Number.str)})
         self.vars = Vars
         self.parts = []
         self.constraints = []
@@ -359,11 +361,11 @@ class Bake:
         def gtobp(match):
             if match.group(1) != "scale":
                 f = float(match.group(3)[:-1]) * scale
-                return f"{match.group(1)}{match.group(2)}{f:.1f}%"
+                return f"{match.group(1)}{match.group(2)}{f:.2f}%"
             else:
                 return match.group(0)
 
-        return re.sub(r"(\w+)(\s*=\s*)([\d.]+g)", gtobp, rest)
+        return re.sub(r"(\w+)(\s*=\s*)([\d.]+\s*g)", gtobp, rest)
 
 
 Baker = Bake()
