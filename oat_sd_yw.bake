@@ -1,31 +1,47 @@
 Trailrunner's Oatmeal SD/YW Whole Grain Pullman
 /*+
-starter............................(26.0g = 3.6%)
-   13.0  rye                1.8%
-   13.0  water              1.8%
+starter............................(10.0g = 4.0%)
+    6.25 rye                2.5%
+    3.75 water              1.5%
 
-sponge.............................(149.0g = 20.8%)
-   26.0  starter            3.6%
-   43.0  water              6.0%
-   80.0  hard white        11.1%
+sponge.............................(52.5g = 21.0%)
+   10.0  starter            4.0%
+   15.0  water              6.0%
+   27.5  hard white        11.0%
 
-soaker.............................(506.0g = 70.5%)
-   89.0  oats              12.4%
-  403    boiling water     56.1%
-   14.0  salt               1.9%
+soaker.............................(174.8g = 69.9%)
+   30.0  oats              12.0%
+  140    boiling water     56.0%
+    4.75 salt               1.9%
 
-dough..............................(1408.0g = 196.1%)
-  149    sponge            20.8%
-  506    soaker            70.5%
-  200    hard red          27.9%
-  100    spelt             13.9%
-  236    hard white        32.9%
-  100    yeast water       13.9%
-   50.0  olive oil          7.0%
-   67.0  honey              9.3%
-  718    total flour      100.0%
-  559    total water       77.9%
+wet................................(302.2g = 120.9%)
+   52.5  sponge            21.0%
+  175    soaker            69.9%
+   35.0  yeast water       14.0%
+   17.5  olive oil          7.0%
+   22.5  honey              9.0%
+
+dry................................(186.2g = 74.5%)
+   70.0  hard red          28.0%
+   35.0  spelt             14.0%
+   81.2  hard white        32.5%
+
+dough..............................(488.5g = 195.4%)
+  302    wet              120.9%
+  186    dry               74.5%
+  250    total flour      100.0%
+  194    total water       77.5%
 +*/
+
+I have adjusted Caroline's original to:
+* convert to baker's percentage
+* scale it to my 1L pan
+* adjust for my starter hydration
+* round the percentages.
+
+Mix sponge and frement overnight, use all
+
+Mix soaker and cover over night.
 
 Mix everything till wet. Cover 30 min. Mix by bowl folding . Rest 30 min.  Bowl
 fold once more. Butter heavily a 13x4x4 Pullman I use the lid and butter well.
@@ -38,28 +54,34 @@ preheat. Bake 375° 30 min covered 15 min uncovered. Cool thoroughly. I divide i
 starter:
   rye
   water
-  hydration = 100%
+  hydration = 60%
 
 sponge:
-  starter = 26g
-  water = 43g
-  hard_white = 80g
-
-mix frement overnight, use all
+  starter = 4.0%
+  water = 6.0%
+  hard_white = 11.0%
 
 soaker:
-  oats = 89g
-  boiling_water = 403g
-  salt = 14g
+  oats = 12.0%
+  boiling_water
+  salt = 1.9%
 
 Mix and cover overnight.
 
-dough:
+wet:
   sponge
   soaker
-  hard_red = 200g
-  spelt = 100g
-  hard_white = 236g
-  yeast_water = 100g
-  olive_oil = 50g
-  honey = 67g
+  yeast_water = 14.0%
+  olive_oil = 7.0%
+  honey = 9.0%
+
+dry:
+  hard_red = 28.0%
+  spelt = 14.0%
+  hard_white
+
+dough:
+  wet
+  dry
+  hydration = 77.5%
+  scale = 250g
