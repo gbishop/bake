@@ -1,0 +1,79 @@
+My usual loaf with prune yeast water
+/*+
+starter............................(2.5g = 1.0%)
+    1.56 rye                0.6%
+    0.94 water              0.4%
+
+sponge.............................(50.0g = 20.0%)
+    2.50 starter            1.0%
+   23.4  whole wheat        9.4%
+   24.1  water              9.6%
+
+wet................................(250.0g = 100.0%)
+   50.0  sponge            20.0%
+   50.0  egg               20.0%
+   75.0  yeast water       30.0%
+   37.5  water             15.0%
+   25.0  butter            10.0%
+   12.5  honey              5.0%
+
+dry................................(230.6g = 92.3%)
+  100    prairie gold      40.0%
+   62.5  bronze chief      25.0%
+   37.5  spelt             15.0%
+   12.5  flaxseed meal      5.0%
+    7.50 potato flakes      3.0%
+    5.00 vwg                2.0%
+    4.62 salt               1.9%
+    1.00 yeast              0.4%
+
+dough..............................(480.6g = 192.2%)
+  250    wet              100.0%
+  231    dry               92.3%
+  250    total flour      100.0%
+  175    total water       70.0%
++*/
+
+24 July 2024
+
+Trying the new prune yeast water I made.
+
+starter:
+  rye
+  water
+  hydration = 60%
+
+sponge:
+  starter = 5% * total
+  whole_wheat
+  water
+  hydration = 100%
+
+wet:
+  sponge = 20%
+  egg = 20%
+  yeast_water = 30%
+  water
+  butter = 10%
+  honey = 5%
+
+dry:
+  prairie_gold
+  bronze_chief = 25%
+  spelt = 15%
+  flaxseed_meal = 5%
+  potato_flakes = 3%
+  vwg = 2%
+  salt = 2% - 1.5% * wet.butter // subtracting the salt in the butter
+  yeast = 0.4%
+
+dough:
+  wet
+  dry
+  hydration = 70%
+  scale = 250g
+
+I used the bread machine for kneading and first rise. Then into the pan. I got
+a decent window pane after kneading. 
+
+This loaf was OK but I couldn't spot any sign of the prune yeast water flavor.
