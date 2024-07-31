@@ -1,42 +1,42 @@
 Butter Oat Flaxseed Soaker
 /*+
 starter............................(5.0g = 1.0%)
-      3.1 rye               0.62%
-      1.9 water             0.38%
+    3.12 rye                0.6%
+    1.88 water              0.4%
 
 sponge.............................(100.0g = 20.0%)
-      5.0 starter           1.00%
-     46.9 ww flour          9.38%
-     48.1 water             9.62%
+    5.00 starter            1.0%
+   46.9  ww flour           9.4%
+   48.1  water              9.6%
 
-soaker.............................(190.0g = 38.0%)
-     60.0 oats             12.00%
-     20.0 flaxseed meal     4.00%
-     30.0 butter            6.00%
-     80.0 water            16.00%
+soaker.............................(170.0g = 34.0%)
+   60.0  oats              12.0%
+   30.0  butter             6.0%
+   80.0  water             16.0%
 
 wet................................(370.0g = 74.0%)
-    100.0 sponge           20.00%
-    245.0 water            49.00%
-     25.0 honey             5.00%
+  100    sponge            20.0%
+  245    water             49.0%
+   25.0  honey              5.0%
 
-dry................................(387.0g = 77.4%)
-    170.0 bread flour      34.00%
-     75.0 prairie gold     15.00%
-     50.0 bronze chief     10.00%
-     50.0 spelt            10.00%
-     15.0 potato flakes     3.00%
-     10.0 vwg               2.00%
-      5.0 improver          1.00%
-     10.0 salt              2.00%
-      2.0 yeast             0.40%
+dry................................(407.0g = 81.4%)
+  170    bread flour       34.0%
+   75.0  prairie gold      15.0%
+   50.0  bronze chief      10.0%
+   50.0  spelt             10.0%
+   15.0  potato flakes      3.0%
+   20.0  flaxseed meal      4.0%
+   10.0  vwg                2.0%
+    5.00 improver           1.0%
+   10.0  salt               2.0%
+    2.00 yeast              0.4%
 
 dough..............................(947.0g = 189.4%)
-    370.0 wet              74.00%
-    387.0 dry              77.40%
-    190.0 soaker           38.00%
-    500.0 total flour     100.00%
-    375.0 total water      75.00%
+  370    wet               74.0%
+  407    dry               81.4%
+  170    soaker            34.0%
+  500    total flour      100.0%
+  375    total water       75.0%
 +*/
 
 24 June. Trying a oat-flaxseed-butter soaker.
@@ -54,11 +54,13 @@ sponge:
 
 soaker:
   oats = 12%
-  flaxseed_meal = 4%
   butter = 6%
   water = 16%
 
-Heat a non-stick pan on low. Pour in oats and flaxseed. Toast on low for 2-3 minutes until light golden brown (1:32), stir to avoid burning. Add butter and cook until fully absorbed and golden brown. Remove from heat and transfer to a bowl. Add RT water so grains are covered. Set aside to soak for 1 hour.
+Heat a non-stick pan on low. Pour in oats. Toast on low for 2-3 minutes until
+light golden brown (1:32), stir to avoid burning. Add butter and cook until
+fully absorbed and golden brown. Remove from heat and transfer to a bowl. Add RT
+water so grains are covered. Set aside to soak for 1 hour.
 
 wet:
   sponge = 20%
@@ -71,6 +73,7 @@ dry:
   bronze_chief = 10%
   spelt = 10%
   potato_flakes = 3%
+  flaxseed_meal = 4%
   vwg = 2%
   improver = 1%
   salt = 2%
