@@ -1,40 +1,44 @@
 My usual loaf with butter egg & milk
 /*+
-starter............................(2.5g = 1.0%)
-    1.56 rye                0.6%
-    0.94 water              0.4%
+starter............................(7.5g = 3.0%)
+    4.69 rye                1.9%
+    2.81 water              1.1%
 
-sponge.............................(50.0g = 20.0%)
-    2.50 starter            1.0%
-   23.4  whole wheat        9.4%
-   24.1  water              9.6%
+sponge.............................(75.0g = 30.0%)
+    7.50 starter            3.0%
+   32.8  whole wheat       13.1%
+   34.7  water             13.9%
 
 wet................................(250.0g = 100.0%)
-   50.0  sponge            20.0%
+   75.0  sponge            30.0%
    50.0  egg               20.0%
-  113    water             45.0%
-   25.0  butter            10.0%
+  100    water             40.0%
+   12.5  butter             5.0%
    12.5  honey              5.0%
 
-dry................................(253.9g = 101.6%)
-   81.2  prairie gold      32.5%
-   81.3  bronze chief      32.5%
-   37.5  spelt             15.0%
+grains.............................(144.4g = 57.8%)
+   48.1  prairie gold      19.3%
+   48.1  bronze chief      19.2%
+   48.1  spelt             19.2%
+
+dry................................(241.6g = 96.6%)
+   48.1  bread flour       19.3%
+  144    grains            57.8%
    22.8  nido               9.1%
    12.5  flaxseed meal      5.0%
-    7.50 potato flakes      3.0%
-    5.00 vwg                2.0%
-    4.63 salt               1.9%
+    5.00 potato flakes      2.0%
+    2.50 vwg                1.0%
+    4.81 salt               1.9%
     1.50 yeast              0.6%
 
-dough..............................(503.9g = 201.6%)
+dough..............................(491.6g = 196.6%)
   250    wet              100.0%
-  254    dry              101.6%
+  242    dry               96.6%
   250    total flour      100.0%
   175    total water       70.0%
 +*/
 
-23 July 2024
+30 July 2024
 
 An experiment with enrichment.
 
@@ -44,26 +48,30 @@ starter:
   hydration = 60%
 
 sponge:
-  starter = 5% * total
+  starter = 10% * total
   whole_wheat
   water
   hydration = 100%
 
 wet:
-  sponge = 20%
+  sponge = 30%
   egg = 20% // 1 large egg
   water
-  butter = 10%
+  butter = 5%
   honey = 5%
 
-dry:
+grains:
   prairie_gold
   bronze_chief
-  spelt = 15%
+  spelt
+
+dry:
+  bread_flour = 1g * _part
+  grains = 3g * _part
   nido = 13% * wet.total_water // making milk out of all the water
   flaxseed_meal = 5%
-  potato_flakes = 3%
-  vwg = 2%
+  potato_flakes = 2%
+  vwg = 1%
   salt = 2% - 1.5% * wet.butter // subtracting the salt in the butter
   yeast = 0.6%
 
@@ -73,17 +81,27 @@ dough:
   hydration = 70%
   scale = 250g
 
+The sponge pH at 6:25 was 3.80. After mixing the dough and 30 minute rest
+the pH is 5.35 and DT is 74.
+
 I kneaded it in the bread machine. I let it mix 5 minutes to form a ball, 
-stopped it for 20 minutes to hydrate the flour and started it again to run the
-dough cycle. 
+stopped it for 30 minutes to hydrate the flour and started it again to run the
+dough cycle. DT after kneading is 86F. I removed it from the bread machine and
+put it in the 1L measuring cup. It was about 400mL. Good window pane.
 
-After 65 minutes after initial mix the pH is 5.53. The dough looks good. I think
-the bread machine does a better job of kneading than both the KA and me. 
+After 50 minutes the pH is 5.18 and the volume is 700mL. DT is 82.
 
-I forgot to try a window pane. Next time...
+Into the pan at 8:50. Dough is nicely extensible. I did my usual terrible job of
+shaping.
 
-This tastes good. No sour but I really went straight through on this one. 
+Baked at 10:00 about 3/4 inch above top of pan. Too soon! It split badly at the
+pan rim. Proof longer next time.
 
-This is better than many of my efforts that were much more work. 
+I should reduce the size if it is going to rise this much. I don't like the
+hips. Maybe 10% would do it? My rough estimation is 20% reduction but that seems
+like too much.
+
+Good flavor and very soft. Mildly sour. I need less yeast for sure. Maybe colder
+water?
 
 
