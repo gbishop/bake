@@ -20,9 +20,12 @@ Text: /^.*$/ ;
 
 Part: name=ID ':' '\n' ingredients*=Ingredient['\n'];
 
-Ingredient: ('hydration' '=' hydration=Number '%' ) |
+Ingredient: ('hydration' '=' hydration=Number '%') |
             ('scale' '=' scale=Number 'g') | 
-            (name=ID ('=' expr=Sum)? );
+            (Relation) |
+            (name=ID);
+
+Relation: left=Sum '=' right=Sum;
 
 Sum: term=Product sums*=Sums;
 
@@ -81,6 +84,7 @@ water = {
     "egg_yolk": 0.5,
     "egg_white": 0.9,
     "milk": 0.87,
+    "butter": 0.16,
 }
 
 
