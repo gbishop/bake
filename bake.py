@@ -81,6 +81,8 @@ water = {
     "egg_yolk": 0.5,
     "egg_white": 0.9,
     "milk": 0.87,
+    "butter": 0.18,
+    "honey": 0.17,
 }
 
 
