@@ -9,36 +9,36 @@ sponge.............................(75.0g = 30.0%)
    32.8  whole wheat       13.1%
    34.7  water             13.9%
 
-wet................................(250.0g = 100.0%)
+wet................................(241.7g = 96.7%)
    75.0  sponge            30.0%
    50.0  egg               20.0%
-  100    water             40.0%
-   12.5  butter             5.0%
+   96.5  water             38.6%
+    7.72 butter             3.1%
    12.5  honey              5.0%
 
-grains.............................(144.4g = 57.8%)
-   48.1  prairie gold      19.3%
-   48.1  bronze chief      19.2%
-   48.1  spelt             19.2%
+grains.............................(140.6g = 56.2%)
+   46.9  prairie gold      18.8%
+   46.9  bronze chief      18.7%
+   46.9  spelt             18.8%
 
-dry................................(241.6g = 96.6%)
-   48.1  bread flour       19.3%
-  144    grains            57.8%
-   22.8  nido               9.1%
+dry................................(241.1g = 96.5%)
+   22.7  nido               9.1%
+   46.9  bread flour       18.7%
+  141    grains            56.2%
    12.5  flaxseed meal      5.0%
     5.00 potato flakes      2.0%
-    2.50 vwg                1.0%
-    4.81 salt               1.9%
-    1.50 yeast              0.6%
+    7.50 improver           3.0%
+    4.88 salt               2.0%
+    1.00 yeast              0.4%
 
-dough..............................(491.6g = 196.6%)
-  250    wet              100.0%
-  242    dry               96.6%
+dough..............................(482.8g = 193.1%)
+  242    wet               96.7%
+  241    dry               96.5%
   250    total flour      100.0%
   175    total water       70.0%
 +*/
 
-30 July 2024
+2 August 2024
 
 An experiment with enrichment.
 
@@ -55,9 +55,11 @@ sponge:
 
 wet:
   sponge = 30%
-  egg = 20% // 1 large egg
+  egg = 50g // 1 large egg
   water
-  butter = 5%
+  _fat = 7% // base butter on total fat
+  _fat = 80% * butter + 9% * egg + 30% * dry.nido
+  butter
   honey = 5%
 
 grains:
@@ -66,14 +68,14 @@ grains:
   spelt
 
 dry:
-  bread_flour = 1g * _part
+  bread_flour = 1g * _part // equal amounts of the 4 flours
   grains = 3g * _part
   nido = 13% * wet.total_water // making milk out of all the water
   flaxseed_meal = 5%
   potato_flakes = 2%
-  vwg = 1%
+  improver = 3%
   salt = 2% - 1.5% * wet.butter // subtracting the salt in the butter
-  yeast = 0.6%
+  yeast = 0.4%
 
 dough:
   wet
@@ -81,27 +83,27 @@ dough:
   hydration = 70%
   scale = 250g
 
-The sponge pH at 6:25 was 3.80. After mixing the dough and 30 minute rest
-the pH is 5.35 and DT is 74.
+Mixed the sponge at 10pm left at RT. It had trippled by morning.
 
 I kneaded it in the bread machine. I let it mix 5 minutes to form a ball, 
 stopped it for 30 minutes to hydrate the flour and started it again to run the
-dough cycle. DT after kneading is 86F. I removed it from the bread machine and
-put it in the 1L measuring cup. It was about 400mL. Good window pane.
+dough cycle.
 
-After 50 minutes the pH is 5.18 and the volume is 700mL. DT is 82.
+DT after kneading is 88F. I removed it from the bread machine and
+put it in the 1L measuring cup. It was about 400mL. Good window pane. pH is
+5.40.
 
-Into the pan at 8:50. Dough is nicely extensible. I did my usual terrible job of
-shaping.
+After 60 minutes the pH is 5.21 and the volume is 800mL.
 
-Baked at 10:00 about 3/4 inch above top of pan. Too soon! It split badly at the
-pan rim. Proof longer next time.
+Formed into a ball and rested for a few minutes. Then shaped for the pan. I
+failed to record the time. Maybe 11?
 
-I should reduce the size if it is going to rise this much. I don't like the
-hips. Maybe 10% would do it? My rough estimation is 20% reduction but that seems
-like too much.
+Baked at 12:40 about 1.25 inch above top of pan in preheated oven.
 
-Good flavor and very soft. Mildly sour. I need less yeast for sure. Maybe colder
-water?
+Still too soon. Split at the rim though not as badly. This is too much dough for
+this pan. I need to shrink it by at least 10%, maybe 20%.
 
+This hydration was better but I think it could still come down a bit.
+
+Good flavor (as far as I can tell while taking PAXLOVID) and texture.
 
