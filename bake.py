@@ -133,14 +133,17 @@ class Relations:
         self.vars = {}
         self.relations = 0
 
+    def var(self, name):
+        if name not in self.vars:
+            self.vars[name] = len(self.vars)
+        return self.vars[name]
+
     def relation(self, *atoms):
         print(atoms)
         self.relations += 1
         for atom in atoms:
             if isinstance(atom, tuple):
-                if atom not in self.vars:
-                    self.vars[atom] = len(self.vars)
-                self.program.append(self.vars[atom])
+                self.program.append(self.var(atom))
 
             elif isinstance(atom, (int, float)):
                 self.program.append(float(atom))
@@ -227,6 +230,7 @@ class Bake:
                         water[(name, "total_water")] = 1
 
                     else:
+                        program.var((part.name, name))
                         total[(part.name, name)] = 1
                         f = flourFraction(name)
                         if f > 0:
