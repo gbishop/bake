@@ -51,57 +51,56 @@ def tis(node, name):
     return type(node).__name__ == name
 
 
-# These ingredients are counted in the total flour. I count grains and such
-# that absorb water regardless of where they occur.
-
-Flours = [
-    "ap_flour",
-    "bran",
-    "bread_flour",
-    "bronze_chief",
-    "bulgar",
-    "flaxseed_meal",
-    "hard_red",
-    "hard_white",
-    "improver",
-    "oats",
-    "polenta",
-    "potato_flakes",
-    "prairie_gold",
-    "red_rye_malt",
-    "rye",
-    "spelt",
-    "steel_cut_oats",
-    "vital_wheat_gluten",
-    "vwg",
-    "wgbi",
-    "whole_wheat",
-    "ww",
-]
-
-
-def flourFraction(name):
-    """Compute the amount of flour in the ingredient"""
-    if name in Flours or "flour" in name:
-        return 1.0
-    return 0.0
-
-
-# These ingredients are counted as water.
-water = {
-    "water": 1.0,
-    "egg": 0.75,
-    "egg_yolk": 0.5,
-    "egg_white": 0.9,
-    "milk": 0.87,
-    "butter": 0.18,
-    "honey": 0.17,
+# define the components of some ingredients
+Ingredients = {
+    # flours
+    "ap_flour": {"flour": 1.0},
+    "bran": {"flour": 1.0},
+    "bread_flour": {"flour": 1.0},
+    "bronze_chief": {"flour": 1.0},
+    "bulgar": {"flour": 1.0},
+    "flaxseed_meal": {"flour": 1.0},
+    "hard_red": {"flour": 1.0},
+    "hard_white": {"flour": 1.0},
+    "improver": {"flour": 1.0},
+    "oats": {"flour": 1.0},
+    "polenta": {"flour": 1.0},
+    "potato_flakes": {"flour": 1.0},
+    "prairie_gold": {"flour": 1.0},
+    "red_rye_malt": {"flour": 1.0},
+    "rye": {"flour": 1.0},
+    "spelt": {"flour": 1.0},
+    "steel_cut_oats": {"flour": 1.0},
+    "vital_wheat_gluten": {"flour": 1.0},
+    "vwg": {"flour": 1.0},
+    "wgbi": {"flour": 1.0},
+    "whole_wheat": {"flour": 1.0},
+    "ww": {"flour": 1.0},
+    # liquids and fats
+    "water": {"water": 1.0},
+    "egg": {"water": 0.75, "fat": 0.09},
+    "egg_yolk": {"water": 0.5, "fat": 0.30},
+    "egg_white": {"water": 0.90},
+    "milk": {"water": 0.87, "fat": 0.035},
+    "butter": {"water": 0.18, "fat": 0.80},
+    "honey": {"water": 0.17},
+    # oils
+    "oil": {"fat": 1.0},
+    "olive_oil": {"fat": 1.0},
 }
 
+Components = ["flour", "water", "fat"]
 
-def waterFraction(name):
-    """Compute the amount of water in the ingredient"""
-    return water.get(name, 1.0 if "water" in name else 0.0)
+
+def getIngredient(name):
+    name = name.lower()
+    if name in Ingredients:
+        return Ingredients[name]
+    if "flour" in name:
+        return {"flour": 1.0}
+    if "water" in name:
+        return {"water": 1.0}
+    return {}
 
 
 def fmt_grams(g):
@@ -191,6 +190,7 @@ class Bake:
             sys.exit(1)
         self.meta.register_obj_processors({"Number": lambda Number: float(Number.str)})
         self.parts = []
+        self.total = {}
 
     def compile(self, stdin, rewrite=False):
         text = stdin.read()
@@ -205,10 +205,6 @@ class Bake:
 
         # add each part to the program
         for part in textx.get_children_of_type("Part", self.model):
-            total = {}
-            flour = {}
-            water = {}
-
             for relation in part.relations:
                 if relation.hydration:
                     program.relation(
@@ -226,28 +222,18 @@ class Bake:
                     name = relation.mention
                     if name in self.parts:
                         program.relation((part.name, name), (name, "total"), "-")
-                        total[(part.name, name)] = 1
-                        flour[(name, "total_flour")] = 1
-                        water[(name, "total_water")] = 1
+                        self.total[(part.name, name)] = name
 
                     else:
                         program.var((part.name, name))
-                        total[(part.name, name)] = 1
-                        f = flourFraction(name)
-                        if f > 0:
-                            flour[(part.name, name)] = f
-                        w = waterFraction(name)
-                        if w > 0:
-                            water[(part.name, name)] = w
+                        self.total[(part.name, name)] = getIngredient(name)
 
                 elif relation.lhs:
-                    lhs = self.expr(relation.lhs, part.name, total, flour, water)
-                    rhs = self.expr(relation.rhs, part.name, total, flour, water)
+                    lhs = self.expr(relation.lhs, part.name)
+                    rhs = self.expr(relation.rhs, part.name)
                     program.relation(*lhs, *rhs, "-")
 
-            self.doTotal((part.name, "total"), total)
-            self.doTotal((part.name, "total_flour"), flour)
-            self.doTotal((part.name, "total_water"), water)
+            self.doTotal(part.name)
 
         opt = program.solve()
 
@@ -269,7 +255,8 @@ class Bake:
                     bp = g * scale
                     result.append(f"{fg} {var.replace('_', ' '):15} {bp:6.1f}%")
             if i == len(self.parts) - 1:
-                for var in ["total_flour", "total_water"]:
+                for component in Components:
+                    var = "total_" + component
                     g = pvars[var]
                     fg = fmt_grams(g)
                     bp = g * scale
@@ -281,80 +268,85 @@ class Bake:
             table, text, not opt.success or opt.cost > 1, scale if rewrite else 0
         )
 
-    def expr(self, node, part, total, flour, water):
-        if tis(node, "Sum"):
-            r = self.expr(node.term, part, total, flour, water)
-            for sum in node.sums:
-                s = self.expr(sum.term, part, total, flour, water)
-                r += [*s, sum.op]
-            return r
+    def expr(self, node, part):
+        return getattr(self, node.__class__.__name__)(node, part)
 
-        elif tis(node, "Product"):
-            if node.factor.unit == "%" and len(node.factors) == 0:
-                return [node.factor.number / 100.0, ("dough", "total_flour"), "*"]
-            r = self.expr(node.factor, part, total, flour, water)
-            for factor in node.factors:
-                s = self.expr(factor.factor, part, total, flour, water)
-                r += [*s, factor.op]
-            return r
+    def Sum(self, node, part):
+        r = self.expr(node.term, part)
+        for sum in node.sums:
+            s = self.expr(sum.term, part)
+            r += [*s, sum.op]
+        return r
 
-        elif tis(node, "Factor"):
-            if node.negated:
-                r = self.expr(node.negated, part, total, flour, water)
-                return [0.0, *r, "-"]
+    def Product(self, node, part):
+        if node.factor.unit == "%" and len(node.factors) == 0:
+            return [node.factor.number / 100.0, ("dough", "total_flour"), "*"]
+        r = self.expr(node.factor, part)
+        for factor in node.factors:
+            s = self.expr(factor.factor, part)
+            r += [*s, factor.op]
+        return r
 
-            elif node.name:
-                name = node.name.names
-                if len(name) == 1:
-                    if name[0] in self.parts:
-                        pname = name[0]
-                        name = (part, pname)
-                        total[name] = 1
-                        program.relation(name, (pname, "total"), "-")
-                        flour[(pname, "total_flour")] = 1
-                        water[(pname, "total_water")] = 1
-                        return [name]
-                    else:
-                        name = (part, name[0])
+    def Factor(self, node, part):
+        if node.negated:
+            r = self.expr(node.negated, part)
+            return [0.0, *r, "-"]
 
+        elif node.name:
+            name = node.name.names
+            if len(name) == 1:
+                if name[0] in self.parts:
+                    pname = name[0]
+                    name = (part, pname)
+                    self.total[name] = pname
+                    program.relation(name, (pname, "total"), "-")
+                    return [name]
                 else:
-                    name = tuple(name)
+                    name = (part, name[0])
 
-                if (
-                    name[0] == part
-                    and not name[1].startswith("total")
-                    and not name[1].startswith("_")
-                ):
-                    total[name] = 1
-                    f = flourFraction(name[1])
-                    if f > 0:
-                        flour[name] = f
-                    w = waterFraction(name[1])
-                    if w > 0:
-                        water[name] = w
-                return [name]
-
-            elif node.number:
-                if node.unit == "%":
-                    return [node.number / 100.0]
-                return [node.number]
-
-            elif node.sum:
-                return self.expr(node.sum, part, total, flour, water)
-
-        else:
-            print("error", node)
-
-        return []
-
-    def doTotal(self, name, ingredients):
-        relation = [name]
-        for ingredient, scale in ingredients.items():
-            if scale != 1:
-                relation += [ingredient, scale, "*", "-"]
             else:
-                relation += [ingredient, "-"]
+                name = tuple(name)
+
+            if (
+                name[0] == part
+                and not name[1].startswith("total")
+                and not name[1].startswith("_")
+            ):
+                self.total[name] = getIngredient(name[1])
+            return [name]
+
+        elif node.number:
+            if node.unit == "%":
+                return [node.number / 100.0]
+            return [node.number]
+
+        elif node.sum:
+            return self.expr(node.sum, part)
+
+    def doTotal(self, part):
+        relation = [(part, "total")]
+        crelations = {}
+        for component in Components:
+            crelations[component] = [(part, "total_" + component)]
+        for ingredient, components in self.total.items():
+            if ingredient[0] != part:
+                continue
+            relation += [ingredient, "-"]
+            if isinstance(components, str):
+                for cname in Components:
+                    crelation = crelations[cname]
+                    crelation += [(components, "total_" + cname), "-"]
+            else:
+                for component, value in components.items():
+                    crelation = crelations[component]
+                    if isinstance(value, tuple):
+                        crelation += [value, "-"]
+                    else:
+                        crelation += [ingredient, value, "*", "-"]
+
         program.relation(*relation)
+        for crelation in crelations.values():
+            program.relation(*crelation)
 
     def output(self, table, text, failed=False, scale=0):
         match = re.match(
