@@ -9,6 +9,8 @@ import re
 import sys
 import numpy as np
 import scipy
+import math
+import operator
 
 # The textx grammar for my recipes
 grammar = r"""
@@ -18,25 +20,37 @@ Statement: ( Part | Text ) ;
 
 Text: /^.*$/ ;
 
-Part: name=ID ':' '\n' ingredients*=Ingredient['\n'];
+Part: name=ID ':' '\n' relations*=Relation['\n'];
 
-Ingredient: ('hydration' '=' hydration=Number '%' ) |
-            ('scale' '=' scale=Number 'g') | 
-            (name=ID ('=' expr=Sum)? );
+Relation: ('hydration' '=' hydration=Number '%' ) |
+          ('scale' '=' scale=Number 'g') | 
+          (lhs=Sum '=' rhs=Sum) |
+          (mention=ID);
 
 Sum: term=Product sums*=Sums;
 
 Sums: op=/[+-]/ term=Product;
 
-Product: scalar=Number unit=/[%g]/ ('*' var=Var)? |
-         var=Var;
+Product: factor=Factor factors*=Factors;
+
+Factors: op=/[*\/]/ factor=Factor;
+
+Factor: '-' negated=Factor |
+        name=Var |
+        number=Number unit=/[%g]/ |
+        '(' sum=Sum ')';
 
 Number: str=/[0-9.]+/;
 
-Var: a=ID ('.' b=ID)?;
+Var: names += ID['.'];
 
-Comment: /\/\/.*?$|(?ms:\/\*.*?\*\/\n+)|\|.*?\n+/;
+Comment: /\/\/.*?$|(?ms:\/\*.*?\*\/\n+)/;
 """
+
+
+def tis(node, name):
+    return type(node).__name__ == name
+
 
 # These ingredients are counted in the total flour. I count grains and such
 # that absorb water regardless of where they occur.
@@ -105,76 +119,74 @@ def fmt_grams(g):
     return r
 
 
-# Keep track of the mapping from variable names to indicies
-Vars = {}
+operators = {
+    "+": (operator.add, 2),
+    "-": (operator.sub, 2),
+    "*": (operator.mul, 2),
+    "/": (operator.truediv, 2),
+}
 
 
-class Constraint:
-    """One relation for constraining the solution"""
+class Relations:
+    def __init__(self):
+        self.program = []
+        self.vars = {}
+        self.relations = 0
 
-    def __init__(self, part, ingredient):
-        # the key for the ingredient
-        name = (part, ingredient)
-        # Add it with its index into the matrix we'll construct
-        if name not in Vars:
-            Vars[name] = len(Vars)
-        # weighted sum of ingredients
-        self.terms = {name: 1.0}
-        # any constant term
-        self.constant = 0
-        # bakers percentage that must be multipled by total_flour
-        self.bp = 0
+    def relation(self, *atoms):
+        print(atoms)
+        self.relations += 1
+        for atom in atoms:
+            if isinstance(atom, tuple):
+                if atom not in self.vars:
+                    self.vars[atom] = len(self.vars)
+                self.program.append(self.vars[atom])
 
-    def addTerm(self, part, ingredient, scale):
-        name = (part, ingredient)
-        if name not in Vars:
-            Vars[name] = len(Vars)
-        self.terms[name] = self.terms.get(name, 0.0) + scale
+            elif isinstance(atom, (int, float)):
+                self.program.append(float(atom))
 
-    def addConstant(self, value):
-        self.constant += value
+            elif isinstance(atom, str):
+                self.program.append(operators[atom])
 
-    def addBp(self, value):
-        self.bp += value
+    def exec(self, params):
+        """Interpret the cost function"""
+        stack = []
+        for step in self.program:
+            if isinstance(step, int):
+                stack.append(params[step])
 
-    def __repr__(self):
-        """Print the constraints in a readable format"""
-        chunks = []
-        for term, scale in self.terms.items():
-            op = " + " if scale > 0 else " - "
-            coeff = "" if abs(scale) == 1.0 else str(abs(scale)) + "*"
-            name = ".".join(term)
-            chunk = f"{op}{coeff}{name}"
-            chunks.append(chunk)
-        s = "".join(chunks)
-        if self.constant != 0:
-            op = " + " if self.constant > 0 else " - "
-            s = s + op + str(abs(self.constant))
-        if self.bp != 0:
-            op = " + " if self.bp > 0 else " - "
-            s = s + op + "BP * " + str(abs(self.bp))
-        return s.strip()
+            elif isinstance(step, float):
+                stack.append(step)
+
+            elif isinstance(step, tuple):
+                op, arity = step
+                args = stack[-arity:]
+                stack = stack[0:-arity]
+                stack.append(op(*args))
+
+        return np.array(stack)
+
+    def solve(self):
+        x0 = np.ones(len(self.vars)) * 50
+        opt = scipy.optimize.least_squares(program.exec, x0)
+        print(opt)
+        return opt
 
 
-class TotalConstraint(Constraint):
-    """A constraint that only counts an ingredient once"""
-
-    def addTerm(self, part, ingredient, scale):
-        name = (part, ingredient)
-        if name not in Vars:
-            Vars[name] = len(Vars)
-        self.terms[name] = scale
+program = Relations()
 
 
 class Bake:
     """The recipe"""
 
     def __init__(self):
-        self.meta = textx.metamodel_from_str(grammar, ws=" ")
+        try:
+            self.meta = textx.metamodel_from_str(grammar, ws=" ")
+        except textx.TextXSyntaxError as e:
+            print(f"Grammar Error {e.line}:{e.col} {e.message}")
+            sys.exit(1)
         self.meta.register_obj_processors({"Number": lambda Number: float(Number.str)})
-        self.vars = Vars
         self.parts = []
-        self.constraints = []
 
     def compile(self, stdin, rewrite=False):
         text = stdin.read()
@@ -183,76 +195,63 @@ class Bake:
         except textx.TextXSyntaxError as e:
             return self.output(f"Error {e.line}:{e.col} {e.message}", text)
 
-        # build a list of constraints
+        # get all the part names
         for part in textx.get_children_of_type("Part", self.model):
             self.parts.append(part.name)
-            total = TotalConstraint(part.name, "total")
-            total_flour = TotalConstraint(part.name, "total_flour")
-            total_water = TotalConstraint(part.name, "total_water")
-            for ingredient in part.ingredients:
-                if ingredient.name:
-                    if ingredient.name in self.parts:
-                        # reference to another part
-                        opart = ingredient.name
-                        total.addTerm(opart, "total", -1)
-                        total_flour.addTerm(opart, "total_flour", -1)
-                        total_water.addTerm(opart, "total_water", -1)
-                        c = Constraint(part.name, ingredient.name)
-                        c.addTerm(opart, "total", -1.0)
-                        self.constraints.append(c)
-                        if ingredient.expr:
-                            c = self.handleExpr(ingredient, part)
-                            self.constraints.append(c)
-                    elif ingredient.name.startswith("_"):
-                        # variables that are not ingredients
-                        if ingredient.expr:
-                            c = self.handleExpr(ingredient, part)
-                            self.constraints.append(c)
-                    elif "total" in ingredient.name:
-                        if ingredient.expr:
-                            c = self.handleExpr(ingredient, part)
-                            self.constraints.append(c)
+
+        # add each part to the program
+        for part in textx.get_children_of_type("Part", self.model):
+            total = {}
+            flour = {}
+            water = {}
+
+            for relation in part.relations:
+                if relation.hydration:
+                    program.relation(
+                        (part.name, "total_water"),
+                        relation.hydration / 100.0,
+                        (part.name, "total_flour"),
+                        "*",
+                        "-",
+                    )
+
+                elif relation.scale:
+                    program.relation((part.name, "total_flour"), relation.scale, "-")
+
+                elif relation.mention:
+                    name = relation.mention
+                    if name in self.parts:
+                        program.relation((part.name, name), (name, "total"), "-")
+                        total[(part.name, name)] = 1
+                        flour[(name, "total_flour")] = 1
+                        water[(name, "total_water")] = 1
+
                     else:
-                        # an ordinary ingredient
-                        total.addTerm(part.name, ingredient.name, -1.0)
-                        f = flourFraction(ingredient.name)
+                        total[(part.name, name)] = 1
+                        f = flourFraction(name)
                         if f > 0:
-                            total_flour.addTerm(part.name, ingredient.name, -f)
-                        w = waterFraction(ingredient.name)
+                            flour[(part.name, name)] = f
+                        w = waterFraction(name)
                         if w > 0:
-                            total_water.addTerm(part.name, ingredient.name, -w)
-                        if ingredient.expr:
-                            c = self.handleExpr(ingredient, part)
-                            self.constraints.append(c)
+                            water[(part.name, name)] = w
 
-                elif ingredient.hydration:
-                    c = Constraint(part.name, "total_water")
-                    c.addTerm(part.name, "total_flour", -ingredient.hydration / 100)
-                    self.constraints.append(c)
-                elif ingredient.scale:
-                    c = Constraint(part.name, "total_flour")
-                    c.addConstant(-ingredient.scale)
-                    self.constraints.append(c)
-                else:
-                    continue
+                elif relation.lhs:
+                    lhs = self.expr(relation.lhs, part.name, total, flour, water)
+                    rhs = self.expr(relation.rhs, part.name, total, flour, water)
+                    program.relation(*lhs, *rhs, "-")
 
-            self.constraints.append(total)
-            self.constraints.append(total_flour)
-            self.constraints.append(total_water)
+            self.doTotal((part.name, "total"), total)
+            self.doTotal((part.name, "total_flour"), flour)
+            self.doTotal((part.name, "total_water"), water)
 
-        if debug:
-            print(self.vars)
-            for constraint in self.constraints:
-                print(constraint)
-
-        opt = self.solve()
+        opt = program.solve()
 
         result = []
-        scale = 100 / opt.x[self.vars[(self.parts[-1], "total_flour")]]
+        scale = 100 / opt.x[program.vars[("dough", "total_flour")]]
         for i, partName in enumerate(self.parts):
             pvars = {
-                name[1]: opt.x[self.vars[name]]
-                for name in self.vars
+                name[1]: opt.x[program.vars[name]]
+                for name in program.vars
                 if name[0] == partName and not name[1].startswith("_")
             }
             g = pvars["total"]
@@ -277,69 +276,80 @@ class Bake:
             table, text, not opt.success or opt.cost > 1, scale if rewrite else 0
         )
 
-    def handleExpr(self, ingredient, part):
-        expr = ingredient.expr
+    def expr(self, node, part, total, flour, water):
+        if tis(node, "Sum"):
+            r = self.expr(node.term, part, total, flour, water)
+            for sum in node.sums:
+                s = self.expr(sum.term, part, total, flour, water)
+                r += [*s, sum.op]
+            return r
 
-        c = Constraint(part.name, ingredient.name)
+        elif tis(node, "Product"):
+            if node.factor.unit == "%" and len(node.factors) == 0:
+                return [node.factor.number / 100.0, ("dough", "total_flour"), "*"]
+            r = self.expr(node.factor, part, total, flour, water)
+            for factor in node.factors:
+                s = self.expr(factor.factor, part, total, flour, water)
+                r += [*s, factor.op]
+            return r
 
-        terms = [[1, expr.term]] + [
-            [1 if sum.op == "+" else -1, sum.term] for sum in expr.sums
-        ]
+        elif tis(node, "Factor"):
+            if node.negated:
+                r = self.expr(node.negated, part, total, flour, water)
+                return [0.0, *r, "-"]
 
-        for sign, term in terms:
-            if term.var:
-                if term.var.b:
-                    pname = term.var.a
-                    iname = term.var.b
-                elif term.var.a in self.parts:
-                    pname = term.var.a
-                    iname = "total"
+            elif node.name:
+                name = node.name.names
+                if len(name) == 1:
+                    if name[0] in self.parts:
+                        pname = name[0]
+                        name = (part, pname)
+                        total[name] = 1
+                        program.relation(name, (pname, "total"), "-")
+                        flour[(pname, "total_flour")] = 1
+                        water[(pname, "total_water")] = 1
+                        return [name]
+                    else:
+                        name = (part, name[0])
+
                 else:
-                    pname = part.name
-                    iname = term.var.a
-                if term.scalar:
-                    scalar = sign * term.scalar
-                    if term.unit == "%":
-                        scalar /= 100
-                else:
-                    scalar = sign
-                c.addTerm(pname, iname, -1 * scalar)
+                    name = tuple(name)
+
+                if (
+                    name[0] == part
+                    and not name[1].startswith("total")
+                    and not name[1].startswith("_")
+                ):
+                    total[name] = 1
+                    f = flourFraction(name[1])
+                    if f > 0:
+                        flour[name] = f
+                    w = waterFraction(name[1])
+                    if w > 0:
+                        water[name] = w
+                return [name]
+
+            elif node.number:
+                if node.unit == "%":
+                    return [node.number / 100.0]
+                return [node.number]
+
+            elif node.sum:
+                return self.expr(node.sum, part, total, flour, water)
+
+        else:
+            print("error", node)
+
+        return []
+
+    def doTotal(self, name, ingredients):
+        relation = [name]
+        for ingredient, scale in ingredients.items():
+            if scale != 1:
+                relation += [ingredient, scale, "*", "-"]
             else:
-                if term.unit == "%":
-                    c.addBp(-sign * term.scalar)
-                else:
-                    c.addConstant(-sign * term.scalar)
-
-        return c
-
-    def solve(self):
-        coeff = np.zeros([len(self.constraints), len(self.vars)])
-        const = np.zeros(len(self.constraints))
-        bp = np.zeros(len(self.constraints))
-        x0 = np.ones(len(self.vars)) * 50
-
-        for row, c in enumerate(self.constraints):
-            for name, scale in c.terms.items():
-                col = self.vars[name]
-                coeff[row, col] = scale
-            const[row] = c.constant
-            bp[row] = c.bp
-
-        def cost(
-            x,  # current solution estimate
-            m,  # linear terms
-            n,  # terms scaled by total flour
-            c,  # constant terms
-            ti,  # index of the total flour
-        ):
-            lv = np.dot(m, x)
-            nv = n * x[ti] / 100
-            return lv + nv + c
-
-        ti = self.vars[(self.parts[-1], "total_flour")]
-        opt = scipy.optimize.least_squares(cost, x0, args=(coeff, bp, const, ti))
-
-        return opt
+                relation += [ingredient, "-"]
+        program.relation(*relation)
 
     def output(self, table, text, failed=False, scale=0):
         match = re.match(
