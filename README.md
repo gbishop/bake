@@ -1,4 +1,4 @@
-# Baking formulas with linear programming
+# Baking formulas with relations
 
 This is a hack. I wrote it because I was sick of fooling with
 spreadsheets. Programming is more fun than spreadsheets!
