@@ -9,7 +9,6 @@ import re
 import sys
 import numpy as np
 import scipy
-import math
 import operator
 
 # The textx grammar for my recipes
@@ -139,7 +138,8 @@ class Relations:
         return self.vars[name]
 
     def relation(self, *atoms):
-        print(atoms)
+        if debug:
+            print(atoms)
         self.relations += 1
         for atom in atoms:
             if isinstance(atom, tuple):
@@ -172,7 +172,8 @@ class Relations:
     def solve(self):
         x0 = np.ones(len(self.vars)) * 50
         opt = scipy.optimize.least_squares(program.exec, x0)
-        print(opt)
+        if debug:
+            print(opt)
         return opt
 
 
