@@ -1,44 +1,43 @@
 My usual loaf with butter egg & milk
 /*+
-starter............................(7.5g = 3.0%)
-    4.69 rye                1.9%
-    2.81 water              1.1%
+starter............................(6.7g = 3.0%)
+    4.22 rye                1.9%
+    2.53 water              1.1%
 
-sponge.............................(75.0g = 30.0%)
-    7.50 starter            3.0%
-   32.8  whole wheat       13.1%
-   34.7  water             13.9%
+sponge.............................(67.5g = 30.0%)
+    6.75 starter            3.0%
+   29.5  whole wheat       13.1%
+   31.2  water             13.9%
 
-wet................................(241.7g = 96.7%)
-   75.0  sponge            30.0%
-   50.0  egg               20.0%
-   96.5  water             38.6%
-    7.72 butter             3.1%
-   12.5  honey              5.0%
+wet................................(221.1g = 98.3%)
+   67.5  sponge            30.0%
+   50.0  egg               22.2%
+   81.8  milk              36.4%
+   10.5  butter             4.7%
+   11.3  honey              5.0%
 
-grains.............................(140.6g = 56.2%)
-   46.9  prairie gold      18.8%
-   46.9  bronze chief      18.7%
-   46.9  spelt             18.8%
+grains.............................(126.6g = 56.3%)
+   42.2  prairie gold      18.8%
+   42.2  bronze chief      18.8%
+   42.2  spelt             18.7%
 
-dry................................(241.1g = 96.5%)
-   22.7  nido               9.1%
-   46.9  bread flour       18.7%
-  141    grains            56.2%
-   12.5  flaxseed meal      5.0%
-    5.00 potato flakes      2.0%
-    7.50 improver           3.0%
-    4.88 salt               2.0%
-    1.00 yeast              0.4%
+dry................................(196.0g = 87.1%)
+   42.2  bread flour       18.8%
+  127    grains            56.3%
+   11.2  flaxseed meal      5.0%
+    4.50 potato flakes      2.0%
+    6.75 improver           3.0%
+    4.34 salt               1.9%
+    0.45 yeast              0.2%
 
-dough..............................(482.8g = 193.1%)
-  242    wet               96.7%
-  241    dry               96.5%
-  250    total flour      100.0%
-  175    total water       70.0%
+dough..............................(417.1g = 185.4%)
+  221    wet               98.3%
+  196    dry               87.1%
+  225    total flour      100.0%
+  146    total water       65.0%
 +*/
 
-2 August 2024
+5 August 2024
 
 An experiment with enrichment.
 
@@ -56,9 +55,9 @@ sponge:
 wet:
   sponge = 30%
   egg = 50g // 1 large egg
-  water
+  milk
   _fat = 7% // base butter on total fat
-  _fat = 80% * butter + 9% * egg + 30% * dry.nido
+  _fat = 80% * butter + 9% * egg + 3.5% * milk
   butter
   honey = 5%
 
@@ -70,40 +69,47 @@ grains:
 dry:
   bread_flour = 1g * _part // equal amounts of the 4 flours
   grains = 3g * _part
-  nido = 13% * wet.total_water // making milk out of all the water
   flaxseed_meal = 5%
   potato_flakes = 2%
   improver = 3%
   salt = 2% - 1.5% * wet.butter // subtracting the salt in the butter
-  yeast = 0.4%
+  yeast = 0.2%
 
 dough:
   wet
   dry
-  hydration = 70%
-  scale = 250g
+  hydration = 65%
+  scale = 225g
 
-Mixed the sponge at 10pm left at RT. It had trippled by morning.
+Changes
+* reduce flour by 10%
+* lower hydration by 5%
+* switch from nido to milk
+* cut yeast in half
+
+Mixed the sponge at 8pm left at RT. It had trippled by morning.
 
 I kneaded it in the bread machine. I let it mix 5 minutes to form a ball, 
 stopped it for 30 minutes to hydrate the flour and started it again to run the
 dough cycle.
 
+pH after initial mix was 5.4
+
 DT after kneading is 88F. I removed it from the bread machine and
 put it in the 1L measuring cup. It was about 400mL. Good window pane. pH is
-5.40.
+5.31.
 
-After 60 minutes the pH is 5.21 and the volume is 800mL.
+After 60 minutes (10:00) the pH is 5.20 and the volume is 500mL.
 
-Formed into a ball and rested for a few minutes. Then shaped for the pan. I
-failed to record the time. Maybe 11?
+After 130 minutes (11:10) the pH is 5.05 and the volume is 800mL.
 
-Baked at 12:40 about 1.25 inch above top of pan in preheated oven.
+Formed into a ball and rested for a few minutes. Into the pan about 11:20.
 
-Still too soon. Split at the rim though not as badly. This is too much dough for
-this pan. I need to shrink it by at least 10%, maybe 20%.
+Baked at 13:53 about 1 inch above top of pan in preheated oven.
 
-This hydration was better but I think it could still come down a bit.
+Still cracked! And about as tall! 5.25 inches tall. More reduction required I
+guess.
 
-Good flavor (as far as I can tell while taking PAXLOVID) and texture.
+Maybe I should drop the egg?
+
 
