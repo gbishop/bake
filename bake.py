@@ -46,11 +46,6 @@ Var: names += ID['.'];
 Comment: /\/\/.*?$|(?ms:\/\*.*?\*\/\n+)/;
 """
 
-
-def tis(node, name):
-    return type(node).__name__ == name
-
-
 # define the components of some ingredients
 Ingredients = {
     # flours
@@ -93,6 +88,7 @@ Components = ["flour", "water", "fat"]
 
 
 def getIngredient(name):
+    """Return the components for an ingredient"""
     name = name.lower()
     if name in Ingredients:
         return Ingredients[name]
@@ -117,6 +113,7 @@ def fmt_grams(g):
     return r
 
 
+# mapping from character to function and arity
 operators = {
     "+": (operator.add, 2),
     "-": (operator.sub, 2),
@@ -126,17 +123,21 @@ operators = {
 
 
 class Relations:
+    """Build and evaluate the residuals for the relations"""
+
     def __init__(self):
         self.program = []
         self.vars = {}
         self.relations = 0
 
     def var(self, name):
+        """Get the index for a variable"""
         if name not in self.vars:
             self.vars[name] = len(self.vars)
         return self.vars[name]
 
     def relation(self, *atoms):
+        """Add a relation"""
         if debug:
             print(atoms)
         self.relations += 1
@@ -151,7 +152,7 @@ class Relations:
                 self.program.append(operators[atom])
 
     def exec(self, params):
-        """Interpret the cost function"""
+        """Interpret the residuals by running the program"""
         stack = []
         for step in self.program:
             if isinstance(step, int):
@@ -169,6 +170,7 @@ class Relations:
         return np.array(stack)
 
     def solve(self):
+        """Run the optimizer on the program"""
         x0 = np.ones(len(self.vars)) * 50
         opt = scipy.optimize.least_squares(program.exec, x0)
         if debug:
@@ -193,6 +195,7 @@ class Bake:
         self.total = {}
 
     def compile(self, stdin, rewrite=False):
+        """Compile the recipe into a program for the solver"""
         text = stdin.read()
         try:
             self.model = self.meta.model_from_str(text)
@@ -269,9 +272,11 @@ class Bake:
         )
 
     def expr(self, node, part):
+        """Return code for an expression"""
         return getattr(self, node.__class__.__name__)(node, part)
 
     def Sum(self, node, part):
+        """Return code for addition/subtraction"""
         r = self.expr(node.term, part)
         for sum in node.sums:
             s = self.expr(sum.term, part)
@@ -279,6 +284,7 @@ class Bake:
         return r
 
     def Product(self, node, part):
+        """Return code for multiplication/division"""
         if node.factor.unit == "%" and len(node.factors) == 0:
             return [node.factor.number / 100.0, ("dough", "total_flour"), "*"]
         r = self.expr(node.factor, part)
@@ -288,6 +294,7 @@ class Bake:
         return r
 
     def Factor(self, node, part):
+        """Return code for variables, numbers, parenthesized expressions, negation"""
         if node.negated:
             r = self.expr(node.negated, part)
             return [0.0, *r, "-"]
@@ -324,6 +331,7 @@ class Bake:
             return self.expr(node.sum, part)
 
     def doTotal(self, part):
+        """Generate code for the totals for a part"""
         relation = [(part, "total")]
         crelations = {}
         for component in Components:
@@ -349,6 +357,7 @@ class Bake:
             program.relation(*crelation)
 
     def output(self, table, text, failed=False, scale=0):
+        """Insert the table into the input"""
         match = re.match(
             r"(?ms)(?P<title>.*?\n)?\s*(?P<table>\/\*\+.*?\+\*\/)?(?P<rest>.*)",
             text,
@@ -369,6 +378,8 @@ class Bake:
         print(result)
 
     def rewrite(self, rest, scale):
+        """Rewrite grams as baker's percent"""
+
         def gtobp(match):
             if match.group(1) != "scale":
                 f = float(match.group(3)[:-1]) * scale
@@ -379,7 +390,6 @@ class Bake:
         return re.sub(r"(\w+)(\s*=\s*)([\d.]+\s*g)", gtobp, rest)
 
 
-Baker = Bake()
 rewrite = False
 debug = False
 filename = ""
@@ -394,4 +404,6 @@ if filename:
     stdin = open(filename, "rt")
 else:
     stdin = sys.stdin
+
+Baker = Bake()
 Baker.compile(stdin, rewrite)
