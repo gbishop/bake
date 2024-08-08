@@ -100,20 +100,6 @@ def getIngredient(name):
     return {}
 
 
-def fmt_grams(g):
-    """Format grams in the table"""
-    if g >= 100:
-        r = f"{g:.0f}   "
-    elif g >= 10:
-        r = f"{g:0.1f} "
-    else:
-        r = f"{g:0.2f}"
-
-    if len(r) < 8:
-        r = " " * (8 - len(r)) + r
-    return r
-
-
 # mapping from character to function and arity
 operators = {
     "+": (operator.add, 2),
@@ -241,8 +227,28 @@ class Bake:
 
         opt = program.solve()
 
-        result = []
         scale = 100 / opt.x[program.vars[("dough", "total_flour")]]
+
+        table = self.format_table(opt, scale)
+        self.output(
+            table, text, not opt.success or opt.cost > 1, scale if rewrite else 0
+        )
+
+    def format_table(self, opt, scale):
+        def fmt_grams(g):
+            """Format grams in the table"""
+            if g >= 100:
+                r = f"{g:.0f}   "
+            elif g >= 10:
+                r = f"{g:0.1f} "
+            else:
+                r = f"{g:0.2f}"
+
+            if len(r) < 8:
+                r = " " * (8 - len(r)) + r
+            return r
+
+        result = []
         for i, partName in enumerate(self.parts):
             pvars = {
                 name[1]: opt.x[program.vars[name]]
@@ -267,10 +273,7 @@ class Bake:
                     result.append(f"{fg} {var.replace('_', ' '):15} {bp:6.1f}%")
             result.append("")
 
-        table = "\n".join(result)
-        self.output(
-            table, text, not opt.success or opt.cost > 1, scale if rewrite else 0
-        )
+        return "\n".join(result)
 
     def expr(self, node, part):
         """Return code for an expression"""
@@ -372,7 +375,13 @@ class Bake:
         """Rewrite grams as baker's percent"""
 
         def gtobp(match):
-            if match.group(1) not in ["scale", "total_flour"]:
+            if match.group(1) not in [
+                "scale",
+                "total_flour",
+                "total_water",
+                "total_fat",
+                "total",
+            ]:
                 f = float(match.group(3)[:-1]) * scale
                 return f"{match.group(1)}{match.group(2)}{f:.2f}%"
             else:
