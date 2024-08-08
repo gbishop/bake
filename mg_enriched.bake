@@ -1,43 +1,40 @@
-My usual loaf with butter egg & milk
+My usual loaf with butter & milk
 /*+
-starter............................(6.7g = 3.0%)
-    4.22 rye                1.9%
-    2.53 water              1.1%
+starter............................(9.0g = 4.0%)
+    5.62 rye                2.5%
+    3.37 water              1.5%
 
-sponge.............................(67.5g = 30.0%)
-    6.75 starter            3.0%
-   29.5  whole wheat       13.1%
-   31.2  water             13.9%
+sponge.............................(90.0g = 40.0%)
+    9.00 starter            4.0%
+   39.4  whole wheat       17.5%
+   41.6  water             18.5%
 
-wet................................(221.1g = 98.3%)
-   67.5  sponge            30.0%
-   50.0  egg               22.2%
-   81.8  milk              36.4%
-   10.5  butter             4.7%
+wet................................(227.2g = 101.0%)
+   90.0  sponge            40.0%
+  111    milk              49.4%
+   14.8  butter             6.6%
    11.3  honey              5.0%
 
-grains.............................(126.6g = 56.3%)
-   42.2  prairie gold      18.8%
-   42.2  bronze chief      18.8%
-   42.2  spelt             18.7%
-
-dry................................(196.0g = 87.1%)
-   42.2  bread flour       18.8%
-  127    grains            56.3%
-   11.2  flaxseed meal      5.0%
+dry................................(185.4g = 82.4%)
+   39.9  bread flour       17.8%
+   39.9  prairie gold      17.7%
+   39.9  bronze chief      17.7%
+   39.9  spelt             17.7%
+   11.3  flaxseed meal      5.0%
     4.50 potato flakes      2.0%
-    6.75 improver           3.0%
-    4.34 salt               1.9%
-    0.45 yeast              0.2%
+    4.50 improver           2.0%
+    4.28 salt               1.9%
+    1.13 yeast              0.5%
 
-dough..............................(417.1g = 185.4%)
-  221    wet               98.3%
-  196    dry               87.1%
+dough..............................(412.6g = 183.4%)
+  227    wet              101.0%
+  185    dry               82.4%
   225    total flour      100.0%
   146    total water       65.0%
+   15.8  total fat          7.0%
 +*/
 
-5 August 2024
+7 August 2024
 
 An experiment with enrichment.
 
@@ -53,27 +50,22 @@ sponge:
   hydration = 100%
 
 wet:
-  sponge = 30%
-  egg = 50g // 1 large egg
+  sponge = 40%
   milk
-  _fat = 7% // base butter on total fat
-  _fat = 80% * butter + 9% * egg + 3.5% * milk
   butter
   honey = 5%
+  total_fat = 7%
 
-grains:
+dry:
+  bread_flour   // equal amounts of the 4 flours
   prairie_gold
   bronze_chief
   spelt
-
-dry:
-  bread_flour = 1g * _part // equal amounts of the 4 flours
-  grains = 3g * _part
   flaxseed_meal = 5%
   potato_flakes = 2%
-  improver = 3%
+  improver = 2%
   salt = 2% - 1.5% * wet.butter // subtracting the salt in the butter
-  yeast = 0.2%
+  yeast = 0.5%
 
 dough:
   wet
@@ -82,34 +74,24 @@ dough:
   scale = 225g
 
 Changes
-* reduce flour by 10%
-* lower hydration by 5%
-* switch from nido to milk
-* cut yeast in half
+* remove the egg
+* increase the yeast
+* decrease the improver
 
-Mixed the sponge at 8pm left at RT. It had trippled by morning.
+First attempt today was a failure. I think I omitted the yeast. Hardly any rise
+and pH getting too low. I gave up on it and started over. Sponge into the SDHome
+at 11:10 on 90F after using hot tap water. At 13:15 the starter pH is 5.3 and it
+hasn't risen at all but I'll use it anyway.
 
-I kneaded it in the bread machine. I let it mix 5 minutes to form a ball, 
-stopped it for 30 minutes to hydrate the flour and started it again to run the
-dough cycle.
+I kneaded it in the bread machine. I used the normal dough cycle.
 
-pH after initial mix was 5.4
+Slow rise in the pan about 2 hours.
 
-DT after kneading is 88F. I removed it from the bread machine and
-put it in the 1L measuring cup. It was about 400mL. Good window pane. pH is
-5.31.
+Baked at 17:05. 30 minutes in preheated oven.
 
-After 60 minutes (10:00) the pH is 5.20 and the volume is 500mL.
+Good looking loaf. No cracking. A bit taller than I'd like and with some hips. 5
+inches tall. 
 
-After 130 minutes (11:10) the pH is 5.05 and the volume is 800mL.
+Flying top, overproofing? OK flavor and texture.
 
-Formed into a ball and rested for a few minutes. Into the pan about 11:20.
-
-Baked at 13:53 about 1 inch above top of pan in preheated oven.
-
-Still cracked! And about as tall! 5.25 inches tall. More reduction required I
-guess.
-
-Maybe I should drop the egg?
-
-
+I'm going to add some rye and oats in hopes of making it a bit more dense.
