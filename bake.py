@@ -77,6 +77,7 @@ Ingredients = {
     "egg_yolk": {"water": 0.5, "fat": 0.30},
     "egg_white": {"water": 0.90},
     "milk": {"water": 0.87, "fat": 0.035},
+    "nido": {"fat": 0.3},
     "butter": {"water": 0.18, "fat": 0.80},
     "honey": {"water": 0.17},
     # oils
@@ -358,30 +359,20 @@ class Bake:
 
     def output(self, table, text, failed=False, scale=0):
         """Insert the table into the input"""
-        match = re.match(
-            r"(?ms)(?P<title>.*?\n)?\s*(?P<table>\/\*\+.*?\+\*\/)?(?P<rest>.*)",
-            text,
-        )
-        if match:
-            title = match.group("title") or "the title"
-            title = title.strip()
-            table = table.strip()
-            if failed:
-                table = re.sub(r"^", "E ", table, 0, re.M)
-            rest = match.group("rest")
-            rest = rest.lstrip()
-            if scale > 0:
-                rest = self.rewrite(rest, scale)
-            result = f"{title}\n/*+\n{table}\n+*/\n\n{rest}"
-        else:
-            result = f"title\n/*+\n{table}+*/{text}"
+        text = re.sub(r"(?ms)\/\*\+.*?\+\*\/\n", "", text)
+        if scale > 0:
+            text = self.rewrite(text, scale)
+
+        if failed:
+            table = re.sub(r"^", "E ", table, 0, re.M)
+        result = f"{text}/*+\n{table}+*/\n"
         print(result)
 
     def rewrite(self, rest, scale):
         """Rewrite grams as baker's percent"""
 
         def gtobp(match):
-            if match.group(1) != "scale":
+            if match.group(1) not in ["scale", "total_flour"]:
                 f = float(match.group(3)[:-1]) * scale
                 return f"{match.group(1)}{match.group(2)}{f:.2f}%"
             else:
