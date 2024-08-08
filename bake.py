@@ -187,7 +187,8 @@ class Bake:
         try:
             self.model = self.meta.model_from_str(text)
         except textx.TextXSyntaxError as e:
-            return self.output(f"Error {e.line}:{e.col} {e.message}", text)
+            print(f"Syntax Error {e.line}:{e.col} {e.message}")
+            sys.exit(1)
 
         # get all the part names
         for part in textx.get_children_of_type("Part", self.model):
