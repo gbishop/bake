@@ -1,42 +1,33 @@
-My usual loaf with butter & milk
-/*+
-starter............................(9.0g = 4.0%)
-    5.62 rye                2.5%
-    3.37 water              1.5%
+My usual loaf enriched
 
-sponge.............................(90.0g = 40.0%)
-    9.00 starter            4.0%
-   39.4  whole wheat       17.5%
-   41.6  water             18.5%
+9 August 2024
 
-wet................................(227.2g = 101.0%)
-   90.0  sponge            40.0%
-  111    milk              49.4%
-   14.8  butter             6.6%
-   11.3  honey              5.0%
+Changes
+* restore the egg.
+* add rye and oats
+* lower the total fat
 
-dry................................(185.4g = 82.4%)
-   39.9  bread flour       17.8%
-   39.9  prairie gold      17.7%
-   39.9  bronze chief      17.7%
-   39.9  spelt             17.7%
-   11.3  flaxseed meal      5.0%
-    4.50 potato flakes      2.0%
-    4.50 improver           2.0%
-    4.28 salt               1.9%
-    1.13 yeast              0.5%
+I want it to be a little more dense.
 
-dough..............................(412.6g = 183.4%)
-  227    wet              101.0%
-  185    dry               82.4%
-  225    total flour      100.0%
-  146    total water       65.0%
-   15.8  total fat          7.0%
-+*/
+Mixed at 12:30 during a power outage, hopefully the power comes back before time
+to bake. The starter spent 5 hours in the fridge because of the power outage.
 
-7 August 2024
+Finished kneading at 13:30. DT is 90, pH is 5.31, volume is 400mL. Into glass
+measuring cup on counter. At 14:36 the volume is 1L and the pH is 5.13. 
 
-An experiment with enrichment.
+Sticky but not too hard to handle. Into the pan at 14:41. At 15:41 the pH is
+4.90 and the dough is barely to the top of the pan. 
+
+Into the preheated oven at 16:11. I scored the top. Baked for 30 minutes. It
+reached 206 degrees internally. Light brown color.
+
+Beautiful loaf! No cracking! Good shape. Perfect height 4.75 inches.
+
+The sides are sucked in a bit, maybe lower the hydration a little more?
+
+I also should try letting it cool in the oven. Maybe in the winter.
+
+Good texture. Firmer like I wanted. Not very sour on first taste.
 
 starter:
   rye
@@ -50,48 +41,75 @@ sponge:
   hydration = 100%
 
 wet:
-  sponge = 40%
-  milk
+  sponge = 30%
+  egg = 50g
+  water
+  nido = 13% * 50% * water
   butter
   honey = 5%
-  total_fat = 7%
+  total_fat = 5%
 
-dry:
-  bread_flour   // equal amounts of the 4 flours
+grind:
   prairie_gold
   bronze_chief
-  spelt
+  spelt = 10%
+  rye = 5% - starter.rye
+  oats = 5%
+
+dry:
+  grind
+  bread_flour = 15%
   flaxseed_meal = 5%
   potato_flakes = 2%
-  improver = 2%
-  salt = 2% - 1.5% * wet.butter // subtracting the salt in the butter
+  improver = 3%
+  salt = 2% - 1.5% * wet.butter
   yeast = 0.5%
 
 dough:
   wet
   dry
   hydration = 65%
-  scale = 225g
+  total_flour = 250g
 
-Changes
-* remove the egg
-* increase the yeast
-* decrease the improver
+/*+
+starter............................(7.5g = 3.0%)
+    4.69 rye                1.9%
+    2.81 water              1.1%
 
-First attempt today was a failure. I think I omitted the yeast. Hardly any rise
-and pH getting too low. I gave up on it and started over. Sponge into the SDHome
-at 11:10 on 90F after using hot tap water. At 13:15 the starter pH is 5.3 and it
-hasn't risen at all but I'll use it anyway.
+sponge.............................(75.0g = 30.0%)
+    7.50 starter            3.0%
+   32.8  whole wheat       13.1%
+   34.7  water             13.9%
 
-I kneaded it in the bread machine. I used the normal dough cycle.
+wet................................(234.9g = 93.9%)
+   75.0  sponge            30.0%
+   50.0  egg               20.0%
+   83.9  water             33.6%
+    5.46 nido               2.2%
+    7.95 butter             3.2%
+   12.5  honey              5.0%
 
-Slow rise in the pan about 2 hours.
+grind..............................(150.0g = 60.0%)
+   52.3  prairie gold      20.9%
+   52.3  bronze chief      20.9%
+   25.0  spelt             10.0%
+    7.81 rye                3.1%
+   12.5  oats               5.0%
 
-Baked at 17:05. 30 minutes in preheated oven.
+dry................................(218.6g = 87.5%)
+  150    grind             60.0%
+   37.5  bread flour       15.0%
+   12.5  flaxseed meal      5.0%
+    5.00 potato flakes      2.0%
+    7.50 improver           3.0%
+    4.88 salt               2.0%
+    1.25 yeast              0.5%
 
-Good looking loaf. No cracking. A bit taller than I'd like and with some hips. 5
-inches tall. 
+dough..............................(453.5g = 181.4%)
+  235    wet               93.9%
+  219    dry               87.5%
+  250    total flour      100.0%
+  163    total water       65.0%
+   12.5  total fat          5.0%
++*/
 
-Flying top, overproofing? OK flavor and texture.
-
-I'm going to add some rye and oats in hopes of making it a bit more dense.
