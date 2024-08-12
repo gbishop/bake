@@ -54,6 +54,7 @@ Ingredients = {
     "bread_flour": {"flour": 1.0},
     "bronze_chief": {"flour": 1.0},
     "bulgar": {"flour": 1.0},
+    "cracked_rye": {"flour": 1.0},
     "flaxseed_meal": {"flour": 1.0},
     "hard_red": {"flour": 1.0},
     "hard_white": {"flour": 1.0},
