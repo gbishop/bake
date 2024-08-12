@@ -267,9 +267,12 @@ class Bake:
                     bp = g * scale
                     result.append(f"{fg} {var.replace('_', ' '):15} {bp:6.1f}%")
             if i == len(self.parts) - 1:
+                result.append("")
                 for component in Components:
                     var = "total_" + component
                     g = pvars[var]
+                    if g < 1:
+                        continue
                     fg = fmt_grams(g)
                     bp = g * scale
                     result.append(f"{fg} {var.replace('_', ' '):15} {bp:6.1f}%")
