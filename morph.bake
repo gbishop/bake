@@ -1,0 +1,49 @@
+Start with soft white bread and morph to whole grain
+
+from: https://www.chainbaker.com/pain-de-mie/
+
+dough:
+  water
+  milk = 10%
+  yeast = 1.4%
+  sugar = 2%
+  salt = 2%
+  butter = 5%
+  bread_flour
+  hydration = 65.6%
+  scale = 240g
+
+August 12, 2024
+
+Scaled to my 1.1L pullman pan.
+
+Mixed about 9am. I'm trying no knead following chainbaker's example. I've never
+had good luck with it.
+
+Mix, wait 45 minutes, S&F, wait 45 minutes, shape.
+
+I could have mixed it better but the no knead seems to have worked OK. The
+resulting dough is more sticky than I expected.
+
+Into the buttered pan at 10:35. Baked at 350 convection for 25 minutes. Internal
+temp was about 200. Removed from pan and gave it 5 more minutes.
+
+It perfectly filled the pan and is similar in color to his. 
+
+Good simple flavor and great texture. 
+
+/*+
+dough..............................(423.4g = 176.4%)
+  134    water             56.0%
+   24.0  milk              10.0%
+    3.36 yeast              1.4%
+    4.80 sugar              2.0%
+    4.80 salt               2.0%
+   12.0  butter             5.0%
+  240    bread flour      100.0%
+
+  240    total flour      100.0%
+  157    total water       65.6%
+   10.4  total fat          4.4%
++*/
+
