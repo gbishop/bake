@@ -1,0 +1,56 @@
+German Vollkornbrot with Rye and Spelt
+
+from https://breadtopia.com/german-vollkornbrot-with-rye-and-spelt/
+
+scaled for my little pullman.
+
+soaker:
+  cracked_rye = 31%
+  water
+  hydration = 140%
+
+starter:
+  rye
+  water
+  hydration = 60%
+
+sponge:
+  rye_flour = 44%
+  water
+  starter = 2%
+  hydration = 100%
+
+dough:
+  soaker
+  sponge
+  spelt
+  salt = 2%
+  sunflower_seeds = 10.31%
+  scale = 350g
+
+
+/*+
+soaker.............................(260.4g = 74.4%)
+  108    cracked rye       31.0%
+  152    water             43.4%
+
+starter............................(7.0g = 2.0%)
+    4.38 rye                1.2%
+    2.62 water              0.8%
+
+sponge.............................(316.8g = 90.5%)
+  154    rye flour         44.0%
+  156    water             44.5%
+    7.00 starter            2.0%
+
+dough..............................(703.4g = 201.0%)
+  260    soaker            74.4%
+  317    sponge            90.5%
+   83.1  spelt             23.8%
+    7.00 salt               2.0%
+   36.1  sunflower seeds   10.3%
+
+  350    total flour      100.0%
+  310    total water       88.6%
++*/
+
