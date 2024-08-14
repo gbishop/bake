@@ -8,8 +8,10 @@ import textx
 import re
 import sys
 import numpy as np
+from numpy.typing import NDArray
 import scipy
 import operator
+from typing import Callable
 
 # The textx grammar for my recipes
 grammar = r"""
@@ -89,7 +91,7 @@ Ingredients = {
 Components = ["flour", "water", "fat"]
 
 
-def getIngredient(name):
+def getIngredient(name: str) -> dict[str, float]:
     """Return the components for an ingredient"""
     name = name.lower()
     if name in Ingredients:
@@ -98,11 +100,13 @@ def getIngredient(name):
         return {"flour": 1.0}
     if "water" in name:
         return {"water": 1.0}
+    if name.endswith("_oil"):
+        return {"fat": 1.0}
     return {}
 
 
 # mapping from character to function and arity
-operators = {
+operators: dict[str, tuple[Callable, int]] = {
     "+": (operator.add, 2),
     "-": (operator.sub, 2),
     "*": (operator.mul, 2),
@@ -114,8 +118,8 @@ class Relations:
     """Build and evaluate the residuals for the relations"""
 
     def __init__(self):
-        self.program = []
-        self.vars = {}
+        self.program: list[tuple[Callable, int] | int | float] = []
+        self.vars: dict[tuple[str, str], int] = {}
         self.relations = 0
 
     def var(self, name):
@@ -124,7 +128,7 @@ class Relations:
             self.vars[name] = len(self.vars)
         return self.vars[name]
 
-    def relation(self, *atoms):
+    def relation(self, *atoms: tuple[str, str] | int | float | str):
         """Add a relation"""
         if debug:
             print(atoms)
@@ -139,7 +143,7 @@ class Relations:
             elif isinstance(atom, str):
                 self.program.append(operators[atom])
 
-    def exec(self, params):
+    def exec(self, params: NDArray):
         """Interpret the residuals by running the program"""
         stack = []
         for step in self.program:
@@ -197,6 +201,7 @@ class Bake:
 
         # add each part to the program
         for part in textx.get_children_of_type("Part", self.model):
+            assert isinstance(part.name, str)
             for relation in part.relations:
                 if relation.hydration:
                     program.relation(
