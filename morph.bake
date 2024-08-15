@@ -1,49 +1,92 @@
 Start with soft white bread and morph to whole grain
 
-from: https://www.chainbaker.com/pain-de-mie/
+starter:
+  rye
+  water
+  hydration = 60%
+
+sponge:
+  starter = 10% * total_flour
+  ap_flour // should have been bread flour
+  water
+  hydration = 100%
 
 dough:
+  sponge = 50%
   water
-  milk = 10%
-  yeast = 1.4%
-  sugar = 2%
-  salt = 2%
-  butter = 5%
+  butter
+  nido = 13% * water
   bread_flour
-  hydration = 65.6%
+  yeast = 1.0%
+  sugar = 8%
+  salt = 1.7%
+  potato_flakes = 2%
+  hydration = 62%
+  total_fat = 8%
   scale = 240g
 
-August 12, 2024
+August 15, 2024
+
+Changes
+* Switch to New Hampshire White base recipe
+* Transition to sourdough
+* Add potato flakes
+* Knead with the bread machine
+* Lidless
 
 Scaled to my 1.1L pullman pan.
 
-Mixed about 9am. I'm trying no knead following chainbaker's example. I've never
-had good luck with it.
+Sponge pH=3.78 in the morning. I made it with AP flour by mistake. I lost about
+4g of sponge even after rinsing the container with the water. I should figure
+out how to compensate in the sheet.
 
-Mix, wait 45 minutes, S&F, wait 45 minutes, shape.
+Started the machine about 8am. After kneading the pH=5.08 DT=86. Dough is
+sticky.
 
-I could have mixed it better but the no knead seems to have worked OK. The
-resulting dough is more sticky than I expected.
+After first rist the pH=4.83. Dough is stil too sticky but I managed to get it
+in the pan about 9:30. Rising fast!
 
-Into the buttered pan at 10:35. Baked at 350 convection for 25 minutes. Internal
-temp was about 200. Removed from pan and gave it 5 more minutes.
+Into preheated 350F oven at 10:30 for 22 minutes. I scored the top.
 
-It perfectly filled the pan and is similar in color to his. 
+I removed from the pan at 22 minutes and put it back in the oven for 5 more.
+Good height, no cracking.
 
-Good simple flavor and great texture. 
+I should put it back in the oven on a grid or something. Handling it by the
+sides mashes it some. I need something like a baker's peel.
+
+Only 194 inside. I should have let it go a bit longer I bet. I put it back in
+the cooling oven for 5 minutes.
+
+Looks good: https://photos.app.goo.gl/YgLNxtxZEveg6u3FA
+
+More "hips" than I'd prefer.
+
+Nicely soft, great flavor, just the right amount of sour. Nice crumb.
+
 
 /*+
-dough..............................(423.4g = 176.4%)
-  134    water             56.0%
-   24.0  milk              10.0%
-    3.36 yeast              1.4%
-    4.80 sugar              2.0%
-    4.80 salt               2.0%
-   12.0  butter             5.0%
-  240    bread flour      100.0%
+starter............................(6.0g = 2.5%)
+    3.75 rye                1.6%
+    2.25 water              0.9%
+
+sponge.............................(120.0g = 50.0%)
+    6.00 starter            2.5%
+   56.2  ap flour          23.4%
+   57.8  water             24.1%
+
+dough..............................(441.8g = 184.1%)
+  120    sponge            50.0%
+   85.2  water             35.5%
+   19.8  butter             8.3%
+   11.1  nido               4.6%
+  175    bread flour       73.0%
+    2.40 yeast              1.0%
+   19.2  sugar              8.0%
+    4.08 salt               1.7%
+    4.80 potato flakes      2.0%
 
   240    total flour      100.0%
-  157    total water       65.6%
-   10.4  total fat          4.4%
+  149    total water       62.0%
+   19.2  total fat          8.0%
 +*/
 
