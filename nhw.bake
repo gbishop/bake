@@ -1,0 +1,31 @@
+New Hampshire White
+
+From the Bread Machine cookbook
+
+dough:
+  water = 60%
+  nido = 7.2%
+  butter = 8.4%
+  sugar = 8%
+  salt = 1.4%
+  potato_flakes = 4%
+  bread_flour
+  yeast = 1.8%
+  scale = 500g
+
+  /*+
+dough..............................(934.0g = 186.8%)
+  300    water             60.0%
+   36.0  nido               7.2%
+   42.0  butter             8.4%
+   40.0  sugar              8.0%
+    7.00 salt               1.4%
+   20.0  potato flakes      4.0%
+  480    bread flour       96.0%
+    9.00 yeast              1.8%
+
+  500    total flour      100.0%
+  308    total water       61.5%
+   44.4  total fat          8.9%
++*/
+
