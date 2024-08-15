@@ -11,7 +11,7 @@ import numpy as np
 from numpy.typing import NDArray
 import scipy
 import operator
-from typing import Callable
+from typing import Callable, TextIO
 
 # The textx grammar for my recipes
 grammar = r"""
@@ -186,7 +186,7 @@ class Bake:
         self.parts = []
         self.total = {}
 
-    def compile(self, stdin, rewrite=False):
+    def compile(self, stdin: TextIO, rewrite=False):
         """Compile the recipe into a program for the solver"""
         text = stdin.read()
         try:
@@ -201,7 +201,6 @@ class Bake:
 
         # add each part to the program
         for part in textx.get_children_of_type("Part", self.model):
-            assert isinstance(part.name, str)
             for relation in part.relations:
                 if relation.hydration:
                     program.relation(
