@@ -21,7 +21,7 @@ Statement: ( Part | Text ) ;
 
 Text: /^.*$/ ;
 
-Part: name=ID ':' '\n' relations*=Relation['\n'];
+Part: name=ID ( '+' loss=Number 'g' )? ':' '\n' relations*=Relation['\n'];
 
 Relation: ('hydration' '=' hydration=Number '%' ) |
           ('scale' '=' scale=Number 'g') | 
@@ -185,6 +185,7 @@ class Bake:
         self.meta.register_obj_processors({"Number": lambda Number: float(Number.str)})
         self.parts = []
         self.total = {}
+        self.loss = {}
 
     def compile(self, stdin: TextIO, rewrite=False):
         """Compile the recipe into a program for the solver"""
@@ -198,6 +199,8 @@ class Bake:
         # get all the part names
         for part in textx.get_children_of_type("Part", self.model):
             self.parts.append(part.name)
+            if part.loss:
+                self.loss[part.name] = part.loss
 
         # add each part to the program
         for part in textx.get_children_of_type("Part", self.model):
@@ -261,13 +264,19 @@ class Bake:
                 for name in program.vars
                 if name[0] == partName and not name[1].startswith("_")
             }
-            g = pvars["total"]
+            loss = self.loss.get(partName, 0)
+            gt = g = pvars["total"]
             bp = g * scale
-            result.append(f"{partName:.<35}({g:.1f}g = {bp:.1f}%)")
+            if loss > 0:
+                printName = f"{partName} + {loss:.1f}g"
+            else:
+                printName = partName
+            result.append(f"{printName:.<35}({g:.1f}g = {bp:.1f}%)")
             for var in pvars:
                 if not var.startswith("total"):
                     g = pvars[var]
-                    fg = fmt_grams(g)
+                    lg = g + loss * g / gt
+                    fg = fmt_grams(lg)
                     bp = g * scale
                     result.append(f"{fg} {var.replace('_', ' '):15} {bp:6.1f}%")
             if i == len(self.parts) - 1:
