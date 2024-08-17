@@ -5,63 +5,66 @@ starter:
   water
   hydration = 60%
 
-sponge:
+sponge + 5g: // allow for 5g of loss
   starter = 10% * total_flour
-  ap_flour // should have been bread flour
+  ww_flour
   water
   hydration = 100%
 
-dough:
+grain:
+  prairie_gold
+  wgbi = 2% * prairie_gold
+
+wet:
   sponge = 50%
   water
   butter
-  nido = 13% * water
+  honey = 8%
+
+dry:
+  grain = 25%
   bread_flour
+  nido = 13% * wet.water
   yeast = 1.0%
-  sugar = 8%
-  salt = 1.7%
+  salt = 1.8% - 1.5% * wet.butter
   potato_flakes = 2%
+
+dough:
+  wet
+  dry
   hydration = 62%
   total_fat = 8%
   scale = 240g
 
-August 15, 2024
+August 17, 2024
 
 Changes
-* Switch to New Hampshire White base recipe
-* Transition to sourdough
-* Add potato flakes
-* Knead with the bread machine
-* Lidless
+* Use whole wheat flour in the sponge
+* use 25% freshly ground grain
+* Replace sugar with honey
 
 Scaled to my 1.1L pullman pan.
 
-Sponge pH=3.78 in the morning. I made it with AP flour by mistake. I lost about
-4g of sponge even after rinsing the container with the water. I should figure
-out how to compensate in the sheet.
+Mixed the sponge using KA WW flour at 21:00 and left it on the counter.
 
-Started the machine about 8am. After kneading the pH=5.08 DT=86. Dough is
-sticky.
+Sponge pH at 8:10 is 4.06. It has more than doubled overnight. 
 
-After first rist the pH=4.83. Dough is stil too sticky but I managed to get it
-in the pan about 9:30. Rising fast!
+I ran the bread machine dough cycle. Into pan at 9:55, pH is 4.64. Not sticky at
+all. Amazing how much difference 50% whole grain makes!
 
-Into preheated 350F oven at 10:30 for 22 minutes. I scored the top.
+Baked at 11:20 for 25 minutes in preheated 350F oven. 192F inside. Back into
+over out of pan for 5 minutes; final internal temp is 196F.
 
-I removed from the pan at 22 minutes and put it back in the oven for 5 more.
-Good height, no cracking.
+Good height and color. A bump on top may indicate a tunnel.
 
-I should put it back in the oven on a grid or something. Handling it by the
-sides mashes it some. I need something like a baker's peel.
+Virtually no hips. A few tiny holes on the lighter colored side.
 
-Only 194 inside. I should have let it go a bit longer I bet. I put it back in
-the cooling oven for 5 minutes.
+Good texture, poor shaping as usual. More sour than the last loaf. Is it the
+change to honey or the change of grain? The sponge had higher pH.
 
-Looks good: https://photos.app.goo.gl/YgLNxtxZEveg6u3FA
+This is a good loaf.
 
-More "hips" than I'd prefer.
 
-Nicely soft, great flavor, just the right amount of sour. Nice crumb.
 
 
 /*+
@@ -69,21 +72,32 @@ starter............................(6.0g = 2.5%)
     3.75 rye                1.6%
     2.25 water              0.9%
 
-sponge.............................(120.0g = 50.0%)
-    6.00 starter            2.5%
-   56.2  ap flour          23.4%
-   57.8  water             24.1%
+sponge + 5.0g......................(120.0g = 50.0%)
+    6.25 starter            2.5%
+   58.6  ww flour          23.4%
+   60.2  water             24.1%
 
-dough..............................(441.8g = 184.1%)
+grain..............................(60.0g = 25.0%)
+   58.8  prairie gold      24.5%
+    1.18 wgbi               0.5%
+
+wet................................(241.1g = 100.5%)
   120    sponge            50.0%
-   85.2  water             35.5%
-   19.8  butter             8.3%
-   11.1  nido               4.6%
-  175    bread flour       73.0%
+   81.9  water             34.1%
+   20.0  butter             8.3%
+   19.2  honey              8.0%
+
+dry................................(197.1g = 82.1%)
+   60.0  grain             25.0%
+  115    bread flour       48.0%
+   10.7  nido               4.4%
     2.40 yeast              1.0%
-   19.2  sugar              8.0%
-    4.08 salt               1.7%
+    4.02 salt               1.7%
     4.80 potato flakes      2.0%
+
+dough..............................(438.2g = 182.6%)
+  241    wet              100.5%
+  197    dry               82.1%
 
   240    total flour      100.0%
   149    total water       62.0%
