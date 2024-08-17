@@ -21,12 +21,15 @@ Statement: ( Part | Text ) ;
 
 Text: /^.*$/ ;
 
-Part: name=ID ( '+' loss=Number 'g' )? ':' '\n' relations*=Relation['\n'];
+Part: name=ID ( '+' loss=Number 'g' )? ':' Com? '\n' relations*=Relation['\n'];
 
-Relation: ('hydration' '=' hydration=Number '%' ) |
-          ('scale' '=' scale=Number 'g') | 
-          (lhs=Sum '=' rhs=Sum) |
-          (mention=ID);
+Com: '//' /.*/;
+
+Relation: ('hydration' '=' hydration=Number '%' Com? ) |
+          ('scale' '=' scale=Number 'g' Com? ) | 
+          (lhs=Sum '=' rhs=Sum Com?) |
+          (mention=ID Com?) |
+          Com;
 
 Sum: term=Product sums*=Sums;
 
@@ -45,7 +48,7 @@ Number: str=/[0-9.]+/;
 
 Var: names += ID['.'];
 
-Comment: /\/\/.*?$|(?ms:\/\*.*?\*\/\n+)/;
+Comment: /(?ms:\/\*.*?\*\/\n+)/;
 """
 
 # define the components of some ingredients
