@@ -4,6 +4,7 @@ Bake.py - bread recipes using relationships rather than spreadsheets.
 Gary Bishop July 2024
 """
 
+from os import error
 import textx
 import re
 import sys
@@ -40,7 +41,7 @@ Product: factor=Factor factors*=Factors;
 Factors: op=/[*\/]/ factor=Factor;
 
 Factor: '-' negated=Factor |
-        "interpolate" "(" v0=Sum "," v1=Sum "," p=Sum ")" |
+        func=ID '(' args*=Sum[','] ')' |
         name=Var |
         number=Number unit=/[%g]/ |
         '(' sum=Sum ')';
@@ -116,6 +117,7 @@ operators: dict[str, tuple[Callable, int]] = {
     "*": (operator.mul, 2),
     "/": (operator.truediv, 2),
     "interpolate": (lambda v0, v1, t: (1 - t) * v0 + t * v1, 3),
+    "whole": (lambda amt, one: round(amt / one) * one, 2),
 }
 
 
@@ -357,12 +359,19 @@ class Bake:
         elif node.sum:
             return self.expr(node.sum, part)
 
-        elif node.v0:
-            # interpoate between two values based on a third 0-1
-            v0 = self.expr(node.v0, part)
-            v1 = self.expr(node.v1, part)
-            p = self.expr(node.p, part)
-            return v0 + v1 + p + ["interpolate"]
+        elif node.func:
+            op = operators.get(node.func)
+            if not op:
+                print(f"Invalid function call {node.func}")
+                sys.exit(1)
+            _, arity = op
+            if len(node.args) != arity:
+                print(f"Invalid number of arguments")
+                sys.exit(1)
+            result = []
+            for arg in node.args:
+                result.extend(self.expr(arg, part))
+            return result + [node.func]
 
     def doTotal(self, part):
         """Generate code for the totals for a part"""
