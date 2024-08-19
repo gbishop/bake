@@ -13,7 +13,8 @@ sponge + 5g: // allow for 5g of loss
 
 grain:
   prairie_gold
-  wgbi = 2% * prairie_gold
+  hard_red
+  wgbi = 2% * total
 
 wet:
   sponge = 50%
@@ -22,7 +23,7 @@ wet:
   honey = 8%
 
 dry:
-  grain = 25%
+  grain = 50%
   bread_flour
   nido = 13% * wet.water
   yeast = 1.0%
@@ -36,35 +37,40 @@ dough:
   total_fat = 8%
   scale = 240g
 
-August 17, 2024
+August 19, 2024
 
 Changes
-* Use whole wheat flour in the sponge
-* use 25% freshly ground grain
-* Replace sugar with honey
+* Use 50% freshly ground grain for 74% whole grain
 
 Scaled to my 1.1L pullman pan.
 
-Mixed the sponge using KA WW flour at 21:00 and left it on the counter.
+Mixed the sponge using KA WW flour at 18:22 and left it on the counter.
 
-Sponge pH at 8:10 is 4.06. It has more than doubled overnight. 
+Sponge pH at 8:10 is 3.96. It has more than doubled overnight. 
 
-I ran the bread machine dough cycle. Into pan at 9:55, pH is 4.64. Not sticky at
-all. Amazing how much difference 50% whole grain makes!
+I ran the bread machine dough cycle. Started at 8:03. It seemed too dry after
+5 minutes so I added 2% water and let it rest for 20 minutes before starting the
+cycle again. pH after kneading is 4.85. I unplugged the machine.
 
-Baked at 11:20 for 25 minutes in preheated 350F oven. 192F inside. Back into
-over out of pan for 5 minutes; final internal temp is 196F.
+Into pan at 9:55, pH is 4.65. Not sticky at all.
 
-Good height and color. A bump on top may indicate a tunnel.
+The dough is breaking down. What could it be?
+* The sponge fermented for longer.
+* More freshly milled flour.
+* I attempted to tighten the dough as I was rolling it so avoid tunnels, maybe
+I got it too tight? (this is my guess)
 
-Virtually no hips. A few tiny holes on the lighter colored side.
+Baked at 11:15 for 25 minutes in preheated 350F oven. 192F inside. Back into
+oven out of pan for 5 minutes; final internal temp is 196F.
 
-Good texture, poor shaping as usual. More sour than the last loaf. Is it the
-change to honey or the change of grain? The sponge had higher pH.
+Very ugly crust. Lots of tearing on the side and holes in the top. Why?
 
-This is a good loaf.
+OK height and color. Good texture. 
 
+Looks fine internally. pH is 4.5. A little more sour than I prefer on first
+taste; it'll probably be fine toasted.
 
+I think the hydration is still a little low.
 
 
 /*+
@@ -77,9 +83,10 @@ sponge + 5.0g......................(120.0g = 50.0%)
    58.6  ww flour          23.4%
    60.2  water             24.1%
 
-grain..............................(60.0g = 25.0%)
+grain..............................(120.0g = 50.0%)
    58.8  prairie gold      24.5%
-    1.18 wgbi               0.5%
+   58.8  hard red          24.5%
+    2.40 wgbi               1.0%
 
 wet................................(241.1g = 100.5%)
   120    sponge            50.0%
@@ -88,8 +95,8 @@ wet................................(241.1g = 100.5%)
    19.2  honey              8.0%
 
 dry................................(197.1g = 82.1%)
-   60.0  grain             25.0%
-  115    bread flour       48.0%
+  120    grain             50.0%
+   55.2  bread flour       23.0%
    10.7  nido               4.4%
     2.40 yeast              1.0%
     4.02 salt               1.7%
