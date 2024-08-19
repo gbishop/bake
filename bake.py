@@ -40,6 +40,7 @@ Product: factor=Factor factors*=Factors;
 Factors: op=/[*\/]/ factor=Factor;
 
 Factor: '-' negated=Factor |
+        "interpolate" "(" v0=Sum "," v1=Sum "," p=Sum ")" |
         name=Var |
         number=Number unit=/[%g]/ |
         '(' sum=Sum ')';
@@ -114,6 +115,7 @@ operators: dict[str, tuple[Callable, int]] = {
     "-": (operator.sub, 2),
     "*": (operator.mul, 2),
     "/": (operator.truediv, 2),
+    "interpolate": (lambda v0, v1, t: (1 - t) * v0 + t * v1, 3),
 }
 
 
@@ -354,6 +356,13 @@ class Bake:
 
         elif node.sum:
             return self.expr(node.sum, part)
+
+        elif node.v0:
+            # interpoate between two values based on a third 0-1
+            v0 = self.expr(node.v0, part)
+            v1 = self.expr(node.v1, part)
+            p = self.expr(node.p, part)
+            return v0 + v1 + p + ["interpolate"]
 
     def doTotal(self, part):
         """Generate code for the totals for a part"""
