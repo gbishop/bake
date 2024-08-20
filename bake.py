@@ -4,7 +4,6 @@ Bake.py - bread recipes using relationships rather than spreadsheets.
 Gary Bishop July 2024
 """
 
-from os import error
 import textx
 import re
 import sys
