@@ -17,7 +17,7 @@ grain:
   wgbi = 2% * total
 
 wet:
-  sponge = 50%
+  sponge = 30%
   water
   butter
   honey = 8%
@@ -25,7 +25,8 @@ wet:
 dry:
   grain = 50%
   bread_flour
-  nido = 13% * wet.water
+  // half the water to milk
+  nido = 50% * 13% * wet.water
   yeast = 1.0%
   salt = 1.8% - 1.5% * wet.butter
   potato_flakes = 2%
@@ -33,81 +34,91 @@ dry:
 dough:
   wet
   dry
-  hydration = 62%
+  total_water = 68%
   total_fat = 8%
-  scale = 240g
+  total_flour = 240g
 
-August 19, 2024
+August 21, 2024
 
 Changes
-* Use 50% freshly ground grain for 74% whole grain
+* Reduce the sponge
+* Reduce the milk content by half
+* Increase the hydration
+* Improve shaping
 
 Scaled to my 1.1L pullman pan.
 
-Mixed the sponge using KA WW flour at 18:22 and left it on the counter.
+Mixed the sponge using KA WW flour at 19:35 and left it on the counter.
 
-Sponge pH at 8:10 is 3.96. It has more than doubled overnight. 
+Sponge pH at 7:50 is ?. It has more than doubled overnight. 
 
-I ran the bread machine dough cycle. Started at 8:03. It seemed too dry after
-5 minutes so I added 2% water and let it rest for 20 minutes before starting the
-cycle again. pH after kneading is 4.85. I unplugged the machine.
+I ran the bread machine dough cycle. Started at 8:00. Stopped after 5 minutes
+and set the timer to start in 30 minutes.
 
-Into pan at 9:55, pH is 4.65. Not sticky at all.
+pH after kneading is 5.09. I removed dough from the pan and placed it in a
+measuring cup. It felt oddly oily.
 
-The dough is breaking down. What could it be?
-* The sponge fermented for longer.
-* More freshly milled flour.
-* I attempted to tighten the dough as I was rolling it so avoid tunnels, maybe
-I got it too tight? (this is my guess)
+Not oily after first rise. At about 9:30 it has doubled. Wow. I balled it and
+left it to rest for 15 minutes. Not sticky at all. Maybe increase the hydration
+more?
 
-Baked at 11:15 for 25 minutes in preheated 350F oven. 192F inside. Back into
-oven out of pan for 5 minutes; final internal temp is 196F.
+Now to attempt to shape it properly. Jack's shaping method seemed to work well.
+My dough was much less elastic than his. Maybe I should let it relax longer? My
+roll was a little shorter than the pan. 
 
-Very ugly crust. Lots of tearing on the side and holes in the top. Why?
+I think I balled it too tightly before the rest and maybe let it rest longer. 
 
-OK height and color. Good texture. 
+Into pan about 10:05. Not sticky at all.
 
-Looks fine internally. pH is 4.5. A little more sour than I prefer on first
-taste; it'll probably be fine toasted.
+Baked at 11:00 for 25 minutes in preheated 350F oven. About 3/4 inch above the
+top of the pan. Some tearing on one side just above the top of the pan. Why?
 
-I think the hydration is still a little low.
+196F inside. Back into oven out of pan for 5 minutes; final internal temp is
+203F.
 
+Looks good except for some tearing on the side. It looks like I did not have the
+seam on the bottom of the pan. It is clearly 1/3 of the way up the side that is
+tearing. Why?
+
+Good texture and flavor. Just about right level of sour.
+
+I've got to improve my shaping.
 
 /*+
-starter............................(6.0g = 2.5%)
-    3.75 rye                1.6%
-    2.25 water              0.9%
+starter............................(3.6g = 1.5%)
+    2.25 rye                0.9%
+    1.35 water              0.6%
 
-sponge + 5.0g......................(120.0g = 50.0%)
-    6.25 starter            2.5%
-   58.6  ww flour          23.4%
-   60.2  water             24.1%
+sponge + 5.0g......................(72.0g = 30.0%)
+    3.85 starter            1.5%
+   36.1  ww flour          14.1%
+   37.1  water             14.4%
 
 grain..............................(120.0g = 50.0%)
    58.8  prairie gold      24.5%
    58.8  hard red          24.5%
     2.40 wgbi               1.0%
 
-wet................................(241.1g = 100.5%)
-  120    sponge            50.0%
-   81.9  water             34.1%
-   20.0  butter             8.3%
+wet................................(232.4g = 96.8%)
+   72.0  sponge            30.0%
+  120    water             50.1%
+   21.1  butter             8.8%
    19.2  honey              8.0%
 
-dry................................(197.1g = 82.1%)
+dry................................(218.2g = 90.9%)
   120    grain             50.0%
-   55.2  bread flour       23.0%
-   10.7  nido               4.4%
+   79.2  bread flour       33.0%
+    7.81 nido               3.3%
     2.40 yeast              1.0%
-    4.02 salt               1.7%
+    4.00 salt               1.7%
     4.80 potato flakes      2.0%
 
-dough..............................(438.2g = 182.6%)
-  241    wet              100.5%
-  197    dry               82.1%
+dough..............................(450.6g = 187.8%)
+  232    wet               96.8%
+  218    dry               90.9%
 
   240    total flour      100.0%
-  149    total water       62.0%
+  163    total water       68.0%
    19.2  total fat          8.0%
 +*/
 
