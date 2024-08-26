@@ -14,7 +14,7 @@ sponge + 5g: // allow for 5g of loss
 grain:
   prairie_gold
   hard_red
-  wgbi = 2% * total
+  spelt = 10%
 
 wet:
   sponge = 30%
@@ -23,13 +23,14 @@ wet:
   honey = 8%
 
 dry:
-  grain = 50%
+  grain = 60%
   bread_flour
   // half the water to milk
   nido = 50% * 13% * wet.water
   flaxseed = 2%
   potato_flakes = 2%
   salt = 1.8% - 1.5% * wet.butter
+  wgbi = 2% * grain.total
   yeast = 0.6%
 
 dough:
@@ -39,46 +40,42 @@ dough:
   total_fat = 8%
   total_flour = 240g
 
-August 23, 2024
+August 26, 2024
 
 Changes
-* Increase the hydration
-* Add flaxseed meal
-* Improve shaping
+* Add spelt
 
 Scaled to my 1.1L pullman pan.
 
-Mixed the sponge using KA WW flour at 18:15 and left it on the counter. Room
-temperature is about 72F.
+Mixed the sponge using KA WW flour at 19:00 and left it on the counter. Room
+temperature is about 76F.
 
-Sponge pH at 7:50 is ?. It has more than doubled overnight. 
+Sponge pH at 7:58 is 4.02. It has doubled overnight. 
 
 I ran the bread machine dough cycle. Started at 8:07. Stopped after 5 minutes
 and set the timer to start in 20 minutes.
 
-The pH after initial mix and 20 minute rest is 5.21.
+pH after kneading is 5.15. I removed dough from the pan and placed it in a
+1L cup. About 400mL at 9:10.
 
-pH after kneading is 5.17. I removed dough from the pan and placed it in a
-measuring cup. About 400mL at 9:05.
-
-More than doubled at 10:20. Onto counter, S&F into a ball and left for 22
+Reached 1L at 10:10. Onto counter, S&F into a ball and left for 20
 minutes. Not sticky but very elastic; much more so than the last loaf.
 
-Now to attempt to shape it properly.
+Shaping went well. I don't think it was as relaxed as last time. I scored the
+top of it before putting it in the pan.
 
-Into pan about 10:50. Not sticky at all. Shaping went better though I had some
-assymetry.
+Into pan about 10:45. Not sticky at all.
 
-Baked about 12:35 for 25 minutes in preheated 350F oven. About 3/4 inch above the
+Baked about 12:12 for 25 minutes in preheated 350F oven. About 3/4 inch above the
 top of the pan. 
 
-187F inside. Back into oven out of pan for 7 minutes; final internal temp is
-205F.
+182F inside. Back into oven out of pan for 5 minutes; final internal temp is
+200F.
 
-Looks great. Much improved appearance. The cooler RT and less yeast really
-slowed it down.
+Looks great. Much improved appearance. I like the look of the pre-rise scoring.
 
-Good flavor and texture. Excellent loaf.
+Good flavor and texture. The best loaf yet!
+
 
 /*+
 starter............................(3.6g = 1.5%)
@@ -90,10 +87,10 @@ sponge + 5.0g......................(72.0g = 30.0%)
    36.1  ww flour          14.1%
    37.1  water             14.4%
 
-grain..............................(120.0g = 50.0%)
-   58.8  prairie gold      24.5%
-   58.8  hard red          24.5%
-    2.40 wgbi               1.0%
+grain..............................(144.0g = 60.0%)
+   60.0  prairie gold      25.0%
+   60.0  hard red          25.0%
+   24.0  spelt             10.0%
 
 wet................................(237.1g = 98.8%)
    72.0  sponge            30.0%
@@ -102,12 +99,13 @@ wet................................(237.1g = 98.8%)
    19.2  honey              8.0%
 
 dry................................(222.4g = 92.7%)
-  120    grain             50.0%
-   79.2  bread flour       33.0%
+  144    grain             60.0%
+   52.3  bread flour       21.8%
     8.12 nido               3.4%
     4.80 flaxseed           2.0%
     4.80 potato flakes      2.0%
     4.01 salt               1.7%
+    2.88 wgbi               1.2%
     1.44 yeast              0.6%
 
 dough..............................(459.5g = 191.5%)
@@ -118,5 +116,4 @@ dough..............................(459.5g = 191.5%)
   168    total water       70.0%
    19.2  total fat          8.0%
 +*/
-
 
