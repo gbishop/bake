@@ -1,0 +1,65 @@
+Fermented Oat Bread
+
+from https://www.ellyseveryday.com/ellys-everyday-blog/fermented-oats-whole-grain-sourdough
+
+She says this fits a 1L pan. Seems heavy to me but I guess this has much less
+rise.
+
+starter:
+  rye
+  water
+  hydration = 60%
+
+sponge:
+  oats
+  water 
+  starter = 8g
+  hydration = 200%
+
+dough:
+  ww_flour
+  flaxseed_meal = 13g
+  salt = 8g
+  yeast = 0.5% // for safety
+  sponge = 85%
+  water
+  hydration = 100%
+  total = 1000g
+
+Made the sponge at 18:15 left on counter overnight.
+
+Ground the hard red wheat at 18:30, mixed with the flaxseed meal and the salt. 
+
+pH of the sponge was 5.00 at 7:15. Mixed the dough holding back 53g of water and
+rested it for 30 minutes.
+
+S&F every 30 minutes. pH at 8:50 is 5.37. At 9:15 pH is 5.34. Getting more
+doughlike.
+
+I baked this in the 2L pullman because there was no way it was going to fit
+in the 1L pan. I don't know how she did it.
+
+I didn't care for the resulting loaf. 
+
+/*+
+starter............................(8.0g = 1.6%)
+    5.00 rye                1.0%
+    3.00 water              0.6%
+
+sponge.............................(420.5g = 85.0%)
+  135    oats              27.3%
+  277    water             56.1%
+    8.00 starter            1.6%
+
+dough..............................(1000.0g = 202.1%)
+  342    ww flour          69.0%
+   13.0  flaxseed meal      2.6%
+    8.00 salt               1.6%
+    2.47 yeast              0.5%
+  421    sponge            85.0%
+  214    water             43.3%
+
+  495    total flour      100.0%
+  495    total water      100.0%
++*/
+
