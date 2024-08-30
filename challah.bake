@@ -1,0 +1,53 @@
+Challah from Serious Eats
+
+base:
+  water = 32.79%
+  egg = whole(16.39%, 50g)
+  sugar = 7.38%
+  bread_flour = 77.87%
+  yeast = 1.15%
+
+paste:
+  egg_yolk = whole(4.92%, 18g)
+  olive_oil = 11.48%
+  honey = 7.38%
+  salt = 1.97%
+  bread_flour = 22.13%
+
+wash:
+  egg = 8.20%
+  water = 0.82%
+
+dough:
+  base
+  paste
+  scale = 300g
+
+/*+
+base...............................(407.6g = 135.9%)
+   98.4  water             32.8%
+   50.0  egg               16.7%
+   22.1  sugar              7.4%
+  234    bread flour       77.9%
+    3.45 yeast              1.1%
+
+paste..............................(146.9g = 49.0%)
+   18.0  egg yolk           6.0%
+   34.4  olive oil         11.5%
+   22.1  honey              7.4%
+    5.91 salt               2.0%
+   66.4  bread flour       22.1%
+
+wash...............................(27.1g = 9.0%)
+   24.6  egg                8.2%
+    2.46 water              0.8%
+
+dough..............................(554.5g = 184.8%)
+  408    base             135.9%
+  147    paste             49.0%
+
+  300    total flour      100.0%
+  149    total water       49.5%
+   44.3  total fat         14.8%
++*/
+
