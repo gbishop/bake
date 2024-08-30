@@ -7,8 +7,8 @@ starter:
 
 sponge + 5g: // allow for 5g of loss
   starter = 10% * total_flour
-  ww_flour
   water
+  ww_flour
   hydration = 100%
 
 grain:
@@ -40,41 +40,51 @@ dough:
   total_fat = 8%
   total_flour = 240g
 
-August 26, 2024
+August 30, 2024
 
 Changes
-* Add spelt
+* Knead by hand.
 
 Scaled to my 1.1L pullman pan.
 
-Mixed the sponge using KA WW flour at 19:00 and left it on the counter. Room
-temperature is about 76F.
+Mixed the sponge using KA WW flour at 16:40 and left it on the counter. Room
+temperature is about 78F.
 
-Sponge pH at 7:58 is 4.02. It has doubled overnight. 
+Sponge pH at 8:10 is 4.02. It has doubled overnight. 
 
-I ran the bread machine dough cycle. Started at 8:07. Stopped after 5 minutes
-and set the timer to start in 20 minutes.
+Finished mixing at 8:20. Dry was 4g short. Why? I forgot the potato flakes. I
+added them at 8:25.
 
-pH after kneading is 5.15. I removed dough from the pan and placed it in a
-1L cup. About 400mL at 9:10.
+Hand kneaded for 8 minutes. Got a decent window pane at the end. Not very sticky
+at all. I could probably raise the hydration. DT = 84F.
 
-Reached 1L at 10:10. Onto counter, S&F into a ball and left for 20
-minutes. Not sticky but very elastic; much more so than the last loaf.
+I placed it in a 1L cup. About 400mL at 9:10.
 
-Shaping went well. I don't think it was as relaxed as last time. I scored the
-top of it before putting it in the pan.
+Reached 1L at 10:10. Onto counter, S&F into a ball and left for 30
+minutes. Not sticky nicely elastic.
 
-Into pan about 10:45. Not sticky at all.
+Shaping went well. Didn't use flour this time and no sticking. I'm hoping for
+better internal adhesion and less tunnels. Maybe I need to avoid the gap between
+the sides of the triangle?
 
-Baked about 12:12 for 25 minutes in preheated 350F oven. About 3/4 inch above the
+Into pan about 10:50. Not sticky. I forgot to score it before going into the pan
+so I did it just before baking.
+
+Baked about 12:10 for 25 minutes in preheated 350F oven. About 0.5 inch above the
 top of the pan. 
 
-182F inside. Back into oven out of pan for 5 minutes; final internal temp is
-200F.
+182F inside. Why is it 10 degrees cooler? Back into oven out of pan for 10
+minutes; final internal temp is 198.
 
-Looks great. Much improved appearance. I like the look of the pre-rise scoring.
+Not as tall as usual. It actually shrank a little. Sorry kneading? It felt OK.
 
-Good flavor and texture. The best loaf yet!
+Looks good. The post rise scoring is not as nice as prerise.
+
+It had no oven spring. About 86% of the height of the previous loaf.
+
+Good flavor and texture. Tastes good, a little less sour than previous. I think
+I just need to improve my kneading. Or, the dough temperature was lower than it
+is when coming out of the bread machine. Maybe that made the difference?
 
 
 /*+
@@ -84,8 +94,8 @@ starter............................(3.6g = 1.5%)
 
 sponge + 5.0g......................(72.0g = 30.0%)
     3.85 starter            1.5%
-   36.1  ww flour          14.1%
    37.1  water             14.4%
+   36.1  ww flour          14.1%
 
 grain..............................(144.0g = 60.0%)
    60.0  prairie gold      25.0%
