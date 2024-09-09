@@ -38,83 +38,102 @@ dough:
   dry
   total_water = 70%
   total_fat = 8%
-  total_flour = 240g
+  total_flour = 500g
 
-September 2, 2024
+September 7, 2024
 
 Changes
-* Knead by hand another attempt.
+* Try Catherine's technique
+* Use KA shaping method
+* Roll in wheat germ
+* 2.3L loaf
 
-Scaled to my 1.1L pullman pan.
+Next time
+* Grind the potato flakes with the grains
+* Improve my shaping.
+* Try fermenting the sponge at a lower temp in the SDH.
 
-Mixed the sponge using KA WW flour at 18:00 and left it on the counter. Room
-temperature is about 78F.
+Scaled to my 2.3L pullman pan.
 
-Sponge pH at 8:10 is ?. It has doubled overnight. 
+Mixed the sponge using KA WW flour at 16:45 and left it on the counter. Room
+temperature is about 74F.
 
-Finished mixing at 8:20. Rested for 30 minutes.
+Sponge pH at 8:10 is 3.84. It has doubled overnight. 
 
-Hand kneaded for 15 minutes. I did not get what felt like good development.
-Rested it 15 minutes while waiting for access then kneaded a few minutes in the
-mixer.
+Catherine's method
 
-I placed it in a 1L cup. About 400mL at 9:10.
+I measure out my water for my formula give or take 50-100 cc and then I put
+everything but the flour into that water. That means any levain- dry yeast,
+poolish or biga- salt, Trinity if I’m using ( EVVO, yogurt, honey) in =
+parts . Whisk thoroughly to incorporate all. Begin adding flour(s) and beat
+with a wooden spoon like a batter to begin the gluten phase of development.
+Add remaining flour, fold in bowl enough to wet all using the “ turn bowl
+with one hand spoon in other” method til all is moist. Stop cover autolyse
+30-60 minutes. When you return the gluten will be almost completely
+developed all you do is a few folds on wet counter and maybe a lamination
+and set the dough to rise.
 
-Reached 1L at 11:00. Onto counter, roughly shaped and into the pan.
+Finished mixing at 8:35. Rested for 60 minutes.
 
-Pretty disgusted with this loaf today. Not what I had hoped. 
+I placed it in a 2L cup. About 1L at 9:45.
 
-Baked about 12:10 for 25 minutes in preheated 350F oven. About 0.5 inch above the
+Reached 2L at 11:15. I shaped it as described here youtu.be/V95hh6NYuow?t=314.
+Onto counter, roughly shaped and into the pan. I liked the shaping method but I
+didn't make it wide enough. I rolled it in wheat germ as shown here
+youtu.be/V95hh6NYuow?t=448.
+
+Baked about 13:05 for 40 minutes in preheated 350F oven. About 0.5 inch above the
 top of the pan. 
 
-182F inside. Why is it 10 degrees cooler? Back into oven out of pan for 10
-minutes; final internal temp is 192. Again, why?
+The wheat germ disappeared on the sides. I guess it is pressed into the dough.
 
-Not as tall as usual. It actually shrank a little. Sorry kneading? It felt OK.
+165F inside. Back into oven out of pan for 15 minutes; final internal temp is
+192.
 
-Crazy sour. Why?
+Poorly shaped but otherwise looking good. pH is 4.60 after 5 hours cooling.
+Quite sour but not excessively. I think it'll be milder tomorrow. Nice uniform
+crumb. I can cut very thin slices. 
 
-It had no oven spring.
-
-It's OK but disappointing.
+Good flavor and texture. The wheat germ comes off and gets everywhere. It adds a
+nice texture and flavor.
 
 /*+
-starter............................(3.6g = 1.5%)
-    2.25 rye                0.9%
-    1.35 water              0.6%
+starter............................(7.5g = 1.5%)
+    4.69 rye                0.9%
+    2.81 water              0.6%
 
-sponge + 5.0g......................(72.0g = 30.0%)
-    3.85 starter            1.5%
-   37.1  water             14.4%
-   36.1  ww flour          14.1%
+sponge + 5.0g......................(150.0g = 30.0%)
+    7.75 starter            1.5%
+   74.6  water             14.4%
+   72.7  ww flour          14.1%
 
-grain..............................(144.0g = 60.0%)
-   60.0  prairie gold      25.0%
-   60.0  hard red          25.0%
-   24.0  spelt             10.0%
+grain..............................(300.0g = 60.0%)
+  125    prairie gold      25.0%
+  125    hard red          25.0%
+   50.0  spelt             10.0%
 
-wet................................(237.1g = 98.8%)
-   72.0  sponge            30.0%
-  125    water             52.1%
-   21.0  butter             8.7%
-   19.2  honey              8.0%
+wet................................(494.0g = 98.8%)
+  150    sponge            30.0%
+  260    water             52.1%
+   43.7  butter             8.7%
+   40.0  honey              8.0%
 
-dry................................(222.4g = 92.7%)
-  144    grain             60.0%
-   52.3  bread flour       21.8%
-    8.12 nido               3.4%
-    4.80 flaxseed           2.0%
-    4.80 potato flakes      2.0%
-    4.01 salt               1.7%
-    2.88 wgbi               1.2%
-    1.44 yeast              0.6%
+dry................................(463.3g = 92.7%)
+  300    grain             60.0%
+  109    bread flour       21.8%
+   16.9  nido               3.4%
+   10.0  flaxseed           2.0%
+   10.0  potato flakes      2.0%
+    8.35 salt               1.7%
+    6.00 wgbi               1.2%
+    3.00 yeast              0.6%
 
-dough..............................(459.5g = 191.5%)
-  237    wet               98.8%
-  222    dry               92.7%
+dough..............................(957.3g = 191.5%)
+  494    wet               98.8%
+  463    dry               92.7%
 
-  240    total flour      100.0%
-  168    total water       70.0%
-   19.2  total fat          8.0%
+  500    total flour      100.0%
+  350    total water       70.0%
+   40.0  total fat          8.0%
 +*/
 
