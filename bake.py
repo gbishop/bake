@@ -252,9 +252,9 @@ class Bake:
     def format_table(self, opt, scale):
         def fmt_grams(g):
             """Format grams in the table"""
-            if g >= 100:
+            if round(g, 0) >= 100:
                 r = f"{g:.0f}   "
-            elif g >= 10:
+            elif round(g, 1) >= 10:
                 r = f"{g:0.1f} "
             else:
                 r = f"{g:0.2f}"

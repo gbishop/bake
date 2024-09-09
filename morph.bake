@@ -1,17 +1,29 @@
 Start with soft white bread and morph to whole grain
 
+starter:
+  rye
+  water
+  hydration = 60%
+
+sponge + 5g: // allow for 5g of loss
+  starter = 10% * total_flour
+  water
+  ww_flour
+  hydration = 100%
+
 grain:
   prairie_gold
   hard_red
   spelt = 10%
 
 wet:
+  sponge = 30%
   water
   butter
   honey = 8%
 
 dry:
-  grain = 75%
+  grain = 60%
   bread_flour
   // half the water to milk
   nido = 50% * 13% * wet.water
@@ -19,65 +31,90 @@ dry:
   potato_flakes = 2%
   salt = 1.8% - 1.5% * wet.butter
   wgbi = 2% * grain.total
-  yeast = 1%
+  yeast = 0.6%
 
 dough:
   wet
   dry
   total_water = 70%
   total_fat = 8%
-  total_flour = 500g
+  total_flour = 240g
 
-September 3, 2024
+September 2, 2024
 
 Changes
-* Back to the bread machine for kneading
-* Make a 2.3L loaf because I won't be able to bake for a few days
-* No sourdough because of poor planning
+* Knead by hand another attempt.
 
-Scaled to my 2.3L pullman pan.
+Scaled to my 1.1L pullman pan.
 
-Mixed at 10:55. Rested for 30 minutes. Then ran the dough cycle for kneading.
+Mixed the sponge using KA WW flour at 18:00 and left it on the counter. Room
+temperature is about 78F.
 
-I placed it in a 2L cup. About 1L at 12:00.
+Sponge pH at 8:10 is ?. It has doubled overnight. 
 
-Reached 2L at 13:00. Onto counter, roughly shaped and into the pan.
+Finished mixing at 8:20. Rested for 30 minutes.
 
-Baked about 14:00 for 40 minutes in preheated 350F oven. About 0.5 inch above the
+Hand kneaded for 15 minutes. I did not get what felt like good development.
+Rested it 15 minutes while waiting for access then kneaded a few minutes in the
+mixer.
+
+I placed it in a 1L cup. About 400mL at 9:10.
+
+Reached 1L at 11:00. Onto counter, roughly shaped and into the pan.
+
+Pretty disgusted with this loaf today. Not what I had hoped. 
+
+Baked about 12:10 for 25 minutes in preheated 350F oven. About 0.5 inch above the
 top of the pan. 
 
-195F inside. Back into oven for 5 minutes without the pan. Final temp above 200.
+182F inside. Why is it 10 degrees cooler? Back into oven out of pan for 10
+minutes; final internal temp is 192. Again, why?
 
-Super tall. Really too soft making it hard to cut. I prefer higher density. I
-should not have increased the yeast. 
+Not as tall as usual. It actually shrank a little. Sorry kneading? It felt OK.
+
+Crazy sour. Why?
+
+It had no oven spring.
+
+It's OK but disappointing.
 
 /*+
-grain..............................(375.0g = 75.0%)
-  163    prairie gold      32.5%
-  163    hard red          32.5%
-   50.0  spelt             10.0%
+starter............................(3.6g = 1.5%)
+    2.25 rye                0.9%
+    1.35 water              0.6%
 
-wet................................(417.5g = 83.5%)
-  336    water             67.1%
-   41.8  butter             8.4%
-   40.0  honey              8.0%
+sponge + 5.0g......................(72.0g = 30.0%)
+    3.85 starter            1.5%
+   37.1  water             14.4%
+   36.1  ww flour          14.1%
 
-dry................................(545.2g = 109.0%)
-  375    grain             75.0%
-  107    bread flour       21.5%
-   21.8  nido               4.4%
-   10.00 flaxseed           2.0%
-   10.0  potato flakes      2.0%
-    8.37 salt               1.7%
-    7.50 wgbi               1.5%
-    5.00 yeast              1.0%
+grain..............................(144.0g = 60.0%)
+   60.0  prairie gold      25.0%
+   60.0  hard red          25.0%
+   24.0  spelt             10.0%
 
-dough..............................(962.7g = 192.5%)
-  417    wet               83.5%
-  545    dry              109.0%
+wet................................(237.1g = 98.8%)
+   72.0  sponge            30.0%
+  125    water             52.1%
+   21.0  butter             8.7%
+   19.2  honey              8.0%
 
-  500    total flour      100.0%
-  350    total water       70.0%
-   40.0  total fat          8.0%
+dry................................(222.4g = 92.7%)
+  144    grain             60.0%
+   52.3  bread flour       21.8%
+    8.12 nido               3.4%
+    4.80 flaxseed           2.0%
+    4.80 potato flakes      2.0%
+    4.01 salt               1.7%
+    2.88 wgbi               1.2%
+    1.44 yeast              0.6%
+
+dough..............................(459.5g = 191.5%)
+  237    wet               98.8%
+  222    dry               92.7%
+
+  240    total flour      100.0%
+  168    total water       70.0%
+   19.2  total fat          8.0%
 +*/
 
