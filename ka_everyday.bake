@@ -1,0 +1,24 @@
+dough:
+  ww_flour = 226g
+  ap_flour = 150g
+  salt = 7g
+  yeast = 6g
+  honey = 42g
+  butter = 28g
+  milk = 284g
+
+/*+
+dough..............................(743.0g = 197.6%)
+  226    ww flour          60.1%
+  150    ap flour          39.9%
+    7.00 salt               1.9%
+    6.00 yeast              1.6%
+   42.0  honey             11.2%
+   28.0  butter             7.4%
+  284    milk              75.5%
+
+  376    total flour      100.0%
+  259    total water       69.0%
+   32.3  total fat          8.6%
++*/
+
