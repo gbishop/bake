@@ -19,7 +19,7 @@ grain:
 wet:
   sponge = 30%
   water
-  butter
+  olive_oil
   honey = 8%
 
 dry:
@@ -29,7 +29,7 @@ dry:
   nido = 50% * 13% * wet.water
   flaxseed = 2%
   potato_flakes = 2%
-  salt = 1.8% - 1.5% * wet.butter
+  salt = 1.8%
   wgbi = 2% * grain.total
   yeast = 0.6%
 
@@ -38,27 +38,22 @@ dough:
   dry
   total_water = 70%
   total_fat = 8%
-  total_flour = 500g
+  total_flour = 240g
 
-September 7, 2024
+September 12, 2024
 
 Changes
-* Try Catherine's technique
-* Use KA shaping method
-* Roll in wheat germ
-* 2.3L loaf
-
-Next time
 * Grind the potato flakes with the grains
+* Use malt syrup
+* olive oil
 * Improve my shaping.
 * Try fermenting the sponge at a lower temp in the SDH.
 
-Scaled to my 2.3L pullman pan.
+Scaled to my 1.1L pullman pan.
 
-Mixed the sponge using KA WW flour at 16:45 and left it on the counter. Room
-temperature is about 74F.
+Mixed the sponge using KA WW flour at 21:30 and put it in the SDH at 78F.
 
-Sponge pH at 8:10 is 3.84. It has doubled overnight. 
+Sponge pH at 12:30 is ?. It has doubled overnight. 
 
 Catherine's method
 
@@ -73,67 +68,60 @@ with one hand spoon in other” method til all is moist. Stop cover autolyse
 developed all you do is a few folds on wet counter and maybe a lamination
 and set the dough to rise.
 
-Finished mixing at 8:35. Rested for 60 minutes.
+Finished mixing at 12:45. Rested for 60 minutes. A few S&F and then into the 1L
+cup.
 
-I placed it in a 2L cup. About 1L at 9:45.
+I placed it in a 1L cup about 400mL at 13:45. Placed it in the SDH at 78F.
 
-Reached 2L at 11:15. I shaped it as described here youtu.be/V95hh6NYuow?t=314.
-Onto counter, roughly shaped and into the pan. I liked the shaping method but I
-didn't make it wide enough. I rolled it in wheat germ as shown here
-youtu.be/V95hh6NYuow?t=448.
+After 2 hours it was barely at 1L. Attempted to shape but very sticky.
+What is different today? Into the pan about 15:50.
 
-Baked about 13:05 for 40 minutes in preheated 350F oven. About 0.5 inch above the
-top of the pan. 
+Baked about 17:25 for 25 minutes in preheated 350F oven. About 0.5 inch above the
+top of the pan. After 25 minutes the T is 175 into oven without pan for 10 more
+minutes.
 
-The wheat germ disappeared on the sides. I guess it is pressed into the dough.
+I've been thinking this has been really slow but it is less than 5 hours from
+when I started.
 
-165F inside. Back into oven out of pan for 15 minutes; final internal temp is
-192.
-
-Poorly shaped but otherwise looking good. pH is 4.60 after 5 hours cooling.
-Quite sour but not excessively. I think it'll be milder tomorrow. Nice uniform
-crumb. I can cut very thin slices. 
-
-Good flavor and texture. The wheat germ comes off and gets everywhere. It adds a
-nice texture and flavor.
+It doesn't seem to smell the same.
 
 /*+
-starter............................(7.5g = 1.5%)
-    4.69 rye                0.9%
-    2.81 water              0.6%
+starter............................(3.6g = 1.5%)
+    2.25 rye                0.9%
+    1.35 water              0.6%
 
-sponge + 5.0g......................(150.0g = 30.0%)
-    7.75 starter            1.5%
-   74.6  water             14.4%
-   72.7  ww flour          14.1%
+sponge + 5.0g......................(72.0g = 30.0%)
+    3.85 starter            1.5%
+   37.1  water             14.4%
+   36.1  ww flour          14.1%
 
-grain..............................(300.0g = 60.0%)
-  125    prairie gold      25.0%
-  125    hard red          25.0%
-   50.0  spelt             10.0%
+grain..............................(144.0g = 60.0%)
+   60.0  prairie gold      25.0%
+   60.0  hard red          25.0%
+   24.0  spelt             10.0%
 
-wet................................(494.0g = 98.8%)
-  150    sponge            30.0%
-  260    water             52.1%
-   43.7  butter             8.7%
-   40.0  honey              8.0%
+wet................................(236.6g = 98.6%)
+   72.0  sponge            30.0%
+  129    water             53.6%
+   16.7  olive oil          7.0%
+   19.2  honey              8.0%
 
-dry................................(463.3g = 92.7%)
-  300    grain             60.0%
-  109    bread flour       21.8%
-   16.9  nido               3.4%
-   10.0  flaxseed           2.0%
-   10.0  potato flakes      2.0%
-    8.35 salt               1.7%
-    6.00 wgbi               1.2%
-    3.00 yeast              0.6%
+dry................................(222.9g = 92.9%)
+  144    grain             60.0%
+   52.3  bread flour       21.8%
+    8.37 nido               3.5%
+    4.80 flaxseed           2.0%
+    4.80 potato flakes      2.0%
+    4.32 salt               1.8%
+    2.88 wgbi               1.2%
+    1.44 yeast              0.6%
 
-dough..............................(957.3g = 191.5%)
-  494    wet               98.8%
-  463    dry               92.7%
+dough..............................(459.6g = 191.5%)
+  237    wet               98.6%
+  223    dry               92.9%
 
-  500    total flour      100.0%
-  350    total water       70.0%
-   40.0  total fat          8.0%
+  240    total flour      100.0%
+  168    total water       70.0%
+   19.2  total fat          8.0%
 +*/
 
