@@ -87,6 +87,7 @@ Ingredients = {
     "nido": {"fat": 0.3},
     "butter": {"water": 0.18, "fat": 0.80},
     "honey": {"water": 0.17},
+    "malt_syrup": {"water": 0.2},
     # oils
     "oil": {"fat": 1.0},
     "olive_oil": {"fat": 1.0},
