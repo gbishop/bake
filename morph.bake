@@ -8,8 +8,8 @@ starter:
 sponge + 5g: // allow for 5g of loss
   starter = 10% * total_flour
   water
-  ww_flour
-  hydration = 100%
+  rye
+  hydration = 120%
 
 grain:
   prairie_gold
@@ -40,54 +40,56 @@ dough:
   total_fat = 8%
   total_flour = 240g
 
-September 13, 2024
+September 16, 2024
 
 Changes
-* Grind potato flakes with grains
-* Back to the bread machine.
+* Rye in the sponge at 120% hydration
+* Try cool overnight ferment.
+
+Next time
+* Move the potato flakes back into the dry; the mill doesn't handle them well.
+* Longer first proof.
 
 Scaled to my 1.1L pullman pan.
 
-Mixed the sponge using KA WW flour at 18:45 and put it in the 80F SDH.
+Mixed the sponge using fresh ground rye flour at 17:00 and put it in the 68F SDH.
 
-Sponge pH at 7:55 is ? the temperature was 77 so 3 degrees lower than the
-setting. It has doubled overnight and the top is flat with a few tiny holes.
-I've got to somehow remember to measure the pH!
+Sponge pH at 9:00 is 4.18 the temperature was 66.
+It has increased about 60% overnight and the top is flat with a few tiny holes.
 
-I ran the bread machine dough cycle. Started at 8:02. Stopped after 5 minutes
+I ran the bread machine dough cycle. Started at 9:10. Stopped after 5 minutes
 and set the timer to start in 30 minutes.
 
-pH after kneading is 5.18 and DT is 85F. I removed dough from the pan and placed it in a
-1L cup and into the SDH set for 83F. About 400mL at 9:08. 700mL at 9:42. 800mL
-at 9:50.
+pH after kneading is 5.25 and DT is 85F. I removed dough from the pan and placed
+it in a 1L cup and into the SDH set for 83F. About 400mL at 10:25. 800mL at
+11:00.
 
-Onto lightly floured counter. Not sticky but very elastic. Shaped by 1/4 over on
-each side then rolling. I scored the top before putting in the pan at 9:57.
+Onto lightly floured counter. Not sticky but very elastic. I tried for a
+triangular shape before rolling but didn't succeed. I did better with the simple
+rolled rectangle. I forgot to score it.
 
-I let it rise in the oven set to 100F and then turned off.
+Into the pan about about 11:10. I let it rise in the oven set to 100F and then
+turned off.
 
-Baked about 11:00 for 27 minutes in preheated 350F oven. About 1 inch above the
+Baked about 12:15 for 27 minutes in preheated 350F oven. About 1 inch above the
 top of the pan. 
 
-202F inside after 27 minutes. Looks great.
+205F inside after 27 minutes. Looks good. A little tearing on one side and some
+hips. A bit too tall. 
 
-Is it the BM kneading or the temperature that makes the difference? The previous
-loaf had the same ingredients (except for butter vs olive oil) but it was
-stickier and shorter.
+I should have let it go longer on the first proof.
 
-Great flavor and texture. The best loaf yet!
-
-My shaping seems to be perfect!
+Good flavor and texture. Barely sour.
 
 /*+
-starter............................(3.6g = 1.5%)
-    2.25 rye                0.9%
-    1.35 water              0.6%
+starter............................(3.3g = 1.4%)
+    2.05 rye                0.9%
+    1.23 water              0.5%
 
 sponge + 5.0g......................(72.0g = 30.0%)
-    3.85 starter            1.5%
-   37.1  water             14.4%
-   36.1  ww flour          14.1%
+    3.50 starter            1.4%
+   40.7  water             15.9%
+   32.8  rye               12.8%
 
 grain..............................(148.8g = 62.0%)
    60.0  prairie gold      25.0%
@@ -95,24 +97,24 @@ grain..............................(148.8g = 62.0%)
    24.0  spelt             10.0%
     4.80 potato flakes      2.0%
 
-wet................................(237.1g = 98.8%)
+wet................................(233.9g = 97.5%)
    72.0  sponge            30.0%
-  125    water             52.1%
-   21.0  butter             8.7%
+  122    water             50.7%
+   21.0  butter             8.8%
    19.2  honey              8.0%
 
-dry................................(222.4g = 92.7%)
+dry................................(225.4g = 93.9%)
   149    grain             62.0%
-   52.2  bread flour       21.8%
-    8.12 nido               3.4%
+   55.5  bread flour       23.1%
+    7.91 nido               3.3%
     4.80 flaxseed           2.0%
-    4.01 salt               1.7%
+    4.00 salt               1.7%
     2.98 wgbi               1.2%
     1.44 yeast              0.6%
 
-dough..............................(459.5g = 191.5%)
-  237    wet               98.8%
-  222    dry               92.7%
+dough..............................(459.3g = 191.4%)
+  234    wet               97.5%
+  225    dry               93.9%
 
   240    total flour      100.0%
   168    total water       70.0%
