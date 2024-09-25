@@ -5,11 +5,12 @@ starter:
   water
   hydration = 60%
 
-sponge + 5g: // allow for 5g of loss
+biga + 5g: // allow for 5g of loss
   starter = 10% * total_flour
   water
   ww_flour
-  hydration = 100%
+  total_flour = 15%
+  hydration = 60%
 
 grain:
   prairie_gold
@@ -17,7 +18,7 @@ grain:
   spelt = 10%
 
 wet:
-  sponge = 30%
+  biga
   water
   butter
   honey = 8%
@@ -40,80 +41,83 @@ dough:
   total_fat = 8%
   total_flour = 240g
 
-September 21, 2024
+September 24, 2024
 
 Changes
-* ww sponge, start warm, rise at 72F
-* rt first rise
+* try a 24 hour biga at 59F
 
 Scaled to my 1.1L pullman pan.
 
-Mixed the sponge using king arthur whole wheat flour at 20:45 and put it in the
-73F SDH.
+Mixed the biga water and starter then sprinkled king arthur whole wheat flour on
+top. Into the SDH at 8:20 set for 59F. The top flour did not hydrate like I
+expected so I gently stirred it at about 20:00.
 
-Sponge pH at 8:25 is 4.73 the temperature was 70.
-It has increased about 75% overnight and the top is domed.
+Biga pH at 8:00 is ? the temperature was ?. The biga was too loose to measure
+temp or pH. I mixed it with the water first so it could hydrate.
 
-Why is the SDH so far off the set point?
-
-I ran the bread machine dough cycle. Started at 8:30. Stopped after 5 minutes
+I ran the bread machine dough cycle. Started at 8:07. Stopped after 5 minutes
 and set the timer to start in 30 minutes.
 
-pH after kneading is 5.49 and DT is 85F. I removed dough from the pan and placed
-it in a 1L cup and into the SDH set for 85F at 9:38.
+I removed dough from the pan and placed it in a 1L cup and into the oven heated
+to 100F and turned off with light off.
 
-At 11:04 the pH is 5.22 and DT is 85F.
+At 10:34 the pH is 5.34 and DT is ?.
 
-Onto lightly floured counter. Not sticky but very elastic. I did a simple rolled
-rectangle. I scored it after putting it into the pan.
+Onto lightly floured counter. Not sticky but very elastic. I tried the triangle
+roll. It might have produced a more uniform shape. I scored before putting it in
+the pan.
 
-Into the pan about about 11:15. I let it rise in the oven set to 100F and then
+Into the pan about about 10:40. I let it rise in the oven set to 100F and then
 turned off.
 
-Baked about 12:25 for 27 minutes in preheated 350F oven. About 3/4 inch above the
+Baked about 12:00 for 27 minutes in preheated 350F oven. About 3/4 inch above the
 top of the pan. 
 
-202F inside after 27 minutes. Looks great! 4.5 inches tall. Pretty uniform
-shape, taller in the middle.
+203F inside after 27 minutes. Looks great! 4.5 inches tall. Pretty uniform
+shape, pretty level top today.
 
-Good flavor and texture. Barely sour. Ivy likes it!
+Good flavor and texture. Mildly sour. A good loaf but I don't see that the biga
+has much benefit. It does allow me to mix the preferment in the morning rather
+than the evening but I think that with temperature control I could achieve that
+with higher hydration.
 
-A small tunnel at the very top. 
+The triangle-roll shaping worked well. The loaf is more uniform than any I've
+made before. I don't think the scoring adds anything.
 
 /*+
 starter............................(3.6g = 1.5%)
     2.25 rye                0.9%
     1.35 water              0.6%
 
-sponge + 5.0g......................(72.0g = 30.0%)
-    3.85 starter            1.5%
-   37.1  water             14.4%
-   36.1  ww flour          14.1%
+biga + 5.0g........................(57.6g = 24.0%)
+    3.91 starter            1.5%
+   22.0  water              8.4%
+   36.7  ww flour          14.1%
 
 grain..............................(144.0g = 60.0%)
    60.0  prairie gold      25.0%
    60.0  hard red          25.0%
    24.0  spelt             10.0%
 
-wet................................(237.1g = 98.8%)
-   72.0  sponge            30.0%
-  125    water             52.1%
-   21.0  butter             8.7%
+wet................................(236.8g = 98.7%)
+   57.6  biga              24.0%
+  139    water             58.1%
+   20.6  butter             8.6%
    19.2  honey              8.0%
 
-dry................................(221.9g = 92.5%)
+dry................................(222.8g = 92.8%)
   144    grain             60.0%
    52.3  bread flour       21.8%
-    8.12 nido               3.4%
+    9.06 nido               3.8%
     4.80 potato flakes      2.0%
     4.80 flaxseed           2.0%
     4.01 salt               1.7%
     2.88 wgbi               1.2%
     0.96 yeast              0.4%
 
-dough..............................(459.0g = 191.3%)
-  237    wet               98.8%
-  222    dry               92.5%
+dough..............................(459.7g = 191.5%)
+  237    wet               98.7%
+  223    dry               92.8%
 
   240    total flour      100.0%
   168    total water       70.0%
