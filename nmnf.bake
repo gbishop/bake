@@ -1,0 +1,64 @@
+No muss no fuss starter rebuild
+
+starter:
+  rye
+  water
+  hydration = 60%
+
+8am
+
+stage1:
+  starter
+  rye = 300% * starter.total_flour
+  water
+  hydration = 100%
+
+12pm
+
+stage2:
+  stage1
+  rye = stage1.total_flour
+  water
+  hydration = 80%
+
+4pm
+
+stage3:
+  stage2
+  rye = stage2.total_flour
+  water
+  hydration = 60%
+
+dough:
+  stage3
+  total = 160g
+
+Started at 8am in 86F SDH. At noon the pH is 4.76, no visible rise. 
+
+/*+
+starter............................(10.0g = 10.0%)
+    6.25 rye                6.2%
+    3.75 water              3.7%
+
+stage1.............................(50.0g = 50.0%)
+   10.0  starter           10.0%
+   18.7  rye               18.7%
+   21.2  water             21.2%
+
+stage2.............................(90.0g = 90.0%)
+   50.0  stage1            50.0%
+   25.0  rye               25.0%
+   15.0  water             15.0%
+
+stage3.............................(160.0g = 160.0%)
+   90.0  stage2            90.0%
+   50.0  rye               50.0%
+   20.0  water             20.0%
+
+dough..............................(160.0g = 160.0%)
+  160    stage3           160.0%
+
+  100    total flour      100.0%
+   60.0  total water       60.0%
++*/
+
