@@ -1,0 +1,43 @@
+50% oat loaf from Lin
+
+soaker:
+  oats = 50%
+  milk = 75%
+  lemon_juice = 5%
+  rye_flour = 0.67%
+
+Mix and leave on counter for 3 hours before refrigerating overnight.
+
+dough:
+  soaker
+  bread_flour
+  ww_flour = 10%
+  yeast = 0.33%
+  salt = 1.4%
+  honey = 5%
+  water = 21.5%
+  total_flour = 240g
+
+Bulk took 8 hours for her and proof was 2 hours.
+
+/*+
+soaker.............................(313.6g = 130.7%)
+  120    oats              50.0%
+  180    milk              75.0%
+   12.0  lemon juice        5.0%
+    1.61 rye flour          0.7%
+
+dough..............................(499.8g = 208.2%)
+  314    soaker           130.7%
+   94.4  bread flour       39.3%
+   24.0  ww flour          10.0%
+    0.79 yeast              0.3%
+    3.36 salt               1.4%
+   12.0  honey              5.0%
+   51.6  water             21.5%
+
+  240    total flour      100.0%
+  210    total water       87.6%
+    6.30 total fat          2.6%
++*/
+
