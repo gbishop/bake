@@ -88,6 +88,7 @@ Ingredients = {
     "butter": {"water": 0.18, "fat": 0.80},
     "honey": {"water": 0.17},
     "malt_syrup": {"water": 0.2},
+    "lemon_juice": {"water": 1.0},
     # oils
     "oil": {"fat": 1.0},
     "olive_oil": {"fat": 1.0},
