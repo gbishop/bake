@@ -12,12 +12,13 @@ Mix and leave on counter for 3 hours before refrigerating overnight.
 dough:
   soaker
   bread_flour
-  ww_flour = 9.68%
+  ww_flour = 25% * bread_flour
   yeast = 0.32%
   salt = 1.29%
   honey = 4.84%
-  water = 20.97%
+  water
   total_flour = 310g
+  hydration = 87.1%
 
 Bulk took 8 hours for her and proof was 2 hours.
 
@@ -28,7 +29,7 @@ soaker.............................(391.6g = 126.3%)
     7.01 lemon juice        2.3%
    10.0  rye flour          3.2%
 
-dough..............................(626.6g = 202.1%)
+dough..............................(626.7g = 202.1%)
   392    soaker           126.3%
   120    bread flour       38.7%
    30.0  ww flour           9.7%
