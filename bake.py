@@ -21,7 +21,7 @@ Statement: ( Part | Text ) ;
 
 Text: /^.*$/ ;
 
-Part: name=ID ( '+' loss=Number 'g' )? ':' Com? '\n' relations*=Relation['\n'];
+Part: name=ID ( '+' loss=Number unit=/[%g]/ )? ':' Com? '\n' relations*=Relation['\n'];
 
 Com: '//' /.*/;
 
@@ -208,7 +208,7 @@ class Bake:
         for part in textx.get_children_of_type("Part", self.model):
             self.parts.append(part.name)
             if part.loss:
-                self.loss[part.name] = part.loss
+                self.loss[part.name] = [part.loss, part.unit]
 
         # add each part to the program
         for part in textx.get_children_of_type("Part", self.model):
@@ -272,7 +272,9 @@ class Bake:
                 for name in program.vars
                 if name[0] == partName and not name[1].startswith("_")
             }
-            loss = self.loss.get(partName, 0)
+            loss, lunit = self.loss.get(partName, [0, "g"])
+            if lunit == "%":
+                loss /= scale
             gt = g = pvars["total"]
             bp = g * scale
             if loss > 0:
