@@ -1,4 +1,17 @@
-Yeasted for Jan, use less yeast next time
+Start with soft white bread and morph to whole grain
+
+starter:
+  rye
+  water
+  hydration = 60%
+
+sponge + 2%: // allow for 2% loss
+  starter = 10% * total_flour
+  water
+  oats = ww_flour
+  ww_flour
+  total_flour = 15%
+  hydration = 100%
 
 grain:
   prairie_gold
@@ -7,20 +20,20 @@ grain:
   rye = 5%
 
 wet:
+  sponge
   water
   butter
   honey = 8%
 
 dry:
   grain
-  oats = 5%
   // half the water to milk
   nido = 50% * 13% * wet.water
   potato_flakes = 2%
   flaxseed_meal = 5%
   salt = 1.8% - 1.3% * wet.butter
   wgbi = 2%
-  yeast = 0.8% // this was too much, go back to 0.4%
+  yeast = 0.4%
 
 dough:
   wet
@@ -29,51 +42,74 @@ dough:
   total_fat = 8%
   total_flour = 480g
 
-November 9, 2024
+November 12, 2024
 
 Changes
-* Yeasted 1-day
+* Longer first ferment
 
 Scaled to my 2.3L pullman pan.
 
-I ran the bread machine dough cycle. Started at 8:20. Stopped after 5 minutes
+Mixed the sponge using rolled oats and king arthur whole wheat flour at 20:20
+and put it in the 90F SDH.
+
+Sponge pH at 7:45 is 4.14 the temperature was 83. It has increased about 55%
+overnight and the top is flat. The SDH only managed 85.8 at the top of the
+container. Room temperature was 68.
+
+I ran the bread machine dough cycle. Started at 7:57. Stopped after 5 minutes
 and set the timer to start in 30 minutes. The pan with paddle weighs 404g.
 
-I put the dough in the 2L cambro and put it in the oven with the light on. About
-0.8L. Into the oven about 9:15.
+pH after kneading is 5.3 and DT is 88F. I put the dough in the 2L cambro
+and put it in the oven with the light on. About 0.8L. Into the oven about
+9:10.
 
-Out at 10:15 it has risen to past 2L and pressing the lid.
+Out at 10:43 it has risen to above 2L. pH is 5.0 dt is 83.
 
-Into the pan about about 10:20.
+Into the pan about about 10:50.
 
-Baked at 11:00 about 1/2 inch above the top of the pan in 350F oven. Removed
+Baked at 12:10 about 1/2 inch above the top of the pan in 350F oven. Removed
 after 44 minutes, 202F inside. 
 
+Looks good. Some minor tearing on one side. 5.75 inches tall. Hippy on the side
+with tearing. I should have let first rise go longer.
+
+Good flavor and texture. This loaf is close to perfect!
+
 /*+
-grain..............................(412.8g = 86.0%)
-  170    prairie gold      35.5%
-  170    hard red          35.5%
+starter............................(7.2g = 1.5%)
+    4.50 rye                0.9%
+    2.70 water              0.6%
+
+sponge + 9.6g......................(144.0g = 30.0%)
+    7.68 starter            1.5%
+   73.9  water             14.4%
+   36.0  oats               7.0%
+   36.0  ww flour           7.0%
+
+grain..............................(364.8g = 76.0%)
+  146    prairie gold      30.5%
+  146    hard red          30.5%
    48.0  spelt             10.0%
    24.0  rye                5.0%
 
-wet................................(400.8g = 83.5%)
-  322    water             67.1%
-   40.1  butter             8.4%
+wet................................(474.2g = 98.8%)
+  144    sponge            30.0%
+  250    water             52.1%
+   41.9  butter             8.7%
    38.4  honey              8.0%
 
-dry................................(512.9g = 106.9%)
-  413    grain             86.0%
-   24.0  oats               5.0%
-   20.9  nido               4.4%
+dry................................(434.3g = 90.5%)
+  365    grain             76.0%
+   16.2  nido               3.4%
     9.60 potato flakes      2.0%
    24.0  flaxseed meal      5.0%
-    8.12 salt               1.7%
+    8.10 salt               1.7%
     9.60 wgbi               2.0%
-    3.84 yeast              0.8%
+    1.92 yeast              0.4%
 
-dough..............................(913.7g = 190.4%)
-  401    wet               83.5%
-  513    dry              106.9%
+dough..............................(908.5g = 189.3%)
+  474    wet               98.8%
+  434    dry               90.5%
 
   480    total flour      100.0%
   336    total water       70.0%
