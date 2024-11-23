@@ -1,0 +1,61 @@
+Hammelman's 5 grain sourdough
+
+starter:
+  rye
+  water
+  hydration = 60%
+
+sponge:
+  bread_flour = 19.40%
+  water = 24.25%
+  starter = 3.85%
+
+soaker:
+  bulgar = 7.01%
+  flaxseed_meal = 7.01%
+  sunflower_seeds = 6.07%
+  oats = 6.07%
+  boiling_water = 34.22%
+  salt = 0.43%
+
+dough:
+  soaker
+  sponge
+  bread_flour = 38.75%
+  ww_flour = 19.33%
+  water = 21.39%
+  salt = 1.45%
+  yeast = 0.17%
+  total_flour = 480g
+
+/*+
+starter............................(18.5g = 3.9%)
+   11.6  rye                2.4%
+    6.93 water              1.4%
+
+sponge.............................(228.0g = 47.5%)
+   93.1  bread flour       19.4%
+  116    water             24.2%
+   18.5  starter            3.9%
+
+soaker.............................(291.9g = 60.8%)
+   33.7  bulgar             7.0%
+   33.7  flaxseed meal      7.0%
+   29.1  sunflower seeds    6.1%
+   29.1  oats               6.1%
+  164    boiling water     34.2%
+    2.06 salt               0.4%
+
+dough..............................(909.2g = 189.4%)
+  292    soaker            60.8%
+  228    sponge            47.5%
+  186    bread flour       38.8%
+   92.8  ww flour          19.3%
+  103    water             21.4%
+    6.96 salt               1.4%
+    0.82 yeast              0.2%
+
+  480    total flour      100.0%
+  390    total water       81.3%
++*/
+
