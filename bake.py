@@ -21,7 +21,7 @@ Statement: ( Part | Text ) ;
 
 Text: /^.*$/ ;
 
-Part: name=ID ( '+' loss=Number unit=/[%g]/ )? ':' Com? '\n' relations*=Relation['\n'];
+Part: name=ID ( '+' loss=Number unit=/[%g]/? )? ':' Com? '\n' relations*=Relation['\n'];
 
 Com: '//' /.*/;
 
@@ -42,7 +42,7 @@ Factors: op=/[*\/]/ factor=Factor;
 Factor: '-' negated=Factor |
         func=ID '(' args*=Sum[','] ')' |
         name=Var |
-        number=Number unit=/[%g]/ |
+        number=Number unit=/[%g]?/ |
         '(' sum=Sum ')';
 
 Number: str=/[0-9.]+/;
@@ -84,6 +84,7 @@ Ingredients = {
     "egg_yolk": {"water": 0.5, "fat": 0.30},
     "egg_white": {"water": 0.90},
     "milk": {"water": 0.87, "fat": 0.035},
+    "buttermilk": {"water": 0.87, "fat": 0.035},
     "nido": {"fat": 0.3},
     "butter": {"water": 0.18, "fat": 0.80},
     "honey": {"water": 0.17},
