@@ -5,7 +5,7 @@ starter:
   water
   hydration = 60%
 
-sponge + 2%: // allow for 2% loss
+sponge + 2%: # allow for 2% loss
   starter = 20% * total_flour
   water
   oats = ww_flour
@@ -27,7 +27,7 @@ wet:
 
 dry:
   grain
-  // half the water to milk
+  # half the water to milk
   nido = 50% * 13% * wet.water
   potato_flakes = 2%
   flaxseed_meal = 7%
@@ -42,6 +42,7 @@ dough:
   total_fat = 8%
   total_flour = 480g
 
+/*
 December 5, 2024
 
 Changes
@@ -70,6 +71,7 @@ Looks good.
 
 Good flavor and texture. I like this flavor better I think. Could the slight
 tilt toward red wheat make the difference?
+*/
 
 /*+
   part  | grams  |      name     |   %    | flour  | water  |  fat  |
