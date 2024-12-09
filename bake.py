@@ -105,15 +105,17 @@ Components = ["flour", "water", "fat"]
 def getIngredient(name: str) -> dict[str, float]:
     """Return the components for an ingredient"""
     name = name.lower()
+    zero = {"flour": 0, "water": 0, "fat": 0}
+    result = zero
     if name in Ingredients:
-        return Ingredients[name]
+        result = Ingredients[name]
     if "flour" in name:
-        return {"flour": 1.0}
+        result = {"flour": 1.0}
     if "water" in name:
-        return {"water": 1.0}
+        result = {"water": 1.0}
     if name.endswith("_oil"):
-        return {"fat": 1.0}
-    return {}
+        result = {"fat": 1.0}
+    return {**zero, **result}
 
 
 # mapping from character to function and arity
@@ -249,14 +251,16 @@ class Bake:
 
         opt = program.solve()
 
-        scale = 100 / opt.x[program.vars[("dough", "total_flour")]]
+        self.solution = {name: opt.x[program.vars[name]] for name in program.vars}
 
-        table = self.format_table(opt, scale)
+        scale = 100 / self.solution[("dough", "total_flour")]
+
+        table = self.format_table(scale)
         self.output(
             table, text, not opt.success or opt.cost > 1, scale if rewrite else 0
         )
 
-    def format_table(self, opt, scale):
+    def format_table(self, scale):
         def fmt_grams(g):
             """Format grams in the table"""
             if round(g, 0) >= 100:
@@ -268,51 +272,88 @@ class Bake:
             else:
                 r = f"{g:0.2f}"
 
-            if len(r) < 8:
-                r = " " * (8 - len(r)) + r
             return r
 
-        def fmt_row(mass, name, bp, flour=0, water=0, fat=0):
-            return f"    |{fmt_grams(mass)} | {name.replace('_', ' '):15}|{bp:6.1f}% |{fmt_grams(flour)} |{fmt_grams(water)} |{fmt_grams(fat)} |"
-
-        def header():
-            return f"    |{'grams'.center(8)} | {'name'.center(15)}|{'%'.center(8)}|{'flour'.center(8)} |{'water'.center(8)} |{'fat'.center(8)} |"
-
-        result = []
-        result.append(header())
-        for i, partName in enumerate(self.parts):
-            pvars = {
-                name[1]: opt.x[program.vars[name]]
-                for name in program.vars
-                if name[0] == partName and not name[1].startswith("_")
-            }
-            loss, lunit = self.loss.get(partName, [0, "g"])
-            if lunit == "%":
-                loss *= pvars["total"] / 100
-            gt = g = pvars["total"]
-            bp = g * scale
-            if loss > 0:
-                printName = f"{partName} + {loss:.1f}g"
+        def fmt(v, t):
+            if t == "%":
+                return f"{v:6.1f}"
+            elif t == "g":
+                return fmt_grams(v)
             else:
-                printName = partName
-            result.append(printName)
-            ls = (gt + loss) / gt
-            for var in pvars:
-                if not var.startswith("total"):
-                    pg = pvars[var]
-                    result.append(fmt_row(pg, var, pg * scale))
-            result.append(
-                fmt_row(
-                    g,
-                    "Total",
-                    bp,
-                    pvars["total_flour"],
-                    pvars["total_water"],
-                    pvars["total_fat"],
-                )
-            )
+                return str(v)
 
-        return "\n".join(result)
+        def tabulate(headings, fmts, rows):
+            widths = [len(h) for h in headings]
+            rows = [[fmt(col, fmts[i]) for i, col in enumerate(row)] for row in rows]
+            for row in rows:
+                for i, col in enumerate(row):
+                    widths[i] = max(widths[i], len(col))
+            result = [
+                " | ".join([h.center(widths[i]) for i, h in enumerate(headings)]) + " |"
+            ]
+            for row in rows:
+                cols = []
+                for i, col in enumerate(row):
+                    if fmts[i] == "t":
+                        cols.append(f"{col:<{widths[i]}}")
+                    else:
+                        cols.append(f"{col:>{widths[i]}}")
+                line = " | ".join(cols)
+                if len(row) > 1:
+                    line += " |"
+                result.append(line)
+            return "\n".join(result) + "\n"
+
+        rows = []
+        for partName in self.parts:
+            loss, lunit = self.loss.get(partName, [0, "g"])
+            gt = g = self.solution[(partName, "total")]
+            if lunit == "%":
+                loss *= gt / 100
+            ls = (gt + loss) / gt
+            bp = g * scale
+            for pn, var in self.solution:
+                if pn != partName:
+                    continue
+                if not var.startswith("total"):
+                    pg = self.solution[(partName, var)]
+                    if var in self.parts:
+                        extras = [
+                            self.solution[(var, "total_flour")],
+                            self.solution[(var, "total_water")],
+                            self.solution[(var, "total_fat")],
+                        ]
+                    else:
+                        info = getIngredient(var)
+                        extras = [
+                            pg * info["flour"],
+                            pg * info["water"],
+                            pg * info["fat"],
+                        ]
+                    rows.append(
+                        [
+                            "",
+                            pg * ls,
+                            var,
+                            pg * scale,
+                            *extras,
+                        ]
+                    )
+            rows.append(
+                [
+                    partName,
+                    g * ls,
+                    f"+ {loss:.1f}g" if loss > 0 else "",
+                    bp,
+                    self.solution[(partName, "total_flour")],
+                    self.solution[(partName, "total_water")],
+                    self.solution[(partName, "total_fat")],
+                ]
+            )
+            rows.append([""])
+
+        heading = ["part", "grams", "name", "%", "flour", "water", "fat"]
+        return tabulate(heading, "tgt%ggg", rows)
 
     def expr(self, node, part):
         """Return code for an expression"""
