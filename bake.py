@@ -263,6 +263,8 @@ class Bake:
                 r = f"{g:.0f}   "
             elif round(g, 1) >= 10:
                 r = f"{g:0.1f} "
+            elif g < 0.1:
+                r = ""
             else:
                 r = f"{g:0.2f}"
 
@@ -270,7 +272,14 @@ class Bake:
                 r = " " * (8 - len(r)) + r
             return r
 
+        def fmt_row(mass, name, bp, flour=0, water=0, fat=0):
+            return f"    |{fmt_grams(mass)} | {name.replace('_', ' '):15}|{bp:6.1f}% |{fmt_grams(flour)} |{fmt_grams(water)} |{fmt_grams(fat)} |"
+
+        def header():
+            return f"    |{'grams'.center(8)} | {'name'.center(15)}|{'%'.center(8)}|{'flour'.center(8)} |{'water'.center(8)} |{'fat'.center(8)} |"
+
         result = []
+        result.append(header())
         for i, partName in enumerate(self.parts):
             pvars = {
                 name[1]: opt.x[program.vars[name]]
@@ -279,32 +288,29 @@ class Bake:
             }
             loss, lunit = self.loss.get(partName, [0, "g"])
             if lunit == "%":
-                loss /= scale
+                loss *= pvars["total"] / 100
             gt = g = pvars["total"]
             bp = g * scale
             if loss > 0:
                 printName = f"{partName} + {loss:.1f}g"
             else:
                 printName = partName
-            result.append(f"{printName:.<35}({g:.1f}g = {bp:.1f}%)")
+            result.append(printName)
+            ls = (gt + loss) / gt
             for var in pvars:
                 if not var.startswith("total"):
-                    g = pvars[var]
-                    lg = g + loss * g / gt
-                    fg = fmt_grams(lg)
-                    bp = g * scale
-                    result.append(f"{fg} {var.replace('_', ' '):15} {bp:6.1f}%")
-            if i == len(self.parts) - 1:
-                result.append("")
-                for component in Components:
-                    var = "total_" + component
-                    g = pvars[var]
-                    if g < 1:
-                        continue
-                    fg = fmt_grams(g)
-                    bp = g * scale
-                    result.append(f"{fg} {var.replace('_', ' '):15} {bp:6.1f}%")
-            result.append("")
+                    pg = pvars[var]
+                    result.append(fmt_row(pg, var, pg * scale))
+            result.append(
+                fmt_row(
+                    g,
+                    "Total",
+                    bp,
+                    pvars["total_flour"],
+                    pvars["total_water"],
+                    pvars["total_fat"],
+                )
+            )
 
         return "\n".join(result)
 
