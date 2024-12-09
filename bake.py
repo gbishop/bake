@@ -23,7 +23,7 @@ Text: /^.*$/ ;
 
 Part: name=ID ( '+' loss=Number unit=/[%g]/? )? ':' Com? '\n' relations*=Relation['\n'];
 
-Com: '//' /.*/;
+Com: ('#'|'//') /.*/;
 
 Relation: ('hydration' '=' hydration=Number '%' Com? ) |
           ('scale' '=' scale=Number 'g' Com? ) | 
