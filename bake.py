@@ -315,7 +315,7 @@ class Bake:
             for pn, var in self.solution:
                 if pn != partName:
                     continue
-                if not var.startswith("total"):
+                if not var.startswith("total") and not var.startswith("_"):
                     pg = self.solution[(partName, var)]
                     if var in self.parts:
                         extras = [
