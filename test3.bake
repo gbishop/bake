@@ -1,0 +1,89 @@
+# Start with soft white bread and morph to whole grain
+
+/*
+This is a block comment.
+*/
+
+starter:
+  rye
+  water
+  hydration = 60%
+
+sponge:
+  starter = 0.2 * total_flour
+  water
+  oats = ww_flour
+  ww_flour
+  total_flour = 15%
+  hydration = 100%
+
+grain:
+  prairie_gold
+  hard_red
+  spelt = 10%
+  rye = 5%
+
+wet:
+  sponge
+  water
+  butter
+  honey = 8%
+
+dry:
+  grain
+  nido = 0.50 * 0.13 * wet.water
+  potato_flakes = 2%
+  flaxseed_meal = 7%
+  salt = 1.8% - 0.013 * wet.butter
+  wgbi = 2%
+  yeast = 0.4%
+  ground_walnuts = 10%
+
+dough:
+  wet
+  dry
+  total_water = 70%
+  total_fat = 8%
+  total_flour = 480g
+/*+
+starter............................(14.4g = 3.0%)
+    9.00 rye                1.9%
+    5.40 water              1.1%
+
+sponge.............................(144.0g = 30.0%)
+   14.4  starter            3.0%
+   66.6  water             13.9%
+   31.5  oats               6.6%
+   31.5  ww flour           6.6%
+
+grain..............................(355.2g = 74.0%)
+  142    prairie gold      29.5%
+  142    hard red          29.5%
+   48.0  spelt             10.0%
+   24.0  rye                5.0%
+
+wet................................(474.2g = 98.8%)
+  144    sponge            30.0%
+  250    water             52.1%
+   41.9  butter             8.7%
+   38.4  honey              8.0%
+
+dry................................(482.3g = 100.5%)
+  355    grain             74.0%
+   16.2  nido               3.4%
+    9.60 potato flakes      2.0%
+   33.6  flaxseed meal      7.0%
+    8.10 salt               1.7%
+    9.60 wgbi               2.0%
+    1.92 yeast              0.4%
+   48.0  ground walnuts    10.0%
+
+dough..............................(956.5g = 199.3%)
+  474    wet               98.8%
+  482    dry              100.5%
+
+  480    total flour      100.0%
+  336    total water       70.0%
+   38.4  total fat          8.0%
++*/
+

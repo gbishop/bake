@@ -1,0 +1,38 @@
+cinnamon raisin knots from https://yunsfamilytable.com/recipes/buttery-crunchy-raisin-bread-knots/
+
+filling:
+  butter = 13.33%
+  brown_sugar = 4.43%
+  evap_milk = 6.50%
+  raisins = 20.00%
+
+dough:
+  bread_flour = 100.00%
+  yeast = 1.333%
+  sugar = 10.00%
+  egg = 16.67%
+  milk = 59.00%
+  butter = 6.67%
+  total_flour = 300g
+
+
+/*+
+filling............................(132.8g = 44.3%)
+   40.0  butter            13.3%
+   13.3  brown sugar        4.4%
+   19.5  evap milk          6.5%
+   60.0  raisins           20.0%
+
+dough..............................(581.0g = 193.7%)
+  300    bread flour      100.0%
+    4.00 yeast              1.3%
+   30.0  sugar             10.0%
+   50.0  egg               16.7%
+  177    milk              59.0%
+   20.0  butter             6.7%
+
+  300    total flour      100.0%
+  195    total water       65.0%
+   26.7  total fat          8.9%
++*/
+

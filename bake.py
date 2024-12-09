@@ -81,9 +81,13 @@ Ingredients = {
     # liquids and fats
     "water": {"water": 1.0},
     "egg": {"water": 0.75, "fat": 0.09},
+    "eggs": {"water": 0.75, "fat": 0.09},
     "egg_yolk": {"water": 0.5, "fat": 0.30},
+    "egg_yolks": {"water": 0.5, "fat": 0.30},
     "egg_white": {"water": 0.90},
+    "egg_whites": {"water": 0.90},
     "milk": {"water": 0.87, "fat": 0.035},
+    "evap_milk": {"water": 0.74, "fat": 0.07},
     "buttermilk": {"water": 0.87, "fat": 0.035},
     "nido": {"fat": 0.3},
     "butter": {"water": 0.18, "fat": 0.80},

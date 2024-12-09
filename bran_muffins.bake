@@ -1,0 +1,66 @@
+One bowl bran muffins
+
+wet:
+  oil = 33.85%
+  brown_sugar = 30.77%
+  eggs = whole(46.15%, 50g)
+  molasses = 33.85%
+  buttermilk
+  vanilla_extract = 1.54%
+
+dry:
+  bran = 36.92%
+  ww_flour = 36.92%
+  ap_flour = 26.15%
+  baking_powder = 1.54%
+  baking_soda = 1.54%
+  salt = 1.85%
+  fruit = 30.77%
+  nuts = 46.15%
+
+dough:
+  _N = 12   // number of muffins
+  _S = 67g  // size of a muffin
+  wet
+  dry
+  hydration = 88%
+  total = _N * _S
+
+Preheat oven to 375 degrees convection. Line _N muffin cups.
+
+Whisk together oil, sugar and eggs in large bowl until well blended. Add molasses, buttermilk and vanilla. Stir to combine. Sprinkle bran, flours, baking powder and baking soda over the top. Stir just until all of the flour mixture is incorporated (do not over mix). Add raisins and stir to combine.
+
+Spoon batter into prepared muffin tins, filling almost to the top. Leave 1/4 inch at top of each. The ice-cream scoop nearly filled works well.
+
+Bake for 15 minutes until firm to touch and a tester comes out clean.
+
+Allow to sit in muffin tin for 5 minutes, then remove to a cool rack.
+
+/*+
+wet................................(428.8g = 207.8%)
+   69.8  oil               33.9%
+   63.5  brown sugar       30.8%
+  100    eggs              48.5%
+   69.8  molasses          33.9%
+  122    buttermilk        59.4%
+    3.18 vanilla extract    1.5%
+
+dry................................(375.2g = 181.8%)
+   76.2  bran              36.9%
+   76.2  ww flour          36.9%
+   54.0  ap flour          26.2%
+    3.18 baking powder      1.5%
+    3.18 baking soda        1.5%
+    3.82 salt               1.9%
+   63.5  fruit             30.8%
+   95.2  nuts              46.2%
+
+dough..............................(804.0g = 389.7%)
+  429    wet              207.8%
+  375    dry              181.8%
+
+  206    total flour      100.0%
+  182    total water       88.0%
+   83.1  total fat         40.3%
++*/
+

@@ -1,0 +1,25 @@
+A simple test of directly solving the equations
+
+salt = 0.02 * flour
+water = 0.6 * flour
+rye = 0.1 * flour
+flour = rye + wheat
+total = flour + water + salt
+total = 100
+
+100 = rye + wheat + 0.6 * (rye + wheat) + 0.02 * (rye + wheat)
+
+100 = flour + 0.6 * flour + 0.02 * flour
+100 = 1.62 * flour
+flour = 100 / 1.62
+rye = 10 / 1.62
+wheat = 100 / 1.62 - 10 / 1.62 = 90 / 1.62
+
+# No iteration required.
+
+starter.total = starter.rye + starter.water
+starter.water = starter.rye * 0.6
+
+sponge.total = starter + water + oats
+
+
