@@ -1,9 +1,9 @@
-One bowl bran muffins
+# One bowl bran muffins
 
 wet:
   oil = 33.85%
   brown_sugar = 30.77%
-  eggs = whole( 46.14%, 50g )
+  eggs = 46.14%
   molasses = 33.85%
   buttermilk
   vanilla_extract = 1.54%
@@ -19,14 +19,14 @@ dry:
   nuts = 46.15%
 
 dough:
-  _N = 12   // number of muffins
-  _S = 66.5g  // size of a muffin
+  _N = 12   # number of muffins
   wet
   dry
   hydration = 123%
-  // total_flour = 325g
-  total_flour = _N * _S / 4.3
+  # total_flour = 325g
+  total = 66.5 * _N 
 
+/*
 Preheat oven to 375 degrees convection. Line _N muffin cups.
 
 Whisk together oil, sugar and eggs in large bowl until well blended. Add
@@ -40,30 +40,31 @@ inch at top of each. The ice-cream scoop nearly filled works well.
 Bake for 15 minutes until firm to touch and a tester comes out clean.
 
 Allow to sit in muffin tin for 5 minutes, then remove to a cool rack.
+*/
 
 /*+
  part | grams  |       name      |   %    | flour  | water  |  fat  |
-      |  62.8  | oil             |   33.9 |        |        | 62.8  |
-      |  57.1  | brown sugar     |   30.8 |        |        |       |
-      | 100    | eggs            |   53.9 |        |  75.0  |  9.00 |
-      |  62.8  | molasses        |   33.9 |        |        |       |
-      | 176    | buttermilk      |   94.9 |        | 153    |  6.17 |
-      |   2.86 | vanilla extract |    1.5 |        |        |       |
-wet   | 462    |                 |  248.8 |        | 228    | 78.0  |
+      |  56.7  | oil             |   33.9 |        |        | 56.7  |
+      |  51.5  | brown sugar     |   30.8 |        |        |       |
+      |  77.3  | eggs            |   46.1 |        |  58.0  |  6.95 |
+      |  56.7  | molasses        |   33.9 |        |        |       |
+      | 170    | buttermilk      |  101.6 |        | 148    |  5.96 |
+      |   2.58 | vanilla extract |    1.5 |        |        |       |
+wet   | 415    |                 |  247.8 |        | 206    | 69.6  |
      
-      |  68.5  | bran            |   36.9 |  68.5  |        |       |
-      |  68.5  | ww flour        |   36.9 |  68.5  |        |       |
-      |  48.5  | ap flour        |   26.2 |  48.5  |        |       |
-      |   2.86 | baking powder   |    1.5 |        |        |       |
-      |   2.86 | baking soda     |    1.5 |        |        |       |
-      |   3.43 | salt            |    1.9 |        |        |       |
-      |  57.1  | fruit           |   30.8 |        |        |       |
-      |  85.6  | nuts            |   46.1 |        |        |       |
-dry   | 337    |                 |  181.8 | 186    |        |       |
+      |  61.8  | bran            |   36.9 |  61.8  |        |       |
+      |  61.8  | ww flour        |   36.9 |  61.8  |        |       |
+      |  43.8  | ap flour        |   26.2 |  43.8  |        |       |
+      |   2.58 | baking powder   |    1.5 |        |        |       |
+      |   2.58 | baking soda     |    1.5 |        |        |       |
+      |   3.10 | salt            |    1.9 |        |        |       |
+      |  51.5  | fruit           |   30.8 |        |        |       |
+      |  77.3  | nuts            |   46.2 |        |        |       |
+dry   | 305    |                 |  181.8 | 167    |        |       |
      
-      | 462    | wet             |  248.8 |        | 228    | 78.0  |
-      | 337    | dry             |  181.8 | 186    |        |       |
-dough | 799    |                 |  430.7 | 186    | 228    | 78.0  |
+      | 415    | wet             |  247.8 |        | 206    | 69.6  |
+      | 305    | dry             |  181.8 | 167    |        |       |
+dough | 798    |                 |  476.5 | 167    | 206    | 69.6  |
      
 +*/
 

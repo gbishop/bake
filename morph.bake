@@ -1,11 +1,11 @@
-Start with soft white bread and morph to whole grain
+# Start with soft white bread and morph to whole grain
 
 starter:
   rye
   water
   hydration = 60%
 
-sponge + 2%: # allow for 2% loss
+sponge ^ 2%: # allow for 2% loss
   starter = 20% * total_flour
   water
   oats = ww_flour
@@ -82,11 +82,11 @@ starter |  14.4  |               |    3.0 |   9.00 |   5.40 |       |
         |  14.7  | starter       |    3.0 |   9.00 |   5.40 |       |
         |  67.9  | water         |   13.9 |        |  66.6  |       |
         |  32.1  | oats          |    6.6 |  31.5  |        |       |
-        |  32.1  | ww_flour      |    6.6 |  31.5  |        |       |
+        |  32.1  | ww flour      |    6.6 |  31.5  |        |       |
 sponge  | 147    | + 2.9g        |   30.0 |  72.0  |  72.0  |       |
        
-        | 142    | prairie_gold  |   29.5 | 142    |        |       |
-        | 142    | hard_red      |   29.5 | 142    |        |       |
+        | 142    | prairie gold  |   29.5 | 142    |        |       |
+        | 142    | hard red      |   29.5 | 142    |        |       |
         |  48.0  | spelt         |   10.0 |  48.0  |        |       |
         |  24.0  | rye           |    5.0 |  24.0  |        |       |
 grain   | 355    |               |   74.0 | 355    |        |       |
@@ -99,8 +99,8 @@ wet     | 474    |               |   98.8 |  72.0  | 336    | 33.5  |
        
         | 355    | grain         |   74.0 | 355    |        |       |
         |  16.2  | nido          |    3.4 |        |        |  4.87 |
-        |   9.60 | potato_flakes |    2.0 |   9.60 |        |       |
-        |  33.6  | flaxseed_meal |    7.0 |  33.6  |        |       |
+        |   9.60 | potato flakes |    2.0 |   9.60 |        |       |
+        |  33.6  | flaxseed meal |    7.0 |  33.6  |        |       |
         |   8.10 | salt          |    1.7 |        |        |       |
         |   9.60 | wgbi          |    2.0 |   9.60 |        |       |
         |   1.92 | yeast         |    0.4 |        |        |       |

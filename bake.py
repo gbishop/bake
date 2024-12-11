@@ -1,507 +1,453 @@
 """
 Bake.py - bread recipes using relationships rather than spreadsheets.
 
-Gary Bishop July 2024
+Gary Bishop July-December 2024
 """
 
-import textx
+from ingredients import getIngredient
+from lark import Lark, Visitor, visitors
+import lark
+import numpy as np
+import argparse
 import re
 import sys
-import numpy as np
-from numpy.typing import NDArray
-import scipy
-import operator
-from typing import Callable, TextIO
 
-# The textx grammar for my recipes
-grammar = r"""
-Recipe: statements *= Statement[/\n+/] /\s*/;
+# Lark grammar for my formulas
+grammar = """
+start: part+
 
-Statement: ( Part | Text ) ;
+part: ID loss? ":" relation+
 
-Text: /^.*$/ ;
+loss: ( "^" (GRAMS | PERCENT) )?
 
-Part: name=ID ( '+' loss=Number unit=/[%g]/? )? ':' Com? '\n' relations*=Relation['\n'];
+hydration: "hydration" "=" PERCENT
 
-Com: ('#'|'//') /.*/;
+relation: hydration
+        | sum "=" sum
+        | mention
 
-Relation: ('hydration' '=' hydration=Number '%' Com? ) |
-          ('scale' '=' scale=Number 'g' Com? ) | 
-          (lhs=Sum '=' rhs=Sum Com?) |
-          (mention=ID Com?) |
-          Com;
+sum: product (ADDOP sum)*
 
-Sum: term=Product sums*=Sums;
+ADDOP: "+" | "-"
 
-Sums: op=/[+-]/ term=Product;
+product: mention
+       | scale MULOP mention
+       | mention MULOP constant 
+       | bp
+       | grams
+       | constant
 
-Product: factor=Factor factors*=Factors;
+MULOP: "*" | "/"
 
-Factors: op=/[*\/]/ factor=Factor;
+scale: (percent | constant) ("*" (percent | constant))*
 
-Factor: '-' negated=Factor |
-        func=ID '(' args*=Sum[','] ')' |
-        name=Var |
-        number=Number unit=/[%g]?/ |
-        '(' sum=Sum ')';
+mention: ID
+       | ID "." ID
 
-Number: str=/[0-9.]+/;
+bp: percent
 
-Var: names += ID['.'];
+percent: PERCENT
 
-Comment: /(?ms:\/\*.*?\*\/\n+)/;
+constant: NUMBER
+
+grams: GRAMS
+
+ID: ("a".."z" | "A".."Z" | "_")("a".."z" | "A".."Z" | "_" | "0".."9")*
+
+NUMBER: ("0".."9")+ ("." ("0".."9")+)?
+GRAMS.1: ("0".."9")+ ("." ("0".."9")+)? "g"
+PERCENT: ("0".."9")+ ("." ("0".."9")+)? "%"
+
+WHITESPACE: (" " | "\\n" )+
+%ignore WHITESPACE
+
+COMMENT:  "/*" /(.|\\n|\\r)+/ "*/"     
+       |  "#" /(.)+\\n/ 
+
+%ignore COMMENT
 """
 
-# define the components of some ingredients
-Ingredients = {
-    # flours
-    "ap_flour": {"flour": 1.0},
-    "bran": {"flour": 1.0},
-    "bread_flour": {"flour": 1.0},
-    "bronze_chief": {"flour": 1.0},
-    "bulgar": {"flour": 1.0},
-    "cracked_rye": {"flour": 1.0},
-    "flaxseed_meal": {"flour": 1.0},
-    "hard_red": {"flour": 1.0},
-    "hard_white": {"flour": 1.0},
-    "improver": {"flour": 1.0},
-    "oats": {"flour": 1.0},
-    "polenta": {"flour": 1.0},
-    "potato_flakes": {"flour": 1.0},
-    "prairie_gold": {"flour": 1.0},
-    "red_rye_malt": {"flour": 1.0},
-    "rye": {"flour": 1.0},
-    "spelt": {"flour": 1.0},
-    "steel_cut_oats": {"flour": 1.0},
-    "vital_wheat_gluten": {"flour": 1.0},
-    "vwg": {"flour": 1.0},
-    "wgbi": {"flour": 1.0},
-    "whole_wheat": {"flour": 1.0},
-    "ww": {"flour": 1.0},
-    # liquids and fats
-    "water": {"water": 1.0},
-    "egg": {"water": 0.75, "fat": 0.09},
-    "eggs": {"water": 0.75, "fat": 0.09},
-    "egg_yolk": {"water": 0.5, "fat": 0.30},
-    "egg_yolks": {"water": 0.5, "fat": 0.30},
-    "egg_white": {"water": 0.90},
-    "egg_whites": {"water": 0.90},
-    "milk": {"water": 0.87, "fat": 0.035},
-    "evap_milk": {"water": 0.74, "fat": 0.07},
-    "buttermilk": {"water": 0.87, "fat": 0.035},
-    "nido": {"fat": 0.3},
-    "butter": {"water": 0.18, "fat": 0.80},
-    "honey": {"water": 0.17},
-    "malt_syrup": {"water": 0.2},
-    "lemon_juice": {"water": 1.0},
-    # oils
-    "oil": {"fat": 1.0},
-    "olive_oil": {"fat": 1.0},
-}
 
-Components = ["flour", "water", "fat"]
-
-
-def getIngredient(name: str) -> dict[str, float]:
-    """Return the components for an ingredient"""
-    name = name.lower()
-    zero = {"flour": 0, "water": 0, "fat": 0}
-    result = zero
-    if name in Ingredients:
-        result = Ingredients[name]
-    if "flour" in name:
-        result = {"flour": 1.0}
-    if "water" in name:
-        result = {"water": 1.0}
-    if name.endswith("_oil"):
-        result = {"fat": 1.0}
-    return {**zero, **result}
-
-
-non = False
-# mapping from character to function and arity
-operators: dict[str, tuple[Callable, int]] = {
-    "+": (operator.add, 2),
-    "-": (operator.sub, 2),
-    "*": (operator.mul, 2),
-    "/": (operator.truediv, 2),
-    "interpolate": (lambda v0, v1, t: (1 - t) * v0 + t * v1, 3),
-    "whole": (lambda amt, one: round(amt / one) * one if non else amt, 2),
-}
-
-
-class Relations:
-    """Build and evaluate the residuals for the relations"""
-
+class SymbolTable:
     def __init__(self):
-        self.program: list[tuple[Callable, int] | int | float] = []
-        self.vars: dict[tuple[str, str], int] = {}
-        self.relations = 0
-
-    def var(self, name):
-        """Get the index for a variable"""
-        if name not in self.vars:
-            self.vars[name] = len(self.vars)
-        return self.vars[name]
-
-    def relation(self, *atoms: tuple[str, str] | int | float | str):
-        """Add a relation"""
-        if debug:
-            print(atoms)
-        self.relations += 1
-        for atom in atoms:
-            if isinstance(atom, tuple):
-                self.program.append(self.var(atom))
-
-            elif isinstance(atom, (int, float)):
-                self.program.append(float(atom))
-
-            elif isinstance(atom, str):
-                self.program.append(operators[atom])
-
-    def exec(self, params: NDArray):
-        """Interpret the residuals by running the program"""
-        stack = []
-        for step in self.program:
-            if isinstance(step, int):
-                stack.append(params[step])
-
-            elif isinstance(step, float):
-                stack.append(step)
-
-            elif isinstance(step, tuple):
-                op, arity = step
-                args = stack[-arity:]
-                stack = stack[0:-arity]
-                stack.append(op(*args))
-
-        return np.array(stack)
-
-    def solve(self):
-        """Run the optimizer on the program"""
-        global non
-        x0 = np.ones(len(self.vars)) * 50
-        opt = scipy.optimize.least_squares(program.exec, x0)
-        non = True
-        opt = scipy.optimize.least_squares(program.exec, opt.x)
-        if debug:
-            print(opt)
-        return opt
-
-
-program = Relations()
-
-
-class Bake:
-    """The recipe"""
-
-    def __init__(self):
-        try:
-            self.meta = textx.metamodel_from_str(grammar, ws=" ")
-        except textx.TextXSyntaxError as e:
-            print(f"Grammar Error {e.line}:{e.col} {e.message}")
-            sys.exit(1)
-        self.meta.register_obj_processors({"Number": lambda Number: float(Number.str)})
-        self.parts = []
-        self.total = {}
+        self.symbol_count = 0
+        self.name_to_index = {}
+        self.index_to_name = {}
+        self.parts = {}
         self.loss = {}
+        self.solution = {}
 
-    def compile(self, stdin: TextIO, rewrite=False):
-        """Compile the recipe into a program for the solver"""
-        text = stdin.read()
-        try:
-            self.model = self.meta.model_from_str(text)
-        except textx.TextXSyntaxError as e:
-            print(f"Syntax Error {e.line}:{e.col} {e.message}")
-            sys.exit(1)
-
-        # get all the part names
-        for part in textx.get_children_of_type("Part", self.model):
-            self.parts.append(part.name)
-            if part.loss:
-                self.loss[part.name] = [part.loss, part.unit]
-
-        # add each part to the program
-        for part in textx.get_children_of_type("Part", self.model):
-            for relation in part.relations:
-                if relation.hydration:
-                    program.relation(
-                        (part.name, "total_water"),
-                        relation.hydration / 100.0,
-                        (part.name, "total_flour"),
-                        "*",
-                        "-",
-                    )
-
-                elif relation.scale:
-                    program.relation((part.name, "total_flour"), relation.scale, "-")
-
-                elif relation.mention:
-                    name = relation.mention
-                    if name in self.parts:
-                        program.relation((part.name, name), (name, "total"), "-")
-                        self.total[(part.name, name)] = name
-
-                    else:
-                        program.var((part.name, name))
-                        self.total[(part.name, name)] = getIngredient(name)
-
-                elif relation.lhs:
-                    lhs = self.expr(relation.lhs, part.name)
-                    rhs = self.expr(relation.rhs, part.name)
-                    program.relation(*lhs, *rhs, "-")
-
-            self.doTotal(part.name)
-
-        opt = program.solve()
-
-        self.solution = {name: opt.x[program.vars[name]] for name in program.vars}
-
-        scale = 100 / self.solution[("dough", "total_flour")]
-
-        table = self.format_table(scale)
-        self.output(
-            table, text, not opt.success or opt.cost > 1, scale if rewrite else 0
-        )
-
-    def format_table(self, scale):
-        def fmt_grams(g):
-            """Format grams in the table"""
-            if round(g, 0) >= 100:
-                r = f"{g:.0f}   "
-            elif round(g, 1) >= 10:
-                r = f"{g:0.1f} "
-            elif g < 0.1:
-                r = ""
+    def add(self, name, value=-1):
+        if name not in self.name_to_index:
+            if value >= 0:
+                self.name_to_index[name] = value
             else:
-                r = f"{g:0.2f}"
+                self.name_to_index[name] = self.symbol_count
+                self.index_to_name[self.symbol_count] = name
+                self.symbol_count += 1
+        return self.name_to_index[name]
 
+    def vector(self, name):
+        r = np.zeros(self.symbol_count + 1)
+        r[self.name_to_index[name]] = 1
+        return r
+
+    def dump(self, vector):
+        s = ""
+        for i in range(self.symbol_count):
+            name = ".".join(self.index_to_name[i])
+            if vector[i] == 1:
+                s += f" + {name}"
+            elif vector[i] < 0:
+                s += f" - {-vector[i]} * {name}"
+            elif vector[i] > 0:
+                s += f" + {vector[i]} * {name}"
+        if vector[-1] < 0:
+            s += f" - {-vector[-1]}"
+        elif vector[-1] > 0:
+            s += f" + {-vector[-1]}"
+
+        if s.startswith(" + "):
+            s = s[3:]
+        return s
+
+    def constant(self, value):
+        r = np.zeros(self.symbol_count + 1)
+        r[-1] = value
+        return r
+
+
+ST = SymbolTable()
+
+
+def value(s):
+    if s.endswith("%"):
+        return float(s[:-1]) / 100
+    elif s.endswith("g"):
+        return float(s[:-1])
+    else:
+        return float(s)
+
+
+class GetParts(Visitor):
+    def part(self, tree):
+        name = tree.children[0] + ""
+        ST.add((name, "total"))
+        ST.add((name, "total_flour"))
+        ST.add((name, "total_water"))
+        ST.add((name, "total_fat"))
+
+        ST.parts[name] = None
+
+
+class GetUnknowns(Visitor):
+    def mention(self, tree):
+        if len(tree.children) == 1:
+            name = tree.children[0] + ""
+            fullname = (self.part_name, name)
+            if name in ST.parts:
+                ST.add(fullname, ST.add((name, "total")))
+            else:
+                ST.add(fullname)
+
+    def part(self, tree):
+        self.part_name = tree.children[0] + ""
+
+
+class BuildMatrix(visitors.Interpreter):
+    def start(self, tree):
+        r = self.visit_children(tree)
+        residuals = []
+        for relations in r:
+            for lhs, rhs in relations:
+                residuals.append(lhs - rhs)
+        R = np.array(residuals)
+        A = R[:, :-1]
+        B = -R[:, -1]
+        return A, B
+
+    def part(self, tree):
+        total_names = ["total", "total_flour", "total_water", "total_fat"]
+        part = self.part_name = tree.children[0]
+        r = self.visit_children(tree)
+        _, theloss, *relations = r
+        if len(theloss) == 1:
+            loss_str = theloss[0]
+            if loss_str.endswith("%"):
+                ST.loss[part] = (float(loss_str[:-1]), "%")
+            elif loss_str.endswith("g"):
+                ST.loss[part] = (float(loss_str[:-1]), "g")
+            else:
+                ST.loss[part] = (float(loss_str), "g")
+        relations = [row for row in relations if len(row) == 2]
+        totals = {}
+        for total_name in total_names:
+            totals[total_name] = np.zeros(ST.symbol_count + 1)
+        for fullname in ST.name_to_index:
+            if fullname[0] != part:
+                continue
+            if fullname[1].startswith("total"):
+                continue
+            if fullname[1] in ST.parts:
+                for total_name in total_names:
+                    totals[total_name] += ST.vector((fullname[1], total_name))
+            else:
+                vect = ST.vector(fullname)
+                totals["total"] += vect
+                info = getIngredient(fullname[1])
+                for total_name in total_names[1:]:
+                    field_name = total_name.replace("total_", "")
+                    w = info[field_name]
+                    totals[total_name] += w * vect
+        for total_name in total_names:
+            relations.append([ST.vector((part, total_name)), totals[total_name]])
+
+        return relations
+
+    def relation(self, tree):
+        r = self.visit_children(tree)
+        if isinstance(r[0], float):
+            return [
+                ST.vector((self.part_name, "total_water")),
+                r[0] * ST.vector((self.part_name, "total_flour")),
+            ]
+        elif len(r) == 1:
+            return []
+        else:
             return r
 
-        def fmt(v, t):
-            if t == "%":
-                return f"{v:6.1f}"
-            elif t == "g":
-                return fmt_grams(v)
+    def hydration(self, tree):
+        r = self.visit_children(tree)
+        return value(r[0])
+
+    def sum(self, tree):
+        r = self.visit_children(tree)
+        result = r[0]
+        sign = 1
+        for s in r[1:]:
+            if isinstance(s, str):
+                if s == "+":
+                    sign = 1
+                elif s == "-":
+                    sign = -1
             else:
-                return str(v)
+                result = result + sign * s
+        return result
 
-        def tabulate(headings, fmts, rows):
-            widths = [len(h) for h in headings]
-            rows = [[fmt(col, fmts[i]) for i, col in enumerate(row)] for row in rows]
-            for row in rows:
-                for i, col in enumerate(row):
-                    widths[i] = max(widths[i], len(col))
-            result = [
-                " | ".join([h.center(widths[i]) for i, h in enumerate(headings)]) + " |"
-            ]
-            for row in rows:
-                cols = []
-                for i, col in enumerate(row):
-                    if fmts[i] == "t":
-                        cols.append(f"{col:<{widths[i]}}")
-                    else:
-                        cols.append(f"{col:>{widths[i]}}")
-                line = " | ".join(cols)
-                if len(row) > 1:
-                    line += " |"
-                result.append(line)
-            return "\n".join(result) + "\n"
-
-        rows = []
-        for partName in self.parts:
-            loss, lunit = self.loss.get(partName, [0, "g"])
-            gt = g = self.solution[(partName, "total")]
-            if lunit == "%":
-                loss *= gt / 100
-            ls = (gt + loss) / gt
-            bp = g * scale
-            for pn, var in self.solution:
-                if pn != partName:
-                    continue
-                if not var.startswith("total") and not var.startswith("_"):
-                    pg = self.solution[(partName, var)]
-                    if var in self.parts:
-                        extras = [
-                            self.solution[(var, "total_flour")],
-                            self.solution[(var, "total_water")],
-                            self.solution[(var, "total_fat")],
-                        ]
-                    else:
-                        info = getIngredient(var)
-                        extras = [
-                            pg * info["flour"],
-                            pg * info["water"],
-                            pg * info["fat"],
-                        ]
-                    rows.append(
-                        [
-                            "",
-                            pg * ls,
-                            var.replace("_", " "),
-                            pg * scale,
-                            *extras,
-                        ]
-                    )
-            rows.append(
-                [
-                    partName,
-                    g * ls,
-                    f"+ {loss:.1f}g" if loss > 0 else "",
-                    bp,
-                    self.solution[(partName, "total_flour")],
-                    self.solution[(partName, "total_water")],
-                    self.solution[(partName, "total_fat")],
-                ]
-            )
-            rows.append([""])
-
-        heading = ["part", "grams", "name", "%", "flour", "water", "fat"]
-        return tabulate(heading, "tgt%ggg", rows)
-
-    def expr(self, node, part):
-        """Return code for an expression"""
-        return getattr(self, node.__class__.__name__)(node, part)
-
-    def Sum(self, node, part):
-        """Return code for addition/subtraction"""
-        r = self.expr(node.term, part)
-        for sum in node.sums:
-            s = self.expr(sum.term, part)
-            r += [*s, sum.op]
+    def product(self, tree):
+        r = self.visit_children(tree)
+        if len(r) == 1:
+            if isinstance(r[0], float):
+                return ST.constant(r[0])
+            else:
+                return r[0]
+        if tree.children[1] == "*":
+            return r[0] * r[2]
+        if tree.children[1] == "/":
+            return r[0] / r[2]
         return r
 
-    def Product(self, node, part):
-        """Return code for multiplication/division"""
-        if node.factor.unit == "%" and len(node.factors) == 0:
-            return [node.factor.number / 100.0, ("dough", "total_flour"), "*"]
-        r = self.expr(node.factor, part)
-        for factor in node.factors:
-            s = self.expr(factor.factor, part)
-            r += [*s, factor.op]
+    def scale(self, tree):
+        r = self.visit_children(tree)
+        result = r[0]
+        for n in r[1:]:
+            result *= n
+        return result
+
+    def mention(self, tree):
+        r = self.visit_children(tree)
+        if len(r) == 1:
+            fullname = (self.part_name, r[0])
+        else:
+            fullname = tuple(r)
+        return ST.vector(fullname)
+
+    def bp(self, tree):
+        r = self.visit_children(tree)
+        return ST.vector(("dough", "total_flour")) * r
+
+    def percent(self, tree):
+        return value(tree.children[0])
+
+    def constant(self, tree):
+        return value(tree.children[0])
+
+    def grams(self, tree):
+        return value(tree.children[0])
+
+
+def format_table(solution):
+    def fmt_grams(g):
+        """Format grams in the table"""
+        if round(g, 0) >= 100:
+            r = f"{g:.0f}   "
+        elif round(g, 1) >= 10:
+            r = f"{g:0.1f} "
+        elif g < 0.1:
+            r = ""
+        else:
+            r = f"{g:0.2f}"
+
         return r
 
-    def Factor(self, node, part):
-        """Return code for variables, numbers, parenthesized expressions, negation"""
-        if node.negated:
-            r = self.expr(node.negated, part)
-            return [0.0, *r, "-"]
+    def fmt(v, t):
+        if t == "%":
+            return f"{v:6.1f}"
+        elif t == "g":
+            return fmt_grams(v)
+        else:
+            return str(v)
 
-        elif node.name:
-            name = node.name.names
-            if len(name) == 1:
-                if name[0] in self.parts:
-                    pname = name[0]
-                    name = (part, pname)
-                    self.total[name] = pname
-                    program.relation(name, (pname, "total"), "-")
-                    return [name]
+    def tabulate(headings, fmts, rows):
+        widths = [len(h) for h in headings]
+        rows = [[fmt(col, fmts[i]) for i, col in enumerate(row)] for row in rows]
+        for row in rows:
+            for i, col in enumerate(row):
+                widths[i] = max(widths[i], len(col))
+        result = [
+            " | ".join([h.center(widths[i]) for i, h in enumerate(headings)]) + " |"
+        ]
+        for row in rows:
+            cols = []
+            for i, col in enumerate(row):
+                if fmts[i] == "t":
+                    cols.append(f"{col:<{widths[i]}}")
                 else:
-                    name = (part, name[0])
+                    cols.append(f"{col:>{widths[i]}}")
+            line = " | ".join(cols)
+            if len(row) > 1:
+                line += " |"
+            result.append(line)
+        return "\n".join(result) + "\n"
 
-            else:
-                name = tuple(name)
-
-            if (
-                name[0] == part
-                and not name[1].startswith("total")
-                and not name[1].startswith("_")
-            ):
-                self.total[name] = getIngredient(name[1])
-            return [name]
-
-        elif node.number:
-            if node.unit == "%":
-                return [node.number / 100.0]
-            return [node.number]
-
-        elif node.sum:
-            return self.expr(node.sum, part)
-
-        elif node.func:
-            op = operators.get(node.func)
-            if not op:
-                print(f"Invalid function call {node.func}")
-                sys.exit(1)
-            _, arity = op
-            if len(node.args) != arity:
-                print(f"Invalid number of arguments")
-                sys.exit(1)
-            result = []
-            for arg in node.args:
-                result.extend(self.expr(arg, part))
-            return result + [node.func]
-
-    def doTotal(self, part):
-        """Generate code for the totals for a part"""
-        relation = [(part, "total")]
-        crelations = {}
-        for component in Components:
-            crelations[component] = [(part, "total_" + component)]
-        for ingredient, components in self.total.items():
-            if ingredient[0] != part:
+    rows = []
+    scale = 100 / solution[("dough", "total_flour")]
+    for partName in ST.parts:
+        loss_value, unit = ST.loss.get(partName, (0, "g"))
+        gt = g = solution[(partName, "total")]
+        if unit == "%":
+            loss_value = loss_value / 100 * gt
+        loss_scale = (gt + loss_value) / gt
+        bp = g * scale
+        for pn, var in solution:
+            if pn != partName:
                 continue
-            relation += [ingredient, "-"]
-            if isinstance(components, str):
-                for cname in Components:
-                    crelation = crelations[cname]
-                    crelation += [(components, "total_" + cname), "-"]
-            else:
-                for component, value in components.items():
-                    crelation = crelations[component]
-                    if isinstance(value, tuple):
-                        crelation += [value, "-"]
-                    else:
-                        crelation += [ingredient, value, "*", "-"]
+            if not var.startswith("total") and not var.startswith("_"):
+                pg = solution[(partName, var)]
+                if var in ST.parts:
+                    extras = [
+                        solution[(var, "total_flour")],
+                        solution[(var, "total_water")],
+                        solution[(var, "total_fat")],
+                    ]
+                else:
+                    info = getIngredient(var)
+                    extras = [
+                        pg * info["flour"],
+                        pg * info["water"],
+                        pg * info["fat"],
+                    ]
+                rows.append(
+                    [
+                        "",
+                        pg * loss_scale,
+                        var.replace("_", " "),
+                        pg * scale,
+                        *extras,
+                    ]
+                )
+        rows.append(
+            [
+                partName,
+                g * loss_scale,
+                f"+ {loss_value:.1f}g" if loss_value > 0 else "",
+                bp,
+                solution[(partName, "total_flour")],
+                solution[(partName, "total_water")],
+                solution[(partName, "total_fat")],
+            ]
+        )
+        rows.append([""])
 
-        program.relation(*relation)
-        for crelation in crelations.values():
-            program.relation(*crelation)
-
-    def output(self, table, text, failed=False, scale=0):
-        """Insert the table into the input"""
-        text = re.sub(r"(?ms)\/\*\+.*?\+\*\/\n", "", text)
-        if scale > 0:
-            text = self.rewrite(text, scale)
-
-        if failed:
-            table = re.sub(r"^", "E ", table, 0, re.M)
-        result = f"{text}/*+\n{table}+*/\n"
-        print(result)
-
-    def rewrite(self, rest, scale):
-        """Rewrite grams as baker's percent"""
-
-        def gtobp(match):
-            if match.group(1) not in [
-                "scale",
-                "total_flour",
-                "total_water",
-                "total_fat",
-                "total",
-            ]:
-                f = float(match.group(3)[:-1]) * scale
-                return f"{match.group(1)}{match.group(2)}{f:.2f}%"
-            else:
-                return match.group(0)
-
-        return re.sub(r"(\w+)(\s*=\s*)([\d.]+\s*g)", gtobp, rest)
+    heading = ["part", "grams", "name", "%", "flour", "water", "fat"]
+    return tabulate(heading, "tgt%ggg", rows)
 
 
-rewrite = False
-debug = False
-filename = ""
-for arg in sys.argv[1:]:
-    if arg == "-R":
-        rewrite = True
-    elif arg == "-D":
-        debug = True
-    else:
-        filename = arg
-if filename:
-    stdin = open(filename, "rt")
+def output(table, text, failed=False, tobp=False):
+    """Insert the table into the input"""
+    text = re.sub(r"(?ms)\/\*\+.*?\+\*\/\n", "", text)
+    if tobp:
+        text = rewrite(text, ST.solution[("dough", "total_flour")])
+
+    if failed:
+        table = re.sub(r"^", "E ", table, 0, re.M)
+    result = f"{text}/*+\n{table}+*/\n"
+    print(result)
+
+
+def rewrite(rest, scale):
+    """Rewrite grams as baker's percent"""
+
+    def gtobp(match):
+        if match.group(1) not in [
+            "total_flour",
+            "total_water",
+            "total_fat",
+            "total",
+        ]:
+            f = float(match.group(3)[:-1]) * scale
+            return f"{match.group(1)}{match.group(2)}{f:.2f}%"
+        else:
+            return match.group(0)
+
+    return re.sub(r"(\w+)(\s*=\s*)([\d.]+\s*g)", gtobp, rest)
+
+
+argparser = argparse.ArgumentParser(
+    prog="bake.py",
+    description="From formulas to recipes",
+)
+argparser.add_argument("filename", nargs="?", default="")
+argparser.add_argument("-R", "--rewrite", action="store_true")
+args = argparser.parse_args()
+if args.filename:
+    fp = open(args.filename, "rt")
 else:
-    stdin = sys.stdin
+    fp = sys.stdin
 
-Baker = Bake()
-Baker.compile(stdin, rewrite)
+text = fp.read()
+
+parser = Lark(grammar)
+
+try:
+    tree = parser.parse(text)
+except lark.exceptions.UnexpectedToken as error:
+    print("Unexpected token\n", error.get_context(text))
+    sys.exit(1)
+except lark.exceptions.UnexpectedCharacters as error:
+    print("Unexpected character\n", error.get_context(text))
+    sys.exit(1)
+except lark.exceptions.UnexpectedEOF as error:
+    print("Unexpected end of file\n", error.get_context(text))
+    sys.exit(1)
+
+GetParts().visit(tree)
+
+GetUnknowns().visit_topdown(tree)
+
+A, B = BuildMatrix().visit(tree)
+
+r = np.linalg.lstsq(A, B, rcond=-1)
+
+X = r[0]
+
+residuals = A.dot(X) - B
+error = np.sqrt(np.max(residuals**2))
+
+failed = error > 1
+
+solution = {name: X[index] for name, index in ST.name_to_index.items()}
+
+table = format_table(solution)
+
+output(table, text, failed, args.rewrite)
