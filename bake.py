@@ -118,6 +118,7 @@ def getIngredient(name: str) -> dict[str, float]:
     return {**zero, **result}
 
 
+non = False
 # mapping from character to function and arity
 operators: dict[str, tuple[Callable, int]] = {
     "+": (operator.add, 2),
@@ -125,7 +126,7 @@ operators: dict[str, tuple[Callable, int]] = {
     "*": (operator.mul, 2),
     "/": (operator.truediv, 2),
     "interpolate": (lambda v0, v1, t: (1 - t) * v0 + t * v1, 3),
-    "whole": (lambda amt, one: round(amt / one) * one, 2),
+    "whole": (lambda amt, one: round(amt / one) * one if non else amt, 2),
 }
 
 
@@ -178,8 +179,11 @@ class Relations:
 
     def solve(self):
         """Run the optimizer on the program"""
+        global non
         x0 = np.ones(len(self.vars)) * 50
         opt = scipy.optimize.least_squares(program.exec, x0)
+        non = True
+        opt = scipy.optimize.least_squares(program.exec, opt.x)
         if debug:
             print(opt)
         return opt
@@ -334,7 +338,7 @@ class Bake:
                         [
                             "",
                             pg * ls,
-                            var,
+                            var.replace("_", " "),
                             pg * scale,
                             *extras,
                         ]
