@@ -277,20 +277,22 @@ class BuildMatrix(visitors.Interpreter):
 
 
 def format_table(solution):
+    """Build a table from the solution"""
+
     def fmt_grams(g):
         """Format grams in the table"""
         if round(g, 0) >= 100:
             r = f"{g:.0f}   "
         elif round(g, 1) >= 10:
             r = f"{g:0.1f} "
-        elif g < 0.1:
+        elif abs(g) < 0.1:
             r = ""
         else:
             r = f"{g:0.2f}"
 
         return r
 
-    def fmt(v, t):
+    def fmt_value(v, t):
         if t == "%":
             return f"{v:6.1f}"
         elif t == "g":
@@ -299,8 +301,9 @@ def format_table(solution):
             return str(v)
 
     def tabulate(headings, fmts, rows):
+        """Format a list of lists as a table"""
         widths = [len(h) for h in headings]
-        rows = [[fmt(col, fmts[i]) for i, col in enumerate(row)] for row in rows]
+        rows = [[fmt_value(col, fmts[i]) for i, col in enumerate(row)] for row in rows]
         for row in rows:
             for i, col in enumerate(row):
                 widths[i] = max(widths[i], len(col))
@@ -320,6 +323,7 @@ def format_table(solution):
             result.append(line)
         return "\n".join(result) + "\n"
 
+    # reshape the data into a list of lists
     rows = []
     scale = 100 / solution[("dough", "total_flour")]
     for partName in ST.parts:
@@ -329,6 +333,7 @@ def format_table(solution):
             loss_value = loss_value / 100 * gt
         loss_scale = (gt + loss_value) / gt
         bp = g * scale
+        # add the ingredients from the part
         for pn, var in solution:
             if pn != partName:
                 continue
@@ -356,6 +361,7 @@ def format_table(solution):
                         *extras,
                     ]
                 )
+        # add the total
         rows.append(
             [
                 partName,
@@ -367,6 +373,7 @@ def format_table(solution):
                 solution[(partName, "total_fat")],
             ]
         )
+        # add a blank line
         rows.append([""])
 
     heading = ["part", "grams", "name", "%", "flour", "water", "fat"]
