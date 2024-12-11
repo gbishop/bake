@@ -1,26 +1,24 @@
-Bulochki Knots
+# Bulochki Knots
 
 dough:
   flour = 480g
-  sugar = 198 / 4
+  sugar = 49.5g
   salt = 6g - 1.3% * butter
   yeast = 6g
   egg = 150g
-  milk = 227 * 1.5
+  milk = 340
   butter = 100g
 
 /*+
-dough..............................(1130.7g = 235.6%)
-  480    flour            100.0%
-   49.5  sugar             10.3%
-    4.70 salt               1.0%
-  100    butter            20.8%
-    6.00 yeast              1.2%
-  150    egg               31.2%
-  340    milk              70.9%
-
-  480    total flour      100.0%
-  427    total water       88.9%
-  105    total fat         22.0%
+ part |  grams  |  name  |   %    | flour  | water  |  fat   |
+      |  480    | flour  |  100.0 | 480    |        |        |
+      |   49.5  | sugar  |   10.3 |        |        |        |
+      |    4.70 | salt   |    1.0 |        |        |        |
+      |  100    | butter |   20.8 |        |  18.0  |  80.0  |
+      |    6.00 | yeast  |    1.3 |        |        |        |
+      |  150    | egg    |   31.3 |        | 113    |  13.5  |
+      |  340    | milk   |   70.8 |        | 296    |  11.9  |
+dough | 1130    |        |  235.5 | 480    | 426    | 105    |
+     
 +*/
 

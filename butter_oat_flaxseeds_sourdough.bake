@@ -1,32 +1,6 @@
-Butter Oat & Flaxseeds Sourdough
-/*+
-starter............................(8.0g = 2.0%)
-      5.0 rye               1.25%
-      3.0 water             0.75%
+# Butter Oat & Flaxseeds Sourdough
 
-sponge.............................(60.0g = 15.0%)
-      8.0 starter           2.00%
-     25.0 bread flour       6.25%
-     27.0 water             6.75%
-
-soaker.............................(152.0g = 38.0%)
-     48.0 oats             12.00%
-     16.0 flaxseed meal     4.00%
-     24.0 butter            6.00%
-     64.0 water            16.00%
-
-dough..............................(750.0g = 187.5%)
-    274.0 bread flour      68.50%
-     32.0 ww flour          8.00%
-    226.0 water            56.50%
-     60.0 sponge           15.00%
-      6.0 salt              1.50%
-    152.0 soaker           38.00%
-    320.0 total water      80.00%
-    400.0 total flour     100.00%
-+*/
-
-from Sourlotti by Abby
+# from Sourlotti by Abby
 
 starter:
   rye
@@ -45,8 +19,6 @@ soaker:
   butter = 6%
   water = 16%
 
-Heat a non-stick pan on low. Pour in oats and flaxseed. Toast on low for 2-3 minutes until light golden brown (1:32), stir to avoid burning. Add butter and cook until fully absorbed and golden brown. Remove from heat and transfer to a bowl. Add RT water so grains are covered. Set aside to soak for 1 hour.
-
 dough:
   bread_flour
   ww_flour = 8%
@@ -55,8 +27,13 @@ dough:
   salt = 1.5%
   soaker
   hydration = 80%
-  scale = 400g
+  total_flour = 400g
 
+/*
+Heat a non-stick pan on low. Pour in oats and flaxseed. Toast on low for 2-3
+minutes until light golden brown (1:32), stir to avoid burning. Add butter and
+cook until fully absorbed and golden brown. Remove from heat and transfer to a
+bowl. Add RT water so grains are covered. Set aside to soak for 1 hour.
 Instructions
 
 Put flours into bowl wisk to combine, add water, mix with danish dough wisk.
@@ -78,7 +55,8 @@ Stretch and fold on counter (8:17)
 
 Rest for 30 minutes.
 
-Laminate. Stretch out on counter, try not to tear it. Sprinkle on part of the soaker. Fold over (9:17). Spread the rest of the soaker.
+Laminate. Stretch out on counter, try not to tear it. Sprinkle on part of the
+soaker. Fold over (9:17). Spread the rest of the soaker.
 
 Transfer to oiled baking dish.
 
@@ -97,3 +75,32 @@ appears to fill the basket. I'll estimate its volume as 21.5 * 11.5 * 7 gives
 1730 cm^3. That is about 82% of the volume of my 9x4x4 pan. But she apparently
 gets considerable oven spring. I'm going with 400g total flour for this first
 try. I'm not going to retard it in the fridge.
+*/
+
+/*+
+  part  | grams  |      name     |   %    | flour  | water  |  fat  |
+        |   5.00 | rye           |    1.2 |   5.00 |        |       |
+        |   3.00 | water         |    0.8 |        |   3.00 |       |
+starter |   8.00 |               |    2.0 |   5.00 |   3.00 |       |
+       
+        |   8.00 | starter       |    2.0 |   5.00 |   3.00 |       |
+        |  25.0  | bread flour   |    6.2 |  25.0  |        |       |
+        |  27.0  | water         |    6.8 |        |  27.0  |       |
+sponge  |  60.0  |               |   15.0 |  30.0  |  30.0  |       |
+       
+        |  48.0  | oats          |   12.0 |  48.0  |        |       |
+        |  16.0  | flaxseed meal |    4.0 |  16.0  |        |       |
+        |  24.0  | butter        |    6.0 |        |   4.32 | 19.2  |
+        |  64.0  | water         |   16.0 |        |  64.0  |       |
+soaker  | 152    |               |   38.0 |  64.0  |  68.3  | 19.2  |
+       
+        | 274    | bread flour   |   68.5 | 274    |        |       |
+        |  32.0  | ww flour      |    8.0 |  32.0  |        |       |
+        | 222    | water         |   55.4 |        | 222    |       |
+        |  60.0  | sponge        |   15.0 |  30.0  |  30.0  |       |
+        |   6.00 | salt          |    1.5 |        |        |       |
+        | 152    | soaker        |   38.0 |  64.0  |  68.3  | 19.2  |
+dough   | 746    |               |  186.4 | 400    | 320    | 19.2  |
+       
++*/
+
