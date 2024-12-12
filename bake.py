@@ -11,6 +11,7 @@ import numpy as np
 import argparse
 import re
 import sys
+import traceback
 
 # Lark grammar for my formulas
 grammar = """
@@ -18,45 +19,34 @@ start: part+
 
 part: ID loss? ":" relation+
 
-loss: ( "^" (GRAMS | PERCENT) )?
+loss: ( "^" NUMBER )?
 
-hydration: "hydration" "=" PERCENT
+hydration: "hydration" "=" NUMBER
 
 relation: hydration
         | sum "=" sum
         | mention
 
-sum: product (ADDOP sum)*
+sum: product (ADDOP product)*
 
 ADDOP: "+" | "-"
 
 product: mention
-       | scale MULOP mention
-       | mention MULOP constant 
-       | bp
-       | grams
-       | constant
+       | scale MUL mention
+       | mention DIV NUMBER
+       | NUMBER
 
-MULOP: "*" | "/"
+MUL: "*" 
+DIV: "/"
 
-scale: (percent | constant) ("*" (percent | constant))*
+scale: NUMBER ("*" NUMBER)*
 
 mention: ID
        | ID "." ID
 
-bp: percent
-
-percent: PERCENT
-
-constant: NUMBER
-
-grams: GRAMS
-
 ID: ("a".."z" | "A".."Z" | "_")("a".."z" | "A".."Z" | "_" | "0".."9")*
 
-NUMBER: ("0".."9")+ ("." ("0".."9")+)?
-GRAMS.1: ("0".."9")+ ("." ("0".."9")+)? "g"
-PERCENT: ("0".."9")+ ("." ("0".."9")+)? "%"
+NUMBER: ("0".."9")+ ("." ("0".."9")+)? ("g" | "%")?
 
 WHITESPACE: (" " | "\\n" )+
 %ignore WHITESPACE
@@ -120,7 +110,11 @@ class SymbolTable:
 ST = SymbolTable()
 
 
-def value(s):
+def isPercent(s):
+    return s.endswith("%")
+
+
+def number(s):
     if s.endswith("%"):
         return float(s[:-1]) / 100
     elif s.endswith("g"):
@@ -172,13 +166,7 @@ class BuildMatrix(visitors.Interpreter):
         r = self.visit_children(tree)
         _, theloss, *relations = r
         if len(theloss) == 1:
-            loss_str = theloss[0]
-            if loss_str.endswith("%"):
-                ST.loss[part] = (float(loss_str[:-1]), "%")
-            elif loss_str.endswith("g"):
-                ST.loss[part] = (float(loss_str[:-1]), "g")
-            else:
-                ST.loss[part] = (float(loss_str), "g")
+            ST.loss[part] = (number(theloss[0]), isPercent(theloss[0]))
         relations = [row for row in relations if len(row) == 2]
         totals = {}
         for total_name in total_names:
@@ -206,19 +194,27 @@ class BuildMatrix(visitors.Interpreter):
 
     def relation(self, tree):
         r = self.visit_children(tree)
-        if isinstance(r[0], float):
+        if isinstance(r[0], float):  # scale
             return [
                 ST.vector((self.part_name, "total_water")),
                 r[0] * ST.vector((self.part_name, "total_flour")),
             ]
-        elif len(r) == 1:
+        elif isinstance(r[0], str):
+            value = number(r[0])
+            if isPercent(r[0]):
+                return value * ST.vector(("dough", "total_flour"))
+            else:
+                return ST.constant(value)
+        elif len(r) == 1:  # mention
             return []
         else:
-            return r
+            return r  # =
 
     def hydration(self, tree):
         r = self.visit_children(tree)
-        return value(r[0])
+        value = number(r[0])
+        assert isPercent(r[0])
+        return value
 
     def sum(self, tree):
         r = self.visit_children(tree)
@@ -239,6 +235,12 @@ class BuildMatrix(visitors.Interpreter):
         if len(r) == 1:
             if isinstance(r[0], float):
                 return ST.constant(r[0])
+            elif isinstance(r[0], str):
+                value = number(r[0])
+                if isPercent(r[0]):
+                    return ST.vector(("dough", "total_flour")) * value
+                else:
+                    return ST.constant(value)
             else:
                 return r[0]
         if tree.children[1] == "*":
@@ -249,9 +251,9 @@ class BuildMatrix(visitors.Interpreter):
 
     def scale(self, tree):
         r = self.visit_children(tree)
-        result = r[0]
+        result = number(r[0])
         for n in r[1:]:
-            result *= n
+            result *= number(n)
         return result
 
     def mention(self, tree):
@@ -261,19 +263,6 @@ class BuildMatrix(visitors.Interpreter):
         else:
             fullname = tuple(r)
         return ST.vector(fullname)
-
-    def bp(self, tree):
-        r = self.visit_children(tree)
-        return ST.vector(("dough", "total_flour")) * r
-
-    def percent(self, tree):
-        return value(tree.children[0])
-
-    def constant(self, tree):
-        return value(tree.children[0])
-
-    def grams(self, tree):
-        return value(tree.children[0])
 
 
 def format_table(solution):
@@ -327,10 +316,10 @@ def format_table(solution):
     rows = []
     scale = 100 / solution[("dough", "total_flour")]
     for partName in ST.parts:
-        loss_value, unit = ST.loss.get(partName, (0, "g"))
+        loss_value, isPercent = ST.loss.get(partName, (0, False))
         gt = g = solution[(partName, "total")]
-        if unit == "%":
-            loss_value = loss_value / 100 * gt
+        if isPercent:
+            loss_value = loss_value * gt
         loss_scale = (gt + loss_value) / gt
         bp = g * scale
         # add the ingredients from the part
@@ -429,20 +418,28 @@ parser = Lark(grammar)
 try:
     tree = parser.parse(text)
 except lark.exceptions.UnexpectedToken as error:
-    print("Unexpected token\n", error.get_context(text))
+    print(f"Unexpected token {error.line}:{error.column}\n", error.get_context(text))
     sys.exit(1)
 except lark.exceptions.UnexpectedCharacters as error:
-    print("Unexpected character\n", error.get_context(text))
+    print(
+        f"Unexpected character {error.line}:{error.column}\n", error.get_context(text)
+    )
     sys.exit(1)
 except lark.exceptions.UnexpectedEOF as error:
-    print("Unexpected end of file\n", error.get_context(text))
+    print(
+        f"Unexpected end of file {error.line}:{error.column}\n", error.get_context(text)
+    )
     sys.exit(1)
 
 GetParts().visit(tree)
 
 GetUnknowns().visit_topdown(tree)
 
-A, B = BuildMatrix().visit(tree)
+try:
+    A, B = BuildMatrix().visit(tree)
+except Exception:
+    traceback.print_exc(limit=-2)
+    sys.exit(1)
 
 r = np.linalg.lstsq(A, B, rcond=-1)
 
