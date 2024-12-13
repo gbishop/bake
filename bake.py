@@ -14,60 +14,53 @@ import sys
 import traceback
 
 # Lark grammar for my formulas
-grammar = """
+grammar = r"""
 start: part+
 
-part: ID loss? ":" relation+
-
-loss: ( "^" NUMBER )?
+part: ID ( "^" NUMBER )? ":" (hydration | relation | mention)+
 
 hydration: "hydration" "=" NUMBER
 
-relation: hydration
-        | sum "=" sum
-        | mention
+relation: sum "=" sum
 
-sum: product (ADDOP product)*
-
-ADDOP: "+" | "-"
+sum: product "+" sum   -> add
+   | product "-" sum   -> subtract
+   | product
 
 product: mention
-       | scale MUL mention
-       | mention DIV NUMBER
-       | NUMBER
-
-MUL: "*" 
-DIV: "/"
+       | scale "*" mention  -> multiply
+       | mention "/" NUMBER -> divide
+       | NUMBER -> constant
 
 scale: NUMBER ("*" NUMBER)*
 
 mention: ID
        | ID "." ID
 
-ID: ("a".."z" | "A".."Z" | "_")("a".."z" | "A".."Z" | "_" | "0".."9")*
+ID: /[a-zA-Z_][a-zA-Z_0-9]*/
+NUMBER: /[0-9]+([.][0-9]+)?[g%]?/
 
-NUMBER: ("0".."9")+ ("." ("0".."9")+)? ("g" | "%")?
-
-WHITESPACE: (" " | "\\n" )+
+WHITESPACE: /[ \n]+/ 
 %ignore WHITESPACE
 
-COMMENT:  "/*" /(.|\\n|\\r)+/ "*/"     
-       |  "#" /(.)+\\n/ 
-
+COMMENT:  "/*" /(.|\n|\r)+/ "*/"     
+       |  "#" /(.)+\n/ 
 %ignore COMMENT
 """
 
 
 class SymbolTable:
+    """Collect information about our unknowns"""
+
     def __init__(self):
         self.symbol_count = 0
         self.name_to_index = {}
         self.index_to_name = {}
         self.parts = {}
         self.loss = {}
-        self.solution = {}
 
     def add(self, name, value=-1):
+        """Add a name if it isn't already known"""
         if name not in self.name_to_index:
             if value >= 0:
                 self.name_to_index[name] = value
@@ -78,11 +71,13 @@ class SymbolTable:
         return self.name_to_index[name]
 
     def vector(self, name):
+        """Create a matrix row representing this unknown"""
         r = np.zeros(self.symbol_count + 1)
         r[self.name_to_index[name]] = 1
         return r
 
     def dump(self, vector):
+        """Make a vector readable"""
         s = ""
         for i in range(self.symbol_count):
             name = ".".join(self.index_to_name[i])
@@ -102,6 +97,7 @@ class SymbolTable:
         return s
 
     def constant(self, value):
+        """Create a vector representing a numeric constant"""
         r = np.zeros(self.symbol_count + 1)
         r[-1] = value
         return r
@@ -111,10 +107,12 @@ ST = SymbolTable()
 
 
 def isPercent(s):
+    """Test if a string represents a percentage"""
     return s.endswith("%")
 
 
 def number(s):
+    """Get the value of a number based on its units"""
     if s.endswith("%"):
         return float(s[:-1]) / 100
     elif s.endswith("g"):
@@ -124,6 +122,8 @@ def number(s):
 
 
 class GetParts(Visitor):
+    """Scan the tree for part names"""
+
     def part(self, tree):
         name = tree.children[0] + ""
         ST.add((name, "total"))
@@ -135,6 +135,8 @@ class GetParts(Visitor):
 
 
 class GetUnknowns(Visitor):
+    """Scan the tree for names of unknowns"""
+
     def mention(self, tree):
         if len(tree.children) == 1:
             name = tree.children[0] + ""
@@ -149,6 +151,8 @@ class GetUnknowns(Visitor):
 
 
 class BuildMatrix(visitors.Interpreter):
+    """Setup the matrix representing the relations"""
+
     def start(self, tree):
         r = self.visit_children(tree)
         residuals = []
@@ -167,7 +171,8 @@ class BuildMatrix(visitors.Interpreter):
         _, theloss, *relations = r
         if len(theloss) == 1:
             ST.loss[part] = (number(theloss[0]), isPercent(theloss[0]))
-        relations = [row for row in relations if len(row) == 2]
+        # we only want the relations which are lists
+        relations = [row for row in relations if type(row) == list]
         totals = {}
         for total_name in total_names:
             totals[total_name] = np.zeros(ST.symbol_count + 1)
@@ -192,62 +197,37 @@ class BuildMatrix(visitors.Interpreter):
 
         return relations
 
-    def relation(self, tree):
-        r = self.visit_children(tree)
-        if isinstance(r[0], float):  # scale
-            return [
-                ST.vector((self.part_name, "total_water")),
-                r[0] * ST.vector((self.part_name, "total_flour")),
-            ]
-        elif isinstance(r[0], str):
-            value = number(r[0])
-            if isPercent(r[0]):
-                return value * ST.vector(("dough", "total_flour"))
-            else:
-                return ST.constant(value)
-        elif len(r) == 1:  # mention
-            return []
-        else:
-            return r  # =
-
     def hydration(self, tree):
         r = self.visit_children(tree)
+        v = number(r[0])
+        return [
+            ST.vector((self.part_name, "total_water")),
+            v * ST.vector((self.part_name, "total_flour")),
+        ]
+
+    def add(self, tree):
+        r = self.visit_children(tree)
+        return r[0] + r[1]
+
+    def subtract(self, tree):
+        r = self.visit_children(tree)
+        return r[0] - r[1]
+
+    def multiply(self, tree):
+        r = self.visit_children(tree)
+        return r[0] * r[1]
+
+    def divide(self, tree):
+        r = self.visit_children(tree)
+        return r[0] / r[1]
+
+    def constant(self, tree):
+        r = self.visit_children(tree)
         value = number(r[0])
-        assert isPercent(r[0])
-        return value
-
-    def sum(self, tree):
-        r = self.visit_children(tree)
-        result = r[0]
-        sign = 1
-        for s in r[1:]:
-            if isinstance(s, str):
-                if s == "+":
-                    sign = 1
-                elif s == "-":
-                    sign = -1
-            else:
-                result = result + sign * s
-        return result
-
-    def product(self, tree):
-        r = self.visit_children(tree)
-        if len(r) == 1:
-            if isinstance(r[0], float):
-                return ST.constant(r[0])
-            elif isinstance(r[0], str):
-                value = number(r[0])
-                if isPercent(r[0]):
-                    return ST.vector(("dough", "total_flour")) * value
-                else:
-                    return ST.constant(value)
-            else:
-                return r[0]
-        if tree.children[1] == "*":
-            return r[0] * r[2]
-        if tree.children[1] == "/":
-            return r[0] / r[2]
-        return r
+        if isPercent(r[0]):
+            return ST.vector(("dough", "total_flour")) * value
+        else:
+            return ST.constant(value)
 
     def scale(self, tree):
         r = self.visit_children(tree)
@@ -263,6 +243,13 @@ class BuildMatrix(visitors.Interpreter):
         else:
             fullname = tuple(r)
         return ST.vector(fullname)
+
+    def __default__(self, tree):
+        r = self.visit_children(tree)
+        if len(r) == 1:
+            return r[0]
+        else:
+            return r
 
 
 def format_table(solution):
@@ -281,13 +268,14 @@ def format_table(solution):
 
         return r
 
-    def fmt_value(v, t):
-        if t == "%":
-            return f"{v:6.1f}"
-        elif t == "g":
-            return fmt_grams(v)
+    def fmt_value(value, format):
+        """Format a value based on the format code"""
+        if format == "%":
+            return f"{value:6.1f}"
+        elif format == "g":
+            return fmt_grams(value)
         else:
-            return str(v)
+            return str(value)
 
     def tabulate(headings, fmts, rows):
         """Format a list of lists as a table"""
@@ -314,14 +302,14 @@ def format_table(solution):
 
     # reshape the data into a list of lists
     rows = []
-    scale = 100 / solution[("dough", "total_flour")]
+    grame_to_bp = 100 / solution[("dough", "total_flour")]
     for partName in ST.parts:
         loss_value, isPercent = ST.loss.get(partName, (0, False))
         gt = g = solution[(partName, "total")]
         if isPercent:
             loss_value = loss_value * gt
         loss_scale = (gt + loss_value) / gt
-        bp = g * scale
+        bp = g * grame_to_bp
         # add the ingredients from the part
         for pn, var in solution:
             if pn != partName:
@@ -346,7 +334,7 @@ def format_table(solution):
                         "",
                         pg * loss_scale,
                         var.replace("_", " "),
-                        pg * scale,
+                        pg * grame_to_bp,
                         *extras,
                     ]
                 )
@@ -373,7 +361,7 @@ def output(table, text, failed=False, tobp=False):
     """Insert the table into the input"""
     text = re.sub(r"(?ms)\/\*\+.*?\+\*\/\n", "", text)
     if tobp:
-        text = rewrite(text, ST.solution[("dough", "total_flour")])
+        text = rewrite(text, solution[("dough", "total_flour")])
 
     if failed:
         table = re.sub(r"^", "E ", table, 0, re.M)
