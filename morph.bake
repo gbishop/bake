@@ -34,6 +34,7 @@ dry:
   salt = 1.8% - 1.3% * wet.butter
   wgbi = 2%
   yeast = 0.4%
+  walnuts = 10%
 
 dough:
   wet
@@ -46,31 +47,38 @@ dough:
 December 5, 2024
 
 Changes
-* double the starter in the sponge
+* try walnuts again
+* refreshed srarter
+
+Next time
+* Increase the loss on the sponge. I was 2g short.
 
 Scaled to my 2.3L pullman pan.
 
-Mixed the sponge using rolled oats and king arthur whole wheat flour at 17:30
+Mixed the sponge using rolled oats and king arthur whole wheat flour at 20:20
 and put it in the 94F SDH.
 
-Sponge pH at 7:50 is 4.0 the temperature was 87. It has increased about 30%
+Sponge pH at 7:50 is 3.91 the temperature was 85. It has increased about 50%
 overnight and the top is flat. The SDH only managed 88.6 at the top of the
 container. Room temperature got down to 63 overnight.
 
 I ran the bread machine dough cycle. Started at 8:13. Stopped after 5 minutes
 and set the timer to start in 30 minutes. The pan with paddle weighs 404g.
 
-Out at 11:00 it has filled the container. pH is 4.86 dt is 89F
+Out of the BM at 9:20, pH is 5.25, dT is 80.
+
+Out at 11:00 it has filled the container. pH is 4.95 dt is 80F
 
 Into the pan about 11:15
 
-Baked at 13:15 about 1.5 inches above the top of the pan in 350F oven.
-Removed after 45 minutes, 197F inside. Out at 14:00
+Baked at 12:30 about 0.5 inches above the top of the pan in 350F oven.
+Removed after 45 minutes, 197F inside. Out at 13:15
 
 Looks good.
 
-Good flavor and texture. I like this flavor better I think. Could the slight
-tilt toward red wheat make the difference?
+Good flavor and texture. I like this flavor better I think.
+
+The ground walnuts changed the color and the flavor.
 */
 
 /*+
@@ -104,11 +112,12 @@ wet     | 474    |               |   98.8 |  72.0  | 336    | 33.5  |
         |   8.10 | salt          |    1.7 |        |        |       |
         |   9.60 | wgbi          |    2.0 |   9.60 |        |       |
         |   1.92 | yeast         |    0.4 |        |        |       |
-dry     | 434    |               |   90.5 | 408    |        |  4.87 |
+        |  48.0  | walnuts       |   10.0 |        |        |       |
+dry     | 482    |               |  100.5 | 408    |        |  4.87 |
        
         | 474    | wet           |   98.8 |  72.0  | 336    | 33.5  |
-        | 434    | dry           |   90.5 | 408    |        |  4.87 |
-dough   | 908    |               |  189.3 | 480    | 336    | 38.4  |
+        | 482    | dry           |  100.5 | 408    |        |  4.87 |
+dough   | 956    |               |  199.3 | 480    | 336    | 38.4  |
        
 +*/
 
