@@ -1,44 +1,5 @@
-Multigrain including polenta
-/*+
-soaker.............................(175.8g = 35.1%)
-     50.0 polenta          10.00%
-    125.0 boiling water    25.00%
-      0.8 diastatic malt    0.15%
-
-starter............................(7.3g = 1.5%)
-      4.6 rye               0.91%
-      2.7 water             0.55%
-
-sponge.............................(155.5g = 31.1%)
-     75.0 water            15.00%
-      7.3 starter           1.46%
-     73.2 rye              14.63%
-
-dry................................(389.3g = 77.9%)
-    189.6 prairie gold     37.91%
-     94.8 bronze chief     18.96%
-     37.9 spelt             7.58%
-     25.0 flaxseed meal     5.00%
-     10.0 potato flakes     2.00%
-     15.0 vwg               3.00%
-      5.0 improver          1.00%
-     10.0 salt              2.00%
-      2.0 yeast             0.40%
-
-wet................................(528.5g = 105.7%)
-    147.3 water            29.45%
-    175.8 soaker           35.15%
-    155.5 sponge           31.10%
-     25.0 honey             5.00%
-     25.0 oil               5.00%
-
-dough..............................(992.8g = 198.6%)
-    528.5 wet             105.70%
-    389.3 dry              77.85%
-     75.0 nuts             15.00%
-    500.0 total flour     100.00%
-    350.0 total water      70.00%
-+*/
+# Multigrain including polenta
+/*
 My usual loaf with saccharified polenta
 
 This is really good!
@@ -47,21 +8,24 @@ I poured boiling water over the polenta and let it sit covered at RT until
 it dropped to 150F. Then I added the diastatic malt and stirred. I covered
 it and left it overnight on the counter. In the morning it was quite
 sweet.
+*/
 
 soaker:
   polenta = 10%
   boiling_water = 250% * polenta
   diastatic_malt = 1.5% * polenta
 
-I keep my NMNF starter at 60% hydration in the fridge.
+# I keep my NMNF starter at 60% hydration in the fridge.
 
 starter:
   hydration = 60%
   rye
   water
 
+/*
 I mixed the cold starter into the water and then added the rye. I kept it
 overnight at 86F.
+*/
 
 sponge:
   hydration = 100%
@@ -69,8 +33,10 @@ sponge:
   starter = 10% * rye
   rye
 
+/*
 I like to mix all the flours and dry ingredients together to make sure they
 are properly distributed.
+*/
 
 dry:
   prairie_gold
@@ -83,7 +49,7 @@ dry:
   salt = 2%
   yeast = 0.4%
 
-I also mix the wet ingredients with a mix before adding the dry.
+# I also mix the wet ingredients with a mix before adding the dry.
 
 wet:
   water
@@ -92,12 +58,56 @@ wet:
   honey = 5%
   oil = 5%
 
+/*
 I mix the final dough with the paddle for 1 minute and let it rest
 covered for 30 minutes. I knead for 8 minutes and then add the nuts.
+*/
 
 dough:
   wet
   dry
   nuts = 15%
-  scale = 500g
+  total_flour = 500g
   hydration = 70%
+
+/*+
+  part  | grams  |      name      |   %    | flour  | water  |  fat  |
+        |  50.0  | polenta        |   10.0 |  50.0  |        |       |
+        | 125    | boiling water  |   25.0 |        | 125    |       |
+        |   0.75 | diastatic malt |    0.2 |        |        |       |
+soaker  | 176    |                |   35.1 |  50.0  | 125    |       |
+       
+        |   4.57 | rye            |    0.9 |   4.57 |        |       |
+        |   2.74 | water          |    0.5 |        |   2.74 |       |
+starter |   7.32 |                |    1.5 |   4.57 |   2.74 |       |
+       
+        |  75.0  | water          |   15.0 |        |  75.0  |       |
+        |   7.32 | starter        |    1.5 |   4.57 |   2.74 |       |
+        |  73.2  | rye            |   14.6 |  73.2  |        |       |
+sponge  | 155    |                |   31.1 |  77.7  |  77.7  |       |
+       
+        | 187    | prairie gold   |   37.3 | 187    |        |       |
+        |  93.3  | bronze chief   |   18.7 |  93.3  |        |       |
+        |  37.3  | spelt          |    7.5 |  37.3  |        |       |
+        |  25.0  | flaxseed meal  |    5.0 |  25.0  |        |       |
+        |  10.0  | potato flakes  |    2.0 |  10.0  |        |       |
+        |  15.0  | vwg            |    3.0 |  15.0  |        |       |
+        |   5.00 | improver       |    1.0 |   5.00 |        |       |
+        |  10.0  | salt           |    2.0 |        |        |       |
+        |   2.00 | yeast          |    0.4 |        |        |       |
+dry     | 384    |                |   76.9 | 372    |        |       |
+       
+        | 143    | water          |   28.6 |        | 143    |       |
+        | 176    | soaker         |   35.1 |  50.0  | 125    |       |
+        | 155    | sponge         |   31.1 |  77.7  |  77.7  |       |
+        |  25.0  | honey          |    5.0 |        |   4.25 |       |
+        |  25.0  | oil            |    5.0 |        |        | 25.0  |
+wet     | 524    |                |  104.8 | 128    | 350    | 25.0  |
+       
+        | 524    | wet            |  104.8 | 128    | 350    | 25.0  |
+        | 384    | dry            |   76.9 | 372    |        |       |
+        |  75.0  | nuts           |   15.0 |        |        |       |
+dough   | 983    |                |  196.7 | 500    | 350    | 25.0  |
+       
++*/
+
