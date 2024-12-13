@@ -43,7 +43,7 @@ NUMBER: /[0-9]+([.][0-9]+)?[g%]?/
 WHITESPACE: /[ \n]+/ 
 %ignore WHITESPACE
 
-COMMENT:  "/*" /(.|\n|\r)+/ "*/"     
+COMMENT:  "/*" /(.|\n|\r)*?/ "*/"     
        |  "#" /(.)+\n/ 
 %ignore COMMENT
 """
