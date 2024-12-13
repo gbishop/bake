@@ -17,7 +17,7 @@ import traceback
 grammar = r"""
 start: part+
 
-part: ID ( "^" NUMBER )? ":" (hydration | relation | mention)+
+part: ID [ "^" NUMBER ] ":" (hydration | relation | mention)+
 
 hydration: "hydration" "=" NUMBER
 
@@ -169,8 +169,8 @@ class BuildMatrix(visitors.Interpreter):
         part = self.part_name = tree.children[0]
         r = self.visit_children(tree)
         _, theloss, *relations = r
-        if len(theloss) == 1:
-            ST.loss[part] = (number(theloss[0]), isPercent(theloss[0]))
+        if theloss:
+            ST.loss[part] = (number(theloss), isPercent(theloss))
         # we only want the relations which are lists
         relations = [row for row in relations if type(row) == list]
         totals = {}
