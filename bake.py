@@ -302,14 +302,17 @@ def format_table(solution):
 
     # reshape the data into a list of lists
     rows = []
-    grame_to_bp = 100 / solution[("dough", "total_flour")]
+    dtf = solution[("dough", "total_flour")]
+    if dtf == 0:
+        raise Exception("No flour")
+    grams_to_bp = 100 / solution[("dough", "total_flour")]
     for partName in ST.parts:
         loss_value, isPercent = ST.loss.get(partName, (0, False))
         gt = g = solution[(partName, "total")]
         if isPercent:
             loss_value = loss_value * gt
         loss_scale = (gt + loss_value) / gt
-        bp = g * grame_to_bp
+        bp = g * grams_to_bp
         # add the ingredients from the part
         for pn, var in solution:
             if pn != partName:
@@ -334,7 +337,7 @@ def format_table(solution):
                         "",
                         pg * loss_scale,
                         var.replace("_", " "),
-                        pg * grame_to_bp,
+                        pg * grams_to_bp,
                         *extras,
                     ]
                 )
@@ -434,6 +437,7 @@ r = np.linalg.lstsq(A, B, rcond=-1)
 X = r[0]
 
 residuals = A.dot(X) - B
+
 error = np.sqrt(np.max(residuals**2))
 
 failed = error > 1
