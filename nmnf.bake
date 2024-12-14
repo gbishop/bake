@@ -1,11 +1,11 @@
-No muss no fuss starter rebuild
+# No muss no fuss starter rebuild
 
 starter:
   rye
   water
   hydration = 60%
 
-8am
+# 8am
 
 stage1:
   starter
@@ -13,7 +13,7 @@ stage1:
   water
   hydration = 100%
 
-12pm
+# 12pm
 
 stage2:
   stage1
@@ -21,7 +21,7 @@ stage2:
   water
   hydration = 80%
 
-4pm
+# 4pm
 
 stage3:
   stage2
@@ -33,7 +33,7 @@ dough:
   stage3
   total = 160g
 
-Started at 8am in 86F SDH. At noon the pH is 4.76, no visible rise. 
+# Started at 8am in 86F SDH. At noon the pH is 4.76, no visible rise. 
 
 /*+
 starter............................(10.0g = 10.0%)

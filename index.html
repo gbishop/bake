@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+  <head>
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+
+  <body class="loading">
+    <div class="loading">
+      <h1>Loading...</h1>
+    </div>
+    <div id="message"></div>
+    <div id="body">
+      <button id="solve">Solve</button>
+      <button id="examples">Examples</button>
+      <textarea></textarea>
+      <table></table>
+    </div>
+    <dialog>
+      <h1>Example recipes</h1>
+      <ul>
+        <li><a href="#morph.bake">My daily bread</a></li>
+        <li><a href="#nmnf.bake">My NMNF starter rebuild</a></li>
+        <li><a href="#bulochki_knots.bake">Bulochki knots I want to try</a></li>
+        <button>Close</button>
+      </ul>
+    </dialog>
+    <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js"></script>
+    <script type="module" src="./bake.js"></script>
+  </body>
+</html>
