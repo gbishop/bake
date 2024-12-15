@@ -84,10 +84,11 @@ function fmt_grams(g = 0) {
   return g.toString();
 }
 
-/** @param {any} value
+/** @param {number | string} value
  * @param {string} format
  */
 function fmt_value(value, format) {
+  if (typeof value == "string") return value;
   if (format == "%") return value.toFixed(1) + "%";
   if (format == "g") return fmt_grams(value);
   return value;
@@ -96,7 +97,7 @@ function fmt_value(value, format) {
 /**
  * @param {string[]} headings
  * @param {string} fmts
- * @param {any[][]} rows
+ * @param {(string | number)[][]} rows
  */
 function tabulate(headings, fmts, rows) {
   const thead = `<thead>
@@ -121,14 +122,30 @@ function tabulate(headings, fmts, rows) {
 
 const headings = ["Part", "Grams", "Ingredient", "%", "Flour", "Water", "Fat"];
 
+/**
+ * @template {typeof Element} T
+ * @param {T} type
+ * @param {string} selector
+ * @returns {InstanceType<T>}
+ */
+function queryElement(selector, type) {
+  const el = document.querySelector(selector);
+  if (!(el instanceof type)) {
+    throw new Error(
+      `Selector ${selector} matched ${el} which is not an ${type}`,
+    );
+  }
+  return /** @type {InstanceType<T>} */ (el);
+}
+
 async function main() {
   const solve = await setupPython();
-  const textarea = document.querySelector("textarea");
-  const button = document.querySelector("button#solve");
-  const show = document.querySelector("button#examples");
-  const examples = document.querySelector("dialog");
-  const table = document.querySelector("table");
-  const message = document.querySelector("div#message");
+  const textarea = queryElement("textarea", HTMLTextAreaElement);
+  const button = queryElement("button#solve", HTMLButtonElement);
+  const show = queryElement("button#examples", HTMLButtonElement);
+  const examples = queryElement("dialog", HTMLDialogElement);
+  const table = queryElement("table", HTMLTableElement);
+  const message = queryElement("div#message", HTMLDivElement);
   document.body.classList.toggle("loading");
   button.addEventListener("click", display);
   show.addEventListener("click", () => {
@@ -137,6 +154,12 @@ async function main() {
   examples.addEventListener("click", () => examples.close());
   textarea.addEventListener("input", () => {
     localStorage.setItem("recipe", textarea.value);
+  });
+  textarea.addEventListener("keydown", (event) => {
+    if (event.key == "Enter" && event.shiftKey) {
+      event.preventDefault();
+      display();
+    }
   });
   async function loadRecipe() {
     const resp = await fetch(`./${location.hash.slice(1)}`);

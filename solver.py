@@ -276,14 +276,7 @@ def solve(text):
 
     GetUnknowns().visit_topdown(tree)
 
-    try:
-        A, B = BuildMatrix().visit(tree)
-    except SyntaxError as e:
-        print(e)
-        sys.exit(1)
-    except RuntimeError:
-        traceback.print_exc(limit=-2)
-        sys.exit(1)
+    A, B = BuildMatrix().visit(tree)
 
     r = np.linalg.lstsq(A, B, rcond=-1)
 
@@ -291,12 +284,11 @@ def solve(text):
 
     residuals = A.dot(X) - B
 
-    error = np.sqrt(np.max(residuals**2))
-    print(error)
+    error = np.sqrt(np.mean(residuals**2))
 
     failed = False
     message = ""
-    if error > 1:
+    if error > 1e-4:
         failed = True
         message = "Residual too large"
     solution = {name: X[index] for name, index in ST.name_to_index.items()}
@@ -305,7 +297,7 @@ def solve(text):
     rows = []
     dtf = solution[("dough", "total_flour")]
     if dtf == 0:
-        raise Exception("No flour")
+        return {"message": "No flour", "failed": True}
     grams_to_bp = 100 / solution[("dough", "total_flour")]
     for partName in ST.parts:
         loss_value, isPercent = ST.loss.get(partName, (0, False))
