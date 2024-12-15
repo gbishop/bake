@@ -26,52 +26,6 @@ for fname in ["solver.py", "ingredients.py"]:
   return pkg.solve;
 }
 
-const example = `# Start with soft white bread and morph to whole grain
-
-starter:
-  rye
-  water
-  hydration = 60%
-
-sponge ^ 2%: # allow for 2% loss
-  starter = 10% * total_flour
-  water
-  oats = ww_flour
-  ww_flour
-  total_flour = 15%
-  hydration = 100%
-
-grain:
-  prairie_gold
-  hard_red
-  spelt = 10%
-  rye = 5%
-
-wet:
-  sponge
-  water
-  butter
-  honey = 8%
-
-dry:
-  grain
-  # half the water to milk
-  nido = 50% * 13% * wet.water
-  potato_flakes = 2%
-  flaxseed_meal = 7%
-  salt = 1.8% - 1.3% * wet.butter
-  wgbi = 2%
-  yeast = 0.4%
-  sunflower_seeds = 10%
-
-dough:
-  wet
-  dry
-  total_water = 70%
-  total_fat = 8%
-  total_flour = 480g
-`;
-
 function round(value = 0, digits = 0) {
   return Math.round(value * value ** digits) / value ** digits;
 }
@@ -161,6 +115,7 @@ async function main() {
       display();
     }
   });
+  lineNumbers(textarea, 100);
   async function loadRecipe() {
     const resp = await fetch(`./${location.hash.slice(1)}`);
     if (resp.ok) {
@@ -177,23 +132,56 @@ async function main() {
     loadRecipe();
   }
   function display() {
-    console.log("display");
     let text = textarea.value;
     if (!text) {
-      text = localStorage.getItem("recipe") || example;
+      text = localStorage.getItem("recipe") || "";
       textarea.value = text;
     }
     localStorage.setItem("recipe", text);
     const proxy = solve(text);
     const result = proxy.toJs({ create_pyproxies: false });
-    console.log("result", result);
+    message.innerText = "";
     if (result.failed) {
       console.log("failed", result.message);
-      console.log(message);
       message.innerText = result.message;
     }
     table.innerHTML = tabulate(headings, "tgt%ggg", result.rows || []);
   }
   display();
 }
+
+/**
+ * Add line numbers to a textarea from https://dev.to/madsstoumann/line-numbers-for-using-svg-1216
+ * @param {HTMLElement} element
+ * @param {number} numLines
+ */
+function lineNumbers(element, numLines) {
+  const bgColor = getComputedStyle(element).borderColor;
+  const fillColor = getComputedStyle(element).color;
+  const fontFamily = getComputedStyle(element).fontFamily;
+  const fontSize = parseFloat(getComputedStyle(element).fontSize);
+  const lineHeight =
+    parseFloat(getComputedStyle(element).lineHeight) / fontSize;
+  const paddingTop = parseFloat(getComputedStyle(element).paddingTop) / 2;
+  const translateY = (fontSize * lineHeight).toFixed(2);
+
+  /* Note: In Safari, deduct `(paddingTop / 10)` from translateY */
+
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" style="background:${bgColor};">
+    <style>
+      text {
+        fill: hsl(from ${fillColor} h s l / 50%);
+        font-family: ${fontFamily};
+        font-size: ${fontSize}px;
+        line-height: ${lineHeight};
+        text-anchor: end;
+        translate: 0 calc((var(--n) * ${translateY}px) + ${paddingTop}px);
+      }
+    </style>
+    ${Array.from({ length: numLines }, (_, i) => `<text x="80%" style="--n:${i + 1};">${i + 1}</text>`).join("")}
+  </svg>`;
+
+  element.style.backgroundImage = `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
+}
+
 main();
