@@ -1,34 +1,6 @@
-Lovely Bell SD
-/*+
-starter............................(4.6g = 2.0%)
-      1.7 water             0.75%
-      2.9 rye               1.25%
+# Lovely Bell SD
 
-sponge.............................(49.4g = 21.5%)
-      4.6 starter           2.00%
-     23.0 water            10.00%
-     21.9 rye               9.50%
-
-wet................................(206.2g = 89.6%)
-    121.8 water            52.95%
-     46.0 sponge           20.00%
-     12.4 egg               5.40%
-     16.1 honey             7.00%
-      9.9 oil               4.30%
-
-dry................................(211.6g = 92.0%)
-    200.1 prairie gold     87.00%
-      6.9 vwg               3.00%
-      3.7 salt              1.60%
-      0.9 yeast             0.40%
-
-dough..............................(417.8g = 181.7%)
-    206.2 wet              89.65%
-    211.6 dry              92.00%
-    154.1 total water      67.00%
-    230.0 total flour     100.00%
-+*/
-
+/*
 From: https://lovelybellbakes.com/super-soft-fresh-milled-sourdough-sandwich-bread/.
 
 Check at 30 minutes next bake.
@@ -58,6 +30,7 @@ What is the key difference from my usual loaf?
 ? More honey, less oil? Seems doubtful.
 x More starter? No way.
 ? Slightly lower hydration? Hardly.
+*/
 
 starter:
   water
@@ -66,13 +39,13 @@ starter:
 
 sponge:
   starter = 2%
-  water = 10%
+  water
   rye
   hydration = 100%
 
 wet:
   water
-  sponge limit 20%
+  sponge = 20%
   egg = 5.4%
   honey = 7%
   oil = 4.3%
@@ -87,5 +60,35 @@ dough:
   wet
   dry
   hydration = 67%
-  scale = 230 g
+  total_flour = 230g
+
+/*+
+  part  | grams  |     name     |   %    | flour  | water  |  fat  |
+        |   1.73 | water        |    0.8 |        |   1.73 |       |
+        |   2.87 | rye          |    1.2 |   2.87 |        |       |
+starter |   4.60 |              |    2.0 |   2.87 |   1.73 |       |
+       
+        |   4.60 | starter      |    2.0 |   2.87 |   1.73 |       |
+        |  21.3  | water        |    9.2 |        |  21.3  |       |
+        |  20.1  | rye          |    8.7 |  20.1  |        |       |
+sponge  |  46.0  |              |   20.0 |  23.0  |  23.0  |       |
+       
+        | 119    | water        |   51.8 |        | 119    |       |
+        |  46.0  | sponge       |   20.0 |  23.0  |  23.0  |       |
+        |  12.4  | egg          |    5.4 |        |   9.32 |  1.12 |
+        |  16.1  | honey        |    7.0 |        |   2.74 |       |
+        |   9.89 | oil          |    4.3 |        |        |  9.89 |
+wet     | 203    |              |   88.5 |  23.0  | 154    | 11.0  |
+       
+        | 200    | prairie gold |   87.0 | 200    |        |       |
+        |   6.90 | vwg          |    3.0 |   6.90 |        |       |
+        |   3.68 | salt         |    1.6 |        |        |       |
+        |   0.92 | yeast        |    0.4 |        |        |       |
+dry     | 212    |              |   92.0 | 207    |        |       |
+       
+        | 203    | wet          |   88.5 |  23.0  | 154    | 11.0  |
+        | 212    | dry          |   92.0 | 207    |        |       |
+dough   | 415    |              |  180.5 | 230    | 154    | 11.0  |
+       
++*/
 

@@ -1,49 +1,12 @@
-My usual loaf with glazed nuts
-/*+
-starter............................(4.7g = 0.9%)
-      2.9 rye               0.59%
-      1.8 water             0.35%
+# My usual loaf with glazed nuts
 
-sponge.............................(100.0g = 20.0%)
-      4.7 starter           0.94%
-     47.1 whole wheat       9.41%
-     48.2 warm water        9.65%
-
-wet................................(450.0g = 90.0%)
-    100.0 sponge           20.00%
-    300.0 warm water       60.00%
-     25.0 oil               5.00%
-     25.0 honey             5.00%
-
-dry................................(467.0g = 93.4%)
-    175.0 prairie gold     35.00%
-    150.0 bronze chief     30.00%
-     50.0 spelt            10.00%
-     25.0 oats              5.00%
-     25.0 flaxseed meal     5.00%
-     15.0 potato flakes     3.00%
-     10.0 vwg               2.00%
-      5.0 improver          1.00%
-     10.0 salt              2.00%
-      2.0 yeast             0.40%
-
-glazed_nuts........................(150.0g = 30.0%)
-     75.0 nuts             15.00%
-     75.0 glaze            15.00%
-
-dough..............................(1067.0g = 213.4%)
-    450.0 wet              90.00%
-    467.0 dry              93.40%
-    150.0 glazed nuts      30.00%
-    500.0 total flour     100.00%
-    350.0 total water      70.00%
-+*/
-
+/*
 This loaf has glazed nuts added. I started with 75g of 50/50 pecan/walnuts and glazed them with 75g of brown sugar, 25g water and 1.0g salt in a non-stick pan. https://www.fifteenspatulas.com/quick-stovetop-candied-pecans/ I failed to weigh the result but it must have been about 150g.
 
 This one turned out as good as the first. I think lowering the oats helps the texture. 
 
 2 May 2024
+*/
 
 starter:
   rye
@@ -83,4 +46,45 @@ dough:
   dry
   glazed_nuts
   hydration = 70%
-  scale = 500g
+  total_flour = 500g
+
+/*+
+    part    |  grams  |      name     |   %    | flour  | water  |  fat  |
+            |    2.94 | rye           |    0.6 |   2.94 |        |       |
+            |    1.76 | water         |    0.4 |        |   1.76 |       |
+starter     |    4.71 |               |    0.9 |   2.94 |   1.76 |       |
+           
+            |    4.71 | starter       |    0.9 |   2.94 |   1.76 |       |
+            |   47.1  | whole wheat   |    9.4 |  47.1  |        |       |
+            |   48.2  | warm water    |    9.6 |        |  48.2  |       |
+sponge      |  100    |               |   20.0 |  50.0  |  50.0  |       |
+           
+            |  100    | sponge        |   20.0 |  50.0  |  50.0  |       |
+            |  296    | warm water    |   59.1 |        | 296    |       |
+            |   25.0  | oil           |    5.0 |        |        | 25.0  |
+            |   25.0  | honey         |    5.0 |        |   4.25 |       |
+wet         |  446    |               |   89.1 |  50.0  | 350    | 25.0  |
+           
+            |  170    | prairie gold  |   34.0 | 170    |        |       |
+            |  150    | bronze chief  |   30.0 | 150    |        |       |
+            |   50.0  | spelt         |   10.0 |  50.0  |        |       |
+            |   25.0  | oats          |    5.0 |  25.0  |        |       |
+            |   25.0  | flaxseed meal |    5.0 |  25.0  |        |       |
+            |   15.0  | potato flakes |    3.0 |  15.0  |        |       |
+            |   10.0  | vwg           |    2.0 |  10.0  |        |       |
+            |    5.00 | improver      |    1.0 |   5.00 |        |       |
+            |   10.0  | salt          |    2.0 |        |        |       |
+            |    2.00 | yeast         |    0.4 |        |        |       |
+dry         |  462    |               |   92.4 | 450    |        |       |
+           
+            |   75.0  | nuts          |   15.0 |        |        |       |
+            |   75.0  | glaze         |   15.0 |        |        |       |
+glazed nuts |  150    |               |   30.0 |        |        |       |
+           
+            |  446    | wet           |   89.1 |  50.0  | 350    | 25.0  |
+            |  462    | dry           |   92.4 | 450    |        |       |
+            |  150    | glazed nuts   |   30.0 |        |        |       |
+dough       | 1058    |               |  211.5 | 500    | 350    | 25.0  |
+           
++*/
+

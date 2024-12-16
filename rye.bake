@@ -1,13 +1,13 @@
-30% rye with red rye malt
+# 30% rye with red rye malt
 
-This is a really good rye loaf. I like the flavor, aroma and texture. 
+# This is a really good rye loaf. I like the flavor, aroma and texture. 
 
 starter:
   hydration = 60%
   water
   rye
 
-sponge + 5g:
+sponge ^ 5g:
   starter = 10% * total_flour
   water
   rye
@@ -27,7 +27,7 @@ dry:
   caraway_seeds = 2%
   potato_flakes = 3%
   flaxseed_meal = 3%
-  wgbi = 2% * (sponge.total_flour + rye + prairie_gold)
+  wgbi = 2% * sponge.total_flour + 2% * rye + 2% * prairie_gold
   salt = 2%
   yeast = 0.4%
 
@@ -35,8 +35,9 @@ dough:
   wet
   dry
   hydration = 70%
-  scale = 500g
+  total_flour = 500g
 
+/*
 16 October 2024
 
 Mixed the sponge at 18:10 on the 14th into the SDH at 80F. After 4 hours I took
@@ -54,40 +55,40 @@ Baked about 12:15 in 350F preheated oven.
 
 Good shape and height. Perfect texture. Good flavor.
 
+*/
+
 /*+
-starter............................(5.0g = 1.0%)
-    1.87 water              0.4%
-    3.12 rye                0.6%
-
-sponge + 5.0g......................(100.0g = 20.0%)
-    5.25 starter            1.0%
-   50.5  water              9.6%
-   44.0  rye                8.4%
-    5.25 red rye malt       1.0%
-
-wet................................(445.8g = 89.2%)
-  100    sponge            20.0%
-  296    water             59.2%
-   25.0  oil                5.0%
-   25.0  honey              5.0%
-
-dry................................(472.0g = 94.4%)
-  100    rye               20.0%
-  175    prairie gold      35.0%
-  139    bread flour       27.7%
-   10.0  caraway seeds      2.0%
-   15.0  potato flakes      3.0%
-   15.0  flaxseed meal      3.0%
-    6.50 wgbi               1.3%
-   10.0  salt               2.0%
-    2.00 yeast              0.4%
-
-dough..............................(917.8g = 183.6%)
-  446    wet               89.2%
-  472    dry               94.4%
-
-  500    total flour      100.0%
-  350    total water       70.0%
-   25.0  total fat          5.0%
+  part  | grams  |      name     |   %    | flour  | water  |  fat  |
+        |   1.88 | water         |    0.4 |        |   1.88 |       |
+        |   3.13 | rye           |    0.6 |   3.13 |        |       |
+starter |   5.00 |               |    1.0 |   3.13 |   1.88 |       |
+       
+        |   5.25 | starter       |    1.0 |   3.13 |   1.88 |       |
+        |  50.5  | water         |    9.6 |        |  48.1  |       |
+        |  44.0  | rye           |    8.4 |  41.9  |        |       |
+        |   5.25 | red rye malt  |    1.0 |   5.00 |        |       |
+sponge  | 105    | + 5.0g        |   20.0 |  50.0  |  50.0  |       |
+       
+        | 100    | sponge        |   20.0 |  50.0  |  50.0  |       |
+        | 296    | water         |   59.2 |        | 296    |       |
+        |  25.0  | oil           |    5.0 |        |        | 25.0  |
+        |  25.0  | honey         |    5.0 |        |   4.25 |       |
+wet     | 446    |               |   89.2 |  50.0  | 350    | 25.0  |
+       
+        | 100    | rye           |   20.0 | 100    |        |       |
+        | 175    | prairie gold  |   35.0 | 175    |        |       |
+        | 139    | bread flour   |   27.7 | 139    |        |       |
+        |  10.0  | caraway seeds |    2.0 |        |        |       |
+        |  15.0  | potato flakes |    3.0 |  15.0  |        |       |
+        |  15.0  | flaxseed meal |    3.0 |  15.0  |        |       |
+        |   6.50 | wgbi          |    1.3 |   6.50 |        |       |
+        |  10.0  | salt          |    2.0 |        |        |       |
+        |   2.00 | yeast         |    0.4 |        |        |       |
+dry     | 472    |               |   94.4 | 450    |        |       |
+       
+        | 446    | wet           |   89.2 |  50.0  | 350    | 25.0  |
+        | 472    | dry           |   94.4 | 450    |        |       |
+dough   | 918    |               |  183.5 | 500    | 350    | 25.0  |
+       
 +*/
 

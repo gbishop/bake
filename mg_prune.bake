@@ -1,43 +1,11 @@
-A loaf with prunes
-/*+
-starter............................(2.5g = 1.0%)
-    1.56 rye                0.6%
-    0.94 water              0.4%
+# A loaf with prunes
 
-sponge.............................(50.0g = 20.0%)
-    2.5  starter            1.0%
-   23.4  whole wheat        9.4%
-   24.1  water              9.6%
-
-prune_solution.....................(182.5g = 73.0%)
-   37.5  prunes            15.0%
-  145    water             58.0%
-
-wet................................(257.5g = 103.0%)
-  183    prune solution    73.0%
-   50.0  sponge            20.0%
-   12.5  oil                5.0%
-   12.5  honey              5.0%
-
-dry................................(230.8g = 92.3%)
-  200    whole wheat       80.0%
-   12.5  flaxseed meal      5.0%
-    7.5  potato flakes      3.0%
-    5.0  vwg                2.0%
-    5.0  salt               2.0%
-    0.75 yeast              0.3%
-
-dough..............................(488.3g = 195.3%)
-  258    wet              103.0%
-  231    dry               92.3%
-  250    total flour      100.0%
-  170    total water       68.0%
-+*/
-
+/*
 20 July 2024
 
 This is an experimental loaf with soaked prunes that are blended with water
 before adding them to the dough.
+*/
 
 starter:
   rye
@@ -72,5 +40,39 @@ dough:
   wet
   dry
   hydration = 68%
-  scale = 250g
+  total_flour = 250g
+/*+
+     part      | grams  |      name      |   %    | flour  | water  |  fat  |
+               |   1.56 | rye            |    0.6 |   1.56 |        |       |
+               |   0.94 | water          |    0.4 |        |   0.94 |       |
+starter        |   2.50 |                |    1.0 |   1.56 |   0.94 |       |
+              
+               |   2.50 | starter        |    1.0 |   1.56 |   0.94 |       |
+               |  23.4  | whole wheat    |    9.4 |  23.4  |        |       |
+               |  24.1  | water          |    9.6 |        |  24.1  |       |
+sponge         |  50.0  |                |   20.0 |  25.0  |  25.0  |       |
+              
+               |  37.5  | prunes         |   15.0 |        |        |       |
+               | 143    | water          |   57.1 |        | 143    |       |
+prune solution | 180    |                |   72.1 |        | 143    |       |
+              
+               | 180    | prune solution |   72.1 |        | 143    |       |
+               |  50.0  | sponge         |   20.0 |  25.0  |  25.0  |       |
+               |  12.5  | oil            |    5.0 |        |        | 12.5  |
+               |  12.5  | honey          |    5.0 |        |   2.12 |       |
+wet            | 255    |                |  102.1 |  25.0  | 170    | 12.5  |
+              
+               | 200    | whole wheat    |   80.0 | 200    |        |       |
+               |  12.5  | flaxseed meal  |    5.0 |  12.5  |        |       |
+               |   7.50 | potato flakes  |    3.0 |   7.50 |        |       |
+               |   5.00 | vwg            |    2.0 |   5.00 |        |       |
+               |   5.00 | salt           |    2.0 |        |        |       |
+               |   0.75 | yeast          |    0.3 |        |        |       |
+dry            | 231    |                |   92.3 | 225    |        |       |
+              
+               | 255    | wet            |  102.1 |  25.0  | 170    | 12.5  |
+               | 231    | dry            |   92.3 | 225    |        |       |
+dough          | 486    |                |  194.4 | 250    | 170    | 12.5  |
+              
++*/
 

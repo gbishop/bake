@@ -1,22 +1,27 @@
-Simple test loaf
-/*+
-dough..............................(793.0g = 172.4%)
-  307    prairie gold      66.7%
-  153    bronze chief      33.3%
-  322    water             70.0%
-    9.2  salt               2.0%
-    1.84 yeast              0.4%
-  460    total flour      100.0%
-  322    total water       70.0%
-+*/
+# Simple test loaf
 
 dough:
-  prairie_gold = 2g * _part
-  bronze_chief = 1g * _part
+  /* names that begin with _ are not ingredients but are
+     used for calculations */
+  prairie_gold = 3 * _part
+  bronze_chief = 2 * _part
+  spelt = 1 * _part
   water
   salt = 2%
   yeast = 0.4%
   hydration = 70%
-  scale = 460g
+  total_flour = 460g
 
+/*+
+ part | grams  |     name     |   %    | flour  | water  | fat |
+      | 230    | prairie gold |   50.0 | 230    |        |     |
+      | 153    | bronze chief |   33.3 | 153    |        |     |
+      |  76.7  | spelt        |   16.7 |  76.7  |        |     |
+      | 322    | water        |   70.0 |        | 322    |     |
+      |   9.20 | salt         |    2.0 |        |        |     |
+      |   1.84 | yeast        |    0.4 |        |        |     |
+      |        | walnuts      |    0.0 |        |        |     |
+dough | 870    |              |  189.1 | 460    | 322    |     |
+     
++*/
 

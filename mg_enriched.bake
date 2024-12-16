@@ -1,5 +1,6 @@
-My usual loaf enriched
+# My usual loaf enriched
 
+/*
 9 August 2024
 
 Changes
@@ -28,6 +29,7 @@ The sides are sucked in a bit, maybe lower the hydration a little more?
 I also should try letting it cool in the oven. Maybe in the winter.
 
 Good texture. Firmer like I wanted. Not very sour on first taste.
+*/
 
 starter:
   rye
@@ -72,44 +74,43 @@ dough:
   total_flour = 250g
 
 /*+
-starter............................(7.5g = 3.0%)
-    4.69 rye                1.9%
-    2.81 water              1.1%
-
-sponge.............................(75.0g = 30.0%)
-    7.50 starter            3.0%
-   32.8  whole wheat       13.1%
-   34.7  water             13.9%
-
-wet................................(234.9g = 93.9%)
-   75.0  sponge            30.0%
-   50.0  egg               20.0%
-   83.9  water             33.6%
-    5.46 nido               2.2%
-    7.95 butter             3.2%
-   12.5  honey              5.0%
-
-grind..............................(150.0g = 60.0%)
-   52.3  prairie gold      20.9%
-   52.3  bronze chief      20.9%
-   25.0  spelt             10.0%
-    7.81 rye                3.1%
-   12.5  oats               5.0%
-
-dry................................(218.6g = 87.5%)
-  150    grind             60.0%
-   37.5  bread flour       15.0%
-   12.5  flaxseed meal      5.0%
-    5.00 potato flakes      2.0%
-    7.50 improver           3.0%
-    4.88 salt               2.0%
-    1.25 yeast              0.5%
-
-dough..............................(453.5g = 181.4%)
-  235    wet               93.9%
-  219    dry               87.5%
-  250    total flour      100.0%
-  163    total water       65.0%
-   12.5  total fat          5.0%
+  part  | grams  |      name     |   %    | flour  | water  |  fat  |
+        |   4.69 | rye           |    1.9 |   4.69 |        |       |
+        |   2.81 | water         |    1.1 |        |   2.81 |       |
+starter |   7.50 |               |    3.0 |   4.69 |   2.81 |       |
+       
+        |   7.50 | starter       |    3.0 |   4.69 |   2.81 |       |
+        |  32.8  | whole wheat   |   13.1 |  32.8  |        |       |
+        |  34.7  | water         |   13.9 |        |  34.7  |       |
+sponge  |  75.0  |               |   30.0 |  37.5  |  37.5  |       |
+       
+        |  75.0  | sponge        |   30.0 |  37.5  |  37.5  |       |
+        |  50.0  | egg           |   20.0 |        |  37.5  |  4.50 |
+        |  83.9  | water         |   33.6 |        |  83.9  |       |
+        |   5.46 | nido          |    2.2 |        |        |  1.64 |
+        |   7.95 | butter        |    3.2 |        |   1.43 |  6.36 |
+        |  12.5  | honey         |    5.0 |        |   2.13 |       |
+wet     | 235    |               |   93.9 |  37.5  | 162    | 12.5  |
+       
+        |  52.3  | prairie gold  |   20.9 |  52.3  |        |       |
+        |  52.3  | bronze chief  |   20.9 |  52.3  |        |       |
+        |  25.0  | spelt         |   10.0 |  25.0  |        |       |
+        |   7.81 | rye           |    3.1 |   7.81 |        |       |
+        |  12.5  | oats          |    5.0 |  12.5  |        |       |
+grind   | 150    |               |   60.0 | 150    |        |       |
+       
+        | 150    | grind         |   60.0 | 150    |        |       |
+        |  37.5  | bread flour   |   15.0 |  37.5  |        |       |
+        |  12.5  | flaxseed meal |    5.0 |  12.5  |        |       |
+        |   5.00 | potato flakes |    2.0 |   5.00 |        |       |
+        |   7.50 | improver      |    3.0 |   7.50 |        |       |
+        |   4.88 | salt          |    2.0 |        |        |       |
+        |   1.25 | yeast         |    0.5 |        |        |       |
+dry     | 219    |               |   87.5 | 213    |        |       |
+       
+        | 235    | wet           |   93.9 |  37.5  | 162    | 12.5  |
+        | 219    | dry           |   87.5 | 213    |        |       |
+dough   | 453    |               |  181.4 | 250    | 162    | 12.5  |
+       
 +*/
 

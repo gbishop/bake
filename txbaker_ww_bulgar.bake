@@ -1,36 +1,6 @@
-SD WW sandwich with bulgar from txfarmer
-/*+
-starter............................(7.0g = 3.5%)
-    4.38 rye                2.2%
-    2.63 water              1.3%
+# SD WW sandwich with bulgar from txfarmer
 
-levain.............................(42.9g = 21.4%)
-    7.0  starter            3.5%
-   13.4  water              6.7%
-   22.4  ww flour          11.2%
-
-soaker.............................(71.0g = 35.5%)
-   26.6  bulgar            13.3%
-   37.4  water             18.7%
-    7.00 molasses           3.5%
-
-dough..............................(320.3g = 160.1%)
-  147    ww flour          73.3%
-   50.2  water             25.1%
-    7.00 butter             3.5%
-    3.60 salt               1.8%
-   62.2  milk              31.1%
-    7.00 honey              3.5%
-   42.9  levain            21.4%
-    0.80 yeast              0.4%
-
-inclusion..........................(391.3g = 195.6%)
-  320    dough            160.1%
-   71.0  soaker            35.5%
-  200    total flour      100.0%
-  158    total water       78.9%
-+*/
-
+/*
 This is from txfarmer on "SD 100% WW sandwich loaf with bulgur (cracked wheat)"
 on The Fresh Loaf www.thefreshloaf.com/node/22831
 
@@ -38,6 +8,7 @@ This turned out much too sour. pH=4.35. Nicely soft. Edible but not enjoyable. I
 can't see that the bulgar added anything significant. 
 
 At 78F everything needs to go much faster as noted below.
+*/
 
 starter:
   rye
@@ -50,19 +21,23 @@ levain:
   ww_flour = 11.2%
   hydration = 60%
 
+/*
 1. Mix and let ferment at RT for 12 hours.
 This time I used rye instead of ww because I zoned out.
+*/
 
 soaker:
   bulgar = 13.3%
   water = 18.7%
   molasses = 3.5%
 
+/*
 2. Mix and bring to boil, set aside before mixing the dough. By the time it
 is incorporated into the dough it would've soaked for at least 2 hours.
+*/
 
 dough:
-  ww_flour = 73.3%
+  ww_flour
   water = 25.1%
   butter = 3.5%
   salt = 1.8%
@@ -70,18 +45,18 @@ dough:
   honey = 3.5%
   levain
   yeast = 0.4%
+  soaker
+  total_flour = 200g
 
+/*
 3. Mix together dough ingredients, knead until the gluten has just been
 developed. More kneading will be done later, so do not fully develop the gluten
 network now. pH=5.24 DT=82F after 2 hours ph=5.10 DT=79F
 
 I think 2 hours was too long.
+*/
 
-inclusion:
-  dough
-  soaker
-  scale = 200g
-
+/*
 4. Rise at RT for 2 hours. Punch down, add soaker and knead until the dough is
 very developed. This intensive kneading is the key to a soft crumb and proper
 volume. The windowpan will be thin and speckled with bulgar grains but NOT as
@@ -114,4 +89,34 @@ underestimated the amount of dough required for my pan and fermented too long.
 
 9. Bake at 375F for 40-45min for the big loaves, only 30min for the mini
 loaves. Brush with butter when it's warm. 
-  
+*/
+
+  /*+
+  part  | grams  |   name   |   %    | flour  | water  | fat  |
+        |   4.37 | rye      |    2.2 |   4.37 |        |      |
+        |   2.63 | water    |    1.3 |        |   2.63 |      |
+starter |   7.00 |          |    3.5 |   4.37 |   2.63 |      |
+       
+        |   7.00 | starter  |    3.5 |   4.37 |   2.63 |      |
+        |  13.4  | water    |    6.7 |        |  13.4  |      |
+        |  22.4  | ww flour |   11.2 |  22.4  |        |      |
+levain  |  42.8  |          |   21.4 |  26.8  |  16.1  |      |
+       
+        |  26.6  | bulgar   |   13.3 |  26.6  |        |      |
+        |  37.4  | water    |   18.7 |        |  37.4  |      |
+        |   7.00 | molasses |    3.5 |        |        |      |
+soaker  |  71.0  |          |   35.5 |  26.6  |  37.4  |      |
+       
+        | 147    | ww flour |   73.3 | 147    |        |      |
+        |  50.2  | water    |   25.1 |        |  50.2  |      |
+        |   7.00 | butter   |    3.5 |        |   1.26 | 5.60 |
+        |   3.60 | salt     |    1.8 |        |        |      |
+        |  62.2  | milk     |   31.1 |        |  54.1  | 2.18 |
+        |   7.00 | honey    |    3.5 |        |   1.19 |      |
+        |  42.8  | levain   |   21.4 |  26.8  |  16.1  |      |
+        |   0.80 | yeast    |    0.4 |        |        |      |
+        |  71.0  | soaker   |   35.5 |  26.6  |  37.4  |      |
+dough   | 391    |          |  195.6 | 200    | 160    | 7.78 |
+       
++*/
+

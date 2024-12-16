@@ -1,37 +1,11 @@
-Faux (American) Pumpernickle
-/*+
-sponge.............................(50.0g = 25.0%)
-     23.8 whole wheat      11.90%
-     23.8 water            11.90%
-      2.4 starter           1.19%
+# Faux (American) Pumpernickle
 
-wet................................(216.2g = 108.1%)
-    108.2 warm water       54.10%
-     50.0 sponge           25.00%
-     32.0 molasses         16.00%
-     26.0 butter           13.00%
-
-dry................................(196.6g = 98.3%)
-     60.0 rye              30.00%
-     34.0 prairie gold     17.00%
-     79.2 ap flour         39.60%
-      3.0 red rye malt      1.50%
-      6.0 brown sugar       3.00%
-     10.0 cacao powder      5.00%
-      3.6 salt              1.80%
-      0.8 yeast             0.40%
-
-dough..............................(412.8g = 206.4%)
-    216.2 wet             108.10%
-    196.6 dry              98.30%
-    200.0 total flour     100.00%
-    132.0 total water      66.00%
-+*/
-
+/*
 From https://www.farmhouseonboone.com/sourdough-pumpernickel-bread-recipe
 
 First version was delicious but a bit too chocolate forward. Second version
 added red rye malt but went too far. Next time try this.
+*/
 
 sponge:
     whole_wheat
@@ -59,4 +33,34 @@ dough:
     wet
     dry
     hydration = 66%
-    scale = 200g
+    total_flour = 200g
+
+/*+
+ part  | grams  |     name     |   %    | flour  | water  |  fat  |
+       |  23.8  | whole wheat  |   11.9 |  23.8  |        |       |
+       |  23.8  | water        |   11.9 |        |  23.8  |       |
+       |   2.38 | starter      |    1.2 |        |        |       |
+sponge |  50.0  |              |   25.0 |  23.8  |  23.8  |       |
+      
+       | 104    | warm water   |   51.8 |        | 104    |       |
+       |  50.0  | sponge       |   25.0 |  23.8  |  23.8  |       |
+       |  32.0  | molasses     |   16.0 |        |        |       |
+       |  26.0  | butter       |   13.0 |        |   4.68 | 20.8  |
+wet    | 212    |              |  105.8 |  23.8  | 132    | 20.8  |
+      
+       |  60.0  | rye          |   30.0 |  60.0  |        |       |
+       |  34.0  | prairie gold |   17.0 |  34.0  |        |       |
+       |  79.2  | ap flour     |   39.6 |  79.2  |        |       |
+       |   3.00 | red rye malt |    1.5 |   3.00 |        |       |
+       |   6.00 | brown sugar  |    3.0 |        |        |       |
+       |  10.0  | cacao powder |    5.0 |        |        |       |
+       |   3.60 | salt         |    1.8 |        |        |       |
+       |   0.80 | yeast        |    0.4 |        |        |       |
+dry    | 197    |              |   98.3 | 176    |        |       |
+      
+       | 212    | wet          |  105.8 |  23.8  | 132    | 20.8  |
+       | 197    | dry          |   98.3 | 176    |        |       |
+dough  | 408    |              |  204.1 | 200    | 132    | 20.8  |
+      
++*/
+

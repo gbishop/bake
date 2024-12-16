@@ -1,43 +1,19 @@
-Yeast raised with sunflower seeds
-/*+
-wet................................(400.0g = 80.0%)
-  350    water             70.0%
-   25.0  oil                5.0%
-   25.0  honey              5.0%
+# Yeast raised with sunflower seeds
 
-dry................................(525.0g = 105.0%)
-  225    bread flour       45.0%
-  125    bronze chief      25.0%
-   50.0  spelt             10.0%
-   25.0  oats               5.0%
-   25.0  rye                5.0%
-   25.0  flaxseed meal      5.0%
-   15.0  potato flakes      3.0%
-   10.0  vwg                2.0%
-    5.0  improver           1.0%
-   10.0  salt               2.0%
-   10.0  yeast              2.0%
-
-dough..............................(975.0g = 195.0%)
-  400    wet               80.0%
-  525    dry              105.0%
-   50.0  seeds             10.0%
-  500    total flour      100.0%
-  350    total water       70.0%
-+*/
-
+/*
 6 June 2024 for Jan, yeasted with sunflower seeds.
 
 The flavor is good and I like the toasted sunflower seeds.
 
 I toasted the sunflower seeds at 350F for 11 minutes.
+*/
 
 wet:
   water
   oil = 5%
   honey = 5%
 
-After mixing the dry ingredients together the flour temp was 85F.
+# After mixing the dry ingredients together the flour temp was 85F.
 
 dry:
   bread_flour
@@ -57,7 +33,37 @@ dough:
   dry
   seeds = 10%
   hydration = 70%
-  scale = 500g
+  total_flour = 500g
 
+/*
 Baked 35 lid on, 15 lid off, 10 out of pan at 350F. Sides and ends are drawn
 in. Why? Much less tearing than last time. I've got to cool things off more.
+*/
+
+/*+
+ part | grams  |      name     |   %    | flour  | water  |  fat  |
+      | 346    | water         |   69.1 |        | 346    |       |
+      |  25.0  | oil           |    5.0 |        |        | 25.0  |
+      |  25.0  | honey         |    5.0 |        |   4.25 |       |
+wet   | 396    |               |   79.1 |        | 350    | 25.0  |
+     
+      | 220    | bread flour   |   44.0 | 220    |        |       |
+      | 125    | bronze chief  |   25.0 | 125    |        |       |
+      |  50.0  | spelt         |   10.0 |  50.0  |        |       |
+      |  25.0  | oats          |    5.0 |  25.0  |        |       |
+      |  25.0  | rye           |    5.0 |  25.0  |        |       |
+      |  25.0  | flaxseed meal |    5.0 |  25.0  |        |       |
+      |  15.0  | potato flakes |    3.0 |  15.0  |        |       |
+      |  10.0  | vwg           |    2.0 |  10.0  |        |       |
+      |   5.00 | improver      |    1.0 |   5.00 |        |       |
+      |  10.0  | salt          |    2.0 |        |        |       |
+      |  10.0  | yeast         |    2.0 |        |        |       |
+dry   | 520    |               |  104.0 | 500    |        |       |
+     
+      | 396    | wet           |   79.1 |        | 350    | 25.0  |
+      | 520    | dry           |  104.0 | 500    |        |       |
+      |  50.0  | seeds         |   10.0 |        |        |       |
+dough | 966    |               |  193.1 | 500    | 350    | 25.0  |
+     
++*/
+

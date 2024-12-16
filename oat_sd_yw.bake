@@ -1,38 +1,6 @@
-Trailrunner's Oatmeal SD/YW Whole Grain Pullman
-/*+
-starter............................(10.0g = 4.0%)
-    6.25 rye                2.5%
-    3.75 water              1.5%
+# Trailrunner's Oatmeal SD/YW Whole Grain Pullman
 
-sponge.............................(52.5g = 21.0%)
-   10.0  starter            4.0%
-   15.0  water              6.0%
-   27.5  hard white        11.0%
-
-soaker.............................(174.8g = 69.9%)
-   30.0  oats              12.0%
-  140    boiling water     56.0%
-    4.75 salt               1.9%
-
-wet................................(302.2g = 120.9%)
-   52.5  sponge            21.0%
-  175    soaker            69.9%
-   35.0  yeast water       14.0%
-   17.5  olive oil          7.0%
-   22.5  honey              9.0%
-
-dry................................(186.2g = 74.5%)
-   70.0  hard red          28.0%
-   35.0  spelt             14.0%
-   81.2  hard white        32.5%
-
-dough..............................(488.5g = 195.4%)
-  302    wet              120.9%
-  186    dry               74.5%
-  250    total flour      100.0%
-  194    total water       77.5%
-+*/
-
+/*
 I have adjusted Caroline's original to:
 * convert to baker's percentage
 * scale it to my 1L pan
@@ -49,6 +17,7 @@ Scrape dough into pan even out with wet spatula. Replace cover don’t close all
 the way rise almost to top. Refrigerate either overnight or while you do
 preheat. Bake 375° 30 min covered 15 min uncovered. Cool thoroughly. I divide in
 3 and freeze 2 pieces. Incredible bread. 
+*/
 
 
 starter:
@@ -66,7 +35,7 @@ soaker:
   boiling_water
   salt = 1.9%
 
-Mix and cover overnight.
+# Mix and cover overnight.
 
 wet:
   sponge
@@ -84,4 +53,37 @@ dough:
   wet
   dry
   hydration = 77.5%
-  scale = 250g
+  total_flour = 250g/*+
+  part  | grams  |      name     |   %    | flour  | water  |  fat  |
+        |   6.25 | rye           |    2.5 |   6.25 |        |       |
+        |   3.75 | water         |    1.5 |        |   3.75 |       |
+starter |  10.0  |               |    4.0 |   6.25 |   3.75 |       |
+       
+        |  10.0  | starter       |    4.0 |   6.25 |   3.75 |       |
+        |  15.0  | water         |    6.0 |        |  15.0  |       |
+        |  27.5  | hard white    |   11.0 |  27.5  |        |       |
+sponge  |  52.5  |               |   21.0 |  33.7  |  18.8  |       |
+       
+        |  30.0  | oats          |   12.0 |  30.0  |        |       |
+        | 136    | boiling water |   54.5 |        | 136    |       |
+        |   4.75 | salt          |    1.9 |        |        |       |
+soaker  | 171    |               |   68.4 |  30.0  | 136    |       |
+       
+        |  52.5  | sponge        |   21.0 |  33.7  |  18.8  |       |
+        | 171    | soaker        |   68.4 |  30.0  | 136    |       |
+        |  35.0  | yeast water   |   14.0 |        |  35.0  |       |
+        |  17.5  | olive oil     |    7.0 |        |        | 17.5  |
+        |  22.5  | honey         |    9.0 |        |   3.82 |       |
+wet     | 298    |               |  119.4 |  63.7  | 194    | 17.5  |
+       
+        |  70.0  | hard red      |   28.0 |  70.0  |        |       |
+        |  35.0  | spelt         |   14.0 |  35.0  |        |       |
+        |  81.3  | hard white    |   32.5 |  81.3  |        |       |
+dry     | 186    |               |   74.5 | 186    |        |       |
+       
+        | 298    | wet           |  119.4 |  63.7  | 194    | 17.5  |
+        | 186    | dry           |   74.5 | 186    |        |       |
+dough   | 485    |               |  193.9 | 250    | 194    | 17.5  |
+       
++*/
+

@@ -1,47 +1,10 @@
-My usual loaf with sifted flour and bran soaker
-/*+
-grains.............................(232.7g = 93.1%)
-  133    prairie gold      53.1%
-   50.0  hard red          20.0%
-   37.5  spelt             15.0%
-   12.5  rye                5.0%
+# My usual loaf with sifted flour and bran soaker
 
-sifted.............................(232.7g = 93.1%)
-   21.0  bran               8.4%
-  212    flour             84.7%
-
-starter............................(7.8g = 3.1%)
-    4.85 rye                1.9%
-    2.91 water              1.2%
-
-sponge.............................(77.5g = 31.0%)
-    7.75 starter            3.1%
-   48.8  water             19.5%
-   21.0  bran               8.4%
-
-wet................................(225.8g = 90.3%)
-   77.5  sponge            31.0%
-  123    water             49.3%
-   12.5  oil                5.0%
-   12.5  honey              5.0%
-
-dry................................(230.2g = 92.1%)
-  212    flour             84.7%
-    7.5  potato flakes      3.0%
-    5.0  vwg                2.0%
-    5.0  salt               2.0%
-    1.0  yeast              0.4%
-
-dough..............................(456.0g = 182.4%)
-  226    wet               90.3%
-  230    dry               92.1%
-  250    total flour      100.0%
-  175    total water       70.0%
-+*/
-
+/*
 I'll sift the flour with a #50 mesh and soak the bran.
 
 I'll knead it by hand this time. I need the exercise!
+*/
 
 grains:
   prairie_gold
@@ -82,8 +45,9 @@ dough:
   wet
   dry
   hydration = 70%
-  scale = 250g
+  total_flour = 250g
 
+/*
 Sifting was easy but messy; fine dust everywhere. I got about 40g of bran on the first pass so I sent
 it through the mill again and got it down to 21g.
 
@@ -101,4 +65,43 @@ The bread is good but not special. I can't tell any difference in the texture.
 Sifting for me seems to not worth the effort.
 
 July 22, 2024
+*//*+
+  part  | grams  |      name     |   %    | flour  | water  |  fat  |
+        | 133    | prairie gold  |   53.1 | 133    |        |       |
+        |  50.0  | hard red      |   20.0 |  50.0  |        |       |
+        |  37.5  | spelt         |   15.0 |  37.5  |        |       |
+        |  12.5  | rye           |    5.0 |  12.5  |        |       |
+grains  | 233    |               |   93.1 | 233    |        |       |
+       
+        |  21.0  | bran          |    8.4 |  21.0  |        |       |
+        | 212    | flour         |   84.7 | 212    |        |       |
+sifted  | 233    |               |   93.1 | 233    |        |       |
+       
+        |   4.85 | rye           |    1.9 |   4.85 |        |       |
+        |   2.91 | water         |    1.2 |        |   2.91 |       |
+starter |   7.75 |               |    3.1 |   4.85 |   2.91 |       |
+       
+        |   7.75 | starter       |    3.1 |   4.85 |   2.91 |       |
+        |  48.8  | water         |   19.5 |        |  48.8  |       |
+        |  21.0  | bran          |    8.4 |  21.0  |        |       |
+sponge  |  77.5  |               |   31.0 |  25.8  |  51.7  |       |
+       
+        |  77.5  | sponge        |   31.0 |  25.8  |  51.7  |       |
+        | 121    | water         |   48.5 |        | 121    |       |
+        |  12.5  | oil           |    5.0 |        |        | 12.5  |
+        |  12.5  | honey         |    5.0 |        |   2.13 |       |
+wet     | 224    |               |   89.5 |  25.8  | 175    | 12.5  |
+       
+        | 212    | flour         |   84.7 | 212    |        |       |
+        |   7.50 | potato flakes |    3.0 |   7.50 |        |       |
+        |   5.00 | vwg           |    2.0 |   5.00 |        |       |
+        |   5.00 | salt          |    2.0 |        |        |       |
+        |   1.00 | yeast         |    0.4 |        |        |       |
+dry     | 230    |               |   92.1 | 224    |        |       |
+       
+        | 224    | wet           |   89.5 |  25.8  | 175    | 12.5  |
+        | 230    | dry           |   92.1 | 224    |        |       |
+dough   | 454    |               |  181.6 | 250    | 175    | 12.5  |
+       
++*/
 

@@ -1,11 +1,11 @@
-From Grant Bakes
+# From Grant Bakes
 
 starter:
   flour = 50g
   water
   hydration = 100%
 
-pumpkin_puree:
+pumpkin_puree: # pumpkin is 90% water
   pumpkin
   water = 90% * total
 
@@ -20,26 +20,24 @@ dough:
   butter = 54g
 
 /*+
-starter............................(100.0g = 20.0%)
-   50.0  flour             10.0%
-   50.0  water             10.0%
-
-pumpkin_puree......................(200.0g = 40.0%)
-   20.0  pumpkin            4.0%
-  180    water             36.0%
-
-dough..............................(989.0g = 197.8%)
-  450    flour             90.0%
-  200    pumpkin puree     40.0%
-  100    milk              20.0%
-   50.0  water             10.0%
-   25.0  sugar              5.0%
-  100    starter           20.0%
-   10.0  salt               2.0%
-   54.0  butter            10.8%
-
-  500    total flour      100.0%
-  377    total water       75.3%
-   46.7  total fat          9.3%
+     part     | grams  |      name     |   %    | flour  | water  |  fat  |
+              |  50.0  | flour         |   10.0 |  50.0  |        |       |
+              |  50.0  | water         |   10.0 |        |  50.0  |       |
+starter       | 100    |               |   20.0 |  50.0  |  50.0  |       |
+             
+              |  20.0  | pumpkin       |    4.0 |        |        |       |
+              | 180    | water         |   36.0 |        | 180    |       |
+pumpkin puree | 200    |               |   40.0 |        | 180    |       |
+             
+              | 450    | flour         |   90.0 | 450    |        |       |
+              | 200    | pumpkin puree |   40.0 |        | 180    |       |
+              | 100    | milk          |   20.0 |        |  87.0  |  3.50 |
+              |  50.0  | water         |   10.0 |        |  50.0  |       |
+              |  25.0  | sugar         |    5.0 |        |        |       |
+              | 100    | starter       |   20.0 |  50.0  |  50.0  |       |
+              |  10.0  | salt          |    2.0 |        |        |       |
+              |  54.0  | butter        |   10.8 |        |   9.72 | 43.2  |
+dough         | 989    |               |  197.8 | 500    | 377    | 46.7  |
+             
 +*/
 

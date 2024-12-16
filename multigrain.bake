@@ -1,37 +1,6 @@
-My usual loaf
-/*+
-starter............................(5.0g = 1.0%)
-    3.13 rye                0.6%
-    1.88 water              0.4%
+# My usual loaf
 
-sponge.............................(100.0g = 20.0%)
-    5.0  starter            1.0%
-   46.9  rye                9.4%
-   48.1  water              9.6%
-
-wet................................(450.0g = 90.0%)
-  100    sponge            20.0%
-  300    water             60.0%
-   25.0  oil                5.0%
-   25.0  honey              5.0%
-
-dry................................(466.5g = 93.3%)
-  200    prairie gold      40.0%
-  150    bronze chief      30.0%
-   50.0  spelt             10.0%
-   25.0  flaxseed meal      5.0%
-   15.0  potato flakes      3.0%
-   10.0  vwg                2.0%
-    5.0  improver           1.0%
-   10.0  salt               2.0%
-    1.50 yeast              0.3%
-
-dough..............................(916.5g = 183.3%)
-  450    wet               90.0%
-  466    dry               93.3%
-  500    total flour      100.0%
-  350    total water       70.0%
-+*/
+/*
 13 July 2024
 
 I'm trying a small loaf to see if kneading more will make the difference I'm looking for in the crust.
@@ -43,6 +12,7 @@ Good flavor, texture and appearance. More kneading worked on this small loaf.
 
 I'm thinking of a soaker for the bran and flaxseed meal. 
 
+*/
 
 starter:
   rye
@@ -76,5 +46,39 @@ dough:
   wet
   dry
   hydration = 70%
-  scale = 500g
+  total_flour = 500g
+
+/*+
+  part  | grams  |      name     |   %    | flour  | water  |  fat  |
+        |   3.13 | rye           |    0.6 |   3.13 |        |       |
+        |   1.87 | water         |    0.4 |        |   1.87 |       |
+starter |   5.00 |               |    1.0 |   3.12 |   1.87 |       |
+       
+        |   5.00 | starter       |    1.0 |   3.12 |   1.87 |       |
+        |  46.9  | rye           |    9.4 |  46.9  |        |       |
+        |  48.1  | water         |    9.6 |        |  48.1  |       |
+sponge  | 100    |               |   20.0 |  50.0  |  50.0  |       |
+       
+        | 100    | sponge        |   20.0 |  50.0  |  50.0  |       |
+        | 296    | water         |   59.1 |        | 296    |       |
+        |  25.0  | oil           |    5.0 |        |        | 25.0  |
+        |  25.0  | honey         |    5.0 |        |   4.25 |       |
+wet     | 446    |               |   89.1 |  50.0  | 350    | 25.0  |
+       
+        | 195    | prairie gold  |   39.0 | 195    |        |       |
+        | 150    | bronze chief  |   30.0 | 150    |        |       |
+        |  50.0  | spelt         |   10.0 |  50.0  |        |       |
+        |  25.0  | flaxseed meal |    5.0 |  25.0  |        |       |
+        |  15.0  | potato flakes |    3.0 |  15.0  |        |       |
+        |  10.0  | vwg           |    2.0 |  10.0  |        |       |
+        |   5.00 | improver      |    1.0 |   5.00 |        |       |
+        |  10.0  | salt          |    2.0 |        |        |       |
+        |   1.50 | yeast         |    0.3 |        |        |       |
+dry     | 461    |               |   92.3 | 450    |        |       |
+       
+        | 446    | wet           |   89.1 |  50.0  | 350    | 25.0  |
+        | 461    | dry           |   92.3 | 450    |        |       |
+dough   | 907    |               |  181.4 | 500    | 350    | 25.0  |
+       
++*/
 

@@ -1,9 +1,11 @@
-Fermented Oat Bread
+# Fermented Oat Bread
 
+/*
 from https://www.ellyseveryday.com/ellys-everyday-blog/fermented-oats-whole-grain-sourdough
 
 She says this fits a 1L pan. Seems heavy to me but I guess this has much less
 rise.
+*/
 
 starter:
   rye
@@ -20,12 +22,13 @@ dough:
   ww_flour
   flaxseed_meal = 13g
   salt = 8g
-  yeast = 0.5% // for safety
+  yeast = 0.5% # for safety
   sponge = 85%
   water
   hydration = 100%
   total = 1000g
 
+/*
 Made the sponge at 18:15 left on counter overnight.
 
 Ground the hard red wheat at 18:30, mixed with the flaxseed meal and the salt. 
@@ -40,26 +43,26 @@ I baked this in the 2L pullman because there was no way it was going to fit
 in the 1L pan. I don't know how she did it.
 
 I didn't care for the resulting loaf. 
+*/
 
 /*+
-starter............................(8.0g = 1.6%)
-    5.00 rye                1.0%
-    3.00 water              0.6%
-
-sponge.............................(420.5g = 85.0%)
-  135    oats              27.3%
-  277    water             56.1%
-    8.00 starter            1.6%
-
-dough..............................(1000.0g = 202.1%)
-  342    ww flour          69.0%
-   13.0  flaxseed meal      2.6%
-    8.00 salt               1.6%
-    2.47 yeast              0.5%
-  421    sponge            85.0%
-  214    water             43.3%
-
-  495    total flour      100.0%
-  495    total water      100.0%
+  part  |  grams  |      name     |   %    | flour  | water  | fat |
+        |    5.00 | rye           |    1.0 |   5.00 |        |     |
+        |    3.00 | water         |    0.6 |        |   3.00 |     |
+starter |    8.00 |               |    1.6 |   5.00 |   3.00 |     |
+       
+        |  135    | oats          |   27.3 | 135    |        |     |
+        |  277    | water         |   56.1 |        | 277    |     |
+        |    8.00 | starter       |    1.6 |   5.00 |   3.00 |     |
+sponge  |  421    |               |   85.0 | 140    | 280    |     |
+       
+        |  342    | ww flour      |   69.0 | 342    |        |     |
+        |   13.0  | flaxseed meal |    2.6 |  13.0  |        |     |
+        |    8.00 | salt          |    1.6 |        |        |     |
+        |    2.47 | yeast         |    0.5 |        |        |     |
+        |  421    | sponge        |   85.0 | 140    | 280    |     |
+        |  214    | water         |   43.3 |        | 214    |     |
+dough   | 1000    |               |  202.1 | 495    | 495    |     |
+       
 +*/
 

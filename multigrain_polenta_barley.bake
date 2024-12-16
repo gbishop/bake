@@ -1,45 +1,6 @@
-Multigrain including polenta and barley
-/*+
-soaker.............................(175.0g = 35.0%)
-     24.9 polenta           4.99%
-     24.9 barley flour      4.98%
-    124.5 boiling water    24.89%
-      0.7 diastatic malt    0.15%
+# Multigrain including polenta and barley
 
-starter............................(7.1g = 1.4%)
-      4.4 rye               0.88%
-      2.6 water             0.53%
-
-sponge.............................(150.0g = 30.0%)
-     72.4 water            14.47%
-      7.1 starter           1.41%
-     70.6 rye              14.12%
-
-dry................................(392.2g = 78.4%)
-    175.2 prairie gold     35.04%
-    100.0 bronze chief     20.00%
-     50.0 spelt            10.00%
-     25.0 flaxseed meal     5.00%
-     10.0 potato flakes     2.00%
-     15.0 vwg               3.00%
-      5.0 improver          1.00%
-     10.0 salt              2.00%
-      2.0 yeast             0.40%
-
-wet................................(525.5g = 105.1%)
-    150.5 water            30.10%
-    175.0 soaker           35.00%
-    150.0 sponge           30.00%
-     25.0 honey             5.00%
-     25.0 oil               5.00%
-
-dough..............................(992.7g = 198.5%)
-    525.5 wet             105.11%
-    392.2 dry              78.44%
-     75.0 nuts             15.00%
-    500.0 total flour     100.00%
-    350.0 total water      70.00%
-+*/
+/*
 My usual loaf with saccharified polenta and barley
 
 This is really good!
@@ -48,6 +9,7 @@ I poured boiling water over the polenta and barley and let it sit covered at RT
 until it dropped to 150F. Then I added the diastatic malt and stirred. I
 covered it and left it overnight on the counter. In the morning it was quite
 sweet.
+*/
 
 soaker:
   polenta = 5%
@@ -56,15 +18,15 @@ soaker:
   hydration = 250%
   diastatic_malt = 1.5% * total_flour
 
-I keep my NMNF starter at 60% hydration in the fridge.
+# I keep my NMNF starter at 60% hydration in the fridge.
 
 starter:
   hydration = 60%
   rye
   water
 
-I mixed the cold starter into the water and then added the rye. I kept it
-overnight at 86F.
+# I mixed the cold starter into the water and then added the rye. I kept it
+# overnight at 86F.
 
 sponge:
   hydration = 100%
@@ -72,8 +34,8 @@ sponge:
   starter = 10% * rye
   rye
 
-I like to mix all the flours and dry ingredients together to make sure they
-are properly distributed.
+# I like to mix all the flours and dry ingredients together to make sure they
+# are properly distributed.
 
 dry:
   prairie_gold
@@ -86,7 +48,7 @@ dry:
   salt = 2%
   yeast = 0.4%
 
-I also mix the wet ingredients with a wisk before adding the dry.
+# I also mix the wet ingredients with a wisk before adding the dry.
 
 wet:
   water
@@ -95,12 +57,56 @@ wet:
   honey = 5%
   oil = 5%
 
-I mix the final dough with the paddle for 1 minute and let it rest
-covered for 30 minutes. I knead for 8 minutes and then add the nuts.
+# I mix the final dough with the paddle for 1 minute and let it rest
+# covered for 30 minutes. I knead for 8 minutes and then add the nuts.
 
 dough:
   wet
   dry
   nuts = 15%
-  scale = 500g
+  total_flour = 500g
   hydration = 70%
+
+/*+
+  part  | grams  |      name      |         %          | flour | water | fat |
+        |        | polenta        |                5.0 |       |       |     |
+        |        | barley flour   |                5.0 |       |       |     |
+        |        | boiling water  |               24.9 |       |       |     |
+        |        | diastatic malt |                0.2 |       |       |     |
+soaker  |        |                |               35.0 |       |       |     |
+       
+        |        | rye            |                0.9 |       |       |     |
+        |        | water          |                0.5 |       |       |     |
+starter |        |                |                1.4 |       |       |     |
+       
+        |        | water          |               14.5 |       |       |     |
+        |        | starter        |                1.4 |       |       |     |
+        |        | rye            |               14.2 |       |       |     |
+sponge  |        |                |               30.1 |       |       |     |
+       
+        |        | prairie gold   |               34.0 |       |       |     |
+        |        | bronze chief   |               20.0 |       |       |     |
+        |        | spelt          |               10.0 |       |       |     |
+        |        | flaxseed meal  |                5.0 |       |       |     |
+        |        | potato flakes  |                2.0 |       |       |     |
+        |        | vwg            |                3.0 |       |       |     |
+        |        | improver       |                1.0 |       |       |     |
+        |        | salt           |                2.0 |       |       |     |
+        |        | yeast          |                0.5 |       |       |     |
+dry     |        |                |               77.5 |       |       |     |
+       
+        |        | water          |               29.2 |       |       |     |
+        |        | soaker         |               35.0 |       |       |     |
+        |        | sponge         |               30.1 |       |       |     |
+        |        | honey          |                5.0 |       |       |     |
+        |        | oil            |                5.0 |       |       |     |
+wet     |        |                |              104.3 |       |       |     |
+       
+        |        | wet            |              104.3 |       |       |     |
+        |        | dry            |               77.5 |       |       |     |
+        |        | nuts           |               15.0 |       |       |     |
+        | 500    | scale          | -110945532573647.4 |       |       |     |
+dough   | 500    |                | -110945532573450.7 |       |       |     |
+       
++*/
+

@@ -1,4 +1,7 @@
-# cinnamon raisin knots from https://yunsfamilytable.com/recipes/buttery-crunchy-raisin-bread-knots/
+# Cinnamon raisin knots
+
+/* from https://yunsfamilytable.com/recipes/buttery-crunchy-raisin-bread-knots/
+*/
 
 filling:
   butter = 13.33%
@@ -14,7 +17,6 @@ dough:
   milk = 59.00%
   butter = 6.67%
   total_flour = 300g
-
 
 /*+
   part  | grams  |     name    |   %    | flour  | water  |  fat  |

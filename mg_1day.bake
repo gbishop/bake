@@ -1,38 +1,6 @@
-My usual loaf in one day?
-/*+
-starter............................(10.0g = 4.0%)
-    6.25 rye                2.5%
-    3.75 water              1.5%
+# My usual loaf in one day?
 
-sponge.............................(60.9g = 24.4%)
-   10.0  starter            4.0%
-   20.3  rye                8.1%
-   30.6  water             12.2%
-
-wet................................(226.5g = 90.6%)
-   60.9  sponge            24.4%
-  141    water             56.3%
-   12.5  oil                5.0%
-   12.5  honey              5.0%
-
-dry................................(239.4g = 95.8%)
-  103    prairie gold      41.4%
-   75.0  bronze chief      30.0%
-   25.0  spelt             10.0%
-   12.5  flaxseed meal      5.0%
-    5.00 potato flakes      2.0%
-    2.50 vwg                1.0%
-   10.0  improver           4.0%
-    5.00 salt               2.0%
-    1.00 yeast              0.4%
-
-dough..............................(466.0g = 186.4%)
-  227    wet               90.6%
-  239    dry               95.8%
-  250    total flour      100.0%
-  175    total water       70.0%
-+*/
-
+/*
 27 July 2024
 
 I'm trying to make small loaf in one day by fermenting the sponge at 86F and
@@ -57,6 +25,8 @@ The final weight checks out. I didn't leave out any ingredients.
 
 This tastes fine it is just more dense than usual. Why?
 
+*/
+
 starter:
   rye
   water
@@ -64,8 +34,8 @@ starter:
 
 sponge:
   starter = 10g
-  rye = 20.3 g
-  water = 30.6 g
+  rye = 20.3g
+  water = 30.6g
 
 wet:
   sponge
@@ -88,5 +58,39 @@ dough:
   wet
   dry
   hydration = 70%
-  scale = 250g
+  total_flour = 250g
+
+/*+
+  part  | grams  |      name     |   %    | flour  | water  |  fat  |
+        |   6.25 | rye           |    2.5 |   6.25 |        |       |
+        |   3.75 | water         |    1.5 |        |   3.75 |       |
+starter |  10.0  |               |    4.0 |   6.25 |   3.75 |       |
+       
+        |  10.0  | starter       |    4.0 |   6.25 |   3.75 |       |
+        |  20.3  | rye           |    8.1 |  20.3  |        |       |
+        |  30.6  | water         |   12.2 |        |  30.6  |       |
+sponge  |  60.9  |               |   24.4 |  26.6  |  34.4  |       |
+       
+        |  60.9  | sponge        |   24.4 |  26.6  |  34.4  |       |
+        | 139    | water         |   55.4 |        | 139    |       |
+        |  12.5  | oil           |    5.0 |        |        | 12.5  |
+        |  12.5  | honey         |    5.0 |        |   2.12 |       |
+wet     | 224    |               |   89.8 |  26.6  | 175    | 12.5  |
+       
+        |  93.4  | prairie gold  |   37.4 |  93.4  |        |       |
+        |  75.0  | bronze chief  |   30.0 |  75.0  |        |       |
+        |  25.0  | spelt         |   10.0 |  25.0  |        |       |
+        |  12.5  | flaxseed meal |    5.0 |  12.5  |        |       |
+        |   5.00 | potato flakes |    2.0 |   5.00 |        |       |
+        |   2.50 | vwg           |    1.0 |   2.50 |        |       |
+        |  10.0  | improver      |    4.0 |  10.0  |        |       |
+        |   5.00 | salt          |    2.0 |        |        |       |
+        |   1.00 | yeast         |    0.4 |        |        |       |
+dry     | 229    |               |   91.8 | 223    |        |       |
+       
+        | 224    | wet           |   89.8 |  26.6  | 175    | 12.5  |
+        | 229    | dry           |   91.8 | 223    |        |       |
+dough   | 454    |               |  181.5 | 250    | 175    | 12.5  |
+       
++*/
 

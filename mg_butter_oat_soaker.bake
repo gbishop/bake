@@ -1,45 +1,6 @@
-Butter Oat Flaxseed Soaker
-/*+
-starter............................(5.0g = 1.0%)
-    3.12 rye                0.6%
-    1.88 water              0.4%
+# Butter Oat Flaxseed Soaker
 
-sponge.............................(100.0g = 20.0%)
-    5.00 starter            1.0%
-   46.9  ww flour           9.4%
-   48.1  water              9.6%
-
-soaker.............................(170.0g = 34.0%)
-   60.0  oats              12.0%
-   30.0  butter             6.0%
-   80.0  water             16.0%
-
-wet................................(370.0g = 74.0%)
-  100    sponge            20.0%
-  245    water             49.0%
-   25.0  honey              5.0%
-
-dry................................(407.0g = 81.4%)
-  170    bread flour       34.0%
-   75.0  prairie gold      15.0%
-   50.0  bronze chief      10.0%
-   50.0  spelt             10.0%
-   15.0  potato flakes      3.0%
-   20.0  flaxseed meal      4.0%
-   10.0  vwg                2.0%
-    5.00 improver           1.0%
-   10.0  salt               2.0%
-    2.00 yeast              0.4%
-
-dough..............................(947.0g = 189.4%)
-  370    wet               74.0%
-  407    dry               81.4%
-  170    soaker            34.0%
-  500    total flour      100.0%
-  375    total water       75.0%
-+*/
-
-24 June. Trying a oat-flaxseed-butter soaker.
+# 24 June. Trying a oat-flaxseed-butter soaker.
 
 starter:
   rye
@@ -57,10 +18,12 @@ soaker:
   butter = 6%
   water = 16%
 
+/*
 Heat a non-stick pan on low. Pour in oats. Toast on low for 2-3 minutes until
 light golden brown (1:32), stir to avoid burning. Add butter and cook until
 fully absorbed and golden brown. Remove from heat and transfer to a bowl. Add RT
 water so grains are covered. Set aside to soak for 1 hour.
+*/
 
 wet:
   sponge = 20%
@@ -84,5 +47,45 @@ dough:
   dry
   soaker
   hydration = 75%
-  scale = 500g
+  total_flour = 500g
+
+/*+
+  part  | grams  |      name     |   %    | flour  | water  |  fat  |
+        |   3.12 | rye           |    0.6 |   3.12 |        |       |
+        |   1.88 | water         |    0.4 |        |   1.88 |       |
+starter |   5.00 |               |    1.0 |   3.12 |   1.88 |       |
+       
+        |   5.00 | starter       |    1.0 |   3.12 |   1.88 |       |
+        |  46.9  | ww flour      |    9.4 |  46.9  |        |       |
+        |  48.1  | water         |    9.6 |        |  48.1  |       |
+sponge  | 100    |               |   20.0 |  50.0  |  50.0  |       |
+       
+        |  60.0  | oats          |   12.0 |  60.0  |        |       |
+        |  30.0  | butter        |    6.0 |        |   5.40 | 24.0  |
+        |  80.0  | water         |   16.0 |        |  80.0  |       |
+soaker  | 170    |               |   34.0 |  60.0  |  85.4  | 24.0  |
+       
+        | 100    | sponge        |   20.0 |  50.0  |  50.0  |       |
+        | 235    | water         |   47.1 |        | 235    |       |
+        |  25.0  | honey         |    5.0 |        |   4.25 |       |
+wet     | 360    |               |   72.1 |  50.0  | 290    |       |
+       
+        | 165    | bread flour   |   33.0 | 165    |        |       |
+        |  75.0  | prairie gold  |   15.0 |  75.0  |        |       |
+        |  50.0  | bronze chief  |   10.0 |  50.0  |        |       |
+        |  50.0  | spelt         |   10.0 |  50.0  |        |       |
+        |  15.0  | potato flakes |    3.0 |  15.0  |        |       |
+        |  20.0  | flaxseed meal |    4.0 |  20.0  |        |       |
+        |  10.0  | vwg           |    2.0 |  10.0  |        |       |
+        |   5.00 | improver      |    1.0 |   5.00 |        |       |
+        |  10.0  | salt          |    2.0 |        |        |       |
+        |   2.00 | yeast         |    0.4 |        |        |       |
+dry     | 402    |               |   80.4 | 390    |        |       |
+       
+        | 360    | wet           |   72.1 |  50.0  | 290    |       |
+        | 402    | dry           |   80.4 | 390    |        |       |
+        | 170    | soaker        |   34.0 |  60.0  |  85.4  | 24.0  |
+dough   | 932    |               |  186.5 | 500    | 375    | 24.0  |
+       
++*/
 

@@ -1,41 +1,5 @@
-My usual loaf with toasted sunflower seeds
-/*+
-starter............................(2.5g = 1.0%)
-      1.6 rye               0.63%
-      0.9 water             0.38%
-
-sponge.............................(50.0g = 20.0%)
-      2.5 starter           1.00%
-     23.4 rye               9.38%
-     24.1 water             9.62%
-
-wet................................(225.0g = 90.0%)
-     50.0 sponge           20.00%
-    150.0 water            60.00%
-     12.5 oil               5.00%
-     12.5 honey             5.00%
-
-dry................................(232.0g = 92.8%)
-     50.0 ww flour         20.00%
-     50.0 prairie gold     20.00%
-     50.0 bronze chief     20.00%
-     37.5 spelt            15.00%
-     12.5 oats              5.00%
-     12.5 flaxseed meal     5.00%
-      7.5 potato flakes     3.00%
-      5.0 vwg               2.00%
-      1.0 improver          0.40%
-      5.0 salt              2.00%
-      1.0 yeast             0.40%
-
-dough..............................(482.0g = 192.8%)
-    225.0 wet              90.00%
-    232.0 dry              92.80%
-     25.0 seeds            10.00%
-    250.0 total flour     100.00%
-    175.0 total water      70.00%
-+*/
-
+# My usual loaf with toasted sunflower seeds
+/*
 17 June 2024. Half size in new pan.
 
 After mixing the DT was 74F using freshly milled flour and water from the
@@ -47,6 +11,7 @@ buttered pan. It took about 1 hour to rise to the top of the pan. It baked up
 4.5 inches tall, 3 inches wide and 6.5 inches long. 
 
 The slices seem a little too small.
+*/
 
 starter:
   rye
@@ -83,5 +48,42 @@ dough:
   dry
   seeds = 10%
   hydration = 70%
-  scale = 250g
+  total_flour = 250g
+
+/*+
+  part  | grams  |      name     |   %    | flour  | water  |  fat  |
+        |   1.56 | rye           |    0.6 |   1.56 |        |       |
+        |   0.94 | water         |    0.4 |        |   0.94 |       |
+starter |   2.50 |               |    1.0 |   1.56 |   0.94 |       |
+       
+        |   2.50 | starter       |    1.0 |   1.56 |   0.94 |       |
+        |  23.4  | rye           |    9.4 |  23.4  |        |       |
+        |  24.1  | water         |    9.6 |        |  24.1  |       |
+sponge  |  50.0  |               |   20.0 |  25.0  |  25.0  |       |
+       
+        |  50.0  | sponge        |   20.0 |  25.0  |  25.0  |       |
+        | 148    | water         |   59.1 |        | 148    |       |
+        |  12.5  | oil           |    5.0 |        |        | 12.5  |
+        |  12.5  | honey         |    5.0 |        |   2.12 |       |
+wet     | 223    |               |   89.2 |  25.0  | 175    | 12.5  |
+       
+        |  49.0  | ww flour      |   19.6 |  49.0  |        |       |
+        |  50.0  | prairie gold  |   20.0 |  50.0  |        |       |
+        |  50.0  | bronze chief  |   20.0 |  50.0  |        |       |
+        |  37.5  | spelt         |   15.0 |  37.5  |        |       |
+        |  12.5  | oats          |    5.0 |  12.5  |        |       |
+        |  12.5  | flaxseed meal |    5.0 |  12.5  |        |       |
+        |   7.50 | potato flakes |    3.0 |   7.50 |        |       |
+        |   5.00 | vwg           |    2.0 |   5.00 |        |       |
+        |   1.00 | improver      |    0.4 |   1.00 |        |       |
+        |   5.00 | salt          |    2.0 |        |        |       |
+        |   1.00 | yeast         |    0.4 |        |        |       |
+dry     | 231    |               |   92.4 | 225    |        |       |
+       
+        | 223    | wet           |   89.2 |  25.0  | 175    | 12.5  |
+        | 231    | dry           |   92.4 | 225    |        |       |
+        |  25.0  | seeds         |   10.0 |        |        |       |
+dough   | 479    |               |  191.6 | 250    | 175    | 12.5  |
+       
++*/
 
