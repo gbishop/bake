@@ -2,18 +2,17 @@ from ingredients import getIngredient
 from lark import Lark, Visitor, visitors
 import lark
 import numpy as np
-import sys
-import traceback
 
 # Lark grammar for my formulas
 grammar = r"""
 start: part+
 
-part: ID [ "^" NUMBER ] ":" (hydration | relation | mention)+
+part: ID [ "^" NUMBER ] ":" (hydration | relation)+
 
 hydration: "hydration" "=" NUMBER
 
 relation: sum "=" sum
+        | mention -> bias
 
 sum: product "+" sum   -> add
    | product "-" sum   -> subtract
@@ -200,6 +199,11 @@ class BuildMatrix(visitors.Interpreter):
             v * ST.vector((self.part_name, "total_flour")),
         ]
 
+    def bias(self, tree):
+        """Weakly bias every term that is simply mentioned toward 0."""
+        r = self.visit_children(tree)
+        return [r[0] * 1e-4, ST.constant(0)]
+
     def add(self, tree):
         r = self.visit_children(tree)
         return r[0] + r[1]
@@ -248,6 +252,14 @@ class BuildMatrix(visitors.Interpreter):
 
 
 def solve(text):
+    def result(error="", message="", rows=[], residual=0, grams_to_bp=0):
+        return dict(
+            error=error,
+            message=message,
+            rows=rows,
+            residual=residual,
+            grams_to_bp=grams_to_bp,
+        )
 
     ST.reset()
 
@@ -256,21 +268,21 @@ def solve(text):
     try:
         tree = parser.parse(text)
     except lark.exceptions.UnexpectedToken as error:
-        return {
-            "failed": True,
-            "message": f"Syntax Error Unexpected token {error.line}:{error.column}\n${ error.get_context(text) }",
-        }
+        return result(
+            error="Syntax Error",
+            message=f"Unexpected token {error.line}:{error.column}\n${ error.get_context(text) }",
+        )
 
     except lark.exceptions.UnexpectedCharacters as error:
-        return {
-            "failed": True,
-            "message": f"Syntax Error Unexpected token {error.line}:{error.column}\n${ error.get_context(text) }",
-        }
+        return result(
+            error="Syntax Error",
+            message=f"Unexpected characters {error.line}:{error.column}\n${ error.get_context(text) }",
+        )
     except lark.exceptions.UnexpectedEOF as error:
-        return {
-            "failed": True,
-            "message": r"Syntax Error Unexpected end of file {error.line}:{error.column}\n ${error.get_context(text)}",
-        }
+        return result(
+            error="Syntax Error",
+            message=f"Unexpected end of file {error.line}:{error.column}\n${error.get_context(text)}",
+        )
 
     GetParts().visit(tree)
 
@@ -286,18 +298,13 @@ def solve(text):
 
     error = np.sqrt(np.mean(residuals**2))
 
-    failed = False
-    message = ""
-    if error > 1e-4:
-        failed = True
-        message = "Residual too large"
     solution = {name: X[index] for name, index in ST.name_to_index.items()}
 
     # reshape the data into a list of parts
     rows = []
     dtf = solution[("dough", "total_flour")]
     if dtf == 0:
-        return {"message": "No flour", "failed": True}
+        return result(error="Value error", message="No flour")
     grams_to_bp = 100 / solution[("dough", "total_flour")]
     for partName in ST.parts:
         loss_value, isPercent = ST.loss.get(partName, (0, False))
@@ -337,7 +344,7 @@ def solve(text):
         # add the total
         rows.append(
             [
-                partName,
+                partName.replace("_", " "),
                 g * loss_scale,
                 f"+ {loss_value:.1f}g" if loss_value > 0 else "",
                 bp,
@@ -349,9 +356,13 @@ def solve(text):
         # add a blank line
         rows.append([""])
 
-    return {
-        "failed": failed,
-        "message": message,
-        "rows": rows,
-        "grams_to_bp": grams_to_bp,
-    }
+    if error > 1:
+        return result(
+            error="Value error",
+            message=f"Residual = {error:.2f}",
+            rows=rows,
+            residual=error,
+            grams_to_bp=grams_to_bp,
+        )
+
+    return result(rows=rows, grams_to_bp=grams_to_bp, residual=error)

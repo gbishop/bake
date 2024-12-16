@@ -1,0 +1,60 @@
+# Lovely Bell SD
+
+/*
+From: https://lovelybellbakes.com/super-soft-fresh-milled-sourdough-sandwich-bread/.
+
+I replaced the lecithin with egg as she suggests.
+I converted to baker's percent with a bit of rounding.
+I'm adding yeast to control the rise/sour tradeoff.
+*/
+
+starter:
+  water
+  flour
+  hydration = 100%
+
+wet:
+  starter = 43%
+  water
+  egg = 5.4%
+  honey = 7%
+  oil = 4.3%
+
+dry:
+  prairie_gold
+  vwg = 3%
+  salt = 2%
+  yeast = 0.2%
+
+dough:
+  wet
+  dry
+  hydration = 67%
+  total_flour = 230 g
+
+/*+
+  part  |  grams  |     name     |   %    | flour  | water  |  fat  |
+        |   49.4  | water        |   21.5 |        |  49.4  |       |
+        |   49.5  | flour        |   21.5 |  49.5  |        |       |
+starter |   98.9  |              |   43.0 |  49.5  |  49.5  |       |
+       
+        |   98.9  | starter      |   43.0 |  49.5  |  49.5  |       |
+        |   92.6  | water        |   40.3 |        |  92.6  |       |
+        |   12.4  | egg          |    5.4 |        |   9.31 |  1.12 |
+        |   16.1  | honey        |    7.0 |        |   2.74 |       |
+        |    9.89 | oil          |    4.3 |        |        |  9.89 |
+wet     |  230    |              |  100.0 |  49.5  | 154    | 11.0  |
+       
+        |  174    | prairie gold |   75.5 | 174    |        |       |
+        |    6.90 | vwg          |    3.0 |   6.90 |        |       |
+        |    4.60 | salt         |    2.0 |        |        |       |
+        |    0.46 | yeast        |    0.2 |        |        |       |
+dry     |  186    |              |   80.7 | 181    |        |       |
+       
+        |  230    | wet          |  100.0 |  49.5  | 154    | 11.0  |
+        |  186    | dry          |   80.7 | 181    |        |       |
+        | -207.76 | g            |  -90.3 |        |        |       |
+dough   |  208    |              |   90.3 | 230    | 154    | 11.0  |
+       
++*/
+

@@ -80,16 +80,31 @@ const headings = ["Part", "Grams", "Ingredient", "%", "Flour", "Water", "Fat"];
  * @template {typeof Element} T
  * @param {T} type
  * @param {string} selector
+ * @param {HTMLElement} container
  * @returns {InstanceType<T>}
  */
-function queryElement(selector, type) {
-  const el = document.querySelector(selector);
+function queryElement(selector, type, container = document.body) {
+  const el = container.querySelector(selector);
   if (!(el instanceof type)) {
     throw new Error(
       `Selector ${selector} matched ${el} which is not an ${type}`,
     );
   }
   return /** @type {InstanceType<T>} */ (el);
+}
+
+/** @param {HTMLDialogElement} dialog */
+async function populateExamples(dialog) {
+  const examplesData = await (await fetch("./examples.json")).json();
+  const ul = queryElement("ul", HTMLUListElement, dialog);
+  for (let key in examplesData) {
+    const li = document.createElement("li");
+    const a = document.createElement("a");
+    a.href = "#" + key;
+    a.innerText = examplesData[key];
+    li.appendChild(a);
+    ul.appendChild(li);
+  }
 }
 
 async function main() {
@@ -100,6 +115,8 @@ async function main() {
   const examples = queryElement("dialog", HTMLDialogElement);
   const table = queryElement("table", HTMLTableElement);
   const message = queryElement("div#message", HTMLDivElement);
+  populateExamples(examples);
+
   document.body.classList.toggle("loading");
   button.addEventListener("click", display);
   show.addEventListener("click", () => {
@@ -117,6 +134,7 @@ async function main() {
   });
   lineNumbers(textarea, 100);
   async function loadRecipe() {
+    if (!location.hash.endsWith(".bake")) return;
     const resp = await fetch(`./${location.hash.slice(1)}`);
     if (resp.ok) {
       let text = await resp.text();
@@ -136,13 +154,13 @@ async function main() {
     if (!text) {
       text = localStorage.getItem("recipe") || "";
       textarea.value = text;
+      if (!text) return;
     }
     localStorage.setItem("recipe", text);
     const proxy = solve(text);
     const result = proxy.toJs({ create_pyproxies: false });
     message.innerText = "";
-    if (result.failed) {
-      console.log("failed", result.message);
+    if (result.message) {
       message.innerText = result.message;
     }
     table.innerHTML = tabulate(headings, "tgt%ggg", result.rows || []);

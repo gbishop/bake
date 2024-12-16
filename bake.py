@@ -61,15 +61,15 @@ def format_table(rows, heading):
     return tabulate(heading, "tgt%ggg", rows)
 
 
-def output(table, text, failed=False, grams_to_bp=0):
+def output(table, text, message="", grams_to_bp=0):
     """Insert the table into the input"""
-    text = re.sub(r"(?ms)\/\*\+.*?\+\*\/\n", "", text)
-    if grams_to_bp:
+    text = re.sub(r"(?ms)\/\*\+.*?\+\*\/\n", "", text).strip()
+    if grams_to_bp and not message:
         text = rewrite(text, grams_to_bp)
 
-    if failed:
-        table = re.sub(r"^", "E ", table, 0, re.M)
-    result = f"{text}/*+\n{table}+*/\n"
+    if message:
+        table = re.sub(r"^", "E ", table, 0, re.M) + f"\n***** {message} *****\n"
+    result = f"{text}\n\n/*+\n{table}+*/\n"
     print(result)
 
 
@@ -106,12 +106,12 @@ else:
 text = fp.read()
 
 result = solve(text)
-if result["failed"]:
+if result["error"] == "Syntax Error":
     print(result["message"])
-    exit(1)
+    sys.exit(1)
 
 heading = ["part", "grams", "name", "%", "flour", "water", "fat"]
 
 table = format_table(result["rows"], heading)
 
-output(table, text, result["failed"], args.rewrite)
+output(table, text, result["message"], args.rewrite)

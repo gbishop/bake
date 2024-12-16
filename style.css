@@ -37,7 +37,11 @@ body {
   margin: 0;
 }
 div#message {
+  padding: 1em;
   color: red;
+}
+div#message:empty {
+  display: none;
 }
 body > div#body {
   padding: 8px;
