@@ -7,12 +7,11 @@ import numpy as np
 grammar = r"""
 start: part+
 
-part: ID [ "^" NUMBER ] ":" (hydration | relation)+
+part: ID [ "^" NUMBER ] ":" (hydration | relation | mention)+
 
 hydration: "hydration" "=" NUMBER
 
 relation: sum "=" sum
-        | mention -> bias
 
 sum: product "+" sum   -> add
    | product "-" sum   -> subtract
@@ -198,11 +197,6 @@ class BuildMatrix(visitors.Interpreter):
             ST.vector((self.part_name, "total_water")),
             v * ST.vector((self.part_name, "total_flour")),
         ]
-
-    def bias(self, tree):
-        """Weakly bias every term that is simply mentioned toward 0."""
-        r = self.visit_children(tree)
-        return [r[0] * 1e-4, ST.constant(0)]
 
     def add(self, tree):
         r = self.visit_children(tree)
