@@ -135,7 +135,7 @@ async function main() {
   lineNumbers(textarea, 100);
   async function loadRecipe() {
     if (!location.hash.endsWith(".bake")) return;
-    const resp = await fetch(`./${location.hash.slice(1)}`);
+    const resp = await fetch(`./recipes/${location.hash.slice(1)}`);
     if (resp.ok) {
       let text = await resp.text();
       text = text.replace(/\/\*\+[\s\S]*\+\*\//m, "");
