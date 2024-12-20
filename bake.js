@@ -27,13 +27,13 @@ for fname in ["solver.py", "ingredients.py"]:
 }
 
 function round(value = 0, digits = 0) {
-  return Math.round(value * value ** digits) / value ** digits;
+  return Math.round(value * 10 ** digits) / 10 ** digits;
 }
 
 function fmt_grams(g = 0) {
   if (round(g, 0) >= 100) return g.toFixed(0) + "&numsp;&numsp;&numsp;";
   if (round(g, 1) >= 10) return g.toFixed(1) + "&numsp;";
-  if (round(g, 2) >= 1) return g.toFixed(2);
+  if (round(g, 2) >= 0.1) return g.toFixed(2);
   if (Math.abs(g) < 0.1) return "";
   return g.toString();
 }
@@ -110,19 +110,26 @@ async function populateExamples(dialog) {
 async function main() {
   const solve = await setupPython();
   const textarea = queryElement("textarea", HTMLTextAreaElement);
-  const button = queryElement("button#solve", HTMLButtonElement);
-  const show = queryElement("button#examples", HTMLButtonElement);
-  const examples = queryElement("dialog", HTMLDialogElement);
+  const solveButton = queryElement("button#solve", HTMLButtonElement);
+  const showButton = queryElement("button#examples", HTMLButtonElement);
+  const clearButton = queryElement("button#clear", HTMLButtonElement);
+  const examplesButton = queryElement("dialog", HTMLDialogElement);
   const table = queryElement("table", HTMLTableElement);
   const message = queryElement("div#message", HTMLDivElement);
-  populateExamples(examples);
+  populateExamples(examplesButton);
 
   document.body.classList.toggle("loading");
-  button.addEventListener("click", display);
-  show.addEventListener("click", () => {
-    examples.showModal();
+  solveButton.addEventListener("click", display);
+  showButton.addEventListener("click", () => {
+    examplesButton.showModal();
   });
-  examples.addEventListener("click", () => examples.close());
+  examplesButton.addEventListener("click", () => examplesButton.close());
+  clearButton.addEventListener("click", () => {
+    localStorage.setItem("recipe", "");
+    textarea.value = "";
+    table.innerHTML = "";
+    location.hash = "";
+  });
   textarea.addEventListener("input", () => {
     localStorage.setItem("recipe", textarea.value);
   });
@@ -132,7 +139,6 @@ async function main() {
       display();
     }
   });
-  lineNumbers(textarea, 100);
   async function loadRecipe() {
     if (!location.hash.endsWith(".bake")) return;
     const resp = await fetch(`./recipes/${location.hash.slice(1)}`);
@@ -154,7 +160,9 @@ async function main() {
     if (!text) {
       text = localStorage.getItem("recipe") || "";
       textarea.value = text;
-      if (!text) return;
+      if (!text) {
+        table.innerHTML = "";
+      }
     }
     localStorage.setItem("recipe", text);
     const proxy = solve(text);
