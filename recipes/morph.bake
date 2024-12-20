@@ -5,7 +5,7 @@ starter:
   water
   hydration = 60%
 
-sponge ^ 2%: # allow for 2% loss
+sponge ^ 4%: # allow for 4% loss
   starter = 20% * total_flour
   water
   oats = ww_flour
@@ -19,12 +19,6 @@ grain:
   spelt = 10%
   rye = 5%
 
-wet:
-  sponge
-  water
-  butter
-  honey = 8%
-
 dry:
   grain
   # half the water to milk
@@ -34,7 +28,12 @@ dry:
   salt = 1.8% - 1.3% * wet.butter
   wgbi = 2%
   yeast = 0.4%
-  walnuts = 10%
+
+wet:
+  sponge
+  water
+  butter
+  honey = 8%
 
 dough:
   wet
@@ -52,59 +51,56 @@ Changes
 
 Next time
 * Increase the loss on the sponge. I was 2g short.
+* Drop the walnuts
 
 Scaled to my 2.3L pullman pan.
 
-Mixed the sponge using rolled oats and king arthur whole wheat flour at 20:20
+Mixed the sponge using rolled oats and king arthur whole wheat flour at 19:40
 and put it in the 94F SDH.
 
-Sponge pH at 7:50 is 3.91 the temperature was 85. It has increased about 50%
+Sponge pH at 8:58 is 3.85 the temperature was 85. It has increased about 50%
 overnight and the top is flat. The SDH only managed 88.6 at the top of the
 container. Room temperature got down to 63 overnight.
 
-I ran the bread machine dough cycle. Started at 8:13. Stopped after 5 minutes
+I ran the bread machine dough cycle. Started at 9:08. Stopped after 5 minutes
 and set the timer to start in 30 minutes. The pan with paddle weighs 404g.
 
-Out of the BM at 9:20, pH is 5.25, dT is 80.
+Out of the BM at 10:15, pH is 5.25, dT is 80.
 
-Out at 11:00 it has filled the container. pH is 4.95 dt is 80F
+Into the oven with the light on at 10:20
 
-Into the pan about 11:15
+Out at 12:00 it has filled the container. pH is ? dt is ?
 
-Baked at 12:30 about 0.5 inches above the top of the pan in 350F oven.
-Removed after 45 minutes, 197F inside. Out at 13:15
+Baked at 1:30 about 1 inch above the top of the pan in 350F oven.
+pH is 4.62 and dT is 82F.
+
+Removed after 45 minutes, 197F inside. Out at 12:12
 
 Looks good.
 
 Good flavor and texture. I like this flavor better I think.
 
-The ground walnuts changed the color and the flavor.
 */
 
 /*+
   part  | grams  |      name     |   %    | flour  | water  |  fat  |
+starter |  14.4  |               |    3.0 |   9.00 |   5.40 |       |
         |   9.00 | rye           |    1.9 |   9.00 |        |       |
         |   5.40 | water         |    1.1 |        |   5.40 |       |
-starter |  14.4  |               |    3.0 |   9.00 |   5.40 |       |
        
-        |  14.7  | starter       |    3.0 |   9.00 |   5.40 |       |
-        |  67.9  | water         |   13.9 |        |  66.6  |       |
-        |  32.1  | oats          |    6.6 |  31.5  |        |       |
-        |  32.1  | ww flour      |    6.6 |  31.5  |        |       |
-sponge  | 147    | + 2.9g        |   30.0 |  72.0  |  72.0  |       |
+sponge  | 150    | + 5.8g        |   30.0 |  72.0  |  72.0  |       |
+        |  15.0  | starter       |    3.0 |   9.00 |   5.40 |       |
+        |  69.3  | water         |   13.9 |        |  66.6  |       |
+        |  32.8  | oats          |    6.6 |  31.5  |        |       |
+        |  32.8  | ww flour      |    6.6 |  31.5  |        |       |
        
+grain   | 355    |               |   74.0 | 355    |        |       |
         | 142    | prairie gold  |   29.5 | 142    |        |       |
         | 142    | hard red      |   29.5 | 142    |        |       |
         |  48.0  | spelt         |   10.0 |  48.0  |        |       |
         |  24.0  | rye           |    5.0 |  24.0  |        |       |
-grain   | 355    |               |   74.0 | 355    |        |       |
        
-        | 144    | sponge        |   30.0 |  72.0  |  72.0  |       |
-        | 250    | water         |   52.1 |        | 250    |       |
-        |  41.9  | butter        |    8.7 |        |   7.54 | 33.5  |
-        |  38.4  | honey         |    8.0 |        |   6.53 |       |
-wet     | 474    |               |   98.8 |  72.0  | 336    | 33.5  |
-       
+dry     | 434    |               |   90.5 | 408    |        |  4.87 |
         | 355    | grain         |   74.0 | 355    |        |       |
         |  16.2  | nido          |    3.4 |        |        |  4.87 |
         |   9.60 | potato flakes |    2.0 |   9.60 |        |       |
@@ -112,12 +108,16 @@ wet     | 474    |               |   98.8 |  72.0  | 336    | 33.5  |
         |   8.10 | salt          |    1.7 |        |        |       |
         |   9.60 | wgbi          |    2.0 |   9.60 |        |       |
         |   1.92 | yeast         |    0.4 |        |        |       |
-        |  48.0  | walnuts       |   10.0 |        |        |       |
-dry     | 482    |               |  100.5 | 408    |        |  4.87 |
        
+wet     | 474    |               |   98.8 |  72.0  | 336    | 33.5  |
+        | 144    | sponge        |   30.0 |  72.0  |  72.0  |       |
+        | 250    | water         |   52.1 |        | 250    |       |
+        |  41.9  | butter        |    8.7 |        |   7.54 | 33.5  |
+        |  38.4  | honey         |    8.0 |        |   6.53 |       |
+       
+dough   | 908    |               |  189.3 | 480    | 336    | 38.4  |
         | 474    | wet           |   98.8 |  72.0  | 336    | 33.5  |
-        | 482    | dry           |  100.5 | 408    |        |  4.87 |
-dough   | 956    |               |  199.3 | 480    | 336    | 38.4  |
+        | 434    | dry           |   90.5 | 408    |        |  4.87 |
         |        | hydration     |   70.0 |        |        |       |
        
 +*/
