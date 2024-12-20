@@ -5,7 +5,7 @@ import numpy as np
 
 # Lark grammar for my formulas
 grammar = r"""
-start: part+
+start: part*
 
 part: ID [ "^" NUMBER ] ":" (hydration | relation | mention)+
 
@@ -152,9 +152,17 @@ class BuildMatrix(visitors.Interpreter):
         for relations in r:
             for lhs, rhs in relations:
                 residuals.append(lhs - rhs)
-        R = np.array(residuals)
-        A = R[:, :-1]
-        B = -R[:, -1]
+        if len(residuals):
+            # add a weak bias toward 1kg of flour
+            residuals.append(
+                1e-4 * (ST.vector(("dough", "total_flour")) - ST.constant(1000))
+            )
+            R = np.array(residuals)
+            A = R[:, :-1]
+            B = -R[:, -1]
+        else:
+            A = []
+            B = []
         return A, B
 
     def part(self, tree):
@@ -284,6 +292,9 @@ def solve(text):
 
     A, B = BuildMatrix().visit(tree)
 
+    if len(A) == 0:
+        return result()
+
     r = np.linalg.lstsq(A, B, rcond=-1)
 
     X = r[0]
@@ -307,6 +318,18 @@ def solve(text):
             loss_value = loss_value * gt
         loss_scale = (gt + loss_value) / gt
         bp = g * grams_to_bp
+        # add the total
+        rows.append(
+            [
+                partName.replace("_", " "),
+                g * loss_scale,
+                f"+ {loss_value:.1f}g" if loss_value > 0 else "",
+                bp,
+                solution[(partName, "total_flour")],
+                solution[(partName, "total_water")],
+                solution[(partName, "total_fat")],
+            ]
+        )
         # add the ingredients from the part
         for pn, var in solution:
             if pn != partName:
@@ -335,18 +358,6 @@ def solve(text):
                         *extras,
                     ]
                 )
-        # add the total
-        rows.append(
-            [
-                partName.replace("_", " "),
-                g * loss_scale,
-                f"+ {loss_value:.1f}g" if loss_value > 0 else "",
-                bp,
-                solution[(partName, "total_flour")],
-                solution[(partName, "total_water")],
-                solution[(partName, "total_fat")],
-            ]
-        )
         if partName == "dough":
             # add the hydration because I miss it
             rows.append(
