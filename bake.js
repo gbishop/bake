@@ -168,38 +168,4 @@ async function main() {
   display();
 }
 
-/**
- * Add line numbers to a textarea from https://dev.to/madsstoumann/line-numbers-for-using-svg-1216
- * @param {HTMLElement} element
- * @param {number} numLines
- */
-function lineNumbers(element, numLines) {
-  const bgColor = getComputedStyle(element).borderColor;
-  const fillColor = getComputedStyle(element).color;
-  const fontFamily = getComputedStyle(element).fontFamily;
-  const fontSize = parseFloat(getComputedStyle(element).fontSize);
-  const lineHeight =
-    parseFloat(getComputedStyle(element).lineHeight) / fontSize;
-  const paddingTop = parseFloat(getComputedStyle(element).paddingTop) / 2;
-  const translateY = (fontSize * lineHeight).toFixed(2);
-
-  /* Note: In Safari, deduct `(paddingTop / 10)` from translateY */
-
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" style="background:${bgColor};">
-    <style>
-      text {
-        fill: hsl(from ${fillColor} h s l / 50%);
-        font-family: ${fontFamily};
-        font-size: ${fontSize}px;
-        line-height: ${lineHeight};
-        text-anchor: end;
-        translate: 0 calc((var(--n) * ${translateY}px) + ${paddingTop}px);
-      }
-    </style>
-    ${Array.from({ length: numLines }, (_, i) => `<text x="80%" style="--n:${i + 1};">${i + 1}</text>`).join("")}
-  </svg>`;
-
-  element.style.backgroundImage = `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
-}
-
 main();
