@@ -69,7 +69,6 @@ div#buttons {
 textarea {
   grid-column: 1;
   grid-row: 2;
-  resize: vertical;
   width: 100%;
 }
 table {
