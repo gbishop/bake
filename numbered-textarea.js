@@ -25,13 +25,13 @@
 class NumberedTextarea extends HTMLTextAreaElement {
   connectedCallback() {
     super.value = this.textContent || "";
-    const bound = () => this.numberLines();
-    const debounced = debounce(bound, 200);
-    this.addEventListener("input", debounced);
-    const resizeObserver = new ResizeObserver(debounced);
+    const bound = this._numberLines.bind(this);
+    this.numberLines = debounce(bound, 100);
+    this.addEventListener("input", this.numberLines);
+    const resizeObserver = new ResizeObserver(this.numberLines);
     resizeObserver.observe(this);
-    this.addEventListener("input", debounced);
-    debounced();
+    this.addEventListener("input", this.numberLines);
+    this.numberLines();
   }
 
   get value() {
@@ -48,7 +48,7 @@ class NumberedTextarea extends HTMLTextAreaElement {
   backgroundURL = "";
   lastSVG = "";
 
-  numberLines() {
+  _numberLines() {
     const style = getComputedStyle(this);
     const fontSize = parseFloat(style.fontSize);
     const lineHeight = parseFloat(style.lineHeight) / fontSize;
@@ -58,24 +58,29 @@ class NumberedTextarea extends HTMLTextAreaElement {
     /* Collect the text commands for the line numbers */
     const numbers = [];
     const lines = super.value.split("\n");
-    let N = 1;
+
+    // create a mirror node with the same style as the textarea
+    const mirror = document.createElement("div");
+    copyNodeStyle(this, mirror);
+    mirror.style.paddingTop = "0";
+    mirror.style.paddingBottom = "0";
+    mirror.style.height = `${translateY}px`;
+    mirror.style.width = style.width;
+    document.body.appendChild(mirror);
+
+    let offset = 1;
     for (let i = 0; i < lines.length; i++) {
       // determine how many display lines this text line requires
-      const mirror = document.createElement("div");
-      copyNodeStyle(this, mirror);
-      mirror.style.paddingTop = "0";
-      mirror.style.paddingBottom = "0";
-      mirror.style.height = `${translateY}px`;
-      mirror.style.width = style.width;
-
       mirror.innerText = lines[i];
-      document.body.appendChild(mirror);
-      const step = Math.max(1, Math.round(mirror.scrollHeight / translateY));
-      document.body.removeChild(mirror);
-      const number = `<text x="80%" style="--n:${N};">${i + 1}</text>`;
-      N += step;
+      const increment = Math.max(
+        1,
+        Math.round(mirror.scrollHeight / translateY),
+      );
+      const number = `<text x="80%" style="--n:${offset};">${i + 1}</text>`;
+      offset += increment;
       numbers.push(number);
     }
+    document.body.removeChild(mirror);
     /* build the svg */
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" style="background:${style.borderColor};">
       <style>
@@ -115,10 +120,9 @@ customElements.define("numbered-textarea", NumberedTextarea, {
 function debounce(callback, wait) {
   let timeout;
   /** @param {any[]} args */
-  return (...args) => {
-    const context = this;
+  return () => {
     clearTimeout(timeout);
-    timeout = setTimeout(() => callback.apply(context, args), wait);
+    timeout = setTimeout(callback, wait);
   };
 }
 function copyNodeStyle(sourceNode, targetNode) {
