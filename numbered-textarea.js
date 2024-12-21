@@ -23,10 +23,13 @@
  *
  */
 class NumberedTextarea extends HTMLTextAreaElement {
-  connectedCallback() {
-    super.value = this.textContent || "";
+  constructor() {
+    super();
     const bound = this._numberLines.bind(this);
     this.numberLines = debounce(bound, 100);
+  }
+  connectedCallback() {
+    super.value = this.textContent || "";
     this.addEventListener("input", this.numberLines);
     const resizeObserver = new ResizeObserver(this.numberLines);
     resizeObserver.observe(this);
@@ -50,10 +53,8 @@ class NumberedTextarea extends HTMLTextAreaElement {
 
   _numberLines() {
     const style = getComputedStyle(this);
-    const fontSize = parseFloat(style.fontSize);
-    const lineHeight = parseFloat(style.lineHeight) / fontSize;
+    const lineHeight = parseFloat(style.lineHeight);
     const paddingTop = parseFloat(style.paddingTop) / 2;
-    const translateY = (fontSize * lineHeight).toFixed(2);
 
     /* Collect the text commands for the line numbers */
     const numbers = [];
@@ -61,11 +62,10 @@ class NumberedTextarea extends HTMLTextAreaElement {
 
     // create a mirror node with the same style as the textarea
     const mirror = document.createElement("div");
-    copyNodeStyle(this, mirror);
+    copyStyle(this, mirror);
     mirror.style.paddingTop = "0";
     mirror.style.paddingBottom = "0";
-    mirror.style.height = `${translateY}px`;
-    mirror.style.width = style.width;
+    mirror.style.height = `${lineHeight}px`;
     document.body.appendChild(mirror);
 
     let offset = 1;
@@ -74,7 +74,7 @@ class NumberedTextarea extends HTMLTextAreaElement {
       mirror.innerText = lines[i];
       const increment = Math.max(
         1,
-        Math.round(mirror.scrollHeight / translateY),
+        Math.round(mirror.scrollHeight / lineHeight),
       );
       const number = `<text x="80%" style="--n:${offset};">${i + 1}</text>`;
       offset += increment;
@@ -90,7 +90,7 @@ class NumberedTextarea extends HTMLTextAreaElement {
           font-size: ${style.fontSize};
           line-height: ${style.lineHeight};
           text-anchor: end;
-          translate: 0 calc((var(--n) * ${translateY}px) + ${paddingTop}px);
+          translate: 0 calc((var(--n) * ${lineHeight}px) + ${paddingTop}px);
         }
       </style>
       ${numbers.join("\n")}
@@ -119,14 +119,16 @@ customElements.define("numbered-textarea", NumberedTextarea, {
  */
 function debounce(callback, wait) {
   let timeout;
-  /** @param {any[]} args */
   return () => {
     clearTimeout(timeout);
     timeout = setTimeout(callback, wait);
   };
 }
-function copyNodeStyle(sourceNode, targetNode) {
-  const computedStyle = window.getComputedStyle(sourceNode);
+/** @param {HTMLElement} sourceNode
+ * @param {HTMLElement} targetNode
+ */
+function copyStyle(sourceNode, targetNode) {
+  const computedStyle = getComputedStyle(sourceNode);
   Array.from(computedStyle).forEach((key) =>
     targetNode.style.setProperty(
       key,
