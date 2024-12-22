@@ -95,6 +95,8 @@ textarea {
   font-size: 0.85rem;
   line-height: 1.3;
   padding-block: 1.5ch;
-  padding-inline: 7ch 1ch;
+  padding-inline-start: 7ch;
+  /* make the usable width a multiple of 1ch */
+  padding-inline-end: calc(100% - 7ch - round(down, 100% - 7ch, 1ch));
   transition: background-image 0.01s linear;
 }

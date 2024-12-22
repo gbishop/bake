@@ -17,17 +17,37 @@
         font-size: 0.85rem;
         line-height: 1.3;
         padding-block: 1.5ch;
-        padding-inline: 7ch 2ch;
+        padding-inline-start: 7ch;
+        padding-inline-end: calc(100% - 7ch - round(down, 100% - 7ch, 1ch));
         transition: background-image 0.01s linear;
       }
  *
  */
-class NumberedTextarea extends HTMLTextAreaElement {
+export class NumberedTextarea extends HTMLTextAreaElement {
+  static observedAttributes = ["nodebounce"];
+
   constructor() {
     super();
-    const bound = this._numberLines.bind(this);
-    this.numberLines = debounce(bound, 100);
+    this.lineCount = 0;
+    this.numberLines = debounce(this._numberLines.bind(this), 100);
   }
+
+  /**
+   * @param {string} name
+   * @param {string} oldValue
+   * @param {string} newValue
+   */
+  attributeChangedCallback(name, oldValue, newValue) {
+    console.log("attribute changed", name, oldValue, newValue);
+    const bound = this._numberLines.bind(this);
+    if (newValue == "true") {
+      console.log("nodebounce");
+      this.numberLines = bound;
+    } else {
+      this.numberLines = debounce(bound, 100);
+    }
+  }
+
   connectedCallback() {
     super.value = this.textContent || "";
     this.addEventListener("input", this.numberLines);
@@ -68,7 +88,7 @@ class NumberedTextarea extends HTMLTextAreaElement {
     mirror.style.height = `${lineHeight}px`;
     document.body.appendChild(mirror);
 
-    let offset = 1;
+    this.lineCount = 0;
     for (let i = 0; i < lines.length; i++) {
       // determine how many display lines this text line requires
       mirror.innerText = lines[i];
@@ -76,8 +96,8 @@ class NumberedTextarea extends HTMLTextAreaElement {
         1,
         Math.round(mirror.scrollHeight / lineHeight),
       );
-      const number = `<text x="80%" style="--n:${offset};">${i + 1}</text>`;
-      offset += increment;
+      const number = `<text x="80%" style="--n:${this.lineCount + 1};">${i + 1}</text>`;
+      this.lineCount += increment;
       numbers.push(number);
     }
     document.body.removeChild(mirror);
@@ -90,7 +110,7 @@ class NumberedTextarea extends HTMLTextAreaElement {
           font-size: ${style.fontSize};
           line-height: ${style.lineHeight};
           text-anchor: end;
-          translate: 0 calc((var(--n) * ${lineHeight}px) + ${paddingTop}px);
+          translate: 0 calc((var(--n) * ${lineHeight.toFixed(2)}px) + ${paddingTop}px);
         }
       </style>
       ${numbers.join("\n")}
@@ -106,6 +126,7 @@ class NumberedTextarea extends HTMLTextAreaElement {
       }
       this.backgroundURL = URL.createObjectURL(blob);
       this.style.backgroundImage = `url("${this.backgroundURL}")`;
+      this.style.backgroundAttachment = "local";
     }
   }
 }
