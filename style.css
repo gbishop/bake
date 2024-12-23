@@ -5,6 +5,7 @@ table {
   border-collapse: collapse;
   margin-bottom: auto;
   border: 1px solid black;
+  font-size: 1rem;
 }
 td,
 th {
