@@ -79,7 +79,6 @@ export class NumberedTextarea extends HTMLElement {
   set value(v) {
     // @ts-ignore
     this.text.value = v;
-    console.log("set value", v);
     this.numberLines();
   }
 
