@@ -37,11 +37,9 @@ export class NumberedTextarea extends HTMLElement {
    * @param {string} newValue
    */
   attributeChangedCallback(name, oldValue, newValue) {
-    console.log("attribute changed", name, oldValue, newValue);
     if (name == "nodebounce") {
       const bound = this._numberLines.bind(this);
       if (newValue == "true") {
-        console.log("nodebounce");
         this.numberLines = bound;
       } else {
         this.numberLines = debounce(bound, 100);
@@ -95,6 +93,9 @@ export class NumberedTextarea extends HTMLElement {
     this.mirror.style.paddingBottom = "0";
     this.mirror.style.height = "1lh";
     this.mirror.style.visibility = "hidden";
+    this.mirror.style.position = "absolute";
+    this.mirror.style.top = "0";
+    this.mirror.style.left = "0";
     const lineHeight = this.mirror.getBoundingClientRect().height;
 
     this.lineCount = 0;

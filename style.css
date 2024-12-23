@@ -70,6 +70,7 @@ numbered-textarea {
   grid-column: 1;
   grid-row: 2;
   width: 100%;
+  font-size: 1rem;
 }
 table {
   grid-column: 2;

@@ -6,7 +6,11 @@ numbered-textarea > div {
   display: flex;
   flex-direction: row;
   height: 100%;
-  font-size: inherit;
+  /** This font-size calculation is critical to avoiding edge cases 
+   * where wrapping is not detected. I'm guessing that floating point
+   * errors are the issue with arbitrary font sizes. I think any nice
+   * binary fraction should work */
+  font-size: calc(round(100%, 1px / 8));
 }
 numbered-textarea > div textarea.numbers {
   width: 5ch;
@@ -20,8 +24,7 @@ numbered-textarea > div textarea.numbers {
 }
 numbered-textarea > div textarea.text {
   flex: 1;
-  padding-left: 1ch;
-  padding-right: calc(100% - round(down, 100% - 1ch, 1ch));
+  padding-inline: 1ch 1ch;
   border: 0;
   font-size: inherit;
 }
