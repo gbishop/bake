@@ -1,3 +1,5 @@
+import { NumberedTextarea } from "./numbered-textarea.js";
+
 async function setupPython() {
   // @ts-ignore
   let pyodide = await loadPyodide();
@@ -109,7 +111,7 @@ async function populateExamples(dialog) {
 
 async function main() {
   const solve = await setupPython();
-  const textarea = queryElement("textarea", HTMLTextAreaElement);
+  const textarea = queryElement("numbered-textarea", NumberedTextarea);
   const solveButton = queryElement("button#solve", HTMLButtonElement);
   const showButton = queryElement("button#examples", HTMLButtonElement);
   const clearButton = queryElement("button#clear", HTMLButtonElement);

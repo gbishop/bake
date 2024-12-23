@@ -2,9 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="./style.css" />
-    <script type="module">
-      import "./numbered-textarea.js";
-    </script>
+    <link rel="stylesheet" href="./numbered-textarea.css" />
   </head>
 
   <body class="loading">
@@ -18,11 +16,9 @@
         <button id="examples">Examples</button>
         <button id="clear">Clear</button>
       </div>
-      <textarea
-        is="numbered-textarea"
-        spellcheck="false"
+      <numbered-textarea
         placeholder="Enter your recipe and click Solve or Shift-Enter"
-      ></textarea>
+      ></numbered-textarea>
       <table></table>
     </div>
     <dialog>

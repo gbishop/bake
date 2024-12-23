@@ -1,8 +1,4 @@
 /**
- * A text area with line numbers. I started with an idea from
- * https://dev.to/madsstoumann/line-numbers-for-using-svg-1216
- * and hacked it to generate the line number dynamically and
- * handle line wrapping.
  *
  * This CSS appears to be required:
  *
@@ -23,13 +19,16 @@
       }
  *
  */
-export class NumberedTextarea extends HTMLTextAreaElement {
-  static observedAttributes = ["nodebounce"];
+export class NumberedTextarea extends HTMLElement {
+  static observedAttributes = ["nodebounce", "placeholder"];
 
   constructor() {
     super();
     this.lineCount = 0;
     this.numberLines = debounce(this._numberLines.bind(this), 100);
+    this.text = document.createElement("textarea");
+    this.numbers = document.createElement("textarea");
+    this.mirror = document.createElement("textarea");
   }
 
   /**
@@ -39,101 +38,86 @@ export class NumberedTextarea extends HTMLTextAreaElement {
    */
   attributeChangedCallback(name, oldValue, newValue) {
     console.log("attribute changed", name, oldValue, newValue);
-    const bound = this._numberLines.bind(this);
-    if (newValue == "true") {
-      console.log("nodebounce");
-      this.numberLines = bound;
-    } else {
-      this.numberLines = debounce(bound, 100);
+    if (name == "nodebounce") {
+      const bound = this._numberLines.bind(this);
+      if (newValue == "true") {
+        console.log("nodebounce");
+        this.numberLines = bound;
+      } else {
+        this.numberLines = debounce(bound, 100);
+      }
+    } else if (name == "placeholder") {
+      this.text.placeholder = newValue;
     }
   }
 
   connectedCallback() {
-    super.value = this.textContent || "";
-    this.addEventListener("input", this.numberLines);
+    const box = document.createElement("div");
+    this.appendChild(box);
+    this.numbers.className = "numbers";
+    box.appendChild(this.numbers);
+    box.appendChild(this.text);
+    this.text.className = "text";
+    this.appendChild(this.mirror);
+    this.mirror.className = "mirror";
+    this.text.addEventListener("input", this.numberLines);
     const resizeObserver = new ResizeObserver(this.numberLines);
     resizeObserver.observe(this);
-    this.addEventListener("input", this.numberLines);
     this.numberLines();
+    this.text.addEventListener(
+      "scroll",
+      () => (this.numbers.scrollTop = this.text.scrollTop),
+    );
   }
 
   get value() {
-    return super.value;
+    return this.text.value;
   }
 
   /** @param {string} v
    */
   set value(v) {
-    super.value = v;
+    // @ts-ignore
+    this.text.value = v;
+    console.log("set value", v);
     this.numberLines();
   }
 
-  backgroundURL = "";
-  lastSVG = "";
+  get scrollHeight() {
+    return this.text.scrollHeight;
+  }
 
   _numberLines() {
-    const style = getComputedStyle(this);
-    const lineHeight = parseFloat(style.lineHeight);
-    const paddingTop = parseFloat(style.paddingTop) / 2;
-
-    /* Collect the text commands for the line numbers */
     const numbers = [];
-    const lines = super.value.split("\n");
+    const lines = this.text.value.split("\n");
 
-    // create a mirror node with the same style as the textarea
-    const mirror = document.createElement("div");
-    copyStyle(this, mirror);
-    mirror.style.paddingTop = "0";
-    mirror.style.paddingBottom = "0";
-    mirror.style.height = `${lineHeight}px`;
-    document.body.appendChild(mirror);
+    copyStyle(this.text, this.mirror);
+    this.mirror.style.paddingTop = "0";
+    this.mirror.style.paddingBottom = "0";
+    this.mirror.style.height = "1lh";
+    this.mirror.style.visibility = "hidden";
+    const lineHeight = this.mirror.getBoundingClientRect().height;
 
     this.lineCount = 0;
     for (let i = 0; i < lines.length; i++) {
       // determine how many display lines this text line requires
-      mirror.innerText = lines[i];
-      const increment = Math.max(
-        1,
-        Math.round(mirror.scrollHeight / lineHeight),
-      );
-      const number = `<text x="80%" style="--n:${this.lineCount + 1};">${i + 1}</text>`;
-      this.lineCount += increment;
-      numbers.push(number);
-    }
-    document.body.removeChild(mirror);
-    /* build the svg */
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" style="background:${style.borderColor};">
-      <style>
-        text {
-          fill: hsl(from ${style.color} h s l / 50%);
-          font-family: ${style.fontFamily};
-          font-size: ${style.fontSize};
-          line-height: ${style.lineHeight};
-          text-anchor: end;
-          translate: 0 calc((var(--n) * ${lineHeight.toFixed(2)}px) + ${paddingTop}px);
-        }
-      </style>
-      ${numbers.join("\n")}
-    </svg>`;
-
-    if (this.lastSVG != svg) {
-      this.lastSVG = svg;
-
-      /* convert it to a blog and get its URL */
-      const blob = new Blob([svg], { type: "image/svg+xml" });
-      if (this.backgroundURL) {
-        URL.revokeObjectURL(this.backgroundURL);
+      let skip = 0;
+      if (lines[i]) {
+        this.mirror.innerText = lines[i];
+        skip = Math.max(
+          0,
+          Math.round(this.mirror.scrollHeight / lineHeight) - 1,
+        );
       }
-      this.backgroundURL = URL.createObjectURL(blob);
-      this.style.backgroundImage = `url("${this.backgroundURL}")`;
-      this.style.backgroundAttachment = "local";
+      numbers.push(i + 1);
+      for (let j = 0; j < skip; j++) numbers.push("");
+      this.lineCount += 1 + skip;
     }
+    this.numbers.value = numbers.join("\n");
   }
 }
 
-customElements.define("numbered-textarea", NumberedTextarea, {
-  extends: "textarea",
-});
+customElements.define("numbered-textarea", NumberedTextarea);
 
 /** @param {function} callback
  * @param {number} wait
@@ -149,12 +133,19 @@ function debounce(callback, wait) {
  * @param {HTMLElement} targetNode
  */
 function copyStyle(sourceNode, targetNode) {
-  const computedStyle = getComputedStyle(sourceNode);
-  Array.from(computedStyle).forEach((key) =>
-    targetNode.style.setProperty(
-      key,
-      computedStyle.getPropertyValue(key),
-      computedStyle.getPropertyPriority(key),
-    ),
-  );
+  const sourceStyle = getComputedStyle(sourceNode);
+  const targetStyle = getComputedStyle(targetNode);
+  Array.from(sourceStyle).forEach((key) => {
+    if (
+      targetStyle.getPropertyValue(key) != sourceStyle.getPropertyValue(key) ||
+      targetStyle.getPropertyPriority(key) !=
+        sourceStyle.getPropertyPriority(key)
+    ) {
+      targetNode.style.setProperty(
+        key,
+        sourceStyle.getPropertyValue(key),
+        sourceStyle.getPropertyPriority(key),
+      );
+    }
+  });
 }

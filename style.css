@@ -66,7 +66,7 @@ div#buttons {
 #buttons button {
   flex: 1;
 }
-textarea {
+numbered-textarea {
   grid-column: 1;
   grid-row: 2;
   width: 100%;
@@ -83,20 +83,4 @@ body.loading div.loading {
 }
 body:not(.loading) div.loading {
   display: none;
-}
-textarea {
-  background-attachment: local;
-  background-position: 0 0;
-  background-repeat: no-repeat;
-  background-size: 5ch 100%;
-  border: 1px solid #ccc;
-  box-sizing: border-box;
-  font-weight: normal;
-  font-size: 0.85rem;
-  line-height: 1.3;
-  padding-block: 1.5ch;
-  padding-inline-start: 7ch;
-  /* make the usable width a multiple of 1ch */
-  padding-inline-end: calc(100% - 7ch - round(down, 100% - 7ch, 1ch));
-  transition: background-image 0.01s linear;
 }

@@ -1,0 +1,27 @@
+numbered-textarea {
+  border: 1px solid #ccc;
+  display: inline-block;
+}
+numbered-textarea > div {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  font-size: inherit;
+}
+numbered-textarea > div textarea.numbers {
+  width: 5ch;
+  resize: none;
+  text-align: right;
+  scrollbar-width: none;
+  background-color: #ccc;
+  padding-right: 1ch;
+  border-right: #ccc;
+  font-size: inherit;
+}
+numbered-textarea > div textarea.text {
+  flex: 1;
+  padding-left: 1ch;
+  padding-right: calc(100% - round(down, 100% - 1ch, 1ch));
+  border: 0;
+  font-size: inherit;
+}
