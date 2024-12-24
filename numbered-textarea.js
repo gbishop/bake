@@ -65,22 +65,23 @@ export class NumberedTextarea extends HTMLElement {
     // lock scrolling of text and numbers together
     let scrolling = null;
     const scrollTogether = (/** @type {Event} */ event) => {
-      if (scrolling) {
-        clearTimeout(scrolling);
-      }
-      scrolling = setTimeout(() => {
+      if (event.target != scrolling) {
         if (event.target == this.text) {
+          scrolling = this.numbers;
           this.numbers.scrollTo({
             top: this.text.scrollTop,
             behavior: "instant",
           });
         } else {
+          scrolling = this.text;
           this.text.scrollTo({
             top: this.numbers.scrollTop,
             behavior: "instant",
           });
         }
-      });
+      } else {
+        scrolling = null;
+      }
     };
     this.text.addEventListener("scroll", scrollTogether);
     this.numbers.addEventListener("scroll", scrollTogether);
