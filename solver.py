@@ -180,7 +180,7 @@ class BuildMatrix(visitors.Interpreter):
         for fullname in ST.name_to_index:
             if fullname[0] != part:
                 continue
-            if fullname[1].startswith("total"):
+            if fullname[1].startswith("total") or fullname[1].startswith("_"):
                 continue
             if fullname[1] in ST.parts:
                 for total_name in total_names:
