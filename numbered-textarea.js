@@ -70,11 +70,17 @@ export class NumberedTextarea extends HTMLElement {
       }
       scrolling = setTimeout(() => {
         if (event.target == this.text) {
-          this.numbers.scrollTop = this.text.scrollTop;
+          this.numbers.scrollTo({
+            top: this.text.scrollTop,
+            behavior: "instant",
+          });
         } else {
-          this.text.scrollTop = this.numbers.scrollTop;
+          this.text.scrollTo({
+            top: this.numbers.scrollTop,
+            behavior: "instant",
+          });
         }
-      }, 10);
+      });
     };
     this.text.addEventListener("scroll", scrollTogether);
     this.numbers.addEventListener("scroll", scrollTogether);
