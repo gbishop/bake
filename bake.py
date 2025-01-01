@@ -325,18 +325,6 @@ def format_table(solution):
                 solution[(partName, "total_fat")],
             ]
         )
-        if partName == "dough":
-            rows.append(
-                [
-                    "",
-                    0,
-                    "hydration",
-                    solution[("dough", "total_water")] * grams_to_bp,
-                    0,
-                    0,
-                    0,
-                ]
-            )
         # add the ingredients from the part
         for pn, var in solution:
             if pn != partName:
@@ -365,6 +353,19 @@ def format_table(solution):
                         *extras,
                     ]
                 )
+        # add hydration for the final dough
+        if partName == "dough":
+            rows.append(
+                [
+                    "",
+                    0,
+                    "hydration",
+                    solution[("dough", "total_water")] * grams_to_bp,
+                    0,
+                    0,
+                    0,
+                ]
+            )
         # add a blank line
         rows.append([""])
 
