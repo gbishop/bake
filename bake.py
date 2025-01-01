@@ -284,8 +284,10 @@ def format_table(solution):
         for row in rows:
             for i, col in enumerate(row):
                 widths[i] = max(widths[i], len(col))
+        # headings
         result = [
-            " | ".join([h.center(widths[i]) for i, h in enumerate(headings)]) + " |"
+            " | ".join([h.center(widths[i]) for i, h in enumerate(headings)]) + " |",
+            " | ".join(["-" * widths[i] for i in range(len(headings))]),
         ]
         for row in rows:
             cols = []
