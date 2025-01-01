@@ -258,9 +258,9 @@ def format_table(solution):
     def fmt_grams(g):
         """Format grams in the table"""
         if round(g, 0) >= 100:
-            r = f"{g:.0f}   "
-        elif round(g, 1) >= 10:
-            r = f"{g:0.1f} "
+            r = f"{g:.0f}  "
+        elif round(g, 1) >= 1:
+            r = f"{g:0.1f}"
         elif abs(g) < 0.1:
             r = ""
         else:
@@ -271,7 +271,7 @@ def format_table(solution):
     def fmt_value(value, format):
         """Format a value based on the format code"""
         if format == "%":
-            return f"{value:6.1f}"
+            return f"{value:5.1f}"
         elif format == "g":
             return fmt_grams(value)
         else:
