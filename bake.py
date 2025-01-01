@@ -114,4 +114,4 @@ heading = ["part", "grams", "name", "%", "flour", "water", "fat"]
 
 table = format_table(result["rows"], heading)
 
-output(table, text, result["message"], args.rewrite)
+output(table, text, result["message"], args.rewrite and result["grams_to_bp"])

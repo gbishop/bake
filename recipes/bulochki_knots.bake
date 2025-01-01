@@ -1,24 +1,39 @@
 # Bulochki Knots
 
+/*
+From: https://momsdish.com/recipe/123/russian-bulochki-knots
+
+The hydration of the original seems crazy high at 85.3%. And
+I do hate a sticky dough. If/when I try these I'm going to lower
+hydration to 65% to start.
+
+The salt seems low also. I have adjusted to 2%.
+
+*/
+
 dough:
-  flour = 480g
-  sugar = 49.5g
-  salt = 6g - 1.3% * butter
-  yeast = 6g
-  egg = 150g
-  milk = 340
-  butter = 100g
+  bread_flour = 100.00%
+  sugar = 9.90%
+  salt = 2.0% - 1.3% * butter  # adjusted from 1.2%
+  yeast = 1.20%
+  egg = 30.00%
+  milk
+  butter = 20.00%
+
+  total_flour = 500g
+  hydration = 65%     # adjusted from 85.3%
 
 /*+
- part |  grams  |  name  |   %    | flour  | water  |  fat   |
-      |  480    | flour  |  100.0 | 480    |        |        |
-      |   49.5  | sugar  |   10.3 |        |        |        |
-      |    4.70 | salt   |    1.0 |        |        |        |
-      |  100    | butter |   20.8 |        |  18.0  |  80.0  |
-      |    6.00 | yeast  |    1.3 |        |        |        |
-      |  150    | egg    |   31.3 |        | 113    |  13.5  |
-      |  340    | milk   |   70.8 |        | 296    |  11.9  |
-dough | 1130    |        |  235.5 | 480    | 426    | 105    |
+ part |  grams  |     name    |   %    | flour  | water  |  fat   |
+dough | 1038    |             |  207.6 | 500    | 325    | 101    |
+      |  500    | bread flour |  100.0 | 500    |        |        |
+      |   49.5  | sugar       |    9.9 |        |        |        |
+      |    8.70 | salt        |    1.7 |        |        |        |
+      |  100    | butter      |   20.0 |        |  18.0  |  80.0  |
+      |    6.00 | yeast       |    1.2 |        |        |        |
+      |  150    | egg         |   30.0 |        | 113    |  13.5  |
+      |  224    | milk        |   44.7 |        | 195    |   7.82 |
+      |         | hydration   |   65.0 |        |        |        |
      
 +*/
 

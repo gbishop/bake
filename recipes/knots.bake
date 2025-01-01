@@ -1,6 +1,14 @@
 # Cinnamon raisin knots
 
 /* from https://yunsfamilytable.com/recipes/buttery-crunchy-raisin-bread-knots/
+
+Dough was sticky on the first attempt. Making them as individually filled knots
+is a lot of work, esp when they are sticky. 
+
+Jelly filling didn't work at all, I made balls out of those.
+
+Needs SALT! There was none in the original and I didn't notice.
+
 */
 
 filling:
@@ -10,29 +18,35 @@ filling:
   raisins = 20.00%
 
 dough:
-  bread_flour = 100.00%
+  bread_flour
+  potato_flakes = 4%
   yeast = 1.333%
   sugar = 10.00%
   egg = 16.67%
   milk = 59.00%
   butter = 6.67%
-  total_flour = 300g
+  salt = 2% - 1.3% * butter
+  total_flour = 450g
+  hydration = 65%
 
 /*+
-  part  | grams  |     name    |   %    | flour  | water  |  fat  |
-        |  40.0  | butter      |   13.3 |        |   7.20 | 32.0  |
-        |  13.3  | brown sugar |    4.4 |        |        |       |
-        |  19.5  | evap milk   |    6.5 |        |  14.4  |  1.36 |
-        |  60.0  | raisins     |   20.0 |        |        |       |
-filling | 133    |             |   44.3 |        |  21.6  | 33.4  |
+  part  | grams  |      name     |   %    | flour  | water  |  fat  |
+filling | 199    |               |   44.3 |        |  32.4  | 50.0  |
+        |  60.0  | butter        |   13.3 |        |  10.8  | 48.0  |
+        |  19.9  | brown sugar   |    4.4 |        |        |       |
+        |  29.2  | evap milk     |    6.5 |        |  21.6  |  2.05 |
+        |  90.0  | raisins       |   20.0 |        |        |       |
        
-        | 300    | bread flour |  100.0 | 300    |        |       |
-        |   4.00 | yeast       |    1.3 |        |        |       |
-        |  30.0  | sugar       |   10.0 |        |        |       |
-        |  50.0  | egg         |   16.7 |        |  37.5  |  4.50 |
-        | 177    | milk        |   59.0 |        | 154    |  6.20 |
-        |  20.0  | butter      |    6.7 |        |   3.60 | 16.0  |
-dough   | 581    |             |  193.7 | 300    | 195    | 26.7  |
+dough   | 880    |               |  195.6 | 450    | 293    | 40.0  |
+        | 432    | bread flour   |   96.0 | 432    |        |       |
+        |  18.0  | potato flakes |    4.0 |  18.0  |        |       |
+        |   6.00 | yeast         |    1.3 |        |        |       |
+        |  45.0  | sugar         |   10.0 |        |        |       |
+        |  75.0  | egg           |   16.7 |        |  56.2  |  6.75 |
+        | 265    | milk          |   59.0 |        | 231    |  9.29 |
+        |  30.0  | butter        |    6.7 |        |   5.40 | 24.0  |
+        |   8.61 | salt          |    1.9 |        |        |       |
+        |        | hydration     |   65.0 |        |        |       |
        
 +*/
 

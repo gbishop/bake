@@ -1,12 +1,12 @@
 # Start with soft white bread and morph to whole grain
 
 starter:
-  rye
+  ww_flour
   water
-  hydration = 60%
+  hydration = 100%
 
 sponge ^ 4%: # allow for 4% loss
-  starter = 20% * total_flour
+  starter = 20g
   water
   oats = ww_flour
   ww_flour
@@ -43,33 +43,29 @@ dough:
   total_flour = 480g
 
 /*
-December 5, 2024
+December 24, 2024
 
 Changes
-* try walnuts again
-* refreshed srarter
 
 Next time
-* Increase the loss on the sponge. I was 2g short.
-* Drop the walnuts
 
 Scaled to my 2.3L pullman pan.
 
 Mixed the sponge using rolled oats and king arthur whole wheat flour at 19:40
 and put it in the 94F SDH.
 
-Sponge pH at 8:58 is 3.85 the temperature was 85. It has increased about 50%
+Sponge pH at 8:04 is 3.97 the temperature was 85. It has increased about 30%
 overnight and the top is flat. The SDH only managed 88.6 at the top of the
 container. Room temperature got down to 63 overnight.
 
-I ran the bread machine dough cycle. Started at 9:08. Stopped after 5 minutes
+I ran the bread machine dough cycle. Started at 8:14. Stopped after 5 minutes
 and set the timer to start in 30 minutes. The pan with paddle weighs 404g.
 
-Out of the BM at 10:15, pH is 5.25, dT is 80.
+I lost track of time in here because I was working on knots
 
-Into the oven with the light on at 10:20
+Out of the BM at ?, pH is ?, dT is ?.
 
-Out at 12:00 it has filled the container. pH is ? dt is ?
+Into the oven with the light on at ?. pH is ? dt is ?
 
 Baked at 1:30 about 1 inch above the top of the pan in 350F oven.
 pH is 4.62 and dT is 82F.
@@ -84,15 +80,15 @@ Good flavor and texture. I like this flavor better I think.
 
 /*+
   part  | grams  |      name     |   %    | flour  | water  |  fat  |
-starter |  14.4  |               |    3.0 |   9.00 |   5.40 |       |
-        |   9.00 | rye           |    1.9 |   9.00 |        |       |
-        |   5.40 | water         |    1.1 |        |   5.40 |       |
+starter |  20.0  |               |    4.2 |  10.0  |  10.0  |       |
+        |  10.0  | ww flour      |    2.1 |  10.0  |        |       |
+        |  10.0  | water         |    2.1 |        |  10.0  |       |
        
 sponge  | 150    | + 5.8g        |   30.0 |  72.0  |  72.0  |       |
-        |  15.0  | starter       |    3.0 |   9.00 |   5.40 |       |
-        |  69.3  | water         |   13.9 |        |  66.6  |       |
-        |  32.8  | oats          |    6.6 |  31.5  |        |       |
-        |  32.8  | ww flour      |    6.6 |  31.5  |        |       |
+        |  20.8  | starter       |    4.2 |  10.0  |  10.0  |       |
+        |  64.5  | water         |   12.9 |        |  62.0  |       |
+        |  32.2  | oats          |    6.5 |  31.0  |        |       |
+        |  32.2  | ww flour      |    6.5 |  31.0  |        |       |
        
 grain   | 355    |               |   74.0 | 355    |        |       |
         | 142    | prairie gold  |   29.5 | 142    |        |       |
@@ -116,9 +112,9 @@ wet     | 474    |               |   98.8 |  72.0  | 336    | 33.5  |
         |  38.4  | honey         |    8.0 |        |   6.53 |       |
        
 dough   | 908    |               |  189.3 | 480    | 336    | 38.4  |
+        |        | hydration     |   70.0 |        |        |       |
         | 474    | wet           |   98.8 |  72.0  | 336    | 33.5  |
         | 434    | dry           |   90.5 | 408    |        |  4.87 |
-        |        | hydration     |   70.0 |        |        |       |
        
 +*/
 
