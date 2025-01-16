@@ -181,6 +181,8 @@ class BuildMatrix(visitors.Interpreter):
                 continue
             if fullname[1].startswith("total"):
                 continue
+            if fullname[1].startswith("_"):
+                continue
             if fullname[1] in ST.parts:
                 for total_name in total_names:
                     totals[total_name] += ST.vector((fullname[1], total_name))
@@ -379,7 +381,7 @@ def output(table, text, failed=False, tobp=False):
     """Insert the table into the input"""
     text = re.sub(r"(?ms)\/\*\+.*?\+\*\/\n", "", text)
     if tobp:
-        text = rewrite(text, solution[("dough", "total_flour")])
+        text = rewrite(text, 100 / solution[("dough", "total_flour")])
 
     if failed:
         table = re.sub(r"^", "E ", table, 0, re.M)

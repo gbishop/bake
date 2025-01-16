@@ -8,6 +8,7 @@ Ingredients = {
     "bulgar": {"flour": 1.0},
     "cracked_rye": {"flour": 1.0},
     "flaxseed_meal": {"flour": 1.0},
+    "grain_mix": {"flour": 1.0},
     "hard_red": {"flour": 1.0},
     "hard_white": {"flour": 1.0},
     "improver": {"flour": 1.0},
@@ -26,6 +27,7 @@ Ingredients = {
     "ww": {"flour": 1.0},
     # liquids and fats
     "water": {"water": 1.0},
+    "whey": {"water": 1.0},
     "egg": {"water": 0.75, "fat": 0.09},
     "eggs": {"water": 0.75, "fat": 0.09},
     "egg_yolk": {"water": 0.5, "fat": 0.30},
