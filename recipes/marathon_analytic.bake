@@ -1,0 +1,119 @@
+# Wegmans Marathon bread with cranberries
+
+/*
+An attempt to reverse engineer the recipe from the ingredients
+list and nutrition list.
+
+Ingredients:
+  Water,
+  Wheat Flour,
+  Flax Seeds,
+  Pumpkin Seeds,
+  Yeast,
+  Sunflower Seeds,
+  Whole Wheat Flour,
+  Sugar,
+  Whole Rye Flour,
+  Wheat Gluten,
+
+Contains 2% or less of each: Organic Rolled Oats, Cranberries,
+Organic Cracked Rye, Organic Carrot, Salt, Organic Wheat Sour
+(Organic Wheat Flour, Water, Starter Culture), Organic Spelt,
+Organic Dried Bananas, Organic Honey, Organic Sugar, Organic Sesame
+Seeds, Organic Pumpkin Seeds, Organic Canola Oil, Organic Apple
+Dices, Organic Malted Barley Flour, Organic Cultured Wheat Flour
+(preservative), Organic Whole Wheat Flour, Organic Guar Gum,
+Enzymes, Ascorbic Acid, Sunflower Oil, Vinegar (preservative).
+
+Nutrition Facts
+Servings Per Container about 9
+Serving Size 2- 1/2" slices (57 grams)
+Amount per serving Calories 160 % Daily Value
+Total Fat 5 g 6 % Daily Value
+Total Fat
+Saturated Fat 0.50 g 3 % Daily Value
+Total Fat
+Trans Fat 0 g
+Cholesterol 0 mg 0 % Daily Value
+Sodium 230 mg 10 % Daily Value
+Total Carbohydrate 24 g 9 % Daily Value
+Total Carbohydrate
+Dietary Fiber 3 g 11 % Daily Value
+Total Carbohydrate Total Sugars 4 g
+Total Sugars Includes 3 g Added Sugars 6 % Daily Value
+Protein 7 g
+
+*/
+
+starter:
+  ww_flour
+  water
+  hydration = 100%
+
+soaker:
+  hydration = 100%
+  boiling_water
+  flaxseed_meal = 10.8%
+  pumpkin_seeds = 10.8%
+  sunflower_seeds = 10.8%
+  oats = 9%
+  salt = 3.5%
+  craisins = 9%
+  grated_carrots = 3.6%
+  banana_chips = 3.6%
+  diced_apples = 3.6%
+  oats = 9%
+  cracked_rye = 3.6%
+  olive_oil = 2.8%
+  honey = 3.6%
+  sesame_seeds = 2.8%
+
+flours:
+  bread_flour
+  ww_flour = 10.8%
+  rye_flour = 8.9%
+
+dough:
+  starter = 10%
+  soaker
+  flours
+  water = 60%
+  total = 1000g
+
+/*+
+  part  | grams  |       name      |   %   | flour | water | fat  |
+------- | ------ | --------------- | ----- | ----- | ----- | ----
+starter |   41.3 |                 |  10.0 |  20.7 |  20.7 |      |
+        |   20.7 | ww flour        |   5.0 |  20.7 |       |      |
+        |   20.7 | water           |   5.0 |       |  20.7 |      |
+       
+soaker  |  415   |                 | 100.3 |  96.7 |  96.7 | 11.6 |
+        |   94.2 | boiling water   |  22.8 |       |  94.2 |      |
+        |   37.2 | oats            |   9.0 |  37.2 |       |      |
+        |   14.5 | salt            |   3.5 |       |       |      |
+        |   37.2 | craisins        |   9.0 |       |       |      |
+        |   14.9 | grated carrots  |   3.6 |       |       |      |
+        |   14.9 | banana chips    |   3.6 |       |       |      |
+        |   14.9 | diced apples    |   3.6 |       |       |      |
+        |   14.9 | cracked rye     |   3.6 |  14.9 |       |      |
+        |   11.6 | olive oil       |   2.8 |       |       | 11.6 |
+        |   14.9 | honey           |   3.6 |       |   2.5 |      |
+        |   44.6 | sunflower seeds |  10.8 |       |       |      |
+        |   11.6 | sesame seeds    |   2.8 |       |       |      |
+        |   44.6 | flaxseed meal   |  10.8 |  44.6 |       |      |
+        |   44.6 | pumpkin seeds   |  10.8 |       |       |      |
+       
+flours  |  296   |                 |  71.6 | 296   |       |      |
+        |  215   | bread flour     |  51.9 | 215   |       |      |
+        |   44.6 | ww flour        |  10.8 |  44.6 |       |      |
+        |   36.8 | rye flour       |   8.9 |  36.8 |       |      |
+       
+dough   | 1000   |                 | 241.9 | 413   | 365   | 11.6 |
+        |   41.3 | starter         |  10.0 |  20.7 |  20.7 |      |
+        |  415   | soaker          | 100.3 |  96.7 |  96.7 | 11.6 |
+        |  296   | flours          |  71.6 | 296   |       |      |
+        |  248   | water           |  60.0 |       | 248   |      |
+        |        | hydration       |  88.4 |       |       |      |
+       
++*/
+

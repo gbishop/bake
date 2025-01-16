@@ -1,0 +1,67 @@
+# 100% whole wheat by Debra Wink
+
+dough:
+  ww_flour
+  milk = 40%
+  egg = 50g
+  egg + cold_water = 35%
+  salt = 2.2%
+  yeast = 1.1%
+  honey = 6%
+  molasses = 6%
+  butter = 6%
+  total = 550g
+  # total_flour = 500g
+
+/*
+Debra says:
+800g of flour for 13x4x4 pullman with a domed top. 
+550g for 9x4x4 pullman
+
+https://www.thefreshloaf.com/node/70559/debra-winks-whole-wheat-loaf-bread
+
+1)  develop the gluten before adding oil or butter
+2)  give the dough two full rises in bulk instead of just the one
+that is typical for straight dough pan loaves
+3)  keep the dough cool to cold for the majority of fermentation (no
+higher than 74F, and preferably lower).
+
+Mix all except oil/butter
+Rest 10-20 mins to hydrate
+mix to good gluten development
+Add oil /butter until incorporated
+DDT 23 C
+
+Bulk Fermentation Refrigerate 12 hours to at least double
+ 	
+Remove from fridge Cool room temp, up to 2 hrs if needed
+ 	 	 	
+Degas and fold
+
+2nd rise Rise again 3 to 5 hours cool room temp. Should rise higher
+
+Proofing device oiled loaf pan 21 x 11 x 7cm
+
+Final Proof time Approximately 1.5 to 3 hours hour at 22C
+ 	
+Oven type/temperature Conventional 190C Convection 177C
+ 	 	
+Total bake 25-30 minutes
+*/
+/*+
+ part | grams |    name    |   %   | flour | water | fat  |
+----- | ----- | ---------- | ----- | ----- | ----- | ----
+dough | 550   |            | 196.3 | 280   | 189   | 21.9 |
+      | 280   | ww flour   | 100.0 | 280   |       |      |
+      | 112   | milk       |  40.0 |       |  97.5 |  3.9 |
+      |  50.0 | egg        |  17.8 |       |  37.5 |  4.5 |
+      |  48.1 | cold water |  17.2 |       |  48.1 |      |
+      |   6.2 | salt       |   2.2 |       |       |      |
+      |   3.1 | yeast      |   1.1 |       |       |      |
+      |  16.8 | honey      |   6.0 |       |   2.9 |      |
+      |  16.8 | molasses   |   6.0 |       |       |      |
+      |  16.8 | butter     |   6.0 |       |   3.0 | 13.4 |
+      |       | hydration  |  67.4 |       |       |      |
+     
++*/
+

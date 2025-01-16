@@ -1,0 +1,119 @@
+# From https://www.thefreshloaf.com/node/61085/marathon-bread
+
+/*
+This claims to be like the Wegman's version but it doesn't correspond to the Wegman's labeling. 
+
+Ingredients:
+  Water,
+  Wheat Flour,
+  Flax Seeds,
+  Pumpkin Seeds,
+  Yeast,
+  Sunflower Seeds,
+  Whole Wheat Flour,
+  Sugar,
+  Whole Rye Flour,
+  Wheat Gluten,
+
+Contains 2% or less of each: Organic Rolled Oats, Cranberries,
+Organic Cracked Rye, Organic Carrot, Salt, Organic Wheat Sour
+(Organic Wheat Flour, Water, Starter Culture), Organic Spelt,
+Organic Dried Bananas, Organic Honey, Organic Sugar, Organic Sesame
+Seeds, Organic Pumpkin Seeds, Organic Canola Oil, Organic Apple
+Dices, Organic Malted Barley Flour, Organic Cultured Wheat Flour
+(preservative), Organic Whole Wheat Flour, Organic Guar Gum,
+Enzymes, Ascorbic Acid, Sunflower Oil, Vinegar (preservative).
+
+Nutrition Facts
+Servings Per Container about 9
+Serving Size 2- 1/2" slices (57 grams)
+Amount per serving Calories 160 % Daily Value
+Total Fat 5 g 6 % Daily Value
+Total Fat
+Saturated Fat 0.50 g 3 % Daily Value
+Total Fat
+Trans Fat 0 g
+Cholesterol 0 mg 0 % Daily Value
+Sodium 230 mg 10 % Daily Value
+Total Carbohydrate 24 g 9 % Daily Value
+Total Carbohydrate
+Dietary Fiber 3 g 11 % Daily Value
+Total Carbohydrate Total Sugars 4 g
+Total Sugars Includes 3 g Added Sugars 6 % Daily Value
+Protein 7 g
+
+*/
+
+starter:
+  ww_flour
+  water
+  hydration = 100%
+
+soaker:
+  boiling_water = 39.67%
+  salt = 1.65%
+  craisins = 10.74%
+  grated_carrots = 7.44%
+  banana_chips = 5.95%
+  diced_apples = 5.95%
+  oats = 4.96%
+  cracked_rye = 4.96%
+  olive_oil = 3.31%
+  honey = 1.16%
+  sunflower_seeds = 2.48%
+  sesame_seeds = 2.48%
+  flaxseed_meal = 2.48%
+  millet = 2.48%
+  pumpkin_seeds = 2.48%
+
+flours:
+  bread_flour = 52.89%
+  ww_flour = 19.83%
+  rye_flour = 9.92%
+
+dough:
+  starter = 9.92%
+  soaker
+  water = 19.83%
+  flours
+
+  total_flour = 500g
+
+/*+
+  part  | grams  |       name      |   %   | flour | water | fat  |
+------- | ------ | --------------- | ----- | ----- | ----- | ----
+starter |   49.6 |                 |   9.9 |  24.8 |  24.8 |      |
+        |   24.8 | ww flour        |   5.0 |  24.8 |       |      |
+        |   24.8 | water           |   5.0 |       |  24.8 |      |
+       
+soaker  |  491   |                 |  98.2 |  62.0 | 199   | 16.5 |
+        |  198   | boiling water   |  39.7 |       | 198   |      |
+        |    8.3 | salt            |   1.7 |       |       |      |
+        |   53.7 | craisins        |  10.7 |       |       |      |
+        |   37.2 | grated carrots  |   7.4 |       |       |      |
+        |   29.8 | banana chips    |   6.0 |       |       |      |
+        |   29.8 | diced apples    |   6.0 |       |       |      |
+        |   24.8 | oats            |   5.0 |  24.8 |       |      |
+        |   24.8 | cracked rye     |   5.0 |  24.8 |       |      |
+        |   16.6 | olive oil       |   3.3 |       |       | 16.6 |
+        |    5.8 | honey           |   1.2 |       |   1.0 |      |
+        |   12.4 | sunflower seeds |   2.5 |       |       |      |
+        |   12.4 | sesame seeds    |   2.5 |       |       |      |
+        |   12.4 | flaxseed meal   |   2.5 |  12.4 |       |      |
+        |   12.4 | millet          |   2.5 |       |       |      |
+        |   12.4 | pumpkin seeds   |   2.5 |       |       |      |
+       
+flours  |  413   |                 |  82.6 | 413   |       |      |
+        |  264   | bread flour     |  52.9 | 264   |       |      |
+        |   99.2 | ww flour        |  19.8 |  99.2 |       |      |
+        |   49.6 | rye flour       |   9.9 |  49.6 |       |      |
+       
+dough   | 1053   |                 | 210.6 | 500   | 323   | 16.6 |
+        |   49.6 | starter         |   9.9 |  24.8 |  24.8 |      |
+        |  491   | soaker          |  98.2 |  62.0 | 199   | 16.5 |
+        |   99.2 | water           |  19.8 |       |  99.2 |      |
+        |  413   | flours          |  82.6 | 413   |       |      |
+        |        | hydration       |  64.7 |       |       |      |
+       
++*/
+

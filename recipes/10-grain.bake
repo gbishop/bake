@@ -1,0 +1,67 @@
+# From Rose Levy Beranbaum
+
+/* Found here:
+https://www.realbakingwithrose.com/blog/2015/03/07/ten_grain_loaf_with_step_by_st
+
+*/
+
+soaker:
+  grain_mix = 100g
+  boiling_water
+  hydration = 100%
+
+starter:
+  ww_flour
+  water
+  hydration = 60%
+
+wet:
+  starter = 78g
+  soaker
+  water = 177g
+  malt_syrup = 5g
+  oil = 52g
+
+dry:
+  bread_flour = 225g
+  yeast = 3.2g
+  vwg = 12g
+  salt = 9g
+  durum_flour = 75g
+
+dough:
+  wet
+  dry
+
+/*+
+  part  | grams |      name     |   %   | flour | water | fat  |
+------- | ----- | ------------- | ----- | ----- | ----- | ----
+soaker  | 200   |               |  43.4 | 100   | 100   |      |
+        | 100   | grain mix     |  21.7 | 100   |       |      |
+        | 100   | boiling water |  21.7 |       | 100   |      |
+       
+starter |  78.0 |               |  16.9 |  48.7 |  29.2 |      |
+        |  48.8 | ww flour      |  10.6 |  48.8 |       |      |
+        |  29.2 | water         |   6.3 |       |  29.2 |      |
+       
+wet     | 512   |               | 111.1 | 149   | 307   | 52.0 |
+        |  78.0 | starter       |  16.9 |  48.7 |  29.2 |      |
+        | 200   | soaker        |  43.4 | 100   | 100   |      |
+        | 177   | water         |  38.4 |       | 177   |      |
+        |   5.0 | malt syrup    |   1.1 |       |   1.0 |      |
+        |  52.0 | oil           |  11.3 |       |       | 52.0 |
+       
+dry     | 324   |               |  70.4 | 312   |       |      |
+        | 225   | bread flour   |  48.8 | 225   |       |      |
+        |   3.2 | yeast         |   0.7 |       |       |      |
+        |  12.0 | vwg           |   2.6 |  12.0 |       |      |
+        |   9.0 | salt          |   2.0 |       |       |      |
+        |  75.0 | durum flour   |  16.3 |  75.0 |       |      |
+       
+dough   | 836   |               | 181.5 | 461   | 307   | 52.0 |
+        | 512   | wet           | 111.1 | 149   | 307   | 52.0 |
+        | 324   | dry           |  70.4 | 312   |       |      |
+        |       | hydration     |  66.7 |       |       |      |
+       
++*/
+
