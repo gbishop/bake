@@ -1,0 +1,33 @@
+# Experiment with whey bread
+
+/*
+Using yogurt whey in a small loaf of bread.
+
+I warmed the whey to 78F, mixed and rested for 30 minutes.
+
+Kneaded for 6 minutes then into the 1L cup at 9:15, about 400mL.
+
+Baked 30 minutes. Short, pale and not tasty. 
+
+*/
+
+dough:
+  ww
+  whey
+  salt = 2%
+  yeast = 2%
+  hydration = 73%
+  total_flour = 250g
+
+/*+
+ part | grams |    name   |   %   | flour | water | fat |
+----- | ----- | --------- | ----- | ----- | ----- | ---
+dough | 475   |           | 189.9 | 250   | 183   | 3.8 |
+      | 250   | ww        | 100.0 | 250   |       | 3.8 |
+      | 215   | whey      |  85.9 |       | 183   |     |
+      |   5.0 | salt      |   2.0 |       |       |     |
+      |   5.0 | yeast     |   2.0 |       |       |     |
+      |       | hydration |  73.0 |       |       |     |
+     
++*/
+
