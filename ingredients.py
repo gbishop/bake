@@ -1,12 +1,11 @@
 import pandas as pd
-
-pd.options.mode.copy_on_write = True
+import numpy as np
 import os
-from thefuzz import process, fuzz
 import re
 import sys
 import readline
 
+pd.options.mode.copy_on_write = True
 
 dir = os.path.dirname(os.path.abspath(__file__))
 usda_path = os.path.join(dir, "usda.csv")
@@ -17,14 +16,20 @@ map = pd.read_csv(map_path, index_col="index")
 
 # load the usda database
 usda = pd.read_csv(usda_path, index_col="name").fillna(0)
-usda_index = [key.lower() for key in usda.index]
+
 # remove units from the column names
 usda.columns = [name.replace(" (g)", "") for name in usda.columns]
 # trim unneeded columns
 usda = usda.loc[:, usda.columns[1:-1]]
-# ann a row for unknown ingredients
+
+# add a row for unknown ingredients
 unknown = pd.Series(0, index=usda.columns)
 usda.loc["unknown"] = unknown
+
+
+def score(name, positive, negative):
+    words = set(re.split(r"\W+", name.lower()))
+    return len(words & positive) - len(words & negative)
 
 
 def searchUSDA(query, prompt):
@@ -32,29 +37,19 @@ def searchUSDA(query, prompt):
     while True:
         query = str(query)
         query = query.replace("_", " ")
-        terms = query.split()
-        negative = [term for term in terms if term.startswith("-")]
-        positive = [term for term in terms if term not in negative]
-        search = " ".join(positive)
-        choices = process.extract(
-            search,
-            usda_index,
-            scorer=fuzz.partial_token_sort_ratio,
-            limit=40,
-        )
-        if negative:
-            pruned = []
-            for choice, score in choices:
-                words = re.findall(r"\w+", choice.lower())
-                for neg in negative:
-                    if neg[1:] in words:
-                        break
-                else:
-                    pruned.append((choice, score))
-            choices = pruned
+        terms = set(query.split())
+        negative = set(term[1:] for term in terms if term.startswith("-"))
+        positive = terms - negative
+        scores = np.array([score(name, positive, negative) for name in usda.index])
+        best = scores.argsort()[-1:-30:-1]
+        best = best[scores[best] > 0]
+        choices = usda.index[best]
         for i, choice in enumerate(choices):
             print(i, choice)
-        resp = input(f"{prompt}? ")
+        try:
+            resp = input(f"{prompt}? ")
+        except EOFError:
+            return None
         try:
             n = int(resp)
             if n == -1:
@@ -62,7 +57,7 @@ def searchUSDA(query, prompt):
             elif n == -2:
                 return None
             elif n >= 0 and n < len(choices) - 1:
-                return choices[n][0]
+                return choices[n]
         except ValueError:
             pass
         query = resp
@@ -104,8 +99,7 @@ def getIngredient(name: str):
     u = usda.loc[m.usda]
     u.loc["flour"] = m.loc["flour"]
     result = u
-    # pretend flour has no water because hydration calculations assume
-    # it doesn't
+    # pretend flour has no water because hydration calculations assume it doesn't
     result.loc["true_water"] = result.loc["water"]
     if result.loc["flour"]:
         result.loc["water"] = 0
