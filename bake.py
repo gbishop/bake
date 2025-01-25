@@ -129,7 +129,6 @@ class GetParts(Visitor):
         ST.add((name, "total"))
         ST.add((name, "total_flour"))
         ST.add((name, "total_water"))
-        ST.add((name, "total_fat"))
 
         ST.parts[name] = None
 
@@ -165,7 +164,7 @@ class BuildMatrix(visitors.Interpreter):
         return A, B
 
     def part(self, tree):
-        total_names = ["total", "total_flour", "total_water", "total_fat"]
+        total_names = ["total", "total_flour", "total_water"]
         part = self.part_name = tree.children[0]
         r = self.visit_children(tree)
         _, theloss, *relations = r
@@ -192,7 +191,7 @@ class BuildMatrix(visitors.Interpreter):
                 info = getIngredient(fullname[1])
                 for total_name in total_names[1:]:
                     field_name = total_name.replace("total_", "")
-                    w = info[field_name]
+                    w = info[field_name] / 100
                     totals[total_name] += w * vect
         for total_name in total_names:
             relations.append([ST.vector((part, total_name)), totals[total_name]])
@@ -257,39 +256,42 @@ class BuildMatrix(visitors.Interpreter):
 def format_table(solution):
     """Build a table from the solution"""
 
-    def fmt_grams(g):
+    def fmt_grams(g, threshold=0.1):
         """Format grams in the table"""
         if round(g, 0) >= 100:
-            r = f"{g:.0f}  "
+            r = f"{g:.0f}   "
         elif round(g, 1) >= 1:
-            r = f"{g:0.1f}"
-        elif abs(g) < 0.1:
+            r = f"{g:0.1f} "
+        elif abs(g) < threshold:
             r = ""
         else:
             r = f"{g:0.2f}"
 
         return r
 
-    def fmt_value(value, format):
+    def fmt_value(value, format, threshold=0.1):
         """Format a value based on the format code"""
         if format == "%":
             return f"{value:5.1f}"
         elif format == "g":
-            return fmt_grams(value)
+            return fmt_grams(value, threshold)
         else:
             return str(value)
 
-    def tabulate(headings, fmts, rows):
+    def tabulate(headings, fmts, rows, threshold=0.1):
         """Format a list of lists as a table"""
         widths = [len(h) for h in headings]
-        rows = [[fmt_value(col, fmts[i]) for i, col in enumerate(row)] for row in rows]
+        rows = [
+            [fmt_value(col, fmts[i], threshold) for i, col in enumerate(row)]
+            for row in rows
+        ]
         for row in rows:
             for i, col in enumerate(row):
                 widths[i] = max(widths[i], len(col))
         # headings
         result = [
             " | ".join([h.center(widths[i]) for i, h in enumerate(headings)]) + " |",
-            " | ".join(["-" * widths[i] for i in range(len(headings))]),
+            "-|-".join(["-" * widths[i] for i in range(len(headings))]) + "-|",
         ]
         for row in rows:
             cols = []
@@ -310,6 +312,7 @@ def format_table(solution):
     if dtf == 0:
         raise Exception("No flour")
     grams_to_bp = 100 / solution[("dough", "total_flour")]
+    nutrition = getIngredient("unknown")
     for partName in ST.parts:
         loss_value, isPercent = ST.loss.get(partName, (0, False))
         gt = g = solution[(partName, "total")]
@@ -326,7 +329,6 @@ def format_table(solution):
                 bp,
                 solution[(partName, "total_flour")],
                 solution[(partName, "total_water")],
-                solution[(partName, "total_fat")],
             ]
         )
         # add the ingredients from the part
@@ -339,15 +341,14 @@ def format_table(solution):
                     extras = [
                         solution[(var, "total_flour")],
                         solution[(var, "total_water")],
-                        solution[(var, "total_fat")],
                     ]
                 else:
                     info = getIngredient(var)
                     extras = [
-                        pg * info["flour"],
-                        pg * info["water"],
-                        pg * info["fat"],
+                        pg * info["flour"] / 100,
+                        pg * info["water"] / 100,
                     ]
+                    nutrition = nutrition + info * pg / 100
                 rows.append(
                     [
                         "",
@@ -367,14 +368,30 @@ def format_table(solution):
                     solution[("dough", "total_water")] * grams_to_bp,
                     0,
                     0,
-                    0,
                 ]
             )
         # add a blank line
         rows.append([""])
 
-    heading = ["part", "grams", "name", "%", "flour", "water", "fat"]
-    return tabulate(heading, "tgt%ggg", rows)
+    nrows = []
+    # account for 9% loss during baking
+    fdw = solution[("dough", "total")] * 0.91
+    slice = 65
+    nscale = slice / fdw
+    for key in sorted(nutrition.index):
+        if key == "water" or key == "flour":
+            continue
+        v = nutrition.loc[key] * nscale
+        if key == "true_water":
+            key = "water"
+            v *= 0.91
+        if v > 0.01:
+            nrows.append((key, v))
+    nut = tabulate(["name", "per 65g"], "tg", nrows, threshold=0.01)
+
+    heading = ["part", "grams", "name", "%", "flour", "water"]
+    recipe = tabulate(heading, "tgt%ggg", rows)
+    return "Nutrition\n" + nut + 2 * "\n" + recipe
 
 
 def output(table, text, failed=False, tobp=False):
@@ -396,7 +413,6 @@ def rewrite(rest, scale):
         if match.group(1) not in [
             "total_flour",
             "total_water",
-            "total_fat",
             "total",
         ]:
             f = float(match.group(3)[:-1]) * scale
