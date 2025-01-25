@@ -1,3 +1,9 @@
+unknown diastatic_malt
+unknown improver
+unknown nuts
+unknown diastatic_malt
+unknown improver
+unknown nuts
 # Multigrain including polenta and oats
 
 /*
@@ -68,44 +74,64 @@ dough:
   hydration = 70%
 
 /*+
-  part  | grams  |      name      |   %    | flour  | water  |  fat  |
-        |  25.0  | polenta        |    5.0 |  25.0  |        |       |
-        |  25.0  | oats           |    5.0 |  25.0  |        |       |
-        | 125    | boiling water  |   25.0 |        | 125    |       |
-        |   0.75 | diastatic malt |    0.1 |        |        |       |
-soaker  | 176    |                |   35.2 |  50.0  | 125    |       |
+Nutrition
+    name     | per 65g |
+-------------|---------|
+calcium      |    0.02 |
+calories     |  149    |
+carbohydrate |   26.8  |
+fat          |    3.3  |
+fiber        |    4.5  |
+monounsat    |    1.6  |
+polyunsat    |    1.0  |
+potassium    |    0.16 |
+protein      |    5.1  |
+saturated    |    0.43 |
+sodium       |    0.28 |
+sugars       |    1.9  |
+water        |   26.4  |
+
+
+  part  | grams  |      name      |   %   | flour  | water  |
+--------|--------|----------------|-------|--------|--------|
+soaker  | 176    |                |  35.2 |  50.0  | 125    |
+        |  25.0  | polenta        |   5.0 |  25.0  |        |
+        |  25.0  | oats           |   5.0 |  25.0  |        |
+        | 125    | boiling water  |  25.0 |        | 125    |
+        |   0.75 | diastatic malt |   0.1 |        |        |
        
-        |   4.57 | rye            |    0.9 |   4.57 |        |       |
-        |   2.74 | water          |    0.5 |        |   2.74 |       |
-starter |   7.32 |                |    1.5 |   4.57 |   2.74 |       |
+starter |   7.3  |                |   1.5 |   4.6  |   2.7  |
+        |   4.6  | rye            |   0.9 |   4.6  |        |
+        |   2.7  | water          |   0.5 |        |   2.7  |
        
-        |  75.0  | water          |   15.0 |        |  75.0  |       |
-        |   7.32 | starter        |    1.5 |   4.57 |   2.74 |       |
-        |  73.2  | rye            |   14.6 |  73.2  |        |       |
-sponge  | 155    |                |   31.1 |  77.7  |  77.7  |       |
+sponge  | 155    |                |  31.1 |  77.7  |  77.7  |
+        |  75.0  | water          |  15.0 |        |  74.9  |
+        |   7.3  | starter        |   1.5 |   4.6  |   2.7  |
+        |  73.1  | rye            |  14.6 |  73.1  |        |
        
-        | 167    | prairie gold   |   33.5 | 167    |        |       |
-        | 100    | bronze chief   |   20.0 | 100    |        |       |
-        |  50.0  | spelt          |   10.0 |  50.0  |        |       |
-        |  25.0  | flaxseed meal  |    5.0 |  25.0  |        |       |
-        |  10.0  | potato flakes  |    2.0 |  10.0  |        |       |
-        |  15.0  | vwg            |    3.0 |  15.0  |        |       |
-        |   5.00 | improver       |    1.0 |   5.00 |        |       |
-        |  10.0  | salt           |    2.0 |        |        |       |
-        |   2.00 | yeast          |    0.4 |        |        |       |
-dry     | 384    |                |   76.9 | 372    |        |       |
+dry     | 389    |                |  77.9 | 372    |   0.12 |
+        | 172    | prairie gold   |  34.5 | 172    |        |
+        | 100    | bronze chief   |  20.0 | 100    |        |
+        |  50.0  | spelt          |  10.0 |  50.0  |        |
+        |  25.0  | flaxseed meal  |   5.0 |  25.0  |        |
+        |  10.0  | potato flakes  |   2.0 |  10.0  |        |
+        |  15.0  | vwg            |   3.0 |  15.0  |        |
+        |   5.0  | improver       |   1.0 |        |        |
+        |  10.0  | salt           |   2.0 |        |        |
+        |   2.0  | yeast          |   0.4 |        |   0.10 |
        
-        | 143    | water          |   28.6 |        | 143    |       |
-        | 176    | soaker         |   35.2 |  50.0  | 125    |       |
-        | 155    | sponge         |   31.1 |  77.7  |  77.7  |       |
-        |  25.0  | honey          |    5.0 |        |   4.25 |       |
-        |  25.0  | oil            |    5.0 |        |        | 25.0  |
-wet     | 524    |                |  104.8 | 128    | 350    | 25.0  |
+wet     | 524    |                | 104.9 | 128    | 350    |
+        | 143    | water          |  28.6 |        | 143    |
+        | 176    | soaker         |  35.2 |  50.0  | 125    |
+        | 155    | sponge         |  31.1 |  77.7  |  77.7  |
+        |  25.0  | honey          |   5.0 |        |   4.3  |
+        |  25.0  | oil            |   5.0 |        |        |
        
-        | 524    | wet            |  104.8 | 128    | 350    | 25.0  |
-        | 384    | dry            |   76.9 | 372    |        |       |
-        |  75.0  | nuts           |   15.0 |        |        |       |
-dough   | 983    |                |  196.7 | 500    | 350    | 25.0  |
+dough   | 989    |                | 197.7 | 500    | 350    |
+        | 524    | wet            | 104.9 | 128    | 350    |
+        | 389    | dry            |  77.9 | 372    |   0.12 |
+        |  75.0  | nuts           |  15.0 |        |        |
+        |        | hydration      |  70.0 |        |        |
        
 +*/
 
