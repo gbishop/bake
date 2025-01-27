@@ -1,0 +1,108 @@
+# English muffins from 
+# https://profoodhomemade.com/english-muffins-2/
+
+wet:
+  milk = 210g
+  yeast = 7g
+  egg = 50g
+  sugar = 6g
+
+dough:
+  wet
+  oil = 15g
+  bread_flour = 400g
+  salt = 8g
+
+/*
+
+1 Add the egg, milk, sugar and yeast to a jug, and thoroughly mix,
+set it aside for 10 minutes, until it activates.
+
+2 Once activated, add the yeast mixture to your stand mixer bowl,
+then add the oil or softened butter to the liquid in the bowl.
+
+3 Add the flour, followed by the salt to the bowl, attach the dough
+hook and knead for 10 minutes.
+
+4 If you are kneading this recipe by hand, add all of the
+ingredients to a large bowl and partially mix it all together, tip
+it out onto your worktop and knead the dough for 10 minutes, then
+carry on with recipe.
+
+5 Turn out the dough from the mixer and form it into a ball, place
+it into a lightly oiled bowl, cover the bowl and let it proof/rise
+for 1 hour, the dough should at least, double in size (this may take
+longer depending on the temperature of your kitchen) if you can,
+proof your dough in the oven, with just the light bulb on.
+
+6 When the time is up, turn out the now risen dough onto a non-
+floured surface, and knock it back, give it a quick knead then form
+it into a ball.
+
+7 Divide the dough into 6 equal pieces, for a more uniform size and
+appearance try to use digital scales for dividing.
+
+8 Roll each piece of dough into a ball, (see video for rolling
+technique).
+
+9 Cover the 6 small dough balls with a lightweight dry cloth, let
+them rest for 5 minutes.
+
+10 When the rest period is up, using a rolling pin, roll each ball
+into 11cm / 4in circle, and place them on lightly floured tray.
+
+11 Once all 6 are rolled out, cover them again and allow them to
+proof/rise in a warm spot, for 20 minutes.
+
+12 Take a large frying pan or griddle,( NO! oil,) heat it up to
+approx. 200°C / 390°F, 
+
+13 Place 3 of the muffins in the hot pan, and cook for 3 to 4
+minutes on each side, once they are golden brown, risen and firm to
+the touch, remove them from the pan.
+
+14 Keep them on a warm plate, while you finish off the rest.
+
+15 Storing suggestions, soon as they have cooled from the pan, these
+can be frozen, you can take them out in the morning, defrost in the
+microwave, cut in half, then toasted, resulting in, fresh muffins
+for breakfast.
+
+*/
+
+/*+
+Nutrition
+    name     | per 65g |
+-------------|---------|
+calcium      |    0.03 |
+calories     |  187    |
+carbohydrate |   31.8  |
+fat          |    3.5  |
+fiber        |    1.2  |
+monounsat    |    1.6  |
+polyunsat    |    0.60 |
+potassium    |    0.08 |
+protein      |    6.5  |
+saturated    |    0.88 |
+sodium       |    0.34 |
+sugars       |    1.8  |
+water        |   25.9  |
+
+
+ part | grams  |     name    |   %   | flour  | water  |
+------|--------|-------------|-------|--------|--------|
+wet   | 273    |             |  68.2 |        | 224    |
+      | 210    | milk        |  52.5 |        | 185    |
+      |   7.0  | yeast       |   1.7 |        |   0.36 |
+      |  50.0  | egg         |  12.5 |        |  38.1  |
+      |   6.0  | sugar       |   1.5 |        |        |
+     
+dough | 696    |             | 174.0 | 400    | 224    |
+      | 273    | wet         |  68.2 |        | 224    |
+      |  15.0  | oil         |   3.8 |        |        |
+      | 400    | bread flour | 100.0 | 400    |        |
+      |   8.0  | salt        |   2.0 |        |        |
+      |        | hydration   |  55.9 |        |        |
+     
++*/
+
