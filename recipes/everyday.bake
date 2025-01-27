@@ -1,3 +1,5 @@
+unknown soaker
+unknown soaker
 # My everyday loaf based on morph
 
 starter:
@@ -32,14 +34,13 @@ wet:
   soaker = 142g
   water
   whey = 20% * water
-  butter
+  butter = 8.8%
   honey = 8%
 
 dough:
   wet
   dry
   total_water = 70%
-  total_fat = 8%
   total = 900g
 
 /*
@@ -96,43 +97,61 @@ https://newsletter.wordloaf.org/p/the-other-side-of-the-keyhole
 */
 
 /*+
-  part  | grams |      name     |   %   | flour | water | fat  |
-------- | ----- | ------------- | ----- | ----- | ----- | ----
-starter |  15.0 |               |   3.7 |   7.5 |   7.5 |      |
-        |   7.5 | ww flour      |   1.9 |   7.5 |       |      |
-        |   7.5 | water         |   1.9 |       |   7.5 |      |
+Nutrition
+    name     | per 65g |
+-------------|---------|
+calcium      |    0.03 |
+calories     |  145    |
+carbohydrate |   24.4  |
+fat          |    4.0  |
+fiber        |    4.0  |
+monounsat    |    0.91 |
+polyunsat    |    1.0  |
+potassium    |    0.16 |
+protein      |    4.9  |
+saturated    |    1.8  |
+sodium       |    0.24 |
+sugars       |    3.0  |
+water        |   23.3  |
+
+
+  part  | grams  |      name     |   %   | flour  | water  |
+--------|--------|---------------|-------|--------|--------|
+starter |  15.0  |               |   3.7 |   7.5  |   7.5  |
+        |   7.5  | ww flour      |   1.9 |   7.5  |        |
+        |   7.5  | water         |   1.9 |        |   7.5  |
        
-sponge  | 125   | + 4.8g        |  30.0 |  60.2 |  60.2 |      |
-        |  15.6 | starter       |   3.7 |   7.5 |   7.5 |      |
-        |  54.8 | water         |  13.1 |       |  52.6 |      |
-        |  54.8 | whole wheat   |  13.1 |  52.6 |       |      |
+sponge  | 125    | + 4.8g        |  30.0 |  60.0  |  60.0  |
+        |  15.6  | starter       |   3.7 |   7.5  |   7.5  |
+        |  54.6  | water         |  13.1 |        |  52.5  |
+        |  54.6  | whole wheat   |  13.1 |  52.5  |        |
        
-grain   | 297   |               |  74.0 | 297   |       |      |
-        | 119   | prairie gold  |  29.6 | 119   |       |      |
-        | 119   | hard red      |  29.6 | 119   |       |      |
-        |  59.4 | spelt         |  14.8 |  59.4 |       |      |
+grain   | 296    |               |  74.0 | 296    |        |
+        | 118    | prairie gold  |  29.6 | 118    |        |
+        | 118    | hard red      |  29.6 | 118    |        |
+        |  59.2  | spelt         |  14.8 |  59.2  |        |
        
-dry     | 361   |               |  90.0 | 341   |       |  3.4 |
-        | 297   | grain         |  74.0 | 297   |       |      |
-        |  11.3 | nido          |   2.8 |       |       |  3.4 |
-        |   8.0 | potato flakes |   2.0 |   8.0 |       |      |
-        |  28.1 | flaxseed meal |   7.0 |  28.1 |       |      |
-        |   6.8 | salt          |   1.7 |       |       |      |
-        |   8.0 | wgbi          |   2.0 |   8.0 |       |      |
-        |   2.0 | yeast         |   0.5 |       |       |      |
+dry     | 360    |               |  90.0 | 340    |   0.40 |
+        | 296    | grain         |  74.0 | 296    |        |
+        |  11.4  | nido          |   2.9 |        |   0.28 |
+        |   8.0  | potato flakes |   2.0 |   8.0  |        |
+        |  28.0  | flaxseed meal |   7.0 |  28.0  |        |
+        |   6.7  | salt          |   1.7 |        |        |
+        |   8.0  | wgbi          |   2.0 |   8.0  |        |
+        |   2.0  | yeast         |   0.5 |        |   0.10 |
        
-wet     | 539   |               | 134.4 |  60.2 | 281   | 28.7 |
-        | 120   | sponge        |  30.0 |  60.2 |  60.2 |      |
-        | 142   | soaker        |  35.4 |       |       |      |
-        | 174   | water         |  43.4 |       | 174   |      |
-        |  34.8 | whey          |   8.7 |       |  34.8 |      |
-        |  35.9 | butter        |   8.9 |       |   6.5 | 28.7 |
-        |  32.1 | honey         |   8.0 |       |   5.5 |      |
+wet     | 540    |               | 135.1 |  60.0  | 279    |
+        | 120    | sponge        |  30.0 |  60.0  |  60.0  |
+        | 142    | *soaker       |  35.5 |        |        |
+        | 176    | water         |  44.0 |        | 176    |
+        |  35.2  | whey          |   8.8 |        |  32.8  |
+        |  35.2  | butter        |   8.8 |        |   5.6  |
+        |  32.0  | honey         |   8.0 |        |   5.5  |
        
-dough   | 900   |               | 224.4 | 401   | 281   | 32.1 |
-        | 539   | wet           | 134.4 |  60.2 | 281   | 28.7 |
-        | 361   | dry           |  90.0 | 341   |       |  3.4 |
-        |       | hydration     |  70.0 |       |       |      |
+dough   | 900    |               | 225.1 | 400    | 280    |
+        | 540    | wet           | 135.1 |  60.0  | 279    |
+        | 360    | dry           |  90.0 | 340    |   0.40 |
+        |        | hydration     |  70.0 |        |        |
        
 +*/
 
