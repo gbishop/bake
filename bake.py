@@ -220,7 +220,7 @@ class BuildMatrix(visitors.Interpreter):
 
     def divide(self, tree):
         r = self.visit_children(tree)
-        return r[0] / r[1]
+        return r[0] / number(r[1])
 
     def constant(self, tree):
         r = self.visit_children(tree)
@@ -376,22 +376,26 @@ def format_table(solution):
     nrows = []
     # account for 9% loss during baking
     fdw = solution[("dough", "total")] * 0.91
-    slice = 65
-    nscale = slice / fdw
-    for key in sorted(nutrition.index):
-        if key == "water" or key == "flour":
-            continue
-        v = nutrition.loc[key] * nscale
-        if key == "true_water":
-            key = "water"
-            v *= 0.91
-        if v > 0.01:
-            nrows.append((key, v))
-    nut = tabulate(["name", "per 65g"], "tg", nrows, threshold=0.01)
+    serving = solution.get(("dough", "_serving"), 65)
+    if serving > 0:
+        nscale = serving / fdw
+        for key in sorted(nutrition.index):
+            if key == "water" or key == "flour":
+                continue
+            v = nutrition.loc[key] * nscale
+            if key == "true_water":
+                key = "water"
+                v *= 0.91
+            if v > 0.01:
+                nrows.append((key, v))
+        nut = tabulate(["name", f"per {serving:.0f}g"], "tg", nrows, threshold=0.01)
+        nut = "Nutrition\n" + nut + 2 * "\n"
+    else:
+        nut = ""
 
     heading = ["part", "grams", "name", "%", "flour", "water"]
     recipe = tabulate(heading, "tgt%ggg", rows)
-    return "Nutrition\n" + nut + 2 * "\n" + recipe
+    return nut + recipe
 
 
 def output(table, text, failed=False, tobp=False):
