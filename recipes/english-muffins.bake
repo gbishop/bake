@@ -12,6 +12,7 @@ dough:
   oil = 15g
   bread_flour = 400g
   salt = 8g
+  _serving = total / 9
 
 /*
 
@@ -73,28 +74,28 @@ for breakfast.
 
 /*+
 Nutrition
-    name     | per 65g |
+    name     | per 77g |
 -------------|---------|
-calcium      |    0.03 |
-calories     |  187    |
-carbohydrate |   31.8  |
-fat          |    3.5  |
-fiber        |    1.2  |
-monounsat    |    1.6  |
-polyunsat    |    0.60 |
-potassium    |    0.08 |
-protein      |    6.5  |
-saturated    |    0.88 |
-sodium       |    0.34 |
-sugars       |    1.8  |
-water        |   25.9  |
+calcium      |    0.04 |
+calories     |  222    |
+carbohydrate |   37.8  |
+fat          |    4.1  |
+fiber        |    1.4  |
+monounsat    |    1.9  |
+polyunsat    |    0.71 |
+potassium    |    0.10 |
+protein      |    7.8  |
+saturated    |    1.0  |
+sodium       |    0.40 |
+sugars       |    2.2  |
+water        |   30.8  |
 
 
  part | grams  |     name    |   %   | flour  | water  |
 ------|--------|-------------|-------|--------|--------|
 wet   | 273    |             |  68.2 |        | 224    |
       | 210    | milk        |  52.5 |        | 185    |
-      |   7.0  | yeast       |   1.7 |        |   0.36 |
+      |   7.0  | yeast       |   1.8 |        |   0.36 |
       |  50.0  | egg         |  12.5 |        |  38.1  |
       |   6.0  | sugar       |   1.5 |        |        |
      

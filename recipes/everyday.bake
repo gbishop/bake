@@ -1,97 +1,96 @@
-unknown soaker
-unknown soaker
 # My everyday loaf based on morph
 
 starter:
-  ww_flour
+  whole_wheat
   water
   hydration = 100%
 
 sponge ^ 4%: # allow for 4% loss
-  starter = 25% * total_flour
+  starter.total_flour = 20% * total_flour
+  starter
   water
+  oats = whole_wheat
   whole_wheat
-  total_flour = 15%
+  total_flour = 12%
   hydration = 100%
 
 grain:
   prairie_gold = 2 * _part
   hard_red = 2 * _part
   spelt = _part
+  flaxseed_meal = 5%
 
 dry:
   grain
   # half the water to milk
-  nido = 50% * 13% * wet.water
+  # nido = 50% * 13% * wet.water
   potato_flakes = 2%
-  flaxseed_meal = 7%
   salt = 1.8% - 1.3% * wet.butter
   wgbi = 2%
-  yeast = 0.5%
+  yeast = 0.3%
 
 wet:
   sponge
-  soaker = 142g
   water
-  whey = 20% * water
-  butter = 8.8%
-  honey = 8%
+  butter = 5%
+  honey = 5%
 
 dough:
   wet
   dry
   total_water = 70%
-  total = 900g
+  total = 800g
 
 /*
-January 16, 2025
+January 31, 2025
 
 Changes
-* Adding a multiseed soaker
-* Knead less
+* 12% PFF in soaker and dough
+* Lid on with pan on small grid to lift it above the pan
+* Adjust butter and honey down
+* drop the whey
+* drop the nido
+* oats back in sponge
+* grind the flaxseed meal along with the grains
 
-Next time
-* Try with the lid off
+Next
+* foil on top of pan, perhaps with a spacer of some sort
+* maybe reduce the tdw, lots of compression at the edges
 
 Scaled to my 2.3L pullman pan with lid on.
 
-The soaker volume is about 150mL and it weighs about 142g, roughly
-1g/cm^3. I think I should subtract 150cm^3 from the volume of the
-pan and then use 0.35g/cm^3 to compute the TDW of the bread portion.
+Mixed the sponge using ww flour at 18:20 and put it
+in the 80F SDH. I turned the SDH off at 22:00.
 
-(2300 - 150) * 0.35 = 750g for the bread + 142g for the soaker
-giving a new TDW of 892g. Call it 900g.
+Sponge pH at 8:01 is 4.1 the temperature was 64.
 
-Mixed the sponge using ww flour at 19:20 and put it
-in the 80F SDH.
+Mixing with the spiral hook worked great. Mixed at 8:12. Let it rest
+30 minutes.
 
-Sponge pH at 8:23 is 3.98 the temperature was 78. It overflowed.
-
-Mixing with the spiral hook worked great. Mixed at 8:36. Let it rest
-20 minutes.
-
-Kneaded for 6 minutes on speed 1. The dough came together well. I
+Kneaded for 8 minutes on speed 1. The dough came together well. I
 put in the cambro and into the tiny oven set for its lowest temp.
 
-The dough was stickier than usual. I need to lower the soaker
-hydration.
+Into the tiny oven for first rise at 9:08. Into the pan at 11:15.
 
-Into the tiny oven for first rise at 9:08. Into the pan at 10:50.
+Really slow rise, why?
 
 Baked with the lid on when it reached the top of the pan. Into the
-tiny oven at 12:16, no preheat, 350F on Toast as suggested by Yippe.
-Removed at about 40 minutes and it was 204 inside.
+tiny oven at 12:50, no preheat, 350F on Toast as suggested by Yippe.
+Removed at about 45 minutes and it was 205 inside.
 
-Looks perfect. Top still sucked in a bit, perhaps because I stuck
-the top with the thermometer way too early.
+Top is a little browner than I'd like. The bottom is perfect; the
+wire rack really helped. Maybe 40 minutes would have been
+sufficient? Maybe foil on top of the lid to reduce direct heating?
 
-Good flavor and I like the mild crunch from the seeds.
+Looks perfect. 
+
+850g of dough filled the pan. Perfectly square corners but no signs
+of excess.
 
 Follow Yippee's advice here:
 https://www.thefreshloaf.com/node/74486/20240808-walmart-toaster-oven-sesame-milk-bread
 
-900g dough plus soaker perfectly filled the 9x4x4 pullman. Andrew
-Janjigian says I should knead it less.
+Andrew Janjigian says I should knead it less.
 https://newsletter.wordloaf.org/p/the-other-side-of-the-keyhole
 
 */
@@ -100,57 +99,55 @@ https://newsletter.wordloaf.org/p/the-other-side-of-the-keyhole
 Nutrition
     name     | per 65g |
 -------------|---------|
-calcium      |    0.03 |
-calories     |  145    |
-carbohydrate |   24.4  |
-fat          |    4.0  |
-fiber        |    4.0  |
-monounsat    |    0.91 |
+calcium      |    0.02 |
+calories     |  159    |
+carbohydrate |   29.1  |
+fat          |    3.2  |
+fiber        |    4.9  |
+monounsat    |    0.70 |
 polyunsat    |    1.0  |
-potassium    |    0.16 |
-protein      |    4.9  |
-saturated    |    1.8  |
-sodium       |    0.24 |
-sugars       |    3.0  |
-water        |   23.3  |
+potassium    |    0.17 |
+protein      |    5.7  |
+saturated    |    1.2  |
+sodium       |    0.28 |
+sugars       |    2.2  |
+water        |   29.1  |
 
 
   part  | grams  |      name     |   %   | flour  | water  |
 --------|--------|---------------|-------|--------|--------|
-starter |  15.0  |               |   3.7 |   7.5  |   7.5  |
-        |   7.5  | ww flour      |   1.9 |   7.5  |        |
-        |   7.5  | water         |   1.9 |        |   7.5  |
+starter |  21.3  |               |   4.8 |  10.6  |  10.6  |
+        |  10.6  | whole wheat   |   2.4 |  10.6  |        |
+        |  10.7  | water         |   2.4 |        |  10.6  |
        
-sponge  | 125    | + 4.8g        |  30.0 |  60.0  |  60.0  |
-        |  15.6  | starter       |   3.7 |   7.5  |   7.5  |
-        |  54.6  | water         |  13.1 |        |  52.5  |
-        |  54.6  | whole wheat   |  13.1 |  52.5  |        |
+sponge  | 111    | + 4.3g        |  24.0 |  53.2  |  53.2  |
+        |  22.1  | starter       |   4.8 |  10.6  |  10.6  |
+        |  44.3  | water         |   9.6 |        |  42.6  |
+        |  22.1  | oats          |   4.8 |  21.3  |        |
+        |  22.1  | whole wheat   |   4.8 |  21.3  |        |
        
-grain   | 296    |               |  74.0 | 296    |        |
-        | 118    | prairie gold  |  29.6 | 118    |        |
-        | 118    | hard red      |  29.6 | 118    |        |
-        |  59.2  | spelt         |  14.8 |  59.2  |        |
+grain   | 372    |               |  84.0 | 372    |        |
+        | 140    | prairie gold  |  31.6 | 140    |        |
+        | 140    | hard red      |  31.6 | 140    |        |
+        |  70.1  | spelt         |  15.8 |  70.1  |        |
+        |  22.2  | flaxseed meal |   5.0 |  22.2  |        |
        
-dry     | 360    |               |  90.0 | 340    |   0.40 |
-        | 296    | grain         |  74.0 | 296    |        |
-        |  11.4  | nido          |   2.9 |        |   0.28 |
-        |   8.0  | potato flakes |   2.0 |   8.0  |        |
-        |  28.0  | flaxseed meal |   7.0 |  28.0  |        |
-        |   6.7  | salt          |   1.7 |        |        |
-        |   8.0  | wgbi          |   2.0 |   8.0  |        |
-        |   2.0  | yeast         |   0.5 |        |   0.10 |
+dry     | 399    |               |  90.0 | 390    |        |
+        | 372    | grain         |  84.0 | 372    |        |
+        |   8.9  | potato flakes |   2.0 |   8.9  |        |
+        |   7.7  | salt          |   1.7 |        |        |
+        |   8.9  | wgbi          |   2.0 |   8.9  |        |
+        |   1.3  | yeast         |   0.3 |        |        |
        
-wet     | 540    |               | 135.1 |  60.0  | 279    |
-        | 120    | sponge        |  30.0 |  60.0  |  60.0  |
-        | 142    | *soaker       |  35.5 |        |        |
-        | 176    | water         |  44.0 |        | 176    |
-        |  35.2  | whey          |   8.8 |        |  32.8  |
-        |  35.2  | butter        |   8.8 |        |   5.6  |
-        |  32.0  | honey         |   8.0 |        |   5.5  |
+wet     | 401    |               |  90.4 |  53.2  | 310    |
+        | 106    | sponge        |  24.0 |  53.2  |  53.2  |
+        | 250    | water         |  56.4 |        | 250    |
+        |  22.2  | butter        |   5.0 |        |   3.5  |
+        |  22.2  | honey         |   5.0 |        |   3.8  |
        
-dough   | 900    |               | 225.1 | 400    | 280    |
-        | 540    | wet           | 135.1 |  60.0  | 279    |
-        | 360    | dry           |  90.0 | 340    |   0.40 |
+dough   | 800    |               | 180.4 | 443    | 310    |
+        | 401    | wet           |  90.4 |  53.2  | 310    |
+        | 399    | dry           |  90.0 | 390    |        |
         |        | hydration     |  70.0 |        |        |
        
 +*/
