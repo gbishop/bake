@@ -56,7 +56,7 @@ def searchUSDA(query, prompt):
                 return ""
             elif n == -2:
                 return None
-            elif n >= 0 and n < len(choices) - 1:
+            elif n >= 0 and n < len(choices):
                 return choices[n]
         except ValueError:
             pass
@@ -68,6 +68,7 @@ if __name__ == "__main__":
         query = " ".join(sys.argv[1:])
         r = searchUSDA(query, query)
         print(r)
+        print(usda.loc[r])
 
     else:
         # update the ingredients.csv file
