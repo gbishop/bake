@@ -1,10 +1,10 @@
 index,flour,usda
 ap_flour,100,"Wheat flour, white, all-purpose, unenriched"
-barley,0,"Barley, pearled, raw"
+barley,100,"Barley, pearled, raw"
 bran,100,"Wheat bran, crude"
 bread_flour,100,"Wheat flour, white, bread, enriched"
 bronze_chief,100,"Wheat, hard red winter"
-buckwheat,0,"Buckwheat groats, roasted, dry"
+buckwheat,100,"Buckwheat groats, roasted, dry"
 bulgar,0,"Bulgur, dry"
 butter,0,"Butter, salted"
 buttermilk,0,"Milk, buttermilk, fluid, cultured, lowfat"
@@ -19,6 +19,7 @@ egg_yolks,0,"Egg, yolk, raw, fresh"
 eggs,0,"Egg, whole, raw, fresh"
 evap_milk,0,"Milk, canned, evaporated, without added vitamin A and vitamin D"
 flaxseed_meal,100,"Seeds, flaxseed"
+grape_nuts,100,"Cereals ready-to-eat, POST, GRAPE-NUTS Cereal"
 hard_red,100,"Wheat, hard red winter"
 hard_white,100,"Wheat, hard white"
 honey,0,Honey
@@ -26,7 +27,7 @@ lemon_juice,0,"Lemon juice, canned or bottled"
 malt_syrup,0,"Syrups, malt"
 masarepas,100,"Corn flour, masa, enriched, white"
 milk,0,"Milk, whole, 3.25% milkfat, with added vitamin D"
-millet,0,"Millet, raw"
+millet,100,"Millet, raw"
 nido,0,"Milk, dry, whole, with added vitamin D"
 oat_groats,0,Oats
 oats,100,Oats
@@ -35,20 +36,21 @@ olive_oil,0,"Oil, olive, salad or cooking"
 polenta,100,"Cornmeal, whole-grain, yellow"
 potato_flakes,100,"Potatoes, mashed, dehydrated, flakes without milk, dry form"
 prairie_gold,100,"Wheat, hard white"
-pumpkin_seeds,0,"Seeds, pumpkin and squash seed kernels, dried"
+pumpkin_seeds,100,"Seeds, pumpkin and squash seed kernels, dried"
 quinoa,0,"Quinoa, uncooked"
 red_rye_malt,100,Rye
 rye,100,Rye
 salt,0,"Salt, table"
 sesame_seeds,0,"Seeds, sesame seed kernels, dried (decorticated)"
 spelt,100,"Spelt, uncooked"
-steel_cut_oats,0,Oats
+steel_cut_oats,100,Oats
 sugar,0,"Sugars, granulated"
-sunflower_seeds,0,"Seeds, sunflower seed kernels, dried"
+sunflower_seeds,100,"Seeds, sunflower seed kernels, dried"
 vital_wheat_gluten,100,Vital wheat gluten
 vwg,100,Vital wheat gluten
 unknown,0,unknown
 walnuts,0,"Nuts, walnuts, english"
+walnut_butter,0,"Nuts, walnuts, english"
 water,0,"Water, tap, well"
 wgbi,100,Vital wheat gluten
 wheat_bran,100,"Wheat bran, crude"
@@ -58,3 +60,4 @@ whole_wheat,100,"Wheat flour, whole-grain"
 ww,100,"Wheat flour, whole-grain"
 ww_flour,100,"Wheat flour, whole-grain"
 yeast,0,"Leavening agents, yeast, baker's, active dry"
+yogurt,0,"Yogurt, plain, whole milk, 8 grams protein per 8 ounce"

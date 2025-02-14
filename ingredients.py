@@ -94,7 +94,7 @@ def getIngredient(name: str):
 
         else:
             if name != "unknown":
-                print("unknown", name)
+                print("unknown", name, file=sys.stderr)
             name = "unknown"
     m = map.loc[name]
     u = usda.loc[m.usda]
