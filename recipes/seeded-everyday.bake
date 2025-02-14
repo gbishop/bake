@@ -1,0 +1,180 @@
+# My everyday loaf with seeds
+
+starter:
+  ww_flour
+  water
+  hydration = 75%
+
+sponge ^ 4%: # allow for 4% loss
+  starter = 25% * total_flour
+  water
+  whole_wheat
+  total_flour = 15%
+  hydration = 100%
+
+soaker:
+  sunflower_seeds = _part
+  buckwheat = _part
+  pumpkin_seeds = _part
+  polenta = _part
+  flaxseed_meal = _part
+  millet = _part
+  steel_cut_oats = _part
+  wheat_flakes = _part
+  boiling_water
+  hydration = 100%
+
+grain:
+  prairie_gold = 2 * _part
+  hard_red = 2 * _part
+  spelt = _part
+
+dry:
+  grain
+  potato_flakes = 2%
+  salt = 2%
+  wgbi = 2%
+  yeast = 0.5%
+
+wet:
+  sponge
+  water
+  olive_oil = 5%
+  malt_syrup = 5%
+
+dough:
+  wet
+  dry
+  hydration = 70%
+  total = 800g
+
+addin:
+  soaker = 160g
+  dough
+
+
+/*
+February 13, 2025
+
+Changes
+
+Next time
+* Lower the overall hydration, this is too sticky
+
+Scaled to my 2.3L pullman pan with lid on.
+
+The soaker volume is about 160mL and it weighs about 160g, roughly
+1g/mL. I think I should subtract 160mL from the volume of the
+pan and then use 0.4g/mL to compute the TDW of the bread portion.
+
+(2300 - 160) * 0.37 ~ 800g for the bread + 160g for the soaker
+giving a new TDW of 960g.
+
+Mixed the sponge using ww flour at 16:25 and put it
+in the 80F SDH.
+
+Sponge pH at 7:41 is 3.91 the temperature was 78.
+
+Mixing with the spiral hook worked great. Mixed at 7:55. Let it rest
+30 minutes.
+
+Kneaded for 8 minutes on speed 1. The dough was sticky at first
+but cleaned the bowl well. I put it in the cambro on the counter at
+8:35. Just below the 1qt mark on the cambro.
+
+The dough was stickier than usual. I need to lower the soaker
+hydration.
+
+Into the pan for second rise at 11:15. It had reached the top of the
+cambro.
+
+Baked with the lid on when it was near the top of the pan. Into the
+tiny oven at 12:40, no preheat, 350F on Toast as suggested by Yippe.
+
+Something went wrong. At 40 minutes the bread was only 125 inside
+and very soft. Back into the oven for 20 more, barely 163. 20 more
+and it reached 205. After cooling it is very tough and gummy inside. 
+
+The oven seemed too cool. I turned it up a tiny bit and then it
+heated up.
+
+This is a reject. I hate that.
+
+Follow Yippee's advice here:
+https://www.thefreshloaf.com/node/74486/20240808-walmart-toaster-oven-sesame-milk-bread
+
+Andrew Janjigian says I should knead it less.
+https://newsletter.wordloaf.org/p/the-other-side-of-the-keyhole
+
+*/
+
+/*+
+Nutrition
+    name     | per 65g |
+-------------|---------|
+calcium      |    0.02 |
+calories     |  188    |
+carbohydrate |   33.5  |
+fat          |    4.2  |
+fiber        |    5.3  |
+monounsat    |    2.0  |
+polyunsat    |    1.3  |
+potassium    |    0.20 |
+protein      |    6.8  |
+saturated    |    0.58 |
+sodium       |    0.31 |
+sugars       |    2.1  |
+water        |   36.1  |
+
+
+  part  | grams  |       name      |   %   | flour  | water  |
+--------|--------|-----------------|-------|--------|--------|
+starter |  16.5  |                 |   3.8 |   9.4  |   7.1  |
+        |   9.4  | ww flour        |   2.1 |   9.4  |        |
+        |   7.1  | water           |   1.6 |        |   7.1  |
+       
+sponge  | 138    | + 5.3g          |  30.0 |  66.1  |  66.1  |
+        |  17.2  | starter         |   3.8 |   9.4  |   7.1  |
+        |  61.5  | water           |  13.4 |        |  59.0  |
+        |  58.9  | whole wheat     |  12.9 |  56.7  |        |
+       
+soaker  | 160    |                 |  36.3 |  80.0  |  80.0  |
+        |  10.0  | sunflower seeds |   2.3 |  10.0  |        |
+        |  10.0  | buckwheat       |   2.3 |  10.0  |        |
+        |  10.0  | pumpkin seeds   |   2.3 |  10.0  |        |
+        |  10.0  | polenta         |   2.3 |  10.0  |        |
+        |  10.0  | flaxseed meal   |   2.3 |  10.0  |        |
+        |  10.0  | millet          |   2.3 |  10.0  |        |
+        |  10.0  | steel cut oats  |   2.3 |  10.0  |        |
+        |  10.0  | wheat flakes    |   2.3 |  10.0  |        |
+        |  80.0  | boiling water   |  18.2 |        |  80.0  |
+       
+grain   | 357    |                 |  81.0 | 357    |        |
+        | 143    | prairie gold    |  32.4 | 143    |        |
+        | 143    | hard red        |  32.4 | 143    |        |
+        |  71.4  | spelt           |  16.2 |  71.4  |        |
+       
+dry     | 386    |                 |  87.5 | 375    |   0.13 |
+        | 357    | grain           |  81.0 | 357    |        |
+        |   8.8  | potato flakes   |   2.0 |   8.8  |        |
+        |   8.8  | salt            |   2.0 |        |        |
+        |   8.8  | wgbi            |   2.0 |   8.8  |        |
+        |   2.2  | yeast           |   0.5 |        |   0.11 |
+       
+wet     | 414    |                 |  94.0 |  66.1  | 308    |
+        | 132    | sponge          |  30.0 |  66.1  |  66.1  |
+        | 238    | water           |  54.0 |        | 238    |
+        |  22.0  | olive oil       |   5.0 |        |        |
+        |  22.0  | malt syrup      |   5.0 |        |   4.7  |
+       
+dough   | 800    |                 | 181.5 | 441    | 309    |
+        | 414    | wet             |  94.0 |  66.1  | 308    |
+        | 386    | dry             |  87.5 | 375    |   0.13 |
+        |        | hydration       |  70.0 |        |        |
+       
+addin   | 960    |                 | 217.8 | 521    | 389    |
+        | 160    | soaker          |  36.3 |  80.0  |  80.0  |
+        | 800    | dough           | 181.5 | 441    | 309    |
+       
++*/
+

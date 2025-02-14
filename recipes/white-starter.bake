@@ -1,0 +1,48 @@
+ww_starter:
+  ww_flour
+  water
+  hydration = 100%
+
+wh_starter:
+  ww_starter
+  ap_flour
+  water
+  hydration = 75%
+
+dough:
+  wh_starter = 30g
+
+/*+
+Nutrition
+    name     | per 65g |
+-------------|---------|
+calories     |  147    |
+carbohydrate |   30.8  |
+fat          |    0.51 |
+fiber        |    1.7  |
+monounsat    |    0.05 |
+polyunsat    |    0.22 |
+potassium    |    0.06 |
+protein      |    4.4  |
+saturated    |    0.08 |
+sugars       |    0.12 |
+water        |   32.2  |
+
+
+   part    | grams |    name    |   %   | flour | water |
+-----------|-------|------------|-------|-------|-------|
+ww_starter |  6.0  |            |  35.0 |  3.0  |  3.0  |
+           |  3.0  | ww flour   |  17.5 |  3.0  |       |
+           |  3.0  | water      |  17.5 |       |  3.0  |
+          
+wh_starter | 30.0  |            | 175.1 | 17.1  | 12.9  |
+           |  6.0  | ww starter |  35.0 |  3.0  |  3.0  |
+           | 14.1  | ap flour   |  82.5 | 14.1  |       |
+           |  9.9  | water      |  57.6 |       |  9.9  |
+          
+dough      | 30.0  |            | 175.1 | 17.1  | 12.9  |
+           | 30.0  | wh starter | 175.1 | 17.1  | 12.9  |
+           |       | hydration  |  75.0 |       |       |
+          
++*/
+

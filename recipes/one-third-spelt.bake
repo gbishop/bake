@@ -1,0 +1,128 @@
+# Trailrunner one third spelt
+
+starter:
+  ap_flour
+  water
+  hydration = 75%
+
+levain:
+  starter = 5%
+  bread_flour
+  water
+  hydration = 75%
+
+dry:
+  bread_flour = 62%
+  spelt = 30%
+  salt = 1.6%
+
+wet:
+  water # +- 6.5% let the dough tell you
+  honey = 5%
+  olive_oil = 5%
+  yogurt = 5%
+  levain = 15%
+
+dough:
+  wet
+  dry
+
+  hydration = 73%
+  total = 500 # 0.46g/mL
+
+/*
+
+Mixed the levain in 9:20. Mixed dough at 16:20. Rest for 1 hour,
+the into pan. Let it rise until bedtime then into the fridge.
+
+From: https://www.thefreshloaf.com/node/75173/33-spelt-large-pullman#comment-539954
+
+This was in her 13 inch pullman and was too big by 100g
+
+Caroline says: 
+* I don’t sift.
+* I don’t do folds except with a rubber spatula in the bowl.
+* I don’t do a bulk ferment.
+* I do mix everything at once.
+* I do a 1 hr autolyse.
+* I do in bowl folding the dough while turning the bowl about 3x in
+  an hour. The dough after the autolyse is so full of gluten
+  development that the turns are just a performance rather than a
+  necessity.
+* I heavily butter my Pullman and lid and place dough in using a wet
+  spatula to press into place. This is not a wet dough and could
+  easily be made into boules etc.
+* I let it rise til pan almost full.
+* Pushed the lid in place and refrigerated overnight.
+* Preheat bake 375 30 min lid on. Lid off 20 min
+
+Formula : Large Pullman ( will adjust down total dough by 100g next time)
+
+515g BF
+
+250g Spelt whole grain 
+
+500g + - 50 g water ( let the dough tell you)
+
+42g each Trinity - honey,EVOO,yogurt
+
+13g Kosher salt
+
+126 g active levain
+
+Mix everything. Autolyse 1 hr. In bowl folds x 3 in an hour
+
+Butter butter butter the Pullman and lid. Rise in pan ( no bulk ferment except this) . Retard x hrs. Makes no discernible difference how long usually -15 hrs. 
+Bake. 375 30 lid on 20 lid off .
+*/
+
+
+/*+
+Nutrition
+    name     | per 65g |
+-------------|---------|
+calcium      |    0.01 |
+calories     |  161    |
+carbohydrate |   29.6  |
+fat          |    2.7  |
+fiber        |    1.9  |
+monounsat    |    1.5  |
+polyunsat    |    0.54 |
+potassium    |    0.08 |
+protein      |    5.0  |
+saturated    |    0.42 |
+sodium       |    0.24 |
+sugars       |    2.5  |
+water        |   30.1  |
+
+
+  part  | grams  |     name    |   %   | flour  | water  |
+--------|--------|-------------|-------|--------|--------|
+starter |  13.5  |             |   5.0 |   7.5  |   5.6  |
+        |   7.6  | ap flour    |   2.8 |   7.6  |        |
+        |   5.8  | water       |   2.1 |        |   5.8  |
+       
+levain  |  40.4  |             |  15.0 |  22.6  |  17.1  |
+        |  13.5  | starter     |   5.0 |   7.5  |   5.6  |
+        |  15.2  | bread flour |   5.6 |  15.2  |        |
+        |  11.6  | water       |   4.3 |        |  11.6  |
+       
+dry     | 253    |             |  93.5 | 248    |        |
+        | 167    | bread flour |  61.9 | 167    |        |
+        |  80.9  | spelt       |  29.9 |  80.9  |        |
+        |   4.3  | salt        |   1.6 |        |        |
+       
+wet     | 247    |             |  91.4 |  22.4  | 197    |
+        | 166    | water       |  61.5 |        | 166    |
+        |  13.5  | honey       |   5.0 |        |   2.3  |
+        |  13.5  | olive oil   |   5.0 |        |        |
+        |  13.5  | yogurt      |   5.0 |        |  11.9  |
+        |  40.4  | levain      |  15.0 |  22.6  |  17.1  |
+       
+dough   | 500    |             | 184.9 | 270    | 197    |
+        | 247    | wet         |  91.4 |  22.4  | 197    |
+        | 253    | dry         |  93.5 | 248    |        |
+        |        | hydration   |  73.0 |        |        |
+       
++*/
+
