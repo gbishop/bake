@@ -32,8 +32,9 @@ dry:
 wet:
   sponge
   water
-  walnut_butter = 8%
+  olive_oil = 5%
   honey = 5%
+  yogurt = 5%
 
 dough:
   wet
@@ -42,44 +43,52 @@ dough:
   total = 850g # ~ 0.37g/mL
 
 /*
-February 14, 2025
+February 20, 2025
 
 Changes
-* try walnut butter in place of butter
+* 75% hydration sponge and starter
+* Cooler SDH
+* Use Catherine's trinity and direct to pan method without retarding
+* Proof in oven at 90F
+* Preheat oven to 375F
 
-Scaled to my 2.3L pullman pan with lid on, 0.37g/mL
+Next time
+* increase the hydration to 73% to match Caroline's.
+* butter the top of the loaf instead of the lid.
+* place a pan or foil beneath the pan for drips.
+* switch to controlling the flour instead of the total, Catherine
+  is using about 250g/L of flour. 575g seems high.
+* cooler SDH for overnight ferment or reduce amount of stater.
 
-Mixed the sponge at 18:45 and put it in the 80F SDH.
+Mixed the sponge at 18:45 and put it in the 75F SDH.
 
-Sponge pH at 8:15 is 4.19 the temperature was 79.
+Sponge pH at 7:50 is 4.05 the temperature was 72. Top is flat but
+not falling.
 
-Mixing with the spiral hook worked great. Mixed at 8:30. Let it rest
-30 minutes.
+Mixing with the spiral hook worked great. Mixed at 8:05. Let it rest
+1 hour with 3 "folds" using the mixer for 20 seconds on speed 1. DT
+after mixing is 79F.
 
-Kneaded for 8 minutes on speed 1. The dough came together well. I
-put in the cambro and into the tiny oven set for its lowest temp.
-
-Into the tiny oven for first rise at 9:15. Into the pan at 11:00.
+Then into pan and smooth with wet spatula. Rise in our new oven's
+proof mode. Rise begins at 9:10. The proof temperature got up to 95
+which is a little high. Maybe I should have left the light off?
 
 Baked with the lid on when it reached the top of the pan. Into the
-tiny oven at 12:30, no preheat, 350F on Toast as suggested by Yippe.
-Removed at about 45 minutes and it was 200 inside.
+preheated 375F oven at 10:50. I checked at 30 minutes and the top
+was quite brown and the internal temp was 180 so I kept the top on
+and returned the loaf to the oven for 10 minutes. 
 
-Top is perfect, the foil helped. The bottom is perfect; the
-wire rack really helped. Maybe 40 minutes would have been
-sufficient?
+Removed at about 40 minutes and it was 206 inside. Nicely brown.
 
-Looks perfect. Indentations on the bottom sides. Like it didn't fill
-the pan. Why? Maybe a bit more dough?
+I made a mess in the new oven from dripping butter. I think I
+buttered the top too heavily. Next time try brushing the top of the
+loaf with butter instead of the lid. And put something beneath
+the pan.
 
 The crumb looks perfect! No signs of compression. Mildly sour. A
 thin slice seemed plenty strong.
 
-Follow Yippee's advice here:
-https://www.thefreshloaf.com/node/74486/20240808-walmart-toaster-oven-sesame-milk-bread
-
-Andrew Janjigian says I should knead it less.
-https://newsletter.wordloaf.org/p/the-other-side-of-the-keyhole
+Delicious! I really like the crunch of the crust when toasted.
 
 */
 
@@ -91,52 +100,53 @@ calcium      |    0.02 |
 calories     |  162    |
 carbohydrate |   29.1  |
 fat          |    3.6  |
-fiber        |    5.1  |
-monounsat    |    0.55 |
-polyunsat    |    2.3  |
-potassium    |    0.18 |
-protein      |    6.0  |
-saturated    |    0.39 |
-sodium       |    0.27 |
+fiber        |    4.9  |
+monounsat    |    1.7  |
+polyunsat    |    1.1  |
+potassium    |    0.17 |
+protein      |    5.6  |
+saturated    |    0.51 |
+sodium       |    0.28 |
 sugars       |    2.0  |
-water        |   28.5  |
+water        |   28.8  |
 
 
   part  | grams  |      name     |   %   | flour  | water  |
 --------|--------|---------------|-------|--------|--------|
-starter |  24.2  |               |   5.3 |  13.8  |  10.4  |
-        |  13.8  | whole wheat   |   3.0 |  13.8  |        |
-        |  10.4  | water         |   2.3 |        |  10.4  |
+starter |  24.5  |               |   5.3 |  14.0  |  10.5  |
+        |  14.0  | whole wheat   |   3.0 |  14.0  |        |
+        |  10.5  | water         |   2.3 |        |  10.5  |
        
-sponge  | 101    | + 3.9g        |  21.0 |  55.4  |  41.5  |
-        |  25.2  | starter       |   5.3 |  13.8  |  10.4  |
-        |  32.4  | water         |   6.8 |        |  31.2  |
-        |  43.2  | whole wheat   |   9.0 |  41.5  |        |
+sponge  | 102    | + 3.9g        |  21.0 |  56.0  |  42.0  |
+        |  25.5  | starter       |   5.3 |  14.0  |  10.5  |
+        |  32.8  | water         |   6.8 |        |  31.5  |
+        |  43.7  | whole wheat   |   9.0 |  42.0  |        |
        
-grain   | 365    |               |  79.0 | 365    |        |
-        | 146    | prairie gold  |  31.6 | 146    |        |
-        | 146    | hard red      |  31.6 | 146    |        |
-        |  24.3  | spelt         |   5.3 |  24.3  |        |
-        |  24.3  | oats          |   5.3 |  24.3  |        |
-        |  24.3  | rye           |   5.3 |  24.3  |        |
+grain   | 369    |               |  79.0 | 369    |        |
+        | 148    | prairie gold  |  31.6 | 148    |        |
+        | 148    | hard red      |  31.6 | 148    |        |
+        |  24.6  | spelt         |   5.3 |  24.6  |        |
+        |  24.6  | oats          |   5.3 |  24.6  |        |
+        |  24.6  | rye           |   5.3 |  24.6  |        |
        
-dry     | 417    |               |  90.3 | 406    |   0.13 |
-        | 365    | grain         |  79.0 | 365    |        |
-        |  23.1  | flaxseed meal |   5.0 |  23.1  |        |
-        |   9.2  | potato flakes |   2.0 |   9.2  |        |
-        |   8.3  | salt          |   1.8 |        |        |
-        |   9.2  | wgbi          |   2.0 |   9.2  |        |
+dry     | 422    |               |  90.3 | 411    |   0.14 |
+        | 369    | grain         |  79.0 | 369    |        |
+        |  23.3  | flaxseed meal |   5.0 |  23.3  |        |
+        |   9.3  | potato flakes |   2.0 |   9.3  |        |
+        |   8.4  | salt          |   1.8 |        |        |
+        |   9.3  | wgbi          |   2.0 |   9.3  |        |
         |   2.3  | yeast         |   0.5 |        |   0.12 |
        
-wet     | 433    |               |  93.9 |  55.4  | 323    |
-        |  97.0  | sponge        |  21.0 |  55.4  |  41.5  |
-        | 276    | water         |  59.9 |        | 276    |
-        |  36.9  | walnut butter |   8.0 |        |   1.5  |
-        |  23.1  | honey         |   5.0 |        |   3.9  |
+wet     | 428    |               |  91.8 |  56.0  | 327    |
+        |  98.1  | sponge        |  21.0 |  56.0  |  42.0  |
+        | 260    | water         |  55.8 |        | 260    |
+        |  23.3  | olive oil     |   5.0 |        |        |
+        |  23.3  | honey         |   5.0 |        |   4.0  |
+        |  23.3  | yogurt        |   5.0 |        |  20.5  |
        
-dough   | 850    |               | 184.2 | 462    | 323    |
-        | 433    | wet           |  93.9 |  55.4  | 323    |
-        | 417    | dry           |  90.3 | 406    |   0.13 |
+dough   | 850    |               | 182.1 | 467    | 327    |
+        | 428    | wet           |  91.8 |  56.0  | 327    |
+        | 422    | dry           |  90.3 | 411    |   0.14 |
         |        | hydration     |  70.0 |        |        |
        
 +*/
