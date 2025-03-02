@@ -1,0 +1,54 @@
+# Granola with olive oil and maple syrup
+
+dough:
+  rolled_oats = 200g
+  pumpkin_seeds = 50%
+  sunflower_seeds = 50%
+  coconut = 50%
+  pecans = 50%
+  maple_syrup = 65%
+  olive_oil = 25%
+
+  total_flour = 200g
+
+/*
+March 1, 2025
+
+In the new oven 10 + 15 + 10 seemed to do it on 300 convection.
+
+It was smelling done so I pulled it out.
+
+*/
+
+/*+
+Nutrition
+    name     | per 65g |
+-------------|---------|
+calcium      |    0.04 |
+calories     |  351    |
+carbohydrate |   28.2  |
+fat          |   24.7  |
+fiber        |    4.5  |
+monounsat    |   11.0  |
+polyunsat    |    6.9  |
+potassium    |    0.29 |
+protein      |    8.3  |
+saturated    |    5.2  |
+sugars       |    8.1  |
+water        |    8.2  |
+
+
+ part | grams  |       name      |   %   | flour  | water |
+------|--------|-----------------|-------|--------|-------|
+dough | 780    |                 | 390.0 | 200    | 76.5  |
+      | 200    | rolled oats     | 100.0 | 200    |       |
+      | 100    | pumpkin seeds   |  50.0 |        |  5.2  |
+      | 100    | sunflower seeds |  50.0 |        |  4.7  |
+      | 100    | coconut         |  50.0 |        | 23.3  |
+      | 100    | pecans          |  50.0 |        |  1.1  |
+      | 130    | maple syrup     |  65.0 |        | 42.1  |
+      |  50.0  | olive oil       |  25.0 |        |       |
+      |        | hydration       |  38.2 |        |       |
+     
++*/
+
