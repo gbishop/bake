@@ -9,6 +9,7 @@ bulgar,0,"Bulgur, dry"
 butter,0,"Butter, salted"
 buttermilk,0,"Milk, buttermilk, fluid, cultured, lowfat"
 chia_seeds,0,"Seeds, chia seeds, dried"
+coconut,0,"Nuts, coconut meat, dried (desiccated), sweetened, flaked, canned"
 cracked_rye,0,Rye
 cracked_wheat,0,"Wheat flour, whole-grain"
 egg,0,"Egg, whole, raw, fresh"
@@ -32,13 +33,15 @@ millet,100,"Millet, raw"
 nido,0,"Milk, dry, whole, with added vitamin D"
 oat_groats,0,Oats
 oats,100,Oats
+rolled_oats,100,"Cereals, oats, regular and quick and instant, not fortified, dry"
 oil,0,"Oil, olive, salad or cooking"
 olive_oil,0,"Oil, olive, salad or cooking"
+pecans,0,"Nuts, pecans, dry roasted, without salt added"
 pecan_butter,0,"Nuts, pecans, dry roasted, without salt added"
 polenta,100,"Cornmeal, whole-grain, yellow"
 potato_flakes,100,"Potatoes, mashed, dehydrated, flakes without milk, dry form"
 prairie_gold,100,"Wheat, hard white"
-pumpkin_seeds,100,"Seeds, pumpkin and squash seed kernels, dried"
+pumpkin_seeds,0,"Seeds, pumpkin and squash seed kernels, dried"
 quinoa,0,"Quinoa, uncooked"
 red_rye_malt,100,Rye
 rye,100,Rye
@@ -47,12 +50,11 @@ sesame_seeds,0,"Seeds, sesame seed kernels, dried (decorticated)"
 spelt,100,"Spelt, uncooked"
 steel_cut_oats,100,Oats
 sugar,0,"Sugars, granulated"
-sunflower_seeds,100,"Seeds, sunflower seed kernels, dried"
+sunflower_seeds,0,"Seeds, sunflower seed kernels, dried"
 vital_wheat_gluten,100,Vital wheat gluten
 vwg,100,Vital wheat gluten
 unknown,0,unknown
 walnuts,0,"Nuts, walnuts, english"
-walnut_butter,0,"Nuts, walnuts, english"
 water,0,"Water, tap, well"
 wgbi,100,Vital wheat gluten
 wheat_bran,100,"Wheat bran, crude"
