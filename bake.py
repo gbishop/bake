@@ -323,7 +323,7 @@ def format_table(solution):
         # add the total
         rows.append(
             [
-                partName,
+                partName.replace("_", " "),
                 g * loss_scale,
                 f"+ {loss_value:.1f}g" if loss_value > 0 else "",
                 bp,
