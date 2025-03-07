@@ -23,7 +23,7 @@ dough:
   vwg = 3.5%
   salt = 1.5%
   egg = 8.8%
-  yeast = 3g
+  yeast = 0.5%
 
   total_flour = 570g
   hydration = 85%
