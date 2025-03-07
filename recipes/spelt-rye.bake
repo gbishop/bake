@@ -1,0 +1,133 @@
+# My everyday loaf with spelt and rye
+
+starter:
+  whole_wheat = 1.5%
+  water
+  hydration = 75%
+
+sponge ^ 4%: # allow for 4% loss
+  starter
+  water
+  whole_wheat
+  total_flour = 7.5%
+  hydration = 100%
+
+grain:
+  spelt = 4 * rye
+  rye
+
+dry:
+  grain
+  bread_flour = 250g
+  flaxseed_meal = 2%
+  potato_flakes = 2%
+  salt = 1.8%
+  wgbi = 2%
+  yeast = 0.5%
+
+wet:
+  sponge
+  water
+  olive_oil = 5%
+  honey = 5%
+  yogurt = 5%
+
+dough:
+  wet
+  dry
+  total_flour = 540g
+  hydration = 75%
+
+/*
+March 6, 2025
+
+Changes
+* Only BF, Rye and Spelt
+* Overnight proof in fridge
+
+Next
+* reduce the dough by 80g
+
+Measurements from https://www.thefreshloaf.com/node/75279/75-spelt-large-pullman-sourdough#comment-540919
+
+Mixed the sponge at 08:30 and put it in the 85F SDH.
+
+Sponge pH at 12:30 is 4.45 the temperature was 79. Top is domed. It
+more than doubled in 4 hours.
+
+Mixed at 12:43. Let it rest 1 hour with 2 "folds" using the mixer for
+30 seconds on speed 1.
+
+Then into pan and smooth with wet spatula. Rise in our new oven's
+proof mode with the light off. Rise begins at 14:00
+
+Baked with the lid on when it reached the top of the pan. Into the
+preheated 350F oven at 16:05.
+
+Overflowed the pan by 56g. Happily did not make a mess because the
+baking sheet on the lower rack caught it. The overflow tastes pretty
+great! I should make some crackers.
+
+Removed at 40 minutes and it was 202 inside. Nicely brown. Cooling
+upside down again.
+
+Taste is good.
+*/
+
+/*+
+Nutrition
+    name     | per 100g |
+-------------|----------|
+calcium      |     0.02 |
+calories     |   245    |
+carbohydrate |    43.9  |
+fat          |     4.7  |
+fiber        |     4.3  |
+monounsat    |     2.4  |
+polyunsat    |     1.2  |
+potassium    |     0.17 |
+protein      |     8.5  |
+saturated    |     0.69 |
+sodium       |     0.42 |
+sugars       |     4.0  |
+water        |    46.5  |
+
+
+  part  |  grams  |      name     |   %   | flour  | water  |
+--------|---------|---------------|-------|--------|--------|
+starter |   14.2  |               |   2.6 |   8.1  |   6.1  |
+        |    8.1  | whole wheat   |   1.5 |   8.1  |        |
+        |    6.1  | water         |   1.1 |        |   6.1  |
+       
+sponge  |   84.3  | + 3.2g        |  15.0 |  40.5  |  40.5  |
+        |   14.7  | starter       |   2.6 |   8.1  |   6.1  |
+        |   35.8  | water         |   6.4 |        |  34.4  |
+        |   33.7  | whole wheat   |   6.0 |  32.4  |        |
+       
+grain   |  217    |               |  40.2 | 217    |        |
+        |  174    | spelt         |  32.2 | 174    |        |
+        |   43.4  | rye           |   8.0 |  43.4  |        |
+       
+dry     |  511    |               |  94.6 | 500    |   0.10 |
+        |  217    | grain         |  40.2 | 217    |        |
+        |  250    | bread flour   |  46.3 | 250    |        |
+        |   10.8  | flaxseed meal |   2.0 |  10.8  |        |
+        |   10.8  | potato flakes |   2.0 |  10.8  |        |
+        |    9.7  | salt          |   1.8 |        |        |
+        |   10.8  | wgbi          |   2.0 |  10.8  |        |
+        |    1.6  | yeast         |   0.3 |        |        |
+       
+wet     |  498    |               |  92.3 |  40.5  | 405    |
+        |   81.0  | sponge        |  15.0 |  40.5  |  40.5  |
+        |  336    | water         |  62.3 |        | 336    |
+        |   27.0  | olive oil     |   5.0 |        |        |
+        |   27.0  | honey         |   5.0 |        |   4.6  |
+        |   27.0  | yogurt        |   5.0 |        |  23.7  |
+       
+dough   | 1009    |               | 186.9 | 540    | 405    |
+        |  498    | wet           |  92.3 |  40.5  | 405    |
+        |  511    | dry           |  94.6 | 500    |   0.10 |
+        |         | hydration     |  75.0 |        |        |
+       
++*/
+

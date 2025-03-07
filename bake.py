@@ -376,8 +376,8 @@ def format_table(solution):
     nrows = []
     # account for 9% loss during baking
     fdw = solution[("dough", "total")] * 0.91
-    serving = solution.get(("dough", "_serving"), 65)
-    if serving > 0:
+    serving = solution.get(("dough", "_serving"), 100)
+    if serving > 1:
         nscale = serving / fdw
         for key in sorted(nutrition.index):
             if key == "water" or key == "flour":
@@ -433,6 +433,7 @@ argparser = argparse.ArgumentParser(
 )
 argparser.add_argument("filename", nargs="?", default="")
 argparser.add_argument("-R", "--rewrite", action="store_true")
+argparser.add_argument("--html")
 args = argparser.parse_args()
 if args.filename:
     fp = open(args.filename, "rt")
@@ -484,3 +485,17 @@ solution = {name: X[index] for name, index in ST.name_to_index.items()}
 table = format_table(solution)
 
 output(table, text, failed, args.rewrite)
+
+if args.html:
+    with open(args.html, "wt") as fp:
+        print("<table><tbody>", file=fp)
+        td = "th"
+        for line in table.split("\n"):
+            if "---" in line:
+                continue
+            line = re.sub(r"\| *$", "", line)
+            line = line.replace("|", f"</{td}><{td}>")
+            line = f"<tr><{td}>" + line + f"</{td}></tr>"
+            print(line, file=fp)
+            td = "td"
+        print("</tbody></table>", file=fp)

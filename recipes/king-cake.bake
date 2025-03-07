@@ -1,9 +1,25 @@
 # King Cake
 
-/* From https://www.thefreshloaf.com/recipes/kingcake */
+/* From https://www.thefreshloaf.com/recipes/kingcake
+
+Changes:
+* Less raisins, more pecans, less brown_sugar
+* 480 was too sticky, 560g seems OK
+
+Still very sticky dough. Flour on the counter made it managible but
+I still should reduce the hydration
+
+It appeared to be done at 25 minutes at 350.
+
+Next time:
+* Reduce the hydration
+* Reduce the size
+* Put wet in mixer bowl first
+
+*/
 
 dry:
-  ap_flour = 480g # 4 C
+  ap_flour = 560g # 4 C
   yeast = 18g # 2 T
   sugar = 100g # 0.5 C
   salt = 12g # 2 t
@@ -19,62 +35,70 @@ wet:
 dough:
   dry
   wet
-  filling
+  # filling
+  # glaze
 
 filling:
-  raisins = 75g # 1/2 C
-  pecans = 30g # 1/4 C
-  brown_sugar = 100g # 1/2 C
+  raisins = 50g # was 75g 1/2 C
+  pecans = 50g # was 30g 1/4 C
+  brown_sugar = 75g # was 100g 1/2 C
   cinnamon = 2.6g # 1 t
   butter = 57g # melted 1/4 C
+
+glaze:
+  sugar = 120g # powdered
+  lemon_juice = 30g # juice of 1/2 lemon
 
 /*+
 Nutrition
     name     | per 100g |
 -------------|----------|
-calcium      |     0.05 |
-calories     |   373    |
-carbohydrate |    52.1  |
-fat          |    15.8  |
-fiber        |     2.1  |
-monounsat    |     5.0  |
-polyunsat    |     1.4  |
-potassium    |     0.16 |
-protein      |     6.8  |
-saturated    |     8.3  |
-sodium       |     0.48 |
-sugars       |    16.4  |
-water        |    30.3  |
+calcium      |     0.06 |
+calories     |   499    |
+carbohydrate |    73.2  |
+fat          |    19.7  |
+fiber        |     2.7  |
+monounsat    |     6.5  |
+polyunsat    |     2.0  |
+potassium    |     0.18 |
+protein      |     8.7  |
+saturated    |     9.7  |
+sodium       |     0.56 |
+sugars       |    27.8  |
+water        |    37.8  |
 
 
   part  |  grams  |     name    |   %   | flour  | water  |
 --------|---------|-------------|-------|--------|--------|
-dry     |  615    |             | 128.0 | 480    |   2.7  |
-        |  480    | ap flour    | 100.0 | 480    |        |
-        |   18.0  | yeast       |   3.8 |        |   0.91 |
-        |  100    | sugar       |  20.8 |        |        |
-        |   12.0  | salt        |   2.5 |        |        |
-        |    2.5  | nutmeg      |   0.5 |        |   0.16 |
+dry     |  694    |             | 124.0 | 560    |   2.7  |
+        |  560    | ap flour    | 100.0 | 560    |        |
+        |   18.0  | yeast       |   3.2 |        |   0.91 |
+        |  100    | sugar       |  17.9 |        |        |
+        |   12.0  | salt        |   2.1 |        |        |
+        |    2.5  | nutmeg      |   0.4 |        |   0.16 |
         |    2.0  | lemon zest  |   0.4 |        |   1.6  |
        
-wet     |  498    |             | 103.7 |        | 334    |
-        |   85.0  | egg yolks   |  17.7 |        |  44.5  |
-        |  240    | milk        |  50.0 |        | 212    |
-        |  113    | butter      |  23.5 |        |  17.9  |
-        |   60.0  | water       |  12.5 |        |  59.9  |
+wet     |  498    |             |  88.9 |        | 334    |
+        |   85.0  | egg yolks   |  15.2 |        |  44.5  |
+        |  240    | milk        |  42.9 |        | 212    |
+        |  113    | butter      |  20.2 |        |  17.9  |
+        |   60.0  | water       |  10.7 |        |  59.9  |
        
-dough   | 1377    |             | 286.9 | 480    | 360    |
-        |  615    | dry         | 128.0 | 480    |   2.7  |
-        |  498    | wet         | 103.7 |        | 334    |
-        |  265    | filling     |  55.1 |        |  23.3  |
-        |         | hydration   |  75.0 |        |        |
+dough   | 1193    |             | 212.9 | 560    | 337    |
+        |  694    | dry         | 124.0 | 560    |   2.7  |
+        |  498    | wet         |  88.9 |        | 334    |
+        |         | hydration   |  60.1 |        |        |
        
-filling |  265    |             |  55.1 |        |  23.3  |
-        |   75.0  | raisins     |  15.6 |        |  11.2  |
-        |   30.0  | pecans      |   6.3 |        |   0.34 |
-        |  100    | brown sugar |  20.8 |        |   2.4  |
+filling |  235    |             |  41.9 |        |  19.2  |
+        |   50.0  | raisins     |   8.9 |        |   7.5  |
+        |   50.0  | pecans      |   8.9 |        |   0.56 |
+        |   75.0  | brown sugar |  13.4 |        |   1.8  |
         |    2.6  | cinnamon    |   0.5 |        |   0.28 |
-        |   57.0  | butter      |  11.9 |        |   9.0  |
+        |   57.0  | butter      |  10.2 |        |   9.0  |
+       
+glaze   |  150    |             |  26.8 |        |  27.8  |
+        |  120    | sugar       |  21.4 |        |        |
+        |   30.0  | lemon juice |   5.4 |        |  27.7  |
        
 +*/
 

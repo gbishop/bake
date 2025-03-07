@@ -1,0 +1,60 @@
+# Sweet potato milk bread
+
+# From: https://www.thefreshloaf.com/node/75329/85-hydration-no-water-added-sd-sweet-potato-milk-loaf
+
+starter:
+  bran = 8 * _part
+  sugar = 1 * _part
+  water = 3 * _part
+  total = 0.5%
+
+leven:
+  starter
+  sweet_potato
+  ap_flour = 20% * sweet_potato
+  water
+  skim_milk_powder = 8.8%
+  brown_sugar = 10%
+  total_flour = 20%
+
+dough:
+  leven
+  bread_flour
+  vwg = 3.5%
+  salt = 1.5%
+  egg = 8.8%
+  yeast = 3g
+
+  total_flour = 570g
+  hydration = 85%
+  _serving = 0
+
+
+
+/*+
+  part  |  grams  |       name       |   %   | flour  | water  |
+--------|---------|------------------|-------|--------|--------|
+starter |    2.9  |                  |   0.5 |   1.9  |   0.71 |
+        |    1.9  | bran             |   0.3 |   1.9  |        |
+        |    0.24 | sugar            |   0.0 |        |        |
+        |    0.71 | water            |   0.1 |        |   0.71 |
+       
+leven   |  800    |                  | 140.3 | 114    | 446    |
+        |    2.9  | starter          |   0.5 |   1.9  |   0.71 |
+        |  561    | sweet potato     |  98.3 |        | 425    |
+        |  112    | ap flour         |  19.7 | 112    |        |
+        |   17.3  | water            |   3.0 |        |  17.3  |
+        |   50.2  | skim milk powder |   8.8 |        |   2.0  |
+        |   57.0  | brown sugar      |  10.0 |        |   1.4  |
+       
+dough   | 1318    |                  | 231.2 | 570    | 484    |
+        |  800    | leven            | 140.3 | 114    | 446    |
+        |  436    | bread flour      |  76.5 | 436    |        |
+        |   19.9  | vwg              |   3.5 |  19.9  |        |
+        |    8.5  | salt             |   1.5 |        |        |
+        |   50.2  | egg              |   8.8 |        |  38.2  |
+        |    3.0  | yeast            |   0.5 |        |   0.15 |
+        |         | hydration        |  85.0 |        |        |
+       
++*/
+

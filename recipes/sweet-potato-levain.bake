@@ -1,0 +1,85 @@
+# Sweet Potato Levain
+
+# From: https://www.thefreshloaf.com/node/75320/sweet-potato-levain#comment-540946
+
+starter:
+  water
+  ww_flour
+  hydration = 100%
+  total = 7.5%
+
+levain:
+  starter
+  water
+  bread_flour
+  starter = water
+  total = 22.5%
+  hydration = 100%
+
+dry:
+  bread_flour
+  hard_white = 18%
+  rye = 4.5%
+  salt = 1.8%
+
+wet:
+  levain
+  water = 50%
+  molasses = 1.5%
+  sweet_potato = 27%
+
+dough:
+  wet
+  dry
+  total = 900g
+
+
+/*+
+Nutrition
+    name     | per 100g |
+-------------|----------|
+calcium      |     0.02 |
+calories     |   221    |
+carbohydrate |    45.9  |
+fat          |     1.0  |
+fiber        |     3.4  |
+monounsat    |     0.09 |
+polyunsat    |     0.44 |
+potassium    |     0.19 |
+protein      |     7.1  |
+saturated    |     0.15 |
+sodium       |     0.41 |
+sugars       |     1.7  |
+water        |    49.3  |
+
+
+  part  | grams  |     name     |   %   | flour  | water  |
+--------|--------|--------------|-------|--------|--------|
+starter |  35.2  |              |   7.5 |  17.6  |  17.6  |
+        |  17.6  | water        |   3.8 |        |  17.6  |
+        |  17.6  | ww flour     |   3.7 |  17.6  |        |
+       
+levain  | 106    |              |  22.5 |  52.8  |  52.8  |
+        |  35.2  | starter      |   7.5 |  17.6  |  17.6  |
+        |  35.2  | water        |   7.5 |        |  35.2  |
+        |  35.2  | bread flour  |   7.5 |  35.2  |        |
+       
+dry     | 425    |              |  90.6 | 417    |        |
+        | 311    | bread flour  |  66.3 | 311    |        |
+        |  84.6  | hard white   |  18.0 |  84.6  |        |
+        |  21.1  | rye          |   4.5 |  21.1  |        |
+        |   8.5  | salt         |   1.8 |        |        |
+       
+wet     | 475    |              | 101.0 |  52.8  | 385    |
+        | 106    | levain       |  22.5 |  52.8  |  52.8  |
+        | 235    | water        |  50.0 |        | 235    |
+        |   7.0  | molasses     |   1.5 |        |   1.5  |
+        | 127    | sweet potato |  27.0 |        |  96.1  |
+       
+dough   | 900    |              | 191.6 | 470    | 385    |
+        | 475    | wet          | 101.0 |  52.8  | 385    |
+        | 425    | dry          |  90.6 | 417    |        |
+        |        | hydration    |  82.0 |        |        |
+       
++*/
+
