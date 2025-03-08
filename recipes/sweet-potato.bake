@@ -1,0 +1,83 @@
+# My rif on sweet potato sourdough
+
+starter:
+  ww
+  water
+  hydration = 75%
+  total = 0.5%
+
+leaven:
+  starter
+  sweet_potato = 80%
+  brown_sugar = 10%
+
+wet:
+  leaven
+  water
+
+dry:
+  bread_flour
+  hard_white = 43.7%
+  rye = 5%
+  wgbi = 2% * hard_white + 2% * rye
+  salt = 1.8%
+  yeast = 0.5%
+  nido = 8.3% * dough.total_water
+
+dough:
+  wet
+  dry
+  hydration = 80%
+
+  total = 1000g
+
+/*+
+Nutrition
+    name     | per 100g |
+-------------|----------|
+calcium      |     0.06 |
+calories     |   251    |
+carbohydrate |    51.8  |
+fat          |     1.8  |
+fiber        |     5.1  |
+monounsat    |     0.36 |
+polyunsat    |     0.42 |
+potassium    |     0.38 |
+protein      |     8.0  |
+saturated    |     0.71 |
+sodium       |     0.38 |
+sugars       |     6.4  |
+water        |    42.0  |
+
+
+  part  |  grams  |     name     |   %   | flour  | water  |
+--------|---------|--------------|-------|--------|--------|
+starter |    2.3  |              |   0.5 |   1.3  |   1.0  |
+        |    1.3  | ww           |   0.3 |   1.3  |        |
+        |    1.0  | water        |   0.2 |        |   1.0  |
+       
+leaven  |  415    |              |  90.5 |   1.3  | 280    |
+        |    2.3  | starter      |   0.5 |   1.3  |   1.0  |
+        |  367    | sweet potato |  80.0 |        | 278    |
+        |   45.9  | brown sugar  |  10.0 |        |   1.1  |
+       
+wet     |  501    |              | 109.2 |   1.3  | 366    |
+        |  415    | leaven       |  90.5 |   1.3  | 280    |
+        |   86.0  | water        |  18.7 |        |  85.9  |
+       
+dry     |  499    |              | 108.7 | 458    |   0.89 |
+        |  230    | bread flour  |  50.0 | 230    |        |
+        |  201    | hard white   |  43.7 | 201    |        |
+        |   22.9  | rye          |   5.0 |  22.9  |        |
+        |    4.5  | wgbi         |   1.0 |   4.5  |        |
+        |    8.3  | salt         |   1.8 |        |        |
+        |    2.3  | yeast        |   0.5 |        |   0.12 |
+        |   30.5  | nido         |   6.6 |        |   0.75 |
+       
+dough   | 1000    |              | 217.9 | 459    | 367    |
+        |  501    | wet          | 109.2 |   1.3  | 366    |
+        |  499    | dry          | 108.7 | 458    |   0.89 |
+        |         | hydration    |  80.0 |        |        |
+       
++*/
+
