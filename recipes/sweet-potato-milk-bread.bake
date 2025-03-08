@@ -8,7 +8,7 @@ starter:
   water = 3 * _part
   total = 0.5%
 
-leven:
+leaven:
   starter
   sweet_potato
   ap_flour = 20% * sweet_potato
@@ -18,7 +18,7 @@ leven:
   total_flour = 20%
 
 dough:
-  leven
+  leaven
   bread_flour
   vwg = 3.5%
   salt = 1.5%
@@ -39,21 +39,21 @@ starter |    2.9  |                  |   0.5 |   1.9  |   0.71 |
         |    0.24 | sugar            |   0.0 |        |        |
         |    0.71 | water            |   0.1 |        |   0.71 |
        
-leven   |  800    |                  | 140.3 | 114    | 446    |
+leaven  |  800    |                  | 140.3 | 114    | 446    |
         |    2.9  | starter          |   0.5 |   1.9  |   0.71 |
-        |  561    | sweet potato     |  98.3 |        | 425    |
+        |  560    | sweet potato     |  98.3 |        | 425    |
         |  112    | ap flour         |  19.7 | 112    |        |
         |   17.3  | water            |   3.0 |        |  17.3  |
         |   50.2  | skim milk powder |   8.8 |        |   2.0  |
         |   57.0  | brown sugar      |  10.0 |        |   1.4  |
        
-dough   | 1318    |                  | 231.2 | 570    | 484    |
-        |  800    | leven            | 140.3 | 114    | 446    |
+dough   | 1317    |                  | 231.1 | 570    | 485    |
+        |  800    | leaven           | 140.3 | 114    | 446    |
         |  436    | bread flour      |  76.5 | 436    |        |
-        |   19.9  | vwg              |   3.5 |  19.9  |        |
-        |    8.5  | salt             |   1.5 |        |        |
+        |   20.0  | vwg              |   3.5 |  20.0  |        |
+        |    8.6  | salt             |   1.5 |        |        |
         |   50.2  | egg              |   8.8 |        |  38.2  |
-        |    3.0  | yeast            |   0.5 |        |   0.15 |
+        |    2.8  | yeast            |   0.5 |        |   0.14 |
         |         | hydration        |  85.0 |        |        |
        
 +*/
