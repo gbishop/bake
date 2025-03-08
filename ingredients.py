@@ -82,7 +82,7 @@ if __name__ == "__main__":
                 break
 
 
-def getIngredient(name: str):
+def getIngredient(name: str) -> pd.Series:
     """Return the components for an ingredient"""
     name = name.lower()
     if name not in map.index:
@@ -93,8 +93,6 @@ def getIngredient(name: str):
             name = "oil"
 
         else:
-            if name != "unknown":
-                print("unknown", name, file=sys.stderr)
             name = "unknown"
     m = map.loc[name]
     u = usda.loc[m.usda]

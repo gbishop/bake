@@ -49,38 +49,64 @@ COMMENT:  "/*" /(.|\n|\r)*?/ "*/"
 """
 
 
+class SymbolTableEntry:
+    """Information about each symbol"""
+
+    def __init__(self, name=("", ""), index=-1, part=False):
+        self.name: tuple[str, str] = name
+        self.index: int = index
+        self.part: bool = part
+        self.nutrition = getIngredient(name[1])
+        self.unknown = not part and self.nutrition.name == "unknown"
+
+
 class SymbolTable:
     """Collect information about our unknowns"""
 
     def __init__(self):
-        self.symbol_count = 0
-        self.name_to_index = {}
-        self.index_to_name = {}
-        self.parts = {}
-        self.loss = {}
+        self.symbol_count: int = 0
+        self.entries: dict[tuple[str, str], SymbolTableEntry] = {}
+        self.byIndex: dict[int, SymbolTableEntry] = {}
+        # don't use a set because I need this ordered
+        self.parts: dict[str, None] = {}
+        self.loss: dict[str, tuple[float, bool]] = {}
 
-    def add(self, name, value=-1):
+    def __getitem__(self, key: int | tuple[str, str]):
+        if isinstance(key, int):
+            return self.byIndex[key]
+
+        elif isinstance(key, tuple):
+            return self.entries[key]
+
+    def __iter__(self):
+        return iter(self.entries)
+
+    def items(self):
+        return self.entries.items()
+
+    def add(self, name: tuple[str, str]):
         """Add a name if it isn't already known"""
-        if name not in self.name_to_index:
-            if value >= 0:
-                self.name_to_index[name] = value
+        if name not in self.entries:
+            if name[1] in self.parts:
+                self.entries[name] = SymbolTableEntry(
+                    name, index=self.entries[(name[1], "total")].index, part=True
+                )
             else:
-                self.name_to_index[name] = self.symbol_count
-                self.index_to_name[self.symbol_count] = name
+                self.entries[name] = SymbolTableEntry(name, self.symbol_count)
+                self.byIndex[self.symbol_count] = self.entries[name]
                 self.symbol_count += 1
-        return self.name_to_index[name]
 
     def vector(self, name):
         """Create a matrix row representing this unknown"""
         r = np.zeros(self.symbol_count + 1)
-        r[self.name_to_index[name]] = 1
+        r[self.entries[name].index] = 1
         return r
 
     def dump(self, vector):
         """Make a vector readable"""
         s = ""
         for i in range(self.symbol_count):
-            name = ".".join(self.index_to_name[i])
+            name = ".".join(self.byIndex[i].name)
             if vector[i] == 1:
                 s += f" + {name}"
             elif vector[i] < 0:
@@ -140,10 +166,7 @@ class GetUnknowns(Visitor):
         if len(tree.children) == 1:
             name = tree.children[0] + ""
             fullname = (self.part_name, name)
-            if name in ST.parts:
-                ST.add(fullname, ST.add((name, "total")))
-            else:
-                ST.add(fullname)
+            ST.add(fullname)
 
     def part(self, tree):
         self.part_name = tree.children[0] + ""
@@ -165,7 +188,7 @@ class BuildMatrix(visitors.Interpreter):
 
     def part(self, tree):
         total_names = ["total", "total_flour", "total_water"]
-        part = self.part_name = tree.children[0]
+        part = self.part_name = tree.children[0] + ""
         r = self.visit_children(tree)
         _, theloss, *relations = r
         if theloss:
@@ -175,20 +198,20 @@ class BuildMatrix(visitors.Interpreter):
         totals = {}
         for total_name in total_names:
             totals[total_name] = np.zeros(ST.symbol_count + 1)
-        for fullname in ST.name_to_index:
+        for fullname, entry in ST.items():
             if fullname[0] != part:
                 continue
             if fullname[1].startswith("total"):
                 continue
             if fullname[1].startswith("_"):
                 continue
-            if fullname[1] in ST.parts:
+            if entry.part:
                 for total_name in total_names:
                     totals[total_name] += ST.vector((fullname[1], total_name))
             else:
                 vect = ST.vector(fullname)
                 totals["total"] += vect
-                info = getIngredient(fullname[1])
+                info = entry.nutrition
                 for total_name in total_names[1:]:
                     field_name = total_name.replace("total_", "")
                     w = info[field_name] / 100
@@ -349,11 +372,12 @@ def format_table(solution):
                         pg * info["water"] / 100,
                     ]
                     nutrition = nutrition + info * pg / 100
+                unknown = "*" if ST[(partName, var)].unknown else ""
                 rows.append(
                     [
                         "",
                         pg * loss_scale,
-                        var.replace("_", " "),
+                        var.replace("_", " ") + unknown,
                         pg * grams_to_bp,
                         *extras,
                     ]
@@ -480,7 +504,7 @@ error = np.sqrt(np.max(residuals**2))
 
 failed = error > 1
 
-solution = {name: X[index] for name, index in ST.name_to_index.items()}
+solution = {name: X[entry.index] for name, entry in ST.items()}
 
 table = format_table(solution)
 
