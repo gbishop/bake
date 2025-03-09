@@ -27,12 +27,13 @@ sum: product "+" sum   -> add
    | product "-" sum   -> subtract
    | product
 
-product: mention
-       | scale "*" mention  -> multiply
-       | mention "/" NUMBER -> divide
-       | NUMBER -> constant
+product: term -> constant
+       | term "*" product -> multiply
+       | product "/" NUMBER -> divide
 
-scale: NUMBER ("*" NUMBER)*
+term: mention
+    | NUMBER
+    | "(" sum ")"
 
 mention: ID
        | ID "." ID
@@ -137,6 +138,11 @@ def isPercent(s):
     return s.endswith("%")
 
 
+def isConstant(v):
+    """Test if a vector represents a constant"""
+    return np.allclose(v[:-1], np.zeros(len(v) - 1))
+
+
 def number(s):
     """Get the value of a number based on its units"""
     if s.endswith("%"):
@@ -239,26 +245,33 @@ class BuildMatrix(visitors.Interpreter):
 
     def multiply(self, tree):
         r = self.visit_children(tree)
-        return r[0] * r[1]
+        if isinstance(r[0], lark.Token):
+            return number(r[0]) * r[1]
+        elif isinstance(r[1], lark.Token):
+            value = number(r[1])
+            if isPercent(r[1]):
+                raise Exception(f"Cannot multiply unknowns on line {tree.meta.line}")
+            return r[0] * value
+        else:
+            raise Exception(f"Cannot multiply unknowns on line {tree.meta.line}")
 
     def divide(self, tree):
         r = self.visit_children(tree)
-        return r[0] / number(r[1])
+        if isinstance(r[1], lark.Token):
+            return r[0] / number(r[1])
+        else:
+            raise Exception(f"Only divide by numbers on line {tree.meta.line}")
 
     def constant(self, tree):
         r = self.visit_children(tree)
-        value = number(r[0])
-        if isPercent(r[0]):
-            return ST.vector(("dough", "total_flour")) * value
+        if isinstance(r[0], lark.Token):
+            value = number(r[0])
+            if isPercent(r[0]):
+                return ST.vector(("dough", "total_flour")) * value
+            else:
+                return ST.constant(value)
         else:
-            return ST.constant(value)
-
-    def scale(self, tree):
-        r = self.visit_children(tree)
-        result = number(r[0])
-        for n in r[1:]:
-            result *= number(n)
-        return result
+            return r[0]
 
     def mention(self, tree):
         r = self.visit_children(tree)
@@ -466,7 +479,7 @@ else:
 
 text = fp.read()
 
-parser = Lark(grammar)
+parser = Lark(grammar, propagate_positions=True)
 
 try:
     tree = parser.parse(text)
@@ -490,8 +503,8 @@ GetUnknowns().visit_topdown(tree)
 
 try:
     A, B = BuildMatrix().visit(tree)
-except Exception:
-    traceback.print_exc(limit=-2)
+except Exception as e:
+    print(e)
     sys.exit(1)
 
 r = np.linalg.lstsq(A, B, rcond=-1)
