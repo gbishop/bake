@@ -11,7 +11,6 @@ import numpy as np
 import argparse
 import re
 import sys
-import traceback
 
 # Lark grammar for my formulas
 grammar = r"""
@@ -136,11 +135,6 @@ ST = SymbolTable()
 def isPercent(s):
     """Test if a string represents a percentage"""
     return s.endswith("%")
-
-
-def isConstant(v):
-    """Test if a vector represents a constant"""
-    return np.allclose(v[:-1], np.zeros(len(v) - 1))
 
 
 def number(s):
