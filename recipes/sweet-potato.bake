@@ -1,83 +1,139 @@
-# My rif on sweet potato sourdough
+# Sweet potato sourdough
+
+/*
+10 March 2025
+
+Next time:
+* Lower the hydration
+* Bake hotter
+
+I'm trying this in one day because of schedule conflicts.
+
+Baked sweet potato at 275F starting at 8:45. Baked for 2.5 hours. 
+
+PF begins at 8:50 in SDH set for 90F averaging 86F.
+
+Mixed at 15:10. PF had doubled. 
+
+The dough is very sticky. Lower the hydration by 5% next.
+
+Into the pan to rise at 16:25.
+
+Baked at 18:45 at 325F because of all the sugar. At 40 minutes it
+was only 170F inside. Baked for 5 more without the lid. Still only
+185. After 5 more minutes it got to 200F.
+
+Looks great. Released from pan easily.
+
+Good. A little gummy. Perhaps I didn't bake long enough? Also
+the bottom is compressed. A proofing issue? Hydration?
+
+The flavor is milder than I imagined. These sweet potatoes had very
+strong flavor but it is very muted in the bread.
+
+I'm merging ideas from:
+* WanyeKest http://thefreshloaf.com/node/75329 SP milk loaf
+* CalBeachBaker http://thefreshloaf.com/node/75320 SP levain
+* TrailRunner http://thefreshloaf.com/node/75279 75% spelt pullman
+
+*/
 
 starter:
-  ww
+  whole_wheat
   water
   hydration = 75%
-  total = 0.5%
 
-leaven:
-  starter
-  sweet_potato = 80%
-  brown_sugar = 10%
-
-wet:
-  leaven
+sponge ^ 4%:
+  starter = 18.66g
   water
+  whole_wheat
+  total_flour = 8%
+  hydration = 75%
+
+ground:
+  hard_white
+  rye = 7% # was 5% measurement error
 
 dry:
-  bread_flour
-  hard_white = 43.7%
-  rye = 5%
-  wgbi = 2% * hard_white + 2% * rye
+  ground = 194g  # was free fixing measurement error
+  bread_flour    # was 50%
+  wgbi = 2% * ground
   salt = 1.8%
   yeast = 0.5%
-  nido = 8.3% * dough.total_water
+  nido = 13% * dough.total_water
+
+wet:
+  sponge
+  sweet_potato = 80%
+  # some of the water in the potato is not available
+  bound_water = -20% * sweet_potato
+  water
+  maple_syrup = 5%
+  yogurt = 5%
+  olive_oil = 5%
 
 dough:
   wet
   dry
   hydration = 80%
 
-  total = 1000g
+  total_flour = 450g
 
 /*+
 Nutrition
     name     | per 100g |
 -------------|----------|
-calcium      |     0.06 |
-calories     |   251    |
-carbohydrate |    51.8  |
-fat          |     1.8  |
+calcium      |     0.08 |
+calories     |   267    |
+carbohydrate |    48.7  |
+fat          |     4.9  |
 fiber        |     5.1  |
-monounsat    |     0.36 |
-polyunsat    |     0.42 |
-potassium    |     0.38 |
-protein      |     8.0  |
-saturated    |     0.71 |
+monounsat    |     2.3  |
+polyunsat    |     0.71 |
+potassium    |     0.40 |
+protein      |     8.5  |
+saturated    |     1.4  |
 sodium       |     0.38 |
 sugars       |     6.4  |
-water        |    42.0  |
+water        |    41.5  |
 
 
-  part  |  grams  |     name     |   %   | flour  | water  |
---------|---------|--------------|-------|--------|--------|
-starter |    2.3  |              |   0.5 |   1.3  |   1.0  |
-        |    1.3  | ww           |   0.3 |   1.3  |        |
-        |    1.0  | water        |   0.2 |        |   1.0  |
+  part  | grams  |     name     |   %   | flour  | water  |
+--------|--------|--------------|-------|--------|--------|
+starter |  18.7  |              |   4.1 |  10.7  |   8.0  |
+        |  10.7  | whole wheat  |   2.4 |  10.7  |        |
+        |   8.0  | water        |   1.8 |        |   8.0  |
        
-leaven  |  415    |              |  90.5 |   1.3  | 280    |
-        |    2.3  | starter      |   0.5 |   1.3  |   1.0  |
-        |  367    | sweet potato |  80.0 |        | 278    |
-        |   45.9  | brown sugar  |  10.0 |        |   1.1  |
+sponge  |  65.5  | + 2.5g       |  14.0 |  36.0  |  27.0  |
+        |  19.4  | starter      |   4.1 |  10.7  |   8.0  |
+        |  19.8  | water        |   4.2 |        |  19.0  |
+        |  26.4  | whole wheat  |   5.6 |  25.3  |        |
        
-wet     |  501    |              | 109.2 |   1.3  | 366    |
-        |  415    | leaven       |  90.5 |   1.3  | 280    |
-        |   86.0  | water        |  18.7 |        |  85.9  |
+ground  | 194    |              |  43.1 | 194    |        |
+        | 162    | hard white   |  36.1 | 162    |        |
+        |  31.5  | rye          |   7.0 |  31.5  |        |
        
-dry     |  499    |              | 108.7 | 458    |   0.89 |
-        |  230    | bread flour  |  50.0 | 230    |        |
-        |  201    | hard white   |  43.7 | 201    |        |
-        |   22.9  | rye          |   5.0 |  22.9  |        |
-        |    4.5  | wgbi         |   1.0 |   4.5  |        |
-        |    8.3  | salt         |   1.8 |        |        |
-        |    2.3  | yeast        |   0.5 |        |   0.12 |
-        |   30.5  | nido         |   6.6 |        |   0.75 |
+dry     | 471    |              | 104.7 | 414    |   1.3  |
+        | 194    | ground       |  43.1 | 194    |        |
+        | 216    | bread flour  |  48.0 | 216    |        |
+        |   3.9  | wgbi         |   0.9 |   3.9  |        |
+        |   8.1  | salt         |   1.8 |        |        |
+        |   2.2  | yeast        |   0.5 |        |   0.11 |
+        |  46.8  | nido         |  10.4 |        |   1.2  |
        
-dough   | 1000    |              | 217.9 | 459    | 367    |
-        |  501    | wet          | 109.2 |   1.3  | 366    |
-        |  499    | dry          | 108.7 | 458    |   0.89 |
-        |         | hydration    |  80.0 |        |        |
+wet     | 522    |              | 116.1 |  36.0  | 359    |
+        |  63.0  | sponge       |  14.0 |  36.0  |  27.0  |
+        | 360    | sweet potato |  80.0 |        | 273    |
+        | -72.00 | bound water  | -16.0 |        | -71.93 |
+        | 104    | water        |  23.1 |        | 104    |
+        |  22.5  | maple syrup  |   5.0 |        |   7.3  |
+        |  22.5  | yogurt       |   5.0 |        |  19.8  |
+        |  22.5  | olive oil    |   5.0 |        |        |
+       
+dough   | 994    |              | 220.8 | 450    | 360    |
+        | 522    | wet          | 116.1 |  36.0  | 359    |
+        | 471    | dry          | 104.7 | 414    |   1.3  |
+        |        | hydration    |  80.0 |        |        |
        
 +*/
 
