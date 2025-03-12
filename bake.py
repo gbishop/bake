@@ -38,7 +38,7 @@ mention: ID
        | ID "." ID
 
 ID: /[a-zA-Z_][a-zA-Z_0-9]*/
-NUMBER: /[0-9]+([.][0-9]+)?[g%]?/
+NUMBER: /-?[0-9]+([.][0-9]+)?[g%]?/
 
 WHITESPACE: /[ \n]+/ 
 %ignore WHITESPACE
@@ -426,7 +426,7 @@ def format_table(solution):
 
     heading = ["part", "grams", "name", "%", "flour", "water"]
     recipe = tabulate(heading, "tgt%ggg", rows)
-    return nut + recipe
+    return recipe, nut
 
 
 def output(table, text, failed=False, tobp=False):
@@ -513,9 +513,9 @@ failed = error > 1
 
 solution = {name: X[entry.index] for name, entry in ST.items()}
 
-table = format_table(solution)
+table, nutrition = format_table(solution)
 
-output(table, text, failed, args.rewrite)
+output(nutrition + table, text, failed, args.rewrite)
 
 if args.html:
     with open(args.html, "wt") as fp:
@@ -527,6 +527,7 @@ if args.html:
             line = re.sub(r"\| *$", "", line)
             line = line.replace("|", f"</{td}><{td}>")
             line = f"<tr><{td}>" + line + f"</{td}></tr>"
+            line = line.replace(" ", "&numsp;")
             print(line, file=fp)
             td = "td"
         print("</tbody></table>", file=fp)
