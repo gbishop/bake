@@ -1,21 +1,22 @@
 # My everyday loaf based on morph
 
 starter:
-  whole_wheat = 1.5%
+  whole_wheat
   water
   hydration = 75%
 
-sponge ^ 4%: # allow for 4% loss
-  starter
+sponge:
+  starter = 31g
   water
   whole_wheat
-  total_flour = 8%
+  total_flour = 20%
   hydration = 75%
 
 grain:
   prairie_gold
-  hard_red
-  spelt = 15%
+  hard_red = 20%
+  spelt = 10%
+  rye = 5%
 
 dry:
   grain
@@ -32,46 +33,51 @@ wet:
   water
   olive_oil = 5%
   honey = 5%
-  yogurt = 5%
+  sour_cream = 5%
 
 dough:
   wet
   dry
   hydration = 75%
-  total_flour = 500g
+  total_flour = 450g
 
 /*
-March 6, 2025
+March 14, 2025
+
 
 Changes
-* drop the walnut butter
-* only fold
-* try over-night fridge
-* start in AM of day 1 and bake on day 2
+* Single day starting mid morning because the overnight.bake didn't
+rise.
+* Increase starter and sponge to speed things up
 
-Mixed the sponge at 19:30 and put it in the 75F SDH.
+Next time
+* increase hydration
+* more kneading
+* make 1L loaves until I get it right
+* drop rye
+* increase wgbi
+* drop nido
 
-Sponge pH at 7:57 is ? the temperature was ?. Top is domed. It
-doubled overnight.
+Mixed the sponge at 9:05 and put it in the 95F SDH. T is 87F, pH is
+4.61 at 12:05.
 
-Mixed at 8:10. Let it rest 1 hour with 2 "folds" using the mixer for
-3 minutes on speed 1. The dough got really sticky during the second
-mix so I quit and let it rest for 20 more.
+Mixed at 12:16. DT is 83F. Let it rest 1 hour with 2 "folds" using
+the mixer for 30 seconds on speed 1.
 
 Then into pan and smooth with wet spatula. Rise in our new oven's
-proof mode with the light off. Rise begins at 9:30.
+proof mode with the light off. Rise begins at 13:23.
 
-Baked with the lid on when it reached the top of the pan. Into the
-preheated 350F oven at 11:05
+Baked at 14:55 barely touching the pan lid. Oven preheated to 350F
+convection. 30 minutes with the lid on. Then 10 with the lid off.
 
-Removed at 40 minutes and it was 202 inside. Nicely brown. Cooling
-upside down again.
+It is at least 1/4" below the top of the pan. Catherine says she has
+1300-1400 TDW in her 13 inch pan but she is using half bread flour.
+But I was overfull at 963 though I was kneading more. I need to find
+the balance.
 
-A little over full! I should cut back a little more.
+Besides the shortness and holes in the top, the crumb looks perfect.
 
-The crumb appears overproofed. Larger holes near the center.
 
-Taste is good. I don't detect walnut smell or taste. 
 */
 
 /*+
@@ -79,55 +85,56 @@ Nutrition
     name     | per 100g |
 -------------|----------|
 calcium      |     0.06 |
-calories     |   249    |
+calories     |   253    |
 carbohydrate |    43.6  |
-fat          |     5.9  |
+fat          |     6.4  |
 fiber        |     7.1  |
-monounsat    |     2.7  |
+monounsat    |     2.8  |
 polyunsat    |     1.6  |
 potassium    |     0.29 |
-protein      |     8.9  |
-saturated    |     1.2  |
+protein      |     8.8  |
+saturated    |     1.5  |
 sodium       |     0.42 |
-sugars       |     4.4  |
-water        |    44.8  |
+sugars       |     4.2  |
+water        |    44.4  |
 
 
   part  | grams  |      name     |   %   | flour  | water  |
 --------|--------|---------------|-------|--------|--------|
-starter |  13.1  |               |   2.6 |   7.5  |   5.6  |
-        |   7.5  | whole wheat   |   1.5 |   7.5  |        |
-        |   5.6  | water         |   1.1 |        |   5.6  |
+starter |  31.0  |               |   6.9 |  17.7  |  13.3  |
+        |  17.7  | whole wheat   |   3.9 |  17.7  |        |
+        |  13.3  | water         |   3.0 |        |  13.3  |
        
-sponge  |  72.8  | + 2.8g        |  14.0 |  40.0  |  30.0  |
-        |  13.7  | starter       |   2.6 |   7.5  |   5.6  |
-        |  25.4  | water         |   4.9 |        |  24.4  |
-        |  33.8  | whole wheat   |   6.5 |  32.5  |        |
+sponge  | 158    |               |  35.0 |  90.0  |  67.5  |
+        |  31.0  | starter       |   6.9 |  17.7  |  13.3  |
+        |  54.3  | water         |  12.1 |        |  54.2  |
+        |  72.3  | whole wheat   |  16.1 |  72.3  |        |
        
-grain   | 415    |               |  83.0 | 415    |        |
-        | 170    | prairie gold  |  34.0 | 170    |        |
-        | 170    | hard red      |  34.0 | 170    |        |
-        |  75.0  | spelt         |  15.0 |  75.0  |        |
+grain   | 319    |               |  71.0 | 319    |        |
+        | 162    | prairie gold  |  36.0 | 162    |        |
+        |  90.0  | hard red      |  20.0 |  90.0  |        |
+        |  45.0  | spelt         |  10.0 |  45.0  |        |
+        |  22.5  | rye           |   5.0 |  22.5  |        |
        
-dry     | 495    |               |  99.0 | 460    |   0.70 |
-        | 415    | grain         |  83.0 | 415    |        |
-        |  24.4  | nido          |   4.9 |        |   0.60 |
-        |  25.0  | flaxseed meal |   5.0 |  25.0  |        |
-        |  10.0  | potato flakes |   2.0 |  10.0  |        |
-        |   9.0  | salt          |   1.8 |        |        |
-        |  10.0  | wgbi          |   2.0 |  10.0  |        |
-        |   1.5  | yeast         |   0.3 |        |        |
+dry     | 392    |               |  87.2 | 360    |   0.67 |
+        | 319    | grain         |  71.0 | 319    |        |
+        |  21.9  | nido          |   4.9 |        |   0.54 |
+        |  22.5  | flaxseed meal |   5.0 |  22.5  |        |
+        |   9.0  | potato flakes |   2.0 |   9.0  |        |
+        |   8.1  | salt          |   1.8 |        |        |
+        |   9.0  | wgbi          |   2.0 |   9.0  |        |
+        |   2.3  | yeast         |   0.5 |        |   0.11 |
        
-wet     | 463    |               |  92.7 |  40.0  | 374    |
-        |  70.0  | sponge        |  14.0 |  40.0  |  30.0  |
-        | 318    | water         |  63.7 |        | 318    |
-        |  25.0  | olive oil     |   5.0 |        |        |
-        |  25.0  | honey         |   5.0 |        |   4.3  |
-        |  25.0  | yogurt        |   5.0 |        |  22.0  |
+wet     | 474    |               | 105.3 |  90.0  | 337    |
+        | 158    | sponge        |  35.0 |  90.0  |  67.5  |
+        | 249    | water         |  55.3 |        | 249    |
+        |  22.5  | olive oil     |   5.0 |        |        |
+        |  22.5  | honey         |   5.0 |        |   3.8  |
+        |  22.5  | sour cream    |   5.0 |        |  16.8  |
        
-dough   | 958    |               | 191.7 | 500    | 375    |
-        | 463    | wet           |  92.7 |  40.0  | 374    |
-        | 495    | dry           |  99.0 | 460    |   0.70 |
+dough   | 866    |               | 192.5 | 450    | 337    |
+        | 474    | wet           | 105.3 |  90.0  | 337    |
+        | 392    | dry           |  87.2 | 360    |   0.67 |
         |        | hydration     |  75.0 |        |        |
        
 +*/
