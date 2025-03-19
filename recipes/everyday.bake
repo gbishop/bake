@@ -1,31 +1,32 @@
 # My everyday loaf based on morph
 
 starter:
-  whole_wheat
+  whole_wheat = 3%
   water
   hydration = 75%
 
-sponge:
-  starter = 31g
+sponge ^ 4%:
+  starter
   water
   whole_wheat
-  total_flour = 20%
+  total_flour = 12%
   hydration = 75%
 
 grain:
-  prairie_gold
-  hard_red = 20%
-  spelt = 10%
-  rye = 5%
+  prairie_gold = 6 * _part
+  hard_red = 6 * _part
+  spelt = _part
+  oats = _part
+  rye = _part
 
 dry:
   grain
   # half the water to milk
-  nido = 50% * 13% * dough.total_water
+  # nido = 50% * 13% * dough.total_water
   flaxseed_meal = 5%
   potato_flakes = 2%
   salt = 1.8%
-  wgbi = 2%
+  wgbi = 3%
   yeast = 0.5%
 
 wet:
@@ -33,109 +34,127 @@ wet:
   water
   olive_oil = 5%
   honey = 5%
-  sour_cream = 5%
+  yogurt = 5%
 
 dough:
   wet
   dry
-  hydration = 75%
-  total_flour = 450g
+  hydration = 80%
+  # 204g/L of flour
+  total_flour = 204g * 1
 
 /*
-March 14, 2025
-
+March 17, 2025
 
 Changes
-* Single day starting mid morning because the overnight.bake didn't
-rise.
-* Increase starter and sponge to speed things up
+* 1L loaves until I get it right
+* Back to what was working on 20 February
+* Knead more
+* drop nido for now
+* increase wgbi to KA recommened 3%
+* back to overnight pf
+* increase hydration to 80%
 
-Next time
-* increase hydration
-* more kneading
-* make 1L loaves until I get it right
-* drop rye
-* increase wgbi
-* drop nido
+Mixed the sponge day before at 19:30 and put it in the 85F SDH (82F
+actual).
 
-Mixed the sponge at 9:05 and put it in the 95F SDH. T is 87F, pH is
-4.61 at 12:05.
+Next morning T is 77F, pH is 3.94 at 8:14.
 
-Mixed at 12:16. DT is 83F. Let it rest 1 hour with 2 "folds" using
-the mixer for 30 seconds on speed 1.
+Mixed at 8:25. DT is 79F. Let it rest 1 hour with 2 "folds" using
+the mixer for 60 seconds on speed 1. At the end check for window
+pane and knead for up to 8 minutes if necessary.
 
-Then into pan and smooth with wet spatula. Rise in our new oven's
-proof mode with the light off. Rise begins at 13:23.
+Dough was loose; never pulled away from the sides. 80% hydration was
+likely too high.
 
-Baked at 14:55 barely touching the pan lid. Oven preheated to 350F
-convection. 30 minutes with the lid on. Then 10 with the lid off.
+Then into pan and smooth with buttered spatula. Rise using proof mode
+with the light off. Rise begins at 9:41.
 
-It is at least 1/4" below the top of the pan. Catherine says she has
-1300-1400 TDW in her 13 inch pan but she is using half bread flour.
-But I was overfull at 963 though I was kneading more. I need to find
-the balance.
+Pan = 196g. 
+At 10:00 Dough+pan = 582g
+At 11:06 Dough+pan = 582g Dough+pan+lid = 635g
+DT = 79F
 
-Besides the shortness and holes in the top, the crumb looks perfect.
+Into the oven at 11:12. Oven preheated to 350F convection. 25
+minutes with the lid on. Then up to 10 with the lid off.
 
+At 25 minutes Dough+pan = 579g DT = 160F. Give it 10 more
+minutes.
 
+Pan is a little overfull. Dough pushed up under the lid on the
+sides.
+
+At 35 minutes Dough+pan = 573g DT = 186F. Give it 5 more.
+
+At 40 minutes Dough+pan = 570g DT = 205F.
+
+Loaf weighs 371g hot out of the pan.
+
+25 minutes lost 0.78%
+35 minutes lost 2.3%
+40 minutes lost 3.1%
+cooled lost 9%
+
+The loaf looks great. Nice color. Filled the pan with a bit of flash
+around the top.
 */
 
 /*+
 Nutrition
     name     | per 100g |
 -------------|----------|
-calcium      |     0.06 |
-calories     |   253    |
-carbohydrate |    43.6  |
-fat          |     6.4  |
+calcium      |     0.03 |
+calories     |   237    |
+carbohydrate |    42.1  |
+fat          |     5.3  |
 fiber        |     7.1  |
-monounsat    |     2.8  |
+monounsat    |     2.5  |
 polyunsat    |     1.6  |
-potassium    |     0.29 |
-protein      |     8.8  |
-saturated    |     1.5  |
-sodium       |     0.42 |
-sugars       |     4.2  |
-water        |    44.4  |
+potassium    |     0.25 |
+protein      |     8.6  |
+saturated    |     0.75 |
+sodium       |     0.41 |
+sugars       |     3.0  |
+water        |    47.2  |
 
 
   part  | grams  |      name     |   %   | flour  | water  |
 --------|--------|---------------|-------|--------|--------|
-starter |  31.0  |               |   6.9 |  17.7  |  13.3  |
-        |  17.7  | whole wheat   |   3.9 |  17.7  |        |
-        |  13.3  | water         |   3.0 |        |  13.3  |
+starter |  10.7  |               |   5.3 |   6.1  |   4.6  |
+        |   6.1  | whole wheat   |   3.0 |   6.1  |        |
+        |   4.6  | water         |   2.3 |        |   4.6  |
        
-sponge  | 158    |               |  35.0 |  90.0  |  67.5  |
-        |  31.0  | starter       |   6.9 |  17.7  |  13.3  |
-        |  54.3  | water         |  12.1 |        |  54.2  |
-        |  72.3  | whole wheat   |  16.1 |  72.3  |        |
+sponge  |  44.6  | + 1.7g        |  21.0 |  24.5  |  18.4  |
+        |  11.1  | starter       |   5.3 |   6.1  |   4.6  |
+        |  14.3  | water         |   6.8 |        |  13.8  |
+        |  19.1  | whole wheat   |   9.0 |  18.4  |        |
        
-grain   | 319    |               |  71.0 | 319    |        |
-        | 162    | prairie gold  |  36.0 | 162    |        |
-        |  90.0  | hard red      |  20.0 |  90.0  |        |
-        |  45.0  | spelt         |  10.0 |  45.0  |        |
-        |  22.5  | rye           |   5.0 |  22.5  |        |
+grain   | 159    |               |  78.0 | 159    |        |
+        |  63.6  | prairie gold  |  31.2 |  63.6  |        |
+        |  63.6  | hard red      |  31.2 |  63.6  |        |
+        |  10.6  | spelt         |   5.2 |  10.6  |        |
+        |  10.6  | oats          |   5.2 |  10.6  |        |
+        |  10.6  | rye           |   5.2 |  10.6  |        |
        
-dry     | 392    |               |  87.2 | 360    |   0.67 |
-        | 319    | grain         |  71.0 | 319    |        |
-        |  21.9  | nido          |   4.9 |        |   0.54 |
-        |  22.5  | flaxseed meal |   5.0 |  22.5  |        |
-        |   9.0  | potato flakes |   2.0 |   9.0  |        |
-        |   8.1  | salt          |   1.8 |        |        |
-        |   9.0  | wgbi          |   2.0 |   9.0  |        |
-        |   2.3  | yeast         |   0.5 |        |   0.11 |
+dry     | 184    |               |  90.3 | 180    |        |
+        | 159    | grain         |  78.0 | 159    |        |
+        |  10.2  | flaxseed meal |   5.0 |  10.2  |        |
+        |   4.1  | potato flakes |   2.0 |   4.1  |        |
+        |   3.7  | salt          |   1.8 |        |        |
+        |   6.1  | wgbi          |   3.0 |   6.1  |        |
+        |   1.0  | yeast         |   0.5 |        |        |
        
-wet     | 474    |               | 105.3 |  90.0  | 337    |
-        | 158    | sponge        |  35.0 |  90.0  |  67.5  |
-        | 249    | water         |  55.3 |        | 249    |
-        |  22.5  | olive oil     |   5.0 |        |        |
-        |  22.5  | honey         |   5.0 |        |   3.8  |
-        |  22.5  | sour cream    |   5.0 |        |  16.8  |
+wet     | 208    |               | 101.8 |  24.5  | 163    |
+        |  42.9  | sponge        |  21.0 |  24.5  |  18.4  |
+        | 134    | water         |  65.8 |        | 134    |
+        |  10.2  | olive oil     |   5.0 |        |        |
+        |  10.2  | honey         |   5.0 |        |   1.7  |
+        |  10.2  | yogurt        |   5.0 |        |   9.0  |
        
-dough   | 866    |               | 192.5 | 450    | 337    |
-        | 474    | wet           | 105.3 |  90.0  | 337    |
-        | 392    | dry           |  87.2 | 360    |   0.67 |
-        |        | hydration     |  75.0 |        |        |
+dough   | 392    |               | 192.1 | 204    | 163    |
+        | 208    | wet           | 101.8 |  24.5  | 163    |
+        | 184    | dry           |  90.3 | 180    |        |
+        |        | hydration     |  80.0 |        |        |
        
 +*/
 
