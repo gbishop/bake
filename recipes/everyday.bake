@@ -39,64 +39,38 @@ wet:
 dough:
   wet
   dry
-  hydration = 80%
+  hydration = 75%
   # 204g/L of flour
   total_flour = 204g * 1
 
 /*
-March 17, 2025
+March 20, 2025
 
 Changes
-* 1L loaves until I get it right
-* Back to what was working on 20 February
-* Knead more
-* drop nido for now
-* increase wgbi to KA recommened 3%
-* back to overnight pf
-* increase hydration to 80%
+* Lower hydration
 
-Mixed the sponge day before at 19:30 and put it in the 85F SDH (82F
+Mixed the sponge day before at 17:20 and put it in the 85F SDH (82F
 actual).
 
-Next morning T is 77F, pH is 3.94 at 8:14.
+Next morning T is 73F, pH is 3.93 at 8:27.
 
-Mixed at 8:25. DT is 79F. Let it rest 1 hour with 2 "folds" using
+Mixed at 8:45. DT is 79F. Let it rest 1 hour with 2 "folds" using
 the mixer for 60 seconds on speed 1. At the end check for window
 pane and knead for up to 8 minutes if necessary.
 
-Dough was loose; never pulled away from the sides. 80% hydration was
-likely too high.
+Dough formed a ball, pulled away from the sides, then became sticky again.
 
-Then into pan and smooth with buttered spatula. Rise using proof mode
-with the light off. Rise begins at 9:41.
+Then into pan and smooth with buttered spatula. Rise using proof
+mode with the light off. Rise begins at 10:00.
 
-Pan = 196g. 
-At 10:00 Dough+pan = 582g
-At 11:06 Dough+pan = 582g Dough+pan+lid = 635g
-DT = 79F
+Into the oven about 12:10. Oven preheated to 350F convection. 30
+minutes with the lid on. Then 10 with the lid off.
 
-Into the oven at 11:12. Oven preheated to 350F convection. 25
-minutes with the lid on. Then up to 10 with the lid off.
+Pan is perfectly full.
 
-At 25 minutes Dough+pan = 579g DT = 160F. Give it 10 more
-minutes.
+The loaf looks great. A bit pale. The crumb looks better at 75%
+hydration. The loaf is mildly sour; about right.
 
-Pan is a little overfull. Dough pushed up under the lid on the
-sides.
-
-At 35 minutes Dough+pan = 573g DT = 186F. Give it 5 more.
-
-At 40 minutes Dough+pan = 570g DT = 205F.
-
-Loaf weighs 371g hot out of the pan.
-
-25 minutes lost 0.78%
-35 minutes lost 2.3%
-40 minutes lost 3.1%
-cooled lost 9%
-
-The loaf looks great. Nice color. Filled the pan with a bit of flash
-around the top.
 */
 
 /*+
@@ -104,18 +78,18 @@ Nutrition
     name     | per 100g |
 -------------|----------|
 calcium      |     0.03 |
-calories     |   237    |
-carbohydrate |    42.1  |
-fat          |     5.3  |
-fiber        |     7.1  |
-monounsat    |     2.5  |
+calories     |   243    |
+carbohydrate |    43.2  |
+fat          |     5.4  |
+fiber        |     7.3  |
+monounsat    |     2.6  |
 polyunsat    |     1.6  |
-potassium    |     0.25 |
-protein      |     8.6  |
-saturated    |     0.75 |
-sodium       |     0.41 |
-sugars       |     3.0  |
-water        |    47.2  |
+potassium    |     0.26 |
+protein      |     8.8  |
+saturated    |     0.77 |
+sodium       |     0.42 |
+sugars       |     3.1  |
+water        |    45.8  |
 
 
   part  | grams  |      name     |   %   | flour  | water  |
@@ -144,17 +118,17 @@ dry     | 184    |               |  90.3 | 180    |        |
         |   6.1  | wgbi          |   3.0 |   6.1  |        |
         |   1.0  | yeast         |   0.5 |        |        |
        
-wet     | 208    |               | 101.8 |  24.5  | 163    |
+wet     | 197    |               |  96.8 |  24.5  | 153    |
         |  42.9  | sponge        |  21.0 |  24.5  |  18.4  |
-        | 134    | water         |  65.8 |        | 134    |
+        | 124    | water         |  60.8 |        | 124    |
         |  10.2  | olive oil     |   5.0 |        |        |
         |  10.2  | honey         |   5.0 |        |   1.7  |
         |  10.2  | yogurt        |   5.0 |        |   9.0  |
        
-dough   | 392    |               | 192.1 | 204    | 163    |
-        | 208    | wet           | 101.8 |  24.5  | 163    |
+dough   | 382    |               | 187.1 | 204    | 153    |
+        | 197    | wet           |  96.8 |  24.5  | 153    |
         | 184    | dry           |  90.3 | 180    |        |
-        |        | hydration     |  80.0 |        |        |
+        |        | hydration     |  75.0 |        |        |
        
 +*/
 
