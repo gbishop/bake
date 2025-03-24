@@ -21,7 +21,7 @@ dry:
   grain
   potato_flakes = 2%
   # half the water to milk
-  # nido = 50% * 13% * dough.total_water
+  nido = 50% * 13% * dough.total_water
   flaxseed_meal = 5%
   wgbi = 3%
   salt = 1.8%
@@ -42,41 +42,39 @@ dough:
   total_flour = 204g * 1
 
 /*
-March 22, 2025
+March 22, 2025 a double header!
 
-This one is in the dented pan.
+This one is in the undented pan.
 
 Changes
 * Drop spelt and oats to see what they contribute
-* In the bread machine
+* Add milk
+* In the mixer
+
 
 Mixed the sponge day before at 19:45 and put it in the 85F SDH (82F
 actual).
 
-Next morning T is 73F, pH is 3.93 at 8:27.
+Next morning T is 78F, pH is 3.97 at 8:08.
 
-Mixed at 8:35. DT is 79F. Let it rest 1/2 hour then 1/2 hour knead by BM.
+Mixed at 8:35. DT is 79F. Let it rest 1 hour with 2 brief folds by hand followed by a few minutes at speed 1. The mixer couldn't get the dough up off the bottom of the pan. The bread machine had no problems. Maybe the non-stick coating in the bread machine? Or perhaps mixing from the bottom?
 
 Then into pan and smooth with buttered spatula. Rise using proof
 mode with the light off. Rise begins at 9:45.
 
-Into the oven about 11:09. Oven preheated to 350F convection. 30
+Into the oven about 11:20. Oven preheated to 350F convection. 30
 minutes with the lid on. Then 10 with the lid off.
 
-Overflowed the pan by 35g.
+Pan is perfectly full. Came smoothly out of the pan. I gave it
+5 more minutes out of the pan.
 
-Stuck to the pan a little at the bottom. Poor buttering? Or maybe
-I got it out a little too soon? It was 202F inside. I gave it 5 more
-minutes in the oven.
+I should dump the loaf onto the oven shelf; then I wouldn't have to
+move it back which dents it a bit.
 
-The loaf looks OK with a bit of damage. 
+The loaf looks great. The milk has resulted in it being a bit
+browner. 
 
-The cooled loaf weighs 287g. With the 35g lost and 2g of flash that
-I cut off this would be 324g. The loaf with milk started 10g heavier
-but there is still 22g unaccounted for. I should have weighed the
-loaves before baking.
-
-I wonder if decreasing the hydration would reduce the overflow?
+The cooled loaf weighs 356g.
 
 The loaf is mildly sour; about right.
 
@@ -86,19 +84,19 @@ The loaf is mildly sour; about right.
 Nutrition
     name     | per 100g |
 -------------|----------|
-calcium      |     0.03 |
-calories     |   241    |
+calcium      |     0.06 |
+calories     |   249    |
 carbohydrate |    43.6  |
-fat          |     5.3  |
-fiber        |     7.5  |
-monounsat    |     2.5  |
+fat          |     5.9  |
+fiber        |     7.3  |
+monounsat    |     2.7  |
 polyunsat    |     1.6  |
-potassium    |     0.26 |
-protein      |     8.5  |
-saturated    |     0.74 |
+potassium    |     0.29 |
+protein      |     9.0  |
+saturated    |     1.2  |
 sodium       |     0.42 |
-sugars       |     2.9  |
-water        |    45.9  |
+sugars       |     3.9  |
+water        |    44.7  |
 
 
   part  | grams  |      name     |   %   | flour  | water  |
@@ -117,24 +115,25 @@ grain   | 159    |               |  78.0 | 159    |        |
         |  69.4  | hard red      |  34.0 |  69.4  |        |
         |  20.4  | rye           |  10.0 |  20.4  |        |
        
-dry     | 184    |               |  90.3 | 180    |        |
+dry     | 194    |               |  95.2 | 180    |   0.30 |
         | 159    | grain         |  78.0 | 159    |        |
         |   4.1  | potato flakes |   2.0 |   4.1  |        |
+        |   9.9  | nido          |   4.9 |        |   0.25 |
         |  10.2  | flaxseed meal |   5.0 |  10.2  |        |
         |   6.1  | wgbi          |   3.0 |   6.1  |        |
         |   3.7  | salt          |   1.8 |        |        |
         |   1.0  | yeast         |   0.5 |        |        |
        
-wet     | 197    |               |  96.8 |  24.5  | 153    |
+wet     | 197    |               |  96.7 |  24.5  | 153    |
         |  42.9  | sponge        |  21.0 |  24.5  |  18.4  |
-        | 124    | water         |  60.8 |        | 124    |
+        | 124    | water         |  60.7 |        | 124    |
         |  10.2  | olive oil     |   5.0 |        |        |
         |  10.2  | honey         |   5.0 |        |   1.7  |
         |  10.2  | yogurt        |   5.0 |        |   9.0  |
        
-dough   | 382    |               | 187.1 | 204    | 153    |
-        | 197    | wet           |  96.8 |  24.5  | 153    |
-        | 184    | dry           |  90.3 | 180    |        |
+dough   | 391    |               | 191.8 | 204    | 153    |
+        | 197    | wet           |  96.7 |  24.5  | 153    |
+        | 194    | dry           |  95.2 | 180    |   0.30 |
         |        | hydration     |  75.0 |        |        |
        
 +*/
