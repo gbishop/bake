@@ -13,20 +13,18 @@ sponge ^ 4%:
   hydration = 75%
 
 grain:
-  prairie_gold = 6 * _part
-  hard_red = 6 * _part
-  spelt = _part
-  oats = _part
-  rye = _part
+  prairie_gold
+  hard_red
+  rye = 10%
 
 dry:
   grain
+  potato_flakes = 2%
   # half the water to milk
   # nido = 50% * 13% * dough.total_water
   flaxseed_meal = 5%
-  potato_flakes = 2%
-  salt = 1.8%
   wgbi = 3%
+  salt = 1.8%
   yeast = 0.5%
 
 wet:
@@ -44,32 +42,43 @@ dough:
   total_flour = 204g * 1
 
 /*
-March 20, 2025
+March 22, 2025
+
+This one is in the dented pan.
 
 Changes
-* Lower hydration
+* Drop spelt and oats to see what they contribute
+* In the bread machine
 
-Mixed the sponge day before at 17:20 and put it in the 85F SDH (82F
+Mixed the sponge day before at 19:45 and put it in the 85F SDH (82F
 actual).
 
 Next morning T is 73F, pH is 3.93 at 8:27.
 
-Mixed at 8:45. DT is 79F. Let it rest 1 hour with 2 "folds" using
-the mixer for 60 seconds on speed 1. At the end check for window
-pane and knead for up to 8 minutes if necessary.
-
-Dough formed a ball, pulled away from the sides, then became sticky again.
+Mixed at 8:35. DT is 79F. Let it rest 1/2 hour then 1/2 hour knead by BM.
 
 Then into pan and smooth with buttered spatula. Rise using proof
-mode with the light off. Rise begins at 10:00.
+mode with the light off. Rise begins at 9:45.
 
-Into the oven about 12:10. Oven preheated to 350F convection. 30
+Into the oven about 11:09. Oven preheated to 350F convection. 30
 minutes with the lid on. Then 10 with the lid off.
 
-Pan is perfectly full.
+Overflowed the pan by 35g.
 
-The loaf looks great. A bit pale. The crumb looks better at 75%
-hydration. The loaf is mildly sour; about right.
+Stuck to the pan a little at the bottom. Poor buttering? Or maybe
+I got it out a little too soon? It was 202F inside. I gave it 5 more
+minutes in the oven.
+
+The loaf looks OK with a bit of damage. 
+
+The cooled loaf weighs 287g. With the 35g lost and 2g of flash that
+I cut off this would be 324g. The loaf with milk started 10g heavier
+but there is still 22g unaccounted for. I should have weighed the
+loaves before baking.
+
+I wonder if decreasing the hydration would reduce the overflow?
+
+The loaf is mildly sour; about right.
 
 */
 
@@ -78,18 +87,18 @@ Nutrition
     name     | per 100g |
 -------------|----------|
 calcium      |     0.03 |
-calories     |   243    |
-carbohydrate |    43.2  |
-fat          |     5.4  |
-fiber        |     7.3  |
-monounsat    |     2.6  |
+calories     |   241    |
+carbohydrate |    43.6  |
+fat          |     5.3  |
+fiber        |     7.5  |
+monounsat    |     2.5  |
 polyunsat    |     1.6  |
 potassium    |     0.26 |
-protein      |     8.8  |
-saturated    |     0.77 |
+protein      |     8.5  |
+saturated    |     0.74 |
 sodium       |     0.42 |
-sugars       |     3.1  |
-water        |    45.8  |
+sugars       |     2.9  |
+water        |    45.9  |
 
 
   part  | grams  |      name     |   %   | flour  | water  |
@@ -104,18 +113,16 @@ sponge  |  44.6  | + 1.7g        |  21.0 |  24.5  |  18.4  |
         |  19.1  | whole wheat   |   9.0 |  18.4  |        |
        
 grain   | 159    |               |  78.0 | 159    |        |
-        |  63.6  | prairie gold  |  31.2 |  63.6  |        |
-        |  63.6  | hard red      |  31.2 |  63.6  |        |
-        |  10.6  | spelt         |   5.2 |  10.6  |        |
-        |  10.6  | oats          |   5.2 |  10.6  |        |
-        |  10.6  | rye           |   5.2 |  10.6  |        |
+        |  69.4  | prairie gold  |  34.0 |  69.4  |        |
+        |  69.4  | hard red      |  34.0 |  69.4  |        |
+        |  20.4  | rye           |  10.0 |  20.4  |        |
        
 dry     | 184    |               |  90.3 | 180    |        |
         | 159    | grain         |  78.0 | 159    |        |
-        |  10.2  | flaxseed meal |   5.0 |  10.2  |        |
         |   4.1  | potato flakes |   2.0 |   4.1  |        |
-        |   3.7  | salt          |   1.8 |        |        |
+        |  10.2  | flaxseed meal |   5.0 |  10.2  |        |
         |   6.1  | wgbi          |   3.0 |   6.1  |        |
+        |   3.7  | salt          |   1.8 |        |        |
         |   1.0  | yeast         |   0.5 |        |        |
        
 wet     | 197    |               |  96.8 |  24.5  | 153    |
