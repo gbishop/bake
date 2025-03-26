@@ -5,7 +5,7 @@ Gary Bishop July-December 2024
 """
 
 from ingredients import getIngredient
-from lark import Lark, Visitor, visitors
+from lark import Lark, Visitor, Tree, Token, visitors
 import lark
 import numpy as np
 import argparse
@@ -96,7 +96,7 @@ class SymbolTable:
                 self.byIndex[self.symbol_count] = self.entries[name]
                 self.symbol_count += 1
 
-    def vector(self, name):
+    def vector(self, name: tuple[str, str]):
         """Create a matrix row representing this unknown"""
         r = np.zeros(self.symbol_count + 1)
         r[self.entries[name].index] = 1
@@ -122,7 +122,7 @@ class SymbolTable:
             s = s[3:]
         return s
 
-    def constant(self, value):
+    def constant(self, value: float):
         """Create a vector representing a numeric constant"""
         r = np.zeros(self.symbol_count + 1)
         r[-1] = value
@@ -132,12 +132,12 @@ class SymbolTable:
 ST = SymbolTable()
 
 
-def isPercent(s):
+def isPercent(s: str):
     """Test if a string represents a percentage"""
     return s.endswith("%")
 
 
-def number(s):
+def number(s: str):
     """Get the value of a number based on its units"""
     if s.endswith("%"):
         return float(s[:-1]) / 100
@@ -150,8 +150,9 @@ def number(s):
 class GetParts(Visitor):
     """Scan the tree for part names"""
 
-    def part(self, tree):
-        name = tree.children[0] + ""
+    def part(self, tree: Tree):
+        name = tree.children[0]
+        assert isinstance(name, Token)
         ST.add((name, "total"))
         ST.add((name, "total_flour"))
         ST.add((name, "total_water"))
@@ -162,20 +163,23 @@ class GetParts(Visitor):
 class GetUnknowns(Visitor):
     """Scan the tree for names of unknowns"""
 
-    def mention(self, tree):
+    def mention(self, tree: Tree):
         if len(tree.children) == 1:
-            name = tree.children[0] + ""
+            name = tree.children[0]
+            assert isinstance(name, Token)
             fullname = (self.part_name, name)
             ST.add(fullname)
 
-    def part(self, tree):
-        self.part_name = tree.children[0] + ""
+    def part(self, tree: Tree):
+        name = tree.children[0]
+        assert isinstance(name, Token)
+        self.part_name = name
 
 
 class BuildMatrix(visitors.Interpreter):
     """Setup the matrix representing the relations"""
 
-    def start(self, tree):
+    def start(self, tree: Tree):
         r = self.visit_children(tree)
         residuals = []
         for relations in r:
@@ -186,15 +190,18 @@ class BuildMatrix(visitors.Interpreter):
         B = -R[:, -1]
         return A, B
 
-    def part(self, tree):
+    def part(self, tree: Tree):
         total_names = ["total", "total_flour", "total_water"]
-        part = self.part_name = tree.children[0] + ""
+        part = tree.children[0]
+        assert isinstance(part, Token)
+        self.part_name = part
         r = self.visit_children(tree)
-        _, theloss, *relations = r
+        theloss = r[1]
+        assert isinstance(theloss, Token)
         if theloss:
             ST.loss[part] = (number(theloss), isPercent(theloss))
         # we only want the relations which are lists
-        relations = [row for row in relations if type(row) == list]
+        relations = [row for row in r[2:] if type(row) == tuple]
         totals = {}
         for total_name in total_names:
             totals[total_name] = np.zeros(ST.symbol_count + 1)
@@ -217,19 +224,19 @@ class BuildMatrix(visitors.Interpreter):
                     w = info[field_name] / 100
                     totals[total_name] += w * vect
         for total_name in total_names:
-            relations.append([ST.vector((part, total_name)), totals[total_name]])
+            relations.append((ST.vector((part, total_name)), totals[total_name]))
 
         return relations
 
-    def hydration(self, tree):
+    def hydration(self, tree: Tree):
         r = self.visit_children(tree)
         v = number(r[0])
-        return [
+        return (
             ST.vector((self.part_name, "total_water")),
             v * ST.vector((self.part_name, "total_flour")),
-        ]
+        )
 
-    def add(self, tree):
+    def add(self, tree: Tree):
         r = self.visit_children(tree)
         return r[0] + r[1]
 
@@ -239,9 +246,9 @@ class BuildMatrix(visitors.Interpreter):
 
     def multiply(self, tree):
         r = self.visit_children(tree)
-        if isinstance(r[0], lark.Token):
+        if isinstance(r[0], Token):
             return number(r[0]) * r[1]
-        elif isinstance(r[1], lark.Token):
+        elif isinstance(r[1], Token):
             value = number(r[1])
             if isPercent(r[1]):
                 raise Exception(f"Cannot multiply unknowns on line {tree.meta.line}")
@@ -251,14 +258,14 @@ class BuildMatrix(visitors.Interpreter):
 
     def divide(self, tree):
         r = self.visit_children(tree)
-        if isinstance(r[1], lark.Token):
+        if isinstance(r[1], Token):
             return r[0] / number(r[1])
         else:
             raise Exception(f"Only divide by numbers on line {tree.meta.line}")
 
     def constant(self, tree):
         r = self.visit_children(tree)
-        if isinstance(r[0], lark.Token):
+        if isinstance(r[0], Token):
             value = number(r[0])
             if isPercent(r[0]):
                 return ST.vector(("dough", "total_flour")) * value
