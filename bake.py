@@ -8,6 +8,8 @@ from ingredients import getIngredient
 from lark import Lark, Visitor, Tree, Token, visitors
 import lark
 import numpy as np
+from numpy.typing import NDArray
+from typing import Tuple, Dict, List
 import argparse
 import re
 import sys
@@ -48,12 +50,15 @@ COMMENT:  "/*" /(.|\n|\r)*?/ "*/"
 %ignore COMMENT
 """
 
+Fullname = tuple[str, str]
+Array = NDArray[np.float64]
+
 
 class SymbolTableEntry:
     """Information about each symbol"""
 
     def __init__(self, name=("", ""), index=-1, part=False):
-        self.name: tuple[str, str] = name
+        self.name: Fullname = name
         self.index: int = index
         self.part: bool = part
         self.nutrition = getIngredient(name[1])
@@ -65,13 +70,13 @@ class SymbolTable:
 
     def __init__(self):
         self.symbol_count: int = 0
-        self.entries: dict[tuple[str, str], SymbolTableEntry] = {}
+        self.entries: dict[Fullname, SymbolTableEntry] = {}
         self.byIndex: dict[int, SymbolTableEntry] = {}
         # don't use a set because I need this ordered
         self.parts: dict[str, None] = {}
         self.loss: dict[str, tuple[float, bool]] = {}
 
-    def __getitem__(self, key: int | tuple[str, str]):
+    def __getitem__(self, key: int | Fullname):
         if isinstance(key, int):
             return self.byIndex[key]
 
@@ -84,7 +89,7 @@ class SymbolTable:
     def items(self):
         return self.entries.items()
 
-    def add(self, name: tuple[str, str]):
+    def add(self, name: Fullname):
         """Add a name if it isn't already known"""
         if name not in self.entries:
             if name[1] in self.parts:
@@ -96,13 +101,13 @@ class SymbolTable:
                 self.byIndex[self.symbol_count] = self.entries[name]
                 self.symbol_count += 1
 
-    def vector(self, name: tuple[str, str]):
+    def vector(self, name: Fullname):
         """Create a matrix row representing this unknown"""
         r = np.zeros(self.symbol_count + 1)
         r[self.entries[name].index] = 1
         return r
 
-    def dump(self, vector):
+    def dump(self, vector: Array):
         """Make a vector readable"""
         s = ""
         for i in range(self.symbol_count):
@@ -124,7 +129,6 @@ class SymbolTable:
 
     def constant(self, value: float):
         """Create a vector representing a numeric constant"""
-        print("constant", value)
         r = np.zeros(self.symbol_count + 1)
         r[-1] = value
         return r
@@ -148,12 +152,17 @@ def number(s: str):
         return float(s)
 
 
+def token(t):
+    """Verify argument is a token and return it as a string"""
+    assert isinstance(t, Token)
+    return str(t)
+
+
 class GetParts(Visitor):
     """Scan the tree for part names"""
 
     def part(self, tree: Tree):
-        assert isinstance(tree.children[0], Token)
-        name = str(tree.children[0])
+        name = token(tree.children[0])
         ST.add((name, "total"))
         ST.add((name, "total_flour"))
         ST.add((name, "total_water"))
@@ -166,21 +175,18 @@ class GetUnknowns(Visitor):
 
     def mention(self, tree: Tree):
         if len(tree.children) == 1:
-            name = tree.children[0]
-            assert isinstance(name, Token)
-            fullname = (self.part_name, str(name))
+            name = token(tree.children[0])
+            fullname = (self.part_name, name)
             ST.add(fullname)
 
     def part(self, tree: Tree):
-        name = tree.children[0]
-        assert isinstance(name, Token)
-        self.part_name = str(name)
+        self.part_name = token(tree.children[0])
 
 
 class BuildMatrix(visitors.Interpreter):
     """Setup the matrix representing the relations"""
 
-    def start(self, tree: Tree):
+    def start(self, tree: Tree) -> Tuple[Array, Array]:
         r = self.visit_children(tree)
         residuals = []
         for relations in r:
@@ -189,23 +195,20 @@ class BuildMatrix(visitors.Interpreter):
         R = np.array(residuals)
         A = R[:, :-1]
         B = -R[:, -1]
-        print("A", A)
-        print("B", B)
         return A, B
 
     def part(self, tree: Tree):
         total_names = ["total", "total_flour", "total_water"]
-        assert isinstance(tree.children[0], Token)
-        part = str(tree.children[0])
-        self.part_name = part
+        part = self.part_name = token(tree.children[0])
         r = self.visit_children(tree)
         theloss = r[1]
         if theloss:
             ST.loss[part] = (number(theloss), isPercent(theloss))
-        # we only want the relations which are lists
-        print("types", [type(row) for row in r[2:]])
-        relations = [row for row in r[2:] if type(row) == list]
-        totals = {}
+        # we only want the children that are lists
+        relations: List[List[Array]] = [
+            row for row in r[2:] if isinstance(row, list) and len(row) == 2
+        ]
+        totals: Dict[str, Array] = {}
         for total_name in total_names:
             totals[total_name] = np.zeros(ST.symbol_count + 1)
         for fullname, entry in ST.items():
@@ -243,11 +246,11 @@ class BuildMatrix(visitors.Interpreter):
         r = self.visit_children(tree)
         return r[0] + r[1]
 
-    def subtract(self, tree):
+    def subtract(self, tree: Tree):
         r = self.visit_children(tree)
         return r[0] - r[1]
 
-    def multiply(self, tree):
+    def multiply(self, tree: Tree):
         r = self.visit_children(tree)
         if isinstance(r[0], Token):
             return number(r[0]) * r[1]
@@ -259,18 +262,17 @@ class BuildMatrix(visitors.Interpreter):
         else:
             raise Exception(f"Cannot multiply unknowns on line {tree.meta.line}")
 
-    def divide(self, tree):
+    def divide(self, tree: Tree):
         r = self.visit_children(tree)
         if isinstance(r[1], Token):
             return r[0] / number(r[1])
         else:
             raise Exception(f"Only divide by numbers on line {tree.meta.line}")
 
-    def constant(self, tree):
+    def constant(self, tree: Tree):
         r = self.visit_children(tree)
         if isinstance(r[0], Token):
             value = number(r[0])
-            print("value", value)
             if isPercent(r[0]):
                 return ST.vector(("dough", "total_flour")) * value
             else:
@@ -278,7 +280,7 @@ class BuildMatrix(visitors.Interpreter):
         else:
             return r[0]
 
-    def mention(self, tree):
+    def mention(self, tree: Tree):
         r = self.visit_children(tree)
         if len(r) == 1:
             fullname = (self.part_name, r[0])
@@ -286,7 +288,7 @@ class BuildMatrix(visitors.Interpreter):
             fullname = tuple(r)
         return ST.vector(fullname)
 
-    def __default__(self, tree):
+    def __default__(self, tree: Tree):
         r = self.visit_children(tree)
         if len(r) == 1:
             return r[0]
@@ -350,7 +352,6 @@ def format_table(solution):
     # reshape the data into a list of lists
     rows = []
     dtf = solution[("dough", "total_flour")]
-    print(solution)
     if dtf == 0:
         raise Exception("No flour")
     grams_to_bp = 100 / solution[("dough", "total_flour")]
@@ -488,34 +489,25 @@ text = fp.read()
 parser = Lark(grammar, propagate_positions=True)
 
 try:
-    print("here")
     tree = parser.parse(text)
-    print("there")
-except lark.exceptions.UnexpectedToken as error:
-    print(f"Unexpected token {error.line}:{error.column}\n", error.get_context(text))
+except lark.exceptions.UnexpectedToken as e:
+    print(f"Unexpected token {e.line}:{e.column}\n", e.get_context(text))
     sys.exit(1)
-except lark.exceptions.UnexpectedCharacters as error:
-    print(
-        f"Unexpected character {error.line}:{error.column}\n", error.get_context(text)
-    )
+except lark.exceptions.UnexpectedCharacters as e:
+    print(f"Unexpected character {e.line}:{e.column}\n", e.get_context(text))
     sys.exit(1)
-except lark.exceptions.UnexpectedEOF as error:
-    print(
-        f"Unexpected end of file {error.line}:{error.column}\n", error.get_context(text)
-    )
+except lark.exceptions.UnexpectedEOF as e:
+    print(f"Unexpected end of file {e.line}:{e.column}\n", e.get_context(text))
     sys.exit(1)
 except AssertionError as e:
-    print("assert", e)
-    sys.exit(1)
+    raise (e)
 
 GetParts().visit(tree)
 
 GetUnknowns().visit_topdown(tree)
 
 try:
-    print(1)
-    A, B = BuildMatrix().visit(tree)
-    print(2)
+    A, B = BuildMatrix().start(tree)
 except AssertionError as e:
     raise e
 except Exception as e:
@@ -526,13 +518,13 @@ r = np.linalg.lstsq(A, B, rcond=-1)
 
 X = r[0]
 
-residuals = A.dot(X) - B
+residuals: Array = A.dot(X) - B
 
-error = np.sqrt(np.max(residuals**2))
+error: float = np.sqrt(np.max(residuals**2))
 
 failed = error > 1
 
-solution = {name: X[entry.index] for name, entry in ST.items()}
+solution: Dict[Fullname, float] = {name: X[entry.index] for name, entry in ST.items()}
 
 table, nutrition = format_table(solution)
 
