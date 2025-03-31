@@ -379,7 +379,7 @@ def format_table(solution):
                         pg * info["water"] / 100,
                     ]
                     nutrition = nutrition + info * pg / 100
-                unknown = "*" if ST[(partName, var)].unknown else ""
+                unknown = "!" if ST[(partName, var)].unknown else ""
                 rows.append(
                     [
                         "",
