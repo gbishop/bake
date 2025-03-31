@@ -194,7 +194,7 @@ class BuildMatrix(visitors.Interpreter):
         if theloss:
             ST.loss[part] = (number(theloss), isPercent(theloss))
         # we only want the relations which are lists
-        relations = [row for row in relations if type(row) == list]
+        relations = [row for row in relations if isinstance(row, list)]
         totals = {}
         for total_name in total_names:
             totals[total_name] = np.zeros(ST.symbol_count + 1)
