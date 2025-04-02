@@ -1,0 +1,44 @@
+# from The Bread Machine Cookbook page 25
+
+dough:
+  milk = 180g         # 0.75 cup * 240 grams/cup
+  butter = 56g        # 4 tablespoons * 14 grams/tablespoon
+  eggs = 100g         # 2 eggs * 50 grams/egg
+  salt = 12g          # 2 teaspoons * 6 grams/teaspoon
+  sugar = 66g         # 0.33 cups * 200 grams/cup
+  bread_flour = 420g  # 3.5 cups * 120 grams/cup
+  yeast = 6g          # 2 teaspoons * 3 grams/teaspoon
+
+/*+
+Nutrition
+    name     | per 100g |
+-------------|----------|
+calcium      |     0.04 |
+calories     |   320    |
+carbohydrate |    50.0  |
+fat          |     8.9  |
+fiber        |     1.5  |
+monounsat    |     2.3  |
+polyunsat    |     0.92 |
+potassium    |     0.11 |
+protein      |     9.3  |
+saturated    |     4.8  |
+sodium       |     0.69 |
+sugars       |    10.0  |
+water        |    35.7  |
+
+
+ part | grams  |     name    |   %   | flour  | water  |
+------|--------|-------------|-------|--------|--------|
+dough | 840    |             | 200.0 | 420    | 244    |
+      | 180    | milk        |  42.9 |        | 159    |
+      |  56.0  | butter      |  13.3 |        |   8.9  |
+      | 100    | eggs        |  23.8 |        |  76.1  |
+      |  12.0  | salt        |   2.9 |        |        |
+      |  66.0  | sugar       |  15.7 |        |        |
+      | 420    | bread flour | 100.0 | 420    |        |
+      |   6.0  | yeast       |   1.4 |        |   0.30 |
+      |        | hydration   |  58.1 |        |        |
+     
++*/
+
