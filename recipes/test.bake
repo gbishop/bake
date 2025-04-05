@@ -1,6 +1,12 @@
 # Simple test loaf
 
+starter ^ 5%:
+  flour
+  water
+  hydration = 100%
+
 dough:
+  starter
   /* names that begin with _ are not ingredients but are
      used for calculations */
   prairie_gold = 300% * _part
