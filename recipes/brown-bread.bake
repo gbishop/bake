@@ -1,0 +1,84 @@
+# Sourdough Boston Brown Bread
+
+# From: https://breadtopia.com/sourdough-brown-bread/
+
+starter:
+  ww_flour
+  water
+  hydration = 75%
+
+sponge:
+  starter = 5%
+  ww_flour
+  water
+  hydration = 100%
+
+wet:
+  sponge = 19%
+  milk
+  molasses = 14%
+
+dry:
+  bread_flour
+  rye
+  hard_red = 19%
+  corn_flour = 14%
+  salt = 1%
+
+dough:
+  wet
+  dry
+
+  total_flour = 0.533 * 640g
+  hydration = 67.5%
+
+
+/*+
+Nutrition
+    name     | per 100g |
+-------------|----------|
+calcium      |     0.07 |
+calories     |   250    |
+carbohydrate |    51.3  |
+fat          |     2.4  |
+fiber        |     5.5  |
+monounsat    |     0.48 |
+polyunsat    |     0.61 |
+potassium    |     0.36 |
+protein      |     7.6  |
+saturated    |     0.86 |
+sodium       |     0.25 |
+sugars       |     6.8  |
+water        |    42.5  |
+
+
+  part  | grams  |     name    |   %   | flour  | water  |
+--------|--------|-------------|-------|--------|--------|
+starter |  17.1  |             |   5.0 |   9.7  |   7.3  |
+        |   9.7  | ww flour    |   2.9 |   9.7  |        |
+        |   7.3  | water       |   2.1 |        |   7.3  |
+       
+sponge  |  64.8  |             |  19.0 |  32.4  |  32.4  |
+        |  17.1  | starter     |   5.0 |   9.7  |   7.3  |
+        |  22.6  | ww flour    |   6.6 |  22.6  |        |
+        |  25.1  | water       |   7.4 |        |  25.1  |
+       
+wet     | 325    |             |  95.3 |  32.4  | 230    |
+        |  64.8  | sponge      |  19.0 |  32.4  |  32.4  |
+        | 213    | milk        |  62.3 |        | 187    |
+        |  47.8  | molasses    |  14.0 |        |  10.4  |
+       
+dry     | 312    |             |  91.5 | 309    |        |
+        |  98.1  | bread flour |  28.8 |  98.1  |        |
+        |  98.1  | rye         |  28.8 |  98.1  |        |
+        |  64.8  | hard red    |  19.0 |  64.8  |        |
+        |  47.8  | corn flour  |  14.0 |  47.8  |        |
+        |   3.4  | salt        |   1.0 |        |        |
+       
+dough   | 637    |             | 186.8 | 341    | 230    |
+        | 325    | wet         |  95.3 |  32.4  | 230    |
+        | 312    | dry         |  91.5 | 309    |        |
+        |        | hydration   |  67.5 |        |        |
+       
++*/
+
