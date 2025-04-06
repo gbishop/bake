@@ -12,6 +12,7 @@ from typing import Tuple, Dict, List
 import argparse
 import re
 import sys
+from ingredients import getIngredient
 
 
 def P(*args):
@@ -120,6 +121,9 @@ class Pass1(visitors.Transformer):
             [value / 100.0, TF()],
         )
 
+    def percent(self, value):
+        return value / 100.0
+
     def NUMBER(self, value):
         if value.endswith("g"):
             return float(value[:-1])
@@ -146,26 +150,76 @@ class Pass1(visitors.Transformer):
             loss = 0
 
         # qualify the variables with their partname
+        vnames = set()
         for r in rest:
             vars = r.find_data("unknown")
             for var in vars:
-                var.children[0] = (partname, var.children[0][1])
-                if var.children[0] not in Variables:
-                    Variables[var.children[0]] = None
+                name = (partname, var.children[0][1])
+                vnames.add(name)
+                var.children[0] = name
+                if name not in Variables:
+                    Variables[name] = None
 
-        for name in ["total", "total_water", "total_flour"]:
-            Variables[(partname, name)] = None
+        vnames = [
+            name
+            for name in vnames
+            if not name[1].startswith("total") and not name[1].startswith("_")
+        ]
+        relations = [r for r in rest if isinstance(r, Tree) and r.data == "relation"]
+        for name, func in [
+            ("total", total),
+            ("total_water", water),
+            ("total_flour", flour),
+        ]:
+            tname = (partname, name)
+            Variables[tname] = None
+            sum = func(vnames[0])
+            for var in vnames[1:]:
+                sum = Tree("add", [func(var), sum])
+            relations.append(Tree("relation", [Tree("unknown", [tname]), sum]))
 
-        return Tree("part", [partname, loss, *rest])
+        return Tree("part", [partname, loss, *relations])
+
+
+def flour(name):
+    n = name[1]
+    if n in Parts:
+        return Tree("unknown", [(n, "total_flour")])
+    else:
+        info = getIngredient(n)
+        return Tree("multiply", [info["flour"] / 100, name])
+
+
+def water(name):
+    n = name[1]
+    if n in Parts:
+        return Tree("unknown", [(n, "total_water")])
+    else:
+        info = getIngredient(n)
+        return Tree("multiply", [info["water"] / 100, name])
+
+
+def total(name):
+    n = name[1]
+    if n in Parts:
+        return Tree("unknown", [(n, "total")])
+    else:
+        return name
 
 
 @visitors.v_args(tree=True)
 class Eval(visitors.Transformer):
-    def variable(self, tree):
+    updates = 0
+
+    def unknown(self, tree):
+        name = tree.children[0]
+        if name[1] in Parts:
+            return Tree("unknown", [(name[1], "total")])
         value = Variables[tree.children[0]]
         if value is None:
             return tree
         else:
+            self.updates += 1
             return value
 
     def reference(self, tree):
@@ -173,6 +227,7 @@ class Eval(visitors.Transformer):
         if value is None:
             return tree
         else:
+            self.updates += 1
             return value
 
     def relation(self, tree):
@@ -184,25 +239,66 @@ class Eval(visitors.Transformer):
             if lvalue is None:
                 if isinstance(rhs, float):
                     Variables[lname] = rhs
+                    self.updates += 1
                     return visitors.Discard
         return tree
 
     def multiply(self, tree):
         lhs, rhs = tree.children
-        if isinstance(lhs, float) and isinstance(rhs, float):
-            return lhs * rhs
+        if isinstance(lhs, float):
+            if lhs == 0:
+                self.updates += 1
+                return 0.0
+            elif lhs == 1:
+                self.updates += 1
+                return rhs
+            if isinstance(rhs, float):
+                if rhs == 0:
+                    self.updates += 1
+                    return 0.0
+                elif rhs == 1:
+                    self.updates += 1
+                    return lhs
+                self.updates += 1
+                return lhs * rhs
+        if isinstance(rhs, float):
+            if rhs == 0:
+                self.updates += 1
+                return 0
+            elif rhs == 1:
+                return lhs
+
+        return tree
+
+    def add(self, tree):
+        lhs, rhs = tree.children
+        if isinstance(lhs, float):
+            if lhs == 0:
+                self.updates += 1
+                return rhs
+            if isinstance(rhs, float):
+                if rhs == 0:
+                    self.updates += 1
+                    return lhs
+                self.updates += 1
+                return lhs + rhs
+        if isinstance(rhs, float) and rhs == 0:
+            return lhs
         return tree
 
 
-P(Variables)
+t = Pass1().transform(tree)
 
-t1 = Pass1().transform(tree)
+# P(t.pretty())
 
-P(t1.pretty())
+for i in range(10):
+    P(i)
+    e = Eval()
+    t = e.transform(t)
+    P(e.updates)
+    if e.updates == 0:
+        break
 
-t2 = Eval().transform(t1)
-t3 = Eval().transform(t2)
-
-P(t3.pretty())
+P(t.pretty())
 
 P(Variables)
