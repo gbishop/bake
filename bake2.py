@@ -5,7 +5,6 @@ Gary Bishop July-December 2024
 """
 
 from lark import Lark, Visitor, Tree, Token, visitors
-from formula import Formula
 import lark
 import numpy as np
 from numpy.typing import NDArray
@@ -13,8 +12,6 @@ from typing import Tuple, Dict, List
 import argparse
 import re
 import sys
-
-formula = Formula()
 
 
 def P(*args):
@@ -25,12 +22,12 @@ def P(*args):
 grammar = r"""
 start: part+
 
-part: ID [ "^" margin ] ":" (hydration | relation | unknown)+
+part: ID [ "^" margin ] ":" (hydration | relation | variable)+
 
 margin: NUMBER -> fixed_loss
       | NUMBER "%" -> scaled_loss
 
-hydration: "hydration" "=" NUMBER
+hydration: "hydration" "=" NUMBER "%"
 
 relation: sum "=" sum
 
@@ -45,13 +42,14 @@ bp: NUMBER "%"
         | term "*" product -> multiply
         | term "/" product -> divide
 
-?term: unknown
-     | NUMBER -> constant
+?term: variable
+     | reference
+     | NUMBER
      | NUMBER "%" -> percent
      | "(" sum ")"
 
-unknown: ID
-       | ID "." ID
+variable: ID
+reference: ID "." ID
 
 ID: /[a-zA-Z_][a-zA-Z_0-9]*/
 NUMBER: /-?[0-9]+([.][0-9]+)?g?/
@@ -94,17 +92,32 @@ except lark.exceptions.UnexpectedEOF as e:
     sys.exit(1)
 except AssertionError as e:
     raise (e)
+except Exception as e:
+    P("failed")
+    raise (e)
 
 
 def TF():
-    return Tree("unknown", [("dough", "total_flour")])
+    return Tree("reference", [("dough", "total_flour")])
 
 
-class TransformNumbers(visitors.Transformer):
-    def bp(self, args):
+Variables: Dict[tuple, None | float] = {}
+Parts: Dict[str, None] = {}
+
+
+@visitors.v_args(inline=True)
+class Pass1(visitors.Transformer):
+
+    def variable(self, name: str):
+        return Tree("unknown", [("", name)])
+
+    def reference(self, partname, name):
+        return Tree("reference", [(partname, name)])
+
+    def bp(self, value):
         return Tree(
             "multiply",
-            [args[0] / 100.0, TF()],
+            [value / 100.0, TF()],
         )
 
     def NUMBER(self, value):
@@ -116,29 +129,80 @@ class TransformNumbers(visitors.Transformer):
     def ID(self, value):
         return str(value)
 
-    def unknown(self, args):
-        if len(args) == 1:
-            return Tree("unknown", [args[0]])
-        else:
-            return Tree("unknown", [tuple(args)])
+    def hydration(self, value):
+        return Tree(
+            "relation",
+            [
+                Tree("unknown", [("", "total_water")]),
+                Tree(
+                    "multiply", [value / 100.0, Tree("unknown", [("", "total_flour")])]
+                ),
+            ],
+        )
 
-    def part(self, args):
-        partname, loss, *rest = args
+    def part(self, partname, loss, *rest):
+        Parts[partname] = None
         if loss is None:
             loss = 0
 
-        class T(visitors.Transformer):
-            def unknown(self, args):
-                if len(args) == 1:
-                    unknown = formula.addUnknown(partname, args[0])
-                else:
-                    unknown = formula.addUnknown(*args)
-                return Tree("unknown", unknown)
+        # qualify the variables with their partname
+        for r in rest:
+            vars = r.find_data("unknown")
+            for var in vars:
+                var.children[0] = (partname, var.children[0][1])
+                if var.children[0] not in Variables:
+                    Variables[var.children[0]] = None
 
-        t = T()
-        rest = [t.transform(arg) for arg in rest]
-        part = formula.addPart(partname, loss)
-        return Tree("part", [partname, part, *rest])
+        for name in ["total", "total_water", "total_flour"]:
+            Variables[(partname, name)] = None
+
+        return Tree("part", [partname, loss, *rest])
 
 
-P(TransformNumbers().transform(tree).pretty())
+@visitors.v_args(tree=True)
+class Eval(visitors.Transformer):
+    def variable(self, tree):
+        value = Variables[tree.children[0]]
+        if value is None:
+            return tree
+        else:
+            return value
+
+    def reference(self, tree):
+        value = Variables[tree.children[0]]
+        if value is None:
+            return tree
+        else:
+            return value
+
+    def relation(self, tree):
+        lhs, rhs = tree.children
+        if isinstance(lhs, Tree) and lhs.data == "unknown":
+            lname = lhs.children[0]
+            assert isinstance(lname, tuple)
+            lvalue = Variables[lname]
+            if lvalue is None:
+                if isinstance(rhs, float):
+                    Variables[lname] = rhs
+                    return visitors.Discard
+        return tree
+
+    def multiply(self, tree):
+        lhs, rhs = tree.children
+        if isinstance(lhs, float) and isinstance(rhs, float):
+            return lhs * rhs
+        return tree
+
+
+P(Variables)
+
+t1 = Pass1().transform(tree)
+
+P(t1.pretty())
+
+t2 = Eval().transform(t1)
+t3 = Eval().transform(t2)
+
+P(t3.pretty())
+
+P(Variables)
