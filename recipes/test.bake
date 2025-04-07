@@ -1,12 +1,12 @@
 # Simple test loaf
 
 starter ^ 5%:
-  flour
+  ww_flour
   water
   hydration = 100%
 
 dough:
-  starter
+  starter = 10g
   /* names that begin with _ are not ingredients but are
      used for calculations */
   prairie_gold = 300% * _part

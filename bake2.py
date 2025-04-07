@@ -25,7 +25,7 @@ start: part+
 
 part: ID [ "^" margin ] ":" (hydration | relation | variable)+
 
-margin: NUMBER -> fixed_loss
+margin: NUMBER
       | NUMBER "%" -> scaled_loss
 
 hydration: "hydration" "=" NUMBER "%"
@@ -110,7 +110,7 @@ Parts: Dict[str, None] = {}
 class Pass1(visitors.Transformer):
 
     def variable(self, name: str):
-        return Tree("unknown", [("", name)])
+        return U("", name)
 
     def reference(self, partname, name):
         return Tree("reference", [(partname, name)])
@@ -137,10 +137,8 @@ class Pass1(visitors.Transformer):
         return Tree(
             "relation",
             [
-                Tree("unknown", [("", "total_water")]),
-                Tree(
-                    "multiply", [value / 100.0, Tree("unknown", [("", "total_flour")])]
-                ),
+                U("", "total_water"),
+                Tree("multiply", [value / 100.0, U("", "total_flour")]),
             ],
         )
 
@@ -184,27 +182,31 @@ class Pass1(visitors.Transformer):
 def flour(name):
     n = name[1]
     if n in Parts:
-        return Tree("unknown", [(n, "total_flour")])
+        return U(n, "total_flour")
     else:
         info = getIngredient(n)
-        return Tree("multiply", [info["flour"] / 100, name])
+        return Tree("multiply", [info["flour"] / 100, U(*name)])
 
 
 def water(name):
     n = name[1]
     if n in Parts:
-        return Tree("unknown", [(n, "total_water")])
+        return U(n, "total_water")
     else:
         info = getIngredient(n)
-        return Tree("multiply", [info["water"] / 100, name])
+        return Tree("multiply", [info["water"] / 100, U(*name)])
 
 
 def total(name):
     n = name[1]
     if n in Parts:
-        return Tree("unknown", [(n, "total")])
+        return U(n, "total")
     else:
-        return name
+        return U(*name)
+
+
+def U(part, name):
+    return Tree("unknown", [(part, name)])
 
 
 @visitors.v_args(tree=True)
@@ -214,7 +216,7 @@ class Eval(visitors.Transformer):
     def unknown(self, tree):
         name = tree.children[0]
         if name[1] in Parts:
-            return Tree("unknown", [(name[1], "total")])
+            return U(name[1], "total")
         value = Variables[tree.children[0]]
         if value is None:
             return tree
@@ -270,6 +272,21 @@ class Eval(visitors.Transformer):
 
         return tree
 
+    def divide(self, tree):
+        lhs, rhs = tree.children
+        if isinstance(lhs, float):
+            if lhs == 0:
+                self.updates += 1
+                return 0.0
+            if isinstance(rhs, float):
+                self.updates += 1
+                return lhs / rhs
+        if isinstance(rhs, float):
+            if rhs == 1:
+                return lhs
+
+        return tree
+
     def add(self, tree):
         lhs, rhs = tree.children
         if isinstance(lhs, float):
@@ -286,16 +303,25 @@ class Eval(visitors.Transformer):
             return lhs
         return tree
 
+    def subtract(self, tree):
+        lhs, rhs = tree.children
+        if isinstance(lhs, float):
+            if isinstance(rhs, float):
+                if rhs == 0:
+                    self.updates += 1
+                    return lhs
+                self.updates += 1
+                return lhs - rhs
+        if isinstance(rhs, float) and rhs == 0:
+            return lhs
+        return tree
+
 
 t = Pass1().transform(tree)
 
-# P(t.pretty())
-
 for i in range(10):
-    P(i)
     e = Eval()
     t = e.transform(t)
-    P(e.updates)
     if e.updates == 0:
         break
 
