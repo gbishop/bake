@@ -159,73 +159,62 @@ class Prepare(visitors.Transformer):
             for name in vnames
             if not name[1].startswith("total") and not name[1].startswith("_")
         ]
-        for fullname, func in [
-            ("total", total),
-            ("total_water", water),
-            ("total_flour", flour),
-        ]:
-            tname = (partname, fullname)
-            Variables[tname] = None
-            sum = func(tosum[0])
+
+        def summand(name, which):
+            n = name[1]
+            if n in Parts:
+                return U(n, which)
+            elif which == "total":
+                return U(*name)
+            else:
+                kind = which.replace("total_", "")
+                nutrition = getIngredient(n)
+                return Tree("multiply", [nutrition[kind] / 100, U(*name)])
+
+        for which in ["total", "total_water", "total_flour"]:
+            fullname = (partname, which)
+            Variables[fullname] = None
+            sum = summand(tosum[0], which)
             for var in tosum[1:]:
-                sum = Tree("add", [func(var), sum])
-            relations.append(Tree("relation", [Tree("unknown", [tname]), sum]))
+                sum = Tree("add", [summand(var, which), sum])
+            relations.append(Tree("relation", [U(*fullname), sum]))
         Parts[partname] = loss
         return Tree("part", [partname, loss, *relations])
-
-
-def flour(name):
-    n = name[1]
-    if n in Parts:
-        return U(n, "total_flour")
-    else:
-        info = getIngredient(n)
-        return Tree("multiply", [info["flour"] / 100, U(*name)])
-
-
-def water(name):
-    n = name[1]
-    if n in Parts:
-        return U(n, "total_water")
-    else:
-        info = getIngredient(n)
-        return Tree("multiply", [info["water"] / 100, U(*name)])
-
-
-def total(name):
-    n = name[1]
-    if n in Parts:
-        return U(n, "total")
-    else:
-        return U(*name)
 
 
 def U(part, name):
     return Tree("unknown", [(part, name)])
 
 
-@visitors.v_args(tree=True)
+def wrapper(obj, data, children, meta):
+    raw = obj(*children)
+    # the the method returns nothing, return the tree
+    if raw is None:
+        return Tree(data, children, meta)
+    # if it returns a Tree augment it with meta
+    if isinstance(raw, Tree):
+        return Tree(raw.data, raw.children, meta)
+    # otherwise return the raw result
+    return raw
+
+
+@visitors.v_args(wrapper=wrapper)  # tree=True)
 class Propagate(visitors.Transformer):
     updates = 0
 
-    def unknown(self, tree):
-        value = Variables[tree.children[0]]
-        if value is None:
-            return tree
-        else:
+    def unknown(self, name):
+        value = Variables[name]
+        if value is not None:
             self.updates += 1
             return value
 
-    def reference(self, tree):
-        value = Variables[tree.children[0]]
-        if value is None:
-            return tree
-        else:
+    def reference(self, name):
+        value = Variables[name]
+        if value is not None:
             self.updates += 1
             return value
 
-    def relation(self, tree):
-        lhs, rhs = tree.children
+    def relation(self, lhs, rhs):
         if isinstance(lhs, Tree) and lhs.data == "unknown":
             lname = lhs.children[0]
             assert isinstance(lname, tuple)
@@ -246,10 +235,8 @@ class Propagate(visitors.Transformer):
                     return visitors.Discard
         elif isinstance(lhs, float) and isinstance(rhs, float):
             return visitors.Discard
-        return tree
 
-    def multiply(self, tree):
-        lhs, rhs = tree.children
+    def multiply(self, lhs, rhs):
         if isinstance(lhs, float):
             if lhs == 0:
                 self.updates += 1
@@ -273,10 +260,7 @@ class Propagate(visitors.Transformer):
             elif rhs == 1:
                 return lhs
 
-        return tree
-
-    def divide(self, tree):
-        lhs, rhs = tree.children
+    def divide(self, lhs, rhs):
         if isinstance(lhs, float):
             if lhs == 0:
                 self.updates += 1
@@ -288,10 +272,7 @@ class Propagate(visitors.Transformer):
             if rhs == 1:
                 return lhs
 
-        return tree
-
-    def add(self, tree):
-        lhs, rhs = tree.children
+    def add(self, lhs, rhs):
         if isinstance(lhs, float):
             if lhs == 0:
                 self.updates += 1
@@ -304,10 +285,8 @@ class Propagate(visitors.Transformer):
                 return lhs + rhs
         if isinstance(rhs, float) and rhs == 0:
             return lhs
-        return tree
 
-    def subtract(self, tree):
-        lhs, rhs = tree.children
+    def subtract(self, lhs, rhs):
         if isinstance(lhs, float):
             if isinstance(rhs, float):
                 if rhs == 0:
@@ -317,7 +296,6 @@ class Propagate(visitors.Transformer):
                 return lhs - rhs
         if isinstance(rhs, float) and rhs == 0:
             return lhs
-        return tree
 
 
 t = Prepare().transform(tree)
