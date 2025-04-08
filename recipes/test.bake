@@ -11,12 +11,13 @@ dough:
      used for calculations */
   prairie_gold = 300% * _part
   bronze_chief = 2 * _part
-  spelt = _part / 1
+  spelt = _part / 2
   water
-  salt = 2% * (prairie_gold + bronze_chief + spelt)
+  salt = 2% * (prairie_gold + bronze_chief - spelt)
   yeast = 0.4%
   hydration = 70%
-  total_flour = 460g
+  # total_flour = 460g
+  total = 793g
 
 /*+
 Nutrition
