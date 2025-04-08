@@ -96,6 +96,8 @@ def getIngredient(name: str) -> pd.Series:
             name = "unknown"
     m = map.loc[name]
     u = usda.loc[m.usda]
+    if name == "water":
+        u.loc["water"] = 100
     u.loc["flour"] = m.loc["flour"]
     result = u
     # pretend flour has no water because hydration calculations assume it doesn't

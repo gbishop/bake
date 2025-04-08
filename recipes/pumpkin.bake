@@ -1,16 +1,12 @@
 # From Grant Bakes
 
 starter:
-  flour = 50g
+  ww_flour = 50g
   water
   hydration = 100%
 
-pumpkin_puree: # pumpkin is 90% water
-  pumpkin
-  water = 90% * total
-
 dough:
-  flour = 450g
+  bread_flour = 450g
   pumpkin_puree = 200g
   milk = 100g
   water = 50g
@@ -20,24 +16,43 @@ dough:
   butter = 54g
 
 /*+
-     part     | grams  |      name     |   %    | flour  | water  |  fat  |
-              |  50.0  | flour         |   10.0 |  50.0  |        |       |
-              |  50.0  | water         |   10.0 |        |  50.0  |       |
-starter       | 100    |               |   20.0 |  50.0  |  50.0  |       |
+Nutrition
+    name     | per 100g |
+-------------|----------|
+calcium      |     0.02 |
+calories     |    63.8  |
+carbohydrate |     3.5  |
+fat          |     5.5  |
+monounsat    |     1.4  |
+polyunsat    |     0.22 |
+potassium    |     0.02 |
+protein      |     0.42 |
+saturated    |     3.5  |
+sodium       |     0.51 |
+sugars       |     3.5  |
+water        |    34.8  |
+
+
+     part     | grams  |      name     |           %           | flour | water  |
+--------------|--------|---------------|-----------------------|-------|--------|
+starter       |  50.0  |               |  -20626626016387332.0 |       |        |
+              |  50.0  | flour!        |  -20626626016387368.0 |       |        |
+              |        | water         |                  22.3 |       |        |
              
-              |  20.0  | pumpkin       |    4.0 |        |        |       |
-              | 180    | water         |   36.0 |        | 180    |       |
-pumpkin puree | 200    |               |   40.0 |        | 180    |       |
+pumpkin puree | 200    |               |  -82506504065549824.0 |       | 180    |
+              |  20.0  | pumpkin!      |   -8250650406554904.0 |       |        |
+              | 180    | water         |  -74255853658994992.0 |       | 180    |
              
-              | 450    | flour         |   90.0 | 450    |        |       |
-              | 200    | pumpkin puree |   40.0 |        | 180    |       |
-              | 100    | milk          |   20.0 |        |  87.0  |  3.50 |
-              |  50.0  | water         |   10.0 |        |  50.0  |       |
-              |  25.0  | sugar         |    5.0 |        |        |       |
-              | 100    | starter       |   20.0 |  50.0  |  50.0  |       |
-              |  10.0  | salt          |    2.0 |        |        |       |
-              |  54.0  | butter        |   10.8 |        |   9.72 | 43.2  |
-dough         | 989    |               |  197.8 | 500    | 377    | 46.7  |
+dough         | 939    |               | -387368036587756096.0 |       | 327    |
+              | 450    | flour!        | -185639634147487104.0 |       |        |
+              | 200    | pumpkin puree |  -82506504065549824.0 |       | 180    |
+              | 100    | milk          |  -41253252032774848.0 |       |  88.1  |
+              |  50.0  | water         |  -20626626016387620.0 |       |  50.0  |
+              |  25.0  | sugar         |  -10313313008194494.0 |       |        |
+              |  50.0  | starter       |  -20626626016387332.0 |       |        |
+              |  10.0  | salt          |   -4125325203277074.0 |       |        |
+              |  54.0  | butter        |  -22276756097697872.0 |       |   8.6  |
+              |        | hydration     | -134784605197579824.0 |       |        |
              
 +*/
 
