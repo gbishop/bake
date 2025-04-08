@@ -81,18 +81,18 @@ The texture is perfect. Nicely soft. Good flavor.
 Nutrition
     name     | per 100g |
 -------------|----------|
-calcium      |     0.06 |
+calcium      |          |
 calories     |   255    |
-carbohydrate |    44.8  |
+carbohydrate |    44.5  |
 fat          |     6.0  |
-fiber        |     7.5  |
+fiber        |     7.2  |
 monounsat    |     2.7  |
 polyunsat    |     1.6  |
-potassium    |     0.30 |
-protein      |     9.2  |
+potassium    |     0.29 |
+protein      |     9.4  |
 saturated    |     1.2  |
 sodium       |     0.43 |
-sugars       |     3.9  |
+sugars       |     4.3  |
 water        |    43.4  |
 
 
@@ -105,7 +105,7 @@ starter |  34.0  |               |  17.0 |  19.4  |  14.6  |
 grain   | 161    |               |  80.3 | 161    |        |
         |  70.3  | prairie gold  |  35.1 |  70.3  |        |
         |  70.3  | hard red      |  35.1 |  70.3  |        |
-        |  20.0  | rye           |  10.0 |  20.0  |        |
+        |  20.0  | spelt         |  10.0 |  20.0  |        |
        
 dry     | 194    |               |  96.9 | 181    |   0.26 |
         | 161    | grain         |  80.3 | 161    |        |
@@ -114,7 +114,7 @@ dry     | 194    |               |  96.9 | 181    |   0.26 |
         |   9.1  | nido          |   4.5 |        |   0.22 |
         |   6.0  | wgbi          |   3.0 |   6.0  |        |
         |   3.6  | salt          |   1.8 |        |        |
-        |   0.50 | yeast         |   0.3 |        |        |
+        |   0.50 | yeast         |   0.2 |        |        |
        
 wet     | 179    |               |  89.3 |  19.4  | 140    |
         |  34.0  | starter       |  17.0 |  19.4  |  14.6  |
