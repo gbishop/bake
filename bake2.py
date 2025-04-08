@@ -108,10 +108,10 @@ class Prepare(visitors.Transformer):
         return U("", name)
 
     def reference(self, partname, name):
-        return Tree("reference", [(partname, name)])
+        return U(partname, name)
 
     def bp(self, value):
-        return Tree("multiply", [value / 100.0, self.reference("dough", "total_flour")])
+        return Tree("multiply", [value / 100.0, U("dough", "total_flour")])
 
     def percent(self, value):
         return value / 100.0
@@ -145,6 +145,8 @@ class Prepare(visitors.Transformer):
         for r in rest:
             vars = r.find_data("unknown")
             for var in vars:
+                if var.children[0][0]:
+                    continue
                 name = var.children[0][1]
                 fullname = (partname, name)
                 vnames.add(fullname)
@@ -208,12 +210,6 @@ class Propagate(visitors.Transformer):
             self.updates += 1
             return value
 
-    def reference(self, name):
-        value = Variables[name]
-        if value is not None:
-            self.updates += 1
-            return value
-
     def relation(self, lhs, rhs):
         if isinstance(lhs, Tree) and lhs.data == "unknown":
             lname = lhs.children[0]
@@ -271,6 +267,7 @@ class Propagate(visitors.Transformer):
         if isinstance(rhs, float):
             if rhs == 1:
                 return lhs
+            return Tree("multiply", [1.0 / rhs, lhs])
 
     def add(self, lhs, rhs):
         if isinstance(lhs, float):
@@ -350,6 +347,10 @@ class Vectorize(visitors.Transformer):
     def add(self, args):
         lhs, rhs = [Vector(arg) for arg in args]
         return lhs + rhs
+
+    def subtract(self, args):
+        lhs, rhs = [Vector(arg) for arg in args]
+        return lhs - rhs
 
     def multiply(self, args):
         lhs, rhs = args
