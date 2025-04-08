@@ -8,7 +8,7 @@ starter:
 grain:
   prairie_gold
   hard_red
-  rye = 10%
+  spelt = 10%
 
 dry:
   grain
@@ -21,7 +21,7 @@ dry:
   yeast = 0.25%
 
 wet:
-  starter = 14g # what I had in the fridge - 3g
+  starter = 34g # what I had in the fridge - 3g
   water
   olive_oil = 5%
   honey = 5%
@@ -35,44 +35,45 @@ dough:
   total_flour = 200g * 1
 
 /*
-April 4, 2025
+April 7, 2025
 
 Changes
-* Program the Zoji for a really long cycle and track the pH
+* Program the Zoji longer first cycle, mix before preheat
 * No preferment
 * Starter from fridge
+* Spelt instead of rye
 
-Program: P=10, K=20, R1=60, R2=60, R3=60 total 3:30.
+Program: P=20, K=20, R1=240, R2=60, R3=60
 
-Mixed at 9:21.
+Mixed at 8:30.
 
-9:52 after kneading DT=90.5 pH=5.48
+9:00 after kneading pH=5.34
 
-10:52 DT=85.2 pH=5.50
+Proofed in Cambro in the oven.
 
-11:52 DT=80 pH=5.41
+10:08 pH=5.33
 
-12:52 DT=85 pH=5.23
+11:05 pH=5.23
 
-12:57 into pan. Rise using proof mode. Dough is easy to handle, not
-sticky. A dry "crust" on top. I hand kneaded it in. How to avoid
-that drying? It doesn't happen in the cambro. Maybe I should do this
-rising in a cambro in the oven instead of in the Zoji? I could cover
-the top of the pan with plastic wrap since I am not baking.
+12:00 pH=5.1
 
-14:00 pH=5.03 at the top of the pan.
+13:00 pH=5.00
 
-14:10 bake in 325F preheated convection oven. 45 minutes lid on.
+13:05 into pan. Rise using proof mode. Dough is easy to handle, not
+sticky.
 
-Came cleanly out of the pan. No flash. Lighter in color and software
-crust.
+14:40 pH=4.72 at the top of the pan.
+
+14:40 bake in 325F preheated convection oven. 45 minutes lid on.
+
+Came cleanly out of the pan. No flash. Lighter in color and softer
+crust. 205F inside.
 
 Cooled dry pH is 5.1.
 
 It looks great.
 
-The texture is perfect. It could be a little more sour. I'll let the
-fermentation go longer next time.
+The texture is perfect. Nicely soft. Good flavor.
 
 */
 
@@ -82,13 +83,13 @@ Nutrition
 -------------|----------|
 calcium      |     0.06 |
 calories     |   255    |
-carbohydrate |    44.9  |
-fat          |     5.9  |
-fiber        |     7.6  |
+carbohydrate |    44.8  |
+fat          |     6.0  |
+fiber        |     7.5  |
 monounsat    |     2.7  |
 polyunsat    |     1.6  |
 potassium    |     0.30 |
-protein      |     9.1  |
+protein      |     9.2  |
 saturated    |     1.2  |
 sodium       |     0.43 |
 sugars       |     3.9  |
@@ -97,34 +98,34 @@ water        |    43.4  |
 
   part  | grams  |      name     |   %   | flour  | water  |
 --------|--------|---------------|-------|--------|--------|
-starter |  14.0  |               |   7.0 |   8.0  |   6.0  |
-        |   8.0  | whole wheat   |   4.0 |   8.0  |        |
-        |   6.0  | water         |   3.0 |        |   6.0  |
+starter |  34.0  |               |  17.0 |  19.4  |  14.6  |
+        |  19.4  | whole wheat   |   9.7 |  19.4  |        |
+        |  14.6  | water         |   7.3 |        |  14.6  |
        
-grain   | 172    |               |  86.0 | 172    |        |
-        |  76.0  | prairie gold  |  38.0 |  76.0  |        |
-        |  76.0  | hard red      |  38.0 |  76.0  |        |
+grain   | 161    |               |  80.3 | 161    |        |
+        |  70.3  | prairie gold  |  35.1 |  70.3  |        |
+        |  70.3  | hard red      |  35.1 |  70.3  |        |
         |  20.0  | rye           |  10.0 |  20.0  |        |
        
-dry     | 205    |               | 102.6 | 192    |   0.26 |
-        | 172    | grain         |  86.0 | 172    |        |
+dry     | 194    |               |  96.9 | 181    |   0.26 |
+        | 161    | grain         |  80.3 | 161    |        |
         |   4.0  | potato flakes |   2.0 |   4.0  |        |
         |  10.0  | flaxseed meal |   5.0 |  10.0  |        |
-        |   9.1  | nido          |   4.6 |        |   0.22 |
+        |   9.1  | nido          |   4.5 |        |   0.22 |
         |   6.0  | wgbi          |   3.0 |   6.0  |        |
         |   3.6  | salt          |   1.8 |        |        |
         |   0.50 | yeast         |   0.3 |        |        |
        
-wet     | 167    |               |  83.7 |   8.0  | 140    |
-        |  14.0  | starter       |   7.0 |   8.0  |   6.0  |
-        | 123    | water         |  61.7 |        | 123    |
+wet     | 179    |               |  89.3 |  19.4  | 140    |
+        |  34.0  | starter       |  17.0 |  19.4  |  14.6  |
+        | 115    | water         |  57.3 |        | 115    |
         |  10.0  | olive oil     |   5.0 |        |        |
         |  10.0  | honey         |   5.0 |        |   1.7  |
         |  10.0  | yogurt        |   5.0 |        |   8.8  |
        
-dough   | 373    |               | 186.3 | 200    | 140    |
-        | 167    | wet           |  83.7 |   8.0  | 140    |
-        | 205    | dry           | 102.6 | 192    |   0.26 |
+dough   | 372    |               | 186.2 | 200    | 140    |
+        | 179    | wet           |  89.3 |  19.4  | 140    |
+        | 194    | dry           |  96.9 | 181    |   0.26 |
         |        | hydration     |  70.0 |        |        |
        
 +*/
