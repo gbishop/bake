@@ -1,6 +1,6 @@
 # Simple test loaf
 
-starter ^ 5%:
+starter ^ 5g:
   ww_flour
   water
   hydration = 100%
@@ -16,8 +16,10 @@ dough:
   salt = 2% * (prairie_gold + bronze_chief - spelt)
   yeast = 0.4%
   hydration = 70%
-  # total_flour = 460g
-  total = 793g
+  _muffins = 10
+  _size = 46g
+  total_flour = _muffins * _size
+  # total = 793g
 
 /*+
 Nutrition
