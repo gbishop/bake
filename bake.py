@@ -57,6 +57,10 @@ COMMENT:  "/*" /(.|\n|\r)*?/ "*/"
 %ignore COMMENT
 """
 
+# Collect the variables with their values
+Variables = {}
+Parts = {}
+
 
 def U(part, name, scale=None):
     """Add an unknown possibly scaled"""
@@ -174,10 +178,11 @@ class Prepare(visitors.Transformer):
         return Tree("part", [partname, loss, *relations])
 
 
-class Propagate:
-    """Propagate constants"""
+class Propagate_manager:
+    """Automagically track updates while propagating constants"""
 
     updates = 0
+    first_time = True
 
     def wrapper(self, obj, data, children, meta):
         """Inline parameters, copy if method returns nothing, count updates"""
@@ -193,92 +198,96 @@ class Propagate:
         # otherwise return the raw result
         return raw
 
-    def transform(self, tree):
-        # apply my wrapper to the transformer
-        @visitors.v_args(wrapper=self.wrapper)
-        class PropagateTransformer(visitors.Transformer):
-            def unknown(self, name):
-                value = Variables[name]
-                if value is not None:
-                    return value
+    @property
+    def updated(self):
+        """Allow testing if the propagation has converged"""
+        result = self.first_time or self.updates != 0
+        self.updates = 0
+        self.first_time = False
+        return result
 
-            def relation(self, lhs, rhs):
-                if isT(lhs) and lhs.data == "unknown":
-                    lname = lhs.children[0]
-                    lvalue = Variables[lname]
-                    if lvalue is None:
-                        if isF(rhs):
-                            Variables[lname] = rhs
-                            return visitors.Discard
-                elif isT(rhs) and rhs.data == "unknown":
-                    rname = rhs.children[0]
-                    rvalue = Variables[rname]
-                    if rvalue is None:
-                        if isF(lhs):
-                            Variables[rname] = lhs
-                            return visitors.Discard
-                elif isF(lhs) and isF(rhs):
+
+propagate_manager = Propagate_manager()
+
+
+# apply my wrapper to the transformer
+@visitors.v_args(wrapper=propagate_manager.wrapper)
+class Propagate(visitors.Transformer):
+
+    def unknown(self, name):
+        value = Variables[name]
+        if value is not None:
+            return value
+
+    def relation(self, lhs, rhs):
+        if isT(lhs) and lhs.data == "unknown":
+            lname = lhs.children[0]
+            lvalue = Variables[lname]
+            if lvalue is None:
+                if isF(rhs):
+                    Variables[lname] = rhs
                     return visitors.Discard
-
-            def percent(self, value):
-                return value / 100
-
-            def multiply(self, lhs, rhs):
+        elif isT(rhs) and rhs.data == "unknown":
+            rname = rhs.children[0]
+            rvalue = Variables[rname]
+            if rvalue is None:
                 if isF(lhs):
-                    if lhs == 0:
-                        return 0.0
-                    elif lhs == 1.0:
-                        return rhs
-                    if isF(rhs):
-                        if rhs == 0:
-                            return 0.0
-                        elif rhs == 1.0:
-                            return lhs
-                        return lhs * rhs
-                if isF(rhs):
-                    if rhs == 0:
-                        return 0
-                    elif rhs == 1:
-                        return lhs
+                    Variables[rname] = lhs
+                    return visitors.Discard
+        elif isF(lhs) and isF(rhs):
+            return visitors.Discard
 
-            def divide(self, lhs, rhs):
-                if isF(lhs):
-                    if lhs == 0:
-                        return 0.0
-                    if isF(rhs):
-                        return lhs / rhs
-                if isF(rhs):
-                    if rhs == 1:
-                        return lhs
-                    return Tree("multiply", [1.0 / rhs, lhs])
+    def percent(self, value):
+        return value / 100
 
-            def add(self, lhs, rhs):
-                if isF(lhs):
-                    if lhs == 0:
-                        return rhs
-                    if isF(rhs):
-                        if rhs == 0:
-                            return lhs
-                        return lhs + rhs
-                if isF(rhs) and rhs == 0:
+    def multiply(self, lhs, rhs):
+        if isF(lhs):
+            if lhs == 0:
+                return 0.0
+            elif lhs == 1.0:
+                return rhs
+            if isF(rhs):
+                if rhs == 0:
+                    return 0.0
+                elif rhs == 1.0:
                     return lhs
+                return lhs * rhs
+        if isF(rhs):
+            if rhs == 0:
+                return 0
+            elif rhs == 1:
+                return lhs
 
-            def subtract(self, lhs, rhs):
-                if isF(lhs):
-                    if isF(rhs):
-                        if rhs == 0:
-                            return lhs
-                        return lhs - rhs
-                if isF(rhs) and rhs == 0:
+    def divide(self, lhs, rhs):
+        if isF(lhs):
+            if lhs == 0:
+                return 0.0
+            if isF(rhs):
+                return lhs / rhs
+        if isF(rhs):
+            if rhs == 1:
+                return lhs
+            return Tree("multiply", [1.0 / rhs, lhs])
+
+    def add(self, lhs, rhs):
+        if isF(lhs):
+            if lhs == 0:
+                return rhs
+            if isF(rhs):
+                if rhs == 0:
                     return lhs
+                return lhs + rhs
+        if isF(rhs) and rhs == 0:
+            return lhs
 
-        PT = PropagateTransformer()
-        while True:
-            self.updates = 0
-            tree = PT.transform(tree)
-            if self.updates == 0:
-                break
-        return tree
+    def subtract(self, lhs, rhs):
+        if isF(lhs):
+            if isF(rhs):
+                if rhs == 0:
+                    return lhs
+                return lhs - rhs
+        if isF(rhs) and rhs == 0:
+            return lhs
 
 
 class BuildMatrix(visitors.Transformer):
@@ -311,19 +320,19 @@ class BuildMatrix(visitors.Transformer):
         lhs, rhs = [self.vector(arg) for arg in args]
         return lhs - rhs
 
-    def multiply(self, args):
+    @visitors.v_args(meta=True)
+    def multiply(self, meta, args):
         lhs, rhs = args
         if isF(lhs):
             return lhs * rhs
         elif isF(rhs):
             return lhs * rhs
-        assert False
+        print(f"Multiplication of unknowns is not supported {meta.line}:{meta.column}")
+        sys.exit(1)
 
     @visitors.v_args(meta=True)
     def divide(self, meta, _):
-        print(
-            f"Division of unknowns is not supported on line {meta.line} column {meta.column}"
-        )
+        print(f"Division of unknowns is not supported {meta.line}:{meta.column}")
         sys.exit(1)
 
     def relation(self, args):
@@ -365,8 +374,6 @@ except UnexpectedInput as e:
     print(e, e.get_context(text))
     sys.exit(1)
 
-# Collect the variables with their values
-Variables = {}
 # Ordered set of Part names
 Parts = {str(node.children[0]): None for node in tree.find_data("part")}
 
@@ -374,7 +381,9 @@ Parts = {str(node.children[0]): None for node in tree.find_data("part")}
 tree = Prepare().transform(tree)
 
 # propagate constants
-tree = Propagate().transform(tree)
+PT = Propagate()
+while propagate_manager.updated:
+    tree = PT.transform(tree)
 
 # map unknowns to columns in the matrix
 Index = {}
@@ -386,7 +395,7 @@ for name, value in Variables.items():
     if name[1] not in Parts:
         Index[name] = unknowns
         unknowns += 1
-# link the part references to the total
+# link the part references to the part total
 for name, value in Variables.items():
     if value is not None:
         continue
