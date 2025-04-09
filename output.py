@@ -1,6 +1,7 @@
 import re
 from ingredients import getIngredient
 import sys
+from math import log10
 
 
 def format_table(Variables, Parts):
@@ -8,15 +9,12 @@ def format_table(Variables, Parts):
 
     def fmt_grams(g, threshold=0.1):
         """Format grams in the table"""
-        if round(g, 0) >= 100:
-            r = f"{g:.0f}   "
-        elif round(g, 1) >= 1:
-            r = f"{g:0.1f} "
-        elif abs(g) < threshold:
-            r = ""
-        else:
-            r = f"{g:0.2f}"
-        return r
+        if abs(g) < threshold:
+            return ""
+        w = max(0, int(log10(round(abs(g), 2)))) + 1
+        p = max(0, 3 - w)
+        s = max(0, 2 - p) + (p == 0)
+        return f"{g:.{p}f}" + s * " "
 
     fmt = {
         "g": fmt_grams,
@@ -88,10 +86,10 @@ def format_table(Variables, Parts):
                 else:
                     info = getIngredient(var)
                     extras = [
-                        vg * info["flour"] / 100,
-                        vg * info["water"] / 100,
+                        vg * info["flour"],
+                        vg * info["water"],
                     ]
-                    nutrition = nutrition + info * vg / 100
+                    nutrition = nutrition + info * vg
                     if info.name == "unknown":
                         unknown = "!"
                 rows.append(

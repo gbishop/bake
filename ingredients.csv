@@ -1,19 +1,19 @@
 index,flour,usda
-ap_flour,100,"Wheat flour, white, all-purpose, unenriched"
-barley,100,"Barley, pearled, raw"
-bran,100,"Wheat bran, crude"
-bread_flour,100,"Wheat flour, white, bread, enriched"
-bronze_chief,100,"Wheat, hard red winter"
+ap_flour,1,"Wheat flour, white, all-purpose, unenriched"
+barley,1,"Barley, pearled, raw"
+bran,1,"Wheat bran, crude"
+bread_flour,1,"Wheat flour, white, bread, enriched"
+bronze_chief,1,"Wheat, hard red winter"
 brown_sugar,0,"Sweeteners, for baking, brown, contains sugar and sucralose"
-buckwheat,100,"Buckwheat groats, roasted, dry"
+buckwheat,1,"Buckwheat groats, roasted, dry"
 bulgar,0,"Bulgur, dry"
 butter,0,"Butter, salted"
 buttermilk,0,"Milk, buttermilk, fluid, cultured, lowfat"
 chia_seeds,0,"Seeds, chia seeds, dried"
-chickpea,100,Chickpea flour (besan)
+chickpea,1,Chickpea flour (besan)
 cinnamon,0,"Spices, cinnamon, ground"
 coconut,0,"Nuts, coconut meat, dried (desiccated), sweetened, flaked, canned"
-corn_flour,100,"Corn flour, whole-grain, yellow"
+corn_flour,1,"Corn flour, whole-grain, yellow"
 cracked_rye,0,Rye
 cracked_wheat,0,"Wheat flour, whole-grain"
 egg,0,"Egg, whole, raw, fresh"
@@ -23,58 +23,58 @@ egg_yolk,0,"Egg, yolk, raw, fresh"
 egg_yolks,0,"Egg, yolk, raw, fresh"
 eggs,0,"Egg, whole, raw, fresh"
 evap_milk,0,"Milk, canned, evaporated, without added vitamin A and vitamin D"
-flaxseed_meal,100,"Seeds, flaxseed"
-grape_nuts,100,"Cereals ready-to-eat, POST, GRAPE-NUTS Cereal"
-hard_red,100,"Wheat, hard red winter"
-hard_white,100,"Wheat, hard white"
+flaxseed_meal,1,"Seeds, flaxseed"
+grape_nuts,1,"Cereals ready-to-eat, POST, GRAPE-NUTS Cereal"
+hard_red,1,"Wheat, hard red winter"
+hard_white,1,"Wheat, hard white"
 honey,0,Honey
 lemon_juice,0,"Lemon juice, canned or bottled"
 lemon_zest,0,"Lemon peel, raw"
 malt_syrup,0,"Syrups, malt"
 maple_syrup,0,"Syrups, maple"
-masarepas,100,"Corn flour, masa, enriched, white"
+masarepas,1,"Corn flour, masa, enriched, white"
 milk,0,"Milk, whole, 3.25% milkfat, with added vitamin D"
-millet,100,"Millet, raw"
+millet,1,"Millet, raw"
 molasses,0,Molasses
 nido,0,"Milk, dry, whole, with added vitamin D"
 nutmeg,0,"Spices, nutmeg, ground"
 oat_groats,0,Oats
-oats,100,Oats
-rolled_oats,100,"Cereals, oats, regular and quick and instant, not fortified, dry"
+oats,1,Oats
+rolled_oats,1,"Cereals, oats, regular and quick and instant, not fortified, dry"
 oil,0,"Oil, olive, salad or cooking"
 olive_oil,0,"Oil, olive, salad or cooking"
 pecans,0,"Nuts, pecans, dry roasted, without salt added"
 pecan_butter,0,"Nuts, pecans, dry roasted, without salt added"
-polenta,100,"Cornmeal, whole-grain, yellow"
-potato_flakes,100,"Potatoes, mashed, dehydrated, flakes without milk, dry form"
-prairie_gold,100,"Wheat, hard white"
+polenta,1,"Cornmeal, whole-grain, yellow"
+potato_flakes,1,"Potatoes, mashed, dehydrated, flakes without milk, dry form"
+prairie_gold,1,"Wheat, hard white"
 prunes,0,"Plums, dried (prunes), uncooked"
 pumpkin_seeds,0,"Seeds, pumpkin and squash seed kernels, dried"
 pumpkin_puree,0,"Pumpkin, canned, without salt"
 quinoa,0,"Quinoa, uncooked"
 raisins,0,"Raisins, golden seedless"
-red_rye_malt,100,Rye
-rye,100,Rye
+red_rye_malt,1,Rye
+rye,1,Rye
 salt,0,"Salt, table"
 sesame_seeds,0,"Seeds, sesame seed kernels, dried (decorticated)"
 skim_milk_powder,0,"Milk, dry, nonfat, instant, with added vitamin A and vitamin D"
 sour_cream,0,"Cream, sour, cultured"
-spelt,100,"Spelt, uncooked"
-steel_cut_oats,100,Oats
+spelt,1,"Spelt, uncooked"
+steel_cut_oats,1,Oats
 sugar,0,"Sugars, granulated"
 sunflower_seeds,0,"Seeds, sunflower seed kernels, dried"
 sweet_potato,0,"Sweet potato, cooked, baked in skin, without salt"
-vital_wheat_gluten,100,Vital wheat gluten
-vwg,100,Vital wheat gluten
+vital_wheat_gluten,1,Vital wheat gluten
+vwg,1,Vital wheat gluten
 unknown,0,unknown
 walnuts,0,"Nuts, walnuts, english"
 water,0,"Water, tap, well"
-wgbi,100,Vital wheat gluten
-wheat_bran,100,"Wheat bran, crude"
-wheat_flakes,100,"Wheat, hard red winter"
+wgbi,1,Vital wheat gluten
+wheat_bran,1,"Wheat bran, crude"
+wheat_flakes,1,"Wheat, hard red winter"
 whey,0,"Whey, acid, fluid"
-whole_wheat,100,"Wheat flour, whole-grain"
-ww,100,"Wheat flour, whole-grain"
-ww_flour,100,"Wheat flour, whole-grain"
+whole_wheat,1,"Wheat flour, whole-grain"
+ww,1,"Wheat flour, whole-grain"
+ww_flour,1,"Wheat flour, whole-grain"
 yeast,0,"Leavening agents, yeast, baker's, active dry"
 yogurt,0,"Yogurt, plain, whole milk, 8 grams protein per 8 ounce"

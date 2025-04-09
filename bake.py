@@ -1,7 +1,7 @@
 """
 Bake.py - bread recipes using relationships rather than spreadsheets.
 
-Gary Bishop July-December 2024
+Gary Bishop July-2024 April 2025
 """
 
 from lark import Lark, Tree, visitors, UnexpectedInput
@@ -62,20 +62,26 @@ COMMENT:  "/*" /(.|\n|\r)*?/ "*/"
 """
 
 
+def U(part, name, scale=1.0):
+    """Add an unknown possibly scaled"""
+    r = Tree("unknown", [(part, name)])
+    if scale != 1.0:
+        r = Tree("multiply", [scale, r])
+    return r
+
+
 @visitors.v_args(inline=True)
 class Prepare(visitors.Transformer):
-    @staticmethod
-    def U(part, name):
-        return Tree("unknown", [(part, name)])
+    """First pass after parsing"""
 
     def variable(self, name: str):
-        return self.U("", name)
+        return U("", name)
 
     def reference(self, partname, name):
-        return self.U(partname, name)
+        return U(partname, name)
 
     def bp(self, value):
-        return Tree("multiply", [value / 100.0, self.U("dough", "total_flour")])
+        return U("dough", "total_flour", value / 100.0)
 
     def percent(self, value):
         return value / 100.0
@@ -92,10 +98,7 @@ class Prepare(visitors.Transformer):
     def hydration(self, value):
         return Tree(
             "relation",
-            [
-                self.U("", "total_water"),
-                Tree("multiply", [value / 100.0, self.U("", "total_flour")]),
-            ],
+            [U("", "total_water"), U("", "total_flour", value / 100.0)],
         )
 
     def part(self, partname, loss, *rest):
@@ -118,9 +121,7 @@ class Prepare(visitors.Transformer):
                 if fullname not in Variables:
                     Variables[fullname] = None
                 if name in Parts:
-                    relations.append(
-                        Tree("relation", [self.U(*fullname), self.U(name, "total")])
-                    )
+                    relations.append(Tree("relation", [U(*fullname), U(name, "total")]))
         # variables contributing to the totals
         tosum = [
             name
@@ -132,13 +133,13 @@ class Prepare(visitors.Transformer):
             """Access the total, flour, water for an unknown"""
             n = name[1]
             if n in Parts:
-                return self.U(n, which)
+                return U(n, which)
             elif which == "total":
-                return self.U(*name)
+                return U(*name)
             else:
                 kind = which.replace("total_", "")
                 nutrition = getIngredient(n)
-                return Tree("multiply", [nutrition[kind] / 100, self.U(*name)])
+                return U(name[0], name[1], nutrition[kind])
 
         # establish the total relations
         for which in ["total", "total_water", "total_flour"]:
@@ -147,17 +148,19 @@ class Prepare(visitors.Transformer):
             sum = summand(tosum[0], which)
             for var in tosum[1:]:
                 sum = Tree("add", [summand(var, which), sum])
-            relations.append(Tree("relation", [self.U(*fullname), sum]))
+            relations.append(Tree("relation", [U(*fullname), sum]))
         # add a relation for the loss
         if isinstance(loss, Tree):
-            assert isinstance(loss.children[0], float)
-            loss = Tree("multiply", [loss.children[0] / 100, self.U(partname, "total")])
+            assert isinstance(loss.children[0], (float, int))
+            loss = U(partname, "total", loss.children[0] / 100)
         Variables[(partname, "_loss")] = None
-        relations.append(Tree("relation", [self.U(partname, "_loss"), loss]))
+        relations.append(Tree("relation", [U(partname, "_loss"), loss]))
         return Tree("part", [partname, loss, *relations])
 
 
 class Propagate:
+    """Propagate constants"""
+
     updates = 0
 
     def wrapper(self, obj, data, children, meta):
@@ -189,7 +192,7 @@ class Propagate:
                     assert isinstance(lname, tuple)
                     lvalue = Variables[lname]
                     if lvalue is None:
-                        if isinstance(rhs, float):
+                        if isinstance(rhs, (float, int)):
                             Variables[lname] = rhs
                             return visitors.Discard
                 elif isinstance(rhs, Tree) and rhs.data == "unknown":
@@ -197,59 +200,59 @@ class Propagate:
                     assert isinstance(rname, tuple)
                     rvalue = Variables[rname]
                     if rvalue is None:
-                        if isinstance(lhs, float):
+                        if isinstance(lhs, (float, int)):
                             Variables[rname] = lhs
                             return visitors.Discard
-                elif isinstance(lhs, float) and isinstance(rhs, float):
+                elif isinstance(lhs, (float, int)) and isinstance(rhs, (float, int)):
                     return visitors.Discard
 
             def multiply(self, lhs, rhs):
-                if isinstance(lhs, float):
+                if isinstance(lhs, (float, int)):
                     if lhs == 0:
                         return 0.0
                     elif lhs == 1:
                         return rhs
-                    if isinstance(rhs, float):
+                    if isinstance(rhs, (float, int)):
                         if rhs == 0:
                             return 0.0
                         elif rhs == 1:
                             return lhs
                         return lhs * rhs
-                if isinstance(rhs, float):
+                if isinstance(rhs, (float, int)):
                     if rhs == 0:
                         return 0
                     elif rhs == 1:
                         return lhs
 
             def divide(self, lhs, rhs):
-                if isinstance(lhs, float):
+                if isinstance(lhs, (float, int)):
                     if lhs == 0:
                         return 0.0
-                    if isinstance(rhs, float):
+                    if isinstance(rhs, (float, int)):
                         return lhs / rhs
-                if isinstance(rhs, float):
+                if isinstance(rhs, (float, int)):
                     if rhs == 1:
                         return lhs
                     return Tree("multiply", [1.0 / rhs, lhs])
 
             def add(self, lhs, rhs):
-                if isinstance(lhs, float):
+                if isinstance(lhs, (float, int)):
                     if lhs == 0:
                         return rhs
-                    if isinstance(rhs, float):
+                    if isinstance(rhs, (float, int)):
                         if rhs == 0:
                             return lhs
                         return lhs + rhs
-                if isinstance(rhs, float) and rhs == 0:
+                if isinstance(rhs, (float, int)) and rhs == 0:
                     return lhs
 
             def subtract(self, lhs, rhs):
-                if isinstance(lhs, float):
-                    if isinstance(rhs, float):
+                if isinstance(lhs, (float, int)):
+                    if isinstance(rhs, (float, int)):
                         if rhs == 0:
                             return lhs
                         return lhs - rhs
-                if isinstance(rhs, float) and rhs == 0:
+                if isinstance(rhs, (float, int)) and rhs == 0:
                     return lhs
 
         PT = PropagateTransformer()
@@ -262,6 +265,7 @@ class Propagate:
 
 
 class BuildMatrix(visitors.Transformer):
+    """Convert the remaining relations into matrix equations"""
 
     def __init__(self, columns):
         self.columns = columns

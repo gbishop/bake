@@ -16,7 +16,7 @@ dough:
   salt = 2% * (prairie_gold + bronze_chief - spelt)
   yeast = 0.4%
   hydration = 70%
-  _muffins = 10
+  _muffins = 30
   _size = 46g
   total_flour = _muffins * _size
   # total = 793g
@@ -25,31 +25,36 @@ dough:
 Nutrition
     name     | per 100g |
 -------------|----------|
-calcium      |     0.02 |
-calories     |   215    |
-carbohydrate |    46.9  |
-fat          |     1.1  |
-fiber        |     7.7  |
-monounsat    |     0.17 |
-polyunsat    |     0.51 |
+calcium      |          |
+calories     |   216    |
+carbohydrate |    47.2  |
+fat          |     1.12 |
+fiber        |     7.77 |
+monounsat    |     0.15 |
+polyunsat    |     0.48 |
 potassium    |     0.26 |
-protein      |     7.9  |
+protein      |     7.82 |
 saturated    |     0.19 |
-sodium       |     0.50 |
-sugars       |     0.94 |
-water        |    47.0  |
+sodium       |     0.41 |
+sugars       |     0.63 |
+water        |    47.1  |
 
 
- part | grams  |     name     |   %   | flour  | water  |
-------|--------|--------------|-------|--------|--------|
-dough | 793    |              | 172.4 | 460    | 322    |
-      | 230    | prairie gold |  50.0 | 230    |        |
-      | 153    | bronze chief |  33.3 | 153    |        |
-      |  76.7  | spelt        |  16.7 |  76.7  |        |
-      | 322    | water        |  70.0 |        | 322    |
-      |   9.2  | salt         |   2.0 |        |        |
-      |   1.8  | yeast        |   0.4 |        |        |
-      |        | hydration    |  70.0 |        |        |
-     
+  part  |  grams  |     name     |   %   |  flour  | water  |
+--------|---------|--------------|-------|---------|--------|
+starter |   15.0  | + 5.0g       |   0.7 |    5.00 |   5.00 |
+        |    7.50 | ww flour     |   0.4 |    5.00 |        |
+        |    7.50 | water        |   0.4 |         |   5.00 |
+       
+dough   | 2374    |              | 172.0 | 1380    | 966    |
+        |   10.0  | starter      |   0.7 |    5.00 |   5.00 |
+        |  750    | prairie gold |  54.3 |  750    |        |
+        |  500    | bronze chief |  36.2 |  500    |        |
+        |  125    | spelt        |   9.1 |  125    |        |
+        |  961    | water        |  69.6 |         | 961    |
+        |   22.5  | salt         |   1.6 |         |        |
+        |    5.52 | yeast        |   0.4 |         |   0.28 |
+        |         | hydration    |  70.0 |         |        |
+       
 +*/
 

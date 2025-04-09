@@ -20,7 +20,7 @@ usda = pd.read_csv(usda_path, index_col="name").fillna(0)
 # remove units from the column names
 usda.columns = [name.replace(" (g)", "") for name in usda.columns]
 # trim unneeded columns
-usda = usda.loc[:, usda.columns[1:-1]]
+usda = usda.loc[:, usda.columns[1:-1]] / 100.0
 
 # add a row for unknown ingredients
 unknown = pd.Series(0, index=usda.columns)
@@ -97,7 +97,7 @@ def getIngredient(name: str) -> pd.Series:
     m = map.loc[name]
     u = usda.loc[m.usda]
     if name == "water":
-        u.loc["water"] = 100
+        u.loc["water"] = 1.0
     u.loc["flour"] = m.loc["flour"]
     result = u
     # pretend flour has no water because hydration calculations assume it doesn't
