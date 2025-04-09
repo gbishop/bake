@@ -30,16 +30,11 @@ hydration: "hydration" "=" NUMBER "%"
 
 relation: sum "=" sum
 
-?sum: product "+" sum   -> add
-    | product "-" sum   -> subtract
+?sum: sum "+" product -> add
+    | sum "-" product -> subtract
     | product
 
-bp: NUMBER "%"
-
-?product: bp
-        | term
-        | term "*" product -> multiply
-        | term "/" product -> divide
+product: term (/[*\/]/ term)*
 
 ?term: variable
      | reference
@@ -83,8 +78,20 @@ class Prepare(visitors.Transformer):
     def bp(self, value):
         return U("dough", "total_flour", value / 100.0)
 
-    def percent(self, value):
-        return value / 100.0
+    def product(self, *args):
+        args = list(args)
+        # if the last term is a percent convert it to bakkers percent
+        if isinstance(args[-1], Tree) and args[-1].data == "percent":
+            args[-1] = Tree(
+                "multiply", [args[-1].children[0] / 100, U("dough", "total_flour")]
+            )
+        result = args[0]
+        for i in range(1, len(args), 2):
+            if args[i] == "*":
+                result = Tree("multiply", [result, args[i + 1]])
+            else:
+                result = Tree("divide", [result, args[i + 1]])
+        return result
 
     def NUMBER(self, value):
         if value.endswith("g"):
@@ -205,6 +212,9 @@ class Propagate:
                             return visitors.Discard
                 elif isinstance(lhs, (float, int)) and isinstance(rhs, (float, int)):
                     return visitors.Discard
+
+            def percent(self, value):
+                return value / 100
 
             def multiply(self, lhs, rhs):
                 if isinstance(lhs, (float, int)):
@@ -353,8 +363,13 @@ Variables = {}
 # Ordered set of Part names
 Parts = {str(node.children[0]): None for node in tree.find_data("part")}
 
+P("parsed", tree.pretty())
+
 # process the tree to collect variables and parts
 tree = Prepare().transform(tree)
+
+P("prepared", tree.pretty())
+
 # propagate constants
 tree = Propagate().transform(tree)
 
