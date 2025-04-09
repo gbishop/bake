@@ -10,6 +10,7 @@ import argparse
 import sys
 from ingredients import getIngredient
 from output import output
+from typing import Any
 
 
 def P(*args):
@@ -57,12 +58,22 @@ COMMENT:  "/*" /(.|\n|\r)*?/ "*/"
 """
 
 
-def U(part, name, scale=1.0):
+def U(part, name, scale=None):
     """Add an unknown possibly scaled"""
     r = Tree("unknown", [(part, name)])
-    if scale != 1.0:
+    if scale is not None:
         r = Tree("multiply", [scale, r])
     return r
+
+
+def isF(value):
+    """Test if the value is a float"""
+    return isinstance(value, (float, int))
+
+
+def isT(value):
+    """Test if the value is a Tree"""
+    return isinstance(value, Tree)
 
 
 @visitors.v_args(inline=True)
@@ -81,7 +92,7 @@ class Prepare(visitors.Transformer):
     def product(self, *args):
         args = list(args)
         # if the last term is a percent convert it to bakkers percent
-        if isinstance(args[-1], Tree) and args[-1].data == "percent":
+        if isT(args[-1]) and args[-1].data == "percent":
             args[-1] = Tree(
                 "multiply", [args[-1].children[0] / 100, U("dough", "total_flour")]
             )
@@ -108,11 +119,8 @@ class Prepare(visitors.Transformer):
             [U("", "total_water"), U("", "total_flour", value / 100.0)],
         )
 
-    def part(self, partname, loss, *rest):
-        if loss is None:
-            loss = 0.0
-
-        relations = [r for r in rest if isinstance(r, Tree) and r.data == "relation"]
+    def part(self, partname, loss: Any, *rest):
+        relations = [r for r in rest if isT(r) and r.data == "relation"]
 
         # qualify the variables with their partname
         vnames = set()
@@ -157,9 +165,10 @@ class Prepare(visitors.Transformer):
                 sum = Tree("add", [summand(var, which), sum])
             relations.append(Tree("relation", [U(*fullname), sum]))
         # add a relation for the loss
-        if isinstance(loss, Tree):
-            assert isinstance(loss.children[0], (float, int))
+        if isT(loss):
             loss = U(partname, "total", loss.children[0] / 100)
+        elif loss is None:
+            loss = 0.0
         Variables[(partname, "_loss")] = None
         relations.append(Tree("relation", [U(partname, "_loss"), loss]))
         return Tree("part", [partname, loss, *relations])
@@ -179,7 +188,7 @@ class Propagate:
         # It updated something, increment updates
         self.updates += 1
         # if it returns a Tree augment it with meta
-        if isinstance(raw, Tree):
+        if isT(raw):
             return Tree(raw.data, raw.children, meta)
         # otherwise return the raw result
         return raw
@@ -194,75 +203,73 @@ class Propagate:
                     return value
 
             def relation(self, lhs, rhs):
-                if isinstance(lhs, Tree) and lhs.data == "unknown":
+                if isT(lhs) and lhs.data == "unknown":
                     lname = lhs.children[0]
-                    assert isinstance(lname, tuple)
                     lvalue = Variables[lname]
                     if lvalue is None:
-                        if isinstance(rhs, (float, int)):
+                        if isF(rhs):
                             Variables[lname] = rhs
                             return visitors.Discard
-                elif isinstance(rhs, Tree) and rhs.data == "unknown":
+                elif isT(rhs) and rhs.data == "unknown":
                     rname = rhs.children[0]
-                    assert isinstance(rname, tuple)
                     rvalue = Variables[rname]
                     if rvalue is None:
-                        if isinstance(lhs, (float, int)):
+                        if isF(lhs):
                             Variables[rname] = lhs
                             return visitors.Discard
-                elif isinstance(lhs, (float, int)) and isinstance(rhs, (float, int)):
+                elif isF(lhs) and isF(rhs):
                     return visitors.Discard
 
             def percent(self, value):
                 return value / 100
 
             def multiply(self, lhs, rhs):
-                if isinstance(lhs, (float, int)):
+                if isF(lhs):
                     if lhs == 0:
                         return 0.0
-                    elif lhs == 1:
+                    elif lhs == 1.0:
                         return rhs
-                    if isinstance(rhs, (float, int)):
+                    if isF(rhs):
                         if rhs == 0:
                             return 0.0
-                        elif rhs == 1:
+                        elif rhs == 1.0:
                             return lhs
                         return lhs * rhs
-                if isinstance(rhs, (float, int)):
+                if isF(rhs):
                     if rhs == 0:
                         return 0
                     elif rhs == 1:
                         return lhs
 
             def divide(self, lhs, rhs):
-                if isinstance(lhs, (float, int)):
+                if isF(lhs):
                     if lhs == 0:
                         return 0.0
-                    if isinstance(rhs, (float, int)):
+                    if isF(rhs):
                         return lhs / rhs
-                if isinstance(rhs, (float, int)):
+                if isF(rhs):
                     if rhs == 1:
                         return lhs
                     return Tree("multiply", [1.0 / rhs, lhs])
 
             def add(self, lhs, rhs):
-                if isinstance(lhs, (float, int)):
+                if isF(lhs):
                     if lhs == 0:
                         return rhs
-                    if isinstance(rhs, (float, int)):
+                    if isF(rhs):
                         if rhs == 0:
                             return lhs
                         return lhs + rhs
-                if isinstance(rhs, (float, int)) and rhs == 0:
+                if isF(rhs) and rhs == 0:
                     return lhs
 
             def subtract(self, lhs, rhs):
-                if isinstance(lhs, (float, int)):
-                    if isinstance(rhs, (float, int)):
+                if isF(lhs):
+                    if isF(rhs):
                         if rhs == 0:
                             return lhs
                         return lhs - rhs
-                if isinstance(rhs, (float, int)) and rhs == 0:
+                if isF(rhs) and rhs == 0:
                     return lhs
 
         PT = PropagateTransformer()
@@ -286,7 +293,7 @@ class BuildMatrix(visitors.Transformer):
             r[index] = value
             return r
 
-        if isinstance(value, (float, int)):
+        if isF(value):
             return onehot(self.columns - 1, value)
         elif isinstance(value, tuple):
             return onehot(Index[value])
@@ -306,9 +313,9 @@ class BuildMatrix(visitors.Transformer):
 
     def multiply(self, args):
         lhs, rhs = args
-        if isinstance(lhs, (float, int)):
+        if isF(lhs):
             return lhs * rhs
-        elif isinstance(rhs, (float, int)):
+        elif isF(rhs):
             return lhs * rhs
         assert False
 
@@ -363,12 +370,8 @@ Variables = {}
 # Ordered set of Part names
 Parts = {str(node.children[0]): None for node in tree.find_data("part")}
 
-P("parsed", tree.pretty())
-
 # process the tree to collect variables and parts
 tree = Prepare().transform(tree)
-
-P("prepared", tree.pretty())
 
 # propagate constants
 tree = Propagate().transform(tree)
