@@ -1,7 +1,7 @@
 """
 Bake.py - bread recipes using relationships rather than spreadsheets.
 
-Gary Bishop July-2024 April 2025
+Gary Bishop July 2024 April 2025
 """
 
 from lark import Lark, Tree, visitors, UnexpectedInput
@@ -207,11 +207,6 @@ class Propagate_manager:
         return result
 
 
-propagate_manager = Propagate_manager()
-
-
-# apply my wrapper to the transformer
-@visitors.v_args(wrapper=propagate_manager.wrapper)
 class Propagate(visitors.Transformer):
 
     def unknown(self, name):
@@ -380,9 +375,11 @@ Parts = {str(node.children[0]): None for node in tree.find_data("part")}
 # process the tree to collect variables and parts
 tree = Prepare().transform(tree)
 
+# apply my wrapper to the transformer
+pm = Propagate_manager()
+PT = visitors.v_args(wrapper=pm.wrapper)(Propagate)()
 # propagate constants
-PT = Propagate()
-while propagate_manager.updated:
+while pm.updated:
     tree = PT.transform(tree)
 
 # map unknowns to columns in the matrix
