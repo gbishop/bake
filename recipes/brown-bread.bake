@@ -7,14 +7,8 @@ starter:
   water
   hydration = 75%
 
-sponge:
-  starter = 5%
-  ww_flour
-  water
-  hydration = 100%
-
 wet:
-  sponge = 19%
+  starter = 30g
   milk
   molasses = 14%
 
@@ -24,60 +18,77 @@ dry:
   hard_red = 19%
   corn_flour = 14%
   salt = 1%
+  yeast = 0.5%
 
 dough:
   wet
   dry
 
+  # for 4 inch pullman
   total_flour = 0.533 * 640g
   hydration = 67.5%
 
+/*
+Next time:
+* Reduce the total dough at least 50g
+* Reduce the yeast by 1/2.
+
+First rise begins at 8:15 at about 1/2L on the cambro.
+At 11:15 it had doubled and pH = 5.3. Degassed it and let it rise
+again.
+
+At 13:55 it had doubled again. pH = 5.13.
+
+Baked about 14:05. Too much dough. I thought his estimate for a
+pullman with lid was too high. 
+
+Took about 1 hour.
+
+Terrible. Crazy dense and nearly unedible. 
+
+*/
 
 /*+
 Nutrition
     name     | per 100g |
 -------------|----------|
-calcium      |     0.07 |
-calories     |   250    |
+calcium      |          |
+calories     |   252    |
 carbohydrate |    51.3  |
-fat          |     2.4  |
-fiber        |     5.5  |
-monounsat    |     0.48 |
-polyunsat    |     0.61 |
+fat          |     2.49 |
+fiber        |     5.51 |
+monounsat    |     0.52 |
+polyunsat    |     0.60 |
 potassium    |     0.36 |
-protein      |     7.6  |
-saturated    |     0.86 |
+protein      |     7.78 |
+saturated    |     0.92 |
 sodium       |     0.25 |
-sugars       |     6.8  |
-water        |    42.5  |
+sugars       |     6.91 |
+water        |    42.3  |
 
 
   part  | grams  |     name    |   %   | flour  | water  |
 --------|--------|-------------|-------|--------|--------|
-starter |  17.1  |             |   5.0 |   9.7  |   7.3  |
-        |   9.7  | ww flour    |   2.9 |   9.7  |        |
-        |   7.3  | water       |   2.1 |        |   7.3  |
+starter |  30.0  |             |   8.8 |  17.1  |  12.9  |
+        |  17.1  | ww flour    |   5.0 |  17.1  |        |
+        |  12.9  | water       |   3.8 |        |  12.9  |
        
-sponge  |  64.8  |             |  19.0 |  32.4  |  32.4  |
-        |  17.1  | starter     |   5.0 |   9.7  |   7.3  |
-        |  22.6  | ww flour    |   6.6 |  22.6  |        |
-        |  25.1  | water       |   7.4 |        |  25.1  |
-       
-wet     | 325    |             |  95.3 |  32.4  | 230    |
-        |  64.8  | sponge      |  19.0 |  32.4  |  32.4  |
-        | 213    | milk        |  62.3 |        | 187    |
+wet     | 312    |             |  91.6 |  17.1  | 230    |
+        |  30.0  | starter     |   8.8 |  17.1  |  12.9  |
+        | 235    | milk        |  68.8 |        | 207    |
         |  47.8  | molasses    |  14.0 |        |  10.4  |
        
-dry     | 312    |             |  91.5 | 309    |        |
-        |  98.1  | bread flour |  28.8 |  98.1  |        |
-        |  98.1  | rye         |  28.8 |  98.1  |        |
+dry     | 329    |             |  96.5 | 324    |        |
+        | 106    | bread flour |  31.0 | 106    |        |
+        | 106    | rye         |  31.0 | 106    |        |
         |  64.8  | hard red    |  19.0 |  64.8  |        |
         |  47.8  | corn flour  |  14.0 |  47.8  |        |
-        |   3.4  | salt        |   1.0 |        |        |
+        |   3.41 | salt        |   1.0 |        |        |
+        |   1.71 | yeast       |   0.5 |        |        |
        
-dough   | 637    |             | 186.8 | 341    | 230    |
-        | 325    | wet         |  95.3 |  32.4  | 230    |
-        | 312    | dry         |  91.5 | 309    |        |
+dough   | 642    |             | 188.1 | 341    | 230    |
+        | 312    | wet         |  91.6 |  17.1  | 230    |
+        | 329    | dry         |  96.5 | 324    |        |
         |        | hydration   |  67.5 |        |        |
        
 +*/
