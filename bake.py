@@ -84,7 +84,7 @@ def isT(value):
 class Prepare(visitors.Transformer):
     """First pass after parsing"""
 
-    def variable(self, name: str):
+    def variable(self, name):
         return U("", name)
 
     def reference(self, partname, name):
@@ -98,7 +98,7 @@ class Prepare(visitors.Transformer):
         # if the last term is a percent convert it to bakkers percent
         if isT(args[-1]) and args[-1].data == "percent":
             args[-1] = Tree(
-                "multiply", [args[-1].children[0] / 100, U("dough", "total_flour")]
+                "multiply", [args[-1].children[0] / 100.0, U("dough", "total_flour")]
             )
         result = args[0]
         for i in range(1, len(args), 2):
@@ -127,55 +127,47 @@ class Prepare(visitors.Transformer):
         relations = [r for r in rest if isT(r) and r.data == "relation"]
 
         # qualify the variables with their partname
-        vnames = set()
-        for r in rest:
-            vars = r.find_data("unknown")
-            for var in vars:
-                if var.children[0][0]:
+        tosum = set()
+        for children in rest:
+            unknowns = children.find_data("unknown")
+            for unknown in unknowns:
+                if unknown.children[0][0]:
                     continue
-                name = var.children[0][1]
+                name = unknown.children[0][1]
                 fullname = (partname, name)
-                vnames.add(fullname)
-                var.children[0] = fullname
+                unknown.children[0] = fullname
+                if not (name.startswith("total") or name.startswith("_")):
+                    tosum.add(fullname)
                 if fullname not in Variables:
                     Variables[fullname] = None
                 if name in Parts:
                     relations.append(Tree("relation", [U(*fullname), U(name, "total")]))
-        # variables contributing to the totals
-        tosum = [
-            name
-            for name in vnames
-            if not name[1].startswith("total") and not name[1].startswith("_")
-        ]
-
-        def summand(name: tuple, which: str):
-            """Access the total, flour, water for an unknown"""
-            n = name[1]
-            if n in Parts:
-                return U(n, which)
-            elif which == "total":
-                return U(*name)
-            else:
-                kind = which.replace("total_", "")
-                nutrition = getIngredient(n)
-                return U(name[0], name[1], nutrition[kind])
 
         # establish the total relations
         for which in ["total", "total_water", "total_flour"]:
             fullname = (partname, which)
             Variables[fullname] = None
-            sum = summand(tosum[0], which)
-            for var in tosum[1:]:
-                sum = Tree("add", [summand(var, which), sum])
+            sum: Any = 0.0
+            for name in tosum:
+                if name[1] in Parts:
+                    addin = U(name[1], which)
+                elif which == "total":
+                    addin = U(*name)
+                else:
+                    kind = which.replace("total_", "")
+                    nutrition = getIngredient(name[1])
+                    addin = U(name[0], name[1], nutrition[kind])
+                sum = Tree("add", [addin, sum])
             relations.append(Tree("relation", [U(*fullname), sum]))
         # add a relation for the loss
         if isT(loss):
-            loss = U(partname, "total", loss.children[0] / 100)
+            loss = U(partname, "total", loss.children[0] / 100.0)
         elif loss is None:
             loss = 0.0
-        Variables[(partname, "_loss")] = None
-        relations.append(Tree("relation", [U(partname, "_loss"), loss]))
-        return Tree("part", [partname, loss, *relations])
+        loss_name = (partname, "_loss")
+        Variables[loss_name] = None
+        relations.append(Tree("relation", [U(*loss_name), loss]))
+        return Tree("part", [*relations])
 
 
 class Propagate_manager:
@@ -207,6 +199,7 @@ class Propagate_manager:
         return result
 
 
+# this will be wrapped by the Propagate_manager
 class Propagate(visitors.Transformer):
 
     def unknown(self, name):
@@ -215,76 +208,75 @@ class Propagate(visitors.Transformer):
             return value
 
     def relation(self, lhs, rhs):
-        if isT(lhs) and lhs.data == "unknown":
+        if isF(rhs) and isT(lhs) and lhs.data == "unknown":
             lname = lhs.children[0]
             lvalue = Variables[lname]
             if lvalue is None:
-                if isF(rhs):
-                    Variables[lname] = rhs
-                    return visitors.Discard
-        elif isT(rhs) and rhs.data == "unknown":
+                Variables[lname] = rhs
+                return visitors.Discard
+        elif isF(lhs) and isT(rhs) and rhs.data == "unknown":
             rname = rhs.children[0]
             rvalue = Variables[rname]
             if rvalue is None:
-                if isF(lhs):
-                    Variables[rname] = lhs
-                    return visitors.Discard
+                Variables[rname] = lhs
+                return visitors.Discard
         elif isF(lhs) and isF(rhs):
             return visitors.Discard
 
     def percent(self, value):
-        return value / 100
+        return value / 100.0
 
     def multiply(self, lhs, rhs):
         if isF(lhs):
-            if lhs == 0:
+            if lhs == 0.0:
                 return 0.0
             elif lhs == 1.0:
                 return rhs
             if isF(rhs):
-                if rhs == 0:
+                if rhs == 0.0:
                     return 0.0
                 elif rhs == 1.0:
                     return lhs
                 return lhs * rhs
         if isF(rhs):
-            if rhs == 0:
-                return 0
-            elif rhs == 1:
+            if rhs == 0.0:
+                return 0.0
+            elif rhs == 1.0:
                 return lhs
 
     def divide(self, lhs, rhs):
         if isF(lhs):
-            if lhs == 0:
+            if lhs == 0.0:
                 return 0.0
             if isF(rhs):
                 return lhs / rhs
         if isF(rhs):
-            if rhs == 1:
+            if rhs == 1.0:
                 return lhs
             return Tree("multiply", [1.0 / rhs, lhs])
 
     def add(self, lhs, rhs):
         if isF(lhs):
-            if lhs == 0:
+            if lhs == 0.0:
                 return rhs
             if isF(rhs):
-                if rhs == 0:
+                if rhs == 0.0:
                     return lhs
                 return lhs + rhs
-        if isF(rhs) and rhs == 0:
+        if isF(rhs) and rhs == 0.0:
             return lhs
 
     def subtract(self, lhs, rhs):
         if isF(lhs):
             if isF(rhs):
-                if rhs == 0:
+                if rhs == 0.0:
                     return lhs
                 return lhs - rhs
-        if isF(rhs) and rhs == 0:
+        if isF(rhs) and rhs == 0.0:
             return lhs
 
 
+@visitors.v_args(inline=True)
 class BuildMatrix(visitors.Transformer):
     """Convert the remaining relations into matrix equations"""
 
@@ -304,20 +296,17 @@ class BuildMatrix(visitors.Transformer):
         else:
             return value
 
-    def unknown(self, args):
-        return self.vector(args[0])
+    def unknown(self, name):
+        return self.vector(name)
 
-    def add(self, args):
-        lhs, rhs = [self.vector(arg) for arg in args]
-        return lhs + rhs
+    def add(self, lhs, rhs):
+        return self.vector(lhs) + self.vector(rhs)
 
-    def subtract(self, args):
-        lhs, rhs = [self.vector(arg) for arg in args]
-        return lhs - rhs
+    def subtract(self, lhs, rhs):
+        return self.vector(lhs) - self.vector(rhs)
 
-    @visitors.v_args(meta=True)
-    def multiply(self, meta, args):
-        lhs, rhs = args
+    @visitors.v_args(inline=True, meta=True)
+    def multiply(self, meta, lhs, rhs):
         if isF(lhs):
             return lhs * rhs
         elif isF(rhs):
@@ -325,25 +314,21 @@ class BuildMatrix(visitors.Transformer):
         print(f"Multiplication of unknowns is not supported {meta.line}:{meta.column}")
         sys.exit(1)
 
-    @visitors.v_args(meta=True)
+    @visitors.v_args(inline=True, meta=True)
     def divide(self, meta, _):
         print(f"Division of unknowns is not supported {meta.line}:{meta.column}")
         sys.exit(1)
 
-    def relation(self, args):
-        lhs, rhs = [self.vector(arg) for arg in args]
-        return rhs - lhs
+    def relation(self, lhs, rhs):
+        return self.vector(lhs) - self.vector(rhs)
 
-    def part(self, args):
-        return args[2:]  # all the relations
+    def part(self, *relations):
+        return relations  # all the relations
 
-    def start(self, args):
+    def start(self, *relations):
         # join the lists of relations then convert to array
-        M = np.array([vector for part in args for vector in part])
+        M = np.array([vector for part in relations for vector in part])
         return M[:, :-1], -M[:, -1]
-
-    def __default__(self, *args):
-        return args[2][0]
 
 
 argparser = argparse.ArgumentParser(

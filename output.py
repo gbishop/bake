@@ -28,14 +28,17 @@ def format_table(Variables, Parts):
         widths = [len(h) for h in headings]
         rows = [
             [
-                formatter[formats[i]](col)
-                for i, col in enumerate(row)
+                formatter[format](column)
+                for column, format in zip(row, formats)
             ]
             for row in rows
         ]
         for row in rows:
-            for i, col in enumerate(row):
-                widths[i] = max(widths[i], len(col))
+            if len(row) <= 1:
+                continue
+            widths = [
+                max(len(column), width)
+                for column, width in zip(row, widths)]
         aligns = ["<" if fmt == "t" else ">" for fmt in formats]
         rows = [
             [
@@ -45,18 +48,16 @@ def format_table(Variables, Parts):
             for row in rows
         ]
         # headings
-        head = [
+        header = [
             " | ".join(heading.center(width)
-                       for width, heading in
-                            zip(widths, headings))
-                + " |",
+            for width, heading in zip(widths, headings)) + " |",
             "-|-".join("-" * width for width in widths) + "-|",
         ] 
         body = [
             " | ".join(row) + " |" if len(row) > 1 else ""
             for row in rows
         ]
-        return "\n".join(head + body) + "\n"
+        return "\n".join(header + body) + "\n"
     # fmt: on
 
     # reshape the data into a list of lists
