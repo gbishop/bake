@@ -16,36 +16,48 @@ def format_table(Variables, Parts):
         s = max(0, 2 - p) + (p == 0)
         return f"{g:.{p}f}" + s * " "
 
-    fmt = {
+    formatter = {
         "g": fmt_grams,
         "%": lambda p: f"{p:5.1f}",
         "t": lambda s: s.replace("_", " "),
     }
 
-    def tabulate(headings, fmts, rows):
+    # fmt: off
+    def tabulate(headings, formats, rows):
         """Format a list of lists as a table"""
         widths = [len(h) for h in headings]
-        rows = [[fmt[fmts[i]](col) for i, col in enumerate(row)] for row in rows]
+        rows = [
+            [
+                formatter[formats[i]](col)
+                for i, col in enumerate(row)
+            ]
+            for row in rows
+        ]
         for row in rows:
             for i, col in enumerate(row):
                 widths[i] = max(widths[i], len(col))
-        # headings
-        result = [
-            " | ".join([h.center(widths[i]) for i, h in enumerate(headings)]) + " |",
-            "-|-".join(["-" * widths[i] for i in range(len(headings))]) + "-|",
+        aligns = ["<" if fmt == "t" else ">" for fmt in formats]
+        rows = [
+            [
+                f"{column:{align}{width}}"
+                for column, align, width in zip(row, aligns, widths)
+            ]
+            for row in rows
         ]
-        for row in rows:
-            cols = []
-            for i, col in enumerate(row):
-                if fmts[i] == "t":
-                    cols.append(f"{col:<{widths[i]}}")
-                else:
-                    cols.append(f"{col:>{widths[i]}}")
-            line = " | ".join(cols)
-            if len(row) > 1:
-                line += " |"
-            result.append(line)
-        return "\n".join(result) + "\n"
+        # headings
+        head = [
+            " | ".join(heading.center(width)
+                       for width, heading in
+                            zip(widths, headings))
+                + " |",
+            "-|-".join("-" * width for width in widths) + "-|",
+        ] 
+        body = [
+            " | ".join(row) + " |" if len(row) > 1 else ""
+            for row in rows
+        ]
+        return "\n".join(head + body) + "\n"
+    # fmt: on
 
     # reshape the data into a list of lists
     rows = []
