@@ -75,9 +75,9 @@ def isF(value):
     return isinstance(value, (float, int))
 
 
-def isT(value):
+def isT(value, data=""):
     """Test if the value is a Tree"""
-    return isinstance(value, Tree)
+    return isinstance(value, Tree) and (not data or value.data == data)
 
 
 @visitors.v_args(inline=True)
@@ -96,7 +96,7 @@ class Prepare(visitors.Transformer):
     def product(self, *args):
         args = list(args)
         # if the last term is a percent convert it to bakkers percent
-        if isT(args[-1]) and args[-1].data == "percent":
+        if isT(args[-1], "percent"):
             args[-1] = Tree(
                 "multiply", [args[-1].children[0] / 100.0, U("dough", "total_flour")]
             )
@@ -124,7 +124,7 @@ class Prepare(visitors.Transformer):
         )
 
     def part(self, partname, loss: Any, *rest):
-        relations = [r for r in rest if isT(r) and r.data == "relation"]
+        relations = [r for r in rest if isT(r, "relation")]
 
         # qualify the variables with their partname
         tosum = set()
@@ -208,13 +208,13 @@ class Propagate(visitors.Transformer):
             return value
 
     def relation(self, lhs, rhs):
-        if isF(rhs) and isT(lhs) and lhs.data == "unknown":
+        if isF(rhs) and isT(lhs, "unknown"):
             lname = lhs.children[0]
             lvalue = Variables[lname]
             if lvalue is None:
                 Variables[lname] = rhs
                 return visitors.Discard
-        elif isF(lhs) and isT(rhs) and rhs.data == "unknown":
+        elif isF(lhs) and isT(rhs, "unknown"):
             rname = rhs.children[0]
             rvalue = Variables[rname]
             if rvalue is None:
