@@ -4,7 +4,7 @@ Bake.py - bread recipes using relationships rather than spreadsheets.
 Gary Bishop July 2024 April 2025
 """
 
-from lark import Lark, visitors, UnexpectedInput
+from lark import Lark, visitors, UnexpectedInput, Token
 import lark
 import numpy as np
 from numpy.typing import NDArray
@@ -73,6 +73,7 @@ class Tree[C](lark.Tree):
 
     def __init__(self, data: str, *children: Any, meta=None):
         super().__init__(data, list(children), meta)
+        propagate_position(list(children), self.meta)
 
     def find_data(self, data):
         return cast(Iterator[Tree[C]], super().find_data(data))
@@ -81,11 +82,15 @@ def isTree(value, data="") -> TypeGuard[Tree]:
     """Test if the value is a Tree"""
     return isinstance(value, lark.Tree) and (not data or value.data == data)
 
-def Unknown(part: str, name:str, scale:Optional[float] = None):
+def Unknown(part: str, name:str | Token, scale:Optional[float] = None):
     """Add an unknown possibly scaled"""
     r = Tree("unknown", (part, name))
+    if isinstance(name, Token) and name.line and name.column:
+        r.meta.line = name.line
+        r.meta.column = name.column
+
     if scale is not None:
-        r = Tree("multiply", scale, r)
+        r = Tree("multiply", scale, r, meta=r.meta)
     return r
 
 def isUnknown(value) -> TypeGuard[Tree[FullName]]:
@@ -98,17 +103,37 @@ def isFloat(value) -> TypeGuard[float]:
 def isVector(value) -> TypeGuard[Vector]:
     return isinstance(value, np.ndarray)
 
+def propagate_position(children: list[Tree], meta):
+    if hasattr(meta, 'line'):
+        return
+    line = 0
+    for child in children:
+        if isTree(child) and hasattr(child.meta, 'line'):
+            line = max(line, child.meta.line)
+        elif isinstance(child, Token) and child.line:
+            line = max(line, child.line)
+    if line:
+        meta.line = line
+
+
 def meta_wrapper(obj, _, children, meta):
     raw = obj(*children)
     if isTree(raw):
         # make sure children has line and column
-        if hasattr(meta, 'line'):
-            for child in raw.children:
-                if isTree(child) and not hasattr(child.meta, 'line'):
-                    child.meta.line = meta.line
-                    child.meta.column = meta.column
+        propagate_position(raw.children, meta)
         raw = Tree(raw.data, *raw.children, meta=meta)
     return raw
+
+def PP(tree, offset=0):
+    if isTree(tree):
+        P(f"{' ' * offset}{tree.data} {getattr(tree.meta, 'line', '')}")
+        for child in tree.children:
+            PP(child, offset + 2)
+    elif isinstance(tree, Token):
+        P(f"{' ' * offset}{tree} {getattr(tree, 'line', '')}")
+    else:
+        P(f"{' ' * offset}{tree}")
+
 
 @visitors.v_args(wrapper=meta_wrapper)
 class Prepare(visitors.Transformer):
@@ -218,11 +243,7 @@ class Propagate_manager:
         self.updates += 1
         # if it returns a Tree augment it with meta
         if isTree(raw):
-            if hasattr(meta, 'line'):
-                for child in raw.children:
-                    if isTree(child) and not hasattr(child.meta, 'line'):
-                        child.meta.line = meta.line
-                        child.meta.column = meta.column
+            propagate_position(raw.children, meta)
             return Tree(raw.data, *raw.children, meta=meta)
         # otherwise return the raw result
         return raw
@@ -395,8 +416,6 @@ Parts = {str(node.children[0]): None for node in tree.find_data("part")}
 # process the tree to collect variables and parts
 tree = Prepare().transform(tree)
 
-# __import__("IPython").embed()
-
 # apply my wrapper to the transformer
 pm = Propagate_manager()
 PT = visitors.v_args(wrapper=pm.wrapper)(Propagate)()
@@ -420,9 +439,6 @@ for name, value in Variables.items():
         continue
     if name[1] in Parts:
         Index[name] = Index[(name[1], "total")]
-
-# P("unknowns", unknowns, "variables", len(Variables))
-# P(Index.keys())
 
 failed = False
 if unknowns > 0:
