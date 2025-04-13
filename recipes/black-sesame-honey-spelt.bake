@@ -1,0 +1,78 @@
+# https://www.thefreshloaf.com/node/76194/black-sesame-honey-spelt-sourdough-sandwich-loaf
+
+starter:
+  ww_flour
+  water
+  hydration = 60%
+
+leven:
+  bread_flour = 52g
+  water
+  starter = 8g
+  hydration = 60%
+
+wet:
+  leven
+  water = 292g
+  salt = 8g
+  honey = 26g
+  oil = 11g
+
+dry:
+  bread_flour = 293g
+  spelt = 86g
+  sesame_seeds = 52g
+
+dough:
+  wet
+  dry
+
+/*+
+Nutrition
+    name     | per 100g |
+-------------|----------|
+calcium      |          |
+calories     |   263    |
+carbohydrate |    43.7  |
+fat          |     6.49 |
+fiber        |     3.08 |
+monounsat    |     2.73 |
+polyunsat    |     2.31 |
+potassium    |     0.12 |
+protein      |     8.34 |
+saturated    |     0.95 |
+sodium       |     0.40 |
+sugars       |     3.65 |
+water        |    45.2  |
+
+
+  part  | grams  |     name     |   %   | flour  | water  |
+--------|--------|--------------|-------|--------|--------|
+starter |   8.00 |              |   1.8 |   5.00 |   3.00 |
+        |   5.00 | ww flour     |   1.1 |   5.00 |        |
+        |   3.00 | water        |   0.7 |        |   3.00 |
+
+leven   |  91.2  |              |  20.9 |  57.0  |  34.2  |
+        |  52.0  | bread flour  |  11.9 |  52.0  |        |
+        |  31.2  | water        |   7.2 |        |  31.2  |
+        |   8.00 | starter      |   1.8 |   5.00 |   3.00 |
+
+wet     | 428    |              |  98.2 |  57.0  | 331    |
+        |  91.2  | leven        |  20.9 |  57.0  |  34.2  |
+        | 292    | water        |  67.0 |        | 292    |
+        |   8.00 | salt         |   1.8 |        |        |
+        |  26.0  | honey        |   6.0 |        |   4.45 |
+        |  11.0  | oil          |   2.5 |        |        |
+
+dry     | 431    |              |  98.9 | 379    |   1.95 |
+        | 293    | bread flour  |  67.2 | 293    |        |
+        |  86.0  | spelt        |  19.7 |  86.0  |        |
+        |  52.0  | sesame seeds |  11.9 |        |   1.95 |
+
+dough   | 859    |              | 197.1 | 436    | 333    |
+        | 428    | wet          |  98.2 |  57.0  | 331    |
+        | 431    | dry          |  98.9 | 379    |   1.95 |
+        |        | hydration    |  76.3 |        |        |
+
++*/
+
