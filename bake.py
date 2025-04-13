@@ -4,13 +4,15 @@ Bake.py - bread recipes using relationships rather than spreadsheets.
 Gary Bishop July 2024 April 2025
 """
 
-from lark import Lark, Tree, visitors, UnexpectedInput
+from lark import Lark, visitors, UnexpectedInput
+import lark
 import numpy as np
+from numpy.typing import NDArray
 import argparse
 import sys
 from ingredients import getIngredient
 from output import output
-from typing import Any
+from typing import Any, cast, Iterator, TypeGuard, Optional
 
 
 def P(*args):
@@ -57,55 +59,83 @@ COMMENT:  "/*" /(.|\n|\r)*?/ "*/"
 %ignore COMMENT
 """
 
+FullName = tuple[str, str]
+Vector= NDArray[np.float64]
+
 # Collect the variables with their values
-Variables = {}
-Parts = {}
+Variables: dict[FullName, float | None] = {}
+Parts = {str: None}
 
 
-def U(part, name, scale=None):
+class Tree[C](lark.Tree):
+    """A typing hack"""
+    children: list[C]
+
+    def __init__(self, data: str, *children: Any, meta=None):
+        super().__init__(data, list(children), meta)
+
+    def find_data(self, data):
+        return cast(Iterator[Tree[C]], super().find_data(data))
+
+def isTree(value, data="") -> TypeGuard[Tree]:
+    """Test if the value is a Tree"""
+    return isinstance(value, lark.Tree) and (not data or value.data == data)
+
+def Unknown(part: str, name:str, scale:Optional[float] = None):
     """Add an unknown possibly scaled"""
-    r = Tree("unknown", [(part, name)])
+    r = Tree("unknown", (part, name))
     if scale is not None:
-        r = Tree("multiply", [scale, r])
+        r = Tree("multiply", scale, r)
     return r
 
+def isUnknown(value) -> TypeGuard[Tree[FullName]]:
+    return isTree(value, "unknown")
 
-def isF(value):
+def isFloat(value) -> TypeGuard[float]:
     """Test if the value is a float"""
     return isinstance(value, (float, int))
 
+def isVector(value) -> TypeGuard[Vector]:
+    return isinstance(value, np.ndarray)
 
-def isT(value, data=""):
-    """Test if the value is a Tree"""
-    return isinstance(value, Tree) and (not data or value.data == data)
+def meta_wrapper(obj, _, children, meta):
+    raw = obj(*children)
+    if isTree(raw):
+        # make sure children has line and column
+        if hasattr(meta, 'line'):
+            for child in raw.children:
+                if isTree(child) and not hasattr(child.meta, 'line'):
+                    child.meta.line = meta.line
+                    child.meta.column = meta.column
+        raw = Tree(raw.data, *raw.children, meta=meta)
+    return raw
 
-
-@visitors.v_args(inline=True)
+@visitors.v_args(wrapper=meta_wrapper)
 class Prepare(visitors.Transformer):
     """First pass after parsing"""
 
-    def variable(self, name):
-        return U("", name)
+    def variable(self, name: str):
+        return Unknown("", name)
 
-    def reference(self, partname, name):
-        return U(partname, name)
+    def reference(self, partname: str, name: str):
+        return Unknown(partname, name)
 
-    def bp(self, value):
-        return U("dough", "total_flour", value / 100.0)
+    def bp(self, value: float):
+        return Unknown("dough", "total_flour", value / 100.0)
 
-    def product(self, *args):
-        args = list(args)
+    def product(self, *args: (Tree | str)):
+        terms = list(args)
         # if the last term is a percent convert it to bakkers percent
-        if isT(args[-1], "percent"):
-            args[-1] = Tree(
-                "multiply", [args[-1].children[0] / 100.0, U("dough", "total_flour")]
+        if isTree(terms[-1], "percent"):
+            terms[-1] = Tree(
+                "multiply", terms[-1].children[0] / 100.0, Unknown("dough", "total_flour")
             )
-        result = args[0]
-        for i in range(1, len(args), 2):
-            if args[i] == "*":
-                result = Tree("multiply", [result, args[i + 1]])
+        result = terms[0]
+        for i in range(1, len(terms), 2):
+            if terms[i] == "*":
+                result = Tree("multiply", result, terms[i + 1])
             else:
-                result = Tree("divide", [result, args[i + 1]])
+                result = Tree("divide", result, terms[i + 1])
         return result
 
     def NUMBER(self, value):
@@ -120,16 +150,16 @@ class Prepare(visitors.Transformer):
     def hydration(self, value):
         return Tree(
             "relation",
-            [U("", "total_water"), U("", "total_flour", value / 100.0)],
+            Unknown("", "total_water"), Unknown("", "total_flour", value / 100.0),
         )
 
-    def part(self, partname, loss: Any, *rest):
-        relations = [r for r in rest if isT(r, "relation")]
+    def part(self, partname: str, loss: None | float | Tree, *rest: Tree[Any]):
+        relations = [r for r in rest if isTree(r, "relation")]
 
         # qualify the variables with their partname
         tosum = set()
         for children in rest:
-            unknowns = children.find_data("unknown")
+            unknowns: Iterator[Tree[FullName]] = children.find_data("unknown")
             for unknown in unknowns:
                 if unknown.children[0][0]:
                     continue
@@ -141,7 +171,7 @@ class Prepare(visitors.Transformer):
                 if fullname not in Variables:
                     Variables[fullname] = None
                 if name in Parts:
-                    relations.append(Tree("relation", [U(*fullname), U(name, "total")]))
+                    relations.append(Tree("relation", Unknown(*fullname), Unknown(name, "total")))
 
         # establish the total relations
         for which in ["total", "total_water", "total_flour"]:
@@ -150,24 +180,26 @@ class Prepare(visitors.Transformer):
             sum: Any = 0.0
             for name in tosum:
                 if name[1] in Parts:
-                    addin = U(name[1], which)
+                    addin = Unknown(name[1], which)
                 elif which == "total":
-                    addin = U(*name)
+                    addin = Unknown(*name)
                 else:
                     kind = which.replace("total_", "")
                     nutrition = getIngredient(name[1])
-                    addin = U(name[0], name[1], nutrition[kind])
-                sum = Tree("add", [addin, sum])
-            relations.append(Tree("relation", [U(*fullname), sum]))
+                    addin = Unknown(name[0], name[1], nutrition[kind])
+                sum = Tree("add", addin, sum)
+            relations.append(Tree("relation", Unknown(*fullname), sum))
         # add a relation for the loss
-        if isT(loss):
-            loss = U(partname, "total", loss.children[0] / 100.0)
-        elif loss is None:
-            loss = 0.0
+        if isTree(loss, "scaled_loss"):
+            loss_value = Unknown(partname, "total", loss.children[0] / 100.0)
+        elif isFloat(loss):
+            loss_value = loss
+        else:
+            loss_value = 0.0
         loss_name = (partname, "_loss")
         Variables[loss_name] = None
-        relations.append(Tree("relation", [U(*loss_name), loss]))
-        return Tree("part", [*relations])
+        relations.append(Tree("relation", Unknown(*loss_name), loss_value))
+        return Tree("part", *relations)
 
 
 class Propagate_manager:
@@ -181,12 +213,17 @@ class Propagate_manager:
         raw = obj(*children)
         # the the method returns nothing, return the tree
         if raw is None:
-            return Tree(data, children, meta)
+            return Tree(data, *children, meta=meta)
         # It updated something, increment updates
         self.updates += 1
         # if it returns a Tree augment it with meta
-        if isT(raw):
-            return Tree(raw.data, raw.children, meta)
+        if isTree(raw):
+            if hasattr(meta, 'line'):
+                for child in raw.children:
+                    if isTree(child) and not hasattr(child.meta, 'line'):
+                        child.meta.line = meta.line
+                        child.meta.column = meta.column
+            return Tree(raw.data, *raw.children, meta=meta)
         # otherwise return the raw result
         return raw
 
@@ -202,79 +239,78 @@ class Propagate_manager:
 # this will be wrapped by the Propagate_manager
 class Propagate(visitors.Transformer):
 
-    def unknown(self, name):
+    def unknown(self, name: FullName):
         value = Variables[name]
         if value is not None:
             return value
 
-    def relation(self, lhs, rhs):
-        if isF(rhs) and isT(lhs, "unknown"):
+    def relation(self, lhs: float | Tree, rhs: float | Tree):
+        if isFloat(rhs) and isUnknown(lhs):
             lname = lhs.children[0]
             lvalue = Variables[lname]
             if lvalue is None:
                 Variables[lname] = rhs
                 return visitors.Discard
-        elif isF(lhs) and isT(rhs, "unknown"):
+        elif isFloat(lhs) and isUnknown(rhs):
             rname = rhs.children[0]
             rvalue = Variables[rname]
             if rvalue is None:
                 Variables[rname] = lhs
                 return visitors.Discard
-        elif isF(lhs) and isF(rhs):
+        elif isFloat(lhs) and isFloat(rhs):
             return visitors.Discard
 
-    def percent(self, value):
+    def percent(self, value: float):
         return value / 100.0
 
-    def multiply(self, lhs, rhs):
-        if isF(lhs):
+    def multiply(self, lhs: float | Tree, rhs: float | Tree):
+        if isFloat(lhs):
             if lhs == 0.0:
                 return 0.0
             elif lhs == 1.0:
                 return rhs
-            if isF(rhs):
+            if isFloat(rhs):
                 if rhs == 0.0:
                     return 0.0
                 elif rhs == 1.0:
                     return lhs
                 return lhs * rhs
-        if isF(rhs):
+        if isFloat(rhs):
             if rhs == 0.0:
                 return 0.0
             elif rhs == 1.0:
                 return lhs
 
-    def divide(self, lhs, rhs):
-        if isF(lhs):
+    def divide(self, lhs: float | Tree, rhs: float | Tree):
+        if isFloat(lhs):
             if lhs == 0.0:
                 return 0.0
-            if isF(rhs):
+            if isFloat(rhs):
                 return lhs / rhs
-        if isF(rhs):
+        if isFloat(rhs):
             if rhs == 1.0:
                 return lhs
-            return Tree("multiply", [1.0 / rhs, lhs])
+            return Tree("multiply", 1.0 / rhs, lhs)
 
-    def add(self, lhs, rhs):
-        if isF(lhs):
+    def add(self, lhs: float | Tree, rhs: float | Tree):
+        if isFloat(lhs):
             if lhs == 0.0:
                 return rhs
-            if isF(rhs):
+            if isFloat(rhs):
                 if rhs == 0.0:
                     return lhs
                 return lhs + rhs
-        if isF(rhs) and rhs == 0.0:
+        if isFloat(rhs) and rhs == 0.0:
             return lhs
 
-    def subtract(self, lhs, rhs):
-        if isF(lhs):
-            if isF(rhs):
+    def subtract(self, lhs: float | Tree, rhs: float | Tree):
+        if isFloat(lhs):
+            if isFloat(rhs):
                 if rhs == 0.0:
                     return lhs
                 return lhs - rhs
-        if isF(rhs) and rhs == 0.0:
+        if isFloat(rhs) and rhs == 0.0:
             return lhs
-
 
 @visitors.v_args(inline=True)
 class BuildMatrix(visitors.Transformer):
@@ -283,49 +319,48 @@ class BuildMatrix(visitors.Transformer):
     def __init__(self, columns):
         self.columns = columns
 
-    def vector(self, value):
-        def onehot(index, value=1.0):
-            r = np.zeros(self.columns)
-            r[index] = value
-            return r
+    def onehot(self, index: int, value=1.0) -> Vector:
+        r = np.zeros(self.columns)
+        r[index] = value
+        return r
 
-        if isF(value):
-            return onehot(self.columns - 1, value)
-        elif isinstance(value, tuple):
-            return onehot(Index[value])
-        else:
-            return value
+    def vector(self, value: float | int | Vector) -> Vector:
+        if isinstance(value, (float, int)):
+            return self.onehot(self.columns - 1, value)
+        return value
 
-    def unknown(self, name):
-        return self.vector(name)
+    def unknown(self, name: FullName) -> Vector:
+        return self.onehot(Index[name])
 
-    def add(self, lhs, rhs):
+    def add(self, lhs: float | Vector, rhs: float | Vector):
         return self.vector(lhs) + self.vector(rhs)
 
-    def subtract(self, lhs, rhs):
+    def subtract(self, lhs: float | Vector, rhs: float | Vector):
         return self.vector(lhs) - self.vector(rhs)
 
     @visitors.v_args(inline=True, meta=True)
-    def multiply(self, meta, lhs, rhs):
-        if isF(lhs):
+    def multiply(self, meta, lhs: float | Vector, rhs: float | Vector):
+        if isFloat(lhs) and isVector(rhs):
             return lhs * rhs
-        elif isF(rhs):
+        if isVector(lhs) and isFloat(rhs):
             return lhs * rhs
         print(f"Multiplication of unknowns is not supported {meta.line}:{meta.column}")
         sys.exit(1)
 
     @visitors.v_args(inline=True, meta=True)
-    def divide(self, meta, _):
+    def divide(self, meta, lhs: float | Vector, rhs: float | Vector):
+        if isFloat(lhs) and isFloat(rhs):
+            return lhs / rhs
         print(f"Division of unknowns is not supported {meta.line}:{meta.column}")
         sys.exit(1)
 
-    def relation(self, lhs, rhs):
+    def relation(self, lhs: float | Vector, rhs: float | Vector):
         return self.vector(lhs) - self.vector(rhs)
 
-    def part(self, *relations):
+    def part(self, *relations: Vector):
         return relations  # all the relations
 
-    def start(self, *relations):
+    def start(self, *relations: Vector):
         # join the lists of relations then convert to array
         M = np.array([vector for part in relations for vector in part])
         return M[:, :-1], -M[:, -1]
@@ -360,6 +395,8 @@ Parts = {str(node.children[0]): None for node in tree.find_data("part")}
 # process the tree to collect variables and parts
 tree = Prepare().transform(tree)
 
+# __import__("IPython").embed()
+
 # apply my wrapper to the transformer
 pm = Propagate_manager()
 PT = visitors.v_args(wrapper=pm.wrapper)(Propagate)()
@@ -368,7 +405,7 @@ while pm.updated:
     tree = PT.transform(tree)
 
 # map unknowns to columns in the matrix
-Index = {}
+Index: dict[FullName, int] = {}
 unknowns = 0
 # add the unknowns to the Index
 for name, value in Variables.items():
