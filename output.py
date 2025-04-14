@@ -1,7 +1,6 @@
 import re
 from ingredients import getIngredient
 import sys
-from math import log10
 
 
 def format_table(Variables, Parts):
@@ -9,12 +8,15 @@ def format_table(Variables, Parts):
 
     def fmt_grams(g, threshold=0.1):
         """Format grams in the table"""
-        if abs(g) < threshold:
-            return ""
-        w = max(0, int(log10(round(abs(g), 2)))) + 1
-        p = max(0, 3 - w)
-        s = max(0, 2 - p) + (p == 0)
-        return f"{g:.{p}f}" + s * " "
+        if round(g, 0) >= 100:
+            r = f"{g:.0f}   "
+        elif round(g, 1) >= 5:
+            r = f"{g:0.1f} "
+        elif abs(g) < threshold:
+            r = ""
+        else:
+            r = f"{g:0.2f}"
+        return r
 
     formatter = {
         "g": fmt_grams,
