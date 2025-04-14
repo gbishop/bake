@@ -13,7 +13,9 @@ import sys
 from ingredients import getIngredient
 from output import output
 from typing import Any, cast, Iterator, TypeGuard, Optional
+from math import isnan
 
+NaN = float('nan')
 
 def P(*args):
     """Print on stderr for debugging"""
@@ -63,7 +65,7 @@ FullName = tuple[str, str]
 Vector= NDArray[np.float64]
 
 # Collect the variables with their values
-Variables: dict[FullName, float | None] = {}
+Variables: dict[FullName, float] = {}
 Parts = {str: None}
 
 
@@ -194,14 +196,14 @@ class Prepare(visitors.Transformer):
                 if not (name.startswith("total") or name.startswith("_")):
                     tosum.add(fullname)
                 if fullname not in Variables:
-                    Variables[fullname] = None
+                    Variables[fullname] = NaN
                 if name in Parts:
                     relations.append(Tree("relation", Unknown(*fullname), Unknown(name, "total")))
 
         # establish the total relations
         for which in ["total", "total_water", "total_flour"]:
             fullname = (partname, which)
-            Variables[fullname] = None
+            Variables[fullname] = NaN
             sum: Any = 0.0
             for name in tosum:
                 if name[1] in Parts:
@@ -222,7 +224,7 @@ class Prepare(visitors.Transformer):
         else:
             loss_value = 0.0
         loss_name = (partname, "_loss")
-        Variables[loss_name] = None
+        Variables[loss_name] = NaN
         relations.append(Tree("relation", Unknown(*loss_name), loss_value))
         return Tree("part", *relations)
 
@@ -262,20 +264,20 @@ class Propagate(visitors.Transformer):
 
     def unknown(self, name: FullName):
         value = Variables[name]
-        if value is not None:
+        if not isnan(value):
             return value
 
     def relation(self, lhs: float | Tree, rhs: float | Tree):
         if isFloat(rhs) and isUnknown(lhs):
             lname = lhs.children[0]
             lvalue = Variables[lname]
-            if lvalue is None:
+            if isnan(lvalue):
                 Variables[lname] = rhs
                 return visitors.Discard
         elif isFloat(lhs) and isUnknown(rhs):
             rname = rhs.children[0]
             rvalue = Variables[rname]
-            if rvalue is None:
+            if isnan(rvalue):
                 Variables[rname] = lhs
                 return visitors.Discard
         elif isFloat(lhs) and isFloat(rhs):
@@ -428,16 +430,12 @@ Index: dict[FullName, int] = {}
 unknowns = 0
 # add the unknowns to the Index
 for name, value in Variables.items():
-    if value is not None:
-        continue
-    if name[1] not in Parts:
+    if isnan(value) and name[1] not in Parts:
         Index[name] = unknowns
         unknowns += 1
 # link the part references to the part total
 for name, value in Variables.items():
-    if value is not None:
-        continue
-    if name[1] in Parts:
+    if isnan(value) and name[1] in Parts:
         Index[name] = Index[(name[1], "total")]
 
 failed = False
