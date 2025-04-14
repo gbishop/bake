@@ -2,38 +2,45 @@ import re
 from ingredients import getIngredient
 import sys
 
+FullName = tuple[str, str]
 
-def format_table(Variables, Parts):
+
+def format_table(Variables: dict[FullName, float], Parts: dict[str, None]):
     """Build a table from the solution"""
 
-    def fmt_grams(g, threshold=0.1):
-        """Format grams in the table"""
-        if round(g, 0) >= 100:
-            r = f"{g:.0f}   "
-        elif round(g, 1) >= 5:
-            r = f"{g:0.1f} "
-        elif abs(g) < threshold:
-            r = ""
-        else:
-            r = f"{g:0.2f}"
+    def fmt_value(fmt: str, v: float | str):
+        """Format values in the table"""
+        r = ""
+        if fmt == "g":
+            assert isinstance(v, (float, int))
+            g = v
+            ga = abs(g)
+            if round(ga, 0) >= 100:
+                r = f"{g:.0f}   "
+            elif round(ga, 1) >= 5:
+                r = f"{g:0.1f} "
+            elif ga < 0.01:
+                r = ""
+            else:
+                r = f"{g:0.2f}"
+        elif fmt == "%":
+            assert isinstance(v, (float, int))
+            r = f"{v:5.1f}"
+        elif fmt == "t":
+            assert isinstance(v, str)
+            r = v.replace("_", " ")
         return r
 
-    formatter = {
-        "g": fmt_grams,
-        "%": lambda p: f"{p:5.1f}",
-        "t": lambda s: s.replace("_", " "),
-    }
-
     # fmt: off
-    def tabulate(headings, formats, rows):
+    def tabulate(headings: list[str], formats: str, input: list[list[float | str]]):
         """Format a list of lists as a table"""
         widths = [len(h) for h in headings]
         rows = [
             [
-                formatter[format](column)
+                fmt_value(format, column)
                 for column, format in zip(row, formats)
             ]
-            for row in rows
+            for row in input
         ]
         for row in rows:
             if len(row) <= 1:
@@ -157,7 +164,14 @@ def format_table(Variables, Parts):
     return recipe, nut
 
 
-def output(text, Variables, Parts, failed=False, tobp=False, html=""):
+def output(
+    text: str,
+    Variables: dict[FullName, float],
+    Parts: dict[str, None],
+    failed=False,
+    tobp=False,
+    html="",
+):
     """Insert the table into the input"""
     recipe, nut = format_table(Variables, Parts)
     text = re.sub(r"(?ms)\/\*\+.*?\+\*\/\n", "", text)
@@ -185,7 +199,7 @@ def output(text, Variables, Parts, failed=False, tobp=False, html=""):
             print("</tbody></table>", file=fp)
 
 
-def rewrite(rest, scale):
+def rewrite(text: str, scale: float):
     """Rewrite grams as baker's percent"""
 
     def gtobp(match):
@@ -199,4 +213,4 @@ def rewrite(rest, scale):
         else:
             return match.group(0)
 
-    return re.sub(r"(\w+)(\s*=\s*)([\d.]+\s*g)", gtobp, rest)
+    return re.sub(r"(\w+)(\s*=\s*)([\d.]+\s*g)", gtobp, text)
