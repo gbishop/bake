@@ -22,20 +22,20 @@ It was smelling done so I pulled it out.
 
 /*+
 Nutrition
-    name     | per 65g |
--------------|---------|
-calcium      |    0.04 |
-calories     |  351    |
-carbohydrate |   28.2  |
-fat          |   24.7  |
-fiber        |    4.5  |
-monounsat    |   11.0  |
-polyunsat    |    6.9  |
-potassium    |    0.29 |
-protein      |    8.3  |
-saturated    |    5.2  |
-sugars       |    8.1  |
-water        |    8.2  |
+    name     | per 100g |
+-------------|----------|
+calcium      |          |
+calories     |   540    |
+carbohydrate |    43.4  |
+fat          |    38.0  |
+fiber        |     6.9  |
+monounsat    |    17.0  |
+polyunsat    |    10.6  |
+potassium    |     0.45 |
+protein      |    12.7  |
+saturated    |     8.0  |
+sugars       |    12.5  |
+water        |    12.6  |
 
 
  part | grams  |       name      |   %   | flour  | water |
@@ -49,6 +49,6 @@ dough | 780    |                 | 390.0 | 200    | 76.5  |
       | 130    | maple syrup     |  65.0 |        | 42.1  |
       |  50.0  | olive oil       |  25.0 |        |       |
       |        | hydration       |  38.2 |        |       |
-     
+
 +*/
 
