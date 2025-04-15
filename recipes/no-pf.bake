@@ -9,13 +9,13 @@ wet:
   starter = 30g # what I had in the fridge - 3g
   water
   olive_oil = 5%
-  honey = 5%
+  molasses = 5%
   yogurt = 5%
 
 grain:
   prairie_gold
   hard_red
-  spelt = 10%
+  rye = 10%
 
 dry:
   grain
@@ -35,42 +35,38 @@ dough:
   total_flour = 200g * 2.3
 
 /*
-April 10, 2025
+April 15, 2025
 
 Changes
-* Use the 9 inch pullman
-* Use the mixer
+* Try laminating some addins
+* Rye
+* Molasses
 
-Mixed at 9:40 rest in oven on proof for 30 minutes. Mixer worked
+Mixed at 8:25 rest in oven on proof for 30 minutes. Mixer worked
 very well. Dough was ready after 10 minutes at speed 1.
 
-10:25 after kneading pH=5.55 DT=80.4
+9:10 into cambro to proof.
 
-Proofed in cambro in the oven, peak starts at 1qt mark.
+10:05 pH=5.5 DT=86, S&F.
 
-11:25 pH=5.57 DT=83.6
+11:05 pH=5.4 DT=87, S&F.
 
-12:27 pH=5.45 DT=81.8
+12:05 pH=5.31 DT=88
 
-13:36 pH=5.22 DT=87.7
+12:50 ph=5.21 DT=88
 
-13:40 into buttered pan.
+Into buttered pan.
 
-14:45 bake in 325F preheated convection oven. 45 minutes lid on.
+13:45 the dough is breaking down. Maybe enzymes from the rye?
 
-Came cleanly out of the pan. No flash. Lighter in color and softer
-crust. 205F inside.
+14:10 bake in 325F preheated convection oven. 45 minutes lid on.
 
-Cooled dry pH is 5.1.
+The top is ugly because of the breakdown. Hard to guess how it will
+slice. It clearly couldn't hold together before baking. Will it
+after?
 
-It looks great.
-
-It tastes fine but it is firmer/tougher than the previous loaf. Why?
-* Maybe 10 minutes in KA devloped more gluten than 20 in Zoji?
-* The amount of starter was 1/2.3 less but compensated with flour
-and water.
-* It seemed much less sticky. Did I get the hydration wrong?
-* I should weigh the finished loaf for quality control.
+Came out of the pan with one small stick. No flash.
+crust. > 200F inside.
 
 */
 
@@ -78,15 +74,15 @@ and water.
 Nutrition
     name     | per 100g |
 -------------|----------|
-calcium      |          |
+calcium      |     0.06 |
 calories     |   255    |
 carbohydrate |    44.5  |
-fat          |     5.99 |
-fiber        |     7.30 |
+fat          |     6.0  |
+fiber        |     7.3  |
 monounsat    |     2.75 |
 polyunsat    |     1.60 |
 potassium    |     0.29 |
-protein      |     9.38 |
+protein      |     9.4  |
 saturated    |     1.19 |
 sodium       |     0.43 |
 sugars       |     4.27 |
@@ -98,32 +94,32 @@ water        |    43.4  |
 starter |  30.0  |               |   6.5 |  17.1  |  12.9  |
         |  17.1  | whole wheat   |   3.7 |  17.1  |        |
         |  12.9  | water         |   2.8 |        |  12.9  |
-       
+
 wet     | 383    |               |  83.3 |  17.1  | 321    |
         |  30.0  | starter       |   6.5 |  17.1  |  12.9  |
         | 284    | water         |  61.8 |        | 284    |
         |  23.0  | olive oil     |   5.0 |        |        |
         |  23.0  | honey         |   5.0 |        |   3.93 |
         |  23.0  | yogurt        |   5.0 |        |  20.2  |
-       
+
 grain   | 397    |               |  86.3 | 397    |        |
         | 175    | prairie gold  |  38.1 | 175    |        |
         | 175    | hard red      |  38.1 | 175    |        |
         |  46.0  | spelt         |  10.0 |  46.0  |        |
-       
+
 dry     | 473    |               | 102.9 | 443    |   0.59 |
         | 397    | grain         |  86.3 | 397    |        |
-        |   9.20 | potato flakes |   2.0 |   9.20 |        |
+        |   9.2  | potato flakes |   2.0 |   9.2  |        |
         |  23.0  | flaxseed meal |   5.0 |  23.0  |        |
         |  20.9  | nido          |   4.5 |        |   0.52 |
         |  13.8  | wgbi          |   3.0 |  13.8  |        |
-        |   8.28 | salt          |   1.8 |        |        |
-        |   1.15 | yeast         |   0.2 |        |        |
-       
+        |   8.3  | salt          |   1.8 |        |   0.02 |
+        |   1.15 | yeast         |   0.2 |        |   0.06 |
+
 dough   | 857    |               | 186.2 | 460    | 322    |
         | 383    | wet           |  83.3 |  17.1  | 321    |
         | 473    | dry           | 102.9 | 443    |   0.59 |
         |        | hydration     |  70.0 |        |        |
-       
+
 +*/
 
