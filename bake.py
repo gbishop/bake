@@ -66,7 +66,7 @@ Vector= NDArray[np.float64]
 
 # Collect the variables with their values
 Variables: dict[FullName, float] = {}
-Parts = {str: None}
+Parts: dict[str, None] = {}
 
 
 class Tree[C](lark.Tree):
