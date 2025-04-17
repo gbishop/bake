@@ -63,6 +63,7 @@ COMMENT:  "/*" /(.|\n|\r)*?/ "*/"
 
 FullName = tuple[str, str]
 Vector= NDArray[np.float64]
+Matrix = NDArray[np.float64]
 
 # Collect the variables with their values
 Variables: dict[FullName, float] = {}
@@ -335,8 +336,7 @@ class Propagate(visitors.Transformer):
         if isFloat(rhs) and rhs == 0.0:
             return lhs
 
-@visitors.v_args(inline=True)
-class BuildMatrix(visitors.Transformer):
+class BuildMatrix(visitors.Transformer[Any, tuple[Matrix, Vector]]):
     """Convert the remaining relations into matrix equations"""
 
     def __init__(self, columns):
@@ -352,17 +352,20 @@ class BuildMatrix(visitors.Transformer):
             return self.onehot(self.columns - 1, value)
         return value
 
+    @visitors.v_args(inline=True)
     def unknown(self, name: FullName) -> Vector:
         return self.onehot(Index[name])
 
-    def add(self, lhs: float | Vector, rhs: float | Vector):
+    @visitors.v_args(inline=True)
+    def add(self, lhs: float | Vector, rhs: float | Vector) -> Vector:
         return self.vector(lhs) + self.vector(rhs)
 
-    def subtract(self, lhs: float | Vector, rhs: float | Vector):
+    @visitors.v_args(inline=True)
+    def subtract(self, lhs: float | Vector, rhs: float | Vector) -> Vector:
         return self.vector(lhs) - self.vector(rhs)
 
     @visitors.v_args(inline=True, meta=True)
-    def multiply(self, meta, lhs: float | Vector, rhs: float | Vector):
+    def multiply(self, meta, lhs: float | Vector, rhs: float | Vector) -> Vector:
         if isFloat(lhs) and isVector(rhs):
             return lhs * rhs
         if isVector(lhs) and isFloat(rhs):
@@ -370,24 +373,17 @@ class BuildMatrix(visitors.Transformer):
         print(f"Multiplication of unknowns is not supported {meta.line}:{meta.column}")
         sys.exit(1)
 
-    @visitors.v_args(inline=True, meta=True)
-    def divide(self, meta, lhs: float | Vector, rhs: float | Vector):
-        if isFloat(lhs) and isFloat(rhs):
-            return lhs / rhs
-        print(f"Division of unknowns is not supported {meta.line}:{meta.column}")
-        sys.exit(1)
-
-    def relation(self, lhs: float | Vector, rhs: float | Vector):
+    @visitors.v_args(inline=True)
+    def relation(self, lhs: float | Vector, rhs: float | Vector) -> Vector:
         return self.vector(lhs) - self.vector(rhs)
 
-    def part(self, *relations: Vector):
+    def part(self, relations: list[Vector]) -> list[Vector]:
         return relations  # all the relations
 
-    def start(self, *relations: Vector):
+    def start(self, relations: list[Vector]) -> tuple[Matrix, Vector]:
         # join the lists of relations then convert to array
         M = np.array([vector for part in relations for vector in part])
         return M[:, :-1], -M[:, -1]
-
 
 argparser = argparse.ArgumentParser(
     prog="bake.py",
@@ -407,16 +403,16 @@ text = fp.read()
 parser = Lark(grammar, propagate_positions=True)
 
 try:
-    tree = parser.parse(text)
+    parsetree = parser.parse(text)
 except UnexpectedInput as e:
     print(e, e.get_context(text))
     sys.exit(1)
 
 # Ordered set of Part names
-Parts = {str(node.children[0]): None for node in tree.find_data("part")}
+Parts = {str(node.children[0]): None for node in parsetree.find_data("part")}
 
 # process the tree to collect variables and parts
-tree = Prepare().transform(tree)
+tree: Tree = Prepare().transform(parsetree)
 
 # apply my wrapper to the transformer
 pm = Propagate_manager()
@@ -445,8 +441,8 @@ if unknowns > 0:
     # solve
     r = np.linalg.lstsq(A, B, rcond=-1)
     X = r[0]
-    residuals = A.dot(X) - B
-    error = np.sqrt(np.max(residuals**2))
+    residuals: Vector = A.dot(X) - B
+    error: float = np.sqrt(np.max(residuals**2))
     failed = error > 1
     # copy solution back to the unknowns
     for name, index in Index.items():
