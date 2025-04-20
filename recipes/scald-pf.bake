@@ -1,0 +1,144 @@
+# Everyday loaf with preferment and scald
+
+starter:
+  whole_wheat = preferment.total_flour / 4
+  water
+  hydration = 75%
+
+preferment ^ 8g:
+  starter
+  water
+  whole_wheat
+  total_flour = 16%
+  hydration = 75%
+
+scald ^ 8g:
+  boiling_water
+  whole_wheat = 20%
+  hydration = 100%
+
+wet:
+  preferment
+  scald
+  water
+  olive_oil = 5%
+  honey = 5%
+  yogurt = 5%
+
+grain:
+  prairie_gold
+  hard_red
+  spelt = 5%
+
+dry:
+  grain
+  flaxseed_meal = 5%
+  # added water to milk
+  nido = 13% * wet.water
+  wgbi = 3%
+  salt = 1.8%
+  yeast = 0.25%
+
+dough:
+  wet
+  dry
+  hydration = 75%
+  # 200g/L of flour
+  total_flour = 200g * 1
+
+/*
+April 19, 2025
+
+Changes
+* Experiment with a scald/yudane
+* 
+
+Mix the preferment and scald the night before at 21:15. Refrigerate
+the scald after it cools to RT. 
+
+At 7:33 preferment pH=3.89 T=78F.
+
+Mixed at 8:00, rest 30 minutes.
+
+Knead for 7 minutes, T=74F. Into the oven on proof at 8:40.
+Hydration feels low. 350mL.
+
+9:30 400mL DT=76F pH=5.14
+
+10:30 600mL DT=80F pH=4.99.
+
+10:33 Into the pan, covered with plastic wrap in oven to proof.
+
+Baked at 12:00 maybe 1/2 inch below the top of the pan. 45 minutes
+in 325F preheated convection. Slightly rounded top corners but that
+is better than squirting out of the pan!
+
+Flavor is great. Just the right amount of sour. Great texture.
+Nicely soft. This may be the best I've made. This would argue for
+preferment and scald being worth the effort. Next time reduce the
+preferment a bit.
+
+*/
+
+/*+
+Nutrition
+    name     | per 100g |
+-------------|----------|
+calcium      |     0.06 |
+calories     |   250    |
+carbohydrate |    43.1  |
+fat          |     6.0  |
+fiber        |     6.9  |
+monounsat    |     2.70 |
+polyunsat    |     1.64 |
+potassium    |     0.27 |
+protein      |     9.4  |
+saturated    |     1.22 |
+sodium       |     0.42 |
+sugars       |     4.01 |
+water        |    44.8  |
+
+
+   part    | grams  |      name     |   %   | flour  | water  |
+-----------|--------|---------------|-------|--------|--------|
+starter    |  14.0  |               |   7.0 |   8.0  |   6.0  |
+           |   8.0  | whole wheat   |   4.0 |   8.0  |        |
+           |   6.0  | water         |   3.0 |        |   6.0  |
+
+preferment |  64.0  | + 8.0g        |  28.0 |  32.0  |  24.0  |
+           |  16.0  | starter       |   7.0 |   8.0  |   6.0  |
+           |  20.6  | water         |   9.0 |        |  18.0  |
+           |  27.4  | whole wheat   |  12.0 |  24.0  |        |
+
+scald      |  88.0  | + 8.0g        |  40.0 |  40.0  |  40.0  |
+           |  44.0  | boiling water |  20.0 |        |  40.0  |
+           |  44.0  | whole wheat   |  20.0 |  40.0  |        |
+
+wet        | 241    |               | 120.6 |  72.0  | 150    |
+           |  56.0  | preferment    |  28.0 |  32.0  |  24.0  |
+           |  80.0  | scald         |  40.0 |  40.0  |  40.0  |
+           |  75.2  | water         |  37.6 |        |  75.2  |
+           |  10.0  | olive oil     |   5.0 |        |        |
+           |  10.0  | honey         |   5.0 |        |   1.71 |
+           |  10.0  | yogurt        |   5.0 |        |   8.8  |
+
+grain      | 112    |               |  56.0 | 112    |        |
+           |  51.0  | prairie gold  |  25.5 |  51.0  |        |
+           |  51.0  | hard red      |  25.5 |  51.0  |        |
+           |  10.0  | spelt         |   5.0 |  10.0  |        |
+
+dry        | 142    |               |  70.9 | 128    |   0.27 |
+           | 112    | grain         |  56.0 | 112    |        |
+           |  10.0  | flaxseed meal |   5.0 |  10.0  |        |
+           |   9.8  | nido          |   4.9 |        |   0.24 |
+           |   6.0  | wgbi          |   3.0 |   6.0  |        |
+           |   3.60 | salt          |   1.8 |        |        |
+           |   0.50 | yeast         |   0.2 |        |   0.03 |
+
+dough      | 383    |               | 191.6 | 200    | 150    |
+           | 241    | wet           | 120.6 |  72.0  | 150    |
+           | 142    | dry           |  70.9 | 128    |   0.27 |
+           |        | hydration     |  75.0 |        |        |
+
++*/
+
