@@ -1,20 +1,20 @@
 # Everyday loaf with preferment and scald
 
 starter:
-  whole_wheat = preferment.total_flour / 4
+  whole_wheat = preferment.total_flour / 8
   water
   hydration = 75%
 
-preferment ^ 8g:
+preferment ^ 4g:
   starter
   water
   whole_wheat
-  total_flour = 16%
+  total_flour = 12%
   hydration = 75%
 
-scald ^ 8g:
+scald ^ 4g:
   boiling_water
-  whole_wheat = 20%
+  whole_wheat = 15%
   hydration = 100%
 
 wet:
@@ -28,7 +28,7 @@ wet:
 grain:
   prairie_gold
   hard_red
-  spelt = 5%
+  grape_nuts = 5%
 
 dry:
   grain
@@ -47,36 +47,31 @@ dough:
   total_flour = 200g * 1
 
 /*
-April 19, 2025
+April 23, 2025
 
 Changes
-* Experiment with a scald/yudane
-* 
+* Reduce PF and innoculation
+* Try grape nuts instead of spelt
 
-Mix the preferment and scald the night before at 21:15. Refrigerate
-the scald after it cools to RT. 
+Mix the preferment and scald the night before at 19:15.
 
-At 7:33 preferment pH=3.89 T=78F.
+At 7:42 preferment pH=3.83 T=79F.
 
-Mixed at 8:00, rest 30 minutes.
+Mixed at 8:05, rest 30 minutes.
 
-Knead for 7 minutes, T=74F. Into the oven on proof at 8:40.
+Knead for 7 minutes, T=74F. Into the oven on proof at 8:35.
 Hydration feels low. 350mL.
 
-9:30 400mL DT=76F pH=5.14
+9:00 400mL DT=76F pH=5.23
 
-10:30 600mL DT=80F pH=4.99.
+9:30 Into the pan, covered with plastic wrap in oven to proof.
 
-10:33 Into the pan, covered with plastic wrap in oven to proof.
+Baked at 11:10 at the top of the pan. 45 minutes in 325F preheated
+convection.
 
-Baked at 12:00 maybe 1/2 inch below the top of the pan. 45 minutes
-in 325F preheated convection. Slightly rounded top corners but that
-is better than squirting out of the pan!
+Perfectly filled the pan. Looks good. 
 
-Flavor is great. Just the right amount of sour. Great texture.
-Nicely soft. This may be the best I've made. This would argue for
-preferment and scald being worth the effort. Next time reduce the
-preferment a bit.
+Good mild flavor. I don't taste the grape nuts.
 
 */
 
@@ -85,59 +80,59 @@ Nutrition
     name     | per 100g |
 -------------|----------|
 calcium      |     0.06 |
-calories     |   250    |
-carbohydrate |    43.1  |
-fat          |     6.0  |
+calories     |   252    |
+carbohydrate |    43.5  |
+fat          |     6.1  |
 fiber        |     6.9  |
-monounsat    |     2.70 |
-polyunsat    |     1.64 |
-potassium    |     0.27 |
+monounsat    |     2.72 |
+polyunsat    |     1.60 |
+potassium    |     0.28 |
 protein      |     9.4  |
-saturated    |     1.22 |
-sodium       |     0.42 |
-sugars       |     4.01 |
-water        |    44.8  |
+saturated    |     1.30 |
+sodium       |     0.43 |
+sugars       |     4.38 |
+water        |    44.4  |
 
 
    part    | grams  |      name     |   %   | flour  | water  |
 -----------|--------|---------------|-------|--------|--------|
-starter    |  14.0  |               |   7.0 |   8.0  |   6.0  |
-           |   8.0  | whole wheat   |   4.0 |   8.0  |        |
-           |   6.0  | water         |   3.0 |        |   6.0  |
+starter    |   5.2  |               |   2.6 |   3.00 |   2.25 |
+           |   3.00 | whole wheat   |   1.5 |   3.00 |        |
+           |   2.25 | water         |   1.1 |        |   2.25 |
 
-preferment |  64.0  | + 8.0g        |  28.0 |  32.0  |  24.0  |
-           |  16.0  | starter       |   7.0 |   8.0  |   6.0  |
-           |  20.6  | water         |   9.0 |        |  18.0  |
-           |  27.4  | whole wheat   |  12.0 |  24.0  |        |
+preferment |  46.0  | + 4.0g        |  21.0 |  24.0  |  18.0  |
+           |   5.8  | starter       |   2.6 |   3.00 |   2.25 |
+           |  17.2  | water         |   7.9 |        |  15.7  |
+           |  23.0  | whole wheat   |  10.5 |  21.0  |        |
 
-scald      |  88.0  | + 8.0g        |  40.0 |  40.0  |  40.0  |
-           |  44.0  | boiling water |  20.0 |        |  40.0  |
-           |  44.0  | whole wheat   |  20.0 |  40.0  |        |
+scald      |  64.0  | + 4.0g        |  30.0 |  30.0  |  30.0  |
+           |  32.0  | boiling water |  15.0 |        |  30.0  |
+           |  32.0  | whole wheat   |  15.0 |  30.0  |        |
 
-wet        | 241    |               | 120.6 |  72.0  | 150    |
-           |  56.0  | preferment    |  28.0 |  32.0  |  24.0  |
-           |  80.0  | scald         |  40.0 |  40.0  |  40.0  |
-           |  75.2  | water         |  37.6 |        |  75.2  |
+wet        | 223    |               | 111.6 |  54.0  | 150    |
+           |  42.0  | preferment    |  21.0 |  24.0  |  18.0  |
+           |  60.0  | scald         |  30.0 |  30.0  |  30.0  |
+           |  91.2  | water         |  45.6 |        |  91.2  |
            |  10.0  | olive oil     |   5.0 |        |        |
            |  10.0  | honey         |   5.0 |        |   1.71 |
            |  10.0  | yogurt        |   5.0 |        |   8.8  |
 
-grain      | 112    |               |  56.0 | 112    |        |
-           |  51.0  | prairie gold  |  25.5 |  51.0  |        |
-           |  51.0  | hard red      |  25.5 |  51.0  |        |
-           |  10.0  | spelt         |   5.0 |  10.0  |        |
+grain      | 130    |               |  65.0 | 130    |        |
+           |  60.0  | prairie gold  |  30.0 |  60.0  |        |
+           |  60.0  | hard red      |  30.0 |  60.0  |        |
+           |  10.0  | grape nuts    |   5.0 |  10.0  |        |
 
-dry        | 142    |               |  70.9 | 128    |   0.27 |
-           | 112    | grain         |  56.0 | 112    |        |
+dry        | 162    |               |  81.0 | 146    |   0.33 |
+           | 130    | grain         |  65.0 | 130    |        |
            |  10.0  | flaxseed meal |   5.0 |  10.0  |        |
-           |   9.8  | nido          |   4.9 |        |   0.24 |
+           |  11.9  | nido          |   5.9 |        |   0.29 |
            |   6.0  | wgbi          |   3.0 |   6.0  |        |
            |   3.60 | salt          |   1.8 |        |        |
            |   0.50 | yeast         |   0.2 |        |   0.03 |
 
-dough      | 383    |               | 191.6 | 200    | 150    |
-           | 241    | wet           | 120.6 |  72.0  | 150    |
-           | 142    | dry           |  70.9 | 128    |   0.27 |
+dough      | 385    |               | 192.6 | 200    | 150    |
+           | 223    | wet           | 111.6 |  54.0  | 150    |
+           | 162    | dry           |  81.0 | 146    |   0.33 |
            |        | hydration     |  75.0 |        |        |
 
 +*/
