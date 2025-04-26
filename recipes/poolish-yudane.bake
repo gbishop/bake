@@ -1,0 +1,129 @@
+# Try a yeast poolish plus yudane
+
+poolish ^ 4g:
+  water
+  hard_red
+  yeast = 0.1% * total_flour
+  total_flour = 20%
+  hydration = 100%
+
+yudane ^ 4g:
+  boiling_water
+  hard_red
+  total_flour = 10%
+  hydration = 100%
+
+wet:
+  poolish
+  yudane
+  water
+  olive_oil = 5%
+  honey = 5%
+  yogurt = 5%
+
+dry:
+  prairie_gold
+  spelt = 12%
+  flaxseed_meal = 5%
+  # added water to milk
+  nido = 13% * wet.water
+  wgbi = 3%
+  salt = 1.8%
+  yeast = 0.25%
+
+dough:
+  wet
+  dry
+  hydration = 75%
+  # 200g/L of flour
+  total_flour = 200g * 1
+
+/*
+April 25, 2025
+
+Changes
+* Use a yeast poolish
+* Freshly milled grains everywhere
+
+Mixed the preferment and scald at 15:20. Keep them at RT until the
+preferment is bubbly, then refrigerate.
+
+Lots of interruptions today because of the wreck last evening.
+
+? At 7:42 preferment pH=3.83 T=79F.
+
+Mixed at 7:55 rest 30 minutes.
+
+Knead for 6 minutes, T=?. Into the oven on proof at ?.
+350mL.
+
+Into pan about 10:45 at 650mL. covered with plastic wrap in oven to
+proof.
+
+Baked at 12:10 at the top of the pan. 45 minutes in 325F preheated
+convection.
+
+Perfectly filled the pan. Looks good. A little flash.
+
+I really like the flavor on first taste. Maybe the grain is more
+forward?
+
+In a side-by-side taste test I might like this one better?
+
+
+*/
+
+/*+
+Nutrition
+    name     | per 100g |
+-------------|----------|
+calcium      |     0.06 |
+calories     |   250    |
+carbohydrate |    43.6  |
+fat          |     5.9  |
+fiber        |     7.2  |
+monounsat    |     2.70 |
+polyunsat    |     1.57 |
+potassium    |     0.28 |
+protein      |     9.2  |
+saturated    |     1.21 |
+sodium       |     0.42 |
+sugars       |     4.32 |
+water        |    44.6  |
+
+
+  part  | grams  |      name     |   %   | flour  | water  |
+--------|--------|---------------|-------|--------|--------|
+poolish |  84.0  | + 4.0g        |  40.0 |  40.0  |  40.0  |
+        |  42.0  | water         |  20.0 |        |  40.0  |
+        |  42.0  | hard red      |  20.0 |  40.0  |        |
+        |   0.04 | yeast         |   0.0 |        |        |
+
+yudane  |  44.0  | + 4.0g        |  20.0 |  20.0  |  20.0  |
+        |  22.0  | boiling water |  10.0 |        |  20.0  |
+        |  22.0  | hard red      |  10.0 |  20.0  |        |
+
+wet     | 229    |               | 114.6 |  60.0  | 150    |
+        |  80.0  | poolish       |  40.0 |  40.0  |  40.0  |
+        |  40.0  | yudane        |  20.0 |  20.0  |  20.0  |
+        |  79.2  | water         |  39.6 |        |  79.2  |
+        |  10.0  | olive oil     |   5.0 |        |        |
+        |  10.0  | honey         |   5.0 |        |   1.71 |
+        |  10.0  | yogurt        |   5.0 |        |   8.8  |
+
+dry     | 154    |               |  77.2 | 140    |   0.29 |
+        | 100    | prairie gold  |  50.0 | 100    |        |
+        |  24.0  | spelt         |  12.0 |  24.0  |        |
+        |  10.0  | flaxseed meal |   5.0 |  10.0  |        |
+        |  10.3  | nido          |   5.1 |        |   0.25 |
+        |   6.0  | wgbi          |   3.0 |   6.0  |        |
+        |   3.60 | salt          |   1.8 |        |        |
+        |   0.50 | yeast         |   0.2 |        |   0.03 |
+
+dough   | 384    |               | 191.8 | 200    | 150    |
+        | 229    | wet           | 114.6 |  60.0  | 150    |
+        | 154    | dry           |  77.2 | 140    |   0.29 |
+        |        | hydration     |  75.0 |        |        |
+
++*/
+
