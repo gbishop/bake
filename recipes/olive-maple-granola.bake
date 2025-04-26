@@ -1,7 +1,7 @@
 # Granola with olive oil and maple syrup
 
 dough:
-  rolled_oats = 200g
+  rolled_oats = 100%
   pumpkin_seeds = 50%
   sunflower_seeds = 50%
   coconut = 50%
@@ -9,10 +9,10 @@ dough:
   maple_syrup = 65%
   olive_oil = 25%
 
-  total_flour = 200g
+  total = 1000g
 
 /*
-March 1, 2025
+April 24, 2025
 
 In the new oven 10 + 15 + 10 seemed to do it on 300 convection.
 
@@ -24,7 +24,7 @@ It was smelling done so I pulled it out.
 Nutrition
     name     | per 100g |
 -------------|----------|
-calcium      |          |
+calcium      |     0.06 |
 calories     |   540    |
 carbohydrate |    43.4  |
 fat          |    38.0  |
@@ -38,17 +38,17 @@ sugars       |    12.5  |
 water        |    12.6  |
 
 
- part | grams  |       name      |   %   | flour  | water |
-------|--------|-----------------|-------|--------|-------|
-dough | 780    |                 | 390.0 | 200    | 76.5  |
-      | 200    | rolled oats     | 100.0 | 200    |       |
-      | 100    | pumpkin seeds   |  50.0 |        |  5.2  |
-      | 100    | sunflower seeds |  50.0 |        |  4.7  |
-      | 100    | coconut         |  50.0 |        | 23.3  |
-      | 100    | pecans          |  50.0 |        |  1.1  |
-      | 130    | maple syrup     |  65.0 |        | 42.1  |
-      |  50.0  | olive oil       |  25.0 |        |       |
-      |        | hydration       |  38.2 |        |       |
+ part |  grams  |       name      |   %   | flour  | water |
+------|---------|-----------------|-------|--------|-------|
+dough | 1000    |                 | 390.0 | 256    | 98.0  |
+      |  256    | rolled oats     | 100.0 | 256    |       |
+      |  128    | pumpkin seeds   |  50.0 |        |  6.7  |
+      |  128    | sunflower seeds |  50.0 |        |  6.1  |
+      |  128    | coconut         |  50.0 |        | 29.8  |
+      |  128    | pecans          |  50.0 |        |  1.44 |
+      |  167    | maple syrup     |  65.0 |        | 54.0  |
+      |   64.1  | olive oil       |  25.0 |        |       |
+      |         | hydration       |  38.2 |        |       |
 
 +*/
 
