@@ -3,7 +3,7 @@
 poolish ^ 4g:
   water
   hard_red
-  yeast = 0.1% * total_flour
+  yeast = 0.2% * total_flour
   total_flour = 20%
   hydration = 100%
 
@@ -39,37 +39,32 @@ dough:
   total_flour = 200g * 1
 
 /*
-April 25, 2025
+April 28, 2025
 
 Changes
 * Use a yeast poolish
 * Freshly milled grains everywhere
 
-Mixed the preferment and scald at 15:20. Keep them at RT until the
-preferment is bubbly, then refrigerate.
+Mixed the preferment and scald at 17:15. Keep them at RT until the
+preferment is bubbly, then refrigerate. PF starts at about 70mL.
 
-Lots of interruptions today because of the wreck last evening.
+At 7:05 preferment pH=5.93.
 
-? At 7:42 preferment pH=3.83 T=79F.
+Mixed at 7:27, DT=73F, rest 30 minutes.
 
-Mixed at 7:55 rest 30 minutes.
+Knead for 8 minutes, T=73F. Into the oven on proof at 8:05.
+400mL.
 
-Knead for 6 minutes, T=?. Into the oven on proof at ?.
-350mL.
+At 11:00 the pH is 5.65 and T=83F.
 
-Into pan about 10:45 at 650mL. covered with plastic wrap in oven to
-proof.
+Into pan about 11:00
 
-Baked at 12:10 at the top of the pan. 45 minutes in 325F preheated
+Baked at 12:25 at the top of the pan. 45 minutes in 325F preheated
 convection.
 
 Perfectly filled the pan. Looks good. A little flash.
 
-I really like the flavor on first taste. Maybe the grain is more
-forward?
-
-In a side-by-side taste test I might like this one better?
-
+Good flavor. I'm not sure that the SD version is better.
 
 */
 
@@ -94,17 +89,17 @@ water        |    44.6  |
 
   part  | grams  |      name     |   %   | flour  | water  |
 --------|--------|---------------|-------|--------|--------|
-poolish |  84.0  | + 4.0g        |  40.0 |  40.0  |  40.0  |
+poolish |  84.1  | + 4.0g        |  40.0 |  40.0  |  40.0  |
         |  42.0  | water         |  20.0 |        |  40.0  |
         |  42.0  | hard red      |  20.0 |  40.0  |        |
-        |   0.04 | yeast         |   0.0 |        |        |
+        |   0.08 | yeast         |   0.0 |        |        |
 
 yudane  |  44.0  | + 4.0g        |  20.0 |  20.0  |  20.0  |
         |  22.0  | boiling water |  10.0 |        |  20.0  |
         |  22.0  | hard red      |  10.0 |  20.0  |        |
 
 wet     | 229    |               | 114.6 |  60.0  | 150    |
-        |  80.0  | poolish       |  40.0 |  40.0  |  40.0  |
+        |  80.1  | poolish       |  40.0 |  40.0  |  40.0  |
         |  40.0  | yudane        |  20.0 |  20.0  |  20.0  |
         |  79.2  | water         |  39.6 |        |  79.2  |
         |  10.0  | olive oil     |   5.0 |        |        |
