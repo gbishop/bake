@@ -1,0 +1,92 @@
+# from https://www.beetsandbones.com/russian-whole-grain-rye-cakes-korzhiki/
+
+dry:
+  rye = 400g
+  sugar = 50g
+  baking_powder = 9.6g
+  salt = 3g
+  butter = 113g
+  cinnamon = 6g
+  ginger_powder = 2.8g
+
+starter:
+  whole_wheat
+  water
+  hydration = 75%
+
+sponge:
+  starter = 10% * total_flour
+  rye
+  water
+  hydration = 100%
+
+wet:
+  sponge = 200g
+  water = 59g
+  egg = 50g
+
+topping:
+  egg = 50g
+  sugar = 12.5g
+
+dough:
+  wet
+  dry
+  topping
+
+/*+
+Nutrition
+    name     | per 100g |
+-------------|----------|
+calcium      |     0.11 |
+calories     |   335    |
+carbohydrate |    51.9  |
+fat          |    12.6  |
+fiber        |     9.1  |
+monounsat    |     3.27 |
+polyunsat    |     1.06 |
+potassium    |     0.32 |
+protein      |     7.6  |
+saturated    |     7.2  |
+sodium       |     0.33 |
+sugars       |     7.8  |
+water        |    32.2  |
+
+
+  part  | grams  |      name     |   %   | flour  | water  |
+--------|--------|---------------|-------|--------|--------|
+dry     | 584    |               | 116.9 | 400    |  19.2  |
+        | 400    | rye           |  80.0 | 400    |        |
+        |  50.0  | sugar         |  10.0 |        |   0.01 |
+        |   9.6  | baking powder |   1.9 |        |   0.38 |
+        |   3.00 | salt          |   0.6 |        |        |
+        | 113    | butter        |  22.6 |        |  17.9  |
+        |   6.0  | cinnamon      |   1.2 |        |   0.63 |
+        |   2.80 | ginger powder |   0.6 |        |   0.28 |
+
+starter |  10.0  |               |   2.0 |   5.7  |   4.29 |
+        |   5.7  | whole wheat   |   1.1 |   5.7  |        |
+        |   4.29 | water         |   0.9 |        |   4.29 |
+
+sponge  | 200    |               |  40.0 | 100    | 100    |
+        |  10.0  | starter       |   2.0 |   5.7  |   4.29 |
+        |  94.3  | rye           |  18.9 |  94.3  |        |
+        |  95.7  | water         |  19.1 |        |  95.7  |
+
+wet     | 309    |               |  61.8 | 100    | 197    |
+        | 200    | sponge        |  40.0 | 100    | 100    |
+        |  59.0  | water         |  11.8 |        |  59.0  |
+        |  50.0  | egg           |  10.0 |        |  38.1  |
+
+topping |  62.5  |               |  12.5 |        |  38.1  |
+        |  50.0  | egg           |  10.0 |        |  38.1  |
+        |  12.5  | sugar         |   2.5 |        |        |
+
+dough   | 956    |               | 191.2 | 500    | 254    |
+        | 309    | wet           |  61.8 | 100    | 197    |
+        | 584    | dry           | 116.9 | 400    |  19.2  |
+        |  62.5  | topping       |  12.5 |        |  38.1  |
+        |        | hydration     |  50.9 |        |        |
+
++*/
+
