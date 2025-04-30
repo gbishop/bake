@@ -213,8 +213,8 @@ class Prepare(visitors.Transformer):
                     addin = Unknown(*name)
                 else:
                     kind = which.replace("total_", "")
-                    nutrition = getIngredient(name[1])
-                    addin = Unknown(name[0], name[1], nutrition[kind])
+                    info = getIngredient(name[1])
+                    addin = Unknown(name[0], name[1], info[kind])
                 sum = Tree("add", addin, sum)
             relations.append(Tree("relation", Unknown(*fullname), sum))
         # add a relation for the loss

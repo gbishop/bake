@@ -1,82 +1,82 @@
-index,flour,usda
-ap_flour,1,"Wheat flour, white, all-purpose, unenriched"
-baking_powder,0,"Leavening agents, baking powder, double-acting, straight phosphate"
-barley,1,"Barley, pearled, raw"
-bran,1,"Wheat bran, crude"
-bread_flour,1,"Wheat flour, white, bread, enriched"
-bronze_chief,1,"Wheat, hard red winter"
-brown_sugar,0,"Sweeteners, for baking, brown, contains sugar and sucralose"
-buckwheat,1,"Buckwheat groats, roasted, dry"
-bulgar,0,"Bulgur, dry"
-butter,0,"Butter, salted"
-buttermilk,0,"Milk, buttermilk, fluid, cultured, lowfat"
-chia_seeds,0,"Seeds, chia seeds, dried"
-chickpea,1,Chickpea flour (besan)
-cinnamon,0,"Spices, cinnamon, ground"
-coconut,0,"Nuts, coconut meat, dried (desiccated), sweetened, flaked, canned"
-corn_flour,1,"Corn flour, whole-grain, yellow"
-cracked_rye,0,Rye
-cracked_wheat,0,"Wheat flour, whole-grain"
-egg,0,"Egg, whole, raw, fresh"
-egg_white,0,"Egg, white, raw, fresh"
-egg_whites,0,"Egg, white, raw, fresh"
-egg_yolk,0,"Egg, yolk, raw, fresh"
-egg_yolks,0,"Egg, yolk, raw, fresh"
-eggs,0,"Egg, whole, raw, fresh"
-evap_milk,0,"Milk, canned, evaporated, without added vitamin A and vitamin D"
-flaxseed_meal,1,"Seeds, flaxseed"
-ginger_powder,0,"Spices, ginger, ground"
-grape_nuts,1,"Cereals ready-to-eat, POST, GRAPE-NUTS Cereal"
-hard_red,1,"Wheat, hard red winter"
-hard_white,1,"Wheat, hard white"
-honey,0,Honey
-lemon_juice,0,"Lemon juice, canned or bottled"
-lemon_zest,0,"Lemon peel, raw"
-malt_syrup,0,"Syrups, malt"
-maple_syrup,0,"Syrups, maple"
-masarepas,1,"Corn flour, masa, enriched, white"
-milk,0,"Milk, whole, 3.25% milkfat, with added vitamin D"
-millet,1,"Millet, raw"
-molasses,0,Molasses
-nido,0,"Milk, dry, whole, with added vitamin D"
-nutmeg,0,"Spices, nutmeg, ground"
-oat_groats,0,Oats
-oats,1,Oats
-rolled_oats,1,"Cereals, oats, regular and quick and instant, not fortified, dry"
-oil,0,"Oil, olive, salad or cooking"
-olive_oil,0,"Oil, olive, salad or cooking"
-pecans,0,"Nuts, pecans, dry roasted, without salt added"
-pecan_butter,0,"Nuts, pecans, dry roasted, without salt added"
-polenta,1,"Cornmeal, whole-grain, yellow"
-potato_flakes,1,"Potatoes, mashed, dehydrated, flakes without milk, dry form"
-prairie_gold,1,"Wheat, hard white"
-prunes,0,"Plums, dried (prunes), uncooked"
-pumpkin_seeds,0,"Seeds, pumpkin and squash seed kernels, dried"
-pumpkin_puree,0,"Pumpkin, canned, without salt"
-quinoa,0,"Quinoa, uncooked"
-raisins,0,"Raisins, golden seedless"
-red_rye_malt,1,Rye
-rye,1,Rye
-salt,0,"Salt, table"
-sesame_seeds,0,"Seeds, sesame seed kernels, dried (decorticated)"
-skim_milk_powder,0,"Milk, dry, nonfat, instant, with added vitamin A and vitamin D"
-sour_cream,0,"Cream, sour, cultured"
-spelt,1,"Spelt, uncooked"
-steel_cut_oats,1,Oats
-sugar,0,"Sugars, granulated"
-sunflower_seeds,0,"Seeds, sunflower seed kernels, dried"
-sweet_potato,0,"Sweet potato, cooked, baked in skin, without salt"
-vital_wheat_gluten,1,Vital wheat gluten
-vwg,1,Vital wheat gluten
-unknown,0,unknown
-walnuts,0,"Nuts, walnuts, english"
-water,0,"Water, tap, well"
-wgbi,1,Vital wheat gluten
-wheat_bran,1,"Wheat bran, crude"
-wheat_flakes,1,"Wheat, hard red winter"
-whey,0,"Whey, acid, fluid"
-whole_wheat,1,"Wheat flour, whole-grain"
-ww,1,"Wheat flour, whole-grain"
-ww_flour,1,"Wheat flour, whole-grain"
-yeast,0,"Leavening agents, yeast, baker's, active dry"
-yogurt,0,"Yogurt, plain, whole milk, 8 grams protein per 8 ounce"
+index,flour,water
+ap_flour,1.00,0.00
+baking_powder,0.00,0.04
+barley,1.00,0.00
+bran,1.00,0.00
+bread_flour,1.00,0.00
+bronze_chief,1.00,0.00
+brown_sugar,0.00,0.02
+buckwheat,1.00,0.00
+bulgar,0.00,0.09
+butter,0.00,0.16
+buttermilk,0.00,0.90
+chia_seeds,1.00,0.05
+chickpea,1.00,0.00
+cinnamon,0.00,0.11
+coconut,0.00,0.23
+corn_flour,1.00,0.00
+cracked_rye,1.00,0.11
+cracked_wheat,1.00,0.11
+egg,0.00,0.76
+egg_white,0.00,0.88
+egg_whites,0.00,0.88
+egg_yolk,0.00,0.52
+egg_yolks,0.00,0.52
+eggs,0.00,0.76
+evap_milk,0.00,0.74
+flaxseed_meal,1.00,0.00
+ginger_powder,0.00,0.10
+grape_nuts,1.00,0.00
+hard_red,1.00,0.00
+hard_white,1.00,0.00
+honey,0.00,0.17
+lemon_juice,0.00,0.92
+lemon_zest,0.00,0.82
+malt_syrup,0.00,0.21
+maple_syrup,0.00,0.32
+masarepas,1.00,0.00
+milk,0.00,0.88
+millet,1.00,0.00
+molasses,0.00,0.22
+nido,0.00,0.02
+nutmeg,0.00,0.06
+oat_groats,1.00,0.08
+oats,1.00,0.00
+rolled_oats,1.00,0.00
+oil,0.00,0.00
+olive_oil,0.00,0.00
+pecans,0.00,0.01
+pecan_butter,0.00,0.01
+polenta,1.00,0.00
+potato_flakes,1.00,0.00
+prairie_gold,1.00,0.00
+prunes,0.00,0.31
+pumpkin_seeds,0.00,0.05
+pumpkin_puree,0.00,0.90
+quinoa,1.00,0.13
+raisins,0.00,0.15
+red_rye_malt,1.00,0.00
+rye,1.00,0.00
+salt,0.00,0.00
+sesame_seeds,0.00,0.04
+skim_milk_powder,0.00,0.04
+sour_cream,0.00,0.74
+spelt,1.00,0.00
+steel_cut_oats,1.00,0.00
+sugar,0.00,0.00
+sunflower_seeds,0.00,0.05
+sweet_potato,0.00,0.76
+vital_wheat_gluten,1.00,0.00
+vwg,1.00,0.00
+unknown,0.00,0.00
+walnuts,0.00,0.04
+water,0.00,1.00
+wgbi,1.00,0.00
+wheat_bran,1.00,0.00
+wheat_flakes,1.00,0.00
+whey,0.00,0.93
+whole_wheat,1.00,0.00
+ww,1.00,0.00
+ww_flour,1.00,0.00
+yeast,0.00,0.05
+yogurt,0.00,0.88

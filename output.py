@@ -141,27 +141,7 @@ def format_table(Variables: dict[FullName, float], Parts: dict[str, None]):
     heading = ["part", "grams", "name", "%", "flour", "water"]
     recipe = tabulate(heading, "tgt%ggg", rows)
 
-    nrows = []
-    # account for 9% loss during baking
-    fdw = Variables[("dough", "total")] * 0.91
-    serving = Variables.get(("dough", "_serving"), 100)
-    if serving > 1:
-        nscale = serving / fdw
-        for key in sorted(nutrition.index):
-            if key == "water" or key == "flour":
-                continue
-            v = nutrition.loc[key] * nscale
-            if key == "true_water":
-                key = "water"
-                v *= 0.91
-            if v > 0.01:
-                nrows.append((key, v))
-        nut = tabulate(["name", f"per {serving:.0f}g"], "tg", nrows)
-        nut = "Nutrition\n" + nut
-    else:
-        nut = ""
-
-    return recipe, nut
+    return recipe
 
 
 def output(
@@ -173,14 +153,14 @@ def output(
     html="",
 ):
     """Insert the table into the input"""
-    recipe, nut = format_table(Variables, Parts)
+    recipe = format_table(Variables, Parts)
     text = re.sub(r"(?ms)\/\*\+.*?\+\*\/\n", "", text)
     if tobp:
         text = rewrite(text, 100 / Variables[("dough", "total_flour")])
 
     if failed:
         recipe = re.sub(r"^", "E ", recipe, 0, re.M)
-    result = f"{text}/*+\n{nut}\n\n{recipe}+*/\n"
+    result = f"{text}/*+\n{recipe}+*/\n"
     print(result)
 
     if html:
