@@ -1,11 +1,5 @@
 # Try old-dough with yeast
 
-poolish:
-  ww_flour = 20%
-  water
-  yeast = 0.05%
-  hydration = 100%
-
 grain:
   prairie_gold
   hard_red
@@ -22,7 +16,7 @@ dry:
   yeast = 0.5%
 
 wet:
-  poolish
+  # old dough in here
   water
   olive_oil = 5%
   honey = 5%
@@ -33,70 +27,70 @@ dough:
   dry
   hydration = 75%
   # 200g/L of flour
-  total_flour = 200g * 1.2
+  total_flour = 200g * 1
+
+# old dough comes out before first rise
 
 /*
-May 4, 2025
+May 6, 2025
 
 Changes
-* Experimenting with old dough
-* For this first loaf I'll use a poolish instead of old dough
-* Back to potato flakes, I hate hot goo
+* Second pass using old dough from 4 May
 
-This is the starter dough. I made it 20% larger so I can remove the
-next batch of old dough before the first rise.
+I'm not including the old-dough in the formula (because I haven't
+figured out how) I'll weigh it before I add it and then remove that
+much at the end.
 
-I made a poolish the night before to get this one started. It had
-doubled.
+Old-dough pH = 5.5. It had doubled in the fridge.
 
-I mixed it at 7:50 and left it for 30 minutes rest. Then knead for
+Flour temperature was 78F. Water temperature was 70F. Mixed dough
+was 72F.
+
+I mixed it at 8:15 and left it for 45 minutes rest. Then knead for
 8 minutes.
 
 80g of dough removed to become old-dough.
 
 Remainder into 1L container to proof for 1 hour.
 
-Into the pan about 10:35.
+Into pan about 10:45. Easy to handle the dough.
+
+Baked about noon.
 
 It looks great.
 
-Good flavor and texture.
+Good flavor and texture. I can't tell the difference between this
+one and the previous one with the poolish. This is easier.
 
 */
 
 /*+
-  part  | grams  |      name     |   %   | flour  | water  |
---------|--------|---------------|-------|--------|--------|
-poolish |  96.1  |               |  40.0 |  48.0  |  48.0  |
-        |  48.0  | ww flour      |  20.0 |  48.0  |        |
-        |  48.0  | water         |  20.0 |        |  48.0  |
-        |   0.12 | yeast         |   0.1 |        |        |
+ part | grams  |      name     |   %   | flour  | water  |
+------|--------|---------------|-------|--------|--------|
+grain | 180    |               |  90.0 | 180    |        |
+      |  80.0  | prairie gold  |  40.0 |  80.0  |        |
+      |  80.0  | hard red      |  40.0 |  80.0  |        |
+      |  20.0  | rye           |  10.0 |  20.0  |        |
 
-grain   | 168    |               |  70.0 | 168    |        |
-        |  72.0  | prairie gold  |  30.0 |  72.0  |        |
-        |  72.0  | hard red      |  30.0 |  72.0  |        |
-        |  24.0  | rye           |  10.0 |  24.0  |        |
+dry   | 214    |               | 107.2 | 200    |        |
+      | 180    | grain         |  90.0 | 180    |        |
+      |   4.00 | potato flakes |   2.0 |   4.00 |        |
+      |  10.0  | flaxseed meal |   5.0 |  10.0  |        |
+      |   9.8  | nido          |   4.9 |        |        |
+      |   6.0  | wgbi          |   3.0 |   6.0  |        |
+      |   3.60 | salt          |   1.8 |        |        |
+      |   1.00 | yeast         |   0.5 |        |        |
 
-dry     | 209    |               |  87.2 | 192    |   0.29 |
-        | 168    | grain         |  70.0 | 168    |        |
-        |   4.80 | potato flakes |   2.0 |   4.80 |        |
-        |  12.0  | flaxseed meal |   5.0 |  12.0  |        |
-        |  11.7  | nido          |   4.9 |        |   0.23 |
-        |   7.2  | wgbi          |   3.0 |   7.2  |        |
-        |   4.32 | salt          |   1.8 |        |        |
-        |   1.20 | yeast         |   0.5 |        |   0.06 |
+wet   | 169    |               |  84.7 |        | 150    |
+      | 140    | water         |  69.8 |        | 140    |
+      |  10.0  | olive oil     |   5.0 |        |        |
+      |  10.0  | honey         |   5.0 |        |   1.70 |
+      |  10.0  | yogurt        |   5.0 |        |   8.8  |
 
-wet     | 251    |               | 104.7 |  48.0  | 180    |
-        |  96.1  | poolish       |  40.0 |  48.0  |  48.0  |
-        | 119    | water         |  49.6 |        | 119    |
-        |  12.0  | olive oil     |   5.0 |        |        |
-        |  12.0  | honey         |   5.0 |        |   2.04 |
-        |  12.0  | yogurt        |   5.0 |        |  10.6  |
-
-dough   | 460    |               | 191.8 | 240    | 180    |
-        | 251    | wet           | 104.7 |  48.0  | 180    |
-        | 209    | dry           |  87.2 | 192    |   0.29 |
-        |        | hydration     |  75.0 |        |        |
+dough | 384    |               | 191.9 | 200    | 150    |
+      | 169    | wet           |  84.7 |        | 150    |
+      | 214    | dry           | 107.2 | 200    |        |
+      |        | hydration     |  75.0 |        |        |
 
 +*/
 
