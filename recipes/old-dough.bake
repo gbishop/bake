@@ -17,6 +17,7 @@ dry:
 
 wet:
   # old dough in here
+  old_dough = 80g
   water
   olive_oil = 5%
   honey = 5%
@@ -25,42 +26,44 @@ wet:
 dough:
   wet
   dry
+  next_dough = -80g
+  # old dough comes out before first rise
   hydration = 75%
+
+  sesame_seeds = 15%
+
   # 200g/L of flour
   total_flour = 200g * 1
 
-# old dough comes out before first rise
 
 /*
-May 6, 2025
+May 9, 2025
 
 Changes
-* Second pass using old dough from 4 May
+* Third pass using old dough from 6 May
+* Laminate in sesame seeds during 1 rise
 
 I'm not including the old-dough in the formula (because I haven't
 figured out how) I'll weigh it before I add it and then remove that
 much at the end.
 
-Old-dough pH = 5.5. It had doubled in the fridge.
+Old-dough pH = 5.4. It had doubled in the fridge.
 
 Flour temperature was 78F. Water temperature was 70F. Mixed dough
 was 72F.
 
-I mixed it at 8:15 and left it for 45 minutes rest. Then knead for
+I mixed it at 7:35 and left it for 25 minutes rest. Then knead for
 8 minutes.
 
 80g of dough removed to become old-dough.
 
 Remainder into 1L container to proof for 1 hour.
 
-Into pan about 10:45. Easy to handle the dough.
-
-Baked about noon.
+Baked about 11:30
 
 It looks great.
 
-Good flavor and texture. I can't tell the difference between this
-one and the previous one with the poolish. This is easier.
+Good flavor and texture. The sesame seeds add very little.
 
 */
 
@@ -81,15 +84,18 @@ dry   | 214    |               | 107.2 | 200    |        |
       |   3.60 | salt          |   1.8 |        |        |
       |   1.00 | yeast         |   0.5 |        |        |
 
-wet   | 169    |               |  84.7 |        | 150    |
+wet   | 249    |               | 124.7 |        | 150    |
+      |  80.0  | old dough!    |  40.0 |        |        |
       | 140    | water         |  69.8 |        | 140    |
       |  10.0  | olive oil     |   5.0 |        |        |
       |  10.0  | honey         |   5.0 |        |   1.70 |
       |  10.0  | yogurt        |   5.0 |        |   8.8  |
 
-dough | 384    |               | 191.9 | 200    | 150    |
-      | 169    | wet           |  84.7 |        | 150    |
+dough | 414    |               | 206.9 | 200    | 150    |
+      | 249    | wet           | 124.7 |        | 150    |
       | 214    | dry           | 107.2 | 200    |        |
+      | -80.0  | next dough!   | -40.0 |        |        |
+      |  30.0  | sesame seeds  |  15.0 |        |        |
       |        | hydration     |  75.0 |        |        |
 
 +*/
