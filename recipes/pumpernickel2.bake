@@ -1,0 +1,62 @@
+# From https://www.thebreadshebakes.com/2014/08/baking-traditional-real-german-pumpernickel-bread/
+
+starter:
+  rye
+  water
+  hydration = 75%
+
+preferment:
+  starter = 50g
+  cracked_rye = 350g
+  water = 350g
+
+whole_soaker:
+  rye_berries = 200g
+  boiling_water = 200g
+
+cracked_soaker:
+  cracked_rye = 150g
+  water = 150g
+
+dough:
+  preferment
+  whole_soaker
+  cracked_soaker
+  cracked_rye = 550g
+  water = 150g
+  salt = 22g
+  maple_syrup = 120g
+
+
+/*+
+     part      |  grams  |      name      |   %   |  flour  |  water  |
+---------------|---------|----------------|-------|---------|---------|
+starter        |   50.0  |                |   3.9 |   28.6  |   21.4  |
+               |   28.6  | rye            |   2.2 |   28.6  |         |
+               |   21.4  | water          |   1.7 |         |   21.4  |
+
+preferment     |  750    |                |  58.7 |  379    |  410    |
+               |   50.0  | starter        |   3.9 |   28.6  |   21.4  |
+               |  350    | cracked rye    |  27.4 |  350    |   38.5  |
+               |  350    | water          |  27.4 |         |  350    |
+
+whole soaker   |  400    |                |  31.3 |  200    |  200    |
+               |  200    | rye berries    |  15.6 |  200    |         |
+               |  200    | boiling water  |  15.6 |         |  200    |
+
+cracked soaker |  300    |                |  23.5 |  150    |  166    |
+               |  150    | cracked rye    |  11.7 |  150    |   16.5  |
+               |  150    | water          |  11.7 |         |  150    |
+
+dough          | 2292    |                | 179.3 | 1279    | 1025    |
+               |  750    | preferment     |  58.7 |  379    |  410    |
+               |  400    | whole soaker   |  31.3 |  200    |  200    |
+               |  300    | cracked soaker |  23.5 |  150    |  166    |
+               |  550    | cracked rye    |  43.0 |  550    |   60.5  |
+               |  150    | water          |  11.7 |         |  150    |
+               |   22.0  | salt           |   1.7 |         |         |
+               |  120    | maple syrup    |   9.4 |         |   38.4  |
+               |         | hydration      |  80.2 |         |         |
+
++*/
+
