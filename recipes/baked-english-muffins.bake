@@ -1,0 +1,30 @@
+# https://www.kingarthurbaking.com/recipes/baked-english-muffins-recipe
+
+dough:
+  ap_flour = 100.00%
+  salt = 1.8%
+  baking_powder = 2.9%
+  sugar = 7.6%
+  yeast = 2.1%
+  milk = 77.3%
+  butter = 8.5%
+  vinegar = 2.9%
+
+  total = 55g * 3
+
+/*+
+ part | grams  |      name     |   %   | flour | water |
+------|--------|---------------|-------|-------|-------|
+dough | 165    |               | 203.1 | 81.2  | 58.7  |
+      |  81.2  | ap flour      | 100.0 | 81.2  |       |
+      |   1.46 | salt          |   1.8 |       |       |
+      |   2.36 | baking powder |   2.9 |       |       |
+      |   6.2  | sugar         |   7.6 |       |       |
+      |   1.71 | yeast         |   2.1 |       |       |
+      |  62.8  | milk          |  77.3 |       | 55.3  |
+      |   6.9  | butter        |   8.5 |       |  1.10 |
+      |   2.36 | vinegar       |   2.9 |       |  2.36 |
+      |        | hydration     |  72.3 |       |       |
+
++*/
+

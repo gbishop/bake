@@ -1,0 +1,43 @@
+# https://www.kingarthurbaking.com/recipes/westphalian-rye-bread-recipe
+
+dry:
+  rye = 58%
+  prairie_gold = 15%
+  yeast = 0.10%
+  salt = 2%
+
+soaker:
+  cracked_wheat = 20%
+  oats
+  malt_syrup = 3%
+  boiling_water = 93%
+  oil = 3.4%
+
+dough:
+  dry
+  soaker
+  total = 800g
+
+/*+
+ part  | grams  |      name     |   %   | flour  | water  |
+-------|--------|---------------|-------|--------|--------|
+dry    | 298    |               |  75.1 | 290    |        |
+       | 230    | rye           |  58.0 | 230    |        |
+       |  59.6  | prairie gold  |  15.0 |  59.6  |        |
+       |   0.40 | yeast         |   0.1 |        |        |
+       |   7.9  | salt          |   2.0 |        |        |
+
+soaker | 502    |               | 126.4 | 107    | 372    |
+       |  79.4  | cracked wheat |  20.0 |  79.4  |        |
+       |  27.8  | oats          |   7.0 |  27.8  |        |
+       |  11.9  | malt syrup    |   3.0 |        |   2.50 |
+       | 369    | boiling water |  93.0 |        | 369    |
+       |  13.5  | oil           |   3.4 |        |        |
+
+dough  | 800    |               | 201.5 | 397    | 372    |
+       | 298    | dry           |  75.1 | 290    |        |
+       | 502    | soaker        | 126.4 | 107    | 372    |
+       |        | hydration     |  93.6 |        |        |
+
++*/
+
