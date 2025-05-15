@@ -12,8 +12,8 @@ dry:
   # half the water to milk
   nido = 50% * 13% * dough.total_water
   wgbi = 3%
-  salt = 1.8%
-  yeast = 0.5%
+  salt = 2%
+  yeast = 1%
 
 wet:
   # old dough in here
@@ -26,44 +26,37 @@ wet:
 dough:
   wet
   dry
-  next_dough = -80g
   # old dough comes out before first rise
-  hydration = 75%
+  next_dough = -80g
 
-  sesame_seeds = 15%
+  oat_soaker = 1.5 * 15%
+
+  hydration = 75%
 
   # 200g/L of flour
   total_flour = 200g * 1
 
 
 /*
-May 9, 2025
+May 13, 2025
 
 Changes
-* Third pass using old dough from 6 May
-* Laminate in sesame seeds during 1 rise
+* 1% yeast
+* Add 15% soaked oats
+* Direct to pan and into fridge overnight.
 
-I'm not including the old-dough in the formula (because I haven't
-figured out how) I'll weigh it before I add it and then remove that
-much at the end.
+Old-dough pH = ?. It had doubled in the fridge.
 
-Old-dough pH = 5.4. It had doubled in the fridge.
-
-Flour temperature was 78F. Water temperature was 70F. Mixed dough
-was 72F.
-
-I mixed it at 7:35 and left it for 25 minutes rest. Then knead for
+I mixed it at 17:15 and left it for 30 minutes rest. Then knead for
 8 minutes.
 
 80g of dough removed to become old-dough.
 
-Remainder into 1L container to proof for 1 hour.
-
-Baked about 11:30
+Oats mixed in. Moved into pan (no first rise) and into fridge.
 
 It looks great.
 
-Good flavor and texture. The sesame seeds add very little.
+Good flavor and texture.
 
 */
 
@@ -75,14 +68,14 @@ grain | 180    |               |  90.0 | 180    |        |
       |  80.0  | hard red      |  40.0 |  80.0  |        |
       |  20.0  | rye           |  10.0 |  20.0  |        |
 
-dry   | 214    |               | 107.2 | 200    |        |
+dry   | 216    |               | 107.9 | 200    |        |
       | 180    | grain         |  90.0 | 180    |        |
       |   4.00 | potato flakes |   2.0 |   4.00 |        |
       |  10.0  | flaxseed meal |   5.0 |  10.0  |        |
       |   9.8  | nido          |   4.9 |        |        |
       |   6.0  | wgbi          |   3.0 |   6.0  |        |
-      |   3.60 | salt          |   1.8 |        |        |
-      |   1.00 | yeast         |   0.5 |        |        |
+      |   4.00 | salt          |   2.0 |        |        |
+      |   2.00 | yeast         |   1.0 |        |        |
 
 wet   | 249    |               | 124.7 |        | 150    |
       |  80.0  | old dough!    |  40.0 |        |        |
@@ -91,11 +84,11 @@ wet   | 249    |               | 124.7 |        | 150    |
       |  10.0  | honey         |   5.0 |        |   1.70 |
       |  10.0  | yogurt        |   5.0 |        |   8.8  |
 
-dough | 414    |               | 206.9 | 200    | 150    |
+dough | 430    |               | 215.1 | 200    | 150    |
       | 249    | wet           | 124.7 |        | 150    |
-      | 214    | dry           | 107.2 | 200    |        |
+      | 216    | dry           | 107.9 | 200    |        |
       | -80.0  | next dough!   | -40.0 |        |        |
-      |  30.0  | sesame seeds  |  15.0 |        |        |
+      |  45.0  | oat soaker!   |  22.5 |        |        |
       |        | hydration     |  75.0 |        |        |
 
 +*/
