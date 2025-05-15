@@ -12,7 +12,7 @@ dough:
   total = 1000g
 
 /*
-April 24, 2025
+May 10, 2025
 
 In the new oven 10 + 15 + 10 seemed to do it on 300 convection.
 
@@ -21,34 +21,17 @@ It was smelling done so I pulled it out.
 */
 
 /*+
-Nutrition
-    name     | per 100g |
--------------|----------|
-calcium      |     0.06 |
-calories     |   540    |
-carbohydrate |    43.4  |
-fat          |    38.0  |
-fiber        |     6.9  |
-monounsat    |    17.0  |
-polyunsat    |    10.6  |
-potassium    |     0.45 |
-protein      |    12.7  |
-saturated    |     8.0  |
-sugars       |    12.5  |
-water        |    12.6  |
-
-
  part |  grams  |       name      |   %   | flour  | water |
 ------|---------|-----------------|-------|--------|-------|
-dough | 1000    |                 | 390.0 | 256    | 98.0  |
+dough | 1000    |                 | 390.0 | 256    | 82.8  |
       |  256    | rolled oats     | 100.0 | 256    |       |
-      |  128    | pumpkin seeds   |  50.0 |        |  6.7  |
-      |  128    | sunflower seeds |  50.0 |        |  6.1  |
-      |  128    | coconut         |  50.0 |        | 29.8  |
-      |  128    | pecans          |  50.0 |        |  1.44 |
-      |  167    | maple syrup     |  65.0 |        | 54.0  |
+      |  128    | pumpkin seeds   |  50.0 |        |       |
+      |  128    | sunflower seeds |  50.0 |        |       |
+      |  128    | coconut         |  50.0 |        | 29.5  |
+      |  128    | pecans          |  50.0 |        |       |
+      |  167    | maple syrup     |  65.0 |        | 53.3  |
       |   64.1  | olive oil       |  25.0 |        |       |
-      |         | hydration       |  38.2 |        |       |
+      |         | hydration       |  32.3 |        |       |
 
 +*/
 
