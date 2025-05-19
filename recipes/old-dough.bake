@@ -13,7 +13,7 @@ dry:
   nido = 50% * 13% * dough.total_water
   wgbi = 3%
   salt = 2%
-  yeast = 1%
+  yeast = 0.5%
 
 wet:
   # old dough in here
@@ -29,8 +29,6 @@ dough:
   # old dough comes out before first rise
   next_dough = -80g
 
-  oat_soaker = 1.75 * 20%
-
   hydration = 75%
 
   # 200g/L of flour
@@ -41,33 +39,37 @@ dough:
 May 15, 2025
 
 Changes
-* Add 20% soaked oats
-* Malt syrup
+* back to honey
+* 0.5% yeast
 
 Old-dough pH = 5.41. It had increased maybe 30% in the fridge.
 
-I started about 10:45.
+I started about 10:25.
 
-I mixed it at 11:08 and left it for 30 minutes rest. Then knead for
+I mixed it at 10:45 and left it for 30 minutes rest. Then knead for
 8 minutes.
 
 80g of dough removed to become old-dough.
 
-Oats mixed in. Moved into 1L container to proof. First rise begins
-at 12:00.
+1st rise begins about 11:25
 
-Into the pan for 2nd rise at 13:00. It had doubled.
+Into the pan for 2nd rise at 12:50. It had more than doubled.
 
-Bake begins at 13:48. Why is it rising so quickly?
+Bake begins at 13:55. I let it rise too long I think.
 
-It overflowed by about 10g or about 2.3% of the final 432g
-weight. I think the addition of the 40g of oats pushed it over the
-edge. Can I compute how much to reduce the dough to compensate for
-the addin?
+50g of overflow in the first 10 minutes! This loaf is a mess! The
+overflow stuck all around the top and it tore badly while removing
+it from the pan.
 
-It looks great.
+Hitting exactly full is a fools errand. Rounded corners would be
+fine.  This loaf is a mess! The overflow stuck all around the top
+and it tore badly while removing it from the pan.
 
-Good flavor and texture.
+Maybe I should go back to lidless baking and eliminate this issue.
+
+I may also go back to SD but let it ferment before refrigeration.
+I like the convenience of old-dough but feeding the starter then
+refrigerating it after it has risen appears to work about as well.
 
 */
 
@@ -77,16 +79,16 @@ Good flavor and texture.
 grain | 180    |               |  90.0 | 180    |        |
       |  80.0  | prairie gold  |  40.0 |  80.0  |        |
       |  80.0  | hard red      |  40.0 |  80.0  |        |
-      |  20.0  | rye           |  10.0 |  20.0  |        |
+      |  20.0  | spelt         |  10.0 |  20.0  |        |
 
-dry   | 216    |               | 107.9 | 200    |        |
+dry   | 215    |               | 107.4 | 200    |        |
       | 180    | grain         |  90.0 | 180    |        |
       |   4.00 | potato flakes |   2.0 |   4.00 |        |
       |  10.0  | flaxseed meal |   5.0 |  10.0  |        |
       |   9.8  | nido          |   4.9 |        |        |
       |   6.0  | wgbi          |   3.0 |   6.0  |        |
       |   4.00 | salt          |   2.0 |        |        |
-      |   2.00 | yeast         |   1.0 |        |        |
+      |   1.00 | yeast         |   0.5 |        |        |
 
 wet   | 249    |               | 124.5 |        | 150    |
       |  80.0  | old dough!    |  40.0 |        |        |
@@ -95,11 +97,10 @@ wet   | 249    |               | 124.5 |        | 150    |
       |  10.0  | malt syrup    |   5.0 |        |   2.10 |
       |  10.0  | yogurt        |   5.0 |        |   8.8  |
 
-dough | 455    |               | 227.4 | 200    | 150    |
+dough | 384    |               | 191.9 | 200    | 150    |
       | 249    | wet           | 124.5 |        | 150    |
-      | 216    | dry           | 107.9 | 200    |        |
+      | 215    | dry           | 107.4 | 200    |        |
       | -80.0  | next dough!   | -40.0 |        |        |
-      |  70.0  | oat soaker!   |  35.0 |        |        |
       |        | hydration     |  75.0 |        |        |
 
 +*/
