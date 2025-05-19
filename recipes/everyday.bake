@@ -1,21 +1,14 @@
 # My everyday loaf based on morph
 
-starter:
-  whole_wheat = 3%
-  water
-  hydration = 75%
-
-sponge ^ 4g:
-  starter
-  water
+starter: # from fridge
   whole_wheat
-  total_flour = 12%
+  water
   hydration = 75%
 
 grain:
   prairie_gold
   hard_red
-  rye = 10%
+  spelt = 10%
 
 dry:
   grain
@@ -28,7 +21,7 @@ dry:
   yeast = 0.25%
 
 wet:
-  sponge
+  starter = 50g
   water
   olive_oil = 5%
   honey = 5%
@@ -42,89 +35,75 @@ dough:
   total_flour = 200g * 1
 
 /*
-April 2, 2025
+May 18, 2025
+
+I'm coming back to experiments with this recipe after trying yudane
+and old dough methods. I'm attempting to optimize for ease.
 
 Changes
-* Back to 200g/L of flour
-* Try the Zoji
+* Use starter from the fridge.
+* Feed the starter and let it rise along with the dough.
+* Go back to the Zoji for consistent kneading and first rise.
 
-March 31st, 19:50 mixed sponge into SDH set for 85F then into the
-fridge for 36 hours because I didn't bake on the 1st.
+Next
+* Bake it sooner to see if that helps with overflow.
 
-? 8:33 T is 78F, pH is 3.94
+Zoji pan weighs 773g
 
-8:45 BM. PH=10 K=20 R1=20 R2=20 R3=20
+7:33 starter pH is 3.94
 
-The Zoji appears to handle the small dough easily.
+I added all the ingredients to the pan. Started the dough cycle with
+preheat turned off. Let it run for a few minutes until the
+ingredients were incorporated. Reset it, turned preheat on, and
+started it again. The preheat period serves at autolyse.
 
-10:15 into pan. Rise using proof mode. Dough is easy to handle, not
+9:45 into pan. Rise using proof mode. Dough is easy to handle, not
 sticky.
 
-11:55 bake in 325F preheated convection oven. 35 minutes lid on, 10
-minutes upside down out of the pan, only 192F inside. Gave it
-5 more.
+11:15 bake in 325F preheated convection oven 45 minutes lid on.
+
+Again, overflow in the first 10 minutes of baking. Much less this
+time. I wonder if the answer is 1) bake before it reaches the top of
+the pan or 2) reduce the amount of dough?
 
 It looks great.
 
-Flavor is fine. 
+Flavor is good.
 
 */
 
 /*+
-Nutrition
-    name     | per 100g |
--------------|----------|
-calcium      |     0.06 |
-calories     |   255    |
-carbohydrate |    44.8  |
-fat          |     6.0  |
-fiber        |     7.5  |
-monounsat    |     2.7  |
-polyunsat    |     1.6  |
-potassium    |     0.30 |
-protein      |     9.2  |
-saturated    |     1.2  |
-sodium       |     0.43 |
-sugars       |     3.9  |
-water        |    43.4  |
-
-
   part  | grams  |      name     |   %   | flour  | water  |
 --------|--------|---------------|-------|--------|--------|
-starter |  10.5  |               |   5.3 |   6.0  |   4.5  |
-        |   6.0  | whole wheat   |   3.0 |   6.0  |        |
-        |   4.5  | water         |   2.3 |        |   4.5  |
-       
-sponge  |  46.0  | + 4.0g        |  21.0 |  24.0  |  18.0  |
-        |  11.5  | starter       |   5.3 |   6.0  |   4.5  |
-        |  14.8  | water         |   6.8 |        |  13.5  |
-        |  19.7  | whole wheat   |   9.0 |  18.0  |        |
-       
-grain   | 156    |               |  78.0 | 156    |        |
-        |  68.0  | prairie gold  |  34.0 |  68.0  |        |
-        |  68.0  | hard red      |  34.0 |  68.0  |        |
-        |  20.0  | rye           |  10.0 |  20.0  |        |
-       
-dry     | 189    |               |  94.6 | 176    |   0.26 |
-        | 156    | grain         |  78.0 | 156    |        |
-        |   4.0  | potato flakes |   2.0 |   4.0  |        |
+starter |  50.0  |               |  25.0 |  28.6  |  21.4  |
+        |  28.6  | whole wheat   |  14.3 |  28.6  |        |
+        |  21.4  | water         |  10.7 |        |  21.4  |
+
+grain   | 151    |               |  75.7 | 151    |        |
+        |  65.7  | prairie gold  |  32.9 |  65.7  |        |
+        |  65.7  | hard red      |  32.9 |  65.7  |        |
+        |  20.0  | spelt         |  10.0 |  20.0  |        |
+
+dry     | 185    |               |  92.3 | 171    |        |
+        | 151    | grain         |  75.7 | 151    |        |
+        |   4.00 | potato flakes |   2.0 |   4.00 |        |
         |  10.0  | flaxseed meal |   5.0 |  10.0  |        |
-        |   9.1  | nido          |   4.6 |        |   0.22 |
+        |   9.1  | nido          |   4.5 |        |        |
         |   6.0  | wgbi          |   3.0 |   6.0  |        |
-        |   3.6  | salt          |   1.8 |        |        |
+        |   3.60 | salt          |   1.8 |        |        |
         |   0.50 | yeast         |   0.2 |        |        |
-       
-wet     | 183    |               |  91.7 |  24.0  | 140    |
-        |  42.0  | sponge        |  21.0 |  24.0  |  18.0  |
-        | 111    | water         |  55.7 |        | 111    |
+
+wet     | 188    |               |  94.0 |  28.6  | 140    |
+        |  50.0  | starter       |  25.0 |  28.6  |  21.4  |
+        | 108    | water         |  54.0 |        | 108    |
         |  10.0  | olive oil     |   5.0 |        |        |
-        |  10.0  | honey         |   5.0 |        |   1.7  |
+        |  10.0  | honey         |   5.0 |        |   1.70 |
         |  10.0  | yogurt        |   5.0 |        |   8.8  |
-       
+
 dough   | 373    |               | 186.3 | 200    | 140    |
-        | 183    | wet           |  91.7 |  24.0  | 140    |
-        | 189    | dry           |  94.6 | 176    |   0.26 |
+        | 188    | wet           |  94.0 |  28.6  | 140    |
+        | 185    | dry           |  92.3 | 171    |        |
         |        | hydration     |  70.0 |        |        |
-       
+
 +*/
 
