@@ -3,7 +3,7 @@
 starter: # from fridge
   whole_wheat
   water
-  hydration = 75%
+  hydration = 100%
 
 grain:
   prairie_gold
@@ -35,38 +35,36 @@ dough:
   total_flour = 200g * 1
 
 /*
-May 18, 2025
-
-I'm coming back to experiments with this recipe after trying yudane
-and old dough methods. I'm attempting to optimize for ease.
+May 19, 2025
 
 Changes
-* Use starter from the fridge.
-* Feed the starter and let it rise along with the dough.
-* Go back to the Zoji for consistent kneading and first rise.
-
-Next
-* Bake it sooner to see if that helps with overflow.
+* Starter now 100% hydration
+* Bake when dough is 3/4 inch from the top of the pan.
 
 Zoji pan weighs 773g
 
-7:33 starter pH is 3.94
+? starter pH is ?
+
+I started about 10:35.
+
+I mixed the wet ingredients with the immersion blender before adding
+them to the pan. I lost 4 grams in the process and made it up with
+water.
 
 I added all the ingredients to the pan. Started the dough cycle with
-preheat turned off. Let it run for a few minutes until the
+preheat turned off. Let it run for a couple of minutes until the
 ingredients were incorporated. Reset it, turned preheat on, and
 started it again. The preheat period serves at autolyse.
 
-9:45 into pan. Rise using proof mode. Dough is easy to handle, not
+12:45 into pan. Rise using proof mode. Dough is easy to handle, not
 sticky.
 
-11:15 bake in 325F preheated convection oven 45 minutes lid on.
+14:00 bake in 325F preheated convection oven 45 minutes lid on.
 
-Again, overflow in the first 10 minutes of baking. Much less this
-time. I wonder if the answer is 1) bake before it reaches the top of
-the pan or 2) reduce the amount of dough?
+Filled the pan perfectly. Not even a tiny bit of overflow. The
+internal T was 210. It could have come out a bit sooner.
 
-It looks great.
+It looks perfect.
 
 Flavor is good.
 
@@ -75,17 +73,17 @@ Flavor is good.
 /*+
   part  | grams  |      name     |   %   | flour  | water  |
 --------|--------|---------------|-------|--------|--------|
-starter |  50.0  |               |  25.0 |  28.6  |  21.4  |
-        |  28.6  | whole wheat   |  14.3 |  28.6  |        |
-        |  21.4  | water         |  10.7 |        |  21.4  |
+starter |  50.0  |               |  25.0 |  25.0  |  25.0  |
+        |  25.0  | whole wheat   |  12.5 |  25.0  |        |
+        |  25.0  | water         |  12.5 |        |  25.0  |
 
-grain   | 151    |               |  75.7 | 151    |        |
-        |  65.7  | prairie gold  |  32.9 |  65.7  |        |
-        |  65.7  | hard red      |  32.9 |  65.7  |        |
+grain   | 155    |               |  77.5 | 155    |        |
+        |  67.5  | prairie gold  |  33.8 |  67.5  |        |
+        |  67.5  | hard red      |  33.8 |  67.5  |        |
         |  20.0  | spelt         |  10.0 |  20.0  |        |
 
-dry     | 185    |               |  92.3 | 171    |        |
-        | 151    | grain         |  75.7 | 151    |        |
+dry     | 188    |               |  94.1 | 175    |        |
+        | 155    | grain         |  77.5 | 155    |        |
         |   4.00 | potato flakes |   2.0 |   4.00 |        |
         |  10.0  | flaxseed meal |   5.0 |  10.0  |        |
         |   9.1  | nido          |   4.5 |        |        |
@@ -93,16 +91,16 @@ dry     | 185    |               |  92.3 | 171    |        |
         |   3.60 | salt          |   1.8 |        |        |
         |   0.50 | yeast         |   0.2 |        |        |
 
-wet     | 188    |               |  94.0 |  28.6  | 140    |
-        |  50.0  | starter       |  25.0 |  28.6  |  21.4  |
-        | 108    | water         |  54.0 |        | 108    |
+wet     | 185    |               |  92.3 |  25.0  | 140    |
+        |  50.0  | starter       |  25.0 |  25.0  |  25.0  |
+        | 104    | water         |  52.2 |        | 104    |
         |  10.0  | olive oil     |   5.0 |        |        |
         |  10.0  | honey         |   5.0 |        |   1.70 |
         |  10.0  | yogurt        |   5.0 |        |   8.8  |
 
-dough   | 373    |               | 186.3 | 200    | 140    |
-        | 188    | wet           |  94.0 |  28.6  | 140    |
-        | 185    | dry           |  92.3 | 171    |        |
+dough   | 373    |               | 186.4 | 200    | 140    |
+        | 185    | wet           |  92.3 |  25.0  | 140    |
+        | 188    | dry           |  94.1 | 175    |        |
         |        | hydration     |  70.0 |        |        |
 
 +*/
