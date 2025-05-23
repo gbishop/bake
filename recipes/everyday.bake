@@ -18,7 +18,7 @@ dry:
   nido = 50% * 13% * dough.total_water
   wgbi = 3%
   salt = 1.8%
-  yeast = 0.25%
+  yeast = 0.125%
 
 wet:
   starter = 50g
@@ -35,38 +35,30 @@ dough:
   total_flour = 200g * 1
 
 /*
-May 19, 2025
+May 22, 2025
 
 Changes
-* Starter now 100% hydration
-* Bake when dough is 3/4 inch from the top of the pan.
+* reduce yeast by 1/2
 
 Zoji pan weighs 773g
 
-? starter pH is ?
+starter pH is 3.83
 
-I started about 10:35.
-
-I mixed the wet ingredients with the immersion blender before adding
-them to the pan. I lost 4 grams in the process and made it up with
-water.
+I started about 7:35.
 
 I added all the ingredients to the pan. Started the dough cycle with
 preheat turned off. Let it run for a couple of minutes until the
 ingredients were incorporated. Reset it, turned preheat on, and
 started it again. The preheat period serves at autolyse.
 
-12:45 into pan. Rise using proof mode. Dough is easy to handle, not
+10:00 into pan. Rise using proof mode. Dough is easy to handle, not
 sticky.
 
-14:00 bake in 325F preheated convection oven 45 minutes lid on.
-
-Filled the pan perfectly. Not even a tiny bit of overflow. The
-internal T was 210. It could have come out a bit sooner.
+12:10 bake in 325F preheated convection oven 45 minutes lid on.
 
 It looks perfect.
 
-Flavor is good.
+Maybe a bit too sour. I think 0.25% yeast is better than 0.125%.
 
 */
 
@@ -82,14 +74,14 @@ grain   | 155    |               |  77.5 | 155    |        |
         |  67.5  | hard red      |  33.8 |  67.5  |        |
         |  20.0  | spelt         |  10.0 |  20.0  |        |
 
-dry     | 188    |               |  94.1 | 175    |        |
+dry     | 188    |               |  94.0 | 175    |        |
         | 155    | grain         |  77.5 | 155    |        |
         |   4.00 | potato flakes |   2.0 |   4.00 |        |
         |  10.0  | flaxseed meal |   5.0 |  10.0  |        |
         |   9.1  | nido          |   4.5 |        |        |
         |   6.0  | wgbi          |   3.0 |   6.0  |        |
         |   3.60 | salt          |   1.8 |        |        |
-        |   0.50 | yeast         |   0.2 |        |        |
+        |   0.25 | yeast         |   0.1 |        |        |
 
 wet     | 185    |               |  92.3 |  25.0  | 140    |
         |  50.0  | starter       |  25.0 |  25.0  |  25.0  |
@@ -98,9 +90,9 @@ wet     | 185    |               |  92.3 |  25.0  | 140    |
         |  10.0  | honey         |   5.0 |        |   1.70 |
         |  10.0  | yogurt        |   5.0 |        |   8.8  |
 
-dough   | 373    |               | 186.4 | 200    | 140    |
+dough   | 372    |               | 186.2 | 200    | 140    |
         | 185    | wet           |  92.3 |  25.0  | 140    |
-        | 188    | dry           |  94.1 | 175    |        |
+        | 188    | dry           |  94.0 | 175    |        |
         |        | hydration     |  70.0 |        |        |
 
 +*/
