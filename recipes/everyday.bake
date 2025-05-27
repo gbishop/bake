@@ -6,19 +6,19 @@ starter: # from fridge
   hydration = 100%
 
 grain:
-  prairie_gold
-  hard_red
-  spelt = 10%
+  prairie_gold = 4 * spelt
+  hard_red = 4 * spelt
+  rye = spelt
 
 dry:
   grain
   potato_flakes = 2%
-  flaxseed_meal = 5%
+  flaxseed_meal = 10%
   # half the water to milk
   nido = 50% * 13% * dough.total_water
   wgbi = 3%
   salt = 1.8%
-  yeast = 0.125%
+  yeast = 0.25%
 
 wet:
   starter = 50g
@@ -35,30 +35,33 @@ dough:
   total_flour = 200g * 1
 
 /*
-May 22, 2025
+May 24, 2025
 
 Changes
-* reduce yeast by 1/2
+* Back to 0.25% yeast
+* Double flaxseed meal
+* Add rye
 
 Zoji pan weighs 773g
 
-starter pH is 3.83
+starter pH is 3.93
 
-I started about 7:35.
+I started about 7:35. Started BM at 8:04.
 
 I added all the ingredients to the pan. Started the dough cycle with
 preheat turned off. Let it run for a couple of minutes until the
 ingredients were incorporated. Reset it, turned preheat on, and
 started it again. The preheat period serves at autolyse.
 
-10:00 into pan. Rise using proof mode. Dough is easy to handle, not
-sticky.
+10:04 final rise begins.
 
-12:10 bake in 325F preheated convection oven 45 minutes lid on.
+At 11:30 it has risen closer than 1/2 from the top.
+
+11:40 bake in 325F preheated convection oven 45 minutes lid on.
 
 It looks perfect.
 
-Maybe a bit too sour. I think 0.25% yeast is better than 0.125%.
+Good loaf. Barely sour.
 
 */
 
@@ -69,30 +72,31 @@ starter |  50.0  |               |  25.0 |  25.0  |  25.0  |
         |  25.0  | whole wheat   |  12.5 |  25.0  |        |
         |  25.0  | water         |  12.5 |        |  25.0  |
 
-grain   | 155    |               |  77.5 | 155    |        |
-        |  67.5  | prairie gold  |  33.8 |  67.5  |        |
-        |  67.5  | hard red      |  33.8 |  67.5  |        |
-        |  20.0  | spelt         |  10.0 |  20.0  |        |
+grain   | 145    |               |  72.5 | 145    |        |
+        |  14.5  | spelt         |   7.2 |  14.5  |        |
+        |  58.0  | prairie gold  |  29.0 |  58.0  |        |
+        |  58.0  | hard red      |  29.0 |  58.0  |        |
+        |  14.5  | rye           |   7.2 |  14.5  |        |
 
-dry     | 188    |               |  94.0 | 175    |        |
-        | 155    | grain         |  77.5 | 155    |        |
+dry     | 188    |               |  94.1 | 175    |        |
+        | 145    | grain         |  72.5 | 145    |        |
         |   4.00 | potato flakes |   2.0 |   4.00 |        |
-        |  10.0  | flaxseed meal |   5.0 |  10.0  |        |
+        |  20.0  | flaxseed meal |  10.0 |  20.0  |        |
         |   9.1  | nido          |   4.5 |        |        |
         |   6.0  | wgbi          |   3.0 |   6.0  |        |
         |   3.60 | salt          |   1.8 |        |        |
-        |   0.25 | yeast         |   0.1 |        |        |
+        |   0.50 | yeast         |   0.2 |        |        |
 
-wet     | 185    |               |  92.3 |  25.0  | 140    |
+wet     | 184    |               |  92.2 |  25.0  | 140    |
         |  50.0  | starter       |  25.0 |  25.0  |  25.0  |
         | 104    | water         |  52.2 |        | 104    |
         |  10.0  | olive oil     |   5.0 |        |        |
         |  10.0  | honey         |   5.0 |        |   1.70 |
         |  10.0  | yogurt        |   5.0 |        |   8.8  |
 
-dough   | 372    |               | 186.2 | 200    | 140    |
-        | 185    | wet           |  92.3 |  25.0  | 140    |
-        | 188    | dry           |  94.0 | 175    |        |
+dough   | 373    |               | 186.4 | 200    | 140    |
+        | 184    | wet           |  92.2 |  25.0  | 140    |
+        | 188    | dry           |  94.1 | 175    |        |
         |        | hydration     |  70.0 |        |        |
 
 +*/
