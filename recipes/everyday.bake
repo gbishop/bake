@@ -8,7 +8,9 @@ starter: # from fridge
 grain:
   prairie_gold
   hard_red
-  spelt = 10%
+  spelt
+  rye
+  kamut
 
 dry:
   grain
@@ -17,7 +19,7 @@ dry:
   # half the water to milk
   nido = 50% * 13% * dough.total_water
   wgbi = 3%
-  salt = 2%
+  salt = 1.8%
   yeast = 0.1%
 
 wet:
@@ -32,7 +34,7 @@ dough:
   dry
   hydration = 70%
   # 200g/L of flour
-  total_flour = 200g * 2.2
+  total_flour = 200g * 1
 
 addin:
   walnuts = 15%
@@ -41,76 +43,69 @@ addin:
 May 27, 2025
 
 Changes
-* Add walnuts
-* Back to 5% flaxseed
-* Increase salt a bit
-* Make a 9 inch loaf
-* Reduce the yeast to compensate for the smaller fraction of starter
+* Add rye
+* Equal amounts of the grains
+* Decrease salt a bit
+* Back to the 4 inch loaf
 
 Zoji pan weighs 773g
 
 starter pH is 3.93
 
-I started about 7:40. Started BM at 8:08.
+I started about 7:10. Started BM at 7:35.
 
 I added all the ingredients to the pan. Started the dough cycle with
 preheat turned off. Let it run for a couple of minutes until the
 ingredients were incorporated. Reset it, turned preheat on, and
 started it again. The preheat period serves at autolyse.
 
-Seems dry. I realized I forgot the yogurt. I should check the total
-weight of the wet part before proceeding.
+9:30 final rise begins.
 
-10:04 final rise begins.
+11:10 bake in 325F preheated convection oven 45 minutes lid on.
 
-At 11:30 it has risen closer than 1/2 from the top.
+Looks good, filled the pan with rounded corners which I think is
+ideal. 
 
-11:40 bake in 325F preheated convection oven 45 minutes lid on.
-
-Only 195F inside. Did not fill the pan but the lower hydration might
-explain that. 
-
-Good loaf. Barely sour.
-
-Wow! This tastes great while slightly warm!
-
+Good flavor. I think it is a bit firmer and has more complex flavor
 */
 
 /*+
   part  | grams  |      name     |   %   | flour  | water  |
 --------|--------|---------------|-------|--------|--------|
-starter |  50.0  |               |  11.4 |  25.0  |  25.0  |
-        |  25.0  | whole wheat   |   5.7 |  25.0  |        |
-        |  25.0  | water         |   5.7 |        |  25.0  |
+starter |  50.0  |               |  25.0 |  25.0  |  25.0  |
+        |  25.0  | whole wheat   |  12.5 |  25.0  |        |
+        |  25.0  | water         |  12.5 |        |  25.0  |
 
-grain   | 371    |               |  84.3 | 371    |        |
-        | 163    | prairie gold  |  37.2 | 163    |        |
-        | 164    | hard red      |  37.2 | 164    |        |
-        |  44.0  | spelt         |  10.0 |  44.0  |        |
+grain   | 155    |               |  77.5 | 155    |        |
+        |  31.0  | prairie gold  |  15.5 |  31.0  |        |
+        |  31.0  | hard red      |  15.5 |  31.0  |        |
+        |  31.0  | spelt         |  15.5 |  31.0  |        |
+        |  31.0  | rye           |  15.5 |  31.0  |        |
+        |  31.0  | kamut         |  15.5 |  31.0  |        |
 
-dry     | 444    |               | 101.0 | 415    |        |
-        | 371    | grain         |  84.3 | 371    |        |
-        |   8.8  | potato flakes |   2.0 |   8.8  |        |
-        |  22.0  | flaxseed meal |   5.0 |  22.0  |        |
-        |  20.0  | nido          |   4.5 |        |        |
-        |  13.2  | wgbi          |   3.0 |  13.2  |        |
-        |   8.8  | salt          |   2.0 |        |        |
-        |   0.44 | yeast         |   0.1 |        |        |
+dry     | 188    |               |  93.9 | 175    |        |
+        | 155    | grain         |  77.5 | 155    |        |
+        |   4.00 | potato flakes |   2.0 |   4.00 |        |
+        |  10.0  | flaxseed meal |   5.0 |  10.0  |        |
+        |   9.1  | nido          |   4.5 |        |        |
+        |   6.0  | wgbi          |   3.0 |   6.0  |        |
+        |   3.60 | salt          |   1.8 |        |        |
+        |   0.20 | yeast         |   0.1 |        |        |
 
-wet     | 376    |               |  85.4 |  25.0  | 308    |
-        |  50.0  | starter       |  11.4 |  25.0  |  25.0  |
-        | 260    | water         |  59.1 |        | 260    |
-        |  22.0  | olive oil     |   5.0 |        |        |
-        |  22.0  | honey         |   5.0 |        |   3.74 |
-        |  22.0  | yogurt        |   5.0 |        |  19.4  |
+wet     | 184    |               |  92.2 |  25.0  | 140    |
+        |  50.0  | starter       |  25.0 |  25.0  |  25.0  |
+        | 104    | water         |  52.2 |        | 104    |
+        |  10.0  | olive oil     |   5.0 |        |        |
+        |  10.0  | honey         |   5.0 |        |   1.70 |
+        |  10.0  | yogurt        |   5.0 |        |   8.8  |
 
-dough   | 820    |               | 186.4 | 440    | 308    |
-        | 376    | wet           |  85.4 |  25.0  | 308    |
-        | 444    | dry           | 101.0 | 415    |        |
+dough   | 372    |               | 186.2 | 200    | 140    |
+        | 184    | wet           |  92.2 |  25.0  | 140    |
+        | 188    | dry           |  93.9 | 175    |        |
         |        | hydration     |  70.0 |        |        |
 
-addin   |  66.0  |               |  15.0 |        |        |
-        |  66.0  | walnuts       |  15.0 |        |        |
+addin   |  30.0  |               |  15.0 |        |        |
+        |  30.0  | walnuts       |  15.0 |        |        |
 
 +*/
 
