@@ -1,9 +1,9 @@
 # From https://www.thebreadshebakes.com/2014/08/baking-traditional-real-german-pumpernickel-bread/
 
 starter:
-  rye
+  ww
   water
-  hydration = 75%
+  hydration = 100%
 
 preferment:
   starter = 4%
@@ -31,44 +31,84 @@ dough:
   maple_syrup = 10%
   yeast = 0.5%
 
-  # 460g/L
-  total = 460g # she says 2292g for 5L
+  # 460g/L she says 2292g for 5L
+  # total = 350g
+  total_flour = 200g
 
 /*
-Mixed the preferment and soakers at 11:30 on 11 May.
+Changes
+* Bake in a mason jar in a crockpot
+* Make the cracked rye from 1/2 flour + 1/2 course milled
+
+Next
+* Reduce the size by 25%
+
+Mixed preferment, etc at 7:45 on Wednesday June 11. 
+
+I ground the 1/2 the rye at 1 and 1/2 at 16. The result seemed too
+fine. Next time do the course part first and try 20.
+
+Into the jar at 18:30. It had about 1 inch of head space.
+Into the fridge at 19:00. It had risen about 1/2 inch.
+
+I overfilled the jar. It was against the top this morning. Pressing
+ahead anyway.
+
+June 12.
+
+Out of the fridge onto the counter at 5:50. Into crockpot at 6:40.
+
+ 6:40 68F
+ 7:40 123F
+ 8:40 165F
+ 9:40 195F
+10:40 boiling
+
+I boiled it until 20:40 then turned off the crockpot. The next
+morning I inverted the jar and the bread released before I got 
+back from walking the dog.
+
+June 13.
+
+It is very acidic pH=4.29. I'm thinking the overnight in the fridge
+might be responsible.
+
+I wrapped it in a dishcloth for 24 hours.
+
+Inedible as expected. pH=4.25.
 
 */
 
 /*+
      part      | grams  |      name      |   %   | flour  | water  |
 ---------------|--------|----------------|-------|--------|--------|
-starter        |  10.1  |                |   4.0 |   5.8  |   4.35 |
-               |   5.8  | rye            |   2.3 |   5.8  |        |
-               |   4.35 | water          |   1.7 |        |   4.35 |
+starter        |   8.0  |                |   4.0 |   4.00 |   4.00 |
+               |   4.00 | ww             |   2.0 |   4.00 |        |
+               |   4.00 | water          |   2.0 |        |   4.00 |
 
-preferment     | 148    |                |  58.6 |  74.2  |  74.2  |
-               |  10.1  | starter        |   4.0 |   5.8  |   4.35 |
-               |  68.4  | cracked rye    |  27.0 |  68.4  |        |
-               |  69.9  | water          |  27.6 |        |  69.9  |
+preferment     | 116    |                |  58.0 |  58.0  |  58.0  |
+               |   8.0  | starter        |   4.0 |   4.00 |   4.00 |
+               |  54.0  | cracked rye    |  27.0 |  54.0  |        |
+               |  54.0  | water          |  27.0 |        |  54.0  |
 
-whole soaker   |  81.1  |                |  32.0 |  40.6  |  40.6  |
-               |  40.6  | rye berries    |  16.0 |  40.6  |        |
-               |  40.6  | boiling water  |  16.0 |        |  40.6  |
+whole soaker   |  64.0  |                |  32.0 |  32.0  |  32.0  |
+               |  32.0  | rye berries    |  16.0 |  32.0  |        |
+               |  32.0  | boiling water  |  16.0 |        |  32.0  |
 
-cracked soaker |  60.8  |                |  24.0 |  30.4  |  30.4  |
-               |  30.4  | cracked rye    |  12.0 |  30.4  |        |
-               |  30.4  | water          |  12.0 |        |  30.4  |
+cracked soaker |  48.0  |                |  24.0 |  24.0  |  24.0  |
+               |  24.0  | cracked rye    |  12.0 |  24.0  |        |
+               |  24.0  | water          |  12.0 |        |  24.0  |
 
-dough          | 460    |                | 181.5 | 253    | 184    |
-               | 148    | preferment     |  58.6 |  74.2  |  74.2  |
-               |  81.1  | whole soaker   |  32.0 |  40.6  |  40.6  |
-               |  60.8  | cracked soaker |  24.0 |  30.4  |  30.4  |
-               | 108    | cracked rye    |  42.7 | 108    |        |
-               |  30.4  | water          |  12.0 |        |  30.4  |
-               |   4.31 | salt           |   1.7 |        |        |
-               |  25.3  | maple syrup    |  10.0 |        |   8.1  |
-               |   1.27 | yeast          |   0.5 |        |        |
-               |        | hydration      |  72.5 |        |        |
+dough          | 362    |                | 181.2 | 200    | 144    |
+               | 116    | preferment     |  58.0 |  58.0  |  58.0  |
+               |  64.0  | whole soaker   |  32.0 |  32.0  |  32.0  |
+               |  48.0  | cracked soaker |  24.0 |  24.0  |  24.0  |
+               |  86.0  | cracked rye    |  43.0 |  86.0  |        |
+               |  24.0  | water          |  12.0 |        |  24.0  |
+               |   3.40 | salt           |   1.7 |        |        |
+               |  20.0  | maple syrup    |  10.0 |        |   6.4  |
+               |   1.00 | yeast          |   0.5 |        |        |
+               |        | hydration      |  72.2 |        |        |
 
 +*/
 
