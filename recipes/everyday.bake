@@ -9,7 +9,7 @@ grain:
   prairie_gold
   hard_red
   spelt
-  rye
+  # rye
   kamut
 
 dry:
@@ -34,31 +34,35 @@ dough:
   dry
   hydration = 70%
   # 200g/L of flour
-  total_flour = 200g * 1
+  total_flour = 200g * 2.3
+
+addin:
+  walnuts = 15%
 
 /*
-June 6, 2025
+June 14, 2025
 
 Changes
-* Drop walnuts for today
+* Out of rye
+* Adding walnuts
 
 Zoji pan weighs 773g
 
-starter pH is 3.93
+starter pH is ?
 
-I started about 12:00. Started BM at 12:26.
+I started about 7:40. Started BM at 8:05.
 
 I added all the ingredients to the pan. Started the dough cycle with
 preheat turned off. Let it run for a couple of minutes until the
 ingredients were incorporated. Reset it, turned preheat on, and
 started it again. The preheat period serves at autolyse.
 
-14:20 final rise begins.
+10:05 final rise begins.
 
-15:50 bake in 325F preheated convection oven 45 minutes lid on.
+11:45 bake in 325F preheated convection oven 45 minutes lid on.
 
 Looks good, filled the pan with rounded corners which I think is
-ideal. 
+ideal.
 
 Good flavor. I think it is a bit firmer and has more complex flavor
 */
@@ -66,40 +70,39 @@ Good flavor. I think it is a bit firmer and has more complex flavor
 /*+
   part  | grams  |      name     |   %   | flour  | water  |
 --------|--------|---------------|-------|--------|--------|
-starter |  50.0  |               |  25.0 |  25.0  |  25.0  |
-        |  25.0  | whole wheat   |  12.5 |  25.0  |        |
-        |  25.0  | water         |  12.5 |        |  25.0  |
+starter |  50.0  |               |  10.9 |  25.0  |  25.0  |
+        |  25.0  | whole wheat   |   5.4 |  25.0  |        |
+        |  25.0  | water         |   5.4 |        |  25.0  |
 
-grain   | 155    |               |  77.5 | 155    |        |
-        |  31.0  | prairie gold  |  15.5 |  31.0  |        |
-        |  31.0  | hard red      |  15.5 |  31.0  |        |
-        |  31.0  | spelt         |  15.5 |  31.0  |        |
-        |  31.0  | rye           |  15.5 |  31.0  |        |
-        |  31.0  | kamut         |  15.5 |  31.0  |        |
+grain   | 389    |               |  84.6 | 389    |        |
+        |  97.3  | prairie gold  |  21.1 |  97.3  |        |
+        |  97.2  | hard red      |  21.1 |  97.2  |        |
+        |  97.3  | spelt         |  21.1 |  97.3  |        |
+        |  97.3  | kamut         |  21.1 |  97.3  |        |
 
-dry     | 188    |               |  93.9 | 175    |        |
-        | 155    | grain         |  77.5 | 155    |        |
-        |   4.00 | potato flakes |   2.0 |   4.00 |        |
-        |  10.0  | flaxseed meal |   5.0 |  10.0  |        |
-        |   9.1  | nido          |   4.5 |        |        |
-        |   6.0  | wgbi          |   3.0 |   6.0  |        |
-        |   3.60 | salt          |   1.8 |        |        |
-        |   0.20 | yeast         |   0.1 |        |        |
+dry     | 465    |               | 101.0 | 435    |        |
+        | 389    | grain         |  84.6 | 389    |        |
+        |   9.2  | potato flakes |   2.0 |   9.2  |        |
+        |  23.0  | flaxseed meal |   5.0 |  23.0  |        |
+        |  20.9  | nido          |   4.5 |        |        |
+        |  13.8  | wgbi          |   3.0 |  13.8  |        |
+        |   8.3  | salt          |   1.8 |        |        |
+        |   0.46 | yeast         |   0.1 |        |        |
 
-wet     | 184    |               |  92.2 |  25.0  | 140    |
-        |  50.0  | starter       |  25.0 |  25.0  |  25.0  |
-        | 104    | water         |  52.2 |        | 104    |
-        |  10.0  | olive oil     |   5.0 |        |        |
-        |  10.0  | honey         |   5.0 |        |   1.70 |
-        |  10.0  | yogurt        |   5.0 |        |   8.8  |
+wet     | 392    |               |  85.2 |  25.0  | 322    |
+        |  50.0  | starter       |  10.9 |  25.0  |  25.0  |
+        | 273    | water         |  59.3 |        | 273    |
+        |  23.0  | olive oil     |   5.0 |        |        |
+        |  23.0  | honey         |   5.0 |        |   3.91 |
+        |  23.0  | yogurt        |   5.0 |        |  20.2  |
 
-dough   | 372    |               | 186.2 | 200    | 140    |
-        | 184    | wet           |  92.2 |  25.0  | 140    |
-        | 188    | dry           |  93.9 | 175    |        |
+dough   | 857    |               | 186.2 | 460    | 322    |
+        | 392    | wet           |  85.2 |  25.0  | 322    |
+        | 465    | dry           | 101.0 | 435    |        |
         |        | hydration     |  70.0 |        |        |
 
-addin   |  30.0  |               |  15.0 |        |        |
-        |  30.0  | walnuts       |  15.0 |        |        |
+addin   |  69.0  |               |  15.0 |        |        |
+        |  69.0  | walnuts       |  15.0 |        |        |
 
 +*/
 
