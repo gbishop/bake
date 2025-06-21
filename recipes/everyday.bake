@@ -9,8 +9,9 @@ grain:
   prairie_gold
   hard_red
   spelt
-  # rye
-  kamut
+  kamut = 10%
+  barley = 5%
+  buckwheat = 5%
 
 dry:
   grain
@@ -36,35 +37,32 @@ dough:
   # 200g/L of flour
   total_flour = 200g * 2.3
 
-addin:
-  walnuts = 15%
-
 /*
-June 14, 2025
+June 17, 2025
 
 Changes
-* Out of rye
-* Adding walnuts
+* Adding barley and buckwheat
+* Drop walnuts
 
 Zoji pan weighs 773g
 
 starter pH is ?
 
-I started about 7:40. Started BM at 8:05.
+I started about 8:00. Started BM at 8:15.
 
 I added all the ingredients to the pan. Started the dough cycle with
 preheat turned off. Let it run for a couple of minutes until the
 ingredients were incorporated. Reset it, turned preheat on, and
 started it again. The preheat period serves at autolyse.
 
-10:05 final rise begins.
+10:13 final rise begins.
 
 11:45 bake in 325F preheated convection oven 45 minutes lid on.
 
 Looks good, filled the pan with rounded corners which I think is
 ideal.
 
-Good flavor. I think it is a bit firmer and has more complex flavor
+Good flavor. I may be able to taste a difference.
 */
 
 /*+
@@ -75,10 +73,12 @@ starter |  50.0  |               |  10.9 |  25.0  |  25.0  |
         |  25.0  | water         |   5.4 |        |  25.0  |
 
 grain   | 389    |               |  84.6 | 389    |        |
-        |  97.3  | prairie gold  |  21.1 |  97.3  |        |
-        |  97.2  | hard red      |  21.1 |  97.2  |        |
-        |  97.3  | spelt         |  21.1 |  97.3  |        |
-        |  97.3  | kamut         |  21.1 |  97.3  |        |
+        |  99.0  | prairie gold  |  21.5 |  99.0  |        |
+        |  99.0  | hard red      |  21.5 |  99.0  |        |
+        |  99.0  | spelt         |  21.5 |  99.0  |        |
+        |  46.0  | kamut         |  10.0 |  46.0  |        |
+        |  23.0  | barley        |   5.0 |  23.0  |        |
+        |  23.0  | buckwheat     |   5.0 |  23.0  |        |
 
 dry     | 465    |               | 101.0 | 435    |        |
         | 389    | grain         |  84.6 | 389    |        |
@@ -100,9 +100,6 @@ dough   | 857    |               | 186.2 | 460    | 322    |
         | 392    | wet           |  85.2 |  25.0  | 322    |
         | 465    | dry           | 101.0 | 435    |        |
         |        | hydration     |  70.0 |        |        |
-
-addin   |  69.0  |               |  15.0 |        |        |
-        |  69.0  | walnuts       |  15.0 |        |        |
 
 +*/
 
