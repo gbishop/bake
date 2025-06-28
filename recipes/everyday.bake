@@ -8,10 +8,7 @@ starter: # from fridge
 grain:
   prairie_gold
   hard_red
-  spelt
-  kamut = 10%
-  barley = 5%
-  buckwheat = 5%
+  spelt = 10%
 
 dry:
   grain
@@ -38,31 +35,34 @@ dough:
   total_flour = 200g * 2.3
 
 /*
-June 17, 2025
+June 27, 2025
 
 Changes
-* Adding barley and buckwheat
-* Drop walnuts
+* Back to wheat with a little spelt
 
 Zoji pan weighs 773g
 
-starter pH is ?
+starter pH is 3.82
 
-I started about 8:00. Started BM at 8:15.
+I started about 7:05. Started BM at 7:32.
 
 I added all the ingredients to the pan. Started the dough cycle with
 preheat turned off. Let it run for a couple of minutes until the
 ingredients were incorporated. Reset it, turned preheat on, and
 started it again. The preheat period serves at autolyse.
 
-10:13 final rise begins.
+Into cambro to proof more at 9:25. pH=5.34, about 1L.
 
-11:45 bake in 325F preheated convection oven 45 minutes lid on.
+10:10 pH=5.27 peak at 1.5L
+
+10:50 pH=5.20 final rise begins.
+
+12:00 bake in 325F preheated convection oven 45 minutes lid on.
 
 Looks good, filled the pan with rounded corners which I think is
 ideal.
 
-Good flavor. I may be able to taste a difference.
+Good flavor. The longer ferment added nice sourness.
 */
 
 /*+
@@ -73,12 +73,9 @@ starter |  50.0  |               |  10.9 |  25.0  |  25.0  |
         |  25.0  | water         |   5.4 |        |  25.0  |
 
 grain   | 389    |               |  84.6 | 389    |        |
-        |  99.0  | prairie gold  |  21.5 |  99.0  |        |
-        |  99.0  | hard red      |  21.5 |  99.0  |        |
-        |  99.0  | spelt         |  21.5 |  99.0  |        |
-        |  46.0  | kamut         |  10.0 |  46.0  |        |
-        |  23.0  | barley        |   5.0 |  23.0  |        |
-        |  23.0  | buckwheat     |   5.0 |  23.0  |        |
+        | 171    | prairie gold  |  37.3 | 171    |        |
+        | 172    | hard red      |  37.3 | 172    |        |
+        |  46.0  | spelt         |  10.0 |  46.0  |        |
 
 dry     | 465    |               | 101.0 | 435    |        |
         | 389    | grain         |  84.6 | 389    |        |
