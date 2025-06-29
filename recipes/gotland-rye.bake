@@ -1,0 +1,51 @@
+# From The Rye Baker page 176
+
+scald:
+  rye = 300g
+  boiling_water = 440g
+  salt = 9g
+  cider_vinegar = 7g
+
+infusion:
+  dried_orange_peel = 7g
+  boiling_water = 114g
+
+dough:
+  infusion
+  honey = 115g
+  scald
+  yeast = 10g
+  bread_flour = 300g
+
+/*
+Stanley bakes this in a 9x4x4 inch pullman pan so his TDW/L is
+566g/L.
+
+I'm following CalBeachBaker and substituting honey for the
+molasses, corn syrup, malt syrup choice.
+
+*/
+
+/*+
+  part   |  grams  |        name       |   %   | flour  | water  |
+---------|---------|-------------------|-------|--------|--------|
+scald    |  756    |                   | 126.0 | 300    | 447    |
+         |  300    | rye               |  50.0 | 300    |        |
+         |  440    | boiling water     |  73.3 |        | 440    |
+         |    9.0  | salt              |   1.5 |        |        |
+         |    7.0  | cider vinegar     |   1.2 |        |   7.0  |
+
+infusion |  121    |                   |  20.2 |        | 114    |
+         |    7.0  | dried orange peel |   1.2 |        |        |
+         |  114    | boiling water     |  19.0 |        | 114    |
+
+dough    | 1302    |                   | 217.0 | 600    | 581    |
+         |  121    | infusion          |  20.2 |        | 114    |
+         |  115    | honey             |  19.2 |        |  19.6  |
+         |  756    | scald             | 126.0 | 300    | 447    |
+         |   10.0  | yeast             |   1.7 |        |        |
+         |  300    | bread flour       |  50.0 | 300    |        |
+         |         | hydration         |  96.8 |        |        |
+
++*/
+
