@@ -1,51 +1,83 @@
 # From The Rye Baker page 176
 
-scald:
-  rye = 300g
-  boiling_water = 440g
-  salt = 9g
-  cider_vinegar = 7g
+scald ^ 5g:
+  rye = 50.00%
+  boiling_water = 73.33%
+  salt = 1.50%
+  cider_vinegar = 1.17%
 
-infusion:
-  dried_orange_peel = 7g
-  boiling_water = 114g
+infusion ^ 5g:
+  dried_orange_peel = 1.17%
+  boiling_water = 19.00%
 
 dough:
   infusion
-  honey = 115g
+  honey = 19.17%
   scald
-  yeast = 10g
-  bread_flour = 300g
+  yeast = 1.67%
+  bread_flour = 50.00%
+  _pan = 1 # liter
+  total = 566g * _pan
 
 /*
 Stanley bakes this in a 9x4x4 inch pullman pan so his TDW/L is
-566g/L.
+566g/L with lid off.
 
 I'm following CalBeachBaker and substituting honey for the
 molasses, corn syrup, malt syrup choice.
 
+I mixed the scald about 16:00 and the orange infusion about 19:00.
+
+The orange infusion lost over 10 grams over night. I replaced with
+water.
+
+Started about 7:30. Boy is it sticky! The paddle clogged up so
+I switched to the dough hook. Not much kneading going on since the
+dough was stuck in a thin layer on the bottom of the bowl. Does this
+really need to be this sticky?
+
+First rise begins about 7:50.
+
+Baked about 9:20 at 375 convection lid on.
+
+At 9:55 the internal temp is only 150F. Back in for 10 more minutes.
+
+I measured 18g of dried dough from the squirtage. I'm guessing the
+TDW was about 40 to 50g to high.
+
+Out at 10:10 internal temp is 200F but thermometer probe comes out
+gummy. It took some surgery to get it out of the pan due to the
+overflow. The loaf looks OK, quite pale. I shoulld have baked at
+higher temp.
+
+The bottom 1/4 inch looks underdone, I don't know why. The bread is
+lightly sweet with a bit of orange flavor but more chewy/gummy than
+I like. 
+
+I'm going to try adapting my 30% rye recipe.
+
 */
 
 /*+
-  part   |  grams  |        name       |   %   | flour  | water  |
----------|---------|-------------------|-------|--------|--------|
-scald    |  756    |                   | 126.0 | 300    | 447    |
-         |  300    | rye               |  50.0 | 300    |        |
-         |  440    | boiling water     |  73.3 |        | 440    |
-         |    9.0  | salt              |   1.5 |        |        |
-         |    7.0  | cider vinegar     |   1.2 |        |   7.0  |
+  part   | grams  |        name       |   %   | flour  | water  |
+---------|--------|-------------------|-------|--------|--------|
+scald    | 334    | + 5.0g            | 126.0 | 130    | 194    |
+         | 132    | rye               |  50.0 | 130    |        |
+         | 194    | boiling water     |  73.3 |        | 191    |
+         |   3.97 | salt              |   1.5 |        |        |
+         |   3.10 | cider vinegar     |   1.2 |        |   3.05 |
 
-infusion |  121    |                   |  20.2 |        | 114    |
-         |    7.0  | dried orange peel |   1.2 |        |        |
-         |  114    | boiling water     |  19.0 |        | 114    |
+infusion |  57.6  | + 5.0g            |  20.2 |        |  49.6  |
+         |   3.34 | dried orange peel |   1.2 |        |        |
+         |  54.3  | boiling water     |  19.0 |        |  49.6  |
 
-dough    | 1302    |                   | 217.0 | 600    | 581    |
-         |  121    | infusion          |  20.2 |        | 114    |
-         |  115    | honey             |  19.2 |        |  19.6  |
-         |  756    | scald             | 126.0 | 300    | 447    |
-         |   10.0  | yeast             |   1.7 |        |        |
-         |  300    | bread flour       |  50.0 | 300    |        |
-         |         | hydration         |  96.8 |        |        |
+dough    | 566    |                   | 217.0 | 261    | 252    |
+         |  52.6  | infusion          |  20.2 |        |  49.6  |
+         |  50.0  | honey             |  19.2 |        |   8.5  |
+         | 329    | scald             | 126.0 | 130    | 194    |
+         |   4.36 | yeast             |   1.7 |        |        |
+         | 130    | bread flour       |  50.0 | 130    |        |
+         |        | hydration         |  96.8 |        |        |
 
 +*/
 
