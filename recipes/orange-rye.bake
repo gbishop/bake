@@ -1,0 +1,79 @@
+# 30% rye with red rye malt and orange
+
+# This is a really good rye loaf. I like the flavor, aroma and texture. 
+
+starter:
+  hydration = 80%
+  water
+  ww
+
+wet:
+  starter = 50g
+  water
+  oil = 5%
+  honey = 5%
+  yogurt = 5%
+
+dry:
+  rye = 20%
+  prairie_gold = 35%
+  bread_flour
+  dried_orange_peel = 6%
+  potato_flakes = 3%
+  flaxseed_meal = 3%
+  _whole_grains = dough.total_flour - bread_flour
+  wgbi = 3% * _whole_grains
+  salt = 2%
+  yeast = 0.4%
+
+dough:
+  wet
+  dry
+  hydration = 70%
+  total_flour = 460g
+
+/*
+10 July 2025
+
+
+Mixed at 8:05, rested 20 minutes, then kneaded in the bread machine.
+
+Dumping the orange peel into the dry ingredients didn't confer any
+flavor. 
+
+Good shape and height. Perfect texture.
+
+*/
+
+/*+
+  part  | grams  |        name       |   %   | flour  | water  |
+--------|--------|-------------------|-------|--------|--------|
+starter |  50.0  |                   |  10.9 |  27.8  |  22.2  |
+        |  22.2  | water             |   4.8 |        |  22.2  |
+        |  27.8  | ww                |   6.0 |  27.8  |        |
+
+wet     | 395    |                   |  85.8 |  27.8  | 322    |
+        |  50.0  | starter           |  10.9 |  27.8  |  22.2  |
+        | 276    | water             |  59.9 |        | 276    |
+        |  23.0  | oil               |   5.0 |        |        |
+        |  23.0  | honey             |   5.0 |        |   3.91 |
+        |  23.0  | yogurt            |   5.0 |        |  20.2  |
+
+dry     | 471    |                   | 102.4 | 432    |        |
+        |  92.0  | rye               |  20.0 |  92.0  |        |
+        | 161    | prairie gold      |  35.0 | 161    |        |
+        | 142    | bread flour       |  30.9 | 142    |        |
+        |  27.6  | dried orange peel |   6.0 |        |        |
+        |  13.8  | potato flakes     |   3.0 |  13.8  |        |
+        |  13.8  | flaxseed meal     |   3.0 |  13.8  |        |
+        |   9.5  | wgbi              |   2.1 |   9.5  |        |
+        |   9.2  | salt              |   2.0 |        |        |
+        |   1.84 | yeast             |   0.4 |        |        |
+
+dough   | 865    |                   | 188.2 | 460    | 322    |
+        | 395    | wet               |  85.8 |  27.8  | 322    |
+        | 471    | dry               | 102.4 | 432    |        |
+        |        | hydration         |  70.0 |        |        |
+
++*/
+
