@@ -8,7 +8,10 @@ starter: # from fridge
 grain:
   prairie_gold
   hard_red
-  spelt = 15%
+  spelt = 5%
+  barley = 5%
+  buckwheat = 5%
+  kamut = 5%
 
 dry:
   grain
@@ -36,31 +39,27 @@ dough:
   total_flour = 200g * 2.3
 
 /*
-July 22, 2025
+July 27, 2025
 
 Changes
-* longer first rise to develop more acid
+* program the bm to reproduce timing
+* add barley, kamut, and buckwheat to use them up
 
 Zoji pan weighs 773g
 
-starter pH is 3.71
+starter pH is ?
 
-I started about 7:18
+I started about 12:45
 
 Used the BM for kneading only. Removed the dough to the cambro and
 into the oven on proof. Let it rise twice. Then into the pan.
 
-pH
- 8:38 5.46
-10:07 5.41
-11:25 5.24
-12:25 5.09
-14:01 4.77
+19:25 bake in 325F preheated convection oven 45 minutes lid on.
 
-14:20 bake in 325F preheated convection oven 45 minutes lid on.
+Baked a little early because it was getting late considering time to
+bake and cool.
 
-Looks good, filled the pan with rounded corners which I think is
-ideal.
+Looks good, barely filled the pan
 
 Good flavor. Clearly more acidic.
 */
@@ -73,9 +72,12 @@ starter |  50.0  |               |  10.9 |  27.8  |  22.2  |
         |  22.2  | water         |   4.8 |        |  22.2  |
 
 grain   | 386    |               |  84.0 | 386    |        |
-        | 159    | prairie gold  |  34.5 | 159    |        |
-        | 159    | hard red      |  34.5 | 159    |        |
-        |  69.0  | spelt         |  15.0 |  69.0  |        |
+        | 147    | prairie gold  |  32.0 | 147    |        |
+        | 147    | hard red      |  32.0 | 147    |        |
+        |  23.0  | spelt         |   5.0 |  23.0  |        |
+        |  23.0  | barley        |   5.0 |  23.0  |        |
+        |  23.0  | buckwheat     |   5.0 |  23.0  |        |
+        |  23.0  | kamut         |   5.0 |  23.0  |        |
 
 dry     | 462    |               | 100.5 | 432    |        |
         | 386    | grain         |  84.0 | 386    |        |
