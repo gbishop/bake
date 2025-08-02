@@ -15,11 +15,12 @@ grain:
 
 dry:
   grain
+  walnuts = 10%
   potato_flakes = 2%
   flaxseed_meal = 5%
   # half the water to milk
   nido = 50% * 13% * dough.total_water
-  vwg = 3% # out of wgbi and it is not longer sold
+  vwg = 3%
   salt = 1.8%
   yeast = 0.1%
 
@@ -33,35 +34,37 @@ wet:
 dough:
   wet
   dry
-  walnuts = 10%
-  hydration = 71% # compensating for extran honey 70%
+  hydration = 71%
   # 200g/L of flour
   total_flour = 200g * 2.3
 
 /*
-July 27, 2025
+August 1, 2025
 
 Changes
 * program the bm to reproduce timing
 * add barley, kamut, and buckwheat to use them up
+* add walnuts at the beginning
 
 Zoji pan weighs 773g
 
 starter pH is ?
 
-I started about 12:45
+I started about 8:00
 
-Used the BM for kneading only. Removed the dough to the cambro and
-into the oven on proof. Let it rise twice. Then into the pan.
+Used the BM for kneading and double rise.
 
-19:25 bake in 325F preheated convection oven 45 minutes lid on.
+After 3.5 hours of rising the pH = 5.16
+After 5 hours pH = 4.96
+After 6 hours pH = 4.75, into pan at 3:15.
 
-Baked a little early because it was getting late considering time to
-bake and cool.
+Dough is breaking down. 6 hours is too long. Managing the rise in
+the cambro is better because I can keep an eye on the dough.
 
-Looks good, barely filled the pan
+The bake was cursed. Power blinked in the middle. Didn't rise
+enough. Strange color. Likely trash.
 
-Good flavor. Clearly more acidic.
+Trash for sure.
 */
 
 /*+
@@ -79,8 +82,9 @@ grain   | 386    |               |  84.0 | 386    |        |
         |  23.0  | buckwheat     |   5.0 |  23.0  |        |
         |  23.0  | kamut         |   5.0 |  23.0  |        |
 
-dry     | 462    |               | 100.5 | 432    |        |
+dry     | 508    |               | 110.5 | 432    |        |
         | 386    | grain         |  84.0 | 386    |        |
+        |  46.0  | walnuts       |  10.0 |        |        |
         |   9.2  | potato flakes |   2.0 |   9.2  |        |
         |  23.0  | flaxseed meal |   5.0 |  23.0  |        |
         |  21.2  | nido          |   4.6 |        |        |
@@ -97,8 +101,7 @@ wet     | 399    |               |  86.8 |  27.8  | 327    |
 
 dough   | 907    |               | 197.3 | 460    | 327    |
         | 399    | wet           |  86.8 |  27.8  | 327    |
-        | 462    | dry           | 100.5 | 432    |        |
-        |  46.0  | walnuts       |  10.0 |        |        |
+        | 508    | dry           | 110.5 | 432    |        |
         |        | hydration     |  71.0 |        |        |
 
 +*/
