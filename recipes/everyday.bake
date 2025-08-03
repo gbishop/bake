@@ -15,17 +15,17 @@ grain:
 
 dry:
   grain
-  walnuts = 10%
   potato_flakes = 2%
   flaxseed_meal = 5%
   # half the water to milk
   nido = 50% * 13% * dough.total_water
   vwg = 3%
   salt = 1.8%
-  yeast = 0.1%
+  yeast = 0.25%
 
 wet:
   starter = 50g
+  whey = 20%
   water
   olive_oil = 5%
   honey = 5%
@@ -34,37 +34,38 @@ wet:
 dough:
   wet
   dry
-  hydration = 71%
+  hydration = 70%
   # 200g/L of flour
   total_flour = 200g * 2.3
 
 /*
-August 1, 2025
+August 2, 2025
 
 Changes
-* program the bm to reproduce timing
-* add barley, kamut, and buckwheat to use them up
-* add walnuts at the beginning
+* back to the cambro for proof
+* try some yogurt whey
+* increase the yeast to compensate
+* drop the walnuts for today
 
 Zoji pan weighs 773g
 
 starter pH is ?
+whey pH is 3.9
 
 I started about 8:00
 
-Used the BM for kneading and double rise.
+Used the BM for kneading.
 
-After 3.5 hours of rising the pH = 5.16
-After 5 hours pH = 4.96
-After 6 hours pH = 4.75, into pan at 3:15.
+Rise in cambro begins at 9:10.
 
-Dough is breaking down. 6 hours is too long. Managing the rise in
-the cambro is better because I can keep an eye on the dough.
+Into the pan at 11:00. pH=5.17
 
-The bake was cursed. Power blinked in the middle. Didn't rise
-enough. Strange color. Likely trash.
+Baked at 12:10, 325 convection lid on.
 
-Trash for sure.
+Looks great. Filled the pan perfectly.
+
+Good flavor. pH = 5.1.
+
 */
 
 /*+
@@ -82,27 +83,27 @@ grain   | 386    |               |  84.0 | 386    |        |
         |  23.0  | buckwheat     |   5.0 |  23.0  |        |
         |  23.0  | kamut         |   5.0 |  23.0  |        |
 
-dry     | 508    |               | 110.5 | 432    |        |
+dry     | 463    |               | 100.6 | 432    |        |
         | 386    | grain         |  84.0 | 386    |        |
-        |  46.0  | walnuts       |  10.0 |        |        |
         |   9.2  | potato flakes |   2.0 |   9.2  |        |
         |  23.0  | flaxseed meal |   5.0 |  23.0  |        |
-        |  21.2  | nido          |   4.6 |        |        |
+        |  20.9  | nido          |   4.5 |        |        |
         |  13.8  | vwg           |   3.0 |  13.8  |        |
         |   8.3  | salt          |   1.8 |        |        |
-        |   0.46 | yeast         |   0.1 |        |        |
+        |   1.15 | yeast         |   0.2 |        |        |
 
-wet     | 399    |               |  86.8 |  27.8  | 327    |
+wet     | 401    |               |  87.2 |  27.8  | 322    |
         |  50.0  | starter       |  10.9 |  27.8  |  22.2  |
-        | 280    | water         |  60.9 |        | 280    |
+        |  92.0  | whey          |  20.0 |        |  85.6  |
+        | 190    | water         |  41.3 |        | 190    |
         |  23.0  | olive oil     |   5.0 |        |        |
         |  23.0  | honey         |   5.0 |        |   3.91 |
         |  23.0  | yogurt        |   5.0 |        |  20.2  |
 
-dough   | 907    |               | 197.3 | 460    | 327    |
-        | 399    | wet           |  86.8 |  27.8  | 327    |
-        | 508    | dry           | 110.5 | 432    |        |
-        |        | hydration     |  71.0 |        |        |
+dough   | 864    |               | 187.7 | 460    | 322    |
+        | 401    | wet           |  87.2 |  27.8  | 322    |
+        | 463    | dry           | 100.6 | 432    |        |
+        |        | hydration     |  70.0 |        |        |
 
 +*/
 
