@@ -21,7 +21,7 @@ dry:
   # nido = 50% * 13% * dough.total_water
   vwg = 3%
   salt = 1.8%
-  yeast = 0.5%
+  yeast = 1%
 
 wet:
   starter = 100g
@@ -39,32 +39,29 @@ dough:
   total_flour = 200g * 2.3
 
 /*
-August 14, 2025
+August 18, 2025
 
 Changes
-* pan for proof at RT
-* double starter
-* 20% whey
-* increase the yeast to compensate
-* cold rise?
+* mixed by hand
+* into fridge while I am out
+* maple syrup instead of honey
 
 Zoji pan weighs 773g
 
 starter pH is ?
 whey pH is ?
 
-I started about 7:50
+I started about 7:30
 
-Used the BM for kneading. Mixed about 8:10. DT after mixing is 71F.
+Mixed about 8:00. DT after mixing is 71F. pH = 5.00
 
-pH after kneading is 4.95. DT is 86F. Rise in pan because I fear it
-getting too sour beginning at 9:20 at RT.
+I had to go out to an appointment so I refrigerated immeidately
+after mixing. Out of the fridge at 12:00. Handled a bit at 12:30,
+more kneading at 13:30; still too cold to stretch and fold.
 
-Baked at 11:05, 325 convection lid on.
+Kneaded a bit more at 14:30 and put it in the pan. Slow, ugly rise. 
 
-Looks great. Filled the pan perfectly.
-
-Good flavor. pH = 5.1.
+Trash. I won't try this again.
 
 */
 
@@ -83,13 +80,13 @@ grain   | 358    |               |  77.9 | 358    |        |
         |  23.0  | buckwheat     |   5.0 |  23.0  |        |
         |  23.0  | kamut         |   5.0 |  23.0  |        |
 
-dry     | 415    |               |  90.2 | 404    |        |
+dry     | 417    |               |  90.7 | 404    |        |
         | 358    | grain         |  77.9 | 358    |        |
         |   9.2  | potato flakes |   2.0 |   9.2  |        |
         |  23.0  | flaxseed meal |   5.0 |  23.0  |        |
         |  13.8  | vwg           |   3.0 |  13.8  |        |
         |   8.3  | salt          |   1.8 |        |        |
-        |   2.30 | yeast         |   0.5 |        |        |
+        |   4.60 | yeast         |   1.0 |        |        |
 
 wet     | 429    |               |  93.2 |  55.6  | 322    |
         | 100    | starter       |  21.7 |  55.6  |  44.4  |
@@ -99,9 +96,9 @@ wet     | 429    |               |  93.2 |  55.6  | 322    |
         |  23.0  | honey         |   5.0 |        |   3.91 |
         |  23.0  | yogurt        |   5.0 |        |  20.2  |
 
-dough   | 844    |               | 183.5 | 460    | 322    |
+dough   | 846    |               | 184.0 | 460    | 322    |
         | 429    | wet           |  93.2 |  55.6  | 322    |
-        | 415    | dry           |  90.2 | 404    |        |
+        | 417    | dry           |  90.7 | 404    |        |
         |        | hydration     |  70.0 |        |        |
 
 +*/
