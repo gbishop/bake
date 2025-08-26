@@ -5,11 +5,6 @@ starter: # from fridge
   water
   hydration = 80%
 
-soaker:
-  bulgur
-  water
-  hydration = 150%
-
 grain:
   prairie_gold
   hard_red
@@ -43,82 +38,69 @@ dough:
   # 200g/L of flour
   total_flour = 200g * 2.3
 
-addition:
-  dough
-  soaker = 25%
-
 /*
-August 20, 2025
+August 25, 2025
 
 Changes
-* pan for proof at RT
-* double starter
-* 20% whey
-* add soaker
+* drop the bulgur
+* use the KA to keep DT down.
+
 
 Zoji pan weighs 773g
 
-starter pH is ?
-whey pH is ?
+starter pH is 4.00
+whey pH is 3.96
 
-I started about 7:50
+I started about 8:15
 
-Used the BM for kneading. Mixed about 8:20. DT after mixing is 71F.
+Used the KA for kneading. Mixed about 8:40. DT after mixing is 68F.
 
-pH after kneading is ?. DT is 86F. I let it rise about 20% in the
-cambro and then moved to the pan about 10:30. Baked about 11:30.
+I let it rise about 20% in the cambro and then moved to the pan
+about 10:00. Baked about 12:15.
 
-Looks great. Filled the pan perfectly.
+Looks great. This is a beautiful perfectly browned loaf. Filled the
+pan perfectly.
 
-This is good but the bulgur adds very little. A little texture but
-hardly noticeable. 
+Good flavor. Very mild.
 
 
 */
 
 /*+
-  part   | grams  |      name     |   %   | flour  | water  |
----------|--------|---------------|-------|--------|--------|
-starter  | 100    |               |  21.7 |  55.6  |  44.4  |
-         |  55.6  | whole wheat   |  12.1 |  55.6  |        |
-         |  44.4  | water         |   9.7 |        |  44.4  |
+  part  | grams  |      name     |   %   | flour  | water  |
+--------|--------|---------------|-------|--------|--------|
+starter | 100    |               |  21.7 |  55.6  |  44.4  |
+        |  55.6  | whole wheat   |  12.1 |  55.6  |        |
+        |  44.4  | water         |   9.7 |        |  44.4  |
 
-soaker   | 115    |               |  25.0 |  46.0  |  69.0  |
-         |  46.0  | bulgur        |  10.0 |  46.0  |        |
-         |  69.0  | water         |  15.0 |        |  69.0  |
+grain   | 358    |               |  77.9 | 358    |        |
+        | 133    | prairie gold  |  29.0 | 133    |        |
+        | 133    | hard red      |  29.0 | 133    |        |
+        |  23.0  | spelt         |   5.0 |  23.0  |        |
+        |  23.0  | barley        |   5.0 |  23.0  |        |
+        |  23.0  | buckwheat     |   5.0 |  23.0  |        |
+        |  23.0  | kamut         |   5.0 |  23.0  |        |
 
-grain    | 358    |               |  77.9 | 358    |        |
-         | 133    | prairie gold  |  29.0 | 133    |        |
-         | 133    | hard red      |  29.0 | 133    |        |
-         |  23.0  | spelt         |   5.0 |  23.0  |        |
-         |  23.0  | barley        |   5.0 |  23.0  |        |
-         |  23.0  | buckwheat     |   5.0 |  23.0  |        |
-         |  23.0  | kamut         |   5.0 |  23.0  |        |
+dry     | 415    |               |  90.2 | 404    |        |
+        | 358    | grain         |  77.9 | 358    |        |
+        |   9.2  | potato flakes |   2.0 |   9.2  |        |
+        |  23.0  | flaxseed meal |   5.0 |  23.0  |        |
+        |  13.8  | vwg           |   3.0 |  13.8  |        |
+        |   8.3  | salt          |   1.8 |        |        |
+        |   2.30 | yeast         |   0.5 |        |        |
 
-dry      | 415    |               |  90.2 | 404    |        |
-         | 358    | grain         |  77.9 | 358    |        |
-         |   9.2  | potato flakes |   2.0 |   9.2  |        |
-         |  23.0  | flaxseed meal |   5.0 |  23.0  |        |
-         |  13.8  | vwg           |   3.0 |  13.8  |        |
-         |   8.3  | salt          |   1.8 |        |        |
-         |   2.30 | yeast         |   0.5 |        |        |
+wet     | 429    |               |  93.2 |  55.6  | 322    |
+        | 100    | starter       |  21.7 |  55.6  |  44.4  |
+        |  92.0  | whey          |  20.0 |        |  85.6  |
+        | 168    | water         |  36.5 |        | 168    |
+        |  23.0  | olive oil     |   5.0 |        |        |
+        |  23.0  | honey         |   5.0 |        |   3.91 |
+        |  23.0  | yogurt        |   5.0 |        |  20.2  |
 
-wet      | 429    |               |  93.2 |  55.6  | 322    |
-         | 100    | starter       |  21.7 |  55.6  |  44.4  |
-         |  92.0  | whey          |  20.0 |        |  85.6  |
-         | 168    | water         |  36.5 |        | 168    |
-         |  23.0  | olive oil     |   5.0 |        |        |
-         |  23.0  | honey         |   5.0 |        |   3.91 |
-         |  23.0  | yogurt        |   5.0 |        |  20.2  |
-
-dough    | 844    |               | 183.4 | 460    | 322    |
-         | 429    | wet           |  93.2 |  55.6  | 322    |
-         | 415    | dry           |  90.2 | 404    |        |
-         |        | hydration     |  70.0 |        |        |
-
-addition | 959    |               | 208.4 | 506    | 391    |
-         | 844    | dough         | 183.4 | 460    | 322    |
-         | 115    | soaker        |  25.0 |  46.0  |  69.0  |
+dough   | 844    |               | 183.5 | 460    | 322    |
+        | 429    | wet           |  93.2 |  55.6  | 322    |
+        | 415    | dry           |  90.2 | 404    |        |
+        |        | hydration     |  70.0 |        |        |
 
 +*/
 
