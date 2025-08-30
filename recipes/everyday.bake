@@ -11,7 +11,6 @@ grain:
   spelt = 5%
   barley = 5%
   buckwheat = 5%
-  kamut = 5%
 
 dry:
   grain
@@ -27,7 +26,7 @@ wet:
   starter = 100g
   whey = 20%
   water
-  olive_oil = 5%
+  walnut_oil = 5%
   honey = 5%
   yogurt = 5%
 
@@ -39,27 +38,30 @@ dough:
   total_flour = 200g * 2.3
 
 /*
-August 25, 2025
+August 29, 2025
 
 Changes
-* drop the bulgur
-* use the KA to keep DT down.
+* try walnut oil
 
 
 Zoji pan weighs 773g
 
-starter pH is 4.00
-whey pH is 3.96
+starter pH is 4.18
+whey pH is 3.98
 
-I started about 8:15
+I started about 7:50
 
-Used the KA for kneading. Mixed about 8:40. DT after mixing is 68F.
+Used the KA for kneading. Mixed about 8:25. DT after mixing is 71F
+(using tap water).
+Kneaded abougt 8:45, 8 minutes at speed 1.
 
-I let it rise about 20% in the cambro and then moved to the pan
-about 10:00. Baked about 12:15.
+pH = 5.1 at 9:50.
 
-Looks great. This is a beautiful perfectly browned loaf. Filled the
-pan perfectly.
+I let it rise about 20% in the mixer bowl and then moved to the pan
+about 10:00. Baked about 12:45.
+
+Looks great. Beautiful. I don't noitice a difference from the walnut
+oil.
 
 Good flavor. Very mild.
 
@@ -74,12 +76,11 @@ starter | 100    |               |  21.7 |  55.6  |  44.4  |
         |  44.4  | water         |   9.7 |        |  44.4  |
 
 grain   | 358    |               |  77.9 | 358    |        |
-        | 133    | prairie gold  |  29.0 | 133    |        |
-        | 133    | hard red      |  29.0 | 133    |        |
+        | 145    | prairie gold  |  31.5 | 145    |        |
+        | 145    | hard red      |  31.5 | 145    |        |
         |  23.0  | spelt         |   5.0 |  23.0  |        |
         |  23.0  | barley        |   5.0 |  23.0  |        |
         |  23.0  | buckwheat     |   5.0 |  23.0  |        |
-        |  23.0  | kamut         |   5.0 |  23.0  |        |
 
 dry     | 415    |               |  90.2 | 404    |        |
         | 358    | grain         |  77.9 | 358    |        |
@@ -93,11 +94,11 @@ wet     | 429    |               |  93.2 |  55.6  | 322    |
         | 100    | starter       |  21.7 |  55.6  |  44.4  |
         |  92.0  | whey          |  20.0 |        |  85.6  |
         | 168    | water         |  36.5 |        | 168    |
-        |  23.0  | olive oil     |   5.0 |        |        |
+        |  23.0  | walnut oil    |   5.0 |        |        |
         |  23.0  | honey         |   5.0 |        |   3.91 |
         |  23.0  | yogurt        |   5.0 |        |  20.2  |
 
-dough   | 844    |               | 183.5 | 460    | 322    |
+dough   | 844    |               | 183.4 | 460    | 322    |
         | 429    | wet           |  93.2 |  55.6  | 322    |
         | 415    | dry           |  90.2 | 404    |        |
         |        | hydration     |  70.0 |        |        |
