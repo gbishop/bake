@@ -4,44 +4,47 @@
 # https://breadtopia.com/sourdough-pretzel-buns-and-bagels/
 
 starter:
-  ww
+  ww = 10%
   water
-  hydration = 100%
+  hydration = 80%
 
 dough:
-  bread_flour = 280g
-  whole_wheat = 280g
-  water = 305g # to 340g
-  starter = 120g
-  olive_oil = 35g
-  malt_syrup = 25g
-  salt = 10g
+  bread_flour
+  whole_wheat
+  water
+  starter
+  olive_oil = 6%
+  malt_syrup = 4%
+  salt = 1.6%
+  hydration = 60%
+  total_flour = 500g
 
 boil:
-  baking_soda = 70g
-  salt = 18g
-  water = 1900g
+  baking_soda = 11%
+  salt = 3%
+  water = 300%
+
 /*+
   part  |  grams  |     name    |   %   | flour  |  water  |
 --------|---------|-------------|-------|--------|---------|
-starter |  120    |             |  19.1 |  66.7  |   53.3  |
-        |   66.7  | ww          |  10.6 |  66.7  |         |
-        |   53.3  | water       |   8.5 |        |   53.3  |
+starter |   90.0  |             |  18.0 |  50.0  |   40.0  |
+        |   50.0  | ww          |  10.0 |  50.0  |         |
+        |   40.0  | water       |   8.0 |        |   40.0  |
 
-dough   | 1055    |             | 168.4 | 627    |  364    |
-        |  280    | bread flour |  44.7 | 280    |         |
-        |  280    | whole wheat |  44.7 | 280    |         |
-        |  305    | water       |  48.7 |        |  305    |
-        |  120    | starter     |  19.1 |  66.7  |   53.3  |
-        |   35.0  | olive oil   |   5.6 |        |         |
-        |   25.0  | malt syrup  |   4.0 |        |    5.2  |
-        |   10.0  | salt        |   1.6 |        |         |
-        |         | hydration   |  58.0 |        |         |
+dough   |  854    |             | 170.8 | 500    |  300    |
+        |  225    | bread flour |  45.0 | 225    |         |
+        |  225    | whole wheat |  45.0 | 225    |         |
+        |  256    | water       |  51.2 |        |  256    |
+        |   90.0  | starter     |  18.0 |  50.0  |   40.0  |
+        |   30.0  | olive oil   |   6.0 |        |         |
+        |   20.0  | malt syrup  |   4.0 |        |    4.20 |
+        |    8.0  | salt        |   1.6 |        |         |
+        |         | hydration   |  60.0 |        |         |
 
-boil    | 1988    |             | 317.2 |        | 1900    |
-        |   70.0  | baking soda |  11.2 |        |         |
-        |   18.0  | salt        |   2.9 |        |         |
-        | 1900    | water       | 303.2 |        | 1900    |
+boil    | 1570    |             | 314.0 |        | 1500    |
+        |   55.0  | baking soda |  11.0 |        |         |
+        |   15.0  | salt        |   3.0 |        |         |
+        | 1500    | water       | 300.0 |        | 1500    |
 
 +*/
 
