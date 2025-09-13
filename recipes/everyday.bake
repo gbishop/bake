@@ -8,9 +8,7 @@ starter: # from fridge
 grain:
   prairie_gold
   hard_red
-  spelt = 5%
-  barley = 5%
-  buckwheat = 5%
+  spelt = 15%
 
 dry:
   grain
@@ -24,9 +22,9 @@ dry:
 
 wet:
   starter = 100g
-  whey = 20%
-  water
-  walnut_oil = 5%
+  whey = 25%
+  tap_water
+  olive_oil = 5%
   honey = 5%
   yogurt = 5%
 
@@ -38,30 +36,31 @@ dough:
   total_flour = 200g * 2.25
 
 /*
-September 5, 2025
+September 12, 2025
 
 Changes
-* increase hydration
-
+* drop buckwheat and barley
+* increase whey a bit
+* increase kneading time
+* use tap water
 
 Zoji pan weighs 773g
 
-starter pH is 3.91
-whey pH is 4.00
+starter pH is 3.96
+whey pH is 4.05
 
 I started about 8:00
 
-Used the KA for kneading. Mixed about 8:32. DT after mixing is 65F
-(using fridge water).
-Kneaded at about 8:50, 8 minutes at speed 1.
+Used the KA for kneading. Mixed about 8:20. DT after mixing is 70F
 
-I let it rise about 30% in the cambro and then moved to the pan
+Kneaded at about 8:50, 12 minutes at speed 1.
+
+I let it rise about 50% in the cambro and then moved to the pan
 about 11:10. pH=4.9.
 
 Baked about 12:45.
 
-Looks good. Didn't quite fill the pan. At these lower temps I likely
-need to let it go longer before baking.
+Looks good. 
 
 Good flavor. Very mild.
 
@@ -78,9 +77,7 @@ starter | 100    |               |  22.2 |  55.6  |  44.4  |
 grain   | 349    |               |  77.7 | 349    |        |
         | 141    | prairie gold  |  31.3 | 141    |        |
         | 141    | hard red      |  31.3 | 141    |        |
-        |  22.5  | spelt         |   5.0 |  22.5  |        |
-        |  22.5  | barley        |   5.0 |  22.5  |        |
-        |  22.5  | buckwheat     |   5.0 |  22.5  |        |
+        |  67.5  | spelt         |  15.0 |  67.5  |        |
 
 dry     | 405    |               |  90.0 | 394    |        |
         | 349    | grain         |  77.7 | 349    |        |
@@ -90,16 +87,16 @@ dry     | 405    |               |  90.0 | 394    |        |
         |   8.1  | salt          |   1.8 |        |        |
         |   2.25 | yeast         |   0.5 |        |        |
 
-wet     | 443    |               |  98.5 |  55.6  | 338    |
+wet     | 445    |               |  98.8 |  55.6  | 338    |
         | 100    | starter       |  22.2 |  55.6  |  44.4  |
-        |  90.0  | whey          |  20.0 |        |  83.7  |
-        | 186    | water         |  41.3 |        | 186    |
-        |  22.5  | walnut oil    |   5.0 |        |        |
+        | 112    | whey          |  25.0 |        | 105    |
+        | 165    | tap water     |  36.6 |        | 165    |
+        |  22.5  | olive oil     |   5.0 |        |        |
         |  22.5  | honey         |   5.0 |        |   3.83 |
         |  22.5  | yogurt        |   5.0 |        |  19.8  |
 
-dough   | 848    |               | 188.4 | 450    | 338    |
-        | 443    | wet           |  98.5 |  55.6  | 338    |
+dough   | 850    |               | 188.8 | 450    | 338    |
+        | 445    | wet           |  98.8 |  55.6  | 338    |
         | 405    | dry           |  90.0 | 394    |        |
         |        | hydration     |  75.0 |        |        |
 
