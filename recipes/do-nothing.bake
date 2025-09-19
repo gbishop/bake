@@ -1,0 +1,43 @@
+# Panis Respectus from Yohan Ferrant
+
+dry:
+  prairie_gold = 600g
+  bread_flour = 400g
+  salt = 20g
+
+starter:
+  ww
+  water
+  hydration = 100%
+
+wet:
+  starter = 10g
+  water = 900g
+
+dough:
+  dry
+  wet
+
+/*+
+  part  |  grams  |     name     |   %   |  flour  | water  |
+--------|---------|--------------|-------|---------|--------|
+dry     | 1020    |              | 101.5 | 1000    |        |
+        |  600    | prairie gold |  59.7 |  600    |        |
+        |  400    | bread flour  |  39.8 |  400    |        |
+        |   20.0  | salt         |   2.0 |         |        |
+
+starter |   10.0  |              |   1.0 |    5.0  |   5.0  |
+        |    5.0  | ww           |   0.5 |    5.0  |        |
+        |    5.0  | water        |   0.5 |         |   5.0  |
+
+wet     |  910    |              |  90.5 |    5.0  | 905    |
+        |   10.0  | starter      |   1.0 |    5.0  |   5.0  |
+        |  900    | water        |  89.6 |         | 900    |
+
+dough   | 1930    |              | 192.0 | 1005    | 905    |
+        | 1020    | dry          | 101.5 | 1000    |        |
+        |  910    | wet          |  90.5 |    5.0  | 905    |
+        |         | hydration    |  90.0 |         |        |
+
++*/
+
