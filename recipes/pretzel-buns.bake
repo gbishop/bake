@@ -8,14 +8,21 @@ starter:
   water
   hydration = 80%
 
-dough:
+dry:
   bread_flour
-  whole_wheat
+  hard_red
+  salt = 1.6%
+  yeast = 0.2%
+
+wet:
   water
   starter
   olive_oil = 6%
   malt_syrup = 4%
-  salt = 1.6%
+
+dough:
+  wet
+  dry
   hydration = 60%
   total_flour = 500g
 
@@ -24,6 +31,22 @@ boil:
   salt = 3%
   water = 300%
 
+/*
+
+Next time
+* reduce the yeast, 0.2% doubled in 2.5 hours, took his 6
+* flip them on the way into the boil so they come out right side up
+* I baked 15 minutes, should have been longer. Try 17.
+* They seem a little small, perhaps go back to his 135g size
+
+The steam pan worked well. Our oven holds the steam. I'm not sure
+the small hole was required.
+
+It took about 1 hour in the morning.
+
+
+*/
+
 /*+
   part  |  grams  |     name    |   %   | flour  |  water  |
 --------|---------|-------------|-------|--------|---------|
@@ -31,14 +54,21 @@ starter |   90.0  |             |  18.0 |  50.0  |   40.0  |
         |   50.0  | ww          |  10.0 |  50.0  |         |
         |   40.0  | water       |   8.0 |        |   40.0  |
 
-dough   |  854    |             | 170.8 | 500    |  300    |
+dry     |  459    |             |  91.8 | 450    |         |
         |  225    | bread flour |  45.0 | 225    |         |
-        |  225    | whole wheat |  45.0 | 225    |         |
+        |  225    | hard red    |  45.0 | 225    |         |
+        |    8.0  | salt        |   1.6 |        |         |
+        |    1.00 | yeast       |   0.2 |        |         |
+
+wet     |  396    |             |  79.2 |  50.0  |  300    |
         |  256    | water       |  51.2 |        |  256    |
         |   90.0  | starter     |  18.0 |  50.0  |   40.0  |
         |   30.0  | olive oil   |   6.0 |        |         |
         |   20.0  | malt syrup  |   4.0 |        |    4.20 |
-        |    8.0  | salt        |   1.6 |        |         |
+
+dough   |  855    |             | 171.0 | 500    |  300    |
+        |  396    | wet         |  79.2 |  50.0  |  300    |
+        |  459    | dry         |  91.8 | 450    |         |
         |         | hydration   |  60.0 |        |         |
 
 boil    | 1570    |             | 314.0 |        | 1500    |
