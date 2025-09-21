@@ -1,0 +1,108 @@
+# My everyday loaf slowed down
+
+starter: # from fridge
+  whole_wheat
+  water
+  hydration = 80%
+
+grain:
+  prairie_gold
+  hard_red
+  spelt = 15%
+
+dry:
+  grain
+  potato_flakes = 2%
+  flaxseed_meal = 5%
+  # half the water to milk
+  # nido = 50% * 13% * dough.total_water
+  vwg = 3%
+  salt = 1.8%
+  yeast = wet.starter / 40
+
+wet:
+  starter = 5% # was 22.22%
+  whey = 25%
+  tap_water
+  olive_oil = 5%
+  honey = 5%
+  yogurt = 5%
+
+dough:
+  wet
+  dry
+  hydration = 75%
+  # 200g/L of flour
+  total_flour = 200g * 1
+
+/*
+September 20, 2025
+
+Changes
+* cut starter and yeast to 1/4
+* bake a 1L test loaf
+
+Zoji pan weighs 773g
+
+starter pH is ?
+whey pH is ?
+
+I started about 8:00
+
+Used the KA for kneading. Mixed about 8:50. DT after mixing is 73F.
+The KA is lousy mixing these small doughs.
+
+Kneaded at about 9:22, 8 minutes at speed 1. The hook barely
+grabbed the dough.
+
+First rise begins about 9:25.
+
+I let it rise about 60% in the 1L cup and then moved to the pan
+about 14:15. pH=?
+
+Baked about 17:00.
+
+It shrunk during the bake. Very acidic. Over proofed.
+
+Good thing I made it a tiny loaf.
+
+I should have tracked the pH and only let it rise maybe 20% on
+the first round.
+
+*/
+
+/*+
+  part  | grams  |      name     |   %   | flour  | water  |
+--------|--------|---------------|-------|--------|--------|
+starter |  10.0  |               |   5.0 |   5.6  |   4.44 |
+        |   5.6  | whole wheat   |   2.8 |   5.6  |        |
+        |   4.44 | water         |   2.2 |        |   4.44 |
+
+grain   | 174    |               |  87.2 | 174    |        |
+        |  72.2  | prairie gold  |  36.1 |  72.2  |        |
+        |  72.2  | hard red      |  36.1 |  72.2  |        |
+        |  30.0  | spelt         |  15.0 |  30.0  |        |
+
+dry     | 198    |               |  99.1 | 194    |        |
+        | 174    | grain         |  87.2 | 174    |        |
+        |   4.00 | potato flakes |   2.0 |   4.00 |        |
+        |  10.0  | flaxseed meal |   5.0 |  10.0  |        |
+        |   6.0  | vwg           |   3.0 |   6.0  |        |
+        |   3.60 | salt          |   1.8 |        |        |
+        |   0.25 | yeast         |   0.1 |        |        |
+
+wet     | 179    |               |  89.3 |   5.6  | 150    |
+        |  10.0  | starter       |   5.0 |   5.6  |   4.44 |
+        |  50.0  | whey          |  25.0 |        |  46.5  |
+        |  88.6  | tap water     |  44.3 |        |  88.6  |
+        |  10.0  | olive oil     |   5.0 |        |        |
+        |  10.0  | honey         |   5.0 |        |   1.70 |
+        |  10.0  | yogurt        |   5.0 |        |   8.8  |
+
+dough   | 377    |               | 188.4 | 200    | 150    |
+        | 179    | wet           |  89.3 |   5.6  | 150    |
+        | 198    | dry           |  99.1 | 194    |        |
+        |        | hydration     |  75.0 |        |        |
+
++*/
+
