@@ -1,43 +1,47 @@
 # Panis Respectus from Yohan Ferrant
+# via Teresa Greenway
+# https://thebakingnetwork.com/do-nothing-bread/
 
 dry:
-  prairie_gold = 600g
-  bread_flour = 400g
-  salt = 20g
+  prairie_gold = 60%
+  bread_flour
+  salt = 2%
 
 starter:
   ww
   water
-  hydration = 100%
+  hydration = 80%
 
 wet:
-  starter = 10g
-  water = 900g
+  starter = 1%
+  water
 
 dough:
   dry
   wet
+  total_flour = 200g
+  hydration = 90%
 
 /*+
-  part  |  grams  |     name     |   %   |  flour  | water  |
---------|---------|--------------|-------|---------|--------|
-dry     | 1020    |              | 101.5 | 1000    |        |
-        |  600    | prairie gold |  59.7 |  600    |        |
-        |  400    | bread flour  |  39.8 |  400    |        |
-        |   20.0  | salt         |   2.0 |         |        |
+  part  | grams  |     name     |   %   | flour  | water  |
+--------|--------|--------------|-------|--------|--------|
+dry     | 203    |              | 101.4 | 199    |        |
+        | 120    | prairie gold |  60.0 | 120    |        |
+        |  78.9  | bread flour  |  39.4 |  78.9  |        |
+        |   4.00 | salt         |   2.0 |        |        |
 
-starter |   10.0  |              |   1.0 |    5.0  |   5.0  |
-        |    5.0  | ww           |   0.5 |    5.0  |        |
-        |    5.0  | water        |   0.5 |         |   5.0  |
+starter |   2.00 |              |   1.0 |   1.11 |   0.89 |
+        |   1.11 | ww           |   0.6 |   1.11 |        |
+        |   0.89 | water        |   0.4 |        |   0.89 |
 
-wet     |  910    |              |  90.5 |    5.0  | 905    |
-        |   10.0  | starter      |   1.0 |    5.0  |   5.0  |
-        |  900    | water        |  89.6 |         | 900    |
+wet     | 181    |              |  90.6 |   1.11 | 180    |
+        |   2.00 | starter      |   1.0 |   1.11 |   0.89 |
+        | 179    | water        |  89.6 |        | 179    |
 
-dough   | 1930    |              | 192.0 | 1005    | 905    |
-        | 1020    | dry          | 101.5 | 1000    |        |
-        |  910    | wet          |  90.5 |    5.0  | 905    |
-        |         | hydration    |  90.0 |         |        |
+dough   | 384    |              | 192.0 | 200    | 180    |
+        | 203    | dry          | 101.4 | 199    |        |
+        | 181    | wet          |  90.6 |   1.11 | 180    |
+        |        | hydration    |  90.0 |        |        |
 
 +*/
 
