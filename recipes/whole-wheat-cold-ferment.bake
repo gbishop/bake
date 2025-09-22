@@ -1,0 +1,79 @@
+# Overnight cold ferments 100% whole wheat
+
+# From:
+# https://www.chainbaker.com/cold-100-whole-wheat/
+
+dough:
+  whole_wheat = 550g
+  water
+  hydration = 95% # was 100
+  yeast = 4g
+  salt = 10g
+
+  oil = 15g # for the bowl
+
+/*
+Method
+
+Combine the water, yeast, and salt. Mix well to dissolve the salt
+and hydrate the yeast. Add the flour and mix to a dough. Desired
+dough temperature around 24C (75F).
+
+Place the dough in a clean bowl with the olive oil.
+
+Chill for 30 minutes. Fold #1.
+
+Chill for 30 minutes. Fold #2.
+
+Chill for 30 minutes. Fold #3.
+
+Cold ferment for 12 – 24 hours.
+
+Pour oil over the dough, release it form the bowl, cover all sides
+with oil, and give it another fold before placing it in the baking
+tin.
+
+Cover and final proof for 2.5 hours. During the final 30 minutes
+pre-heat the oven to 250C (480F) fan on.
+
+Bake at 200C (390F) fan on for 40 minutes with the lid on.
+
+Remove the loaf from the tin and place it back into the oven to bake
+for another 5 minutes.
+
+*/
+
+/*
+21 September 2025
+
+I used 95% hydration because my KAB whole wheat flour was 12.1%
+protein and his was 13%.
+
+I started about 14:30. Mixed in a large bowl then moved to cambro
+containing the oil. Refrigerated and folded as directed. The dough
+developed quickly as he described.
+
+Overnight ferment begin about 15:50. Will the 1L cambro be big
+enough? It filled the cambro but seemed ok.
+
+Out of the fridge about 8:30 and into the pan. Baked about 10:30.
+
+It stuck to the pan and came out ugly. I don't like the taste.
+
+Yuck!
+
+*/
+
+/*+
+ part |  grams  |     name    |   %   | flour  | water  |
+------|---------|-------------|-------|--------|--------|
+dough | 1102    |             | 200.3 | 550    | 522    |
+      |  550    | whole wheat | 100.0 | 550    |        |
+      |  522    | water       |  95.0 |        | 522    |
+      |    4.00 | yeast       |   0.7 |        |        |
+      |   10.0  | salt        |   1.8 |        |        |
+      |   15.0  | oil         |   2.7 |        |        |
+      |         | hydration   |  95.0 |        |        |
+
++*/
+
