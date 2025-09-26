@@ -8,21 +8,23 @@ starter: # from fridge
 grain:
   prairie_gold
   hard_red
-  spelt = 15%
+  spelt = 5%
+  barley = 5%
+  buckwheat = 5%
 
 dry:
   grain
   potato_flakes = 2%
-  flaxseed_meal = 5%
   # half the water to milk
   # nido = 50% * 13% * dough.total_water
   vwg = 3%
   salt = 1.8%
   yeast = 0.5%
+  flaxseed_meal = 5%
 
 wet:
-  starter = 100g
-  whey = 25%
+  starter = 20%
+  whey = 20%
   tap_water
   olive_oil = 5%
   honey = 5%
@@ -36,29 +38,26 @@ dough:
   total_flour = 200g * 2.25
 
 /*
-September 12, 2025
+September 22, 2025
 
 Changes
-* drop buckwheat and barley
-* increase whey a bit
-* increase kneading time
-* use tap water
+* back to barley and buckwheat to use them up
 
-Zoji pan weighs 773g
+Zoji pan weighs 773g. KA pan weighs 725g.
 
-starter pH is 3.96
-whey pH is 4.05
+starter pH is 4.05
+whey pH is 4.07
 
-I started about 8:00
+I started about 12:30
 
-Used the KA for kneading. Mixed about 8:20. DT after mixing is 70F
+Used the KA for kneading. Mixed about 13:00. DT after mixing is 74F
 
-Kneaded at about 8:50, 12 minutes at speed 1.
+Kneaded at about 13:20, 10 minutes at speed 1. DT is 83F
 
 I let it rise about 50% in the cambro and then moved to the pan
-about 11:10. pH=4.9.
+about 14:15.
 
-Baked about 12:45.
+Baked about 16:10
 
 Looks good. 
 
@@ -70,34 +69,36 @@ Good flavor. Very mild.
 /*+
   part  | grams  |      name     |   %   | flour  | water  |
 --------|--------|---------------|-------|--------|--------|
-starter | 100    |               |  22.2 |  55.6  |  44.4  |
-        |  55.6  | whole wheat   |  12.3 |  55.6  |        |
-        |  44.4  | water         |   9.9 |        |  44.4  |
+starter |  90.0  |               |  20.0 |  50.0  |  40.0  |
+        |  50.0  | whole wheat   |  11.1 |  50.0  |        |
+        |  40.0  | water         |   8.9 |        |  40.0  |
 
-grain   | 349    |               |  77.7 | 349    |        |
-        | 141    | prairie gold  |  31.3 | 141    |        |
-        | 141    | hard red      |  31.3 | 141    |        |
-        |  67.5  | spelt         |  15.0 |  67.5  |        |
+grain   | 355    |               |  78.9 | 355    |        |
+        | 144    | prairie gold  |  31.9 | 144    |        |
+        | 144    | hard red      |  31.9 | 144    |        |
+        |  22.5  | spelt         |   5.0 |  22.5  |        |
+        |  22.5  | barley        |   5.0 |  22.5  |        |
+        |  22.5  | buckwheat     |   5.0 |  22.5  |        |
 
-dry     | 405    |               |  90.0 | 394    |        |
-        | 349    | grain         |  77.7 | 349    |        |
+dry     | 410    |               |  91.2 | 400    |        |
+        | 355    | grain         |  78.9 | 355    |        |
         |   9.0  | potato flakes |   2.0 |   9.0  |        |
-        |  22.5  | flaxseed meal |   5.0 |  22.5  |        |
         |  13.5  | vwg           |   3.0 |  13.5  |        |
         |   8.1  | salt          |   1.8 |        |        |
         |   2.25 | yeast         |   0.5 |        |        |
+        |  22.5  | flaxseed meal |   5.0 |  22.5  |        |
 
-wet     | 445    |               |  98.8 |  55.6  | 338    |
-        | 100    | starter       |  22.2 |  55.6  |  44.4  |
-        | 112    | whey          |  25.0 |        | 105    |
-        | 165    | tap water     |  36.6 |        | 165    |
+wet     | 438    |               |  97.3 |  50.0  | 338    |
+        |  90.0  | starter       |  20.0 |  50.0  |  40.0  |
+        |  90.0  | whey          |  20.0 |        |  83.7  |
+        | 190    | tap water     |  42.3 |        | 190    |
         |  22.5  | olive oil     |   5.0 |        |        |
         |  22.5  | honey         |   5.0 |        |   3.83 |
         |  22.5  | yogurt        |   5.0 |        |  19.8  |
 
-dough   | 850    |               | 188.8 | 450    | 338    |
-        | 445    | wet           |  98.8 |  55.6  | 338    |
-        | 405    | dry           |  90.0 | 394    |        |
+dough   | 848    |               | 188.5 | 450    | 338    |
+        | 438    | wet           |  97.3 |  50.0  | 338    |
+        | 410    | dry           |  91.2 | 400    |        |
         |        | hydration     |  75.0 |        |        |
 
 +*/
