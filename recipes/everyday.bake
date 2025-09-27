@@ -25,7 +25,7 @@ dry:
 wet:
   starter = 20%
   whey = 20%
-  tap_water
+  cold_water
   olive_oil = 5%
   honey = 5%
   yogurt = 5%
@@ -38,26 +38,26 @@ dough:
   total_flour = 200g * 2.25
 
 /*
-September 22, 2025
+September 26, 2025
 
 Changes
-* back to barley and buckwheat to use them up
+* cold water
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
 starter pH is 4.05
 whey pH is 4.07
 
-I started about 12:30
+I started about 8:40
 
-Used the KA for kneading. Mixed about 13:00. DT after mixing is 74F
+Used the KA for kneading. Mixed about 9:04. DT after mixing is 69F
 
-Kneaded at about 13:20, 10 minutes at speed 1. DT is 83F
+Kneaded at about 9:25, 10 minutes at speed 1. DT is 83F. pH is 5.1
 
 I let it rise about 50% in the cambro and then moved to the pan
-about 14:15.
+about 10:30
 
-Baked about 16:10
+Baked about 12:50
 
 Looks good. 
 
@@ -91,7 +91,7 @@ dry     | 410    |               |  91.2 | 400    |        |
 wet     | 438    |               |  97.3 |  50.0  | 338    |
         |  90.0  | starter       |  20.0 |  50.0  |  40.0  |
         |  90.0  | whey          |  20.0 |        |  83.7  |
-        | 190    | tap water     |  42.3 |        | 190    |
+        | 190    | cold water    |  42.3 |        | 190    |
         |  22.5  | olive oil     |   5.0 |        |        |
         |  22.5  | honey         |   5.0 |        |   3.83 |
         |  22.5  | yogurt        |   5.0 |        |  19.8  |
