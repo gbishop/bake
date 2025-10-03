@@ -1,0 +1,30 @@
+# from the Zoji manual
+
+dough:
+  apple_juice = 400g
+  bread_flour = 544g
+  sugar = 23g
+  salt = 8.4g
+  butter = 35g
+  cinnamon = 2g
+  oats = 40g
+  yeast = 5.6g
+  dried_apple = 40g # when beep sounds
+
+/*+
+ part |  grams  |     name     |   %   | flour  | water |
+------|---------|--------------|-------|--------|-------|
+dough | 1098    |              | 188.0 | 584    |  5.8  |
+      |  400    | apple juice! |  68.5 |        |       |
+      |  544    | bread flour  |  93.2 | 544    |       |
+      |   23.0  | sugar        |   3.9 |        |       |
+      |    8.4  | salt         |   1.4 |        |       |
+      |   35.0  | butter       |   6.0 |        |  5.6  |
+      |    2.00 | cinnamon     |   0.3 |        |  0.22 |
+      |   40.0  | oats         |   6.8 |  40.0  |       |
+      |    5.6  | yeast        |   1.0 |        |       |
+      |   40.0  | dried apple! |   6.8 |        |       |
+      |         | hydration    |   1.0 |        |       |
+
++*/
+
