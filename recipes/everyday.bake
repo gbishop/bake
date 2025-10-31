@@ -9,8 +9,7 @@ grain:
   prairie_gold
   hard_red
   spelt = 5%
-  barley = 31g
-  buckwheat = 14g
+  bobs_mthc = 10%
 
 dry:
   grain
@@ -38,37 +37,36 @@ dough:
   total_flour = 200g * 2.25
 
 /*
-October 15, 2025
+October 22, 2025
 
 Changes
-* replace half water with whey
-* drop the seeds
-* half the yeast
-* refrigerated after kneading for about 3 hours.
-* ran out of buckwheat, replaced with barley.
+* ground bob's mighty tasty hot cereal (rice, corn, sorghum,
+buckwheat) in place of the barley and buckwheat.
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-starter pH is 4.04, whey is 4.10
+starter pH is 4.17, whey is 4.10
 
-I started about 9:00
+I started about 8:50
 
-Used the KA for kneading. Mixed about 9:30. DT after mixing is 75
+Used the KA for kneading. Mixed about 9:20. DT after mixing is 71
 RT is 68F.
 
 Kneaded at about 9:55, 10 minutes at speed 1 then into cambro.
 
-We had to go out so I put it in the fridge at about 10:30 and got it
-out about 13:30. I put it in the oven on proof.
+Into the fridge at 9:51. 30 minutes then S&F. Out of fridge at
+13:00.
 
 I let it rise about 50% in the cambro and then moved to the pan
 still in the oven on proof.
 
-At about 17:00 it was within 1/2 inch of the top of the pan. Baked
-about 17:15. 
+At about 16:30 it was within 1/2 inch of the top of the pan. Baked
+about 16:40.
 
-Looks really good. Tastes great. This is perfect level of sour and
-soft. Are all these steps required?
+Looks really good. Corners are not square but top is flat. Color is
+good.
+
+Tastes great. Maybe not quite as sour?
 
 */
 
@@ -83,8 +81,7 @@ grain   | 355    |               |  78.9 | 355    |        |
         | 144    | prairie gold  |  31.9 | 144    |        |
         | 144    | hard red      |  31.9 | 144    |        |
         |  22.5  | spelt         |   5.0 |  22.5  |        |
-        |  31.0  | barley        |   6.9 |  31.0  |        |
-        |  14.0  | buckwheat     |   3.1 |  14.0  |        |
+        |  45.0  | bobs mthc     |  10.0 |  45.0  |        |
 
 dry     | 409    |               |  91.0 | 400    |        |
         | 355    | grain         |  78.9 | 355    |        |
