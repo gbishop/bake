@@ -1,8 +1,8 @@
 # From https://www.thefreshloaf.com/node/79098/2-levain-multigrain-oats-soaker-ricotta
 
 soaker:
-  boiling_water = 140g
-  oats = 70g
+  boiling_water = 15.4%
+  oats = 7.7%
 
 starter:
   ww
@@ -10,57 +10,57 @@ starter:
   hydration = 100%
 
 dough:
-  starter = 240g
-  yeast_water = 100g
-  honey = 50g
-  olive_oil = 50g
-  ricotta = 60g
-  water = 210g
-  extra_water = 150g
+  starter = 26%
+  yeast_water = 11%
+  honey = 5.5%
+  olive_oil = 5.5%
+  ricotta = 6.6%
+  water = 23.0%
+  extra_water = 16.5%
   soaker
-  salt = 14g
-  yeast = 1g
+  salt = 1.5%
+  yeast = 0.11%
   grains
   total_flour = 910g
 
 grains:
-  hard_white = 200g
-  rye = 200g
-  hard_red = 200g
-  semolina = 60g
-  ap_flour = 60g
+  hard_white
+  rye
+  hard_red
+  semolina = 6.6%
+  ap_flour = 6.6%
 
 /*+
   part  |  grams  |      name     |   %   | flour  | water  |
 --------|---------|---------------|-------|--------|--------|
-soaker  |  210    |               |  23.1 |  70.0  | 140    |
+soaker  |  210    |               |  23.1 |  70.1  | 140    |
         |  140    | boiling water |  15.4 |        | 140    |
-        |   70.0  | oats          |   7.7 |  70.0  |        |
+        |   70.1  | oats          |   7.7 |  70.1  |        |
 
-starter |  240    |               |  26.4 | 120    | 120    |
-        |  120    | ww            |  13.2 | 120    |        |
-        |  120    | water         |  13.2 |        | 120    |
+starter |  237    |               |  26.0 | 118    | 118    |
+        |  118    | ww            |  13.0 | 118    |        |
+        |  118    | water         |  13.0 |        | 118    |
 
-dough   | 1805    |               | 198.4 | 910    | 772    |
-        |  240    | starter       |  26.4 | 120    | 120    |
+dough   | 1803    |               | 198.1 | 910    | 770    |
+        |  237    | starter       |  26.0 | 118    | 118    |
         |  100    | yeast water   |  11.0 |        | 100    |
         |   50.0  | honey         |   5.5 |        |   8.5  |
         |   50.0  | olive oil     |   5.5 |        |        |
-        |   60.0  | ricotta       |   6.6 |        |  43.8  |
-        |  210    | water         |  23.1 |        | 210    |
+        |   60.1  | ricotta       |   6.6 |        |  43.8  |
+        |  209    | water         |  23.0 |        | 209    |
         |  150    | extra water   |  16.5 |        | 150    |
-        |  210    | soaker        |  23.1 |  70.0  | 140    |
-        |   14.0  | salt          |   1.5 |        |        |
+        |  210    | soaker        |  23.1 |  70.1  | 140    |
+        |   13.7  | salt          |   1.5 |        |        |
         |    1.00 | yeast         |   0.1 |        |        |
-        |  720    | grains        |  79.1 | 720    |        |
-        |         | hydration     |  84.9 |        |        |
+        |  722    | grains        |  79.3 | 722    |        |
+        |         | hydration     |  84.7 |        |        |
 
-grains  |  720    |               |  79.1 | 720    |        |
-        |  200    | hard white    |  22.0 | 200    |        |
-        |  200    | rye           |  22.0 | 200    |        |
-        |  200    | hard red      |  22.0 | 200    |        |
-        |   60.0  | semolina      |   6.6 |  60.0  |        |
-        |   60.0  | ap flour      |   6.6 |  60.0  |        |
+grains  |  722    |               |  79.3 | 722    |        |
+        |  201    | hard white    |  22.0 | 201    |        |
+        |  201    | rye           |  22.0 | 201    |        |
+        |  201    | hard red      |  22.0 | 201    |        |
+        |   60.1  | semolina      |   6.6 |  60.1  |        |
+        |   60.1  | ap flour      |   6.6 |  60.1  |        |
 
 +*/
 
