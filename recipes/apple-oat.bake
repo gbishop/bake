@@ -1,65 +1,83 @@
 # from the Zoji manual
 
-dough:
+starter:
+  ww
+  water
+  hydration = 80%
+
+wet:
   apple_juice
   apple_butter = 39%
-  bread_flour = 93%
+  starter = 90g
+  butter = 6%
+
+dry:
+  bread_flour
+  spelt
   # sugar = 3.94%
   salt = 1.5%
-  butter = 6%
   oats = 7%
+  potato_flakes = 3%
   yeast = 1%
-  dried_apple = 7% # when beep sounds
+
+dough:
+  wet
+  dry
+  dried_apple = 10% # when beep sounds
   hydration = 65%
   total_flour = 500g
 
 /*
-October 6, 2025
+October 27, 2025
 
-Next time:
-* lower hydration
+Changes:
+* See if using 1/2 spelt helps with hydration
+* Add starter
+* Add potato flakes
+* increase dried apples
 
 I'm experimenting with this variation on the Zoji apple oat bread
 recipe. I'm using apple butter instead of the sugar and cinnamon.
 
-Started about 9:25 on the dough cycle. I let it preheat to hopefully
+Started about 9:10 on the dough cycle. I let it preheat to hopefully
 take the chill off of the apple juice. Preheat worked great; by the
 time it was mixing the DT was 75F.
 
-The dough seemed very sticky until I added the apples then it
-started behaving better. Still sticky but I'm going to scrape it
-into a pullman pan anyway.
+Much less sticky. I'm glad I didn't lower hydration.
 
-Crazy sticky but I got it in the pan about 11:20 and into the oven
-on proof.
+Baked about 13:10 at top of pan. About 1 inch above pan after
+baking. Only got up to 190F inside but seems done.
 
-Baked about 12:40 about 1/2" below top of pan. Barely above top of
-pan after baking. At 45 minutes only 180F inside. Back into oven for
-5 more minutes.
-
-I think the hydration is too high with these ingredients.
-
-On the first day while still a bit warm this has a good mild apple
-taste. It was so good I ate two slices!
-
-Very chewy when lightly toasted the next day. Toasted more it is
-fine. Ivy really likes it.
+Very good.
 
 */
 
 /*+
- part |  grams  |     name     |   %   | flour  | water  |
-------|---------|--------------|-------|--------|--------|
-dough | 1012    |              | 202.5 | 500    | 325    |
-      |  240    | apple juice  |  48.0 |        | 211    |
-      |  195    | apple butter |  39.0 |        | 109    |
-      |  465    | bread flour  |  93.0 | 465    |        |
-      |    7.5  | salt         |   1.5 |        |        |
-      |   30.0  | butter       |   6.0 |        |   4.80 |
-      |   35.0  | oats         |   7.0 |  35.0  |        |
-      |    5.0  | yeast        |   1.0 |        |        |
-      |   35.0  | dried apple! |   7.0 |        |        |
-      |         | hydration    |  65.0 |        |        |
+  part  |  grams  |      name     |   %   | flour  | water  |
+--------|---------|---------------|-------|--------|--------|
+starter |   90.0  |               |  18.0 |  50.0  |  40.0  |
+        |   50.0  | ww            |  10.0 |  50.0  |        |
+        |   40.0  | water         |   8.0 |        |  40.0  |
+
+wet     |  509    |               | 101.9 |  50.0  | 325    |
+        |  194    | apple juice   |  38.9 |        | 171    |
+        |  195    | apple butter  |  39.0 |        | 109    |
+        |   90.0  | starter       |  18.0 |  50.0  |  40.0  |
+        |   30.0  | butter        |   6.0 |        |   4.80 |
+
+dry     |  462    |               |  92.5 | 450    |        |
+        |  200    | bread flour   |  40.0 | 200    |        |
+        |  200    | spelt         |  40.0 | 200    |        |
+        |    7.5  | salt          |   1.5 |        |        |
+        |   35.0  | oats          |   7.0 |  35.0  |        |
+        |   15.0  | potato flakes |   3.0 |  15.0  |        |
+        |    5.0  | yeast         |   1.0 |        |        |
+
+dough   | 1022    |               | 204.4 | 500    | 325    |
+        |  509    | wet           | 101.9 |  50.0  | 325    |
+        |  462    | dry           |  92.5 | 450    |        |
+        |   50.0  | dried apple   |  10.0 |        |        |
+        |         | hydration     |  65.0 |        |        |
 
 +*/
 
