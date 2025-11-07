@@ -5,13 +5,13 @@ dough:
   pumpkin_seeds = 50%
   sunflower_seeds = 50%
   coconut = 50%
-  pecans = 50%
+  walnuts = 50%
   maple_syrup = 50%
   olive_oil = 25%
 
 
 /*
-August 1, 2025
+October 23, 2025
 
 In the new oven 15 + 15 + 10 seemed to do it on 300 convection.
 
@@ -29,7 +29,7 @@ dough | 960    |                 | 375.0 | 256    | 70.4  |
       | 128    | pumpkin seeds   |  50.0 |        |       |
       | 128    | sunflower seeds |  50.0 |        |       |
       | 128    | coconut         |  50.0 |        | 29.4  |
-      | 128    | pecans          |  50.0 |        |       |
+      | 128    | walnuts         |  50.0 |        |       |
       | 128    | maple syrup     |  50.0 |        | 41.0  |
       |  64.0  | olive oil       |  25.0 |        |       |
       |        | hydration       |  27.5 |        |       |
