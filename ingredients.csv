@@ -5,6 +5,7 @@ ap_flour,1.00,0.00
 baking_powder,0.00,0.00
 baking_soda,0.00,0.00
 barley,1.00,0.00
+bobs_mthc,1.00,0.00
 bran,1.00,0.00
 bread_flour,1.00,0.00
 bronze_chief,1.00,0.00
@@ -22,6 +23,7 @@ corn_flour,1.00,0.00
 cracked_rye,1.00,0
 cracked_wheat,1.00,0
 craisins,0,0
+dried_apple,0,0
 dried_orange_peel,0.00,0
 egg,0.00,0.76
 egg_white,0.00,0.88
@@ -50,6 +52,7 @@ nutmeg,0.00,0.00
 oat_groats,1.00,0.00
 oats,1.00,0.00
 orange_marmalade,0.00,0.33
+ricotta,0.00,0.73
 rolled_oats,1.00,0.00
 oil,0.00,0.00
 olive_oil,0.00,0.00
@@ -67,6 +70,7 @@ red_rye_malt,1.00,0.00
 rye,1.00,0.00
 rye_berries,1.00,0.00
 salt,0.00,0.00
+semolina,1.00,0.00
 sesame_seeds,0.00,0.00
 skim_milk_powder,0.00,0.00
 sour_cream,0.00,0.74
