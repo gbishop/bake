@@ -1,0 +1,201 @@
+# From a conversation with Gemini
+
+/* 
+The goal is maximizing lactic acid sourness without breakdown
+
+November 13, 2025
+
+# https://gemini.google.com/app/e47193cd35efa43c
+*/
+
+starter:
+  ww
+  water
+  hydration = 100%
+
+grind ^ 1%:
+  hard_red = leaven.hard_red + dry.hard_red
+  prairie_gold = leaven.prairie_gold + dry.prairie_gold
+
+leaven ^ 5%:
+  starter = 1 * _part
+  hard_red = 1 * _part
+  prairie_gold = 1 * _part
+  water
+  total_flour = 10%
+  hydration = 100%
+
+wet:
+  leaven
+  water
+  honey = 5%
+  olive_oil = 5%
+  yogurt = 5%
+
+dry:
+  hard_red
+  prairie_gold
+  hard_red = prairie_gold
+  chickpea_flour = 7%
+  salt = 1.8%
+
+dough:
+  wet
+  dry
+  total_flour = 500 / 9 * 4
+  hydration = 80%
+
+/******
+*Notes*
+
+8:00 leaven into the SDH at 78F.
+12:00 leaven is doubled, domed and bubbly.
+12:08 mixed. Actual FDT=69F. Rest for 30 minutes.
+12:40 S&F
+13:18 S&F
+13:50 S&F at just over 400mL
+16:00 about 480mL
+16:25 shaped, into pan, into fridge.
+07:20 about 2 inches from the top of the pan, baking anyway
+07:45 into the oven lid on at 400F convection
+08:15 remove lid, temp down to 350F convection
+08:35 out of oven, internal 205F
+
+About 1/2 inch short of the top of the pan. This was plenty of
+flour to completely fill the pan. 
+
+Nicely sour, too dense. A good start.
+
+Possible changes:
+* add VWG?
+* more kneading?
+* DT was 69F at beginning of bulk, should be 72F
+* The SDH is a crappy proofing box, too little heat capacity.
+* a little yeast?
+* let it rise a bit before refrigerating?
+* Maybe the 3 hour bulk should have been from mix? I don't know how
+you measure 30% rise when there are S&F in there.
+
+******/
+
+
+/*
+Method and Timeline
+
+Step 1: Levain Preparation (Night Before)
+
+Goal: Build a warm, active, high-hydration levain to maximize lactic
+acid content upon mixing.
+
+Action: Feed your whole wheat starter at 100% hydration (1:1:1 or
+1:2:2 ratio).
+
+Temperature: Let it ripen at a warm temperature (75F to 78F / 24C to
+25.5C) until it is very active and bubbly (4–6 hours). The levain is
+ready when it is dome-shaped, bubbly, and passes the float test (4–6
+hours).
+
+Step 2: Mixing and Autolyse Protection
+
+Goal: Mix all ingredients immediately to activate the protease
+inhibitors (salt, yogurt) and protector (oil).
+
+Mixing: Mix the cold water with the salt, honey, olive oil, and
+yogurt. Add the flour blend and the ripe levain. Mix until a shaggy
+mass forms.
+
+Rest: Cover and rest for 30 minutes.
+
+FDT Target: Aim for a Final Dough Temperature (FDT) around 72F (22C).
+
+Step 3: Bulk Fermentation (Warm & Controlled)
+
+Goal: Push the temperature and time to generate lactic acid while
+protecting the gluten.
+
+Ambient Temp: Place the dough in a warm environment: 75F to 78F (24C
+to 25.5C).
+
+Folds: Perform 3 sets of coil folds or gentle stretch-and-folds
+during the first 90 minutes.
+
+Timing: Total Bulk Fermentation: 3 to 3.5 hours (Approximate).
+
+CRITICAL Indicator: Stop bulk fermentation when the dough has
+increased in volume by 30% to 40% and passes the finger-poke test
+(springs back slowly, leaving a small dent).
+
+Step 4: Shaping and Cold Proofing
+
+Goal: Set the final shape and stop enzyme activity.
+
+Action: Shape the dough gently into a tight log and place it
+seam-down in the oiled Pullman pan.
+
+Proofing: Cover the pan (or put the lid on) and place it immediately
+into the refrigerator (38F to 40F / 3C to 4C).
+
+Duration: Cold Proof for 8 to 16 hours.
+
+Check: The dough should rise to 1 to 1.5 inches (2.5 to 4cm) below
+the top rim of the pan.
+
+Step 5: Baking
+
+Preheat: Preheat oven to 425F (218 C)
+
+Cold Bake: Place the cold pan (with the lid on) into the preheated
+oven.
+
+Bake Time:
+
+30–35 minutes with the lid on.
+
+Reduce heat to 375F (190C), remove the lid, and continue baking for
+another 15–25 minutes.
+
+Doneness: Pull the loaf when the internal temperature reaches 205F
+to 210F (96C to 99C).
+
+Cooling: Immediately remove the loaf from the pan and cool
+completely on a wire rack for at least 2 hours before slicing.
+
+*/
+
+/*+
+  part  | grams  |      name      |   %   | flour  | water  |
+--------|--------|----------------|-------|--------|--------|
+starter |   8.9  |                |   4.0 |   4.44 |   4.44 |
+        |   4.44 | ww             |   2.0 |   4.44 |        |
+        |   4.44 | water          |   2.0 |        |   4.44 |
+
+grind   | 204    | + 2.0g         |  91.0 | 202    |        |
+        | 102    | hard red       |  45.5 | 101    |        |
+        | 102    | prairie gold   |  45.5 | 101    |        |
+
+leaven  |  46.7  | + 2.2g         |  20.0 |  22.2  |  22.2  |
+        |   9.3  | starter        |   4.0 |   4.44 |   4.44 |
+        |   9.3  | hard red       |   4.0 |   8.9  |        |
+        |   9.3  | prairie gold   |   4.0 |   8.9  |        |
+        |  18.7  | water          |   8.0 |        |  17.8  |
+
+wet     | 222    |                |  99.7 |  22.2  | 178    |
+        |  44.4  | leaven         |  20.0 |  22.2  |  22.2  |
+        | 144    | water          |  64.7 |        | 144    |
+        |  11.1  | honey          |   5.0 |        |   1.89 |
+        |  11.1  | olive oil      |   5.0 |        |        |
+        |  11.1  | yogurt         |   5.0 |        |   9.8  |
+
+dry     | 204    |                |  91.8 | 200    |        |
+        |  92.2  | hard red       |  41.5 |  92.2  |        |
+        |  92.2  | prairie gold   |  41.5 |  92.2  |        |
+        |  15.6  | chickpea flour |   7.0 |  15.6  |        |
+        |   4.00 | salt           |   1.8 |        |        |
+
+dough   | 426    |                | 191.6 | 222    | 178    |
+        | 222    | wet            |  99.7 |  22.2  | 178    |
+        | 204    | dry            |  91.8 | 200    |        |
+        |        | hydration      |  80.0 |        |        |
+
++*/
+
