@@ -13,11 +13,11 @@ starter:
   water
   hydration = 100%
 
-grind ^ 1%:
+grind ^ 4g:
   hard_red = leaven.hard_red + dry.hard_red
   prairie_gold = leaven.prairie_gold + dry.prairie_gold
 
-leaven ^ 5%:
+leaven:
   starter = 1 * _part
   hard_red = 1 * _part
   prairie_gold = 1 * _part
@@ -27,7 +27,7 @@ leaven ^ 5%:
 
 wet:
   leaven
-  water
+  water_72F
   honey = 5%
   olive_oil = 5%
   yogurt = 5%
@@ -35,54 +35,51 @@ wet:
 dry:
   hard_red
   prairie_gold
+  vwg = 3%
   hard_red = prairie_gold
   chickpea_flour = 7%
-  salt = 1.8%
+  salt = 2%
 
 dough:
   wet
   dry
-  total_flour = 500 / 9 * 4
-  hydration = 80%
+  total_flour = 200 * 1
+  hydration = 85%
 
-/******
-*Notes*
+/****** Notes
 
+Second attempt, hoping for lower density.
+
+Changes:
+* add VWG
+* mix to 72F
+* measure rise from end of autolysis
+* use the oven proof, turn it off at 76F, maybe add bottle of water?
+
+November 16
 8:00 leaven into the SDH at 78F.
-12:00 leaven is doubled, domed and bubbly.
-12:08 mixed. Actual FDT=69F. Rest for 30 minutes.
+12:20 leaven is doubled, domed and bubbly.
+12:30 mixed. Actual FDT=69F. Rest for 30 minutes.
 12:40 S&F
-13:18 S&F
+13:20 S&F
 13:50 S&F at just over 400mL
-16:00 about 480mL
-16:25 shaped, into pan, into fridge.
-07:20 about 2 inches from the top of the pan, baking anyway
-07:45 into the oven lid on at 400F convection
-08:15 remove lid, temp down to 350F convection
-08:35 out of oven, internal 205F
 
-About 1/2 inch short of the top of the pan. This was plenty of
-flour to completely fill the pan. 
+17:00 into pan, into fridge.
 
-Nicely sour, too dense. A good start.
+November 17
+07:20 hasn't risen at all, I tossed it.
 
-Possible changes:
-* add VWG?
-* more kneading?
-* DT was 69F at beginning of bulk, should be 72F
-* The SDH is a crappy proofing box, too little heat capacity.
-* a little yeast?
-* let it rise a bit before refrigerating?
-* Maybe the 3 hour bulk should have been from mix? I don't know how
-you measure 30% rise when there are S&F in there.
+Results:
+
+* 85% hydration is too high.
 
 ******/
 
 
 /*
-Method and Timeline
+Method and Suggested Timeline
 
-Step 1: Levain Preparation (Night Before)
+Step 1: Levain Preparation 
 
 Goal: Build a warm, active, high-hydration levain to maximize lactic
 acid content upon mixing.
@@ -147,9 +144,7 @@ Preheat: Preheat oven to 425F (218 C)
 Cold Bake: Place the cold pan (with the lid on) into the preheated
 oven.
 
-Bake Time:
-
-30–35 minutes with the lid on.
+Bake Time: 30–35 minutes with the lid on.
 
 Reduce heat to 375F (190C), remove the lid, and continue baking for
 another 15–25 minutes.
@@ -165,37 +160,38 @@ completely on a wire rack for at least 2 hours before slicing.
 /*+
   part  | grams  |      name      |   %   | flour  | water  |
 --------|--------|----------------|-------|--------|--------|
-starter |   8.9  |                |   4.0 |   4.44 |   4.44 |
-        |   4.44 | ww             |   2.0 |   4.44 |        |
-        |   4.44 | water          |   2.0 |        |   4.44 |
+starter |   8.0  |                |   4.0 |   4.00 |   4.00 |
+        |   4.00 | ww             |   2.0 |   4.00 |        |
+        |   4.00 | water          |   2.0 |        |   4.00 |
 
-grind   | 204    | + 2.0g         |  91.0 | 202    |        |
-        | 102    | hard red       |  45.5 | 101    |        |
-        | 102    | prairie gold   |  45.5 | 101    |        |
+grind   | 180    | + 4.0g         |  88.0 | 176    |        |
+        |  90.0  | hard red       |  44.0 |  88.0  |        |
+        |  90.0  | prairie gold   |  44.0 |  88.0  |        |
 
-leaven  |  46.7  | + 2.2g         |  20.0 |  22.2  |  22.2  |
-        |   9.3  | starter        |   4.0 |   4.44 |   4.44 |
-        |   9.3  | hard red       |   4.0 |   8.9  |        |
-        |   9.3  | prairie gold   |   4.0 |   8.9  |        |
-        |  18.7  | water          |   8.0 |        |  17.8  |
+leaven  |  40.0  |                |  20.0 |  20.0  |  20.0  |
+        |   8.0  | starter        |   4.0 |   4.00 |   4.00 |
+        |   8.0  | hard red       |   4.0 |   8.0  |        |
+        |   8.0  | prairie gold   |   4.0 |   8.0  |        |
+        |  16.0  | water          |   8.0 |        |  16.0  |
 
-wet     | 222    |                |  99.7 |  22.2  | 178    |
-        |  44.4  | leaven         |  20.0 |  22.2  |  22.2  |
-        | 144    | water          |  64.7 |        | 144    |
-        |  11.1  | honey          |   5.0 |        |   1.89 |
-        |  11.1  | olive oil      |   5.0 |        |        |
-        |  11.1  | yogurt         |   5.0 |        |   9.8  |
+wet     | 210    |                | 104.8 |  20.0  | 170    |
+        |  40.0  | leaven         |  20.0 |  20.0  |  20.0  |
+        | 140    | water 72F      |  69.8 |        | 140    |
+        |  10.0  | honey          |   5.0 |        |   1.70 |
+        |  10.0  | olive oil      |   5.0 |        |        |
+        |  10.0  | yogurt         |   5.0 |        |   8.8  |
 
-dry     | 204    |                |  91.8 | 200    |        |
-        |  92.2  | hard red       |  41.5 |  92.2  |        |
-        |  92.2  | prairie gold   |  41.5 |  92.2  |        |
-        |  15.6  | chickpea flour |   7.0 |  15.6  |        |
-        |   4.00 | salt           |   1.8 |        |        |
+dry     | 184    |                |  92.0 | 180    |        |
+        |  80.0  | hard red       |  40.0 |  80.0  |        |
+        |  80.0  | prairie gold   |  40.0 |  80.0  |        |
+        |   6.0  | vwg            |   3.0 |   6.0  |        |
+        |  14.0  | chickpea flour |   7.0 |  14.0  |        |
+        |   4.00 | salt           |   2.0 |        |        |
 
-dough   | 426    |                | 191.6 | 222    | 178    |
-        | 222    | wet            |  99.7 |  22.2  | 178    |
-        | 204    | dry            |  91.8 | 200    |        |
-        |        | hydration      |  80.0 |        |        |
+dough   | 393    |                | 196.7 | 200    | 170    |
+        | 210    | wet            | 104.8 |  20.0  | 170    |
+        | 184    | dry            |  92.0 | 180    |        |
+        |        | hydration      |  85.0 |        |        |
 
 +*/
 
