@@ -27,7 +27,7 @@ leaven:
 
 wet:
   leaven
-  water_72F
+  cold_water
   honey = 5%
   olive_oil = 5%
   yogurt = 5%
@@ -38,36 +38,29 @@ dry:
   vwg = 3%
   hard_red = prairie_gold
   chickpea_flour = 7%
+  yeast = 0.2%
   salt = 2%
 
 dough:
   wet
   dry
   total_flour = 200 * 1
-  hydration = 85%
+  hydration = 80%
 
 /****** Notes
 
-Second attempt, hoping for lower density.
+Third attempt, hoping for lower density.
 
 Changes:
-* add VWG
-* mix to 72F
-* measure rise from end of autolysis
-* use the oven proof, turn it off at 76F, maybe add bottle of water?
+* use ice water
+* add a little yeast
+* knead with the KA until about 72F or 10 minutes
+* measure rise from end of kneading.
+* use the proofer set for 78F
+* prepare leaven overnight?
 
-November 16
-8:00 leaven into the SDH at 78F.
-12:20 leaven is doubled, domed and bubbly.
-12:30 mixed. Actual FDT=69F. Rest for 30 minutes.
-12:40 S&F
-13:20 S&F
-13:50 S&F at just over 400mL
+November 18
 
-17:00 into pan, into fridge.
-
-November 17
-07:20 hasn't risen at all, I tossed it.
 
 Results:
 
@@ -174,24 +167,25 @@ leaven  |  40.0  |                |  20.0 |  20.0  |  20.0  |
         |   8.0  | prairie gold   |   4.0 |   8.0  |        |
         |  16.0  | water          |   8.0 |        |  16.0  |
 
-wet     | 210    |                | 104.8 |  20.0  | 170    |
+wet     | 200    |                |  99.8 |  20.0  | 160    |
         |  40.0  | leaven         |  20.0 |  20.0  |  20.0  |
-        | 140    | water 72F      |  69.8 |        | 140    |
+        | 130    | cold water     |  64.8 |        | 130    |
         |  10.0  | honey          |   5.0 |        |   1.70 |
         |  10.0  | olive oil      |   5.0 |        |        |
         |  10.0  | yogurt         |   5.0 |        |   8.8  |
 
-dry     | 184    |                |  92.0 | 180    |        |
+dry     | 184    |                |  92.2 | 180    |        |
         |  80.0  | hard red       |  40.0 |  80.0  |        |
         |  80.0  | prairie gold   |  40.0 |  80.0  |        |
         |   6.0  | vwg            |   3.0 |   6.0  |        |
         |  14.0  | chickpea flour |   7.0 |  14.0  |        |
+        |   0.40 | yeast          |   0.2 |        |        |
         |   4.00 | salt           |   2.0 |        |        |
 
-dough   | 393    |                | 196.7 | 200    | 170    |
-        | 210    | wet            | 104.8 |  20.0  | 170    |
-        | 184    | dry            |  92.0 | 180    |        |
-        |        | hydration      |  85.0 |        |        |
+dough   | 384    |                | 191.9 | 200    | 160    |
+        | 200    | wet            |  99.8 |  20.0  | 160    |
+        | 184    | dry            |  92.2 | 180    |        |
+        |        | hydration      |  80.0 |        |        |
 
 +*/
 
