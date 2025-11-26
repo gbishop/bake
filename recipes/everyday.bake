@@ -17,6 +17,7 @@ dry:
   # half the water to milk
   # nido = 50% * 13% * dough.total_water
   vwg = 3%
+  conditioner = 0.8% * grain
   salt = 1.8%
   yeast = 0.3%
   flaxseed_meal = 5%
@@ -37,26 +38,26 @@ dough:
   total_flour = 200g * 2.25
 
 /*
-November 19, 2025
+November 24, 2025
 
 Changes
-* using whey again
+* try do-cel conditioner
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-starter pH is 3.83, whey is 3.94
+starter pH is 3.84, whey is 3.90
 
 I started about 7:45
 
-Used the KA for kneading. Mixed about 8:20. DT after mixing is 68
+Used the KA for kneading. Mixed about 8:15. DT after mixing is 64.4
 RT is 68F.
 
-Kneaded at about 8:58, 10 minutes at speed 1. DT after kneading is
-72F. Then into cambro.
+Kneaded at about 8:45, 10 minutes at speed 1. DT after kneading is
+70.4F. Then into cambro and 78F proofer.
 
-Bulk begins at 9:15, set for 78F.
+Bulk begins at 9:05, set for 78F.
 
-I let it rise about 20% in the cambro and then moved to the pan
+I let it rise about 30% in the cambro and then moved to the pan
 still in the 78F proofer. Dough is strong and elastic, easy to
 handle.
 
@@ -64,19 +65,16 @@ DT at end of bulk was 76F.
 
 Proof began at 11am.
 
-Baked at 13:10, near top of pan.
+Baked at 13:15, near top of pan.
 
-Looks good, rounded corners. Feels soft. The flavor is great a few
-hours after baking. The crumb is more open than my usual and nicely
-soft.
+A little short of reaching the top of the pan. Rounded corners.
 
-I think this answers the question I had on 15 October about whether
-all the steps were required. Apparently the refrigeration is not
-required.
+Looks good. Feels soft.
 
-The difference between this loaf and October 15 is the 3 hours in
-the fridge and higher proofing temperature. Otherwise the timing is
-just about exactly the same.
+Maybe too sour. I should try less whey. This loaf has a bit more
+than 1/2 whey because I overpoured by about 20g.
+
+Tastes fine next day. The conditioner had no noticible effect.
 
 */
 
@@ -87,16 +85,17 @@ starter |  90.0  |               |  20.0 |  50.0  |  40.0  |
         |  50.0  | whole wheat   |  11.1 |  50.0  |        |
         |  40.0  | water         |   8.9 |        |  40.0  |
 
-grain   | 355    |               |  78.9 | 355    |        |
-        | 155    | prairie gold  |  34.4 | 155    |        |
-        | 155    | hard red      |  34.4 | 155    |        |
+grain   | 352    |               |  78.3 | 352    |        |
+        | 154    | prairie gold  |  34.1 | 154    |        |
+        | 154    | hard red      |  34.1 | 154    |        |
         |  22.5  | spelt         |   5.0 |  22.5  |        |
         |  22.5  | barley        |   5.0 |  22.5  |        |
 
 dry     | 409    |               |  91.0 | 400    |        |
-        | 355    | grain         |  78.9 | 355    |        |
+        | 352    | grain         |  78.3 | 352    |        |
         |   9.0  | potato flakes |   2.0 |   9.0  |        |
         |  13.5  | vwg           |   3.0 |  13.5  |        |
+        |   2.82 | conditioner   |   0.6 |   2.82 |        |
         |   8.1  | salt          |   1.8 |        |        |
         |   1.35 | yeast         |   0.3 |        |        |
         |  22.5  | flaxseed meal |   5.0 |  22.5  |        |
