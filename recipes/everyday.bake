@@ -13,62 +13,66 @@ grain:
 
 dry:
   grain
-  potato_flakes = 2%
+  potato_flakes = 3%
   # half the water to milk
   # nido = 50% * 13% * dough.total_water
   vwg = 3%
   salt = 1.8%
-  yeast = 0.3%
+  yeast = 0.4%
   flaxseed_meal = 5%
 
 wet:
   starter = 20%
-  water
+  water # 72F
   whey = 20%
   olive_oil = 5%
   honey = 5%
-  yogurt = 5%
+  quark = 5%
 
 dough:
   wet
   dry
-  hydration = 75%
+  hydration = 76%
   # 200g/L of flour
   total_flour = 200g * 2.3
 
 /*
-November 28, 2025
+December 3, 2025
 
 Changes
-* drop the conditioner
-* reduce whey to 20%
+* increase the water temperature
+* try quark for yogurt
+* a little more yeast
 * mimic Catherine's process
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-starter pH is 3.94, whey is 3.85
+starter pH is 4.06, whey is 3.90
 
-I started about 7:45
+I started about 8:15
 
-Used the KA for kneading. Mixed about 8:20. DT after mixing is 69
-RT is 68F.
+Used the KA for kneading. Mixed about 8:46. DT after mixing is 69
+RT is 68F. 72F water was not enough.
 
-Kneaded at about 8:45, 5 minutes at speed 1. DT after kneading is
-71.4F. Rest 20 minutes.
+Kneaded at about 9:20, 5 minutes at speed 1. DT after kneading is
+71.4F. Rest 30 minutes.
 
-Kneaded for 5 more minutes. DT=71 Rest another 20.
+Kneaded for 5 more minutes. DT=71 Rest another 30.
 
-Kneaded for 5 more minutes. DT=71 Then into pan and 78F proofer.
+Kneaded for 5 more minutes. DT=73 Rest another 30.
 
-Proof began at 9:45.
+Kneaded for 5 more minutes. DT=? Then into pan and 78F proofer.
+I rolled it into two balls.
 
-Baked at 12:45, < 0.5 inch below top of pan.
+Proof began at 11:10.
 
-A little short of reaching the top of the pan. Rounded corners.
+Baked at 13:25, < 0.5 inch below top of pan.
+
+Still short and appears a bit overproofed.
 
 Looks good. Feels soft.
 
-Tastes good next day.
+Tastes good.
 
 */
 
@@ -79,32 +83,32 @@ starter |  92.0  |               |  20.0 |  51.1  |  40.9  |
         |  51.1  | whole wheat   |  11.1 |  51.1  |        |
         |  40.9  | water         |   8.9 |        |  40.9  |
 
-grain   | 363    |               |  78.9 | 363    |        |
-        | 158    | prairie gold  |  34.4 | 158    |        |
-        | 158    | hard red      |  34.4 | 158    |        |
+grain   | 358    |               |  77.9 | 358    |        |
+        | 156    | prairie gold  |  33.9 | 156    |        |
+        | 156    | hard red      |  33.9 | 156    |        |
         |  23.0  | spelt         |   5.0 |  23.0  |        |
         |  23.0  | barley        |   5.0 |  23.0  |        |
 
-dry     | 419    |               |  91.0 | 409    |        |
-        | 363    | grain         |  78.9 | 363    |        |
-        |   9.2  | potato flakes |   2.0 |   9.2  |        |
+dry     | 419    |               |  91.1 | 409    |        |
+        | 358    | grain         |  77.9 | 358    |        |
+        |  13.8  | potato flakes |   3.0 |  13.8  |        |
         |  13.8  | vwg           |   3.0 |  13.8  |        |
         |   8.3  | salt          |   1.8 |        |        |
-        |   1.38 | yeast         |   0.3 |        |        |
+        |   1.84 | yeast         |   0.4 |        |        |
         |  23.0  | flaxseed meal |   5.0 |  23.0  |        |
 
-wet     | 447    |               |  97.3 |  51.1  | 345    |
+wet     | 461    |               | 100.2 |  51.1  | 350    |
         |  92.0  | starter       |  20.0 |  51.1  |  40.9  |
-        | 194    | water         |  42.3 |        | 194    |
+        | 208    | water         |  45.2 |        | 208    |
         |  92.0  | whey          |  20.0 |        |  85.6  |
         |  23.0  | olive oil     |   5.0 |        |        |
         |  23.0  | honey         |   5.0 |        |   3.91 |
-        |  23.0  | yogurt        |   5.0 |        |  20.2  |
+        |  23.0  | quark         |   5.0 |        |  11.5  |
 
-dough   | 866    |               | 188.3 | 460    | 345    |
-        | 447    | wet           |  97.3 |  51.1  | 345    |
-        | 419    | dry           |  91.0 | 409    |        |
-        |        | hydration     |  75.0 |        |        |
+dough   | 880    |               | 191.3 | 460    | 350    |
+        | 461    | wet           | 100.2 |  51.1  | 350    |
+        | 419    | dry           |  91.1 | 409    |        |
+        |        | hydration     |  76.0 |        |        |
 
 +*/
 
