@@ -5,6 +5,11 @@ starter: # from fridge
   water
   hydration = 80%
 
+soaker:
+  flaxseed_meal = 5%
+  potato_flakes = 3%
+  water = 168g # should be 10%
+  
 grain:
   prairie_gold
   hard_red
@@ -13,16 +18,15 @@ grain:
 
 dry:
   grain
-  potato_flakes = 3%
   # half the water to milk
   # nido = 50% * 13% * dough.total_water
   vwg = 3%
   salt = 1.8%
   yeast = 0.4%
-  flaxseed_meal = 5%
 
 wet:
   starter = 20%
+  soaker
   water # 72F
   whey = 20%
   olive_oil = 5%
@@ -32,47 +36,46 @@ wet:
 dough:
   wet
   dry
-  hydration = 76%
+  hydration = 70%
   # 200g/L of flour
   total_flour = 200g * 2.3
 
 /*
-December 3, 2025
+December 6, 2025
 
 Changes
-* increase the water temperature
-* try quark for yogurt
-* a little more yeast
-* mimic Catherine's process
+* new version of bake with absorbed water
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-starter pH is 4.06, whey is 3.90
+starter pH is ?, whey is 4.44
 
-I started about 8:15
+I started about 8:10
 
-Used the KA for kneading. Mixed about 8:46. DT after mixing is 69
-RT is 68F. 72F water was not enough.
+Used the KA for kneading. Mixed about 8:40. DT after mixing is 77
+RT is 68F.
 
-Kneaded at about 9:20, 5 minutes at speed 1. DT after kneading is
-71.4F. Rest 30 minutes.
+Kneaded at about 9:10, 15 minutes at speed 1. DT after kneading is
+77F.
 
-Kneaded for 5 more minutes. DT=71 Rest another 30.
+Into cambro in proofer at 9:30. Look for a little rise so the dough
+is saturated.
 
-Kneaded for 5 more minutes. DT=73 Rest another 30.
+Shape into two balls and into pan. Very sticky. I think the flaxseed
+absorption = 3 is too high. 1:3 is the flaxseed:water ratio for an
+egg substitute but an egg is 3/4 water. I want bound water so if the
+1:3 is equivalent to an egg I guess the bound water multiple must be
+1:0.75.
 
-Kneaded for 5 more minutes. DT=? Then into pan and 78F proofer.
-I rolled it into two balls.
+Proof began at 10:24
 
-Proof began at 11:10.
+Baked at 11:30, < 0.5 inch below top of pan.
 
-Baked at 13:25, < 0.5 inch below top of pan.
-
-Still short and appears a bit overproofed.
+Filled the pan perfectly.
 
 Looks good. Feels soft.
 
-Tastes good.
+Tastes good. Good texture. 
 
 */
 
@@ -83,32 +86,36 @@ starter |  92.0  |               |  20.0 |  51.1  |  40.9  |
         |  51.1  | whole wheat   |  11.1 |  51.1  |        |
         |  40.9  | water         |   8.9 |        |  40.9  |
 
-grain   | 358    |               |  77.9 | 358    |        |
-        | 156    | prairie gold  |  33.9 | 156    |        |
-        | 156    | hard red      |  33.9 | 156    |        |
+soaker  | 205    |               |  44.5 |        |  71.4  |
+        |  23.0  | flaxseed meal |   5.0 |        | -69.0  |
+        |  13.8  | potato flakes |   3.0 |        | -27.6  |
+        | 168    | water         |  36.5 |        | 168    |
+
+grain   | 395    |               |  85.9 | 395    |        |
+        | 175    | prairie gold  |  37.9 | 175    |        |
+        | 175    | hard red      |  37.9 | 175    |        |
         |  23.0  | spelt         |   5.0 |  23.0  |        |
         |  23.0  | barley        |   5.0 |  23.0  |        |
 
 dry     | 419    |               |  91.1 | 409    |        |
-        | 358    | grain         |  77.9 | 358    |        |
-        |  13.8  | potato flakes |   3.0 |  13.8  |        |
+        | 395    | grain         |  85.9 | 395    |        |
         |  13.8  | vwg           |   3.0 |  13.8  |        |
         |   8.3  | salt          |   1.8 |        |        |
         |   1.84 | yeast         |   0.4 |        |        |
-        |  23.0  | flaxseed meal |   5.0 |  23.0  |        |
 
-wet     | 461    |               | 100.2 |  51.1  | 350    |
+wet     | 567    |               | 123.2 |  51.1  | 322    |
         |  92.0  | starter       |  20.0 |  51.1  |  40.9  |
-        | 208    | water         |  45.2 |        | 208    |
+        | 205    | soaker        |  44.5 |        |  71.4  |
+        | 109    | water         |  23.6 |        | 109    |
         |  92.0  | whey          |  20.0 |        |  85.6  |
         |  23.0  | olive oil     |   5.0 |        |        |
         |  23.0  | honey         |   5.0 |        |   3.91 |
         |  23.0  | quark         |   5.0 |        |  11.5  |
 
-dough   | 880    |               | 191.3 | 460    | 350    |
-        | 461    | wet           | 100.2 |  51.1  | 350    |
+dough   | 986    |               | 214.2 | 460    | 322    |
+        | 567    | wet           | 123.2 |  51.1  | 322    |
         | 419    | dry           |  91.1 | 409    |        |
-        |        | hydration     |  76.0 |        |        |
+        |        | hydration     |  70.0 |        |        |
 
 +*/
 
