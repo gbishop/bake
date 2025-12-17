@@ -3,28 +3,28 @@
 starter:
   ww
   water
+  hydration = 120%
+
+dough:
+  starter = 20g
+  ww
+  water
   hydration = 80%
 
-dough ^ 5:
-  starter = 1 * _part
-  ww = 2 * _part
-  water
-  hydration = 60%
-
-  total = 50g
+  total = 100g
 
 /*+
-  part  | grams |    name   |   %   | flour | water |
---------|-------|-----------|-------|-------|-------|
-starter | 12.2  |           |  39.1 |  6.8  |  5.4  |
-        |  6.8  | ww        |  21.7 |  6.8  |       |
-        |  5.4  | water     |  17.4 |       |  5.4  |
+  part  | grams  |    name   |   %   | flour | water |
+--------|--------|-----------|-------|-------|-------|
+starter |  20.0  |           |  36.0 |  9.1  | 10.9  |
+        |   9.1  | ww        |  16.4 |  9.1  |       |
+        |  10.9  | water     |  19.6 |       | 10.9  |
 
-dough   | 55.0  | + 5.0g    | 160.0 | 31.2  | 18.7  |
-        | 13.5  | starter   |  39.1 |  6.8  |  5.4  |
-        | 26.9  | ww        |  78.3 | 24.5  |       |
-        | 14.6  | water     |  42.6 |       | 13.3  |
-        |       | hydration |  60.0 |       |       |
+dough   | 100    |           | 180.0 | 55.6  | 44.4  |
+        |  20.0  | starter   |  36.0 |  9.1  | 10.9  |
+        |  46.5  | ww        |  83.6 | 46.5  |       |
+        |  33.5  | water     |  60.4 |       | 33.5  |
+        |        | hydration |  80.0 |       |       |
 
 +*/
 
