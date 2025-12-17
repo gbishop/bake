@@ -8,7 +8,8 @@ starter: # from fridge
 soaker:
   flaxseed_meal = 5%
   potato_flakes = 3%
-  water = 168g # should be 10%
+  water
+  total_water = 8%
   
 grain:
   prairie_gold
@@ -28,7 +29,6 @@ wet:
   starter = 20%
   soaker
   water # 72F
-  whey = 20%
   olive_oil = 5%
   honey = 5%
   quark = 5%
@@ -41,10 +41,11 @@ dough:
   total_flour = 200g * 2.3
 
 /*
-December 6, 2025
+December 8, 2025
 
 Changes
-* new version of bake with absorbed water
+* Adjust the flaxseed absorption
+* Drop the quark whey
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
@@ -86,10 +87,10 @@ starter |  92.0  |               |  20.0 |  51.1  |  40.9  |
         |  51.1  | whole wheat   |  11.1 |  51.1  |        |
         |  40.9  | water         |   8.9 |        |  40.9  |
 
-soaker  | 205    |               |  44.5 |        |  71.4  |
-        |  23.0  | flaxseed meal |   5.0 |        | -69.0  |
+soaker  | 124    |               |  27.0 |        |  36.8  |
+        |  23.0  | flaxseed meal |   5.0 |        | -23.0  |
         |  13.8  | potato flakes |   3.0 |        | -27.6  |
-        | 168    | water         |  36.5 |        | 168    |
+        |  87.4  | water         |  19.0 |        |  87.4  |
 
 grain   | 395    |               |  85.9 | 395    |        |
         | 175    | prairie gold  |  37.9 | 175    |        |
@@ -103,17 +104,16 @@ dry     | 419    |               |  91.1 | 409    |        |
         |   8.3  | salt          |   1.8 |        |        |
         |   1.84 | yeast         |   0.4 |        |        |
 
-wet     | 567    |               | 123.2 |  51.1  | 322    |
+wet     | 514    |               | 111.8 |  51.1  | 322    |
         |  92.0  | starter       |  20.0 |  51.1  |  40.9  |
-        | 205    | soaker        |  44.5 |        |  71.4  |
-        | 109    | water         |  23.6 |        | 109    |
-        |  92.0  | whey          |  20.0 |        |  85.6  |
+        | 124    | soaker        |  27.0 |        |  36.8  |
+        | 229    | water         |  49.8 |        | 229    |
         |  23.0  | olive oil     |   5.0 |        |        |
         |  23.0  | honey         |   5.0 |        |   3.91 |
         |  23.0  | quark         |   5.0 |        |  11.5  |
 
-dough   | 986    |               | 214.2 | 460    | 322    |
-        | 567    | wet           | 123.2 |  51.1  | 322    |
+dough   | 933    |               | 202.9 | 460    | 322    |
+        | 514    | wet           | 111.8 |  51.1  | 322    |
         | 419    | dry           |  91.1 | 409    |        |
         |        | hydration     |  70.0 |        |        |
 
