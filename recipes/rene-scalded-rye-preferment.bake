@@ -1,0 +1,87 @@
+# Rene Scalded Rye SD preferment
+
+# https://www.thefreshloaf.com/comment/548741#comment-548741
+
+starter:
+  ww
+  water
+  hydration = 80%
+
+rye_starter ^ 5g:
+  starter
+  rye = 5%
+  water
+  total_flour = 6.25%
+  hydration = 100%
+
+scald:
+  rye = 12.50%
+  boiling_water
+  hydration = 300%
+
+leaven:
+  rye_starter
+  scald
+
+dough:
+  leaven
+  bread_flour = 81.25%
+  salt = 2%
+  yeast = 1%
+  caraway_seeds = 1.00%
+  water
+  hydration = 77%
+  total_flour = 500g
+
+/*
+Mixed rye starter at 7:25. Into the proofer at 78F.
+
+Mixed scald and starter at 8:45.
+
+Time  | pH
+ 8:50 | 5.87
+ 9:50 | 5.81
+10:44 | 5.35
+11:14 | 5.22
+
+Mixed dough at 11:25. Rest 15 minutes.
+
+BF filled the cambro in 50 minutes! 1% yeast is way too much.
+
+Into the pan at 13:00.
+
+Baked at 14:00
+
+*/
+
+/*+
+    part    | grams  |      name     |   %   | flour  | water  |
+------------|--------|---------------|-------|--------|--------|
+starter     |  11.3  |               |   2.3 |   6.3  |   5.0  |
+            |   6.3  | ww            |   1.3 |   6.3  |        |
+            |   5.0  | water         |   1.0 |        |   5.0  |
+
+rye starter |  67.5  | + 5.0g        |  12.5 |  31.2  |  31.2  |
+            |  12.2  | starter       |   2.3 |   6.3  |   5.0  |
+            |  27.0  | rye           |   5.0 |  25.0  |        |
+            |  28.3  | water         |   5.2 |        |  26.2  |
+
+scald       | 250    |               |  50.0 |  62.5  | 188    |
+            |  62.5  | rye           |  12.5 |  62.5  |        |
+            | 188    | boiling water |  37.5 |        | 188    |
+
+leaven      | 313    |               |  62.5 |  93.8  | 219    |
+            |  62.5  | rye starter   |  12.5 |  31.2  |  31.2  |
+            | 250    | scald         |  50.0 |  62.5  | 188    |
+
+dough       | 905    |               | 181.0 | 500    | 385    |
+            | 313    | leaven        |  62.5 |  93.8  | 219    |
+            | 406    | bread flour   |  81.2 | 406    |        |
+            |  10.0  | salt          |   2.0 |        |        |
+            |   5.0  | yeast         |   1.0 |        |        |
+            |   5.0  | caraway seeds |   1.0 |        |        |
+            | 166    | water         |  33.3 |        | 166    |
+            |        | hydration     |  77.0 |        |        |
+
++*/
+

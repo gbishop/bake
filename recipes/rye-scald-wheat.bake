@@ -1,0 +1,132 @@
+# Experiment with scaled and digested rye
+
+starter: # from fridge
+  whole_wheat
+  water
+  hydration = 80%
+
+soaker:
+  flaxseed_meal = 5%
+  water
+  total_water = 8%
+
+scald:
+  rye = 20%
+  water = 200% * rye
+  diastatic_malt = 6% * rye
+  
+grain:
+  prairie_gold
+  hard_red
+  spelt = 5%
+  barley = 5%
+
+dry:
+  grain
+  vwg = 3%
+  salt = 1.8%
+  yeast = 0.4%
+
+wet:
+  starter = 20%
+  soaker
+  scald
+  water # 72F
+  olive_oil = 5%
+  honey = 5%
+  quark = 5%
+
+dough:
+  wet
+  dry
+  hydration = 70%
+  # 200g/L of flour
+  total_flour = 200g * 1 # 2.3
+
+/*
+December 8, 2025
+
+Changes
+* Use long slow rye scald with diastatic malt
+* Drop the quark whey
+* Drop the potato flakes
+
+Zoji pan weighs 773g. KA pan weighs 725g.
+
+The day before I made the rye scald by mixing its ingredients in
+a small metal bowl and floating it in water in the Instant Pot set
+for "keep warm" 160F for 10 hours, then I left it overnight.
+
+starter pH is 4.18
+
+I started about 7:50
+
+Used the KA for mixing. Mixed about 8:15.
+
+Kneaded at about 8:40, KA couldn't do it. I added about 10g of water
+hoping to lubricate it but it just became extra sticky. I switched
+to the bread machine 20 minutes kneading only. I should always use
+the bread machine for 1L loaves.
+
+Into 1L cup in proofer at 9:20. Look for a little rise so the dough
+is saturated.
+
+Shape into a ball and into pan. Easy to handle.
+
+Proof began about 10:45.
+
+Baked at 12:15, < 0.5 inch below top of pan.
+
+Filled the pan perfectly.
+
+Looks good. Feels soft.
+
+Tastes good. Good texture. I can't detect the sweetness from the
+scald :-(.
+
+*/
+
+/*+
+  part  | grams  |      name      |   %   | flour  | water  |
+--------|--------|----------------|-------|--------|--------|
+starter |  40.0  |                |  20.0 |  22.2  |  17.8  |
+        |  22.2  | whole wheat    |  11.1 |  22.2  |        |
+        |  17.8  | water          |   8.9 |        |  17.8  |
+
+soaker  |  36.0  |                |  18.0 |        |  16.0  |
+        |  10.0  | flaxseed meal  |   5.0 |        | -10.0  |
+        |  26.0  | water          |  13.0 |        |  26.0  |
+
+scald   | 122    |                |  61.2 |  40.0  |  80.0  |
+        |  40.0  | rye            |  20.0 |  40.0  |        |
+        |  80.0  | water          |  40.0 |        |  80.0  |
+        |   2.40 | diastatic malt |   1.2 |        |        |
+
+grain   | 132    |                |  65.9 | 132    |        |
+        |  55.9  | prairie gold   |  27.9 |  55.9  |        |
+        |  55.9  | hard red       |  27.9 |  55.9  |        |
+        |  10.0  | spelt          |   5.0 |  10.0  |        |
+        |  10.0  | barley         |   5.0 |  10.0  |        |
+
+dry     | 142    |                |  71.1 | 138    |        |
+        | 132    | grain          |  65.9 | 132    |        |
+        |   6.0  | vwg            |   3.0 |   6.0  |        |
+        |   3.60 | salt           |   1.8 |        |        |
+        |   0.80 | yeast          |   0.4 |        |        |
+
+wet     | 248    |                | 124.0 |  62.2  | 140    |
+        |  40.0  | starter        |  20.0 |  22.2  |  17.8  |
+        |  36.0  | soaker         |  18.0 |        |  16.0  |
+        | 122    | scald          |  61.2 |  40.0  |  80.0  |
+        |  19.5  | water          |   9.8 |        |  19.5  |
+        |  10.0  | olive oil      |   5.0 |        |        |
+        |  10.0  | honey          |   5.0 |        |   1.70 |
+        |  10.0  | quark          |   5.0 |        |   5.0  |
+
+dough   | 390    |                | 195.1 | 200    | 140    |
+        | 248    | wet            | 124.0 |  62.2  | 140    |
+        | 142    | dry            |  71.1 | 138    |        |
+        |        | hydration      |  70.0 |        |        |
+
++*/
+

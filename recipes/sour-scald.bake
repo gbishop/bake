@@ -1,0 +1,75 @@
+# Experiment with scaled, digested, sour rye
+
+starter: # scalded, digested and soured
+  rye
+  water
+  hydration = 200%
+
+dry:
+  bread_flour
+  salt = 2.0%
+  yeast = 0.4%
+
+wet:
+  starter
+  starter.rye = 20%
+  water
+  olive_oil = 5%
+  honey = 5%
+  yogurt = 5%
+
+dough:
+  wet
+  dry
+  hydration = 60%
+  # 200g/L of flour
+  total_flour = 200g * 1 # 2.3
+
+/*
+December 10, 2025
+
+Quick experiment with the rye scald digested with diastatic malt
+then soured overnight with some of my starter.
+
+Zoji pan weighs 773g. KA pan weighs 725g.
+
+I used the Zoji on the dough cycle. 
+
+Proof began about 10:45.
+
+Baked at 12:15, < 0.5 inch below top of pan.
+
+Filled the pan almost.
+
+Looks good. Feels soft.
+
+Tastes ok. Too sour from the too long ferment.
+
+*/
+
+/*+
+  part  | grams  |     name    |   %   | flour  | water  |
+--------|--------|-------------|-------|--------|--------|
+starter | 120    |             |  60.0 |  40.0  |  80.0  |
+        |  40.0  | rye         |  20.0 |  40.0  |        |
+        |  80.0  | water       |  40.0 |        |  80.0  |
+
+dry     | 165    |             |  82.4 | 160    |        |
+        | 160    | bread flour |  80.0 | 160    |        |
+        |   4.00 | salt        |   2.0 |        |        |
+        |   0.80 | yeast       |   0.4 |        |        |
+
+wet     | 179    |             |  89.7 |  40.0  | 120    |
+        | 120    | starter     |  60.0 |  40.0  |  80.0  |
+        |  29.5  | water       |  14.8 |        |  29.5  |
+        |  10.0  | olive oil   |   5.0 |        |        |
+        |  10.0  | honey       |   5.0 |        |   1.70 |
+        |  10.0  | yogurt      |   5.0 |        |   8.8  |
+
+dough   | 344    |             | 172.2 | 200    | 120    |
+        | 179    | wet         |  89.7 |  40.0  | 120    |
+        | 165    | dry         |  82.4 | 160    |        |
+        |        | hydration   |  60.0 |        |        |
+
++*/
+
