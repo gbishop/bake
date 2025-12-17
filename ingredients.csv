@@ -14,6 +14,7 @@ buckwheat,0,-0.88
 bulgur,0,-1.5
 butter,0,0.16
 buttermilk,0,0.90
+caraway_seeds,0,0
 chia_seeds,0,-2.37
 chickpea_flour,0,-1
 cider_vinegar,0,1
@@ -24,6 +25,7 @@ corn_meal,0,-0.58
 cracked_rye,0,-0.68
 cracked_wheat,0,-1.78
 craisins,0,0
+diastatic_malt,0,0
 dried_apple,0,-1
 dried_orange_peel,0,-1
 egg,0,0.76
@@ -33,7 +35,7 @@ egg_yolk,0,0.52
 egg_yolks,0,0.52
 eggs,0,0.76
 evap_milk,0,0.74
-flaxseed_meal,0,-0.75
+flaxseed_meal,0,-1.0
 ginger_powder,0,0
 grape_nuts,0,-1
 hard_red,1,0
