@@ -1,0 +1,46 @@
+# Cinnamon rolls
+
+dough:
+  eggs = 20%
+  milk
+  butter = 17%
+  sugar = 13%
+  salt = 1.1%
+  potato_flakes = 4%
+  bread_flour
+  yeast = 1%
+  total_flour = 250g
+  hydration = 55%
+
+filling:
+  butter = 6%
+  sugar = 10%
+  brown_sugar = 11%
+  cinnamon = 3%
+  raisins = 15%
+  walnuts = 15%
+
+/*+
+  part  | grams  |      name     |   %   | flour  | water  |
+--------|--------|---------------|-------|--------|--------|
+dough   | 518    |               | 207.3 | 250    | 138    |
+        |  50.0  | eggs          |  20.0 |        |  38.0  |
+        | 128    | milk          |  51.2 |        | 113    |
+        |  42.5  | butter        |  17.0 |        |   6.8  |
+        |  32.5  | sugar         |  13.0 |        |        |
+        |   2.75 | salt          |   1.1 |        |        |
+        |  10.0  | potato flakes |   4.0 |        | -20.0  |
+        | 250    | bread flour   | 100.0 | 250    |        |
+        |   2.50 | yeast         |   1.0 |        |        |
+        |        | hydration     |  55.0 |        |        |
+
+filling | 150    |               |  60.0 |        |   8.8  |
+        |  15.0  | butter        |   6.0 |        |   2.40 |
+        |  25.0  | sugar         |  10.0 |        |        |
+        |  27.5  | brown sugar   |  11.0 |        |        |
+        |   7.5  | cinnamon      |   3.0 |        |   0.82 |
+        |  37.5  | raisins       |  15.0 |        |   5.6  |
+        |  37.5  | walnuts       |  15.0 |        |        |
+
++*/
+
