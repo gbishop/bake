@@ -1,28 +1,40 @@
 # My everyday loaf based on morph
 
-starter: # from fridge
-  whole_wheat
+starter:
+  rye
   water
-  hydration = 80%
+  hydration = 100%
+
+scald:
+  potato_flakes = 3%
+  flaxseed_meal = 5%
+  bran_wet = sifted.bran_dry
+  boiling_water = 2 / 3 * total
 
 grain:
   prairie_gold
   hard_red
   spelt = 5%
   barley = 5%
-  flaxseed_meal = 5%
+
+sifted:
+  # fill in total bran here
+  bran_dry = 16.86g
+  flour
+  total = grain.total
 
 dry:
-  grain
+  flour = sifted.flour
   vwg = 3%
-  potato_flakes = 3%
   salt = 1.8%
   yeast = 0.5%
   diastatic_malt = 0.25%
   ascorbic_acid = 0.08%
 
 wet:
-  starter = 75g # should be 20%
+  starter = 20%
+  scald
+  soaking_water = 200g
   water
   olive_oil = 5%
   honey = 5%
@@ -36,13 +48,16 @@ dough:
   total_flour = 500g # 200g * 2.3
 
 /*
-December 22, 2025
+December 27, 2025
 
 Changes
-* lid off
-* try 0.08 % ascorbic acid and 0.25% diastatic malt
-* drop the soaker
-* grind the flaxseed with the grains
+* overnight starter prep
+* grind flour and sift out bran
+* bran in the scald with potato flakes and flaxseed meal
+
+Sift with 40 gives 16.86g. Sifting is a pain. Soaking the flour
+overnight is also a pain. I mixed the flour with 200g water
+and refrigerated overnight. 
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
@@ -73,36 +88,46 @@ Tastes good. Good texture. Good flavor on the first day.
 /*+
   part  |  grams  |      name      |   %   | flour  | water  |
 --------|---------|----------------|-------|--------|--------|
-starter |   75.0  |                |  15.0 |  41.7  |  33.3  |
-        |   41.7  | whole wheat    |   8.3 |  41.7  |        |
-        |   33.3  | water          |   6.7 |        |  33.3  |
+starter |  100    |                |  20.0 |  50.0  |  50.0  |
+        |   50.0  | rye            |  10.0 |  50.0  |        |
+        |   50.0  | water          |  10.0 |        |  50.0  |
 
-grain   |  468    |                |  93.7 | 443    | -25.0  |
-        |  197    | prairie gold   |  39.3 | 197    |        |
-        |  197    | hard red       |  39.3 | 197    |        |
+scald   |  171    |                |  34.1 |  16.9  |  30.4  |
+        |   15.0  | potato flakes  |   3.0 |        | -30.0  |
+        |   25.0  | flaxseed meal  |   5.0 |        | -25.0  |
+        |   16.9  | bran wet       |   3.4 |  16.9  | -28.3  |
+        |  114    | boiling water  |  22.7 |        | 114    |
+
+grain   |  435    |                |  87.0 | 435    |        |
+        |  192    | prairie gold   |  38.5 | 192    |        |
+        |  192    | hard red       |  38.5 | 192    |        |
         |   25.0  | spelt          |   5.0 |  25.0  |        |
         |   25.0  | barley         |   5.0 |  25.0  |        |
-        |   25.0  | flaxseed meal  |   5.0 |        | -25.0  |
 
-dry     |  511    |                | 102.3 | 458    | -55.0  |
-        |  468    | grain          |  93.7 | 443    | -25.0  |
+sifted  |  435    |                |  87.0 | 435    |        |
+        |   16.9  | bran dry       |   3.4 |  16.9  |        |
+        |  418    | flour          |  83.6 | 418    |        |
+
+dry     |  446    |                |  89.3 | 433    |        |
+        |  418    | flour          |  83.6 | 418    |        |
         |   15.0  | vwg            |   3.0 |  15.0  |        |
-        |   15.0  | potato flakes  |   3.0 |        | -30.0  |
         |    9.0  | salt           |   1.8 |        |        |
         |    2.50 | yeast          |   0.5 |        |        |
         |    1.25 | diastatic malt |   0.2 |        |        |
         |    0.40 | ascorbic acid  |   0.1 |        |        |
 
-wet     |  495    |                |  99.1 |  41.7  | 405    |
-        |   75.0  | starter        |  15.0 |  41.7  |  33.3  |
-        |  345    | water          |  69.1 |        | 345    |
+wet     |  589    |                | 117.8 |  66.9  | 350    |
+        |  100    | starter        |  20.0 |  50.0  |  50.0  |
+        |  171    | scald          |  34.1 |  16.9  |  30.4  |
+        |  200    | soaking water  |  40.0 |        | 200    |
+        |   43.4  | water          |   8.7 |        |  43.4  |
         |   25.0  | olive oil      |   5.0 |        |        |
         |   25.0  | honey          |   5.0 |        |   4.25 |
         |   25.0  | yogurt         |   5.0 |        |  22.0  |
 
-dough   | 1007    |                | 201.4 | 500    | 350    |
-        |  495    | wet            |  99.1 |  41.7  | 405    |
-        |  511    | dry            | 102.3 | 458    | -55.0  |
+dough   | 1035    |                | 207.0 | 500    | 350    |
+        |  589    | wet            | 117.8 |  66.9  | 350    |
+        |  446    | dry            |  89.3 | 433    |        |
         |         | hydration      |  70.0 |        |        |
 
 +*/
