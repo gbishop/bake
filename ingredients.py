@@ -92,6 +92,9 @@ def getIngredient(name: str):
         elif name.endswith("_oil"):
             name = "oil"
 
+        elif name.endswith("_flour"):
+            name = "flour"
+
         else:
             name = "unknown"
     result = map.loc[name]

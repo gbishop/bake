@@ -7,7 +7,8 @@ baking_powder,0,0
 baking_soda,0,0
 barley,1,0
 bobs_mthc,0,-1
-bran,0,-1.68
+bran_wet,1,-1.68
+bran_dry,1,0
 bread_flour,1,0
 bronze_chief,1,0
 brown_sugar,0,0
@@ -37,6 +38,7 @@ egg_yolks,0,0.52
 eggs,0,0.76
 evap_milk,0,0.74
 flaxseed_meal,0,-1.0
+flour,1,0
 ginger_powder,0,0
 grape_nuts,0,-1
 hard_red,1,0
@@ -72,6 +74,10 @@ quark,0,0.5
 quinoa,0,-0.78
 raisins,0,0.15
 red_rye_malt,0,-1
+removed,0,0
+removed_flour,1,0
+removed_bran,1,0
+removed_water,0,1
 rye,1,0
 rye_berries,0,-0.68
 salt,0,0
