@@ -7,6 +7,7 @@ baking_powder,0,0
 baking_soda,0,0
 barley,1,0
 bobs_mthc,0,-1
+bran,1,0
 bran_wet,1,-1.68
 bran_dry,1,0
 bread_flour,1,0
@@ -37,6 +38,7 @@ egg_yolk,0,0.52
 egg_yolks,0,0.52
 eggs,0,0.76
 evap_milk,0,0.74
+flas,0,1
 flaxseed_meal,0,-1.0
 flour,1,0
 ginger_powder,0,0
