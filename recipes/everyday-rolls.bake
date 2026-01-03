@@ -1,0 +1,114 @@
+# My everyday loaf converted to rolls
+
+leaven ^ 5g:
+  rye
+  flas
+  hydration = 100%
+
+scald ^ 5g:
+  potato_flakes = 3%
+  flaxseed_meal = 5%
+  boiling_water = 3 / 4 * total
+
+grain:
+  prairie_gold
+  hard_red
+  spelt = 5%
+  barley = 5%
+
+dry:
+  grain
+  vwg = 3%
+  salt = 1.8%
+  yeast = 0.5%
+  diastatic_malt = 0.25%
+  ascorbic_acid = 0.08%
+
+wet:
+  leaven = 20%
+  scald
+  water
+  olive_oil = 5%
+  honey = 5%
+  buttermilk = 5%
+
+dough:
+  wet
+  dry
+  hydration = 65%
+  # 200g/L of flour
+  total_flour = 500g # 220g
+
+/*
+January 2, 2026
+
+Changes
+* try rye in the preferment
+* mix the potato flakes and flaxseed meal before scalding
+* bake earlier
+* increase flas
+* try making 2 loaves
+
+Zoji pan weighs 773g. KA pan weighs 725g.
+
+Mixed doubled leaven and scald at 19:10 evening before at RT.
+
+FLAS pH is 4.30, leaven pH is 5.7 it had risen to 350mL.
+
+I started about 8:20
+
+Used the BM for kneading. Mixed about 10:10. DT after mixing is 76.5
+RT is 68F. Rest 45 minutes
+
+Kneaded at about 10:55
+
+Bulk ferment begins about 10:20 in oven on proof, light on. Starts
+at 400mL.
+
+Shaped into 65g balls in oiled 9x13 pan. Proof began about 12:00
+
+These turned out OK though a bit too chewy.
+
+*/
+
+/*+
+ part  | grams  |      name      |   %   | flour  | water  |
+-------|--------|----------------|-------|--------|--------|
+leaven | 105    | + 5.0g         |  20.0 |  50.0  |  50.0  |
+       |  52.5  | rye            |  10.0 |  50.0  |        |
+       |  52.5  | flas           |  10.0 |        |  50.0  |
+
+scald  | 165    | + 5.0g         |  32.0 |        |  65.0  |
+       |  15.5  | potato flakes  |   3.0 |        | -30.0  |
+       |  25.8  | flaxseed meal  |   5.0 |        | -25.0  |
+       | 124    | boiling water  |  24.0 |        | 120    |
+
+grain  | 435    |                |  87.0 | 435    |        |
+       | 193    | prairie gold   |  38.5 | 193    |        |
+       | 192    | hard red       |  38.5 | 192    |        |
+       |  25.0  | spelt          |   5.0 |  25.0  |        |
+       |  25.0  | barley         |   5.0 |  25.0  |        |
+
+dry    | 463    |                |  92.6 | 450    |        |
+       | 435    | grain          |  87.0 | 435    |        |
+       |  15.0  | vwg            |   3.0 |  15.0  |        |
+       |   9.0  | salt           |   1.8 |        |        |
+       |   2.50 | yeast          |   0.5 |        |        |
+       |   1.25 | diastatic malt |   0.2 |        |        |
+       |   0.40 | ascorbic acid  |   0.1 |        |        |
+
+wet    | 518    |                | 103.6 |  50.0  | 325    |
+       | 100    | leaven         |  20.0 |  50.0  |  50.0  |
+       | 160    | scald          |  32.0 |        |  65.0  |
+       | 183    | water          |  36.7 |        | 183    |
+       |  25.0  | olive oil      |   5.0 |        |        |
+       |  25.0  | honey          |   5.0 |        |   4.25 |
+       |  25.0  | buttermilk     |   5.0 |        |  22.5  |
+
+dough  | 981    |                | 196.3 | 500    | 325    |
+       | 518    | wet            | 103.6 |  50.0  | 325    |
+       | 463    | dry            |  92.6 | 450    |        |
+       |        | hydration      |  65.0 |        |        |
+
++*/
+

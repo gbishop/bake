@@ -1,14 +1,14 @@
 # My everyday loaf based on morph
 
-leaven ^ 10g:
-  ww
+leaven ^ 5g:
+  rye
   flas
   hydration = 100%
 
-scald ^ 10g:
+scald ^ 5g:
   potato_flakes = 3%
   flaxseed_meal = 5%
-  boiling_water = 3 / 4 * total # actually 63.2g
+  boiling_water = 3 / 4 * total
 
 grain:
   prairie_gold
@@ -27,8 +27,9 @@ dry:
 wet:
   leaven = 20%
   scald
-  flas = 20%
+  flas
   water
+  flas = water
   olive_oil = 5%
   honey = 5%
   buttermilk = 5%
@@ -38,100 +39,93 @@ dough:
   dry
   hydration = 70%
   # 200g/L of flour
-  total_flour = 220g # 500g # 200g * 2.3
+  total_flour = 500g # 220g
 
 /*
-December 30, 2025
+January 2, 2026
 
 Changes
-* trying flas with preferment
-* scald the potato flakes and flaxseed meal
-* knead longer in BM
-
-Next time
-* bake sooner
-* more flas
-* warm the flas before using?
+* try rye in the preferment
+* mix the potato flakes and flaxseed meal before scalding
+* bake earlier
+* increase flas
+* try making 2 loaves
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-Mixed leaven and scald at 19:10 evening before at RT.
+Mixed doubled leaven and scald at 19:10 evening before at RT.
 
-FLAS pH is 4.09
+FLAS pH is 4.30, leaven pH is 5.7 it had risen to 350mL.
 
-I started about 8:20
+I started about 8:30
 
 Used the BM for kneading. Mixed about 8:50. DT after mixing is 72
-RT is 68F. Rest 60 minutes
+RT is 68F. Rest 45 minutes
 
-Kneaded at about 9:50
+Kneaded at about 9:40
 
-Bulk ferment begins about 10:20 in oven on proof, light on. Starts
-at 400mL.
+Bulk ferment begins about 10:00 in oven on proof, light on. Starts
+at 1L.
 
 At 11:00 it is already at 650ml! Into pan for proof. pH=5.42.
 DT=81F.
 
 Proof begins at 11:08.
 
-Baked at about 12:15, well past top of pan; I got distracted.
-Preheated 375F bake, adding boiling water, turned down to 350F.
+Baked at about 12:00, at top of pan
 
 Top looked like it was getting too brown so I covered it with foil
 after 23 minutes. The loaf is 6 inches tall.
 
-206F inside. Feels very light. Looks good.
+? inside. Looks good. 5.5 inches tall and torn a little at the pan
+edge. Keyholing as it cools.
 
-https://photos.app.goo.gl/J3mhBtn7VuyEQnDb6
+https://photos.app.goo.gl/GwJxswv9BaoYmsKL8
 
-Tastes good. Good texture. Good flavor on the first day.
-
-Large bubbles at the top indicate I let it proof too long. I need to
-start preheating at or a little before the top of the pan.
-
-I baked it at least 15 minutes late.
+This loaf reminds me why I gave up on FLAS. The flavor is good but
+not what I'm looking for.
 
 */
 
 /*+
- part  | grams  |      name      |   %   | flour  | water  |
--------|--------|----------------|-------|--------|--------|
-leaven |  54.0  | + 10.0g        |  20.0 |  22.0  |  22.0  |
-       |  27.0  | ww             |  10.0 |  22.0  |        |
-       |  27.0  | flas           |  10.0 |        |  22.0  |
+ part  |  grams  |      name      |   %   | flour  | water  |
+-------|---------|----------------|-------|--------|--------|
+leaven |  105    | + 5.0g         |  20.0 |  50.0  |  50.0  |
+       |   52.5  | rye            |  10.0 |  50.0  |        |
+       |   52.5  | flas           |  10.0 |        |  50.0  |
 
-scald  |  80.4  | + 10.0g        |  32.0 |        |  28.6  |
-       |   7.5  | potato flakes  |   3.0 |        | -13.2  |
-       |  12.6  | flaxseed meal  |   5.0 |        | -11.0  |
-       |  60.3  | boiling water  |  24.0 |        |  52.8  |
+scald  |  165    | + 5.0g         |  32.0 |        |  65.0  |
+       |   15.5  | potato flakes  |   3.0 |        | -30.0  |
+       |   25.8  | flaxseed meal  |   5.0 |        | -25.0  |
+       |  124    | boiling water  |  24.0 |        | 120    |
 
-grain  | 191    |                |  87.0 | 191    |        |
-       |  84.7  | prairie gold   |  38.5 |  84.7  |        |
-       |  84.7  | hard red       |  38.5 |  84.7  |        |
-       |  11.0  | spelt          |   5.0 |  11.0  |        |
-       |  11.0  | barley         |   5.0 |  11.0  |        |
+grain  |  435    |                |  87.0 | 435    |        |
+       |  193    | prairie gold   |  38.5 | 193    |        |
+       |  192    | hard red       |  38.5 | 192    |        |
+       |   25.0  | spelt          |   5.0 |  25.0  |        |
+       |   25.0  | barley         |   5.0 |  25.0  |        |
 
-dry    | 204    |                |  92.6 | 198    |        |
-       | 191    | grain          |  87.0 | 191    |        |
-       |   6.6  | vwg            |   3.0 |   6.6  |        |
-       |   3.96 | salt           |   1.8 |        |        |
-       |   1.10 | yeast          |   0.5 |        |        |
-       |   0.55 | diastatic malt |   0.2 |        |        |
-       |   0.18 | ascorbic acid  |   0.1 |        |        |
+dry    |  463    |                |  92.6 | 450    |        |
+       |  435    | grain          |  87.0 | 435    |        |
+       |   15.0  | vwg            |   3.0 |  15.0  |        |
+       |    9.0  | salt           |   1.8 |        |        |
+       |    2.50 | yeast          |   0.5 |        |        |
+       |    1.25 | diastatic malt |   0.2 |        |        |
+       |    0.40 | ascorbic acid  |   0.1 |        |        |
 
-wet    | 239    |                | 108.6 |  22.0  | 154    |
-       |  44.0  | leaven         |  20.0 |  22.0  |  22.0  |
-       |  70.4  | scald          |  32.0 |        |  28.6  |
-       |  44.0  | flas           |  20.0 |        |  44.0  |
-       |  47.6  | water          |  21.7 |        |  47.6  |
-       |  11.0  | olive oil      |   5.0 |        |        |
-       |  11.0  | honey          |   5.0 |        |   1.87 |
-       |  11.0  | buttermilk     |   5.0 |        |   9.9  |
+wet    |  543    |                | 108.6 |  50.0  | 350    |
+       |  100    | leaven         |  20.0 |  50.0  |  50.0  |
+       |  160    | scald          |  32.0 |        |  65.0  |
+       |  104    | flas           |  20.8 |        | 104    |
+       |  104    | water          |  20.8 |        | 104    |
+       |   25.0  | olive oil      |   5.0 |        |        |
+       |   25.0  | honey          |   5.0 |        |   4.25 |
+       |   25.0  | buttermilk     |   5.0 |        |  22.5  |
 
-dough  | 443    |                | 201.3 | 220    | 154    |
-       | 239    | wet            | 108.6 |  22.0  | 154    |
-       | 204    | dry            |  92.6 | 198    |        |
-       |        | hydration      |  70.0 |        |        |
+dough  | 1006    |                | 201.3 | 500    | 350    |
+       |  543    | wet            | 108.6 |  50.0  | 350    |
+       |  463    | dry            |  92.6 | 450    |        |
+       |         | hydration      |  70.0 |        |        |
 
 +*/
 
