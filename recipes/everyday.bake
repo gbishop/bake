@@ -1,9 +1,9 @@
 # My everyday loaf based on morph
 
-leaven ^ 5g:
-  rye
-  flas
-  hydration = 100%
+starter:
+  ww
+  water
+  hydration = 150%
 
 scald ^ 5g:
   potato_flakes = 3%
@@ -18,6 +18,7 @@ grain:
 
 dry:
   grain
+  durham_flour = 5%
   vwg = 3%
   salt = 1.8%
   yeast = 0.5%
@@ -25,14 +26,13 @@ dry:
   ascorbic_acid = 0.08%
 
 wet:
-  leaven = 20%
+  starter
+  starter.total_flour = 10%
   scald
-  flas
   water
-  flas = water
   olive_oil = 5%
   honey = 5%
-  buttermilk = 5%
+  yogurt = 5%
 
 dough:
   wet
@@ -42,90 +42,80 @@ dough:
   total_flour = 500g # 220g
 
 /*
-January 2, 2026
+January 8, 2026
 
 Changes
-* try rye in the preferment
-* mix the potato flakes and flaxseed meal before scalding
-* bake earlier
-* increase flas
-* try making 2 loaves
+* back to ww starter
+* baked with the steam pan above and a sheet pan below.
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-Mixed doubled leaven and scald at 19:10 evening before at RT.
+starter pH = 3.85
 
-FLAS pH is 4.30, leaven pH is 5.7 it had risen to 350mL.
+I started about 9:00
 
-I started about 8:30
-
-Used the BM for kneading. Mixed about 8:50. DT after mixing is 72
-RT is 68F. Rest 45 minutes
+Forgot this step. Used the BM for kneading. Mixed about 9:20. DT
+after mixing is 72 RT is 68F. Rest 45 minutes
 
 Kneaded at about 9:40
 
-Bulk ferment begins about 10:00 in oven on proof, light on. Starts
+I baked it under the new steam pan for 30 minutes then removed the
+pan for the remaining 15. 
+
+**** I lost track of all of the remaining as I was distracted ****
+
+Bulk ferment begins about ? in oven on proof, light on. Starts
 at 1L.
 
-At 11:00 it is already at 650ml! Into pan for proof. pH=5.42.
-DT=81F.
+Proof begins at ?
 
-Proof begins at 11:08.
+Baked at about ? at top of pan
 
-Baked at about 12:00, at top of pan
-
-Top looked like it was getting too brown so I covered it with foil
-after 23 minutes. The loaf is 6 inches tall.
-
-? inside. Looks good. 5.5 inches tall and torn a little at the pan
-edge. Keyholing as it cools.
+185F inside. Huge mushroom on top.
 
 https://photos.app.goo.gl/GwJxswv9BaoYmsKL8
-
-This loaf reminds me why I gave up on FLAS. The flavor is good but
-not what I'm looking for.
 
 */
 
 /*+
- part  |  grams  |      name      |   %   | flour  | water  |
--------|---------|----------------|-------|--------|--------|
-leaven |  105    | + 5.0g         |  20.0 |  50.0  |  50.0  |
-       |   52.5  | rye            |  10.0 |  50.0  |        |
-       |   52.5  | flas           |  10.0 |        |  50.0  |
+  part  |  grams  |      name      |   %   | flour  | water  |
+--------|---------|----------------|-------|--------|--------|
+starter |  125    |                |  25.0 |  50.0  |  75.0  |
+        |   50.0  | ww             |  10.0 |  50.0  |        |
+        |   75.0  | water          |  15.0 |        |  75.0  |
 
-scald  |  165    | + 5.0g         |  32.0 |        |  65.0  |
-       |   15.5  | potato flakes  |   3.0 |        | -30.0  |
-       |   25.8  | flaxseed meal  |   5.0 |        | -25.0  |
-       |  124    | boiling water  |  24.0 |        | 120    |
+scald   |  165    | + 5.0g         |  32.0 |        |  65.0  |
+        |   15.5  | potato flakes  |   3.0 |        | -30.0  |
+        |   25.8  | flaxseed meal  |   5.0 |        | -25.0  |
+        |  124    | boiling water  |  24.0 |        | 120    |
 
-grain  |  435    |                |  87.0 | 435    |        |
-       |  193    | prairie gold   |  38.5 | 193    |        |
-       |  192    | hard red       |  38.5 | 192    |        |
-       |   25.0  | spelt          |   5.0 |  25.0  |        |
-       |   25.0  | barley         |   5.0 |  25.0  |        |
+grain   |  410    |                |  82.0 | 410    |        |
+        |  180    | prairie gold   |  36.0 | 180    |        |
+        |  180    | hard red       |  36.0 | 180    |        |
+        |   25.0  | spelt          |   5.0 |  25.0  |        |
+        |   25.0  | barley         |   5.0 |  25.0  |        |
 
-dry    |  463    |                |  92.6 | 450    |        |
-       |  435    | grain          |  87.0 | 435    |        |
-       |   15.0  | vwg            |   3.0 |  15.0  |        |
-       |    9.0  | salt           |   1.8 |        |        |
-       |    2.50 | yeast          |   0.5 |        |        |
-       |    1.25 | diastatic malt |   0.2 |        |        |
-       |    0.40 | ascorbic acid  |   0.1 |        |        |
+dry     |  463    |                |  92.6 | 450    |        |
+        |  410    | grain          |  82.0 | 410    |        |
+        |   25.0  | durham flour   |   5.0 |  25.0  |        |
+        |   15.0  | vwg            |   3.0 |  15.0  |        |
+        |    9.0  | salt           |   1.8 |        |        |
+        |    2.50 | yeast          |   0.5 |        |        |
+        |    1.25 | diastatic malt |   0.2 |        |        |
+        |    0.40 | ascorbic acid  |   0.1 |        |        |
 
-wet    |  543    |                | 108.6 |  50.0  | 350    |
-       |  100    | leaven         |  20.0 |  50.0  |  50.0  |
-       |  160    | scald          |  32.0 |        |  65.0  |
-       |  104    | flas           |  20.8 |        | 104    |
-       |  104    | water          |  20.8 |        | 104    |
-       |   25.0  | olive oil      |   5.0 |        |        |
-       |   25.0  | honey          |   5.0 |        |   4.25 |
-       |   25.0  | buttermilk     |   5.0 |        |  22.5  |
+wet     |  543    |                | 108.7 |  50.0  | 350    |
+        |  125    | starter        |  25.0 |  50.0  |  75.0  |
+        |  160    | scald          |  32.0 |        |  65.0  |
+        |  183    | water          |  36.6 |        | 183    |
+        |   25.0  | olive oil      |   5.0 |        |        |
+        |   25.0  | honey          |   5.0 |        |   4.25 |
+        |   25.0  | buttermilk     |   5.0 |        |  22.5  |
 
-dough  | 1006    |                | 201.3 | 500    | 350    |
-       |  543    | wet            | 108.6 |  50.0  | 350    |
-       |  463    | dry            |  92.6 | 450    |        |
-       |         | hydration      |  70.0 |        |        |
+dough   | 1006    |                | 201.3 | 500    | 350    |
+        |  543    | wet            | 108.7 |  50.0  | 350    |
+        |  463    | dry            |  92.6 | 450    |        |
+        |         | hydration      |  70.0 |        |        |
 
 +*/
 

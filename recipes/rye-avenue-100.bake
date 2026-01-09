@@ -1,33 +1,37 @@
 # from https://www.youtube.com/watch?v=W3hv-P0u-bg
 
 scald:
-  red_rye_malt = 60g
-  salt = 20g
-  oil = 20g
-  boiling_water = 180g
+  red_rye_malt = 8.76%
+  salt = 2.92%
+  oil = 2.92%
+  boiling_water = 26.28%
 
 starter:
-  rye
+  rye = 7%
   water
-  hydration = 100%
+  hydration = 200%
 
 # cover and let steep and cool
 
 preferment:
-  starter = 90g
-  water = 300g
-  rye = 300g
+  starter
+  water
+  rye = 43.80%
+  hydration = 100%
 
 # cover and let rest for 10 to 12 hours at RT
 
 dough:
   preferment
   scald
-  caraway_seeds = 13g
+  caraway_seeds = 1.90%
 
-# mix until color is even
+# mix until color is even then add
 
-  rye = 280g
+  rye = 40.88%
+
+# she is using a 9 inch 2.25 liter pan
+  total = 1263g / 2.25
 
 # cover for 40 minutes
 # prepare pan with oil
@@ -39,29 +43,29 @@ dough:
 # remove from oven and cool
 
 /*+
-   part    |  grams  |      name     |   %   | flour  | water  |
------------|---------|---------------|-------|--------|--------|
-scald      |  280    |               |  40.9 |  60.0  | 180    |
-           |   60.0  | red rye malt  |   8.8 |  60.0  |        |
-           |   20.0  | salt          |   2.9 |        |        |
-           |   20.0  | oil           |   2.9 |        |        |
-           |  180    | boiling water |  26.3 |        | 180    |
+   part    | grams  |      name     |   %   | flour  | water  |
+-----------|--------|---------------|-------|--------|--------|
+scald      | 124    |               |  40.8 |  26.3  |  79.8  |
+           |  26.4  | red rye malt  |   8.7 |  26.4  |        |
+           |   8.9  | salt          |   2.9 |        |        |
+           |   8.9  | oil           |   2.9 |        |        |
+           |  79.8  | boiling water |  26.3 |        |  79.8  |
 
-starter    |   90.0  |               |  13.1 |  45.0  |  45.0  |
-           |   45.0  | rye           |   6.6 |  45.0  |        |
-           |   45.0  | water         |   6.6 |        |  45.0  |
+starter    |  62.9  |               |  20.7 |  20.9  |  41.9  |
+           |  21.1  | rye           |   6.9 |  21.1  |        |
+           |  41.9  | water         |  13.8 |        |  41.9  |
 
-preferment |  690    |               | 100.7 | 345    | 345    |
-           |   90.0  | starter       |  13.1 |  45.0  |  45.0  |
-           |  300    | water         |  43.8 |        | 300    |
-           |  300    | rye           |  43.8 | 300    |        |
+preferment | 308    |               | 101.3 | 154    | 154    |
+           |  62.9  | starter       |  20.7 |  20.9  |  41.9  |
+           | 112    | water         |  36.8 |        | 112    |
+           | 133    | rye           |  43.7 | 133    |        |
 
-dough      | 1263    |               | 184.4 | 685    | 525    |
-           |  690    | preferment    | 100.7 | 345    | 345    |
-           |  280    | scald         |  40.9 |  60.0  | 180    |
-           |   13.0  | caraway seeds |   1.9 |        |        |
-           |  280    | rye           |  40.9 | 280    |        |
-           |         | hydration     |  76.6 |        |        |
+dough      | 561    |               | 184.8 | 304    | 233    |
+           | 308    | preferment    | 101.3 | 154    | 154    |
+           | 124    | scald         |  40.8 |  26.3  |  79.8  |
+           |   5.8  | caraway seeds |   1.9 |        |        |
+           | 124    | rye           |  40.8 | 124    |        |
+           |        | hydration     |  76.9 |        |        |
 
 +*/
 

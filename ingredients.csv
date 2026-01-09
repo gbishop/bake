@@ -75,7 +75,7 @@ pumpkin_puree,0,0.90
 quark,0,0.5
 quinoa,0,-0.78
 raisins,0,0.15
-red_rye_malt,0,-1
+red_rye_malt,1,0
 removed,0,0
 removed_flour,1,0
 removed_bran,1,0

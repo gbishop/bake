@@ -1,0 +1,60 @@
+# A Monheimer Salzsauer created by Gemini
+
+starter:
+  rye
+  water
+  hydration = 100%
+
+sour:
+  starter = 45g
+  rye = 315g
+  water = 233g
+  salt = 5g
+
+scald:
+  red_rye_malt = 75g
+  rye = 75g
+  salt = 12g
+  caraway_seeds = 0.4%
+  boiling_water
+  hydration = 200%
+
+dough:
+  total_flour = 840g
+  hydration = 66%
+  sour
+  scald
+  rye
+  water
+  honey = 23g
+
+/*+
+  part  |  grams  |      name     |   %   | flour  | water  |
+--------|---------|---------------|-------|--------|--------|
+starter |   45.0  |               |   5.4 |  22.5  |  22.5  |
+        |   22.5  | rye           |   2.7 |  22.5  |        |
+        |   22.5  | water         |   2.7 |        |  22.5  |
+
+sour    |  598    |               |  71.2 | 337    | 256    |
+        |   45.0  | starter       |   5.4 |  22.5  |  22.5  |
+        |  315    | rye           |  37.5 | 315    |        |
+        |  233    | water         |  27.7 |        | 233    |
+        |    5.0  | salt          |   0.6 |        |        |
+
+scald   |  465    |               |  55.4 | 150    | 300    |
+        |   75.0  | red rye malt  |   8.9 |  75.0  |        |
+        |   75.0  | rye           |   8.9 |  75.0  |        |
+        |   12.0  | salt          |   1.4 |        |        |
+        |    3.36 | caraway seeds |   0.4 |        |        |
+        |  300    | boiling water |  35.7 |        | 300    |
+
+dough   | 1434    |               | 170.7 | 840    | 554    |
+        |  598    | sour          |  71.2 | 337    | 256    |
+        |  465    | scald         |  55.4 | 150    | 300    |
+        |  352    | rye           |  42.0 | 352    |        |
+        |   -5.0  | water         |  -0.6 |        |  -5.0  |
+        |   23.0  | honey         |   2.7 |        |   3.91 |
+        |         | hydration     |  66.0 |        |        |
+
++*/
+

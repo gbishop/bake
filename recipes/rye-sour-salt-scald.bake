@@ -1,0 +1,101 @@
+# based on https://www.thefreshloaf.com/node/72790/rye-sourdough-bread-recipe
+
+starter:
+  rye
+  water
+  hydration = 200%
+
+preferment ^ 10g:
+  total_flour = 50%
+  rye
+  water # 120F
+  starter = 5%
+  salt = 0.5%
+  hydration = 100%
+
+# let preferment rest 12-24 hours at RT.
+
+scald ^ 10g:
+  total_flour = 10%
+  rye
+  red_rye_malt
+  water
+  salt = 2% - preferment.salt
+  caraway_seeds = 0.5%
+  hydration = 300%
+
+dough:
+  preferment
+  scald
+  rye
+  water # 105F FDT = 80F
+  hydration = 85%
+  total = 0.6 * 1000
+
+/*
+
+Jan 8 2025
+
+A test loaf of 100% rye for Michael
+
+Assembled the preferment and scald about 16:00 on Jan 7 kept the
+preferment at 78F for 2 hours, then turn it off to return to RT of
+68F
+
+In the morning.
+
+Put all ingredients in a large bowl. Mix until well combined.
+
+Mixed about 8:45. Not too hard to bring together.
+
+Let dough rest for one hour at 78F
+
+Either mix 40 minutes on speed 1 or do splat and spiral scoop for
+a few minutes.
+
+Shape dough and into pan
+
+Cover and rest for about 75 minutes at 78F. Watch for cracks and
+tiny holes.
+
+Preheat oven, sheet and cover to 480F
+
+Dock the dough in a dozen places.
+
+Bake 10 minutes at 480F covered, then uncover and continue baking at
+390F for about 35 minutes. Remove at 208F internal temp and clean
+probe.
+
+For 1L pan start checking about 30 minutes.
+
+*/
+
+/*+
+   part    | grams  |      name     |   %   | flour  | water  |
+-----------|--------|---------------|-------|--------|--------|
+starter    |  16.0  |               |   5.0 |   5.3  |  10.7  |
+           |   5.3  | rye           |   1.7 |   5.3  |        |
+           |  10.7  | water         |   3.3 |        |  10.7  |
+
+preferment | 332    | + 10.0g       | 100.5 | 160    | 160    |
+           | 159    | rye           |  48.3 | 155    |        |
+           | 154    | water         |  46.7 |        | 149    |
+           |  16.5  | starter       |   5.0 |   5.3  |  10.7  |
+           |   1.65 | salt          |   0.5 |        |        |
+
+scald      | 144    | + 10.0g       |  42.0 |  32.0  |  96.0  |
+           |  17.2  | rye           |   5.0 |  16.0  |        |
+           |  17.2  | red rye malt  |   5.0 |  16.0  |        |
+           | 103    | water         |  30.0 |        |  96.0  |
+           |   5.2  | salt          |   1.5 |        |        |
+           |   1.72 | caraway seeds |   0.5 |        |        |
+
+dough      | 600    |               | 187.5 | 320    | 272    |
+           | 322    | preferment    | 100.5 | 160    | 160    |
+           | 134    | scald         |  42.0 |  32.0  |  96.0  |
+           | 128    | rye           |  40.0 | 128    |        |
+           |  16.0  | water         |   5.0 |        |  16.0  |
+           |        | hydration     |  85.0 |        |        |
+
++*/
+

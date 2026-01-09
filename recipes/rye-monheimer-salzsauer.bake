@@ -1,0 +1,64 @@
+# from https://www.thefreshloaf.com/node/72790/rye-sourdough-bread-recipe
+
+starter:
+  rye
+  water
+  hydration = 100%
+
+preferment:
+  rye = 350g
+  water # 120F
+  starter = 35g
+  salt = 3.5g
+  hydration = 100%
+
+# let preferment rest 12-24 hours at RT.
+
+dough:
+  preferment
+  rye = 350g
+  water # 105F FDT = 80F
+  salt = 12.5g
+  hydration = 77.7%
+  total_flour = 718g
+
+/*
+
+put all ingredients in a large bowl. Mix by hand until well
+combined.
+
+let dough rest for one hour at RT
+
+shape dough and into pan
+
+cover and rest for 75 minutes at RT
+
+preheat oven to 480F
+
+bake 10 minutes at 480F with steam, release steam and continue
+baking at 410F for about 45 minutes.
+
+*/
+
+/*+
+   part    |  grams  |    name    |   %   | flour  | water  |
+-----------|---------|------------|-------|--------|--------|
+starter    |   35.0  |            |   4.9 |  17.7  |  17.6  |
+           |   17.6  | rye        |   2.4 |  17.6  |        |
+           |   17.5  | water      |   2.4 |        |  17.5  |
+
+preferment |  739    |            | 102.9 | 368    | 368    |
+           |  350    | rye        |  48.7 | 350    |        |
+           |  350    | water      |  48.8 |        | 350    |
+           |   35.0  | starter    |   4.9 |  17.7  |  17.6  |
+           |    3.50 | salt       |   0.5 |        |        |
+
+dough      | 1291    |            | 179.8 | 718    | 558    |
+           |  739    | preferment | 102.9 | 368    | 368    |
+           |  350    | rye        |  48.7 | 350    |        |
+           |  190    | water      |  26.5 |        | 190    |
+           |   12.5  | salt       |   1.7 |        |        |
+           |         | hydration  |  77.7 |        |        |
+
++*/
+
