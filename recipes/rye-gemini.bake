@@ -1,60 +1,83 @@
-# A Monheimer Salzsauer created by Gemini
+# Whole rye loaf
 
 starter:
-  rye
-  water
-  hydration = 100%
-
-sour:
-  starter = 45g
-  rye = 315g
-  water = 233g
-  salt = 5g
+  rye = 13.33%
+  water = 13.33%
 
 scald:
-  red_rye_malt = 75g
-  rye = 75g
-  salt = 12g
-  caraway_seeds = 0.4%
-  boiling_water
-  hydration = 200%
+  red_rye_malt = 6.00%
+  boiling_water = 13.33%
+  coriander = 1%
 
 dough:
-  total_flour = 840g
-  hydration = 66%
-  sour
+  total_flour = 750g
   scald
-  rye
-  water
-  honey = 23g
+  water_95F = 46.67%
+  starter
+  molasses = 2.67%
+  yeast = 0.67%
+  rye = 86.67%
+  salt = 2.00%
+
+/*
+
+1. Malt Scald
+* Place red rye malt in a small heat-proof bowl.
+* Pour boiling water over the malt. Stir until it forms a smooth, dark paste.
+* Let it cool below 104F.
+
+2. Mix
+* In a large bowl, combine the malt paste, the warm water (95F), starter,
+  molasses, and yeast. Whisk until dissolved.
+* Add rye flour and salt.
+* Mix for 5–7 minutes.
+
+3. Panning
+* Oil the pan and line with parchment paper.
+* Pan the dough and pack it into the corners.
+* Smooth the top flat.
+* Sprinkle with rye flour.
+
+4. Rise (about 3 hours)
+* Cover the pan and place in a warm, draft-free spot (81F–86F is the "sweet spot").
+* Monitor closely: It will move fast.
+* The Goal: Bake when the center of the dough has risen to 1/2 inch below the rim
+  and you see tiny "pinprick" bubbles on the surface.
+
+5. Bake (about 1 hour)
+* Preheat oven to 425F.
+* If using the Pullman lid, slide it on now.
+* Bake at 425F for 15 minutes. Lower to 400F and bake for another 45 minutes.
+* Check: Take the loaf out of the pan and check the internal temperature.
+  It must hit 208F.
+
+6. Cooling
+* Place on a wire rack immediately.
+* Once room temperature, wrap in a linen cloth and wait 24 hours before slicing.
+
+*/
 
 /*+
   part  |  grams  |      name     |   %   | flour  | water  |
 --------|---------|---------------|-------|--------|--------|
-starter |   45.0  |               |   5.4 |  22.5  |  22.5  |
-        |   22.5  | rye           |   2.7 |  22.5  |        |
-        |   22.5  | water         |   2.7 |        |  22.5  |
+starter |  200    |               |  26.7 | 100    | 100    |
+        |  100    | rye           |  13.3 | 100    |        |
+        |  100    | water         |  13.3 |        | 100    |
 
-sour    |  598    |               |  71.2 | 337    | 256    |
-        |   45.0  | starter       |   5.4 |  22.5  |  22.5  |
-        |  315    | rye           |  37.5 | 315    |        |
-        |  233    | water         |  27.7 |        | 233    |
-        |    5.0  | salt          |   0.6 |        |        |
+scald   |  152    |               |  20.3 |  45.0  | 100    |
+        |   45.0  | red rye malt  |   6.0 |  45.0  |        |
+        |  100    | boiling water |  13.3 |        | 100    |
+        |    7.5  | coriander     |   1.0 |        |        |
 
-scald   |  465    |               |  55.4 | 150    | 300    |
-        |   75.0  | red rye malt  |   8.9 |  75.0  |        |
-        |   75.0  | rye           |   8.9 |  75.0  |        |
-        |   12.0  | salt          |   1.4 |        |        |
-        |    3.36 | caraway seeds |   0.4 |        |        |
-        |  300    | boiling water |  35.7 |        | 300    |
-
-dough   | 1434    |               | 170.7 | 840    | 554    |
-        |  598    | sour          |  71.2 | 337    | 256    |
-        |  465    | scald         |  55.4 | 150    | 300    |
-        |  352    | rye           |  42.0 | 352    |        |
-        |   -5.0  | water         |  -0.6 |        |  -5.0  |
-        |   23.0  | honey         |   2.7 |        |   3.91 |
-        |         | hydration     |  66.0 |        |        |
+dough   | 1393    |               | 185.7 | 750    | 554    |
+        |  152    | scald         |  20.3 |  45.0  | 100    |
+        |  350    | water 95F     |  46.7 |        | 350    |
+        |  200    | starter       |  26.7 | 100    | 100    |
+        |   20.0  | molasses      |   2.7 |        |   4.41 |
+        |    5.0  | yeast         |   0.7 |        |        |
+        |  650    | rye           |  86.7 | 650    |        |
+        |   15.0  | salt          |   2.0 |        |        |
+        |         | hydration     |  73.9 |        |        |
 
 +*/
 
