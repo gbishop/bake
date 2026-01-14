@@ -1,0 +1,150 @@
+# From https://www.chainbaker.com/seeded-rye/
+
+starter:
+  rye
+  water
+  hydration = 100%
+
+seeds:
+  sunflower_seeds_sr = _part
+  pumpkin_seeds_sr = _part
+  sesame_seeds_sr = _part
+  flaxseed_meal_sr = _part
+  chia_seeds_sr = 2 / 7 * _part
+
+soaker:
+  seeds = 85.71%
+  water = seeds
+
+dough:
+  soaker
+  water
+  starter = 14.29%
+  # increase the yeast from 0.1429% to speed it up
+  yeast = 0.20%
+  salt = 2.29%
+  raisins = 14.29%
+  rye
+
+  # for coating
+  sunflower_seeds = 50%
+
+  # scale for my 1 pound pan
+  total_flour = 350g / 2
+  # his hydration is only 47% after accounting for the seeds
+  # increase to 60%
+  hydration = 80%
+
+/* Notes
+13 January 2026
+
+I increased the hydration to 80%. He didn't soak his seeds which
+I think this will cause his dough to dry out. His effective
+hydration by my calculations was 47% using the seed hydration
+numbers from
+https://www.thefreshloaf.com/node/61245/soaker-ingredient-hydration-percents-some-data
+
+I added 0.2% yeast because my starter is slow to rise.
+
+I failed to line the pan. Gotta learn to do that. I hope to get by
+with a rectangle of parchment on the bottom.
+
+I should have moistened the raisins as Caroline suggests.
+
+Proof in the pan at 80F began at 9:20.
+
+Baked at 17:20 there are a few cracks on the surface.
+
+Baked 45 minutes in the pan and 25 minutes out of the pan to reach
+204F. 
+
+Wrapped in a towel and left to cool.
+
+*/
+
+/* Method
+
+## In the evening.
+
+1. Grind the seeds. We want the seeds to be part of the dough
+instead of just floating around in it. Use a pestle and mortar to
+break the seeds down a little bit. They do not need to be very fine.
+A food processor can be used but be careful not to pulverize them
+too much. The finer the seeds the dried the dough.
+
+1a. In a large bowl, combine the ground seeds and an equal weight of
+water and the salt. 
+
+1b. Grind the rye flour.
+
+1c. Keep the soaker and the flour at 80F overnight.
+
+1d. Build the starter using some of the ground rye. Keep it at RT.
+
+## Next morning
+
+2. In a large bowl combine the water, yeast, starter and the soaker.
+Mix well. Add the flour and mix to a dough. Smooth out the surface
+of the dough.
+
+3. Roll the dough in the sunflower seeds taking care not to fold the
+dough. Cover the whole surface.
+
+4. Place the dough in a non-stick paper lined baking tin. *Desired
+dough temperature 23C – 24C (73F – 75F). If your dough is warmer,
+then it will ferment more rapidly. If it is cooler, then it will
+take longer.
+
+5. Cover and ferment at 80F until there are clearly visible cracks
+on the surface of the loaf.
+
+6. Spray the dough with water and bake in a pre-heated oven at 180C
+(356F) fan off for:
+
+  60 minutes for the 2 pound pan.
+  45 minutes for the 1 pound pan.
+
+7. Remove the loaf from the tin and place it back into the oven for:
+
+  30 more minutes for the 2 pound pan.
+  20 more minutes for the 1 pound pan.
+
+The internal temperature should read above 94C (200F).
+
+8. Wrap the loaf in a clean cloth to help it retain more moisture
+and leave it to cool down completely. I like to rest a bread like
+this for 12 hours.
+
+*/
+
+/*+
+  part  | grams  |        name        |   %   | flour  |  water  |
+--------|--------|--------------------|-------|--------|---------|
+starter |  25.0  |                    |  14.3 |  12.5  |   12.5  |
+        |  12.5  | rye                |   7.1 |  12.5  |         |
+        |  12.5  | water              |   7.1 |        |   12.5  |
+
+seeds   | 150    |                    |  85.7 |        | -131    |
+        |  35.0  | sunflower seeds sr |  20.0 |        |  -28.0  |
+        |  35.0  | pumpkin seeds sr   |  20.0 |        |  -13.3  |
+        |  35.0  | sesame seeds sr    |  20.0 |        |  -20.3  |
+        |  35.0  | flaxseed meal sr   |  20.0 |        |  -45.5  |
+        |  10.0  | chia seeds sr      |   5.7 |        |  -23.7  |
+
+soaker  | 300    |                    | 171.4 |        |   19.2  |
+        | 150    | seeds              |  85.7 |        | -131    |
+        | 150    | water              |  85.7 |        |  150    |
+
+dough   | 709    |                    | 405.1 | 175    |  140    |
+        | 300    | soaker             | 171.4 |        |   19.2  |
+        | 105    | water              |  59.7 |        |  105    |
+        |  25.0  | starter            |  14.3 |  12.5  |   12.5  |
+        |   0.35 | yeast              |   0.2 |        |         |
+        |   4.01 | salt               |   2.3 |        |         |
+        |  25.0  | raisins            |  14.3 |        |    3.75 |
+        | 162    | rye                |  92.9 | 162    |         |
+        |  87.5  | sunflower seeds    |  50.0 |        |         |
+        |        | hydration          |  80.0 |        |         |
+
++*/
+
