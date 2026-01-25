@@ -1,0 +1,184 @@
+# from https://www.homebaking.at/zero-fussel-dein-shortcut-zum-perfekten-roggenbrot/
+
+sour:
+  rye_whole = 42%
+  water_104F
+  starter = 5% * rye_whole # 2%=18H 5%=15H 10%=12H 20%=6H
+  hydration = 80%
+
+
+/* Sour prep
+
+• Completely dissolve the active starter culture in the warm water.
+
+• Add the rye wholemeal flour and mix thoroughly until no dry clumps
+  remain.
+
+• Cover the mixture and allow it to ripen at room temperature for
+  the time specified by the formulation (approximately 15 hours).
+
+*/
+
+dough:
+  sour
+  rye_whole = 20%
+  rye_white = 38%
+  water_95F_104F
+  salt = 2.50%
+  yeast = 0.30%
+  hydration = 75%
+
+  # total_flour = 1000g
+  total = 1500g
+
+/* Dough mixing
+
+• Initial Slurry: Place the warm water (35-40°C) and the ripe
+  sourdough starter into the mixer bowl. Using a rubber paddle
+  attachment, mix on low speed for 40-50 seconds until the starter
+  is dissolved and the mixture is homogenous. This slurrying step
+  is significantly faster and more effective with a paddle than
+  a traditional dough hook.
+
+• Adding Dry Ingredients: Add the rye flour, salt, yeast and any
+  optional spices (such as bread spice) to the bowl.
+
+• Final Mix: Mix on a slow speed for approximately 3.5 minutes. The
+  goal is simply to combine all ingredients into a uniform,
+  paste-like mass. Warning: Avoid over-mixing. Extended mixing will
+  cause the rye dough to lose stability and become progressively
+  stickier and more difficult to handle.
+
+• Assessing Consistency: The target consistency of the dough should
+  be similar to that of silicone caulk—smooth, creamy, and
+  paste-like. To check the firmness without the dough sticking, use
+  wet hands to gently press or pat the surface. Note that the water
+  in the recipe is a starting point. As demonstrated in the source
+  video, master baker Kappl adds a significant amount of additional
+  water by feel in sips to achieve the correct paste-like
+  consistency, especially when using wholemeal flour in the starter,
+  which has a higher water absorption.
+
+*/
+
+/* Rest
+
+• Cover the mixing bowl containing the freshly mixed dough.
+
+• Allow the dough to rest for 20 to 30 minutes at room temperature.
+
+• Line the pan.
+
+• Caution: Do not extend this time significantly. A longer bulk rest
+  can weaken the dough structure, making the subsequent transfer
+  more difficult and potentially compromising the final loaf's
+  volume.
+
+*/
+
+/* Panning and proofing
+
+Transfer to the lined pan, cover and let rest for 25 to 40 minutes
+at RT.
+
+Signs of Readiness: The dough is ready for the oven when it has
+reached full proof. Assess this using the following
+indicators:
+
+• Visual Cues: The surface of the dough will show small, fine cracks
+  and visible signs of aeration.
+
+• The Two-Finger Test: Gently press the dough with two fingers. If
+  the indentation springs back very slowly but remains slightly
+  visible, the dough is perfectly proofed. If the indentation
+  springs back completely and quickly, it is under-proofed. If it
+  does not spring back at all or collapses, it is over-proofed.
+
+*/
+
+/* Baking
+
+• Preheat to 450F. Bake for 10 minutes covered, then
+  remove the cover and reduce temperature to 350F for 50 minutes.
+  Internal temperature should be > 205F.
+
+• Preheating: For the best results, you should use a preheated pot
+  in a preheated oven. If you are making a wholemeal version of the
+  bread, the sources note that you can also place the dough into
+  a cold pot and then put it into the hot oven.
+
+• Proofing: You can perform the final proofing directly in
+  a greased cast-iron loaf pan or proof it in a basket and then
+  carefully tip the dough into a preheated pot.
+
+• The Lid Timing: To prevent the crust from tearing too deeply or
+  becoming too thick, the expert recommends removing the lid after
+  10 to 12 minutes. This allows the steam to escape so the crust can
+  become crispy and brown properly for the remainder of the
+  60-minute bake time.
+
+• Achieving the Right Proof: If the bread cracks too deeply when
+  baking in a pot, it is often a sign of under-proofing. Ensure the
+  dough has reached full proof where a finger indentation stays
+  visible and only bounces back slightly—before putting it in the
+  pot
+
+*/
+
+/* Notes
+18 January 2026
+
+• Mixed the sour about 17:00 using the paddle in the KA. Covered the
+  bowl and put it in the proofer at 72F to mirror his RT.
+
+• Mixed the dry ingredients for the dough.
+
+Next morning.
+
+• Mixed in the KA, it was a mess. 
+
+• I added 10% more water.
+
+• I had a hard tine lining the pan but it was fairly easy to move it
+  by hand into the pan.
+
+• I'm letting it proof at 80F. 40 minutes was not enough. I'm
+  waiting for cracks and tiny holes.
+
+• At 10:30 it has clearly risen so I preheated the oven to 450.
+
+• Baked at 10:50 with 3 tiny holes. It had risen to nearly the top
+  of the pan. 
+
+• Only 185F after 65 minutes. I gave it 15 more and it reached 206F.
+  I think Dietmar would suggest that my baking temperature should
+  have been higher.
+
+• It is cracked around the top mostly because of the parchment paper
+  curling inward at the top.
+
+• I forgot to wrap it in cloth.
+
+Otherwise it looks really good. 5 inches tall and nicely rounded.
+
+*/
+
+/*+
+ part |  grams  |      name      |   %   | flour  | water  |
+------|---------|----------------|-------|--------|--------|
+sour  |  648    |                |  77.7 | 350    | 280    |
+      |  350    | rye whole      |  42.0 | 350    |        |
+      |  280    | water 104F     |  33.6 |        | 280    |
+      |   17.5  | starter!       |   2.1 |        |        |
+
+dough | 1500    |                | 179.9 | 834    | 625    |
+      |  648    | sour           |  77.7 | 350    | 280    |
+      |  167    | rye whole      |  20.0 | 167    |        |
+      |  317    | rye white      |  38.0 | 317    |        |
+      |  345    | water 95F 104F |  41.4 |        | 345    |
+      |   20.8  | salt           |   2.5 |        |        |
+      |    2.50 | yeast          |   0.3 |        |        |
+      |         | hydration      |  75.0 |        |        |
+
++*/
+
