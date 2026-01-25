@@ -1,25 +1,32 @@
 # Whole rye loaf
 
 starter:
-  rye = 13.33%
-  water = 13.33%
+  rye
+  water
+  hydration = 100%
 
 scald:
   red_rye_malt = 6.00%
-  boiling_water = 13.33%
+  boiling_water
   caraway_seeds = 0.8%
+  hydration = 200%
 
 dough:
   total_flour = 750g # for 2.3L pan
   scald
-  water_95F = 56.67%
-  starter
+  water_95F
+  starter = 33.3%
   molasses = 2.67%
   yeast = 0.67%
-  rye
+  rye_whole
+  rye_white = 30% * rye_whole
   salt = 2.00%
+  hydration = 80%
 
 /* Notes
+
+* Reduce the yeast
+* Increase the starter
 
 Started about 8:00
 
@@ -97,24 +104,25 @@ ferment will help.
 /*+
   part  |  grams  |      name     |   %   | flour  | water  |
 --------|---------|---------------|-------|--------|--------|
-starter |  200    |               |  26.7 | 100    | 100    |
-        |  100    | rye           |  13.3 | 100    |        |
-        |  100    | water         |  13.3 |        | 100    |
+starter |  250    |               |  33.3 | 125    | 125    |
+        |  125    | rye           |  16.6 | 125    |        |
+        |  125    | water         |  16.6 |        | 125    |
 
-scald   |  151    |               |  20.1 |  45.0  | 100    |
+scald   |  141    |               |  18.8 |  45.0  |  90.0  |
         |   45.0  | red rye malt  |   6.0 |  45.0  |        |
-        |  100    | boiling water |  13.3 |        | 100    |
+        |   90.0  | boiling water |  12.0 |        |  90.0  |
         |    6.0  | caraway seeds |   0.8 |        |        |
 
-dough   | 1421    |               | 189.5 | 750    | 629    |
-        |  151    | scald         |  20.1 |  45.0  | 100    |
-        |  425    | water 95F     |  56.7 |        | 425    |
-        |  200    | starter       |  26.7 | 100    | 100    |
+dough   | 1392    |               | 185.6 | 750    | 600    |
+        |  141    | scald         |  18.8 |  45.0  |  90.0  |
+        |  381    | water 95F     |  50.8 |        | 381    |
+        |  250    | starter       |  33.3 | 125    | 125    |
         |   20.0  | molasses      |   2.7 |        |   4.41 |
         |    5.0  | yeast         |   0.7 |        |        |
-        |  605    | rye           |  80.7 | 605    |        |
+        |  446    | rye whole     |  59.5 | 446    |        |
+        |  134    | rye white     |  17.9 | 134    |        |
         |   15.0  | salt          |   2.0 |        |        |
-        |         | hydration     |  83.9 |        |        |
+        |         | hydration     |  80.0 |        |        |
 
 +*/
 
