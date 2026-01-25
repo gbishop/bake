@@ -5,7 +5,7 @@ ap_flour,1,0
 ascorbic_acid,0,0
 baking_powder,0,0
 baking_soda,0,0
-barley_flour,1,0
+barley,1,0
 barley_sr,0,-1.38
 barley_sb,0,-1.56
 bobs_mthc,0,-1
@@ -109,6 +109,9 @@ removed_bran,1,0
 removed_water,0,1
 rye,1,0
 rye_berries,0,-0.68
+rye_white,1,0
+rye_whole,1,0
+rye_medium,1,0
 salt,0,0
 semolina,1,0
 sesame_seeds,0,0
