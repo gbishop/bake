@@ -15,7 +15,8 @@ from output import output
 from typing import Any, cast, Iterator, TypeGuard, Optional
 from math import isnan
 
-NaN = float('nan')
+NaN = float("nan")
+
 
 def P(*args):
     """Print on stderr for debugging"""
@@ -62,7 +63,7 @@ COMMENT:  "/*" /(.|\n|\r)*?/ "*/"
 """
 
 FullName = tuple[str, str]
-Vector= NDArray[np.float64]
+Vector = NDArray[np.float64]
 Matrix = NDArray[np.float64]
 
 # Collect the variables with their values
@@ -72,6 +73,7 @@ Parts: dict[str, None] = {}
 
 class Tree[C](lark.Tree):
     """A typing hack"""
+
     children: list[C]
 
     def __init__(self, data: str, *children: Any, meta=None):
@@ -81,11 +83,13 @@ class Tree[C](lark.Tree):
     def find_data(self, data):
         return cast(Iterator[Tree[C]], super().find_data(data))
 
+
 def isTree(value, data="") -> TypeGuard[Tree]:
     """Test if the value is a Tree"""
     return isinstance(value, lark.Tree) and (not data or value.data == data)
 
-def Unknown(part: str, name:str | Token, scale:Optional[float] = None):
+
+def Unknown(part: str, name: str | Token, scale: Optional[float] = None):
     """Add an unknown possibly scaled"""
     r = Tree("unknown", (part, name))
     if isinstance(name, Token) and name.line and name.column:
@@ -96,22 +100,26 @@ def Unknown(part: str, name:str | Token, scale:Optional[float] = None):
         r = Tree("multiply", scale, r, meta=r.meta)
     return r
 
+
 def isUnknown(value) -> TypeGuard[Tree[FullName]]:
     return isTree(value, "unknown")
+
 
 def isFloat(value) -> TypeGuard[float]:
     """Test if the value is a float"""
     return isinstance(value, (float, int))
 
+
 def isVector(value) -> TypeGuard[Vector]:
     return isinstance(value, np.ndarray)
 
+
 def propagate_position(children: list[Tree], meta):
-    if hasattr(meta, 'line'):
+    if hasattr(meta, "line"):
         return
     line = 0
     for child in children:
-        if isTree(child) and hasattr(child.meta, 'line'):
+        if isTree(child) and hasattr(child.meta, "line"):
             line = max(line, child.meta.line)
         elif isinstance(child, Token) and child.line:
             line = max(line, child.line)
@@ -126,6 +134,7 @@ def meta_wrapper(obj, _, children, meta):
         propagate_position(raw.children, meta)
         raw = Tree(raw.data, *raw.children, meta=meta)
     return raw
+
 
 def PP(tree, offset=0):
     if isTree(tree):
@@ -156,7 +165,9 @@ class Prepare(visitors.Transformer):
         # if the last term is a percent convert it to bakkers percent
         if isTree(terms[-1], "percent"):
             terms[-1] = Tree(
-                "multiply", terms[-1].children[0] / 100.0, Unknown("dough", "total_flour")
+                "multiply",
+                terms[-1].children[0] / 100.0,
+                Unknown("dough", "total_flour"),
             )
         result = terms[0]
         for i in range(1, len(terms), 2):
@@ -178,7 +189,8 @@ class Prepare(visitors.Transformer):
     def hydration(self, value):
         return Tree(
             "relation",
-            Unknown("", "total_water"), Unknown("", "total_flour", value / 100.0),
+            Unknown("", "total_water"),
+            Unknown("", "total_flour", value / 100.0),
         )
 
     def part(self, partname: str, loss: None | float | Tree, *rest: Tree[Any]):
@@ -199,7 +211,9 @@ class Prepare(visitors.Transformer):
                 if fullname not in Variables:
                     Variables[fullname] = NaN
                 if name in Parts:
-                    relations.append(Tree("relation", Unknown(*fullname), Unknown(name, "total")))
+                    relations.append(
+                        Tree("relation", Unknown(*fullname), Unknown(name, "total"))
+                    )
 
         # establish the total relations
         for which in ["total", "total_water", "total_flour"]:
@@ -336,6 +350,7 @@ class Propagate(visitors.Transformer):
         if isFloat(rhs) and rhs == 0.0:
             return lhs
 
+
 class BuildMatrix(visitors.Transformer[Any, tuple[Matrix, Vector]]):
     """Convert the remaining relations into matrix equations"""
 
@@ -370,7 +385,7 @@ class BuildMatrix(visitors.Transformer[Any, tuple[Matrix, Vector]]):
             return lhs * rhs
         if isVector(lhs) and isFloat(rhs):
             return lhs * rhs
-        print(f"Multiplication of unknowns is not supported {meta.line}:{meta.column}")
+        P(f"Multiplication of unknowns is not supported {meta.line}:{meta.column}")
         sys.exit(1)
 
     @visitors.v_args(inline=True)
@@ -384,6 +399,7 @@ class BuildMatrix(visitors.Transformer[Any, tuple[Matrix, Vector]]):
         # join the lists of relations then convert to array
         M = np.array([vector for part in relations for vector in part])
         return M[:, :-1], -M[:, -1]
+
 
 argparser = argparse.ArgumentParser(
     prog="bake.py",
@@ -405,7 +421,7 @@ parser = Lark(grammar, propagate_positions=True)
 try:
     parsetree = parser.parse(text)
 except UnexpectedInput as e:
-    print(e, e.get_context(text))
+    P(e, e.get_context(text))
     sys.exit(1)
 
 # Ordered set of Part names
