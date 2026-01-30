@@ -5,6 +5,14 @@ starter:
   water
   hydration = 100%
 
+leaven ^ 10g:
+  starter
+  starter = 5% * total_flour
+  rye = 35.8g
+  ww
+  water
+  hydration = 80%
+
 grain:
   prairie_gold
   hard_red
@@ -14,18 +22,17 @@ grain:
 
 dry:
   grain
-  durham_flour = 10%
   vwg = 3%
   potato_flakes = 3%
   flaxseed_meal = 5%
-  salt = 1.8%
   yeast = 0.4%
   diastatic_malt = 0.25%
   ascorbic_acid = 0.08%
+  salt = 1.8%
 
 wet:
-  starter
-  starter.total_flour = 10%
+  leaven
+  leaven.total_flour = 20%
   water
   olive_oil = 5%
   honey = 5%
@@ -39,42 +46,42 @@ dough:
   total_flour = 460g # 220g
 
 /*
-January 21, 2026
+January 29, 2026
 
 Changes
-• No lid
+• Use an overnight leaven at 20% of flour
 • Covered for most of the bake.
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-I ran out of starter so I filled in with the leaven I started the
-night before that, in the morning, had no scent of fermentation.
-About 52g of starter and 40g of inactive biga type preferment.
+Mixed the leaven about 15:45 and left at our cool RT of 68 to 63.
 
-starter pH = ?
+leaven pH = 4.3
 
 I started about 8:10
 
-Used the BM for kneading. Mixed about 8:40. DT after mixing is 79 RT
-is 68F.
+Used the BM for kneading. Mixed about 8:38. DT after mixing is 79.6
+RT is 68F.
 
-Left in the BM with a 20 minute delay for a full dough cycle.
+Left in the BM with a 10 minute delay for a full dough cycle.
 
 I removed it from the BM and preshaped it into a ball for a 15
 minute rest. It was much easier to shape.
 
 Proof begins at 11:15.
 
-Baked at 350F convection about 12:25 at the top of the pan. 40
-minutes covered + 5 minutes uncovered. Beautiful but only 165F
-inside. Back in for 5 minutes uncovered. Needed 3 more to get to
-195F.
+The dough is tearing in one area of the top.
 
-Best looking loaf I have made recently. If is 5.5 inches tall with
-just a bit of muffin top in the middle.
-https://photos.app.goo.gl/2F7qx8izhCP6JpJn9
+Baked at 375F convection about 12:25 at the top of the pan. 40
+minutes covered + 5 minutes uncovered. Beautiful but only 180F
+inside. Back in for 5 minutes uncovered. Finally 200F.
 
-It tastes fine and great texture.
+The oven controls locked up again so I lost track of time.
+
+Good looking loaf. If is 5 inches tall.
+
+More sour on the first day. Good texture. Maybe a bit too sour.
+Maybe back off on the leaven size.
 
 */
 
@@ -82,9 +89,15 @@ It tastes fine and great texture.
 /*+
   part  | grams  |      name      |   %   | flour  | water  |
 --------|--------|----------------|-------|--------|--------|
-starter |  92.0  |                |  20.0 |  46.0  |  46.0  |
-        |  46.0  | ww             |  10.0 |  46.0  |        |
-        |  46.0  | water          |  10.0 |        |  46.0  |
+starter |   4.60 |                |   1.0 |   2.30 |   2.30 |
+        |   2.30 | ww             |   0.5 |   2.30 |        |
+        |   2.30 | water          |   0.5 |        |   2.30 |
+
+leaven  | 176    | + 10.0g        |  36.0 |  92.0  |  73.6  |
+        |   4.88 | starter        |   1.0 |   2.30 |   2.30 |
+        |  38.0  | rye            |   7.8 |  35.8  |        |
+        |  57.2  | ww             |  11.7 |  53.9  |        |
+        |  75.6  | water          |  15.5 |        |  71.3  |
 
 grain   | 331    |                |  72.0 | 331    |        |
         | 108    | prairie gold   |  23.5 | 108    |        |
@@ -93,27 +106,26 @@ grain   | 331    |                |  72.0 | 331    |        |
         |  23.0  | barley         |   5.0 |  23.0  |        |
         |  23.0  | buckwheat      |   5.0 |  23.0  |        |
 
-dry     | 439    |                |  95.5 | 414    | -27.6  |
+dry     | 393    |                |  85.5 | 368    | -27.6  |
         | 331    | grain          |  72.0 | 331    |        |
-        |  46.0  | durham flour   |  10.0 |  46.0  |        |
         |  13.8  | vwg            |   3.0 |  13.8  |        |
         |  13.8  | potato flakes  |   3.0 |        | -27.6  |
         |  23.0  | flaxseed meal  |   5.0 |  23.0  |        |
-        |   8.3  | salt           |   1.8 |        |        |
         |   1.84 | yeast          |   0.4 |        |        |
         |   1.15 | diastatic malt |   0.2 |        |        |
         |   0.37 | ascorbic acid  |   0.1 |        |        |
+        |   8.3  | salt           |   1.8 |        |        |
 
-wet     | 440    |                |  95.8 |  46.0  | 350    |
-        |  92.0  | starter        |  20.0 |  46.0  |  46.0  |
-        | 279    | water          |  60.7 |        | 279    |
+wet     | 486    |                | 105.8 |  92.0  | 350    |
+        | 166    | leaven         |  36.0 |  92.0  |  73.6  |
+        | 252    | water          |  54.8 |        | 252    |
         |  23.0  | olive oil      |   5.0 |        |        |
         |  23.0  | honey          |   5.0 |        |   3.91 |
         |  23.0  | yogurt         |   5.0 |        |  20.2  |
 
 dough   | 880    |                | 191.3 | 460    | 322    |
-        | 440    | wet            |  95.8 |  46.0  | 350    |
-        | 439    | dry            |  95.5 | 414    | -27.6  |
+        | 486    | wet            | 105.8 |  92.0  | 350    |
+        | 393    | dry            |  85.5 | 368    | -27.6  |
         |        | hydration      |  70.0 |        |        |
 
 +*/
