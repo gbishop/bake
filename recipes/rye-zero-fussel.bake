@@ -1,9 +1,12 @@
 # from https://www.homebaking.at/zero-fussel-dein-shortcut-zum-perfekten-roggenbrot/
 
 sour:
-  rye_whole = 42%
+  rye_whole # sifted
+  rye_white
+  red_rye_malt = 1%
   water_104F
-  starter = 5% * rye_whole # 2%=18H 5%=15H 10%=12H 20%=6H
+  starter = 5% * total_flour # 2%=18H 5%=15H 10%=12H 20%=6H
+  total_flour = 40%
   hydration = 80%
 
 
@@ -21,15 +24,18 @@ sour:
 
 dough:
   sour
-  rye_whole = 20%
-  rye_white = 38%
   water_95F_104F
+  molasses = 5%
+  olive_oil = 5%
+  yogurt = 5%
+  rye_whole # sifted
+  rye_white
   salt = 2.50%
-  yeast = 0.30%
-  hydration = 75%
+  yeast = 0.5%
+  hydration = 85%
 
-  # total_flour = 1000g
-  total = 1500g
+  total_flour = 840g / 2.3 * 1.1
+  # total = 1500g
 
 /* Dough mixing
 
@@ -126,59 +132,76 @@ indicators:
 */
 
 /* Notes
-18 January 2026
+31 January 2026
 
-• Mixed the sour about 17:00 using the paddle in the KA. Covered the
-  bowl and put it in the proofer at 72F to mirror his RT.
+Changes
 
-• Mixed the dry ingredients for the dough.
+• Increase the hydration to 85%.
+• Sifted the whole rye through my #40 sifter, about 76% extraction.
+• Making a small test loaf
+• Try hand mixing.
+• Butter the pan and dust it with rye bran.
+• Feed the starter with rye bran
+• Increase the yeast a bit
+
+Process
+
+• Fed the starter at 9:15 with 20g rye bran + 20g water. Left at RT.
+
+• Mixed the sour about 17:00 by hand. Covered the 1L cup and put it
+  in the proofer.
 
 Next morning.
 
-• Mixed in the KA, it was a mess. 
+• It had risen about 20%
 
-• I added 10% more water.
+• Mixed by hand about 7:40. Finished about 8:00. Rest for 25
+  minutes.
 
-• I had a hard tine lining the pan but it was fairly easy to move it
-  by hand into the pan.
+• Butter the 1.1L pan and dust it with rye bran.
 
-• I'm letting it proof at 80F. 40 minutes was not enough. I'm
-  waiting for cracks and tiny holes.
+• Into the pan about 8:20. The bran may help but it gets removed by
+  the sticky dough as it goes in.
 
-• At 10:30 it has clearly risen so I preheated the oven to 450.
+• I'm letting it proof at 86F starting at 8:35.
 
-• Baked at 10:50 with 3 tiny holes. It had risen to nearly the top
-  of the pan. 
+• At 9:35 it has clearly risen so I preheated the oven to 425.
 
-• Only 185F after 65 minutes. I gave it 15 more and it reached 206F.
-  I think Dietmar would suggest that my baking temperature should
-  have been higher.
+• Baked at 10:00 with several visible crack. It had risen to nearly
+  the top of the pan. 
 
-• It is cracked around the top mostly because of the parchment paper
-  curling inward at the top.
+• Only 165F after 45 minutes. I gave it 15 more and it reached 206F.
 
-• I forgot to wrap it in cloth.
+• I wrapped it in a towel as soon as it came from the pan.
 
-Otherwise it looks really good. 5 inches tall and nicely rounded.
+• Looks good.
+
+• The texture is good. It is really chewy. Not much flavor. Bread
+  spice is needed. Slow to toast.
 
 */
 
 /*+
- part |  grams  |      name      |   %   | flour  | water  |
-------|---------|----------------|-------|--------|--------|
-sour  |  648    |                |  77.7 | 350    | 280    |
-      |  350    | rye whole      |  42.0 | 350    |        |
-      |  280    | water 104F     |  33.6 |        | 280    |
-      |   17.5  | starter!       |   2.1 |        |        |
+ part | grams  |      name      |   %   | flour  | water  |
+------|--------|----------------|-------|--------|--------|
+sour  | 297    |                |  74.0 | 161    | 129    |
+      |  78.3  | rye whole      |  19.5 |  78.3  |        |
+      |  78.3  | rye white      |  19.5 |  78.3  |        |
+      |   4.02 | red rye malt   |   1.0 |   4.02 |        |
+      | 129    | water 104F     |  32.0 |        | 129    |
+      |   8.0  | starter!       |   2.0 |        |        |
 
-dough | 1500    |                | 179.9 | 834    | 625    |
-      |  648    | sour           |  77.7 | 350    | 280    |
-      |  167    | rye whole      |  20.0 | 167    |        |
-      |  317    | rye white      |  38.0 | 317    |        |
-      |  345    | water 95F 104F |  41.4 |        | 345    |
-      |   20.8  | salt           |   2.5 |        |        |
-      |    2.50 | yeast          |   0.3 |        |        |
-      |         | hydration      |  75.0 |        |        |
+dough | 801    |                | 199.5 | 402    | 341    |
+      | 297    | sour           |  74.0 | 161    | 129    |
+      | 191    | water 95F 104F |  47.5 |        | 191    |
+      |  20.1  | molasses       |   5.0 |        |   4.42 |
+      |  20.1  | olive oil      |   5.0 |        |        |
+      |  20.1  | yogurt         |   5.0 |        |  17.7  |
+      | 121    | rye whole      |  30.0 | 121    |        |
+      | 121    | rye white      |  30.0 | 121    |        |
+      |  10.0  | salt           |   2.5 |        |        |
+      |   2.01 | yeast          |   0.5 |        |        |
+      |        | hydration      |  85.0 |        |        |
 
 +*/
 
