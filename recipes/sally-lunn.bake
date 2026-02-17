@@ -21,59 +21,35 @@ dough:
 
 /*
 
-April 3, 2025
+February 4, 2026
 
 Changes from the original.
-* converted to grams
-* rounded the percentages
-* increased hyrdation
-* added potato flakes
-* reduced sugar to control excessive browning
-* bake on light setting
+* bake in the 9 inch pullman pan
+* bake in oven 350 covered
 
-Nearly perfect. I removed it 8 minutes early and it is a little
-over browned. We should test it 15 minutes early. 
-
+This is really good but 10% too big.
 */
 
 
 /*+
-Nutrition
-    name     | per 100g |
--------------|----------|
-calcium      |     0.05 |
-calories     |   307    |
-carbohydrate |    47.1  |
-fat          |     8.8  |
-fiber        |     1.6  |
-monounsat    |     2.3  |
-polyunsat    |     0.90 |
-potassium    |     0.15 |
-protein      |     9.3  |
-saturated    |     4.7  |
-sodium       |     0.51 |
-sugars       |     7.2  |
-water        |    38.8  |
-
-
  part | grams  |      name     |   %   | flour  | water  |
 ------|--------|---------------|-------|--------|--------|
-wet   | 368    |               |  87.6 |        | 273    |
-      | 213    | milk          |  50.8 |        | 188    |
+wet   | 416    |               |  99.1 |        | 315    |
+      | 262    | milk          |  62.3 |        | 230    |
       |  54.6  | butter        |  13.0 |        |   8.7  |
-      | 100    | eggs          |  23.8 |        |  76.1  |
-     
-dry   | 476    |               | 113.4 | 420    |   0.32 |
+      | 100    | eggs          |  23.8 |        |  76.0  |
+
+dry   | 497    |               | 118.4 | 420    | -42.0  |
       |   8.4  | salt          |   2.0 |        |        |
       |  42.0  | sugar         |  10.0 |        |        |
-      |  21.0  | potato flakes |   5.0 |  21.0  |        |
-      | 399    | bread flour   |  95.0 | 399    |        |
-      |   5.9  | yeast         |   1.4 |        |   0.30 |
-     
-dough | 844    |               | 201.0 | 420    | 273    |
-      | 368    | wet           |  87.6 |        | 273    |
-      | 476    | dry           | 113.4 | 420    |   0.32 |
+      |  21.0  | potato flakes |   5.0 |        | -42.0  |
+      | 420    | bread flour   | 100.0 | 420    |        |
+      |   5.9  | yeast         |   1.4 |        |        |
+
+dough | 914    |               | 217.5 | 420    | 273    |
+      | 416    | wet           |  99.1 |        | 315    |
+      | 497    | dry           | 118.4 | 420    | -42.0  |
       |        | hydration     |  65.0 |        |        |
-     
+
 +*/
 
