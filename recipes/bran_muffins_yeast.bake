@@ -1,0 +1,78 @@
+/*
+http://fleischmannsyeast.com/recipe/bran-muffin-rolls/
+
+• converted to grams
+• try to mix and knead in the bread machine
+
+*/
+
+dough:
+  warm_water = 532g
+  eggs = 100g
+  yeast = 14g
+  butter = 85g
+  sugar = 50g
+  bran = 100g
+  ww = 300g
+  flaxseed_meal = 60g
+  ap_flour = 240g
+  vwg = 18g
+  salt = 9g
+
+  chopped_dates = 227g
+
+/* 
+Directions
+
+• Place dates in a small bowl. Add enough hot water to cover dates;
+  set aside.
+
+• Combine wheat bran and 1-3/4 cups warm water in a small bowl; let
+  stand 5 minutes. Place remaining 1/2 cup warm water in large warm
+  bowl. Sprinkle in yeast; stir until dissolved. Add bran mixture,
+  flaxseed, 6 tablespoons butter, sugar, wheat gluten, salt and
+  2 cups whole wheat flour; blend well.
+
+• Drain dates; add to batter with eggs, all-purpose flour and enough
+  remaining whole wheat flour to make a stiff batter. Cover bowl
+  tightly with plastic wrap.
+
+• Refrigerate 2 to 24 hours. Remove from refrigerator. Stir batter
+  down. Grease 24 (2-1/2-inch) muffin pan cups. (Do NOT use paper
+  liners as rolls will stick to the paper.) Spoon 1/3 cup batter
+  into each cup. Cover; let rise in warm, draft-free place until
+  doubled in size, about 45 to 80 minutes.
+
+• For topping, combine sugar and cinnamon, if desired, in a small
+  bowl. Brush rolls gently with melted butter. Sprinkle 1/4 teaspoon
+  topping over each roll.
+
+• Bake in preheated 375°F oven for 20 to 25 minutes or until done.
+  Remove from muffin cups; let rolls cool on wire racks.
+
+• TIP: If using dark or coated nonstick muffin pans, check rolls at
+  minimum bake time to prevent over-browning, or decrease oven
+  temperature slightly.
+
+*/
+
+/*+
+ part |  grams  |      name      |   %   | flour  | water  |
+------|---------|----------------|-------|--------|--------|
+dough | 1735    |                | 241.6 | 718    | 622    |
+      |  532    | warm water     |  74.1 |        | 532    |
+      |  100    | eggs           |  13.9 |        |  76.0  |
+      |   14.0  | yeast          |   1.9 |        |        |
+      |   85.0  | butter         |  11.8 |        |  13.6  |
+      |   50.0  | sugar          |   7.0 |        |        |
+      |  100    | bran           |  13.9 | 100    |        |
+      |  300    | ww             |  41.8 | 300    |        |
+      |   60.0  | flaxseed meal  |   8.4 |  60.0  |        |
+      |  240    | ap flour       |  33.4 | 240    |        |
+      |   18.0  | vwg            |   2.5 |  18.0  |        |
+      |    9.0  | salt           |   1.3 |        |        |
+      |  227    | chopped dates! |  31.6 |        |        |
+      |         | hydration      |  86.6 |        |        |
+
++*/
+
