@@ -1,0 +1,65 @@
+# baked muesli
+
+toasted:
+  oats = 100%
+  almonds = 20%
+  pumpkin_seeds = 20%
+  pecans = 10%
+  coconut_flakes = 10%
+  cinnamon = 0.5%
+  salt = 0.8%
+
+dough:
+  toasted
+  apricots = 20%
+  cranberries = 20%
+
+  total = 725g / 3
+
+/*
+
+• Prep the oven. Heat oven to 350°F (180°C). 
+
+• Bake, round one. Combine the oats, almonds, pepitas, pecans,
+  cinnamon, cardamom and sea salt on one large baking sheet (or
+  divide evenly between two smaller baking sheets, see note below).
+  Toss briefly to combine. Bake for 10-15 minutes, until the nuts
+  are fragrant. 
+
+• Bake, round two. Remove the baking sheet and give the mixture
+  a good stir. Sprinkle the coconut flakes evenly over the top of
+  the mixture. Return the baking sheet to the oven and bake for 3-5
+  minutes, or until the coconut is lightly golden. Transfer the
+  baking sheet to a wire rack and let the mixture cool for at least
+  10 minutes.
+
+• Combine. Either in a mixing bowl or directly on the baking sheet,
+  add the dried fruit and toss the mixture until everything is
+  evenly combined.
+
+• Serve or store. Serve the muesli as desired and enjoy. Or let it
+  cool completely to room temperature, then store in an airtight
+  container for up 1 month.
+
+*/
+
+/*+
+  part  | grams  |       name      |   %   | flour  | water |
+--------|--------|-----------------|-------|--------|-------|
+toasted | 194    |                 | 161.3 | 120    |       |
+        | 120    | oats            | 100.0 | 120    |       |
+        |  24.0  | almonds         |  20.0 |        |       |
+        |  24.0  | pumpkin seeds   |  20.0 |        |       |
+        |  12.0  | pecans          |  10.0 |        |       |
+        |  12.0  | coconut flakes! |  10.0 |        |       |
+        |   0.60 | cinnamon        |   0.5 |        |       |
+        |   0.96 | salt            |   0.8 |        |       |
+
+dough   | 242    |                 | 201.3 | 120    |       |
+        | 194    | toasted         | 161.3 | 120    |       |
+        |  24.0  | apricots!       |  20.0 |        |       |
+        |  24.0  | cranberries!    |  20.0 |        |       |
+        |        | hydration       |   0.0 |        |       |
+
++*/
+
