@@ -1,4 +1,5 @@
 index,flour,water
+almonds,0,0
 apple_butter,0,0.56
 apple_juice,0,0.88
 ap_flour,1,0
@@ -29,8 +30,8 @@ chia_seeds_sr,0,-2.37
 chia_seeds_sb,0,-2.76
 chickpea_flour,0,-1
 cider_vinegar,0,1
-cinnamon,0,0.11
-coconut,0,0.23
+cinnamon,0,0
+coconut,0,0
 conditioner,1,0
 coriander,0,0
 corn_meal,1,0
