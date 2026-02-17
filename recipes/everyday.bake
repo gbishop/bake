@@ -1,17 +1,15 @@
 # My everyday loaf based on morph
 
 starter:
-  ww
+  rye
   water
   hydration = 100%
 
 leaven ^ 10g:
   starter
-  starter = 5% * total_flour
-  rye = 35.8g
   ww
   water
-  hydration = 80%
+  hydration = 100%
 
 grain:
   prairie_gold
@@ -31,8 +29,7 @@ dry:
   salt = 1.8%
 
 wet:
-  leaven
-  leaven.total_flour = 20%
+  leaven = 25%
   water
   olive_oil = 5%
   honey = 5%
@@ -46,21 +43,21 @@ dough:
   total_flour = 460g # 220g
 
 /*
-January 29, 2026
+February 11, 2026
 
 Changes
-• Use an overnight leaven at 20% of flour
-• Covered for most of the bake.
+• Create the leaven in the evening.
+• Covered for first 15 minutes.
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-Mixed the leaven about 15:45 and left at our cool RT of 68 to 63.
+Mixed the leaven about 19:30 left at RT overnight.
 
-leaven pH = 4.3
+leaven pH = 4.09
 
-I started about 8:10
+I started about 8:15
 
-Used the BM for kneading. Mixed about 8:38. DT after mixing is 79.6
+Used the BM for kneading. Mixed about 8:50. DT after mixing is 83.
 RT is 68F.
 
 Left in the BM with a 10 minute delay for a full dough cycle.
@@ -68,20 +65,21 @@ Left in the BM with a 10 minute delay for a full dough cycle.
 I removed it from the BM and preshaped it into a ball for a 15
 minute rest. It was much easier to shape.
 
-Proof begins at 11:15.
+Proof begins at 10:40
 
-The dough is tearing in one area of the top.
+Baked at 350F about 11:40 at the top of the pan. I filled the bottom
+pan with water before preheating. It was gone when I put the loaf in
+the oven but there was still some steam. Perhaps more water would
+last?
 
-Baked at 375F convection about 12:25 at the top of the pan. 40
-minutes covered + 5 minutes uncovered. Beautiful but only 180F
-inside. Back in for 5 minutes uncovered. Finally 200F.
+Darker on top that I'd like but they say the flavor is in the brown.
+208F internally which is somewhat higher than needed. For uncovered
+baking I should either lower the temperature or the time. 
 
-The oven controls locked up again so I lost track of time.
+Good looking loaf. It is 5.5 inches tall.
 
-Good looking loaf. If is 5 inches tall.
-
-More sour on the first day. Good texture. Maybe a bit too sour.
-Maybe back off on the leaven size.
+Flavor is good. Could be a little more sour. I should slow it down
+next time.
 
 */
 
@@ -89,25 +87,24 @@ Maybe back off on the leaven size.
 /*+
   part  | grams  |      name      |   %   | flour  | water  |
 --------|--------|----------------|-------|--------|--------|
-starter |   4.60 |                |   1.0 |   2.30 |   2.30 |
-        |   2.30 | ww             |   0.5 |   2.30 |        |
-        |   2.30 | water          |   0.5 |        |   2.30 |
+starter |  23.0  |                |   5.0 |  11.5  |  11.5  |
+        |  11.5  | rye            |   2.5 |  11.5  |        |
+        |  11.5  | water          |   2.5 |        |  11.5  |
 
-leaven  | 176    | + 10.0g        |  36.0 |  92.0  |  73.6  |
-        |   4.88 | starter        |   1.0 |   2.30 |   2.30 |
-        |  38.0  | rye            |   7.8 |  35.8  |        |
-        |  57.2  | ww             |  11.7 |  53.9  |        |
-        |  75.6  | water          |  15.5 |        |  71.3  |
+leaven  | 125    | + 10.0g        |  25.0 |  57.5  |  57.5  |
+        |  25.0  | starter        |   5.0 |  11.5  |  11.5  |
+        |  50.0  | ww             |  10.0 |  46.0  |        |
+        |  50.0  | water          |  10.0 |        |  46.0  |
 
-grain   | 331    |                |  72.0 | 331    |        |
-        | 108    | prairie gold   |  23.5 | 108    |        |
-        | 108    | hard red       |  23.5 | 108    |        |
+grain   | 366    |                |  79.5 | 366    |        |
+        | 125    | prairie gold   |  27.3 | 125    |        |
+        | 125    | hard red       |  27.2 | 125    |        |
         |  69.0  | spelt          |  15.0 |  69.0  |        |
         |  23.0  | barley         |   5.0 |  23.0  |        |
         |  23.0  | buckwheat      |   5.0 |  23.0  |        |
 
-dry     | 393    |                |  85.5 | 368    | -27.6  |
-        | 331    | grain          |  72.0 | 331    |        |
+dry     | 428    |                |  93.0 | 402    | -27.6  |
+        | 366    | grain          |  79.5 | 366    |        |
         |  13.8  | vwg            |   3.0 |  13.8  |        |
         |  13.8  | potato flakes  |   3.0 |        | -27.6  |
         |  23.0  | flaxseed meal  |   5.0 |  23.0  |        |
@@ -116,16 +113,16 @@ dry     | 393    |                |  85.5 | 368    | -27.6  |
         |   0.37 | ascorbic acid  |   0.1 |        |        |
         |   8.3  | salt           |   1.8 |        |        |
 
-wet     | 486    |                | 105.8 |  92.0  | 350    |
-        | 166    | leaven         |  36.0 |  92.0  |  73.6  |
-        | 252    | water          |  54.8 |        | 252    |
+wet     | 452    |                |  98.3 |  57.5  | 350    |
+        | 115    | leaven         |  25.0 |  57.5  |  57.5  |
+        | 268    | water          |  58.3 |        | 268    |
         |  23.0  | olive oil      |   5.0 |        |        |
         |  23.0  | honey          |   5.0 |        |   3.91 |
         |  23.0  | yogurt         |   5.0 |        |  20.2  |
 
 dough   | 880    |                | 191.3 | 460    | 322    |
-        | 486    | wet            | 105.8 |  92.0  | 350    |
-        | 393    | dry            |  85.5 | 368    | -27.6  |
+        | 452    | wet            |  98.3 |  57.5  | 350    |
+        | 428    | dry            |  93.0 | 402    | -27.6  |
         |        | hydration      |  70.0 |        |        |
 
 +*/
