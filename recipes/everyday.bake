@@ -5,9 +5,10 @@ starter:
   water
   hydration = 100%
 
-leaven ^ 10g:
+leaven ^ 12g:
   starter
-  ww
+  rye = 2*starter
+  rye
   water
   hydration = 100%
 
@@ -29,7 +30,7 @@ dry:
   salt = 1.8%
 
 wet:
-  leaven = 25%
+  leaven = 30%
   water
   olive_oil = 5%
   honey = 5%
@@ -43,21 +44,24 @@ dough:
   total_flour = 460g # 220g
 
 /*
-February 11, 2026
+February 19, 2026
 
 Changes
-• Create the leaven in the evening.
-• Covered for first 15 minutes.
+• Rye leaven
+• Increase the leaven to 30%
+
+Next time
+• Drop the diastatic malt
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-Mixed the leaven about 19:30 left at RT overnight.
+Mixed the leaven about 16:30 left at RT overnight.
 
-leaven pH = 4.09
+Leaven pH = 4.09
 
-I started about 8:15
+I started about 7:50
 
-Used the BM for kneading. Mixed about 8:50. DT after mixing is 83.
+Used the BM for kneading. Mixed about 8:25. DT after mixing is 81.6.
 RT is 68F.
 
 Left in the BM with a 10 minute delay for a full dough cycle.
@@ -65,21 +69,24 @@ Left in the BM with a 10 minute delay for a full dough cycle.
 I removed it from the BM and preshaped it into a ball for a 15
 minute rest. It was much easier to shape.
 
-Proof begins at 10:40
+Proof begins at 10:50 at RT
 
-Baked at 350F about 11:40 at the top of the pan. I filled the bottom
-pan with water before preheating. It was gone when I put the loaf in
-the oven but there was still some steam. Perhaps more water would
-last?
+Baked at 350F about 12:00 at the top of the pan. I filled the bottom
+pan with 130ml of water before preheating. It lasted about 13
+minutes into the bake.
+
+The dough was breaking down on top. Is the rye starter bringing too
+much amylase activity?
 
 Darker on top that I'd like but they say the flavor is in the brown.
-208F internally which is somewhat higher than needed. For uncovered
-baking I should either lower the temperature or the time. 
+I removed it after about 40 minutes.
 
-Good looking loaf. It is 5.5 inches tall.
+Ugly loaf. It is 4.75 inches tall.
 
-Flavor is good. Could be a little more sour. I should slow it down
-next time.
+Flavor is good. Crust is really ugly. 
+
+My current theory is the diastatic malt needs to go. That could
+explain both the excessive browning and the degradation.
 
 */
 
@@ -87,24 +94,24 @@ next time.
 /*+
   part  | grams  |      name      |   %   | flour  | water  |
 --------|--------|----------------|-------|--------|--------|
-starter |  23.0  |                |   5.0 |  11.5  |  11.5  |
-        |  11.5  | rye            |   2.5 |  11.5  |        |
-        |  11.5  | water          |   2.5 |        |  11.5  |
+starter |  27.6  |                |   6.0 |  13.8  |  13.8  |
+        |  13.8  | rye            |   3.0 |  13.8  |        |
+        |  13.8  | water          |   3.0 |        |  13.8  |
 
-leaven  | 125    | + 10.0g        |  25.0 |  57.5  |  57.5  |
-        |  25.0  | starter        |   5.0 |  11.5  |  11.5  |
-        |  50.0  | ww             |  10.0 |  46.0  |        |
-        |  50.0  | water          |  10.0 |        |  46.0  |
+leaven  | 150    | + 12.0g        |  30.0 |  69.0  |  69.0  |
+        |  30.0  | starter        |   6.0 |  13.8  |  13.8  |
+        |  60.0  | rye            |  12.0 |  55.2  |        |
+        |  60.0  | water          |  12.0 |        |  55.2  |
 
-grain   | 366    |                |  79.5 | 366    |        |
-        | 125    | prairie gold   |  27.3 | 125    |        |
-        | 125    | hard red       |  27.2 | 125    |        |
+grain   | 354    |                |  77.0 | 354    |        |
+        | 120    | prairie gold   |  26.0 | 120    |        |
+        | 120    | hard red       |  26.0 | 120    |        |
         |  69.0  | spelt          |  15.0 |  69.0  |        |
         |  23.0  | barley         |   5.0 |  23.0  |        |
         |  23.0  | buckwheat      |   5.0 |  23.0  |        |
 
-dry     | 428    |                |  93.0 | 402    | -27.6  |
-        | 366    | grain          |  79.5 | 366    |        |
+dry     | 416    |                |  90.5 | 391    | -27.6  |
+        | 354    | grain          |  77.0 | 354    |        |
         |  13.8  | vwg            |   3.0 |  13.8  |        |
         |  13.8  | potato flakes  |   3.0 |        | -27.6  |
         |  23.0  | flaxseed meal  |   5.0 |  23.0  |        |
@@ -113,16 +120,16 @@ dry     | 428    |                |  93.0 | 402    | -27.6  |
         |   0.37 | ascorbic acid  |   0.1 |        |        |
         |   8.3  | salt           |   1.8 |        |        |
 
-wet     | 452    |                |  98.3 |  57.5  | 350    |
-        | 115    | leaven         |  25.0 |  57.5  |  57.5  |
-        | 268    | water          |  58.3 |        | 268    |
+wet     | 463    |                | 100.8 |  69.0  | 350    |
+        | 138    | leaven         |  30.0 |  69.0  |  69.0  |
+        | 256    | water          |  55.8 |        | 256    |
         |  23.0  | olive oil      |   5.0 |        |        |
         |  23.0  | honey          |   5.0 |        |   3.91 |
         |  23.0  | yogurt         |   5.0 |        |  20.2  |
 
 dough   | 880    |                | 191.3 | 460    | 322    |
-        | 452    | wet            |  98.3 |  57.5  | 350    |
-        | 428    | dry            |  93.0 | 402    | -27.6  |
+        | 463    | wet            | 100.8 |  69.0  | 350    |
+        | 416    | dry            |  90.5 | 391    | -27.6  |
         |        | hydration      |  70.0 |        |        |
 
 +*/
