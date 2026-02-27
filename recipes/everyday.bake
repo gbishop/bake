@@ -7,15 +7,14 @@ starter:
 
 leaven ^ 12g:
   starter
-  rye = 2*starter
-  rye
+  ww = 2*starter
   water
   hydration = 100%
 
 grain:
   prairie_gold
   hard_red
-  spelt = 15%
+  spelt = 5%
   barley = 5%
   buckwheat = 5%
 
@@ -24,6 +23,7 @@ dry:
   vwg = 3%
   potato_flakes = 3%
   flaxseed_meal = 5%
+  af_enhancer = 0.5%
   yeast = 0.4%
   salt = 1.8%
 
@@ -42,65 +42,61 @@ dough:
   total_flour = 460g # 220g
 
 /*
-February 23, 2026
+February 25, 2026
 
 Changes
-• Drop the diastatic malt and the ascorbic acid
 
-Next
-• Try switching to a ww leaven.
+• ww leaven
+• decrease spelt
+• add "Authentic Foods Dough Enhancer"
+• cool water
+• disable zoji pre-heat
+• remove from zoji after kneading
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-Mixed the leaven about 16:30 left at RT overnight.
+Mixed the leaven with cool water about 17:45 left at RT overnight.
 
 Leaven pH = 4.09
 
-I started about 8:00
+I started about 7:30
 
-Used the BM for kneading. Mixed about 8:37. DT after mixing is 76F.
-RT is 68F.
+Zoji pan is 64F. Water is 39F. Wet is 54F. Dry is 74F.
 
-Left in the BM with a 10 minute delay for a full dough cycle.
+Used the BM for kneading. Mixed about 8:04. Stopped after
+5 minutes. DT after mixing is 65F. RT is 68F. 
 
-DT at end of kneading is 90F.
+Left in the BM for a 30 minute rest. Restarted the BM for kneading
+only.
 
-DT at end of BM dough course is 78F.
+DT before kneading is 68F.
 
-I removed it from the BM and preshaped it into a ball for a 15
-minute rest. It was much easier to shape.
+Removed the dough at the add beep after 15 minutes of kneading.
 
-Proof begins at 11:00 at RT
+DT at end of kneading is 77F.
 
-Baked at 350F about 12:35 at the top of the pan. The dough was
-breaking down on top. Perhaps not as bad as with the malt but
-significant still.
+Out of the BM and into the 2L cambro. S&F at 20 minute intervals for
+2 times.
+
+DT after first S&F is 75F. After 2nd is 75F. After 15 more minutes
+it is 73F. Shaped and into the pan at 10:05.
+
+Baked at 350F about 11:34 at the top of the pan. No signs of dough
+breakdown. Cooling things down appears to have worked.
 
 I filled the bottom pan with 150ml of water before preheating. It
-lasted about 13 minutes into the bake. Baked for 40 minutes. 200F
-internal.
+lasted about 15 minutes into the bake.
 
-Ugly loaf. It is 5 inches tall.
+After 40 minutes the internal temperature is 195F.
+After 5 more minutes it is 206F.
+
+It looks really good. It is 5.25 inches tall in the center but only
+4 inches at the ends. I need to work on shaping the loaf better.
 
 Flavor is good. I like the crispy crust that I assume results from
 the steam.
 
-Gemini suggests:
-
-Change,              Why it helps
-------               ------------
-Shorten Leaven Time, Aim for 8–10 hours or a pH of ~4.4. This
-                        provides flavor without peak enzymatic breakdown.
-Cooler Water,        High enzyme activity is accelerated by heat.
-                        Use cooler water to slow down the ""digestion""
-                        of the gluten.
-Increase VWG,        With nearly 50% non-bread-flour ingredients,
-                        you could bump the VWG to 5% to provide a more
-                        robust "net."
-Scald,               Consider scalding the rye or buckwheat with
-                        boiling water first.
-Mix only in Zoji,    The Zoji heats while rising. Use it only for
-                        mixing
+Not clear that the enhancer improved anything.
 
 */
 
@@ -114,34 +110,35 @@ starter |  27.6  |               |   6.0 |  13.8  |  13.8  |
 
 leaven  | 150    | + 12.0g       |  30.0 |  69.0  |  69.0  |
         |  30.0  | starter       |   6.0 |  13.8  |  13.8  |
-        |  60.0  | rye           |  12.0 |  55.2  |        |
+        |  60.0  | ww            |  12.0 |  55.2  |        |
         |  60.0  | water         |  12.0 |        |  55.2  |
 
 grain   | 354    |               |  77.0 | 354    |        |
-        | 120    | prairie gold  |  26.0 | 120    |        |
-        | 120    | hard red      |  26.0 | 120    |        |
-        |  69.0  | spelt         |  15.0 |  69.0  |        |
+        | 143    | prairie gold  |  31.0 | 143    |        |
+        | 143    | hard red      |  31.0 | 143    |        |
+        |  23.0  | spelt         |   5.0 |  23.0  |        |
         |  23.0  | barley        |   5.0 |  23.0  |        |
         |  23.0  | buckwheat     |   5.0 |  23.0  |        |
 
-dry     | 415    |               |  90.2 | 391    | -27.6  |
+dry     | 417    |               |  90.7 | 391    | -27.6  |
         | 354    | grain         |  77.0 | 354    |        |
         |  13.8  | vwg           |   3.0 |  13.8  |        |
         |  13.8  | potato flakes |   3.0 |        | -27.6  |
         |  23.0  | flaxseed meal |   5.0 |  23.0  |        |
+        |   2.30 | af enhancer   |   0.5 |        |        |
         |   1.84 | yeast         |   0.4 |        |        |
         |   8.3  | salt          |   1.8 |        |        |
 
-wet     | 463    |               | 100.7 |  69.0  | 350    |
+wet     | 463    |               | 100.8 |  69.0  | 350    |
         | 138    | leaven        |  30.0 |  69.0  |  69.0  |
         | 256    | water         |  55.8 |        | 256    |
         |  23.0  | olive oil     |   5.0 |        |        |
         |  23.0  | honey         |   5.0 |        |   3.91 |
         |  23.0  | yogurt        |   5.0 |        |  20.2  |
 
-dough   | 878    |               | 190.9 | 460    | 322    |
-        | 463    | wet           | 100.7 |  69.0  | 350    |
-        | 415    | dry           |  90.2 | 391    | -27.6  |
+dough   | 881    |               | 191.5 | 460    | 322    |
+        | 463    | wet           | 100.8 |  69.0  | 350    |
+        | 417    | dry           |  90.7 | 391    | -27.6  |
         |        | hydration     |  70.0 |        |        |
 
 +*/
