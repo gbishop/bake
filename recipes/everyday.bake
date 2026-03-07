@@ -23,7 +23,6 @@ dry:
   vwg = 3%
   potato_flakes = 3%
   flaxseed_meal = 5%
-  af_enhancer = 0.5%
   yeast = 0.2%
   salt = 1.8%
 
@@ -42,59 +41,61 @@ dough:
   total_flour = 460g # 220g
 
 /*
-March 2, 2026
+March 6, 2026
 
 Changes
-
-• cool water
-• zoji pan to fridge after mixing.
+• slightly warmer than last time.
+• Drop the af enhancer
+• refrigerate the pan while grinding the flour
+• knead for 22 minutes in the Zoji
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-Mixed the leaven with 74F water about 17:05 left at 60F overnight.
+Starter is 4 days old.
+
+Mixed the leaven with 74F water about 17:40 left at 60F overnight.
+Initial leaven temperature is 72F.
+RT is 70F.
 
 Leaven pH = 4.40 after 14.75 hours.
 
-I started about 7:20
+I started about 7:30
 
-Zoji pan is 64F. Water is 39F. Wet is 54F. Dry is 74F.
+Zoji pan is 49F. Water is 39F. Wet is 50.6F. Dry is 76F.
 
 Used the BM for kneading. Mixed about 8:04. Stopped after
-3 minutes. DT after mixing is 65F. RT is 68F. 
+3 minutes. DT after mixing is 63F. RT is 68F. 
 
-Moved the pan to the fridge for the 30 minute rest. After rest the
-pan is 54F, the dough is 59F outside and 61F inside.
+30 minute rest. After rest the dough is 64F outside
+and 63F inside.
 
 Restarted the BM for kneading only.
 
-Removed the dough at the add beep after 15 minutes of kneading.
+Removed the dough after 22 minutes of kneading.
 
-DT at end of kneading is 70F.
+DT at end of kneading is 78F.
 
 First rise begins about 8:50.
 
-Out of the BM and into the 2L cambro. S&F at 40 minute intervals for
-2 times.
+Out of the BM and into the 2L cambro at RT. S&F at 40 minute
+intervals for 2 times.
 
-Shaped and into the pan at 10:10.
+Shaped and into the pan at 11:00. Proof at 76F.
 
-Baked at 350F about 13:15 at the top of the pan. No signs of dough
-breakdown. Cooling things down appears to have worked.
+Baked at 350F about 13:30 at the top of the pan. No signs of dough
+breakdown.
 
-I filled the bottom pan with 150ml of water before preheating. It
-lasted about 15 minutes into the bake.
+I filled the bottom pan with 200ml of water before preheating. It
+lasted about ? minutes into the bake.
 
-After 40 minutes the internal temperature is 202F.
+After 40 minutes the internal temperature is 205F.
 
-It looks really good. It is 4.75 inches tall in the center but only
-4.25 inches at the ends. I need to work on shaping the loaf better.
+It looks really good. The shape is perfect at 5 inches tall with
+only a little curve toward the ends.
 
 No cracking.
 
-Flavor is good. I like the crispy crust that I assume results from
-the steam.
-
-Not clear that the enhancer improved anything.
+Flavor is bordering on too sour but is great when toasted.
 
 */
 
@@ -118,12 +119,11 @@ grain   | 354    |               |  77.0 | 354    |        |
         |  23.0  | barley        |   5.0 |  23.0  |        |
         |  23.0  | buckwheat     |   5.0 |  23.0  |        |
 
-dry     | 416    |               |  90.5 | 391    | -27.6  |
+dry     | 414    |               |  90.0 | 391    | -27.6  |
         | 354    | grain         |  77.0 | 354    |        |
         |  13.8  | vwg           |   3.0 |  13.8  |        |
         |  13.8  | potato flakes |   3.0 |        | -27.6  |
         |  23.0  | flaxseed meal |   5.0 |  23.0  |        |
-        |   2.30 | af enhancer   |   0.5 |        |        |
         |   0.92 | yeast         |   0.2 |        |        |
         |   8.3  | salt          |   1.8 |        |        |
 
@@ -134,9 +134,9 @@ wet     | 463    |               | 100.8 |  69.0  | 350    |
         |  23.0  | honey         |   5.0 |        |   3.91 |
         |  23.0  | yogurt        |   5.0 |        |  20.2  |
 
-dough   | 880    |               | 191.2 | 460    | 322    |
+dough   | 877    |               | 190.7 | 460    | 322    |
         | 463    | wet           | 100.8 |  69.0  | 350    |
-        | 416    | dry           |  90.5 | 391    | -27.6  |
+        | 414    | dry           |  90.0 | 391    | -27.6  |
         |        | hydration     |  70.0 |        |        |
 
 +*/
