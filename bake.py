@@ -52,7 +52,7 @@ variable: ID
 reference: ID "." ID
 
 ID: /[a-zA-Z_][a-zA-Z_0-9]*/
-NUMBER: /-?[0-9]+([.][0-9]+)?g?/
+NUMBER: /-?[0-9]+([.][0-9]+)?(g|ppm)?/
 
 WHITESPACE: /[ \n]+/ 
 %ignore WHITESPACE
@@ -180,6 +180,8 @@ class Prepare(visitors.Transformer):
     def NUMBER(self, value):
         if value.endswith("g"):
             return float(value[:-1])
+        elif value.endswith("ppm"):
+            return float(value[:-3]) / 1000000
         else:
             return float(value)
 
