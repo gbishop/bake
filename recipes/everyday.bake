@@ -5,9 +5,9 @@ starter:
   water
   hydration = 100%
 
-leaven ^ 12g:
+leaven ^ 6g:
   starter
-  ww = 3 * starter # too much starter
+  ww = 4 * starter
   water
   hydration = 100%
 
@@ -32,110 +32,113 @@ wet:
   olive_oil = 5%
   honey = 5%
   yogurt = 5%
+  ascorbic_acid_1p = 75ppm * 100 * grain.total
 
 dough:
   wet
   dry
   hydration = 70%
   # 200g/L of flour
-  total_flour = 660g 
+  # total_flour = 660g # 13 inch
+  total_flour = 460g # 9 inch
 
 /*
-March 10, 2026
+March 17, 2026
 
 Changes
-• 13 inch loaf
 • adjusted leaven starter ratio
-• Use the mixer
-• boost the yeast and short first rise because leaven is too acidic.
+• add ascorbic acid 1% solution
+• 3 hour cold bulk ferment with 2 S&F at 30 minute intervals
+• increase yeast to compensate for cold bulk
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-Starter is 4 days old.
+Starter is 7 days old.
 
-Mixed the leaven with 74F water about 19:00 left at 60F overnight.
+Mixed the leaven with 74F water about 20:00 left at 60F overnight.
 Initial leaven temperature is 72F.
 RT is 72F.
 
-Leaven pH = 4.23 after 13.00 hours.
+Leaven pH = 4.40 after 12.80 hours.
 
-The 30 : 90 : 90 leaven has too much starter. I should have seen
-that.
-
-I started about 8:00
+I started about 8:25
 
 Put the mixer bowl in the fridge.
 
-Zoji pan is 49F. Water is 39F. Wet is 48.9F. Dry is 79F.
+Water is 39F. Wet is 48.9F. Dry is 78F.
 
 Used the KA for mixing. Mixed about 8:50. Stopped after 3 minutes.
-DT after mixing is 63.8F. RT is 68F. 
+DT after mixing is 62.3F. RT is 67F. 
 
 30 minute rest in fridge. After rest the dough is 63F outside and 64F inside.
 
-Restarted the KA for kneading only. Removed the dough after 15 minutes of kneading.
+Restarted the KA for kneading. Removed the dough after 8 minutes of
+kneading.
 
-DT at end of kneading is 76F. Allowed to rest in the bowl for 30
-minutes.
+DT at end of kneading is 71.4F. Into the cambro for 30 minutes in
+the fridge. S&F and rest for 30 minutes. S&F and ferment for 2 more
+hours. pH after 1.5 hours in fridge is 5.31. After 3 hours the pH is
+5.28 and the DT is 54F.
 
-Shaped and into the pan about 10:20. Proof at 76F.
+Shaped and into the pan about 12:50. Proof at 76F.
 
-Baked at 350F about 12:20 at the top of the pan. No signs of dough
-breakdown.
+Baked at 350F about 16:27 slightly above the top of the pan. No
+signs of dough breakdown.
 
 I filled the bottom pan with 200ml of water before preheating. It
-lasted about 20 minutes into the bake.
+lasted 20 minutes into the bake.
 
 After 40 minutes the internal temperature is 200F.
 
-It looks really good. The shape is perfect at 5 inches tall with
-only a little curve toward the ends.
+It looks really good. One end is higher than the other, poor
+shaping.
 
 No cracking.
 
-Flavor is good. More sour than I expected from the way I rushed it.
+Flavor is good. Good flavor. 
 
 */
 
 
 /*+
-  part  |  grams  |      name     |   %   | flour  | water  |
---------|---------|---------------|-------|--------|--------|
-starter |   28.3  |               |   4.3 |  14.1  |  14.1  |
-        |   14.1  | rye           |   2.1 |  14.1  |        |
-        |   14.1  | water         |   2.1 |        |  14.1  |
+  part  | grams  |       name       |   %   | flour  | water  |
+--------|--------|------------------|-------|--------|--------|
+starter |  15.3  |                  |   3.3 |   7.7  |   7.7  |
+        |   7.7  | rye              |   1.7 |   7.7  |        |
+        |   7.7  | water            |   1.7 |        |   7.7  |
 
-leaven  |  210    | + 12.0g       |  30.0 |  99.0  |  99.0  |
-        |   30.0  | starter       |   4.3 |  14.1  |  14.1  |
-        |   90.0  | ww            |  12.9 |  84.9  |        |
-        |   90.0  | water         |  12.9 |        |  84.9  |
+leaven  | 144    | + 6.0g           |  30.0 |  69.0  |  69.0  |
+        |  16.0  | starter          |   3.3 |   7.7  |   7.7  |
+        |  64.0  | ww               |  13.3 |  61.3  |        |
+        |  64.0  | water            |  13.3 |        |  61.3  |
 
-grain   |  508    |               |  77.0 | 508    |        |
-        |  205    | prairie gold  |  31.0 | 205    |        |
-        |  205    | hard red      |  31.0 | 205    |        |
-        |   33.0  | spelt         |   5.0 |  33.0  |        |
-        |   33.0  | barley        |   5.0 |  33.0  |        |
-        |   33.0  | buckwheat     |   5.0 |  33.0  |        |
+grain   | 354    |                  |  77.0 | 354    |        |
+        | 143    | prairie gold     |  31.0 | 143    |        |
+        | 143    | hard red         |  31.0 | 143    |        |
+        |  23.0  | spelt            |   5.0 |  23.0  |        |
+        |  23.0  | barley           |   5.0 |  23.0  |        |
+        |  23.0  | buckwheat        |   5.0 |  23.0  |        |
 
-dry     |  596    |               |  90.3 | 561    | -39.6  |
-        |  508    | grain         |  77.0 | 508    |        |
-        |   19.8  | vwg           |   3.0 |  19.8  |        |
-        |   19.8  | potato flakes |   3.0 |        | -39.6  |
-        |   33.0  | flaxseed meal |   5.0 |  33.0  |        |
-        |    3.30 | yeast         |   0.5 |        |        |
-        |   11.9  | salt          |   1.8 |        |        |
+dry     | 415    |                  |  90.3 | 391    | -27.6  |
+        | 354    | grain            |  77.0 | 354    |        |
+        |  13.8  | vwg              |   3.0 |  13.8  |        |
+        |  13.8  | potato flakes    |   3.0 |        | -27.6  |
+        |  23.0  | flaxseed meal    |   5.0 |  23.0  |        |
+        |   2.30 | yeast            |   0.5 |        |        |
+        |   8.3  | salt             |   1.8 |        |        |
 
-wet     |  665    |               | 100.7 |  99.0  | 502    |
-        |  198    | leaven        |  30.0 |  99.0  |  99.0  |
-        |  368    | water         |  55.7 |        | 368    |
-        |   33.0  | olive oil     |   5.0 |        |        |
-        |   33.0  | honey         |   5.0 |        |   5.6  |
-        |   33.0  | yogurt        |   5.0 |        |  29.0  |
+wet     | 463    |                  | 100.7 |  69.0  | 350    |
+        | 138    | leaven           |  30.0 |  69.0  |  69.0  |
+        | 254    | water            |  55.2 |        | 254    |
+        |  23.0  | olive oil        |   5.0 |        |        |
+        |  23.0  | honey            |   5.0 |        |   3.91 |
+        |  23.0  | yogurt           |   5.0 |        |  20.2  |
+        |   2.66 | ascorbic acid 1p |   0.6 |        |   2.66 |
 
-dough   | 1261    |               | 191.0 | 660    | 462    |
-        |  665    | wet           | 100.7 |  99.0  | 502    |
-        |  596    | dry           |  90.3 | 561    | -39.6  |
-        |         | hydration     |  70.0 |        |        |
+dough   | 879    |                  | 191.0 | 460    | 322    |
+        | 463    | wet              | 100.7 |  69.0  | 350    |
+        | 415    | dry              |  90.3 | 391    | -27.6  |
+        |        | hydration        |  70.0 |        |        |
 
 +*/
 
