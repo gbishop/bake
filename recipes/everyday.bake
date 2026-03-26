@@ -32,7 +32,7 @@ wet:
   olive_oil = 5%
   honey = 5%
   yogurt = 5%
-  ascorbic_acid_1p = 75ppm * 100 * grain.total
+  ascorbic_acid_1p = 50ppm * 100 * grain.total
 
 dough:
   wet
@@ -43,59 +43,45 @@ dough:
   total_flour = 460g # 9 inch
 
 /*
-March 17, 2026
+March 24, 2026
 
 Changes
-• adjusted leaven starter ratio
-• add ascorbic acid 1% solution
 • 3 hour cold bulk ferment with 2 S&F at 30 minute intervals
 • increase yeast to compensate for cold bulk
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-Starter is 7 days old.
+Starter is 8 days old.
 
-Mixed the leaven with 74F water about 20:00 left at 60F overnight.
+Mixed the leaven with 72F water about 18:30 left at 60F overnight.
 Initial leaven temperature is 72F.
 RT is 72F.
 
-Leaven pH = 4.40 after 12.80 hours.
+Leaven pH = 4.30 at 8:15.
 
-I started about 8:25
+I started about 7:55
 
-Put the mixer bowl in the fridge.
+# Put the mixer bowl in the fridge.
 
-Water is 39F. Wet is 48.9F. Dry is 78F.
+# Water is 39F. Wet is 48.9F. Dry is 78F.
 
-Used the KA for mixing. Mixed about 8:50. Stopped after 3 minutes.
-DT after mixing is 62.3F. RT is 67F. 
+Used the KA for mixing. Mixed about 8:20. Stopped after 3 minutes.
+DT after mixing is 63.4F. RT is 68F. 
 
-30 minute rest in fridge. After rest the dough is 63F outside and 64F inside.
+30 minute rest in fridge. After rest the dough is 63F outside and
+64F inside.
 
 Restarted the KA for kneading. Removed the dough after 8 minutes of
 kneading.
 
-DT at end of kneading is 71.4F. Into the cambro for 30 minutes in
-the fridge. S&F and rest for 30 minutes. S&F and ferment for 2 more
-hours. pH after 1.5 hours in fridge is 5.31. After 3 hours the pH is
-5.28 and the DT is 54F.
+DT at end of kneading is 64F. Into the cambro for 30 minutes in the
+fridge. S&F, dough is 61F. Rest for 30 minutes. S&F and ferment for
+2 more hoursF.
 
-Shaped and into the pan about 12:50. Proof at 76F.
+It looks good. There is a small crack at the top of the pan along
+one side. I should have scored it.
 
-Baked at 350F about 16:27 slightly above the top of the pan. No
-signs of dough breakdown.
-
-I filled the bottom pan with 200ml of water before preheating. It
-lasted 20 minutes into the bake.
-
-After 40 minutes the internal temperature is 200F.
-
-It looks really good. One end is higher than the other, poor
-shaping.
-
-No cracking.
-
-Flavor is good. Good flavor. 
+Flavor is good. This is about as close to perfect as I have made.
 
 */
 
@@ -129,16 +115,14 @@ dry     | 415    |                  |  90.3 | 391    | -27.6  |
 
 wet     | 463    |                  | 100.7 |  69.0  | 350    |
         | 138    | leaven           |  30.0 |  69.0  |  69.0  |
-        | 254    | water            |  55.2 |        | 254    |
+        | 255    | water            |  55.4 |        | 255    |
         |  23.0  | olive oil        |   5.0 |        |        |
         |  23.0  | honey            |   5.0 |        |   3.91 |
         |  23.0  | yogurt           |   5.0 |        |  20.2  |
-        |   2.66 | ascorbic acid 1p |   0.6 |        |   2.66 |
+        |   1.77 | ascorbic acid 1p |   0.4 |        |   1.77 |
 
 dough   | 879    |                  | 191.0 | 460    | 322    |
         | 463    | wet              | 100.7 |  69.0  | 350    |
-        | 415    | dry              |  90.3 | 391    | -27.6  |
-        |        | hydration        |  70.0 |        |        |
 
 +*/
 
