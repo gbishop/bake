@@ -7,7 +7,7 @@ starter:
 
 leaven ^ 6g:
   starter
-  ww = 4 * starter
+  semolina = 4 * starter
   water
   hydration = 100%
 
@@ -27,12 +27,12 @@ dry:
   salt = 1.8%
 
 wet:
-  leaven = 30%
   water
+  ascorbic_acid_1p = 50ppm * 100 * grain.total
+  leaven = 30%
   olive_oil = 5%
   malt_syrup = 5%
   yogurt = 5%
-  ascorbic_acid_1p = 50ppm * 100 * grain.total
 
 dough:
   wet
@@ -43,44 +43,44 @@ dough:
   total_flour = 460g # 9 inch
 
 /*
-March 29, 2026
+April 3, 2026
 
 Changes
-• Try baking on Sunday afternoon.
-• Mix dough in the morning and leave in the fridge.
+• Durum in the leaven
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-Starter is 5 days old and mostly wheat because I forgot to use rye
-with refreshing it.
+Starter is 5 days old.
 
-Mixed the leaven with 65F water about 21:30 left at 60F overnight.
-Initial leaven temperature is 68F.
-RT is 68F.
+Mixed the leaven with 99F water about 21:15 left at 60F overnight.
+Initial leaven temperature is 83F.
+RT is 75F.
 
-Leaven pH = 4.87 at 8:19. It has risen about 50%.
+Leaven pH = 4.2 at 8:12. It has risen about 20%. It is very soft,
+possibly breaking down. My high water initial water temperature was
+a mistake.
 
-I started about 8:00
+I started about 8:15
 
-Used the KA for mixing. Mixed about 8:30. Stopped after 3 minutes.
-DT after mixing is 62.9F. RT is 68F. 
+Dry is 82F. Wet is 53F. Mix is 66.4F.
 
-20 minute rest in fridge. After rest the dough is 61F outside
+Used the KA for mixing. Mixed about 8:40. Stopped after 3 minutes.
+DT after mixing is 66.4F. RT is 73F. 
+
+30 minute rest in fridge. After rest the dough is 61F outside
 
 Restarted the KA for kneading. Removed the dough after 8 minutes of
 kneading. Finished at 9:00.
 
 DT at end of kneading is 70F. Into the cambro for 30 minutes in the
-fridge. S&F, dough is 68F. Return to fridge until we get home.
+fridge. S&F, back to the fridge for 30 more.
 
-Shaped at 13:15 and into the pan. It hungup on the way in and I had
-to mangle it to get it in. Proof at 76F.
+Shaped at 10:42 and into the pan. Proof at 76F.
 
-Baked at 16:20 for 40 minutes at 350F. It was only 197F so I put it
-back for 4 more minutes. 
+150mL of water lasted for 15 minutes into the bake.
 
-200mL of water lasted for 20 minutes into the bake. That might be
-longer than I need.
+Baked at 14:00 for 40 minutes at 350F. It was about 1 inch above the
+top of the pan.
 
 Close to perfect appearance. Good flavor.
 
@@ -96,7 +96,7 @@ starter |  15.3  |                  |   3.3 |   7.7  |   7.7  |
 
 leaven  | 144    | + 6.0g           |  30.0 |  69.0  |  69.0  |
         |  16.0  | starter          |   3.3 |   7.7  |   7.7  |
-        |  64.0  | ww               |  13.3 |  61.3  |        |
+        |  64.0  | semolina         |  13.3 |  61.3  |        |
         |  64.0  | water            |  13.3 |        |  61.3  |
 
 grain   | 354    |                  |  77.0 | 354    |        |
@@ -115,16 +115,17 @@ dry     | 415    |                  |  90.3 | 391    | -27.6  |
         |   8.3  | salt             |   1.8 |        |        |
 
 wet     | 463    |                  | 100.5 |  69.0  | 350    |
+        | 254    | water            |  55.2 |        | 254    |
+        |   1.77 | ascorbic acid 1p |   0.4 |        |   1.77 |
         | 138    | leaven           |  30.0 |  69.0  |  69.0  |
-        | 255    | water            |  55.4 |        | 255    |
         |  23.0  | olive oil        |   5.0 |        |        |
         |  23.0  | malt syrup       |   5.0 |        |   4.83 |
         |  23.0  | yogurt           |   5.0 |        |  20.2  |
-        |   1.77 | ascorbic acid 1p |   0.4 |        |   1.77 |
 
 dough   | 878    |                  | 190.8 | 460    | 322    |
         | 463    | wet              | 100.5 |  69.0  | 350    |
         | 415    | dry              |  90.3 | 391    | -27.6  |
         |        | hydration        |  70.0 |        |        |
+
 +*/
 
