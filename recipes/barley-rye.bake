@@ -1,0 +1,86 @@
+starter:
+  rye
+  water
+  hydration = 100%
+
+leaven ^ 10g:
+  starter
+  rye_white = 7 * starter
+  water
+  hydration = 100%
+
+/*
+Mixed leaven at 18:00 left at RT=74F
+pH at 7:30 is 3.93
+*/
+
+wet:
+  warm_water
+  leaven = 45%
+  malt_syrup = 5%
+  olive_oil = 5%
+  yogurt = 5%
+
+dry:
+  barley
+  rye_white = 25%
+  potato_flakes_f = 5%
+  salt = 2%
+  caraway_seeds = 2%
+  yeast = 0.8%
+
+dough:
+  wet
+  dry
+  hydration = 70%
+  total_flour = 660g
+
+/*
+
+Mixed the dough in the KA about 8:00 for 5 minutes. It came together
+after about 4 minutes. Sticky but cohesive. 
+
+Into the buttered 9x4x4 pullman pan at 9:06.
+
+Baked for 75 minutes and it still was only 195 inside. Did not reach
+the top of the pan.
+
+This is a dud.
+
+
+*/
+
+/*+
+  part  |  grams  |       name      |   %   | flour  | water  |
+--------|---------|-----------------|-------|--------|--------|
+starter |   19.8  |                 |   3.0 |   9.9  |   9.9  |
+        |    9.9  | rye             |   1.5 |   9.9  |        |
+        |    9.9  | water           |   1.5 |        |   9.9  |
+
+leaven  |  307    | + 10.0g         |  45.0 | 148    | 148    |
+        |   20.5  | starter         |   3.0 |   9.9  |   9.9  |
+        |  143    | rye white       |  21.0 | 139    |        |
+        |  143    | water           |  21.0 |        | 139    |
+
+wet     |  674    |                 | 102.1 | 149    | 462    |
+        |  278    | warm water      |  42.1 |        | 278    |
+        |  297    | leaven          |  45.0 | 148    | 148    |
+        |   33.0  | malt syrup      |   5.0 |        |   6.9  |
+        |   33.0  | olive oil       |   5.0 |        |        |
+        |   33.0  | yogurt          |   5.0 |        |  29.0  |
+
+dry     |  543    |                 |  82.3 | 512    |        |
+        |  313    | barley          |  47.5 | 313    |        |
+        |  165    | rye white       |  25.0 | 165    |        |
+        |   33.0  | potato flakes f |   5.0 |  33.0  |        |
+        |   13.2  | salt            |   2.0 |        |        |
+        |   13.2  | caraway seeds   |   2.0 |        |        |
+        |    5.3  | yeast           |   0.8 |        |        |
+
+dough   | 1217    |                 | 184.3 | 660    | 462    |
+        |  674    | wet             | 102.1 | 149    | 462    |
+        |  543    | dry             |  82.3 | 512    |        |
+        |         | hydration       |  70.0 |        |        |
+
++*/
+
