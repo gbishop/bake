@@ -1,38 +1,40 @@
 # Granola with olive oil and maple syrup
 
 dough:
-  rolled_oats = 256g
+  oats = 100%
   pumpkin_seeds = 50%
   sunflower_seeds = 50%
   coconut = 50%
-  walnuts = 50%
-  maple_syrup = 50%
+  almonds = 50%
+  maple_syrup = 67%
   olive_oil = 25%
 
+  total_flour = 256g
 
 /*
-October 23, 2025
+April 11, 2026
+
+more maple syrup
+almonds
 
 In the new oven 15 + 15 + 10 seemed to do it on 300 convection.
 
-It was smelling done so I pulled it out.
-
-This is really good.
+The slivered almonds are great in this.
 
 */
 
 /*+
- part | grams  |       name      |   %   | flour  | water |
-------|--------|-----------------|-------|--------|-------|
-dough | 960    |                 | 375.0 | 256    | 70.4  |
-      | 256    | rolled oats     | 100.0 | 256    |       |
-      | 128    | pumpkin seeds   |  50.0 |        |       |
-      | 128    | sunflower seeds |  50.0 |        |       |
-      | 128    | coconut         |  50.0 |        | 29.4  |
-      | 128    | walnuts         |  50.0 |        |       |
-      | 128    | maple syrup     |  50.0 |        | 41.0  |
-      |  64.0  | olive oil       |  25.0 |        |       |
-      |        | hydration       |  27.5 |        |       |
+ part |  grams  |       name      |   %   | flour  | water |
+------|---------|-----------------|-------|--------|-------|
+dough | 1004    |                 | 392.0 | 256    | 54.9  |
+      |  256    | oats            | 100.0 | 256    |       |
+      |  128    | pumpkin seeds   |  50.0 |        |       |
+      |  128    | sunflower seeds |  50.0 |        |       |
+      |  128    | coconut         |  50.0 |        |       |
+      |  128    | almonds         |  50.0 |        |       |
+      |  172    | maple syrup     |  67.0 |        | 54.9  |
+      |   64.0  | olive oil       |  25.0 |        |       |
+      |         | hydration       |  21.4 |        |       |
 
 +*/
 
