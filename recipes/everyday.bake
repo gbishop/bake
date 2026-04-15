@@ -14,12 +14,13 @@ leaven ^ 6g:
 grain:
   prairie_gold
   hard_red = prairie_gold
-  spelt = 5%
-  barley = 5%
-  buckwheat = 5%
+#  spelt = 5%
+#  barley = 5%
+#  buckwheat = 5%
 
 dry:
   grain
+  sorghum = 15%
   vwg = 3%
   potato_flakes = 3%
   flaxseed_meal = 5%
@@ -31,55 +32,51 @@ wet:
   ascorbic_acid_1p = 50ppm * 100 * grain.total
   leaven = 30%
   olive_oil = 5%
-  malt_syrup = 5%
+  honey = 5%
   yogurt = 5%
 
 dough:
   wet
   dry
-  walnuts = 15%
   hydration = 70%
   # 200g/L of flour
   # total_flour = 660g # 13 inch
   total_flour = 460g # 9 inch
 
 /*
-April 8, 2026
+April 13, 2026
 
 Changes
-• back to ww in leaven
-• add walnuts, blanched
+• Try sorghum flour
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
 Starter is 5 days old.
 
-Mixed the leaven with 60F water about 17:10 left at 60F overnight.
-Initial leaven temperature is 67F. RT is 75F.
+Mixed the leaven with 39F water about 18:00 left at 60F overnight.
+Initial leaven temperature is 59F. RT is 71F.
 
-Leaven pH = 4.43 at 8:05. More than doubled. At 275mL.
+Leaven pH = 4.30 at 8:00. At 275mL.
 
-I started about 8:02
+I started about 7:45
 
-Dry is 76F. Wet is 52F. Mix is 64F.
+Dry is 75F. Wet is 56F. Mix is 65F.
 
 Used the KA for mixing. Mixed about 8:35. Stopped after 3 minutes.
-DT after mixing is 64F. RT is 68F. 
+DT after mixing is 64F. RT is 71F. 
 
-30 minute rest in fridge. After rest the dough is 61F outside
+30 minute rest in fridge. After rest the dough is 59F.
 
-Restarted the KA for kneading. Removed the dough after 8 minutes of
-kneading. Finished at 9:20.
+Kneaded 8 minutes in KA. 8:55
 
 DT at end of kneading is 68F. Into the cambro for 30 minutes in the
-fridge. S&F, back to the fridge for 30 more.
+fridge. S&F, back to the fridge.
 
-Shaped at 10:30 and into the pan. Proof at 76F.
+Shaped at 12:30 and into the pan. Proof at 76F.
 
-120mL of water lasted for less than 15 (maybe 12?) minutes into the bake.
+Oven was preheated so I added only 50mL of water to the pan.
 
-Baked at 14:15 for 40 minutes at 350F. It was about 1/2 inch above
-the top of the pan.
+Baked at 15:55 for 40 minutes at 350F. It was at the top of the pan.
 
 Close to perfect appearance. Good flavor.
 
@@ -98,33 +95,30 @@ leaven  | 144    | + 6.0g           |  30.0 |  69.0  |  69.0  |
         |  64.0  | ww               |  13.3 |  61.3  |        |
         |  64.0  | water            |  13.3 |        |  61.3  |
 
-grain   | 354    |                  |  77.0 | 354    |        |
+grain   | 285    |                  |  62.0 | 285    |        |
         | 143    | prairie gold     |  31.0 | 143    |        |
         | 143    | hard red         |  31.0 | 143    |        |
-        |  23.0  | spelt            |   5.0 |  23.0  |        |
-        |  23.0  | barley           |   5.0 |  23.0  |        |
-        |  23.0  | buckwheat        |   5.0 |  23.0  |        |
 
 dry     | 415    |                  |  90.3 | 391    | -27.6  |
-        | 354    | grain            |  77.0 | 354    |        |
+        | 285    | grain            |  62.0 | 285    |        |
+        |  69.0  | sorghum          |  15.0 |  69.0  |        |
         |  13.8  | vwg              |   3.0 |  13.8  |        |
         |  13.8  | potato flakes    |   3.0 |        | -27.6  |
         |  23.0  | flaxseed meal    |   5.0 |  23.0  |        |
         |   2.30 | yeast            |   0.5 |        |        |
         |   8.3  | salt             |   1.8 |        |        |
 
-wet     | 463    |                  | 100.6 |  69.0  | 350    |
-        | 254    | water            |  55.2 |        | 254    |
-        |   1.77 | ascorbic acid 1p |   0.4 |        |   1.77 |
+wet     | 463    |                  | 100.7 |  69.0  | 350    |
+        | 255    | water            |  55.4 |        | 255    |
+        |   1.43 | ascorbic acid 1p |   0.3 |        |   1.43 |
         | 138    | leaven           |  30.0 |  69.0  |  69.0  |
         |  23.0  | olive oil        |   5.0 |        |        |
-        |  23.0  | malt syrup       |   5.0 |        |   4.83 |
+        |  23.0  | honey            |   5.0 |        |   3.91 |
         |  23.0  | yogurt           |   5.0 |        |  20.2  |
 
-dough   | 947    |                  | 205.9 | 460    | 322    |
-        | 463    | wet              | 100.6 |  69.0  | 350    |
+dough   | 879    |                  | 191.0 | 460    | 322    |
+        | 463    | wet              | 100.7 |  69.0  | 350    |
         | 415    | dry              |  90.3 | 391    | -27.6  |
-        |  69.0  | walnuts          |  15.0 |        |        |
         |        | hydration        |  70.0 |        |        |
 
 +*/
