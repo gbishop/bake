@@ -1,0 +1,117 @@
+# from https://www.lilvienna.com/buchteln-sweet-austrian-yeast-buns/
+
+dough:
+  milk = 155g
+  yeast = 5g
+  sugar = 40g
+  egg = 50g
+  butter = 77g
+  vanilla_extract = 2.3g # 1/2t
+  salt = 1.5g # 1/4t
+  ap_flour = 325g
+
+/*
+Instructions
+
+• In a large mixing bowl sprinkle the yeast over the warm milk and
+  set it aside for 10 minutes for the yeast to dissolve and
+  activate.
+
+• Stir in sugar, egg, melted (lightly cooled) butter, vanilla and
+  salt with a hand whisk.
+
+• Stir in about 1 ½ cups (200 g) of the flour to get a thick batter
+  and stir vigorously with the whisk until no lumps remain. Time to
+  change your tools: Get rid of the whisk an use a sturdy (wooden)
+  cooking spoon to gradually stir in the rest of the flour.
+
+• When all ingredients come together fold the edges into the center
+  for a couple of minutes. Keep your dough in the mixing bowl for
+  that. The dough will be sticky, but refrain from adding more
+  flour. It helps if you oil your clean hands before you knead
+  a sticky dough. Knead until smooth, about 5 minutes.
+
+• Let the dough rise, covered at warm room temperature until doubled
+  in volume (about 3/4 to 1 hour).
+
+• Transfer the dough onto a lightly floured surface and divide it
+  into 12 equal parts. Keep pieces you don’t need right away
+  covered.
+
+• Fold the edges of each piece into the middle a couple of times so
+  you will get a nice ball with a smooth surface on the bottom side.
+  Flatten each ball with your palm to a circle with a diameter of
+  3 to 3 ½ inch, keeping the center slightly thicker than the edges.
+  Usually this part works without using any additional flour. If the
+  dough keeps sticking to your countertop, add some.
+
+• Put 1 teaspoon of apricot jam (not more) in the center of every
+  circle. Wrap the dough around the filling, pinching and sealing it
+  tightly. Round the buns again, creating a bit of surface tension.
+  If you use too much filling, it’s difficult to seal them. Also
+  avoid getting jam onto your edges, because this way it is almost
+  impossible to seal them (see more troubleshooting in the note).
+
+• Put every Buchtel with the sealed side down onto a lightly floured
+  surface until you have finished filling all of them.
+
+• Put about 2 ½ tablespoons melted butter (you might need a little
+  more) in a small bowl. Brush a baking pan (I used an oval 11
+  x 7 inch ceramic pan) with melted butter, just until coated. Put
+  every Buchtel in the bowl with the melted butter, turn it around
+  until well coated. [Update 6/19/2015: Instead of turning the buns
+  around in the bowl with melted butter it is easier to brush each
+  bun when you've placed them in the pan.]
+
+• Place the Buchteln, coated with butter, in your baking pan. You
+  can do this tightly packed (traditional way) or give them
+  a little, but not too much space. They will still rise during the
+  second proofing and baking. If you feel there are too many of
+  them, you can place the remaining in a lined muffin tin.
+
+• Let them proof a second time for about 20-30 minutes at warm room
+  temperature until puffy. It is best to cover the whole pan with
+  a lid or cling wrap in this step. If you have a rather shallow
+  pan, don’t cover the Buchteln, since they will stick to the
+  plastic wrap. If you couldn’t cover them and they seem kind of dry
+  before baking, you can brush them another time with melted butter.
+
+• Bake them at 375 °F/ 190 °C in the preheated oven (center) for
+  about 25 minutes (minimum 20 minutes). When they are golden-brown
+  in color, take them out of the oven.
+
+• Let the Buchteln cool for 5-10 minutes and serve them dusted with
+  confectioner’s sugar. Enjoy!
+
+What I did on 14 April 2026.
+
+I mixed with the KA, rested them 20 minutes, then kneaded for
+5 minutes. It was sticky but I could handle it. I transferred to the
+oiled cambro for a 45 minute rise.
+
+I buttered the pan instead of dipping the individual balls, then
+I brushed butter on their tops.
+
+I did not fill the dough balls, instead I will inject jam after they
+are baked and cooled.
+
+Injection worked well. I could have injected twice as much. These
+were good though not as soft as I hoped. Folks liked them.
+
+*/
+/*+
+ part | grams  |       name      |   %   | flour  | water  |
+------|--------|-----------------|-------|--------|--------|
+dough | 656    |                 | 201.8 | 325    | 187    |
+      | 155    | milk            |  47.7 |        | 136    |
+      |   5.0  | yeast           |   1.5 |        |        |
+      |  40.0  | sugar           |  12.3 |        |        |
+      |  50.0  | egg             |  15.4 |        |  38.0  |
+      |  77.0  | butter          |  23.7 |        |  12.3  |
+      |   2.30 | vanilla extract |   0.7 |        |        |
+      |   1.50 | salt            |   0.5 |        |        |
+      | 325    | ap flour        | 100.0 | 325    |        |
+      |        | hydration       |  57.5 |        |        |
+
++*/
+
