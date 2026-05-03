@@ -1,0 +1,7 @@
+dough ^ 5%:
+  flour
+  water
+  salt = 2%
+  yeast = 1%
+  hydration = 70%
+  total_flour = 1000g

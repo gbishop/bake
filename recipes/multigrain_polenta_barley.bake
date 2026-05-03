@@ -16,7 +16,7 @@ soaker:
   barley_flour = polenta
   boiling_water
   hydration = 250%
-  diastatic_malt = 1.5% * total_flour
+  diastatic_malt = 1.5pf
 
 # I keep my NMNF starter at 60% hydration in the fridge.
 
@@ -31,7 +31,7 @@ starter:
 sponge:
   hydration = 100%
   water
-  starter = 10% * rye
+  starter = 0.10 * rye
   rye
 
 # I like to mix all the flours and dry ingredients together to make sure they

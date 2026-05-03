@@ -6,7 +6,7 @@ starter:
   hydration = 100%
 
 sponge:
-  starter = 10% * total_flour
+  starter = 0.10 * total_flour
   rye
   water
   hydration = 100%

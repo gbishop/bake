@@ -3,11 +3,11 @@
 starter:
   rye
   water
-  hydration = 100%
+  hydration = 80%
 
-leaven ^ 6g:
+leaven ^ 10%:
   starter
-  ww = 4 * starter
+  rye = 4 * starter
   water
   hydration = 100%
 
@@ -43,37 +43,40 @@ dough:
   total_flour = 460g # 9 inch
 
 /*
-April 26, 2026
+April 18, 2026
 
 Changes
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-Starter is 8 days old.
+Starter is 5 days old.
 
-Mixed the leaven with 39F water about 17:20 left at 60F overnight.
-Initial leaven temperature is 58F. RT is 73F.
+Mixed the leaven with 70F water about 20:20 left at 60F overnight.
+Initial leaven temperature is ?F. RT is 75F.
 
-Leaven pH = 4.5 at 7:00. At 275mL.
+Leaven pH = 4.13 at 8:00. At 275mL. I should have used cold water.
 
-I started about 6:40
+I started about 7:45
 
-Dry is 79F. Wet is 54F. Mix is 65F.
+Dry is 83F. Wet is 54F. Mix is 65F.
 
-Used the KA for mixing. Mixed about 7:10. Stopped after 3 minutes.
-DT after mixing is 65F. RT is 71F. 
+Used the KA for mixing. Mixed about 8:20. Stopped after 3 minutes.
+DT after mixing is 68F. RT is 73F. 
 
 30 minute rest in fridge. After rest the dough is 59F.
 
-Kneaded 8 minutes in KA. 7:43
+Kneaded 8 minutes in KA. 8:55
 
 DT at end of kneading is 68F. Into the cambro for 30 minutes in the
 fridge. S&F, back to the fridge.
 
-Shaped at 11:30 and into the pan. Proof at 76F for 1 hour, then into
-the fridge because I didn't know when Ivy would get home.
+Shaped at 10:30 and into the pan. Proof at 76F.
 
-Baked at 18:20 for 45 minutes at 350F lid on.
+I added 120mL of water to the pan at the beginning of preheat. It
+lasted 12 minutes into the bake.
+
+Baked at 14:22 for 40 minutes at 350F. It was about 1 inch above top
+of pan.
 
 Close to perfect appearance. Good flavor.
 
@@ -89,7 +92,7 @@ starter |  15.3  |                  |   3.3 |   7.7  |   7.7  |
 
 leaven  | 144    | + 6.0g           |  30.0 |  69.0  |  69.0  |
         |  16.0  | starter          |   3.3 |   7.7  |   7.7  |
-        |  64.0  | ww               |  13.3 |  61.3  |        |
+        |  64.0  | rye              |  13.3 |  61.3  |        |
         |  64.0  | water            |  13.3 |        |  61.3  |
 
 grain   | 354    |                  |  77.0 | 354    |        |

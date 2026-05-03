@@ -3,8 +3,8 @@
 soaker:
   oats = 48.39%
   milk
-  lemon_juice = 4.67% * oats
-  rye_flour = 6.67% * oats
+  lemon_juice = 5pf
+  rye_flour = 7pf
   hydration = 126.5%
 
 # Mix and leave on counter for 3 hours before refrigerating overnight.
@@ -12,7 +12,7 @@ soaker:
 dough:
   soaker
   bread_flour
-  ww_flour = 25% * bread_flour
+  ww_flour = 0.25 * bread_flour
   yeast = 0.32%
   salt = 1.29%
   honey = 4.84%

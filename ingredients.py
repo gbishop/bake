@@ -82,7 +82,7 @@ if __name__ == "__main__":
                 break
 
 
-def getIngredient(name: str):
+def getIngredientInfo(name: str) -> pd.Series:
     """Return the components for an ingredient"""
     name = name.lower()
     if name not in map.index:

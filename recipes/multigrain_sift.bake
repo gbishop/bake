@@ -23,7 +23,7 @@ starter:
   hydration = 60%
 
 sponge:
-  starter = 10% * total
+  starter = 10pt
   water
   bran = sifted.bran
   hydration = 200%

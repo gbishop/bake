@@ -3,7 +3,7 @@
 poolish ^ 4g:
   water
   hard_red
-  yeast = 0.2% * total_flour
+  yeast = 0.2pf
   total_flour = 25%
   hydration = 100%
 
@@ -26,7 +26,7 @@ dry:
   spelt = 12%
   flaxseed_meal = 5%
   # added water to milk
-  nido = 13% * wet.water
+  nido = 0.13 * wet.water
   wgbi = 3%
   salt = 1.8%
   yeast = 0.25%

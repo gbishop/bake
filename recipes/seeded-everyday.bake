@@ -6,7 +6,7 @@ starter:
   hydration = 75%
 
 sponge ^ 4%: # allow for 4% loss
-  starter = 25% * total_flour
+  starter = 0.25 * total_flour
   water
   whole_wheat
   total_flour = 15%
@@ -23,11 +23,13 @@ soaker:
   wheat_flakes = _part
   boiling_water
   hydration = 100%
+  _part
 
 grain:
   prairie_gold = 2 * _part
   hard_red = 2 * _part
   spelt = _part
+  _part
 
 dry:
   grain

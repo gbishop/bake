@@ -5,7 +5,7 @@ sour:
   rye_white
   red_rye_malt = 1%
   water_104F
-  starter = 5% * total_flour # 2%=18H 5%=15H 10%=12H 20%=6H
+  starter = 5pf# 2%=18H 5%=15H 10%=12H 20%=6H
   total_flour = 40%
   hydration = 80%
 

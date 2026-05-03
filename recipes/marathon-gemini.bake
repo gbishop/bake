@@ -1,0 +1,65 @@
+soaker:
+  flaxseed_meal_sr = 13.33%
+  pumpkin_seeds = 11.43%
+  sunflower_seeds = 10.48%
+  water = 50pt
+
+wet:
+  soaker
+  water
+  carrots = 2.86%
+  honey = 1.52%
+  canola_oil = 0.95%
+
+dough:
+  wet
+  bread_flour
+  ww = 9.52%
+  sugar = 6.67%
+  rye = 5.71%
+  vwg = 4.76%
+  oats = 3.81%
+  craisins = 3.81%
+  salt = 1.71%
+  spelt = 1.90%
+  sesame_seeds= 0.95%
+  dried_apple = 2.5%
+  yeast = 1.33%
+
+  total_flour = 220g
+  hydration = 70%
+
+/*+
+ part  | grams  |       name       |   %   | flour  | water  |
+-------|--------|------------------|-------|--------|--------|
+soaker | 155    |                  |  70.5 |        |  39.4  |
+       |  29.3  | flaxseed meal sr |  13.3 |        | -38.1  |
+       |  25.1  | pumpkin seeds    |  11.4 |        |        |
+       |  23.1  | sunflower seeds  |  10.5 |        |        |
+       |  77.5  | water            |  35.2 |        |  77.5  |
+
+wet    | 286    |                  | 130.1 |        | 160    |
+       | 155    | soaker           |  70.5 |        |  39.4  |
+       | 120    | water            |  54.3 |        | 120    |
+       |   6.3  | carrots          |   2.9 |        |        |
+       |   3.34 | honey            |   1.5 |        |   0.57 |
+       |   2.09 | canola oil       |   0.9 |        |        |
+
+dough  | 544    |                  | 247.1 | 220    | 154    |
+       | 286    | wet              | 130.1 |        | 160    |
+       | 163    | bread flour      |  74.3 | 163    |        |
+       |  20.9  | ww               |   9.5 |  20.9  |        |
+       |  14.7  | sugar            |   6.7 |        |        |
+       |  12.6  | rye              |   5.7 |  12.6  |        |
+       |  10.5  | vwg              |   4.8 |  10.5  |        |
+       |   8.4  | oats             |   3.8 |   8.4  |        |
+       |   8.4  | craisins         |   3.8 |        |        |
+       |   3.76 | salt             |   1.7 |        |        |
+       |   4.18 | spelt            |   1.9 |   4.18 |        |
+       |   2.09 | sesame seeds     |   0.9 |        |        |
+       |   5.5  | dried apple      |   2.5 |        |  -5.5  |
+       |   2.93 | yeast            |   1.3 |        |        |
+       |        | hydration        |  70.0 |        |        |
+
++*/
+

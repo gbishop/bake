@@ -21,6 +21,7 @@ leaven:
   starter = 1 * _part
   hard_red = 1 * _part
   prairie_gold = 1 * _part
+  _part
   water
   total_flour = 10%
   hydration = 100%

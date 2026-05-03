@@ -10,7 +10,7 @@ added red rye malt but went too far. Next time try this.
 sponge:
     whole_wheat
     water
-    starter = 10% * whole_wheat
+    starter = 0.10 * whole_wheat
     hydration = 100%
 
 wet:

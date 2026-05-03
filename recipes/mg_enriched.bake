@@ -37,7 +37,7 @@ starter:
   hydration = 60%
 
 sponge:
-  starter = 10% * total
+  starter = 0.10 * total
   whole_wheat
   water
   hydration = 100%
@@ -46,7 +46,7 @@ wet:
   sponge = 30%
   egg = 50g
   water
-  nido = 13% * 50% * water
+  nido = 0.13 * 0.50 * water
   butter
   honey = 5%
   total_fat = 5%
@@ -64,7 +64,7 @@ dry:
   flaxseed_meal = 5%
   potato_flakes = 2%
   improver = 3%
-  salt = 2% - 1.5% * wet.butter
+  salt = 2% - 0.015 * wet.butter
   yeast = 0.5%
 
 dough:

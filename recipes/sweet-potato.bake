@@ -57,16 +57,16 @@ ground:
 dry:
   ground = 194g  # was free fixing measurement error
   bread_flour    # was 50%
-  wgbi = 2% * ground
+  wgbi = 0.02 * ground
   salt = 1.8%
   yeast = 0.5%
-  nido = 13% * dough.total_water
+  nido = 0.13 * dough.total_water
 
 wet:
   sponge
   sweet_potato = 80%
   # some of the water in the potato is not available
-  bound_water = -20% * sweet_potato
+  bound_water = 0.0 - 0.20 * sweet_potato
   water
   maple_syrup = 5%
   yogurt = 5%

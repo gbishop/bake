@@ -6,12 +6,13 @@ starter:
   bran = 8 * _part
   sugar = 1 * _part
   water = 3 * _part
+  _part
   total = 0.5%
 
 leaven:
   starter
   sweet_potato
-  ap_flour = 20% * sweet_potato
+  ap_flour = 0.20 * sweet_potato
   water
   skim_milk_powder = 8.8%
   brown_sugar = 10%
@@ -27,7 +28,6 @@ dough:
 
   total_flour = 570g
   hydration = 85%
-  _serving = 0
 
 
 

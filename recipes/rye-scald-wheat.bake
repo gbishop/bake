@@ -12,8 +12,8 @@ soaker:
 
 scald:
   rye = 20%
-  water = 200% * rye
-  diastatic_malt = 6% * rye
+  water = 2 * rye
+  diastatic_malt = 0.06 * rye
   
 grain:
   prairie_gold

@@ -1,11 +1,8 @@
 import re
-from ingredients import getIngredient
-import sys
-
-FullName = tuple[str, str]
+import pandas as pd
 
 
-def format_table(Variables: dict[FullName, float], Parts: dict[str, None]):
+def format_table(solution: pd.DataFrame):
     """Build a table from the solution"""
 
     def fmt_value(fmt: str, v: float | str):
@@ -71,55 +68,35 @@ def format_table(Variables: dict[FullName, float], Parts: dict[str, None]):
 
     # reshape the data into a list of lists
     rows = []
-    dtf = Variables[("dough", "total_flour")]
-    if dtf == 0:
-        print("no flour")
-        sys.exit(1)
-    grams_to_bp = 100 / dtf
-    nutrition = getIngredient("unknown")
-    for partName in Parts:
-        part_total = Variables[(partName, "total")]
-        part_loss = Variables[(partName, "_loss")]
+    for partName, pdf in solution.groupby(level=0, sort=False):
+        part_total = pdf.loc[(partName, "total"), "value"]
+        part_loss = pdf.loc[(partName, "_loss"), "value"]
         loss_scale = (part_total + part_loss) / part_total
-        bp = part_total * grams_to_bp
         # add the total
         rows.append(
             [
                 partName,
                 part_total * loss_scale,
-                f"+ {part_loss:.1f}g" if part_loss > 0 else "",
-                bp,
-                Variables[(partName, "total_flour")],
-                Variables[(partName, "total_water")],
+                f"+ {part_loss:.1f}g" if abs(part_loss) > 0.1 else "",
+                pdf.loc[(partName, "total"), "bp"],
+                pdf.loc[(partName, "total_flour"), "value"],
+                pdf.loc[(partName, "total_water"), "value"],
             ]
         )
+
         # add the ingredients from the part
-        for pn, var in Variables:
-            if pn != partName:
-                continue
-            if not var.startswith("total") and not var.startswith("_"):
-                vg = Variables[(partName, var)]
+        for var in pdf.index:
+            name = var[1]
+            if not name.startswith("total") and not name.startswith("_"):
+                vg = pdf.loc[var, "value"]
                 unknown = ""
-                if var in Parts:
-                    extras = [
-                        Variables[(var, "total_flour")],
-                        Variables[(var, "total_water")],
-                    ]
-                else:
-                    info = getIngredient(var)
-                    extras = [
-                        vg * info["flour"],
-                        vg * info["water"],
-                    ]
-                    nutrition = nutrition + info * vg
-                    if info.name == "unknown":
-                        unknown = "!"
+                extras = pdf.loc[var, "flour":].tolist()
                 rows.append(
                     [
                         "",
                         vg * loss_scale,
-                        var + unknown,
-                        vg * grams_to_bp,
+                        name + unknown,
+                        pdf.loc[var, "bp"],
                         *extras,
                     ]
                 )
@@ -130,7 +107,7 @@ def format_table(Variables: dict[FullName, float], Parts: dict[str, None]):
                     "",
                     0,
                     "hydration",
-                    Variables[("dough", "total_water")] * grams_to_bp,
+                    pdf.loc[("dough", "total_water"), "bp"],
                     0,
                     0,
                 ]
@@ -146,21 +123,21 @@ def format_table(Variables: dict[FullName, float], Parts: dict[str, None]):
 
 def output(
     text: str,
-    Variables: dict[FullName, float],
-    Parts: dict[str, None],
-    failed=False,
+    solution: pd.DataFrame,
+    errors=[],
     tobp=False,
     html="",
 ):
     """Insert the table into the input"""
-    recipe = format_table(Variables, Parts)
-    text = re.sub(r"(?ms)\/\*\+.*?\+\*\/\n", "", text)
+    recipe = format_table(solution)
+    text = re.sub(r"(?ms)\/\*\+.*?\+\*\/\n", "", text).rstrip()
     if tobp:
-        text = rewrite(text, 100 / Variables[("dough", "total_flour")])
+        text = rewrite(text, 100 / solution.loc[("dough", "total_flour"), "value"])
 
-    if failed:
+    if errors:
         recipe = re.sub(r"^", "E ", recipe, 0, re.M)
-    result = f"{text}/*+\n{recipe}+*/\n"
+        recipe = f"{'\n'.join(errors)}\n{recipe}"
+    result = f"{text}\n\n/*+\n{recipe}+*/\n"
     print(result)
 
     if html:

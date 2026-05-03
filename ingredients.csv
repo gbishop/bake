@@ -1,5 +1,5 @@
 index,flour,water
-af_enhancer,0,0
+af_enhancer,0.0,0
 almonds,0,0
 apple_butter,0,0.56
 apple_juice,0,0.88
@@ -8,6 +8,7 @@ ascorbic_acid,0,0
 ascorbic_acid_1p,0,1
 baking_powder,0,0
 baking_soda,0,0
+banana,0,0
 barley,1,0
 barley_sr,0,-1.38
 barley_sb,0,-1.56
@@ -27,6 +28,7 @@ bulgur,0,-1.5
 butter,0,0.16
 buttermilk,0,0.90
 caraway_seeds,0,0
+carrots,0,0
 chia_seeds,1,0
 chia_seeds_sr,0,-2.37
 chia_seeds_sb,0,-2.76

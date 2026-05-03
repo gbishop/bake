@@ -10,12 +10,12 @@ starter:
   hydration = 100%
 
 rye_960:
-  rye_white = 65% * total
-  rye_whole = 35% * total
+  rye_white = 0.65 * total
+  rye_whole = 0.35 * total
   rye_960.total = basic_sour.rye + full_sour.rye + dough.rye 
 
 basic_sour:
-  starter = 5% * rye
+  starter = 0.05 * rye
   water
   rye = 13% # 960
   hydration = 50%

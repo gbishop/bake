@@ -4,7 +4,6 @@ dough:
   masarepas = 100.00%
   salt = 1.50%
   milk
-  _serving = total / 2
   hydration = 118%
   total_flour = 120g
 

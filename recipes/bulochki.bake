@@ -25,7 +25,7 @@ dough:
   butter = 32%
   eggs = 28%
   flour = 100%
-  salt = 2% - 1.3% * butter
+  salt = 2% - 0.013 * butter
 
   hydration = 63%
   total_flour = 360g

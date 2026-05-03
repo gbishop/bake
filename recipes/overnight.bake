@@ -15,7 +15,7 @@ grain:
 dry:
   grain
   # half the water to milk
-  nido = 50% * 13% * dough.total_water
+  nido = 0.50 * 0.13 * dough.total_water
   flaxseed_meal = 3%
   potato_flakes = 2%
   salt = 2%

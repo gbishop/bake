@@ -6,7 +6,7 @@ https://www.thebreadshebakes.com/2014/08/baking-traditional-real-german-pumperni
 */
 
 preferment:
-  yeast = 0.2% * total_flour
+  yeast = 0.2pf
   cracked_rye = 27%
   water
   hydration = 100%

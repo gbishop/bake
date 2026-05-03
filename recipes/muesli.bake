@@ -14,7 +14,7 @@ dough:
   apricots = 20%
   cranberries = 20%
 
-  total = 725g / 3
+  total = 0.33 * 725g
 
 /*
 

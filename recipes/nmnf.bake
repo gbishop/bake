@@ -9,7 +9,7 @@ starter:
 
 stage1:
   starter
-  rye = 300% * starter.total_flour
+  rye = 3 * starter.total_flour
   water
   hydration = 100%
 

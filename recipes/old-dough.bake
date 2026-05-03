@@ -10,7 +10,7 @@ dry:
   potato_flakes = 2%
   flaxseed_meal = 5%
   # half the water to milk
-  nido = 50% * 13% * dough.total_water
+  nido = 0.50 * 0.13 * dough.total_water
   wgbi = 3%
   salt = 2%
   yeast = 0.5%
@@ -27,7 +27,7 @@ dough:
   wet
   dry
   # old dough comes out before first rise
-  next_dough = -80g
+  next_dough = 0 - 80g
 
   hydration = 75%
 

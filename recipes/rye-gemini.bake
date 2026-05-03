@@ -19,7 +19,7 @@ dough:
   molasses = 2.67%
   yeast = 0.67%
   rye_whole
-  rye_white = 30% * rye_whole
+  rye_white = 0.30 * rye_whole
   salt = 2.00%
   hydration = 80%
 

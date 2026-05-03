@@ -15,10 +15,10 @@ dry:
   potato_flakes = 2%
   flaxseed_meal = 5%
   # half the water to milk
-  # nido = 50% * 13% * dough.total_water
+  # nido = 0.50 * 0.13 * dough.total_water
   vwg = 3%
   salt = 1.8%
-  yeast = wet.starter / 40
+  yeast = wet.starter * (1 / 40)
 
 wet:
   starter = 5% # was 22.22%

@@ -1,7 +1,7 @@
 # Everyday loaf with preferment and scald
 
 starter:
-  whole_wheat = preferment.total_flour / 8
+  whole_wheat = (1 / 8) * preferment.total_flour
   water
   hydration = 75%
 
@@ -34,7 +34,7 @@ dry:
   grain
   flaxseed_meal = 5%
   # added water to milk
-  nido = 13% * wet.water
+  nido = 0.13 * wet.water
   wgbi = 3%
   salt = 1.8%
   yeast = 0.25%
@@ -44,7 +44,7 @@ dough:
   dry
   hydration = 75%
   # 200g/L of flour
-  total_flour = 200g * 1
+  total_flour = 200g
 
 /*
 April 23, 2025

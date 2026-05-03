@@ -12,7 +12,7 @@ starter:
   hydration = 60%
 
 sponge:
-  starter = 5% * total
+  starter = 0.05 * total
   whole_wheat
   water
   hydration = 100%
@@ -32,7 +32,7 @@ dry:
   flaxseed_meal = 5%
   potato_flakes = 3%
   vwg = 2%
-  salt = 2% - 1.5% * wet.butter # subtracting the salt in the butter
+  salt = 2% - 0.015 * wet.butter # subtracting the salt in the butter
   yeast = 0.4%
 
 dough:

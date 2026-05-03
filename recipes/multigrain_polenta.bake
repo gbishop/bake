@@ -12,8 +12,8 @@ sweet.
 
 soaker:
   polenta = 10%
-  boiling_water = 250% * polenta
-  diastatic_malt = 1.5% * polenta
+  boiling_water = 2.50 * polenta
+  diastatic_malt = 0.015 * polenta
 
 # I keep my NMNF starter at 60% hydration in the fridge.
 
@@ -30,7 +30,7 @@ overnight at 86F.
 sponge:
   hydration = 100%
   water = 15%
-  starter = 10% * rye
+  starter = 0.10 * rye
   rye
 
 /*
@@ -40,8 +40,8 @@ are properly distributed.
 
 dry:
   prairie_gold
-  bronze_chief = 50% * prairie_gold
-  spelt = 20% * prairie_gold
+  bronze_chief = 0.50 * prairie_gold
+  spelt = 0.20 * prairie_gold
   flaxseed_meal = 5%
   potato_flakes = 2%
   vwg = 3%

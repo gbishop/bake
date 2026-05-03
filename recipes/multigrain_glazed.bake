@@ -14,7 +14,7 @@ starter:
   hydration = 60%
 
 sponge:
-  starter = 10% * whole_wheat
+  starter = 0.10 * whole_wheat
   warm_water
   whole_wheat
   hydration = 100%

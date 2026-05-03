@@ -8,7 +8,7 @@ starter:
   rye
 
 sponge ^ 5g:
-  starter = 10% * total_flour
+  starter = 10pf
   water
   rye
   red_rye_malt = 1%
@@ -28,7 +28,7 @@ dry:
   potato_flakes = 3%
   flaxseed_meal = 3%
   _whole_grains = dough.total_flour - bread_flour
-  wgbi = 2% * _whole_grains
+  wgbi = 0.02 * _whole_grains
   salt = 2%
   yeast = 0.4%
 

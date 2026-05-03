@@ -1,13 +1,12 @@
-starter ^ 5%:
+starter:
   flour
   water
   hydration = 100%
 
 dough:
+  starter = 20.0%
+  water = 60.1%
   flour
-  water
   salt = 2%
-  starter.total_flour = 5%
-  starter
   hydration = 70%
-  total_flour = 1000g
+  total_flour = 1000g / 2

@@ -12,7 +12,6 @@ dough:
   oil = 15g
   bread_flour = 400g
   salt = 8g
-  _serving = total / 9
 
 /*
 

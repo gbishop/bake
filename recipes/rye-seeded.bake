@@ -11,6 +11,7 @@ seeds:
   sesame_seeds_sr = _part
   flaxseed_meal_sr = _part
   chia_seeds_sr = 2 / 7 * _part
+  _part
 
 soaker:
   seeds = 85.71%

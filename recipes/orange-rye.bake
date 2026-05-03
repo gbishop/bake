@@ -22,7 +22,7 @@ dry:
   potato_flakes = 3%
   flaxseed_meal = 3%
   _whole_grains = dough.total_flour - bread_flour
-  wgbi = 3% * _whole_grains
+  wgbi = 0.03 * _whole_grains
   salt = 2%
   yeast = 0.4%
 

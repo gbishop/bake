@@ -9,6 +9,7 @@ dough:
   starter = 1 * _part
   bran = 1 * _part
   ww = 3 * _part
+  _part
   water
   hydration = 150%
 

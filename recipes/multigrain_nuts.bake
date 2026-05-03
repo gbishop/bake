@@ -59,8 +59,8 @@ wet:
   honey = 5%
 
 dry:
-  prairie_gold = _part
-  bronze_chief = _part
+  prairie_gold
+  bronze_chief
   spelt = 20%
   flaxseed_meal = 5%
   potato_flakes = 3%

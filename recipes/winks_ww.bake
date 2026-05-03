@@ -4,13 +4,13 @@ dough:
   ww_flour
   milk = 40%
   egg = 50g
-  egg + cold_water = 35%
+  cold_water = 35% - egg
   salt = 2.2%
   yeast = 1.1%
   honey = 6%
   molasses = 6%
   butter = 6%
-  total = 200g
+  total = 550g
   # total_flour = 500g
 
 /*
