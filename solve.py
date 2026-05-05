@@ -5,9 +5,6 @@ import os
 from typing import cast
 from rich.pretty import pprint
 
-# silence obnoxious warning
-# pd.set_option("future.no_silent_downcasting", True)
-
 dir = os.path.dirname(os.path.abspath(__file__))
 map_path = os.path.join(dir, "ingredients.csv")
 ingredients = pd.read_csv(map_path, index_col="index")
@@ -72,17 +69,16 @@ def solve(tree: Start):
         columns=pd.Index(["value", *list(ingredients.columns)]),
         dtype=np.float64,
     )
-
     # add total relations
     for part in tree.parts:
         totals = pd.Series({key: Sum() for key in ingredients.columns})
         totals["total"] = Sum()
+        keys: list[str] = list(totals.index)
         localVars = [var for var in part.vars if not var.name.startswith("total")]
         for var in localVars:
             if var.name in parts:
-                for key in totals.index:
-                    assert isinstance(key, str)
-                    totals.loc[key] += Var(var.name, total_(key))
+                for key in keys:
+                    totals[key] += Var(var.name, total_(key))
                 part.addRelation(Relation(var, Var(var.name, "total"), weight=1000.0))
             elif var.name.startswith("_"):
                 continue
@@ -90,7 +86,7 @@ def solve(tree: Start):
                 info = getIngredient(var.name)
                 totals += info * var
                 solution.loc[var.t] = info
-        for key in cast(list[str], totals.index):
+        for key in keys:
             part.addRelation(
                 Relation(
                     Var(part.name, total_(key)),
