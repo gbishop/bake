@@ -11,7 +11,7 @@ soaker:
   hydration = 100%
 
 starter:
-  ww_flour
+  whole_wheat
   water
   hydration = 60%
 

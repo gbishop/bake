@@ -18,7 +18,7 @@ starter:
 levain:
   starter = 3.5%
   water
-  ww_flour = 11.2%
+  whole_wheat = 11.2%
   hydration = 60%
 
 /*
@@ -37,7 +37,7 @@ is incorporated into the dough it would've soaked for at least 2 hours.
 */
 
 dough:
-  ww_flour
+  whole_wheat
   water = 25.1%
   butter = 3.5%
   salt = 1.8%
@@ -91,32 +91,34 @@ underestimated the amount of dough required for my pan and fermented too long.
 loaves. Brush with butter when it's warm. 
 */
 
-  /*+
-  part  | grams  |   name   |   %    | flour  | water  | fat  |
-        |   4.37 | rye      |    2.2 |   4.37 |        |      |
-        |   2.63 | water    |    1.3 |        |   2.63 |      |
-starter |   7.00 |          |    3.5 |   4.37 |   2.63 |      |
-       
-        |   7.00 | starter  |    3.5 |   4.37 |   2.63 |      |
-        |  13.4  | water    |    6.7 |        |  13.4  |      |
-        |  22.4  | ww flour |   11.2 |  22.4  |        |      |
-levain  |  42.8  |          |   21.4 |  26.8  |  16.1  |      |
-       
-        |  26.6  | bulgar   |   13.3 |  26.6  |        |      |
-        |  37.4  | water    |   18.7 |        |  37.4  |      |
-        |   7.00 | molasses |    3.5 |        |        |      |
-soaker  |  71.0  |          |   35.5 |  26.6  |  37.4  |      |
-       
-        | 147    | ww flour |   73.3 | 147    |        |      |
-        |  50.2  | water    |   25.1 |        |  50.2  |      |
-        |   7.00 | butter   |    3.5 |        |   1.26 | 5.60 |
-        |   3.60 | salt     |    1.8 |        |        |      |
-        |  62.2  | milk     |   31.1 |        |  54.1  | 2.18 |
-        |   7.00 | honey    |    3.5 |        |   1.19 |      |
-        |  42.8  | levain   |   21.4 |  26.8  |  16.1  |      |
-        |   0.80 | yeast    |    0.4 |        |        |      |
-        |  71.0  | soaker   |   35.5 |  26.6  |  37.4  |      |
-dough   | 391    |          |  195.6 | 200    | 160    | 7.78 |
-       
+/*+
+  part  | grams  |     name    |   %   | flour  | water  |
+--------|--------|-------------|-------|--------|--------|
+starter |   7.0  |             |   3.5 |   4.38 |   2.62 |
+        |   4.38 | rye         |   2.2 |   4.38 |        |
+        |   2.62 | water       |   1.3 |        |   2.62 |
+
+levain  |  42.8  |             |  21.4 |  26.8  |  16.1  |
+        |   7.0  | starter     |   3.5 |   4.38 |   2.62 |
+        |  13.4  | water       |   6.7 |        |  13.4  |
+        |  22.4  | whole wheat |  11.2 |  22.4  |        |
+
+soaker  |  71.0  |             |  35.5 |        |  38.9  |
+        |  26.6  | bulgar      |  13.3 |        |        |
+        |  37.4  | water       |  18.7 |        |  37.4  |
+        |   7.0  | molasses    |   3.5 |        |   1.54 |
+
+dough   | 418    |             | 208.9 | 200    | 162    |
+        | 173    | whole wheat |  86.6 | 173    |        |
+        |  50.2  | water       |  25.1 |        |  50.2  |
+        |   7.0  | butter      |   3.5 |        |   1.12 |
+        |   3.60 | salt        |   1.8 |        |        |
+        |  62.2  | milk        |  31.1 |        |  54.7  |
+        |   7.0  | honey       |   3.5 |        |   1.19 |
+        |  42.8  | levain      |  21.4 |  26.8  |  16.1  |
+        |   0.80 | yeast       |   0.4 |        |        |
+        |  71.0  | soaker      |  35.5 |        |  38.9  |
+        |        | hydration   |  81.1 |        |        |
+
 +*/
 

@@ -4,7 +4,7 @@
 # https://breadtopia.com/sourdough-pretzel-buns-and-bagels/
 
 starter:
-  ww = 10%
+  whole_wheat = 10%
   water
   hydration = 80%
 
@@ -60,7 +60,7 @@ These are really good.
   part  |  grams  |     name    |   %   | flour  |  water  |
 --------|---------|-------------|-------|--------|---------|
 starter |   90.0  |             |  18.0 |  50.0  |   40.0  |
-        |   50.0  | ww          |  10.0 |  50.0  |         |
+        |   50.0  | whole wheat |  10.0 |  50.0  |         |
         |   40.0  | water       |   8.0 |        |   40.0  |
 
 dry     |  459    |             |  91.8 | 450    |         |

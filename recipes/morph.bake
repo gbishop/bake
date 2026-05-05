@@ -1,7 +1,7 @@
 # Start with soft white bread and morph to whole grain
 
 starter:
-  ww_flour
+  whole_wheat 
   water
   hydration = 100%
 
@@ -90,60 +90,42 @@ Good flavor and texture. Just the right amount of sour.
 */
 
 /*+
-Nutrition
-    name     | per 65g |
--------------|---------|
-calcium      |    0.03 |
-calories     |  173    |
-carbohydrate |   28.9  |
-fat          |    4.9  |
-fiber        |    4.8  |
-monounsat    |    1.1  |
-polyunsat    |    1.2  |
-potassium    |    0.19 |
-protein      |    5.8  |
-saturated    |    2.1  |
-sodium       |    0.28 |
-sugars       |    3.5  |
-water        |   27.7  |
-
-
   part  | grams  |      name     |   %   | flour  | water  |
 --------|--------|---------------|-------|--------|--------|
 starter |  30.0  |               |   6.2 |  15.0  |  15.0  |
-        |  15.0  | ww flour      |   3.1 |  15.0  |        |
+        |  15.0  | whole wheat   |   3.1 |  15.0  |        |
         |  15.0  | water         |   3.1 |        |  15.0  |
-       
+
 sponge  | 170    | + 6.5g        |  34.0 |  81.6  |  81.6  |
         |  31.2  | starter       |   6.2 |  15.0  |  15.0  |
         |  69.3  | water         |  13.9 |        |  66.6  |
         |  34.6  | oats          |   6.9 |  33.3  |        |
         |  34.6  | rye           |   6.9 |  33.3  |        |
-       
-grain   | 346    |               |  72.0 | 346    |        |
-        | 137    | prairie gold  |  28.5 | 137    |        |
-        | 137    | hard red      |  28.5 | 137    |        |
+
+grain   | 355    |               |  74.0 | 355    |        |
+        | 142    | prairie gold  |  29.5 | 142    |        |
+        | 142    | hard red      |  29.5 | 142    |        |
         |  72.0  | spelt         |  15.0 |  72.0  |        |
-       
-dry     | 424    |               |  88.2 | 398    |   0.48 |
-        | 346    | grain         |  72.0 | 346    |        |
-        |  15.7  | nido          |   3.3 |        |   0.39 |
-        |   9.6  | potato flakes |   2.0 |   9.6  |        |
+
+dry     | 434    |               |  90.5 | 398    | -19.2  |
+        | 355    | grain         |  74.0 | 355    |        |
+        |  16.9  | nido          |   3.5 |        |        |
+        |   9.6  | potato flakes |   2.0 |        | -19.2  |
         |  33.6  | flaxseed meal |   7.0 |  33.6  |        |
         |   8.1  | salt          |   1.7 |        |        |
         |   9.6  | wgbi          |   2.0 |   9.6  |        |
-        |   1.4  | yeast         |   0.3 |        |        |
-       
-wet     | 485    |               | 101.0 |  81.6  | 336    |
+        |   1.44 | yeast         |   0.3 |        |        |
+
+wet     | 504    |               | 105.0 |  81.6  | 355    |
         | 163    | sponge        |  34.0 |  81.6  |  81.6  |
-        | 241    | water         |  50.2 |        | 241    |
-        |  42.2  | butter        |   8.8 |        |   6.7  |
-        |  38.4  | honey         |   8.0 |        |   6.6  |
-       
-dough   | 908    |               | 189.3 | 480    | 336    |
-        | 485    | wet           | 101.0 |  81.6  | 336    |
-        | 424    | dry           |  88.2 | 398    |   0.48 |
+        | 260    | water         |  54.2 |        | 260    |
+        |  42.2  | butter        |   8.8 |        |   6.8  |
+        |  38.4  | honey         |   8.0 |        |   6.5  |
+
+dough   | 939    |               | 195.5 | 480    | 336    |
+        | 504    | wet           | 105.0 |  81.6  | 355    |
+        | 434    | dry           |  90.5 | 398    | -19.2  |
         |        | hydration     |  70.0 |        |        |
-       
+
 +*/
 

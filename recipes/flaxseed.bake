@@ -1,15 +1,15 @@
 # Everyday with more flaxseed meal
 
 starter:
-  ww_flour
+  whole_wheat
   water
   hydration = 100%
 
 sponge ^ 4%: # allow for 4% loss
   starter = 20g
   water
-  oats = ww
-  ww
+  oats = whole_wheat
+  whole_wheat
   total_flour = 12%
   hydration = 100%
 
@@ -76,61 +76,43 @@ fermentation went fine.
 */
 
 /*+
-Nutrition
-    name     | per 65g |
--------------|---------|
-calcium      |    0.04 |
-calories     |  178    |
-carbohydrate |   27.5  |
-fat          |    5.9  |
-fiber        |    5.3  |
-monounsat    |    1.3  |
-polyunsat    |    2.0  |
-potassium    |    0.20 |
-protein      |    6.2  |
-saturated    |    2.1  |
-sodium       |    0.28 |
-sugars       |    3.5  |
-water        |   27.6  |
-
-
   part  | grams  |      name     |   %   | flour  | water  |
 --------|--------|---------------|-------|--------|--------|
 starter |  20.0  |               |   4.0 |  10.0  |  10.0  |
-        |  10.0  | ww flour      |   2.0 |  10.0  |        |
+        |  10.0  | whole wheat   |   2.0 |  10.0  |        |
         |  10.0  | water         |   2.0 |        |  10.0  |
-       
+
 sponge  | 125    | + 4.8g        |  24.0 |  60.0  |  60.0  |
         |  20.8  | starter       |   4.0 |  10.0  |  10.0  |
-        |  52.1  | water         |  10.0 |        |  50.0  |
+        |  52.0  | water         |  10.0 |        |  50.0  |
         |  26.0  | oats          |   5.0 |  25.0  |        |
-        |  26.0  | ww            |   5.0 |  25.0  |        |
-       
-grain   | 340    |               |  68.0 | 340    |        |
-        | 127    | prairie gold  |  25.5 | 127    |        |
-        | 127    | hard red      |  25.5 | 127    |        |
-        |  42.5  | spelt         |   8.5 |  42.5  |        |
-        |  42.5  | rye           |   8.5 |  42.5  |        |
-       
-dry     | 468    |               |  93.7 | 440    |   0.56 |
-        | 340    | grain         |  68.0 | 340    |        |
-        |  18.0  | nido          |   3.6 |        |   0.44 |
-        |  10.0  | potato flakes |   2.0 |  10.0  |        |
+        |  26.0  | whole wheat   |   5.0 |  25.0  |        |
+
+grain   | 350    |               |  70.0 | 350    |        |
+        | 131    | prairie gold  |  26.2 | 131    |        |
+        | 131    | hard red      |  26.2 | 131    |        |
+        |  43.8  | spelt         |   8.8 |  43.8  |        |
+        |  43.8  | rye           |   8.8 |  43.8  |        |
+
+dry     | 480    |               |  96.0 | 440    | -20.0  |
+        | 350    | grain         |  70.0 | 350    |        |
+        |  19.3  | nido          |   3.9 |        |        |
+        |  10.0  | potato flakes |   2.0 |        | -20.0  |
         |  75.0  | flaxseed meal |  15.0 |  75.0  |        |
         |   8.5  | salt          |   1.7 |        |        |
         |  15.0  | wgbi          |   3.0 |  15.0  |        |
-        |   2.0  | yeast         |   0.4 |        |   0.10 |
-       
-wet     | 477    |               |  95.3 |  60.0  | 349    |
+        |   2.00 | yeast         |   0.4 |        |        |
+
+wet     | 497    |               |  99.4 |  60.0  | 370    |
         | 120    | sponge        |  24.0 |  60.0  |  60.0  |
-        | 277    | water         |  55.3 |        | 276    |
-        |  40.0  | butter        |   8.0 |        |   6.3  |
+        | 297    | water         |  59.4 |        | 297    |
+        |  40.0  | butter        |   8.0 |        |   6.4  |
         |  40.0  | honey         |   8.0 |        |   6.8  |
-       
-dough   | 945    |               | 189.0 | 500    | 350    |
-        | 477    | wet           |  95.3 |  60.0  | 349    |
-        | 468    | dry           |  93.7 | 440    |   0.56 |
+
+dough   | 977    |               | 195.3 | 500    | 350    |
+        | 497    | wet           |  99.4 |  60.0  | 370    |
+        | 480    | dry           |  96.0 | 440    | -20.0  |
         |        | hydration     |  70.0 |        |        |
-       
+
 +*/
 

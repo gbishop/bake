@@ -10,13 +10,13 @@ fermented_soaker:
   yeast = 0.1% # too much, use just a tiny pinch
 
 starter:
-  ww
+  whole_wheat
   water
   hydration = 80%
 
 leaven:
   starter = 5g
-  ww
+  whole_wheat
   water
   hydration = 100%
 
@@ -80,12 +80,12 @@ fermented soaker |  75.8  |                  |  37.9 |  15.4  |  53.0  |
                  |   0.20 | yeast            |   0.1 |        |        |
 
 starter          |   5.0  |                  |   2.5 |   2.78 |   2.22 |
-                 |   2.78 | ww               |   1.4 |   2.78 |        |
+                 |   2.78 | whole wheat      |   1.4 |   2.78 |        |
                  |   2.22 | water            |   1.1 |        |   2.22 |
 
 leaven           |  52.0  |                  |  26.0 |  26.0  |  26.0  |
                  |   5.0  | starter          |   2.5 |   2.78 |   2.22 |
-                 |  23.2  | ww               |  11.6 |  23.2  |        |
+                 |  23.2  | whole wheat      |  11.6 |  23.2  |        |
                  |  23.8  | water            |  11.9 |        |  23.8  |
 
 grains           | 133    |                  |  66.3 | 133    |        |

@@ -12,7 +12,7 @@ soaker:
 dough:
   soaker
   bread_flour
-  ww_flour = 0.25 * bread_flour
+  whole_wheat = 0.25 * bread_flour
   yeast = 0.32%
   salt = 1.29%
   honey = 4.84%
@@ -23,21 +23,23 @@ dough:
 # Bulk took 8 hours for her and proof was 2 hours.
 
 /*+
- part  | grams  |     name    |   %    | flour  | water  | fat  |
-       | 150    | oats        |   48.4 | 150    |        |      |
-       | 225    | milk        |   72.5 |        | 195    | 7.86 |
-       |   7.01 | lemon juice |    2.3 |        |   7.01 |      |
-       |  10.0  | rye flour   |    3.2 |  10.0  |        |      |
-soaker | 392    |             |  126.3 | 160    | 202    | 7.86 |
-      
-       | 392    | soaker      |  126.3 | 160    | 202    | 7.86 |
-       | 120    | bread flour |   38.7 | 120    |        |      |
-       |  30.0  | ww flour    |    9.7 |  30.0  |        |      |
-       |   0.99 | yeast       |    0.3 |        |        |      |
-       |   4.00 | salt        |    1.3 |        |        |      |
-       |  15.0  | honey       |    4.8 |        |   2.55 |      |
-       |  65.0  | water       |   21.0 |        |  65.0  |      |
-dough  | 627    |             |  202.1 | 310    | 270    | 7.86 |
-      
+ part  | grams  |     name    |   %   | flour  | water  |
+-------|--------|-------------|-------|--------|--------|
+soaker | 393    |             | 126.7 | 161    | 204    |
+       | 150    | oats        |  48.4 | 150    |        |
+       | 223    | milk        |  72.1 |        | 197    |
+       |   8.1  | lemon juice |   2.6 |        |   7.4  |
+       |  11.3  | rye flour   |   3.6 |  11.3  |        |
+
+dough  | 625    |             | 201.6 | 310    | 270    |
+       | 393    | soaker      | 126.7 | 161    | 204    |
+       | 119    | bread flour |  38.4 | 119    |        |
+       |  29.7  | whole wheat |   9.6 |  29.7  |        |
+       |   0.99 | yeast       |   0.3 |        |        |
+       |   4.00 | salt        |   1.3 |        |        |
+       |  15.0  | honey       |   4.8 |        |   2.55 |
+       |  63.4  | water       |  20.5 |        |  63.4  |
+       |        | hydration   |  87.1 |        |        |
+
 +*/
 

@@ -21,7 +21,7 @@ soaker:
 
 dough:
   bread_flour
-  ww_flour = 8%
+  whole_wheat = 8%
   water
   sponge = 15%
   salt = 1.5%

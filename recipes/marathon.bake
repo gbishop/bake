@@ -45,7 +45,7 @@ Protein 7 g
 */
 
 starter:
-  ww_flour
+  whole_wheat
   water
   hydration = 100%
 
@@ -68,7 +68,7 @@ soaker:
 
 flours:
   bread_flour = 52.89%
-  ww_flour = 19.83%
+  whole_wheat = 19.83%
   rye_flour = 9.92%
 
 dough:

@@ -3,7 +3,7 @@
 # for reference
 
 dough:
-  ww_flour = 226g
+  whole_wheat = 226g
   ap_flour = 150g
   salt = 7g
   yeast = 6g

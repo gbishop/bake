@@ -19,7 +19,7 @@ sponge:
   hydration = 200%
 
 dough:
-  ww_flour
+  whole_wheat
   flaxseed_meal = 13g
   salt = 8g
   yeast = 0.5% # for safety

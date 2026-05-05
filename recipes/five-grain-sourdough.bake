@@ -22,7 +22,7 @@ dough:
   soaker
   sponge
   bread_flour = 38.75%
-  ww_flour = 19.33%
+  whole_wheat = 19.33%
   water = 21.39%
   salt = 1.45%
   yeast = 0.17%

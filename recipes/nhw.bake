@@ -9,7 +9,7 @@ dough:
   sugar = 8%
   salt = 1.7%
   potato_flakes = 4%
-  ww_flour = 75g
+  whole_wheat = 75g
   bread_flour
   yeast = 1.8%
   total_flour = 450g
@@ -24,18 +24,19 @@ They turned out great.
 */
 
 /*+
- part | grams  |      name     |   %    | flour  | water  |  fat  |
-dough | 842    |               |  187.1 | 450    | 277    | 40.0  |
-      |        | hydration     |   61.5 |        |        |       |
-      | 270    | water         |   60.0 |        | 270    |       |
-      |  32.4  | nido          |    7.2 |        |        |  9.72 |
-      |  37.8  | butter        |    8.4 |        |   6.80 | 30.2  |
-      |  36.0  | sugar         |    8.0 |        |        |       |
-      |   7.65 | salt          |    1.7 |        |        |       |
-      |  18.0  | potato flakes |    4.0 |  18.0  |        |       |
-      |  75.0  | ww flour      |   16.7 |  75.0  |        |       |
-      | 357    | bread flour   |   79.3 | 357    |        |       |
-      |   8.10 | yeast         |    1.8 |        |        |       |
-     
+ part | grams  |      name     |   %   | flour  | water  |
+------|--------|---------------|-------|--------|--------|
+dough | 860    |               | 191.1 | 450    | 240    |
+      | 270    | water         |  60.0 |        | 270    |
+      |  32.4  | nido          |   7.2 |        |        |
+      |  37.8  | butter        |   8.4 |        |   6.0  |
+      |  36.0  | sugar         |   8.0 |        |        |
+      |   7.7  | salt          |   1.7 |        |        |
+      |  18.0  | potato flakes |   4.0 |        | -36.0  |
+      |  75.0  | whole wheat   |  16.7 |  75.0  |        |
+      | 375    | bread flour   |  83.3 | 375    |        |
+      |   8.1  | yeast         |   1.8 |        |        |
+      |        | hydration     |  53.3 |        |        |
+
 +*/
 

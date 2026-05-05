@@ -1,14 +1,14 @@
 # adjust my starter hydration
 
 starter:
-  ww
+  whole_wheat
   water
   hydration = 100%
 
 dough:
   starter = 1 * _part
   bran = 1 * _part
-  ww = 3 * _part
+  whole_wheat = 3 * _part
   _part
   water
   hydration = 150%
@@ -16,18 +16,18 @@ dough:
   total = 120g
 
 /*+
-  part  | grams  |    name   |   %   | flour | water |
---------|--------|-----------|-------|-------|-------|
-starter |  10.7  |           |  22.2 |  5.3  |  5.3  |
-        |   5.3  | ww        |  11.1 |  5.3  |       |
-        |   5.3  | water     |  11.1 |       |  5.3  |
+  part  | grams  |     name    |   %   | flour | water |
+--------|--------|-------------|-------|-------|-------|
+starter |  10.7  |             |  22.2 |  5.3  |  5.3  |
+        |   5.3  | whole wheat |  11.1 |  5.3  |       |
+        |   5.3  | water       |  11.1 |       |  5.3  |
 
-dough   | 120    |           | 250.0 | 48.0  | 72.0  |
-        |  10.7  | starter   |  22.2 |  5.3  |  5.3  |
-        |  10.7  | bran      |  22.2 | 10.7  |       |
-        |  32.0  | ww        |  66.7 | 32.0  |       |
-        |  66.7  | water     | 138.9 |       | 66.7  |
-        |        | hydration | 150.0 |       |       |
+dough   | 120    |             | 250.0 | 48.0  | 72.0  |
+        |  10.7  | starter     |  22.2 |  5.3  |  5.3  |
+        |  10.7  | bran        |  22.2 | 10.7  |       |
+        |  32.0  | whole wheat |  66.7 | 32.0  |       |
+        |  66.7  | water       | 138.9 |       | 66.7  |
+        |        | hydration   | 150.0 |       |       |
 
 +*/
 

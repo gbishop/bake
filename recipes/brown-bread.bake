@@ -3,7 +3,7 @@
 # From: https://breadtopia.com/sourdough-brown-bread/
 
 starter:
-  ww_flour
+  whole_wheat
   water
   hydration = 75%
 
