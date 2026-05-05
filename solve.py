@@ -2,6 +2,7 @@ from tree import *
 import numpy as np
 import pandas as pd
 import os
+from typing import cast
 from rich.pretty import pprint
 
 # silence obnoxious warning
@@ -10,14 +11,13 @@ from rich.pretty import pprint
 dir = os.path.dirname(os.path.abspath(__file__))
 map_path = os.path.join(dir, "ingredients.csv")
 ingredients = pd.read_csv(map_path, index_col="index")
-ingredients["total"] = 1
 
 
-def getIngredient(name: str):
+def getIngredient(name: str) -> pd.Series:
     """Return the components for an ingredient"""
     name = name.lower()
     if name not in ingredients.index:
-        if "water" in name:
+        if "water_" in name or "_water" in name:
             name = "water"
 
         elif name.endswith("_oil"):
@@ -29,6 +29,7 @@ def getIngredient(name: str):
         else:
             name = "unknown"
     result = ingredients.loc[name]
+    result["total"] = 1
     return result
 
 
@@ -74,12 +75,13 @@ def solve(tree: Start):
 
     # add total relations
     for part in tree.parts:
-        # totals: dict[str, Sum] = {key: Sum() for key in ingredients.columns}
         totals = pd.Series({key: Sum() for key in ingredients.columns})
+        totals["total"] = Sum()
         localVars = [var for var in part.vars if not var.name.startswith("total")]
         for var in localVars:
             if var.name in parts:
                 for key in totals.index:
+                    assert isinstance(key, str)
                     totals.loc[key] += Var(var.name, total_(key))
                 part.addRelation(Relation(var, Var(var.name, "total"), weight=1000.0))
             elif var.name.startswith("_"):
@@ -88,9 +90,13 @@ def solve(tree: Start):
                 info = getIngredient(var.name)
                 totals += info * var
                 solution.loc[var.t] = info
-        for key in totals.index:
+        for key in cast(list[str], totals.index):
             part.addRelation(
-                Relation(Var(part.name, total_(key)), totals[key], weight=1000.0)
+                Relation(
+                    Var(part.name, total_(key)),
+                    cast(Values, totals[key]),
+                    weight=1000.0,
+                )
             )
 
     # additional column for the constant terms
@@ -127,16 +133,6 @@ def solve(tree: Start):
                     result = result * f
                 if not isVector(result):
                     result = constant(result)
-            case Divide(lhs, rhs):
-                l = eval(lhs)
-                r = eval(rhs)
-                match (l, r):
-                    case (float(l), float(r)):
-                        return l / r
-                    case (l, float(r)) if isVector(l):
-                        return l * (1 / r)
-                    case _:
-                        raise NotImplementedError("Division")
             case Var():
                 result = oneHot(value)
             case float(value) | int(value):

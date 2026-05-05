@@ -160,7 +160,12 @@ def isVar(v) -> TypeGuard[Var]:
     return isinstance(v, Var)
 
 
-Values = Sum | Product | Divide | Var | float | int
+Values = Sum | Product | Var | float | int
+
+
+def isValue(v) -> TypeGuard[Values]:
+    return isinstance(v, (Sum, Product, Var, float, int))
+
 
 Vector = NDArray[np.float64]
 

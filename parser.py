@@ -142,7 +142,7 @@ class Convert(lark.Transformer):
         return Product([term, *rest])
 
     def divide(self, lhs, rhs):
-        return Divide(lhs, rhs)
+        return lhs / rhs
 
     def subtract(self, first, *rest):
         return Sum([first, Product([-1, *rest])])
