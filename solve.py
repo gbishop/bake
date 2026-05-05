@@ -10,6 +10,7 @@ from rich.pretty import pprint
 dir = os.path.dirname(os.path.abspath(__file__))
 map_path = os.path.join(dir, "ingredients.csv")
 ingredients = pd.read_csv(map_path, index_col="index")
+ingredients["total"] = 1
 
 
 def getIngredient(name: str):
@@ -73,28 +74,23 @@ def solve(tree: Start):
 
     # add total relations
     for part in tree.parts:
-        totals: dict[str, list[Values]] = {key: [] for key in ingredients.columns}
-        totals["total"] = []
+        # totals: dict[str, Sum] = {key: Sum() for key in ingredients.columns}
+        totals = pd.Series({key: Sum() for key in ingredients.columns})
         localVars = [var for var in part.vars if not var.name.startswith("total")]
         for var in localVars:
             if var.name in parts:
-                for key in totals:
-                    totals[key].append(Var(var.name, total_(key)))
+                for key in totals.index:
+                    totals.loc[key] += Var(var.name, total_(key))
                 part.addRelation(Relation(var, Var(var.name, "total"), weight=1000.0))
             elif var.name.startswith("_"):
                 continue
             else:
                 info = getIngredient(var.name)
-                for key in info.index.tolist():
-                    if info[key] == 1:
-                        totals[key].append(var)
-                    elif info[key] != 0:
-                        totals[key].append(Product([info[key], var]))
-                totals["total"].append(var)
+                totals += info * var
                 solution.loc[var.t] = info
-        for key in totals:
+        for key in totals.index:
             part.addRelation(
-                Relation(Var(part.name, total_(key)), Sum(totals[key]), weight=1000.0)
+                Relation(Var(part.name, total_(key)), totals[key], weight=1000.0)
             )
 
     # additional column for the constant terms

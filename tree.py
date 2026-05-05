@@ -111,12 +111,19 @@ class Hydration(Base):
 
 @dataclass
 class Sum(Base):
-    terms: list[Values]
+    terms: list[Values] = field(default_factory=list)
+
+    def __add__(self, value: Values):
+        return Sum(self.terms + [value])
+
+    def __iadd__(self, value: Values):
+        self.terms.append(value)
+        return self
 
 
 @dataclass
 class Product(Base):
-    factors: list[Values]
+    factors: list[Values] = field(default_factory=list)
 
 
 @dataclass
@@ -133,6 +140,20 @@ class Var(Base):
     @property
     def t(self):
         return (self.part, self.name)
+
+    def __mul__(self, scale: float):
+        if scale == 0.0:
+            return 0.0
+        elif scale == 1.0:
+            return self
+        return Product([scale, self])
+
+    def __rmul__(self, scale: float):
+        if scale == 0.0:
+            return 0.0
+        elif scale == 1.0:
+            return self
+        return Product([scale, self])
 
 
 def isVar(v) -> TypeGuard[Var]:
