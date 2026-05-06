@@ -58,6 +58,9 @@ class Base:
 class Start(Base):
     parts: tuple[Part, ...]
 
+    def vars(self):
+        return [v for part in self.parts for v in part.vars]
+
 
 @dataclass
 class Part(Base):
@@ -65,37 +68,14 @@ class Part(Base):
     vars: list[Var] = field(default_factory=list)
     relations: list[Relation] = field(default_factory=list)
 
-    def addVar(self, v: str | Var, name: str = ""):
-        if isinstance(v, str):
-            v = Var(v, name)
-        if v.part == self.name and v not in self.vars:
+    def addVar(self, name: str):
+        v = Var(self.name, name)
+        if v not in self.vars:
             self.vars.append(v)
+        return v
 
-    @overload
-    def addRelation(self, a: str, b: str, c: Values) -> None: ...
-
-    @overload
-    def addRelation(self, a: Var, b: Values) -> None: ...
-
-    @overload
-    def addRelation(self, a: Relation) -> None: ...
-
-    def addRelation(
-        self,
-        a: str | Var | Relation,
-        b: str | Values | None = None,
-        c: Values | None = None,
-    ) -> None:
-
-        match (a, b, c):
-            case (str(part), str(name), value) if isinstance(value, Values):
-                self.relations.append(Relation(Var(part, name), value))
-            case (Var() as var, value, None) if isinstance(value, Values):
-                self.relations.append(Relation(var, value))
-            case (Relation() as r, None, None):
-                self.relations.append(r)
-            case _:
-                raise NotImplementedError
+    def addRelation(self, r: Relation) -> None:
+        self.relations.append(r)
 
 
 @dataclass
@@ -103,11 +83,6 @@ class Relation(Base):
     var: Var
     value: Values
     weight: float = 1
-
-
-@dataclass
-class Hydration(Base):
-    value: float
 
 
 @dataclass
@@ -125,12 +100,6 @@ class Sum(Base):
 @dataclass
 class Product(Base):
     factors: list[Values] = field(default_factory=list)
-
-
-@dataclass
-class Divide(Base):
-    lhs: Values
-    rhs: float
 
 
 @dataclass
@@ -162,11 +131,6 @@ def isVar(v) -> TypeGuard[Var]:
 
 
 Values = Sum | Product | Var | float | int
-
-
-def isValue(v) -> TypeGuard[Values]:
-    return isinstance(v, (Sum, Product, Var, float, int))
-
 
 Vector = NDArray[np.float64]
 

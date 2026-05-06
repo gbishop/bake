@@ -103,17 +103,18 @@ class Convert(lark.Transformer):
                 case Var() as var:
                     if not var.part:
                         var.part = partName
-                    result.addVar(var.part, var.name)
+                    result.addVar(var.name)
                 case Relation() as relation:
                     var = relation.var
                     if not var.part:
                         var.part = partName
-                    result.addVar(var.part, var.name)
+                    if var.part == partName:
+                        result.addVar(var.name)
                     result.addRelation(relation)
 
         lvalue = convertNumber(loss, unit, ("", "total"))
-        result.addVar(partName, "_loss")
-        result.addRelation(partName, "_loss", lvalue)
+        lvar = result.addVar("_loss")
+        result.addRelation(Relation(lvar, lvalue))
         return result
 
     def hydration(self, value: str):

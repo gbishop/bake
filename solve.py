@@ -45,6 +45,9 @@ def solve(tree: Start):
     # gather the parts
     parts = {part.name for part in tree.parts}
 
+    # components such as flour, water, protein, fat, carbs
+    components = list(ingredients.columns)
+
     # qualify the variables
     currentPart = ""
     for node in tree.walk():
@@ -57,27 +60,29 @@ def solve(tree: Start):
 
     # add totals
     for part in tree.parts:
-        for column in ingredients.columns:
-            part.addVar(part.name, total_(column))
-        part.addVar(part.name, "total")
+        for column in components:
+            part.addVar(total_(column))
+        part.addVar("total")
 
     # construct our result matrix
     varList = [var.t for part in tree.parts for var in part.vars]
     index = pd.MultiIndex.from_tuples(varList, names=["part", "name"])
     solution = pd.DataFrame(
         index=index,
-        columns=pd.Index(["value", *list(ingredients.columns)]),
+        columns=pd.Index(["value", *components]),
         dtype=np.float64,
     )
     # add total relations
     for part in tree.parts:
-        totals = pd.Series({key: Sum() for key in ingredients.columns})
+        totals = pd.Series({key: Sum() for key in components})
         totals["total"] = Sum()
-        keys: list[str] = list(totals.index)
+        totalComponents: list[str] = list(totals.index)
         localVars = [var for var in part.vars if not var.name.startswith("total")]
         for var in localVars:
             if var.name in parts:
-                totals += [Var(var.name, total_(key)) for key in keys]
+                totals += [
+                    Var(var.name, total_(component)) for component in totalComponents
+                ]
                 part.addRelation(Relation(var, Var(var.name, "total"), weight=1000.0))
             elif var.name.startswith("_"):
                 continue
@@ -85,11 +90,11 @@ def solve(tree: Start):
                 info = getIngredient(var.name)
                 totals += info * var
                 solution.loc[var.t] = info
-        for key in keys:
+        for component in totalComponents:
             part.addRelation(
                 Relation(
-                    Var(part.name, total_(key)),
-                    cast(Values, totals[key]),
+                    Var(part.name, total_(component)),
+                    cast(Values, totals[component]),
                     weight=1000.0,
                 )
             )
@@ -179,7 +184,7 @@ def solve(tree: Start):
                 component = var.name.replace("total_", "")
                 solution.at[var.t, component] = solution.loc[var.t, "value"]
             elif var.name in parts:
-                for component in ingredients.columns:
+                for component in components:
                     solution.at[var.t, component] = solution.loc[
                         (var.name, total_(component)), "value"
                     ]
