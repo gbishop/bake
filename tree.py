@@ -65,8 +65,9 @@ class Part(Base):
     vars: list[Var] = field(default_factory=list)
     relations: list[Relation] = field(default_factory=list)
 
-    def addVar(self, part: str, name: str):
-        v = Var(part, name)
+    def addVar(self, v: str | Var, name: str = ""):
+        if isinstance(v, str):
+            v = Var(v, name)
         if v.part == self.name and v not in self.vars:
             self.vars.append(v)
 

@@ -77,8 +77,7 @@ def solve(tree: Start):
         localVars = [var for var in part.vars if not var.name.startswith("total")]
         for var in localVars:
             if var.name in parts:
-                for key in keys:
-                    totals[key] += Var(var.name, total_(key))
+                totals += [Var(var.name, total_(key)) for key in keys]
                 part.addRelation(Relation(var, Var(var.name, "total"), weight=1000.0))
             elif var.name.startswith("_"):
                 continue
