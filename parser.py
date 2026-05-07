@@ -101,18 +101,15 @@ class Convert(lark.Transformer):
         for item in items:
             match item:
                 case Var() as var:
-                    if not var.part:
-                        var.part = partName
-                    result.addVar(var.name)
+                    if not var.part or var.part == partName:
+                        result.addVar(var.name)
                 case Relation() as relation:
                     var = relation.var
-                    if not var.part:
-                        var.part = partName
-                    if var.part == partName:
+                    if not var.part or var.part == partName:
                         result.addVar(var.name)
                     result.addRelation(relation)
 
-        lvalue = convertNumber(loss, unit, ("", "total"))
+        lvalue = convertNumber(loss, unit, (partName, "total"))
         lvar = result.addVar("_loss")
         result.addRelation(Relation(lvar, lvalue))
         return result
