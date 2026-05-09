@@ -32,8 +32,8 @@ def run_batch_test():
             # Check if it returned a non-zero exit code
             if result.returncode != 0:
                 print(f"❌ FAILED: {recipe_file.name} (Exit code: {result.returncode})")
-                # Optional: Print the specific error from the crashed script
-                # print(f"   Error: {result.stderr.strip()}")
+            elif "Inconsistent equations" in result.stdout:
+                print(f"❌ FAILED: {recipe_file.name} Inconsistent equations")
 
         except Exception as e:
             # This catches system-level failures (e.g., Python not found)
