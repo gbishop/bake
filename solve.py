@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import os
 from typing import cast
-from rich.pretty import pprint
+import pprint
 
 dir = os.path.dirname(os.path.abspath(__file__))
 map_path = os.path.join(dir, "ingredients.csv")
@@ -140,15 +140,17 @@ def solve(tree: Start):
 
         return result
 
-    # collect rows
+    # collect relations
+    relations = [relation for part in tree.parts for relation in part.relations]
+
+    # build the matrix
     rows = []
-    for part in tree.parts:
-        for relation in part.relations:
-            lhs = eval(relation.var)
-            rhs = eval(relation.value)
-            if not isVector(rhs):
-                rhs = constant(rhs)
-            rows.append(relation.weight * (lhs - rhs))
+    for relation in relations:
+        lhs = eval(relation.var)
+        rhs = eval(relation.value)
+        if not isVector(rhs):
+            rhs = constant(rhs)
+        rows.append(relation.weight * (lhs - rhs))
 
     # build and slice up the matrix
     M = np.array(rows)
@@ -167,13 +169,16 @@ def solve(tree: Start):
     # Calculate how much the residual "matters" relative to the ingredients in that row
     relative_errors = np.abs(residual) / row_sums
 
-    # Failed if any equation is off by more than, say, 0.1%
-    failed = np.any(
-        relative_errors > 0.001
-    )  # Calculate the 'size' of each equation's coefficients
+    failed = False
     errors = []
+    for i, re in enumerate(relative_errors):
+        if re > 0.001:
+            failed = True
+            errors.append(f"{re=:.3g} residual={residual[i]:.3g}")
+            errors.append(pprint.pformat(relations[i]))
+
     if failed:
-        errors = ["Inconsistent equations"]
+        errors.append("Inconsistent equations")
 
     solution.value = X
 
