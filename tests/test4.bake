@@ -5,7 +5,7 @@ starter:
 
 dough:
   starter = 20.0%
-  water = 60.1%
+  water = 60.5%
   flour
   salt = 2%
   hydration = 70%

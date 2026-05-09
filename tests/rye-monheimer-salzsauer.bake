@@ -16,7 +16,7 @@ preferment:
 
 dough:
   preferment
-  rye
+  rye = 350g
   water # 105F FDT = 80F
   salt = 12.5g
   hydration = 77.7%

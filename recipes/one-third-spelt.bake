@@ -12,7 +12,7 @@ levain:
   hydration = 75%
 
 dry:
-  bread_flour = 62%
+  bread_flour
   spelt = 30%
   salt = 1.6%
 

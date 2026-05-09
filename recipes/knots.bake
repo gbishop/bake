@@ -23,7 +23,7 @@ dough:
   yeast = 1.333%
   sugar = 10.00%
   egg = 16.67%
-  milk = 59.00%
+  milk
   butter = 6.67%
   salt = 2% - 0.013 * butter
   total_flour = 450g

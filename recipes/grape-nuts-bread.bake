@@ -5,7 +5,7 @@ dough:
   water
   milk = 45%
   butter = 3.5%
-  bread_flour = 88%
+  bread_flour
   yeast = 1.5%
   sugar = 0.5%
   salt = 2%

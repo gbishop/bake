@@ -15,7 +15,7 @@ starter:
   hydration = 80%
 
 leaven:
-  starter = 5g
+  starter = 2%
   whole_wheat
   water
   hydration = 100%
@@ -35,7 +35,7 @@ wet:
 
 dry:
   grains
-  bread_flour = 13%
+  bread_flour
   salt = 1.5%
   yeast = 0.1%
 

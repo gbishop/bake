@@ -83,7 +83,7 @@ def solve(tree: Start):
                 totals += [
                     Var(var.name, total_(component)) for component in totalComponents
                 ]
-                part.addRelation(Relation(var, Var(var.name, "total"), weight=1000.0))
+                part.addRelation(Relation(var, Var(var.name, "total"), weight=1.0))
             elif var.name.startswith("_"):
                 continue
             else:
@@ -95,7 +95,7 @@ def solve(tree: Start):
                 Relation(
                     Var(part.name, total_(component)),
                     cast(Values, totals[component]),
-                    weight=1000.0,
+                    weight=1.0,
                 )
             )
 

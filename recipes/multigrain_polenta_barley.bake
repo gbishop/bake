@@ -52,7 +52,7 @@ dry:
 
 wet:
   water
-  soaker = 35%
+  soaker
   sponge = 30%
   honey = 5%
   oil = 5%

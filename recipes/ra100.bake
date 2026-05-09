@@ -1,0 +1,67 @@
+# from https://www.youtube.com/watch?v=W3hv-P0u-bg
+
+scald:
+  red_rye_malt = 60g
+  salt = 20g
+  oil = 20g
+  boiling_water = 180g
+
+starter:
+  rye
+  water
+  hydration = 100%
+
+# cover and let steep and cool
+
+preferment:
+  starter = 90g
+  water = 300g
+  rye = 300g
+
+# cover and let rest for 10 to 12 hours at RT
+
+dough:
+  preferment
+  scald
+  caraway_seeds = 13g
+
+# mix until color is even
+
+  rye = 280g
+
+# cover for 40 minutes
+# prepare pan with oil
+# use the EZee technique to develop dough for 3 minutes
+# transfer to pan and into frige for 10 to 12 hours
+
+# bake 10 minutes at 465F with steam then 50 minutes at 445F
+
+# remove from oven and cool
+
+/*+
+   part    |  grams  |      name     |   %   | flour  | water  |
+-----------|---------|---------------|-------|--------|--------|
+scald      |  280    |               |  40.9 |  60.0  | 180    |
+           |   60.0  | red rye malt  |   8.8 |  60.0  |        |
+           |   20.0  | salt          |   2.9 |        |        |
+           |   20.0  | oil           |   2.9 |        |        |
+           |  180    | boiling water |  26.3 |        | 180    |
+
+starter    |   90.0  |               |  13.1 |  45.0  |  45.0  |
+           |   45.0  | rye           |   6.6 |  45.0  |        |
+           |   45.0  | water         |   6.6 |        |  45.0  |
+
+preferment |  690    |               | 100.7 | 345    | 345    |
+           |   90.0  | starter       |  13.1 |  45.0  |  45.0  |
+           |  300    | water         |  43.8 |        | 300    |
+           |  300    | rye           |  43.8 | 300    |        |
+
+dough      | 1263    |               | 184.4 | 685    | 525    |
+           |  690    | preferment    | 100.7 | 345    | 345    |
+           |  280    | scald         |  40.9 |  60.0  | 180    |
+           |   13.0  | caraway seeds |   1.9 |        |        |
+           |  280    | rye           |  40.9 | 280    |        |
+           |         | hydration     |  76.6 |        |        |
+
++*/
+

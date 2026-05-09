@@ -67,17 +67,18 @@ soaker:
   pumpkin_seeds = 2.48%
 
 flours:
-  bread_flour = 52.89%
+  bread_flour # = 52.89%
   whole_wheat = 19.83%
   rye_flour = 9.92%
 
 dough:
   starter = 9.92%
   soaker
-  water = 19.83%
+  water
   flours
 
   total_flour = 500g
+  hydration = 65%
 
 /*+
   part  | grams  |       name      |   %   | flour | water | fat  |
