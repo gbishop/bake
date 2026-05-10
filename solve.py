@@ -161,7 +161,6 @@ def solve(tree: Start):
     residual = A @ X - B
 
     # Attempt to detect failure to meet the constraints
-    # Calculate the "mass" involved in each constraint
     # np.abs(A) @ np.abs(X) gives the sum of magnitudes for each equation
     row_sums = np.abs(A) @ np.abs(X)
     # Avoid division by zero for empty rows
