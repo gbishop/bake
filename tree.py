@@ -140,3 +140,23 @@ def isVector(v) -> TypeGuard[Vector]:
 
 
 Matrix = NDArray[np.float64]
+
+
+def format(value: Values | Relation) -> str:
+    match value:
+        case Var() as v:
+            return f"{v.part}.{v.name}"
+        case Product() as p:
+            factors = []
+            for factor in p.factors:
+                if isinstance(factor, Sum):
+                    factors.append(f"({format(factor)})")
+                else:
+                    factors.append(format(factor))
+            return " * ".join(factors)
+        case Sum() as s:
+            return " + ".join(format(term) for term in s.terms)
+        case Relation() as r:
+            return f"{format(r.var)} = {format(r.value)}"
+        case float() | int():
+            return f"{value:.3g}"

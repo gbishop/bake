@@ -83,7 +83,7 @@ def solve(tree: Start):
                 totals += [
                     Var(var.name, total_(component)) for component in totalComponents
                 ]
-                part.addRelation(Relation(var, Var(var.name, "total"), weight=1.0))
+                part.addRelation(Relation(var, Var(var.name, "total"), weight=1000.0))
             elif var.name.startswith("_"):
                 continue
             else:
@@ -95,7 +95,7 @@ def solve(tree: Start):
                 Relation(
                     Var(part.name, total_(component)),
                     cast(Values, totals[component]),
-                    weight=1.0,
+                    weight=1000.0,
                 )
             )
 
@@ -174,11 +174,13 @@ def solve(tree: Start):
     for i, re in enumerate(relative_errors):
         if re > 0.001:
             failed = True
-            errors.append(f"{re=:.3g} residual={residual[i]:.3g}")
-            errors.append(pprint.pformat(relations[i]))
+            errors.append(
+                f"{format(relations[i])} --> ({re*100:.1f}% {residual[i]:.2f})"
+            )
 
     if failed:
         errors.append("Inconsistent equations")
+        errors.append("")
 
     solution.value = X
 
