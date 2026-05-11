@@ -45,9 +45,10 @@ def solve(tree: Start):
     # gather the parts
     parts = {part.name for part in tree.parts}
 
-    # components such as flour, water, protein, fat, carbs
-    components = list(ingredients.columns)
-    flour_water = components[:2]
+    columns = list(ingredients.columns)
+    flour_water = ["flour", "water"]
+    # nutrients such as protein, fiber, fat, carbs
+    nutrients = [column for column in columns if column not in flour_water]
 
     # qualify the variables
     currentPart = ""
@@ -70,7 +71,7 @@ def solve(tree: Start):
     index = pd.MultiIndex.from_tuples(varList, names=["part", "name"])
     solution = pd.DataFrame(
         index=index,
-        columns=pd.Index(["value", *components]),
+        columns=pd.Index(["value", *flour_water, *nutrients]),
         dtype=np.float64,
     )
     # add total relations
@@ -183,26 +184,70 @@ def solve(tree: Start):
         errors.append("")
 
     solution.value = X
+    to_scale = ["flour", "water", *nutrients]
+    solution[to_scale] = solution[to_scale].mul(solution["value"], axis=0)
     solution = solution.fillna(0.0)
 
-    for part in tree.parts:
-        for var in part.vars:
-            if var.name.startswith("total_"):
-                component = var.name.replace("total_", "")
-                solution.at[var.t, component] = solution.loc[var.t, "value"]
-            elif var.name in parts:
-                for component in flour_water:
-                    solution.at[var.t, component] = solution.loc[
-                        (var.name, total_(component)), "value"
-                    ]
-            else:
-                solution.loc[var.t, "flour":] *= solution.loc[var.t, "value"]
+    # Identify all unique stages
+    all_parts = solution.index.get_level_values(0).unique().tolist()
 
-    for part, group in solution.groupby(level=0):
-        group_total = group.loc[part, components[2:]].sum()
-        for component in components[2:]:
-            solution.at[(part, "total"), component] = group_total[component]
-        # print("part", part, group_total)
+    # Build a dependency map: { 'dough': ['starter'], 'starter': [] }
+    deps = {
+        part: [
+            ing for ing in solution.loc[part].index if ing in all_parts and ing != part
+        ]
+        for part in all_parts
+    }
+
+    # Topological Sort (Kahn's Algorithm simplified)
+    ordered_stages = []
+    while deps:
+        # Find stages with no dependencies left
+        ready = [p for p, d in deps.items() if not d]
+        if not ready:
+            # If this happens, you have a circular dependency (e.g., A needs B, B needs A)
+            raise ValueError("Circular dependency detected!")
+
+        for p in ready:
+            ordered_stages.append(p)
+            del deps[p]
+            # Remove p from the dependency lists of other stages
+            for other in deps:
+                if p in deps[other]:
+                    deps[other].remove(p)
+
+    # Define your target columns
+
+    for stage in ordered_stages:
+        # 1. Identify which rows are actual inputs for this stage
+        # Exclude the summary rows to prevent double-counting
+        exclude = ["total", "total_flour", "total_water", "_loss"]
+        ingredient_rows = solution.loc[stage].index.difference(exclude)
+
+        # 2. Sum the ingredients to get the 'Actual' nutrients for this part
+        sums = solution.loc[(stage, ingredient_rows), columns].sum()
+
+        # 3. Update the summary 'total' row for this stage
+        solution.loc[(stage, "total"), columns] = sums
+
+        # 4. PROPAGATE: Find where this stage is used as an ingredient in FUTURE stages
+        # Example: If we just finished 'starter', update ('dough', 'starter')
+        # We use a cross-section (xs) or a mask to find level 1 == stage
+        idx = pd.IndexSlice
+        # Find rows where the ingredient NAME matches the current stage
+        # but the PART name is different (to avoid updating the definition itself)
+        usage_mask = (solution.index.get_level_values(1) == stage) & (
+            solution.index.get_level_values(0) != stage
+        )
+
+        if usage_mask.any():
+            # Update the 'ingredient' row in the next stage with the 'total' from this stage
+            # We use .values to avoid index alignment issues
+            solution.loc[usage_mask, columns] = sums.values
+
+    # scale the nutrients to grams / 100g based on 9% loss while baking
+    # baked_weight = solution.loc[("dough", "total"), "value"] * 0.91
+    # solution[nutrients] *= 100 / baked_weight
 
     solution["bp"] = (
         solution["value"] / solution.loc[("dough", "total_flour"), "value"] * 100.0

@@ -73,7 +73,6 @@ def format_table(solution: pd.DataFrame, allcolumns: bool):
         return "\n".join(header + body + footer) + "\n"
     # fmt: on
 
-    print(solution)
     nutrients = ["protein", "fiber", "fat", "carbs"]
     if allcolumns:
         nutrient_columns = nutrients
@@ -87,10 +86,6 @@ def format_table(solution: pd.DataFrame, allcolumns: bool):
         part_loss = pdf.loc[(partName, "_loss"), "value"]
         loss_scale = (part_total + part_loss) / part_total
         # add the total
-        nutrients_values = (
-            pdf.loc[(partName, "total")].reindex(nutrients, fill_value=0.0).tolist()
-        )
-        print(nutrients_values)
         rows.append(
             [
                 partName,
@@ -133,20 +128,35 @@ def format_table(solution: pd.DataFrame, allcolumns: bool):
                 ]
             )
             rows.append([])
-            tdw = pdf.loc[("dough", "total"), "value"] * 0.91  # baked weight
-            # for nutrient in nutrients:
-            #     value = pdf.loc[("dough", f"total_{nutrient}"), "value"]
-            #     rows.append(
-            #         [
-            #             "",
-            #             value,
-            #             nutrient,
-            #             100 * value / tdw,
-            #             0,
-            #             0,
-            #             *[0 for _ in nutrient_columns],
-            #         ]
-            #     )
+            baked_weight = pdf.loc[("dough", "total"), "value"] * 0.91
+            # cscale = {"protein": 4, "carbs": 4, "fat": 9}
+            # calories = 0
+
+            for nutrient in nutrients:
+                value = pdf.loc[("dough", f"total"), nutrient]
+                # calories += cscale.get(nutrient, 0) * value
+                rows.append(
+                    [
+                        "",
+                        value,
+                        nutrient,
+                        100 * value / baked_weight,
+                        0,
+                        0,
+                        *[0 for _ in nutrient_columns],
+                    ]
+                )
+            # rows.append(
+            #     [
+            #         "",
+            #         calories,
+            #         "calories",
+            #         0,
+            #         0,
+            #         0,
+            #         *[0 for _ in nutrient_columns],
+            #     ]
+            # )
         else:
             rows.append([])
 
@@ -173,7 +183,7 @@ def output(
     if errors:
         recipe = re.sub(r"^", "E ", recipe, 0, re.M)
         recipe = f"{'\n'.join(errors)}\n{recipe}"
-    result = f"{text}\n\n/*+\n{recipe}+*/\n"
+    result = f"{text}\n\n/*+\n{recipe.rstrip()}+*/\n"
     print(result)
 
     if html:
