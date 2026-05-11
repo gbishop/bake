@@ -47,6 +47,7 @@ def solve(tree: Start):
 
     # components such as flour, water, protein, fat, carbs
     components = list(ingredients.columns)
+    flour_water = components[:2]
 
     # qualify the variables
     currentPart = ""
@@ -60,7 +61,7 @@ def solve(tree: Start):
 
     # add totals
     for part in tree.parts:
-        for column in components:
+        for column in flour_water:
             part.addVar(total_(column))
         part.addVar("total")
 
@@ -74,7 +75,7 @@ def solve(tree: Start):
     )
     # add total relations
     for part in tree.parts:
-        totals = pd.Series({key: Sum() for key in components})
+        totals = pd.Series({key: Sum() for key in flour_water})
         totals["total"] = Sum()
         totalComponents: list[str] = list(totals.index)
         localVars = [var for var in part.vars if not var.name.startswith("total")]
@@ -182,20 +183,27 @@ def solve(tree: Start):
         errors.append("")
 
     solution.value = X
-
     solution = solution.fillna(0.0)
+
     for part in tree.parts:
         for var in part.vars:
             if var.name.startswith("total_"):
                 component = var.name.replace("total_", "")
                 solution.at[var.t, component] = solution.loc[var.t, "value"]
             elif var.name in parts:
-                for component in components:
+                for component in flour_water:
                     solution.at[var.t, component] = solution.loc[
                         (var.name, total_(component)), "value"
                     ]
             else:
                 solution.loc[var.t, "flour":] *= solution.loc[var.t, "value"]
+
+    for part, group in solution.groupby(level=0):
+        group_total = group.loc[part, components[2:]].sum()
+        for component in components[2:]:
+            solution.at[(part, "total"), component] = group_total[component]
+        # print("part", part, group_total)
+
     solution["bp"] = (
         solution["value"] / solution.loc[("dough", "total_flour"), "value"] * 100.0
     )

@@ -2,7 +2,7 @@ import re
 import pandas as pd
 
 
-def format_table(solution: pd.DataFrame):
+def format_table(solution: pd.DataFrame, allcolumns: bool):
     """Build a table from the solution"""
 
     def fmt_value(fmt: str, v: float | str):
@@ -53,18 +53,32 @@ def format_table(solution: pd.DataFrame):
             ]
             for row in rows
         ]
+
+        top = "┌─" + "─┬─".join("─" * width for width in widths) + "─┐"
+        bar = "├─" + "─┼─".join("─" * width for width in widths) + "─┤"
+        end = "└─" + "─┴─".join("─" * width for width in widths) + "─┘"
+
         # headings
         header = [
-            " | ".join(heading.center(width)
-            for width, heading in zip(widths, headings)) + " |",
-            "-|-".join("-" * width for width in widths) + "-|",
+                top,
+            "│ " + " │ ".join(heading.center(width)
+            for width, heading in zip(widths, headings)) + " │",
+            bar,
         ] 
         body = [
-            " | ".join(row) + " |" if len(row) > 1 else ""
+            "│ " + " │ ".join(row) + " │" if len(row) > 1 else bar
             for row in rows
         ]
-        return "\n".join(header + body) + "\n"
+        footer = [ end ]
+        return "\n".join(header + body + footer) + "\n"
     # fmt: on
+
+    print(solution)
+    nutrients = ["protein", "fiber", "fat", "carbs"]
+    if allcolumns:
+        nutrient_columns = nutrients
+    else:
+        nutrient_columns = []
 
     # reshape the data into a list of lists
     rows = []
@@ -73,6 +87,10 @@ def format_table(solution: pd.DataFrame):
         part_loss = pdf.loc[(partName, "_loss"), "value"]
         loss_scale = (part_total + part_loss) / part_total
         # add the total
+        nutrients_values = (
+            pdf.loc[(partName, "total")].reindex(nutrients, fill_value=0.0).tolist()
+        )
+        print(nutrients_values)
         rows.append(
             [
                 partName,
@@ -81,6 +99,7 @@ def format_table(solution: pd.DataFrame):
                 pdf.loc[(partName, "total"), "bp"],
                 pdf.loc[(partName, "total_flour"), "value"],
                 pdf.loc[(partName, "total_water"), "value"],
+                *pdf.loc[(partName, "total"), nutrients],
             ]
         )
 
@@ -90,7 +109,7 @@ def format_table(solution: pd.DataFrame):
             if not name.startswith("total") and not name.startswith("_"):
                 vg = pdf.loc[var, "value"]
                 unknown = ""
-                extras = pdf.loc[var, "flour":].tolist()
+                extras = pdf.loc[var, ["flour", "water", *nutrients]].tolist()
                 rows.append(
                     [
                         "",
@@ -110,13 +129,29 @@ def format_table(solution: pd.DataFrame):
                     pdf.loc[("dough", "total_water"), "bp"],
                     0,
                     0,
+                    *[0 for _ in nutrient_columns],
                 ]
             )
-        # add a blank line
-        rows.append([""])
+            rows.append([])
+            tdw = pdf.loc[("dough", "total"), "value"] * 0.91  # baked weight
+            # for nutrient in nutrients:
+            #     value = pdf.loc[("dough", f"total_{nutrient}"), "value"]
+            #     rows.append(
+            #         [
+            #             "",
+            #             value,
+            #             nutrient,
+            #             100 * value / tdw,
+            #             0,
+            #             0,
+            #             *[0 for _ in nutrient_columns],
+            #         ]
+            #     )
+        else:
+            rows.append([])
 
-    heading = ["part", "grams", "name", "%", "flour", "water"]
-    recipe = tabulate(heading, "tgt%ggg", rows)
+    heading = ["part", "grams", "name", "%", "flour", "water", *nutrients]
+    recipe = tabulate(heading, "tgt%ggg" + "g" * len(nutrient_columns), rows)
 
     return recipe
 
@@ -127,9 +162,10 @@ def output(
     errors=[],
     tobp=False,
     html="",
+    allcolumns=False,
 ):
     """Insert the table into the input"""
-    recipe = format_table(solution)
+    recipe = format_table(solution, allcolumns)
     text = re.sub(r"(?ms)\/\*\+.*?\+\*\/\n", "", text).rstrip()
     if tobp:
         text = rewrite(text, 100 / solution.loc[("dough", "total_flour"), "value"])

@@ -33,6 +33,7 @@ argparser.add_argument("filename", nargs="?", default="")
 argparser.add_argument("-R", "--rewrite", action="store_true")
 argparser.add_argument("--html")
 argparser.add_argument("-q", "--quiet", action="store_true")
+argparser.add_argument("-a", "--allcolumns", action="store_true")
 args = argparser.parse_args()
 if args.filename:
     fp = open(args.filename, "rt")
@@ -47,4 +48,11 @@ result = parse(text)
 solution, failed = solve(result)
 
 if not args.quiet:
-    output(text, solution, errors=failed, tobp=args.rewrite, html=args.html)
+    output(
+        text,
+        solution,
+        errors=failed,
+        tobp=args.rewrite,
+        html=args.html,
+        allcolumns=args.allcolumns,
+    )
