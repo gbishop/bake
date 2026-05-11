@@ -133,11 +133,11 @@ sunflower_seeds,0,0
 sunflower_seeds_sr,0,-0.8
 sunflower_seeds_sb,0,-0.8
 sweet_potato,0,0.76
+unknown,0,0
 vanilla_extract,0,0
 vinegar,0,1
 vital_wheat_gluten,1,0
 vwg,1,0
-unknown,0,0
 walnuts,0,0
 water,0,1
 wgbi,1,0
@@ -145,6 +145,7 @@ wheat_bran,0,-0.96
 wheat_flakes,1,0
 wheat_flakes_sr,0,-1.0
 wheat_flakes_sb,0,-1.8
+wheat_germ,1,0
 whey,0,0.93
 whole_wheat,1,0
 ww,1,0
