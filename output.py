@@ -28,23 +28,17 @@ def format_table(solution: pd.DataFrame, allcolumns: bool):
             r = v.replace("_", " ")
         return r
 
-    # fmt: off
     def tabulate(headings: list[str], formats: str, input: list[list[float | str]]):
         """Format a list of lists as a table"""
         widths = [len(h) for h in headings]
         rows = [
-            [
-                fmt_value(format, column)
-                for column, format in zip(row, formats)
-            ]
+            [fmt_value(format, column) for column, format in zip(row, formats)]
             for row in input
         ]
         for row in rows:
             if len(row) <= 1:
                 continue
-            widths = [
-                max(len(column), width)
-                for column, width in zip(row, widths)]
+            widths = [max(len(column), width) for column, width in zip(row, widths)]
         aligns = ["<" if fmt == "t" else ">" for fmt in formats]
         rows = [
             [
@@ -58,20 +52,15 @@ def format_table(solution: pd.DataFrame, allcolumns: bool):
         bar = "├─" + "─┼─".join("─" * width for width in widths) + "─┤"
         end = "└─" + "─┴─".join("─" * width for width in widths) + "─┘"
 
-        # headings
+        headings = [heading.center(width) for width, heading in zip(widths, headings)]
         header = [
-                top,
-            "│ " + " │ ".join(heading.center(width)
-            for width, heading in zip(widths, headings)) + " │",
+            top,
+            "│ " + " │ ".join(headings) + " │",
             bar,
-        ] 
-        body = [
-            "│ " + " │ ".join(row) + " │" if len(row) > 1 else bar
-            for row in rows
         ]
-        footer = [ end ]
+        body = ["│ " + " │ ".join(row) + " │" if len(row) > 1 else bar for row in rows]
+        footer = [end]
         return "\n".join(header + body + footer) + "\n"
-    # fmt: on
 
     nutrients = ["protein", "fiber", "fat", "carbs"]
     if allcolumns:
