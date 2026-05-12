@@ -68,6 +68,11 @@ class Part(Base):
     vars: list[Var] = field(default_factory=list)
     relations: list[Relation] = field(default_factory=list)
 
+    def __post_init__(self):
+        self.addVar("total_flour")
+        self.addVar("total_water")
+        self.addVar("total")
+
     def addVar(self, name: str):
         v = Var(self.name, name)
         if v not in self.vars:

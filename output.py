@@ -1,5 +1,6 @@
 import re
 import pandas as pd
+from rich.pretty import pprint
 
 
 def format_table(solution: pd.DataFrame, allcolumns: bool):
@@ -92,15 +93,13 @@ def format_table(solution: pd.DataFrame, allcolumns: bool):
             name = var[1]
             if not name.startswith("total") and not name.startswith("_"):
                 vg = pdf.loc[var, "value"]
-                unknown = ""
-                extras = pdf.loc[var, ["flour", "water", *nutrients]].tolist()
                 rows.append(
                     [
                         "",
                         vg * loss_scale,
-                        name + unknown,
+                        name,
                         pdf.loc[var, "bp"],
-                        *extras,
+                        *pdf.loc[var, ["flour", "water", *nutrients]].tolist(),
                     ]
                 )
         # add hydration for the final dough
@@ -117,13 +116,9 @@ def format_table(solution: pd.DataFrame, allcolumns: bool):
                 ]
             )
             rows.append([])
-            baked_weight = pdf.loc[("dough", "total"), "value"] * 0.91
-            # cscale = {"protein": 4, "carbs": 4, "fat": 9}
-            # calories = 0
-
-            for nutrient in nutrients:
-                value = pdf.loc[("dough", f"total"), nutrient]
-                # calories += cscale.get(nutrient, 0) * value
+            total = pdf.loc[("dough", "total")]
+            baked_weight = total["value"] * 0.91
+            for nutrient, value in total[nutrients].items():
                 rows.append(
                     [
                         "",
@@ -135,17 +130,21 @@ def format_table(solution: pd.DataFrame, allcolumns: bool):
                         *[0 for _ in nutrient_columns],
                     ]
                 )
-            # rows.append(
-            #     [
-            #         "",
-            #         calories,
-            #         "calories",
-            #         0,
-            #         0,
-            #         0,
-            #         *[0 for _ in nutrient_columns],
-            #     ]
-            # )
+
+            calories = (
+                total[nutrients] * pd.Series(dict(protein=4, carbs=4, fat=9))
+            ).sum()
+            rows.append(
+                [
+                    "",
+                    calories,
+                    "calories",
+                    100 * calories / baked_weight,
+                    0,
+                    0,
+                    *[0 for _ in nutrient_columns],
+                ]
+            )
         else:
             rows.append([])
 
@@ -172,7 +171,7 @@ def output(
     if errors:
         recipe = re.sub(r"^", "E ", recipe, 0, re.M)
         recipe = f"{'\n'.join(errors)}\n{recipe}"
-    result = f"{text}\n\n/*+\n{recipe.rstrip()}+*/\n"
+    result = f"{text}\n\n/*+\n{recipe}+*/\n"
     print(result)
 
     if html:
