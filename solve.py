@@ -113,20 +113,30 @@ def solve(tree: Start):
         """Recursively evaluate an equation"""
         result: float | Vector
         match value:
-            case Sum():
-                terms = [eval(term) for term in value.terms]
-                f = sum(term for term in terms if isinstance(term, (float, int)))
-                c = constant(f)
-                result = c + np.sum([term for term in terms if isVector(term)], axis=0)
-            case Product(factors):
-                result = eval(factors[0])
-                for factor in factors[1:]:
-                    f = eval(factor)
-                    if isVector(result) and isVector(f):
-                        raise NotImplementedError("Product")
-                    result = result * f
-                if not isVector(result):
-                    result = constant(result)
+            case Sum(lhs, rhs):
+                l = eval(lhs)
+                r = eval(rhs)
+                if isFloat(l) and isVector(r):
+                    result = constant(l) + r
+                elif isVector(l) and isFloat(r):
+                    result = l + constant(r)
+                else:
+                    result = l + r
+            case Difference(lhs, rhs):
+                l = eval(lhs)
+                r = eval(rhs)
+                if isFloat(l) and isVector(r):
+                    result = constant(l) - r
+                elif isVector(l) and isFloat(r):
+                    result = l - constant(r)
+                else:
+                    result = l - r
+            case Product(lhs, rhs):
+                l = eval(lhs)
+                r = eval(rhs)
+                if isVector(l) and isVector(r):
+                    raise NotImplementedError("Product")
+                result = l * r
             case Var():
                 result = oneHot(value)
             case float(value) | int(value):

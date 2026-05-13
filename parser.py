@@ -10,6 +10,7 @@ grammar = r"""
     %import common.WS_INLINE
     %import common.SH_COMMENT
     %import common.C_COMMENT
+    %import common.SIGNED_NUMBER
     %import common.NUMBER
     %import common.NEWLINE
     %ignore WS_INLINE
@@ -26,18 +27,19 @@ grammar = r"""
         | unknown "=" sum _NL -> relation
         | unknown _NL -> inclusion
 
-    ?sum: product ("+" product)+ -> add
-        | product ("-" product)+ -> subtract
+    ?sum: sum "+" product -> add
+        | sum "-" product -> subtract
         | product
 
-    ?product: term ("*" term)*
+    ?product: product "*" term -> product
+        | product "/" number -> divide
+        | term
 
     ?term: unknown
-        | number "/" number -> divide
         | number
         | "(" sum ")"
 
-    number: NUMBER [ UNIT ]
+    number: SIGNED_NUMBER [ UNIT ]
 
     UNIT: ("%" | "ppm" | "g" | "dt" | "df" | "dw" | "pt" | "pf" | "pw")
 
@@ -64,19 +66,19 @@ def convertNumber(value: str | None, unit: str | None, basis=("dough", "total_fl
         case "ppm":
             return v / 1e6
         case "%":
-            return Product([v / 100, Var(*basis)])
+            return Product(v / 100, Var(*basis))
         case "dt":
-            return Product([v / 100, Var("dough", "total")])
+            return Product(v / 100, Var("dough", "total"))
         case "df":
-            return Product([v / 100, Var("dough", "total_flour")])
+            return Product(v / 100, Var("dough", "total_flour"))
         case "dw":
-            return Product([v / 100, Var("dough", "total_water")])
+            return Product(v / 100, Var("dough", "total_water"))
         case "pt":
-            return Product([v / 100, Var("", "total")])
+            return Product(v / 100, Var("", "total"))
         case "pw":
-            return Product([v / 100, Var("", "total_water")])
+            return Product(v / 100, Var("", "total_water"))
         case "pf":
-            return Product([v / 100, Var("", "total_flour")])
+            return Product(v / 100, Var("", "total_flour"))
         case _:
             raise NotImplementedError
 
@@ -117,7 +119,7 @@ class Convert(lark.Transformer):
     def hydration(self, value: str):
         return Relation(
             Var("", "total_water"),
-            Product([float(value) / 100, Var("", "total_flour")]),
+            Product(float(value) / 100, Var("", "total_flour")),
         )
 
     def number(self, value: str, unit: str):
@@ -133,17 +135,17 @@ class Convert(lark.Transformer):
     def relation(self, var, value):
         return Relation(var, value)
 
-    def add(self, product, *rest):
-        return Sum([product, *rest])
+    def add(self, left, right):
+        return Sum(left, right)
 
-    def product(self, term, *rest):
-        return Product([term, *rest])
+    def product(self, lhs, rhs):
+        return Product(lhs, rhs)
 
     def divide(self, lhs, rhs):
-        return lhs / rhs
+        return Product(1 / rhs, lhs)
 
-    def subtract(self, first, *rest):
-        return Sum([first, Product([-1, *rest])])
+    def subtract(self, left, right):
+        return Difference(left, right)
 
 
 def parse(text: str):

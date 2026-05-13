@@ -92,19 +92,23 @@ class Relation(Base):
 
 @dataclass
 class Sum(Base):
-    terms: list[Values] = field(default_factory=list)
+    lhs: Values = 0.0
+    rhs: Values = 0.0
 
     def __add__(self, value: Values):
-        return Sum(self.terms + [value])
+        return Sum(self, value)
 
-    def __iadd__(self, value: Values):
-        self.terms.append(value)
-        return self
+
+@dataclass
+class Difference(Base):
+    lhs: Values = 0.0
+    rhs: Values = 0.0
 
 
 @dataclass
 class Product(Base):
-    factors: list[Values] = field(default_factory=list)
+    lhs: Values
+    rhs: Values
 
 
 @dataclass
@@ -121,21 +125,25 @@ class Var(Base):
             return 0.0
         elif scale == 1.0:
             return self
-        return Product([scale, self])
+        return Product(scale, self)
 
     def __rmul__(self, scale: float):
         if scale == 0.0:
             return 0.0
         elif scale == 1.0:
             return self
-        return Product([scale, self])
+        return Product(scale, self)
 
 
 def isVar(v) -> TypeGuard[Var]:
     return isinstance(v, Var)
 
 
-Values = Sum | Product | Var | float | int
+def isFloat(v) -> TypeGuard[float]:
+    return isinstance(v, (float, int))
+
+
+Values = Sum | Difference | Product | Var | float | int
 
 Vector = NDArray[np.float64]
 
@@ -153,14 +161,16 @@ def format(value: Values | Relation) -> str:
             return f"{v.part}.{v.name}"
         case Product() as p:
             factors = []
-            for factor in p.factors:
+            for factor in [p.lhs, p.rhs]:
                 if isinstance(factor, Sum):
                     factors.append(f"({format(factor)})")
                 else:
                     factors.append(format(factor))
             return " * ".join(factors)
         case Sum() as s:
-            return " + ".join(format(term) for term in s.terms)
+            return f"{format(s.lhs)} + {format(s.rhs)}"
+        case Difference() as s:
+            return f"{format(s.lhs)} - {format(s.rhs)}"
         case Relation() as r:
             return f"{format(r.var)} = {format(r.value)}"
         case float() | int():

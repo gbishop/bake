@@ -7,8 +7,7 @@ dough:
   flour
   water
   salt = 2%
-  starter.total_flour = 5%
-  starter = 2 * flour / 10
+  starter = 0.1 * (flour + salt) / 2 - (1 + 2 + 3) * salt
   hydration = 70%
   total_flour = 1000g
 
