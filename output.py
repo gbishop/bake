@@ -1,8 +1,9 @@
 import re
 import pandas as pd
+from rich.pretty import pprint
 
 
-def format_table(solution: pd.DataFrame):
+def format_table(solution: pd.DataFrame, allcolumns: bool):
     """Build a table from the solution"""
 
     def fmt_value(fmt: str, v: float | str):
@@ -28,23 +29,17 @@ def format_table(solution: pd.DataFrame):
             r = v.replace("_", " ")
         return r
 
-    # fmt: off
     def tabulate(headings: list[str], formats: str, input: list[list[float | str]]):
         """Format a list of lists as a table"""
         widths = [len(h) for h in headings]
         rows = [
-            [
-                fmt_value(format, column)
-                for column, format in zip(row, formats)
-            ]
+            [fmt_value(format, column) for column, format in zip(row, formats)]
             for row in input
         ]
         for row in rows:
             if len(row) <= 1:
                 continue
-            widths = [
-                max(len(column), width)
-                for column, width in zip(row, widths)]
+            widths = [max(len(column), width) for column, width in zip(row, widths)]
         aligns = ["<" if fmt == "t" else ">" for fmt in formats]
         rows = [
             [
@@ -53,18 +48,26 @@ def format_table(solution: pd.DataFrame):
             ]
             for row in rows
         ]
-        # headings
+
+        top = "┌─" + "─┬─".join("─" * width for width in widths) + "─┐"
+        bar = "├─" + "─┼─".join("─" * width for width in widths) + "─┤"
+        end = "└─" + "─┴─".join("─" * width for width in widths) + "─┘"
+
+        headings = [heading.center(width) for width, heading in zip(widths, headings)]
         header = [
-            " | ".join(heading.center(width)
-            for width, heading in zip(widths, headings)) + " |",
-            "-|-".join("-" * width for width in widths) + "-|",
-        ] 
-        body = [
-            " | ".join(row) + " |" if len(row) > 1 else ""
-            for row in rows
+            top,
+            "│ " + " │ ".join(headings) + " │",
+            bar,
         ]
-        return "\n".join(header + body) + "\n"
-    # fmt: on
+        body = ["│ " + " │ ".join(row) + " │" if len(row) > 1 else bar for row in rows]
+        footer = [end]
+        return "\n".join(header + body + footer) + "\n"
+
+    nutrients = ["protein", "fiber", "fat", "carbs"]
+    if allcolumns:
+        nutrient_columns = nutrients
+    else:
+        nutrient_columns = []
 
     # reshape the data into a list of lists
     rows = []
@@ -81,6 +84,7 @@ def format_table(solution: pd.DataFrame):
                 pdf.loc[(partName, "total"), "bp"],
                 pdf.loc[(partName, "total_flour"), "value"],
                 pdf.loc[(partName, "total_water"), "value"],
+                *pdf.loc[(partName, "total"), nutrients],
             ]
         )
 
@@ -89,15 +93,13 @@ def format_table(solution: pd.DataFrame):
             name = var[1]
             if not name.startswith("total") and not name.startswith("_"):
                 vg = pdf.loc[var, "value"]
-                unknown = ""
-                extras = pdf.loc[var, "flour":].tolist()
                 rows.append(
                     [
                         "",
                         vg * loss_scale,
-                        name + unknown,
+                        name,
                         pdf.loc[var, "bp"],
-                        *extras,
+                        *pdf.loc[var, ["flour", "water", *nutrients]].tolist(),
                     ]
                 )
         # add hydration for the final dough
@@ -110,13 +112,44 @@ def format_table(solution: pd.DataFrame):
                     pdf.loc[("dough", "total_water"), "bp"],
                     0,
                     0,
+                    *[0 for _ in nutrient_columns],
                 ]
             )
-        # add a blank line
-        rows.append([""])
+            rows.append([])
+            total = pdf.loc[("dough", "total")]
+            baked_weight = total["value"] * 0.91
+            for nutrient, value in total[nutrients].items():
+                rows.append(
+                    [
+                        "",
+                        value,
+                        nutrient,
+                        100 * value / baked_weight,
+                        0,
+                        0,
+                        *[0 for _ in nutrient_columns],
+                    ]
+                )
 
-    heading = ["part", "grams", "name", "%", "flour", "water"]
-    recipe = tabulate(heading, "tgt%ggg", rows)
+            calories = (
+                total[nutrients] * pd.Series(dict(protein=4, carbs=4, fat=9))
+            ).sum()
+            rows.append(
+                [
+                    "",
+                    calories,
+                    "calories",
+                    100 * calories / baked_weight,
+                    0,
+                    0,
+                    *[0 for _ in nutrient_columns],
+                ]
+            )
+        else:
+            rows.append([])
+
+    heading = ["part", "grams", "name", "%", "flour", "water", *nutrients]
+    recipe = tabulate(heading, "tgt%ggg" + "g" * len(nutrient_columns), rows)
 
     return recipe
 
@@ -127,9 +160,10 @@ def output(
     errors=[],
     tobp=False,
     html="",
+    allcolumns=False,
 ):
     """Insert the table into the input"""
-    recipe = format_table(solution)
+    recipe = format_table(solution, allcolumns)
     text = re.sub(r"(?ms)\/\*\+.*?\+\*\/\n", "", text).rstrip()
     if tobp:
         text = rewrite(text, 100 / solution.loc[("dough", "total_flour"), "value"])

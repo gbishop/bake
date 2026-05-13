@@ -6,7 +6,7 @@ from typing import cast
 import pprint
 
 dir = os.path.dirname(os.path.abspath(__file__))
-map_path = os.path.join(dir, "ingredients.csv")
+map_path = os.path.join(dir, "data/enhanced-ingredients.csv")
 ingredients = pd.read_csv(map_path, index_col="index")
 
 
@@ -45,8 +45,9 @@ def solve(tree: Start):
     # gather the parts
     parts = {part.name for part in tree.parts}
 
-    # components such as flour, water, protein, fat, carbs
-    components = list(ingredients.columns)
+    columns = list(ingredients.columns)
+    # nutrients such as protein, fiber, fat, carbs
+    nutrients = [column for column in columns if column not in ["flour", "water"]]
 
     # qualify the variables
     currentPart = ""
@@ -58,43 +59,36 @@ def solve(tree: Start):
                 if not var.part:
                     var.part = currentPart
 
-    # add totals
-    for part in tree.parts:
-        for column in components:
-            part.addVar(total_(column))
-        part.addVar("total")
-
-    # construct our result matrix
+    # construct the solution dataframe
     varList = [var.t for part in tree.parts for var in part.vars]
     index = pd.MultiIndex.from_tuples(varList, names=["part", "name"])
     solution = pd.DataFrame(
         index=index,
-        columns=pd.Index(["value", *components]),
+        columns=pd.Index(["value", "flour", "water", *nutrients]),
         dtype=np.float64,
     )
-    # add total relations
+    # add total relations and scale factors for nutrients
     for part in tree.parts:
-        totals = pd.Series({key: Sum() for key in components})
-        totals["total"] = Sum()
-        totalComponents: list[str] = list(totals.index)
+        totalKeys = ["total_flour", "total_water", "total"]
+        totals = pd.Series({key: Sum() for key in totalKeys})
         localVars = [var for var in part.vars if not var.name.startswith("total")]
         for var in localVars:
             if var.name in parts:
-                totals += [
-                    Var(var.name, total_(component)) for component in totalComponents
-                ]
+                totals += pd.Series({key: Var(var.name, key) for key in totalKeys})
                 part.addRelation(Relation(var, Var(var.name, "total"), weight=1000.0))
             elif var.name.startswith("_"):
                 continue
             else:
                 info = getIngredient(var.name)
-                totals += info * var
+                totals += (
+                    info.rename({"flour": "total_flour", "water": "total_water"}) * var
+                )
                 solution.loc[var.t] = info
-        for component in totalComponents:
+        for key in totalKeys:
             part.addRelation(
                 Relation(
-                    Var(part.name, total_(component)),
-                    cast(Values, totals[component]),
+                    Var(part.name, key),
+                    cast(Values, totals[key]),
                     weight=1000.0,
                 )
             )
@@ -119,20 +113,30 @@ def solve(tree: Start):
         """Recursively evaluate an equation"""
         result: float | Vector
         match value:
-            case Sum():
-                terms = [eval(term) for term in value.terms]
-                f = sum(term for term in terms if isinstance(term, (float, int)))
-                c = constant(f)
-                result = c + np.sum([term for term in terms if isVector(term)], axis=0)
-            case Product(factors):
-                result = eval(factors[0])
-                for factor in factors[1:]:
-                    f = eval(factor)
-                    if isVector(result) and isVector(f):
-                        raise NotImplementedError("Product")
-                    result = result * f
-                if not isVector(result):
-                    result = constant(result)
+            case Sum(lhs, rhs):
+                l = eval(lhs)
+                r = eval(rhs)
+                if isFloat(l) and isVector(r):
+                    result = constant(l) + r
+                elif isVector(l) and isFloat(r):
+                    result = l + constant(r)
+                else:
+                    result = l + r
+            case Difference(lhs, rhs):
+                l = eval(lhs)
+                r = eval(rhs)
+                if isFloat(l) and isVector(r):
+                    result = constant(l) - r
+                elif isVector(l) and isFloat(r):
+                    result = l - constant(r)
+                else:
+                    result = l - r
+            case Product(lhs, rhs):
+                l = eval(lhs)
+                r = eval(rhs)
+                if isVector(l) and isVector(r):
+                    raise NotImplementedError("Product")
+                result = l * r
             case Var():
                 result = oneHot(value)
             case float(value) | int(value):
@@ -143,7 +147,7 @@ def solve(tree: Start):
     # collect relations
     relations = [relation for part in tree.parts for relation in part.relations]
 
-    # build the matrix
+    # Collect the rows for the matrix
     rows = []
     for relation in relations:
         lhs = eval(relation.var)
@@ -156,6 +160,7 @@ def solve(tree: Start):
     M = np.array(rows)
     A = M[:, :-1]
     B = -M[:, -1]
+    # solve the system
     r = np.linalg.lstsq(A, B, rcond=-1)
     X = r[0]
     residual = A @ X - B
@@ -163,9 +168,7 @@ def solve(tree: Start):
     # Attempt to detect failure to meet the constraints
     # np.abs(A) @ np.abs(X) gives the sum of magnitudes for each equation
     row_sums = np.abs(A) @ np.abs(X)
-    # Avoid division by zero for empty rows
     row_sums[row_sums < 1e-9] = 1.0
-    # Calculate how much the residual "matters" relative to the ingredients in that row
     relative_errors = np.abs(residual) / row_sums
 
     failed = False
@@ -176,26 +179,60 @@ def solve(tree: Start):
             errors.append(
                 f"{format(relations[i])} --> ({re*100:.1f}% {residual[i]:.2f})"
             )
-
     if failed:
         errors.append("Inconsistent equations")
         errors.append("")
 
+    # finish filling in the solution
     solution.value = X
-
+    to_scale = ["flour", "water", *nutrients]
+    solution[to_scale] = solution[to_scale].mul(solution["value"], axis=0)
     solution = solution.fillna(0.0)
-    for part in tree.parts:
-        for var in part.vars:
-            if var.name.startswith("total_"):
-                component = var.name.replace("total_", "")
-                solution.at[var.t, component] = solution.loc[var.t, "value"]
-            elif var.name in parts:
-                for component in components:
-                    solution.at[var.t, component] = solution.loc[
-                        (var.name, total_(component)), "value"
-                    ]
-            else:
-                solution.loc[var.t, "flour":] *= solution.loc[var.t, "value"]
+
+    # Build a dependency map: { 'dough': ['starter'], 'starter': [] }
+    deps = {
+        part: [ing for ing in solution.loc[part].index if ing in parts and ing != part]
+        for part in parts
+    }
+
+    # Topological Sort (Kahn's Algorithm simplified)
+    ordered_stages = []
+    while deps:
+        # Find stages with no dependencies left
+        ready = [p for p, d in deps.items() if not d]
+        if not ready:
+            # If this happens, you have a circular dependency (e.g., A needs B, B needs A)
+            raise ValueError("Circular dependency detected!")
+
+        for p in ready:
+            ordered_stages.append(p)
+            del deps[p]
+            # Remove p from the dependency lists of other stages
+            for other in deps:
+                if p in deps[other]:
+                    deps[other].remove(p)
+
+    # Define your target columns
+
+    for stage in ordered_stages:
+        # 1. Identify which rows are actual inputs for this stage
+        exclude = ["total", "total_flour", "total_water", "_loss"]
+        ingredient_rows = solution.loc[stage].index.difference(exclude)
+
+        # 2. Sum the ingredients to get the nutrients for this part
+        sums = solution.loc[(stage, ingredient_rows), columns].sum()
+
+        solution.loc[(stage, "total"), columns] = sums
+
+        usage_mask = (solution.index.get_level_values(1) == stage) & (
+            solution.index.get_level_values(0) != stage
+        )
+
+        if usage_mask.any():
+            # Update the 'ingredient' row in the next stage with the 'total' from this stage
+            # We use .values to avoid index alignment issues
+            solution.loc[usage_mask, columns] = sums.values
+
     solution["bp"] = (
         solution["value"] / solution.loc[("dough", "total_flour"), "value"] * 100.0
     )

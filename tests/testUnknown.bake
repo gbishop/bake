@@ -1,0 +1,14 @@
+starter ^ 5%:
+  rye
+  warm_water
+  hydration = 100%
+
+dough:
+  spelt
+  wheat_germ
+  warm_water
+  salt = 2%
+  starter.total_flour = 5%
+  starter
+  hydration = 70%
+  total_flour = 1000g
