@@ -6,7 +6,7 @@ from typing import cast
 import pprint
 
 dir = os.path.dirname(os.path.abspath(__file__))
-map_path = os.path.join(dir, "ingredients.csv")
+map_path = os.path.join(dir, "data/enhanced-ingredients.csv")
 ingredients = pd.read_csv(map_path, index_col="index")
 
 
