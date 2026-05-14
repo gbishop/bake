@@ -4,15 +4,12 @@ This is a hack. I wrote it because I was sick of fooling with
 spreadsheets. Programming is more fun than spreadsheets!
 
 I'm currently using the `*.bake` files for my recipes. The `bake.py` script
-uses [textx](https://textx.github.io/textX/) to construct a simple grammar for
+uses [lark](https://github.com/lark-parser/lark) to construct a parser for
 recipes. It uses
-[least_squares](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.least_squares.html)
-to solve the resulting non-linear equations.
+[least_squares](https://numpy.org/doc/stable/reference/generated/numpy.linalg.lstsq.html)
+to solve the resulting system of linear equations.
 
-In a bake file, the first line is the title. The program generates a C-style
-comment next with the baking formula. I'm depending on a fixed width font to
-get the layout to work. After the block comment the recipe consists of blocks
-of free text followed by blocks like:
+In a bake file. The program generates a C-style comment at the bottom of the file.
 
 ```
 starter:
@@ -34,4 +31,4 @@ the sponge will be adjusted give it 100% hydration.
 You can specify values in grams (suffix g) or baker's percent (suffix %). You
 can mix them in the same recipe.
 
-I'm confident there is a better syntax but this works for now.
+See the recipes folder for examples.
