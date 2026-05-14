@@ -59,7 +59,7 @@ def format_table(solution: pd.DataFrame, allcolumns: bool):
             "│ " + " │ ".join(headings) + " │",
             bar,
         ]
-        body = ["│ " + " │ ".join(row) + " │" if len(row) > 1 else bar for row in rows]
+        body = ["│ " + " │ ".join(row) + " │" if len(row) > 0 else bar for row in rows]
         footer = [end]
         return "\n".join(header + body + footer) + "\n"
 
@@ -179,10 +179,11 @@ def output(
             print("<table><tbody>", file=fp)
             td = "th"
             for line in recipe.split("\n"):
-                if "---" in line:
+                if "─" in line:
                     continue
-                line = re.sub(r"\| *$", "", line)
-                line = line.replace("|", f"</{td}><{td}>")
+                line = re.sub(r"│ *$", "", line)
+                line = re.sub(r"^ *│", "", line)
+                line = line.replace("│", f"</{td}><{td}>")
                 line = f"<tr><{td}>" + line + f"</{td}></tr>"
                 line = line.replace(" ", "&numsp;")
                 print(line, file=fp)
