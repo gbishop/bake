@@ -1,13 +1,13 @@
 # A variation on everyday.bake with saccharification
 
 soaker_grains:
-  barley
-  rye
-  oats
+  barley = 40pt
+  rye = 30pt
+  oats = 30pt
 
-soaker:
-  soaker_grains
-  boiling_water = 3 * soaker_grains
+soaker ^ 20g:
+  soaker_grains = 15%
+  hot_water = 3 * soaker_grains
   diastatic_malt = 0.015 * soaker_grains
 
 starter:
@@ -15,31 +15,30 @@ starter:
   water
   hydration = 100%
 
-leaven:
+leaven ^ 8g:
   starter
-  whole_wheat = 4 * starter
-  water
+  prairie_gold = 4 * starter
+  cold_water
   hydration = 100%
 
 grain:
   prairie_gold
-  hard_red
+  spelt = 0.4 * prairie_gold 
 
 dry:
   grain
-  flaxseed_meal = 3%
-  bread_flour = 3% # should be vwg = 3% # ran out
-  yeast = 1% # higher than usual, I could have backed off
+  vwg = 3%
+  yeast = 1.0%
   salt = 1.8%
 
 wet:
   water
   ascorbic_acid_1p = 50ppm * 100 * grain.total
+  leaven = 20%
+  soaker
   olive_oil = 5%
   malt_syrup = 5%
   yogurt = 5%
-  leaven = 20%
-  soaker = 60%
 
 dough:
   wet
@@ -52,32 +51,32 @@ May 18, 2026
 
 Changes
 
-• Lower the hydration by not considering bound water
-• Cook the soaker at 142F for 90 minutes
-• Denature the soaker at 195F for 10 minutes
-• Grind the soaker grains fine in MockMill.
-
-Next time
 • Drop the hard red wheat and use 50% hard white and 20% spelt.
 • Shorten the proof. I let it get almost 3/4 inch above the pan;
   I should have baked it sooner.
+• back off a bit on the yeast
 
-Afternoon before.
+# Day before
 
-Combined ground soaker grains with water in a jar in a crockpot
-water bath. Heated to 142F, then added malt. Held at 142F for 90
-minutes. Then raised temperature to 195F and held for 10 minutes. It
-takes a long time for the crockpot to go from 142 to 195! Finally
-got to 195F at 21:15. Removed the soaker and left it to cool on the
-counter. It is sweeter than when I started. It is thin. 
+## Soaker (heating takes hours)
+• Grind all the grains keeping prairie_gold and spelt separate.
+• Combine ground soaker grains with water in a jar and place in
+  crockpot water bath.
+• Heat to 142F,
+• Add malt.
+• Hold at 142F for 90 minutes.
+• Increase temperature to 195F and hold for 10 minutes.
+• Remove from crockpot and leave on counter to cool
 
-I built the leaven for a Sunday bake and then decided not to do it
-today. I refrigerated the leaven on Sunday morning.
+## Leaven
+• Mix the prairie gold and starter with water from the fridge
+• Keep overnight at 60F
 
-Leaven pH = 5.42 at 7:18. How did that happen? Surely it was lower
-on Sunday morning.
+# Baking day.
 
-Day of. I started about 7:15
+I started about 7:15
+
+Leaven pH = 5.42 at 7:18.
 
 Used the KA for mixing. Mixed about 7:45. Stopped after 3 minutes.
 Seems about right, maybe a little dryer than usual.
@@ -113,111 +112,54 @@ white and spelt.
 ┌───────────────┬─────────┬──────────────────┬───────┬────────┬────────┐
 │      part     │  grams  │       name       │   %   │ flour  │ water  │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ soaker grains │   74.7  │                  │  14.9 │  74.7  │        │
-│               │   24.9  │ barley           │   5.0 │  24.9  │        │
-│               │   24.9  │ rye              │   5.0 │  24.9  │        │
-│               │   24.9  │ oats             │   5.0 │  24.9  │        │
+│ soaker grains │   75.0  │                  │  15.0 │  75.0  │        │
+│               │   30.0  │ barley           │   6.0 │  30.0  │        │
+│               │   22.5  │ rye              │   4.5 │  22.5  │        │
+│               │   22.5  │ oats             │   4.5 │  22.5  │        │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ soaker        │  300    │                  │  60.0 │  74.7  │ 224    │
-│               │   74.7  │ soaker grains    │  14.9 │  74.7  │        │
-│               │  224    │ boiling water    │  44.8 │        │ 224    │
-│               │    1.12 │ diastatic malt   │   0.2 │        │        │
+│ soaker        │  321    │ + 20.0g          │  60.2 │  75.0  │ 225    │
+│               │   80.0  │ soaker grains    │  15.0 │  75.0  │        │
+│               │  240    │ hot water        │  45.0 │        │ 225    │
+│               │    1.20 │ diastatic malt   │   0.2 │        │        │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
 │ starter       │   11.1  │                  │   2.2 │   5.6  │   5.6  │
 │               │    5.6  │ rye              │   1.1 │   5.6  │        │
 │               │    5.6  │ water            │   1.1 │        │   5.6  │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ leaven        │  100    │                  │  20.0 │  50.0  │  50.0  │
-│               │   11.1  │ starter          │   2.2 │   5.6  │   5.6  │
-│               │   44.4  │ whole wheat      │   8.9 │  44.4  │        │
-│               │   44.4  │ water            │   8.9 │        │  44.4  │
+│ leaven        │  108    │ + 8.0g           │  20.0 │  50.0  │  50.0  │
+│               │   12.0  │ starter          │   2.2 │   5.6  │   5.6  │
+│               │   48.0  │ prairie gold     │   8.9 │  44.4  │        │
+│               │   48.0  │ cold water       │   8.9 │        │  44.4  │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ grain         │  345    │                  │  69.1 │ 345    │        │
-│               │  173    │ prairie gold     │  34.5 │ 173    │        │
-│               │  173    │ hard red         │  34.5 │ 173    │        │
+│ grain         │  360    │                  │  72.0 │ 360    │        │
+│               │  257    │ prairie gold     │  51.4 │ 257    │        │
+│               │  103    │ spelt            │  20.6 │ 103    │        │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ dry           │  389    │                  │  77.9 │ 375    │        │
-│               │  345    │ grain            │  69.1 │ 345    │        │
-│               │   15.0  │ flaxseed meal    │   3.0 │  15.0  │        │
-│               │   15.0  │ bread flour      │   3.0 │  15.0  │        │
+│ dry           │  389    │                  │  77.8 │ 375    │        │
+│               │  360    │ grain            │  72.0 │ 360    │        │
+│               │   15.0  │ vwg              │   3.0 │  15.0  │        │
 │               │    5.0  │ yeast            │   1.0 │        │        │
 │               │    9.0  │ salt             │   1.8 │        │        │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ wet           │  524    │                  │ 104.7 │ 125    │ 350    │
+│ wet           │  525    │                  │ 105.0 │ 125    │ 350    │
 │               │   46.9  │ water            │   9.4 │        │  46.9  │
-│               │    1.73 │ ascorbic acid 1p │   0.3 │        │   1.73 │
-│               │   25.0  │ olive oil        │   5.0 │        │        │
-│               │   25.0  │ malt syrup       │   5.0 │        │   5.2  │
-│               │   25.0  │ yogurt           │   5.0 │        │  22.0  │
+│               │    1.80 │ ascorbic acid 1p │   0.4 │        │   1.80 │
 │               │  100    │ leaven           │  20.0 │  50.0  │  50.0  │
-│               │  300    │ soaker           │  60.0 │  74.7  │ 224    │
-├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ dough         │  913    │                  │ 182.6 │ 500    │ 350    │
-│               │  524    │ wet              │ 104.7 │ 125    │ 350    │
-│               │  389    │ dry              │  77.9 │ 375    │        │
-│               │         │ hydration        │  70.0 │        │        │
-├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│               │   67.7  │ protein          │   8.1 │        │        │
-│               │   57.7  │ fiber            │   6.9 │        │        │
-│               │   44.3  │ fat              │   5.3 │        │        │
-│               │  382    │ carbs            │  46.0 │        │        │
-│               │ 2197    │ calories         │ 264.5 │        │        │
-└───────────────┴─────────┴──────────────────┴───────┴────────┴────────┘
-+*/
-
-/*+
-┌───────────────┬─────────┬──────────────────┬───────┬────────┬────────┐
-│      part     │  grams  │       name       │   %   │ flour  │ water  │
-├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ soaker grains │   74.7  │                  │  14.9 │  74.7  │        │
-│               │   24.9  │ barley           │   5.0 │  24.9  │        │
-│               │   24.9  │ rye              │   5.0 │  24.9  │        │
-│               │   24.9  │ oats             │   5.0 │  24.9  │        │
-├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ soaker        │  300    │                  │  60.0 │  74.7  │ 224    │
-│               │   74.7  │ soaker grains    │  14.9 │  74.7  │        │
-│               │  224    │ boiling water    │  44.8 │        │ 224    │
-│               │    1.12 │ diastatic malt   │   0.2 │        │        │
-├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ starter       │   11.1  │                  │   2.2 │   5.6  │   5.6  │
-│               │    5.6  │ rye              │   1.1 │   5.6  │        │
-│               │    5.6  │ water            │   1.1 │        │   5.6  │
-├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ leaven        │  100    │                  │  20.0 │  50.0  │  50.0  │
-│               │   11.1  │ starter          │   2.2 │   5.6  │   5.6  │
-│               │   44.4  │ whole wheat      │   8.9 │  44.4  │        │
-│               │   44.4  │ water            │   8.9 │        │  44.4  │
-├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ grain         │  345    │                  │  69.1 │ 345    │        │
-│               │  173    │ prairie gold     │  34.5 │ 173    │        │
-│               │  173    │ hard red         │  34.5 │ 173    │        │
-├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ dry           │  389    │                  │  77.9 │ 375    │        │
-│               │  345    │ grain            │  69.1 │ 345    │        │
-│               │   15.0  │ flaxseed meal    │   3.0 │  15.0  │        │
-│               │   15.0  │ bread flour      │   3.0 │  15.0  │        │
-│               │    5.0  │ yeast            │   1.0 │        │        │
-│               │    9.0  │ salt             │   1.8 │        │        │
-├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ wet           │  525    │                  │ 104.9 │ 125    │ 350    │
-│               │   47.9  │ water            │   9.6 │        │  47.9  │
-│               │    1.73 │ ascorbic acid 1p │   0.3 │        │   1.73 │
+│               │  301    │ soaker           │  60.2 │  75.0  │ 225    │
 │               │   25.0  │ olive oil        │   5.0 │        │        │
-│               │   25.0  │ malt syrup       │   5.0 │        │   5.2  │
+│               │   25.0  │ malt syrup       │   5.0 │        │   5.3  │
 │               │   25.0  │ yogurt           │   5.0 │        │  21.0  │
-│               │  100    │ leaven           │  20.0 │  50.0  │  50.0  │
-│               │  300    │ soaker           │  60.0 │  74.7  │ 224    │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
 │ dough         │  914    │                  │ 182.8 │ 500    │ 350    │
-│               │  525    │ wet              │ 104.9 │ 125    │ 350    │
-│               │  389    │ dry              │  77.9 │ 375    │        │
+│               │  525    │ wet              │ 105.0 │ 125    │ 350    │
+│               │  389    │ dry              │  77.8 │ 375    │        │
 │               │         │ hydration        │  70.0 │        │        │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│               │   67.6  │ protein          │   8.1 │        │        │
-│               │   57.7  │ fiber            │   6.9 │        │        │
-│               │   44.3  │ fat              │   5.3 │        │        │
+│               │   76.1  │ protein          │   9.2 │        │        │
+│               │   54.3  │ fiber            │   6.5 │        │        │
+│               │   37.5  │ fat              │   4.5 │        │        │
 │               │  383    │ carbs            │  46.1 │        │        │
-│               │ 2201    │ calories         │ 264.6 │        │        │
+│               │ 2174    │ calories         │ 261.5 │        │        │
 └───────────────┴─────────┴──────────────────┴───────┴────────┴────────┘
 +*/
 
