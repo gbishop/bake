@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import os
 from typing import cast
-import pprint
+from rich.pretty import pprint
 
 dir = os.path.dirname(os.path.abspath(__file__))
 map_path = os.path.join(dir, "data/enhanced-ingredients.csv")
@@ -39,7 +39,7 @@ def total_(name: str):
     return r
 
 
-def solve(tree: Start):
+def solve(tree: Recipe):
     """Solve the system of equations"""
 
     # gather the parts

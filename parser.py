@@ -20,7 +20,10 @@ grammar = r"""
 
     _NL: (NEWLINE /[\t ]*/ | SH_COMMENT | C_COMMENT )+
 
-    start: _NL* part+
+    start: _NL* recipe ERROR* TABLE?
+
+    recipe: part+
+
     part: ID [ "^" NUMBER /[%g]/ ] ":" _NL _INDENT relation+ _DEDENT
 
     relation: "hydration" "=" NUMBER "%" _NL -> hydration
@@ -44,6 +47,10 @@ grammar = r"""
     UNIT: ("%" | "ppm" | "g" | "dt" | "df" | "dw" | "pt" | "pf" | "pw")
 
     unknown: [ ID "." ] ID
+
+    ERROR: "⚠" /.*/ _NL
+
+    TABLE: "┌" /.*?/s "┘" _NL
 """
 
 
@@ -86,8 +93,11 @@ def convertNumber(value: str | None, unit: str | None, basis=("dough", "total_fl
 # use a Lark visitor to convert to my rep
 @lark.visitors.v_args(inline=True)
 class Convert(lark.Transformer):
-    def start(self, *parts: Part):
-        return Start(parts)
+    def start(self, recipe, *rest):
+        return recipe
+
+    def recipe(self, *parts: Part):
+        return Recipe(parts)
 
     def part(
         self,
@@ -147,10 +157,17 @@ class Convert(lark.Transformer):
     def subtract(self, left, right):
         return Difference(left, right)
 
+    def table(self, *_):
+        return None
+
 
 def parse(text: str):
     parser = Lark(
-        grammar, parser="lalr", postlex=TreeIndenter(), propagate_positions=True
+        grammar,
+        parser="lalr",
+        postlex=TreeIndenter(),
+        propagate_positions=True,
+        regex=True,
     )
 
     try:

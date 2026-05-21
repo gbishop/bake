@@ -36,7 +36,7 @@ argparser.add_argument("-q", "--quiet", action="store_true")
 argparser.add_argument("-a", "--allcolumns", action="store_true")
 args = argparser.parse_args()
 if args.filename:
-    fp = open(args.filename, "rt")
+    fp = open(args.filename, "rt", encoding="utf-8")
 else:
     fp = sys.stdin
 

@@ -165,13 +165,16 @@ def output(
     """Insert the table into the input"""
     recipe = format_table(solution, allcolumns)
     text = re.sub(r"(?ms)\/\*\+.*?\+\*\/\n", "", text).rstrip()
+    text = re.sub(r"⚠.*\n", "", text)
+    text = re.sub(r"(?ms)┌.*?┘", "", text).rstrip()
     if tobp:
         text = rewrite(text, 100 / solution.loc[("dough", "total_flour"), "value"])
 
     if errors:
-        recipe = re.sub(r"^", "E ", recipe, 0, re.M)
-        recipe = f"{'\n'.join(errors)}\n{recipe}"
-    result = f"{text}\n\n/*+\n{recipe}+*/\n"
+        etext = "\n".join(f"⚠ {error}" for error in errors)
+        # recipe = re.sub(r"^", "⚠ ", recipe, 0, re.M)
+        recipe = f"{etext}\n{recipe}"
+    result = f"{text}\n\n{recipe}\n"
     print(result)
 
     if html:

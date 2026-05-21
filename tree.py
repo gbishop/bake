@@ -55,7 +55,7 @@ class Base:
 
 
 @dataclass
-class Start(Base):
+class Recipe(Base):
     parts: tuple[Part, ...]
 
     def vars(self):
