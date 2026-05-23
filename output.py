@@ -148,7 +148,7 @@ def format_table(solution: pd.DataFrame, allcolumns: bool):
         else:
             rows.append([])
 
-    heading = ["part", "grams", "name", "%", "flour", "water", *nutrients]
+    heading = ["part", "grams", "ingredient", "%", "flour", "water", *nutrients]
     recipe = tabulate(heading, "tgt%ggg" + "g" * len(nutrient_columns), rows)
 
     return recipe
