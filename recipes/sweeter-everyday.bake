@@ -1,6 +1,6 @@
 # A variation on everyday.bake with saccharification
 
-soaker_grains:
+soaker_grains ^ 5g:
   barley = 40pt
   rye = 30pt
   oats = 30pt
@@ -15,7 +15,7 @@ starter:
   water
   hydration = 100%
 
-leaven ^ 8g:
+leaven ^ 10g:
   starter
   prairie_gold = 4 * starter
   cold_water
@@ -34,7 +34,7 @@ dry:
 wet:
   water
   ascorbic_acid_1p = 50ppm * 100 * grain.total
-  leaven = 20%
+  leaven = 25%
   soaker
   olive_oil = 5%
   malt_syrup = 5%
@@ -47,7 +47,7 @@ dough:
   total_flour = 500g # 4 inch 460g # 9 inch
 
 /*
-May 18, 2026
+May 23, 2026
 
 Changes
 
@@ -68,97 +68,103 @@ Changes
 • Increase temperature to 195F and hold for 10 minutes.
 • Remove from crockpot and leave on counter to cool
 
+8:00 crockpot started
+8:30 water is 142, soaker is 130
+9:30 soaker is already sweeter 142F and thinner, added malt.
+11:00 increased T to 195F
+12:00 water 185, soaker 170.
+13:00 finished, left to cool.
+
+
 ## Leaven
 • Mix the prairie gold and starter with water from the fridge
 • Keep overnight at 60F
 
+15:20 mixed leaven, into SDH
+
 # Baking day.
 
-I started about 7:15
+I started about 7:00
 
-Leaven pH = 5.42 at 7:18.
+Leaven pH = 4.28 at 7:00.
 
-Used the KA for mixing. Mixed about 7:45. Stopped after 3 minutes.
+Used the KA for mixing. Mixed about 7:15. Stopped after 3 minutes.
 Seems about right, maybe a little dryer than usual.
 
-30 minute rest in fridge.
+30 minute rest on counter at 70F. (no room in the fridge)
 
-Kneaded 8.5 minutes in KA. 6 minutes at speed one did not bring it
-together so I scraped down the sides and went to speed 1.5. It came
-together and cleaned the bowl at 8.5 minutes. DT is 78F.
+Kneaded 6.5 minutes in KA. It came together quickly.
 
-Into the cambro and back into the fridge for 30 minutes at 8:30. The
+Into the cambro and into the fridge for 30 minutes. The
 dough is very strong at 9:00. I gave it a few S&F and put it back in
 the fridge for 1 more hour. DT is 75F.
 
-Into the pan at 10:00 and into the proofer at 76F. It is rising
-quickly.
+Into the pan at 10:00 and into the proofer at 76F.
 
-The dough is stickier than usual. Perhaps the missing vwg? Or maybe
-the extra sugars from the saccharification?
-
-Baked at 11:45 at 350F with steam for the first 15 minutes.
+Baked at 12:30 at 350F.
 
 After 45 minutes it is 205F inside.
 
 Looks great! Nicely browned. 5.75 inches tall at the center.
 
-Good flavor but the hard red wheat is dominating. Next time use hard
-white and spelt.
+Tastes good but the sourness dominates any sweetness. This approach
+is a lot of trouble for very little benefit.
+
+Good texture.
 
 */
 
 ┌───────────────┬─────────┬──────────────────┬───────┬────────┬────────┐
-│      part     │  grams  │       name       │   %   │ flour  │ water  │
+│      part     │  grams  │    ingredient    │   %   │ flour  │ water  │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ soaker grains │   75.0  │                  │  15.0 │  75.0  │        │
-│               │   30.0  │ barley           │   6.0 │  30.0  │        │
-│               │   22.5  │ rye              │   4.5 │  22.5  │        │
-│               │   22.5  │ oats             │   4.5 │  22.5  │        │
+│ soaker grains │   80.0  │ + 5.0g           │  15.0 │  75.0  │        │
+│               │   32.0  │ barley           │   6.0 │  30.0  │        │
+│               │   24.0  │ rye              │   4.5 │  22.5  │        │
+│               │   24.0  │ oats             │   4.5 │  22.5  │        │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
 │ soaker        │  321    │ + 20.0g          │  60.2 │  75.0  │ 225    │
 │               │   80.0  │ soaker grains    │  15.0 │  75.0  │        │
 │               │  240    │ hot water        │  45.0 │        │ 225    │
 │               │    1.20 │ diastatic malt   │   0.2 │        │        │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ starter       │   11.1  │                  │   2.2 │   5.6  │   5.6  │
-│               │    5.6  │ rye              │   1.1 │   5.6  │        │
-│               │    5.6  │ water            │   1.1 │        │   5.6  │
+│ starter       │   13.9  │                  │   2.8 │   6.9  │   6.9  │
+│               │    6.9  │ rye              │   1.4 │   6.9  │        │
+│               │    6.9  │ water            │   1.4 │        │   6.9  │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ leaven        │  108    │ + 8.0g           │  20.0 │  50.0  │  50.0  │
-│               │   12.0  │ starter          │   2.2 │   5.6  │   5.6  │
-│               │   48.0  │ prairie gold     │   8.9 │  44.4  │        │
-│               │   48.0  │ cold water       │   8.9 │        │  44.4  │
+│ leaven        │  135    │ + 10.0g          │  25.0 │  62.5  │  62.5  │
+│               │   15.0  │ starter          │   2.8 │   6.9  │   6.9  │
+│               │   60.0  │ prairie gold     │  11.1 │  55.6  │        │
+│               │   60.0  │ cold water       │  11.1 │        │  55.6  │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ grain         │  360    │                  │  72.0 │ 360    │        │
-│               │  257    │ prairie gold     │  51.4 │ 257    │        │
-│               │  103    │ spelt            │  20.6 │ 103    │        │
+│ grain         │  347    │                  │  69.5 │ 348    │        │
+│               │  248    │ prairie gold     │  49.6 │ 248    │        │
+│               │   99.3  │ spelt            │  19.9 │  99.3  │        │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ dry           │  387    │                  │  77.5 │ 375    │        │
-│               │  360    │ grain            │  72.0 │ 360    │        │
+│ dry           │  375    │                  │  75.0 │ 363    │        │
+│               │  348    │ grain            │  69.5 │ 348    │        │
 │               │   15.0  │ vwg              │   3.0 │  15.0  │        │
 │               │    3.50 │ yeast            │   0.7 │        │        │
 │               │    9.0  │ salt             │   1.8 │        │        │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ wet           │  525    │                  │ 105.0 │ 125    │ 350    │
-│               │   47.0  │ water            │   9.4 │        │  47.0  │
-│               │    1.80 │ ascorbic acid 1p │   0.4 │        │   1.80 │
-│               │  100    │ leaven           │  20.0 │  50.0  │  50.0  │
+│ wet           │  537    │                  │ 107.5 │ 137    │ 350    │
+│               │   34.5  │ water            │   6.9 │        │  34.5  │
+│               │    1.74 │ ascorbic acid 1p │   0.3 │        │   1.74 │
+│               │  125    │ leaven           │  25.0 │  62.5  │  62.5  │
 │               │  301    │ soaker           │  60.2 │  75.0  │ 225    │
 │               │   25.0  │ olive oil        │   5.0 │        │        │
-│               │   25.0  │ malt syrup       │   5.0 │        │   5.2  │
+│               │   25.0  │ malt syrup       │   5.0 │        │   5.3  │
 │               │   25.0  │ yogurt           │   5.0 │        │  21.0  │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
 │ dough         │  912    │                  │ 182.5 │ 500    │ 350    │
-│               │  525    │ wet              │ 105.0 │ 125    │ 350    │
-│               │  387    │ dry              │  77.5 │ 375    │        │
+│               │  537    │ wet              │ 107.5 │ 137    │ 350    │
+│               │  375    │ dry              │  75.0 │ 363    │        │
 │               │         │ hydration        │  70.0 │        │        │
 ├───────────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│               │   75.5  │ protein          │   9.1 │        │        │
+│               │   75.4  │ protein          │   9.1 │        │        │
 │               │   53.9  │ fiber            │   6.5 │        │        │
 │               │   37.4  │ fat              │   4.5 │        │        │
-│               │  382    │ carbs            │  46.1 │        │        │
-│               │ 2168    │ calories         │ 261.2 │        │        │
+│               │  383    │ carbs            │  46.1 │        │        │
+│               │ 2169    │ calories         │ 261.2 │        │        │
 └───────────────┴─────────┴──────────────────┴───────┴────────┴────────┘
 
 
