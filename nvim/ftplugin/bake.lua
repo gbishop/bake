@@ -1,6 +1,5 @@
 -- nvim/after/ftplugin/bake.lua
 --
-print("after/ftplugin/bake.lua")
 
 vim.bo.textwidth = 68
 -- break lines at textwidth
@@ -84,17 +83,41 @@ local function apply_semantic_tags()
 	-- Clear existing tags from our namespace first
 	vim.api.nvim_buf_clear_namespace(bufnr, bake_ns, 0, -1)
 
+	local parts = {}
 	local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
 	for line_idx, line in ipairs(lines) do
-		local start_char, identifier, end_char = line:match("^()([a-zA-Z_%d]+)()[ ^0-9g%%]*:")
+		local start_char, part, end_char = line:match("^()([a-zA-Z_%d]+)()[ ^0-9g%%]*:")
 		if start_char ~= nil then
+			parts[part] = true
 			-- Apply the extmark (0-indexed line and character offsets)
 			vim.api.nvim_buf_set_extmark(bufnr, bake_ns, line_idx - 1, start_char - 1, {
 				end_col = end_char - 1,
 				hl_group = "PartName",
 				-- Optional: You can attach non-visual attributes or virtual text too!
 			})
-		else
+		elseif line:match("^%s") then
+			for sw, word, ew in line:gmatch("()(%w+)()") do
+				if parts[word] then
+					vim.api.nvim_buf_set_extmark(bufnr, bake_ns, line_idx - 1, sw - 1, {
+						end_col = ew - 1,
+						hl_group = "PartName",
+					})
+				end
+			end
+		elseif line:match("^│") then
+			local sw, part, ew = line:match("^│%s+()(%w+)()")
+			if parts[part] then
+				vim.api.nvim_buf_set_extmark(bufnr, bake_ns, line_idx - 1, sw - 1, {
+					end_col = ew - 1,
+					hl_group = "PartName",
+				})
+				for sw, number, ew in line:gmatch("()([-0-9.+g])()") do
+					vim.api.nvim_buf_set_extmark(bufnr, bake_ns, line_idx - 1, sw - 1, {
+						end_col = ew - 1,
+						hl_group = "PartTotals",
+					})
+				end
+			end
 		end
 	end
 end
