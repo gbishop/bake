@@ -111,12 +111,17 @@ local function apply_semantic_tags()
 					end_col = ew - 1,
 					hl_group = "PartName",
 				})
-				for sw, number, ew in line:gmatch("()([-0-9.+g])()") do
+				for sw, number, ew in line:gmatch("()([-0-9.+]g?)()") do
 					vim.api.nvim_buf_set_extmark(bufnr, bake_ns, line_idx - 1, sw - 1, {
 						end_col = ew - 1,
 						hl_group = "PartTotals",
 					})
 				end
+
+				vim.api.nvim_buf_set_extmark(bufnr, bake_ns, line_idx - 1, 0, {
+					end_col = #line,
+					hl_group = "PartHead",
+				})
 			end
 		end
 	end

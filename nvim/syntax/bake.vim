@@ -3,7 +3,8 @@ syn match Box /[│├─┼┤┬┴┘└┌┐]/
 highlight Box guifg=#888888
 
 highlight link PartText Type
-highlight link PartTotals Keyword
+" highlight link PartTotals Keyword
+highlight PartHead guibg=#222244
 
 " Grams column
 syn match Grams /\v(^│[a-zA-Z ]+│\s+)@<=[-0-9.]+/
