@@ -34,6 +34,7 @@ argparser.add_argument("-R", "--rewrite", action="store_true")
 argparser.add_argument("--html")
 argparser.add_argument("-q", "--quiet", action="store_true")
 argparser.add_argument("-a", "--allcolumns", action="store_true")
+argparser.add_argument("-d", "--debug", action="store_true")
 args = argparser.parse_args()
 if args.filename:
     fp = open(args.filename, "rt", encoding="utf-8")
@@ -45,7 +46,7 @@ text = fp.read()
 result = parse(text)
 
 # pprint(result)
-solution, failed = solve(result)
+solution, failed = solve(result, args.debug)
 
 if not args.quiet:
     output(

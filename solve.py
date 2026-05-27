@@ -39,7 +39,7 @@ def total_(name: str):
     return r
 
 
-def solve(tree: Recipe):
+def solve(tree: Recipe, debug: bool):
     """Solve the system of equations"""
 
     # gather the parts
@@ -57,7 +57,11 @@ def solve(tree: Recipe):
                 currentPart = part.name
             case Var() as var:
                 if not var.part:
-                    var.part = currentPart
+                    if var.name in parts:
+                        var.part = var.name
+                        var.name = "total"
+                    else:
+                        var.part = currentPart
 
     # construct the solution dataframe
     varList = [var.t for part in tree.parts for var in part.vars]
@@ -146,6 +150,9 @@ def solve(tree: Recipe):
 
     # collect relations
     relations = [relation for part in tree.parts for relation in part.relations]
+
+    if debug:
+        pprint(relations)
 
     # Collect the rows for the matrix
     rows = []
