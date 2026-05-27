@@ -2,8 +2,8 @@
 syn match Box /[│├─┼┤┬┴┘└┌┐]/
 highlight Box guifg=#888888
 
-highlight link PartText Type
-" highlight link PartTotals Keyword
+highlight link PartName Type
+highlight PartTotals guifg=#ffff88
 highlight PartHead guibg=#222244
 
 " Grams column

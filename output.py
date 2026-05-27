@@ -26,7 +26,7 @@ def format_table(solution: pd.DataFrame, allcolumns: bool):
             r = f"{v:5.1f}"
         elif fmt == "t":
             assert isinstance(v, str)
-            r = v.replace("_", " ")
+            r = v
         return r
 
     def tabulate(headings: list[str], formats: str, input: list[list[float | str]]):

@@ -1,0 +1,18 @@
+---Run my bake Python script to format a recipe
+---@param flag string command line argument to pass to the script
+local function run_bake(flag)
+	local original_lines = vim.api.nvim_buf_get_lines(0, 0, -1, true)
+	local formatted_lines
+
+	formatted_lines = vim.fn.systemlist("python /home/gb/bake/bake.py " .. flag, original_lines)
+	if vim.v.shell_error ~= 0 then
+		vim.notify(table.concat(formatted_lines, "\n"), vim.log.levels.ERROR)
+		return
+	end
+
+	local view = vim.fn.winsaveview()
+	vim.api.nvim_buf_set_lines(0, 0, -1, true, formatted_lines)
+	vim.fn.winrestview(view)
+end
+
+return run_bake
