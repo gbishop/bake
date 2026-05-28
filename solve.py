@@ -50,18 +50,21 @@ def solve(tree: Recipe, debug: bool):
     nutrients = [column for column in columns if column not in ["flour", "water"]]
 
     # qualify the variables
-    currentPart = ""
+    currentPart: Part | None = None
     for node in tree.walk():
         match node:
             case Part() as part:
-                currentPart = part.name
+                currentPart = part
             case Var() as var:
                 if not var.part:
                     if var.name in parts:
                         var.part = var.name
                         var.name = "total"
-                    else:
-                        var.part = currentPart
+                    elif currentPart:
+                        var.part = currentPart.name
+                        # implicitly declare variables with _
+                        if var.name.startswith("_"):
+                            currentPart.addVar(var.name)
 
     # construct the solution dataframe
     varList = [var.t for part in tree.parts for var in part.vars]
