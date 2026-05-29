@@ -4,7 +4,7 @@ Data classes for my recipe AST
 
 from __future__ import annotations
 from dataclasses import dataclass, fields, replace, field
-from typing import TypeGuard, Iterable, overload
+from typing import TypeGuard, Iterable
 import numpy as np
 from numpy.typing import NDArray
 

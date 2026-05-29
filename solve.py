@@ -67,7 +67,7 @@ def solve(tree: Recipe, debug: bool):
                             currentPart.addVar(var.name)
 
     # construct the solution dataframe
-    varList = [var.t for part in tree.parts for var in part.vars]
+    varList = [var.t for var in tree.vars()]
     index = pd.MultiIndex.from_tuples(varList, names=["part", "name"])
     solution = pd.DataFrame(
         index=index,
