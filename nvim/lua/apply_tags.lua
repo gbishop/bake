@@ -46,7 +46,7 @@ local function apply_tags()
 					hl_group = "PartName",
 				})
 				-- handle the total numbers
-				for sw, _, ew in line:gmatch("()([-%d.+]g?)()") do
+				for sw, _, ew in line:gmatch("()( [-%d.+]+g?)()") do
 					vim.api.nvim_buf_set_extmark(bufnr, bake_ns, line_idx - 1, sw - 1, {
 						end_col = ew - 1,
 						hl_group = "PartTotals",
