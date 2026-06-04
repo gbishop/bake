@@ -1,0 +1,105 @@
+# My everyday loaf with milk and egg
+# Adapted from Benny's 100% WW SD Milk Bread
+
+starter:
+  rye
+  water
+  hydration = 100%
+
+grain:
+  prairie_gold
+
+dry:
+  grain
+  brown_sugar = 9%
+  vwg = 5%
+  potato_flakes_f = 10%
+  yeast = 1%
+  salt = 1.8%
+
+wet:
+  milk
+  egg = 53g
+  ascorbic_acid_1p = 50ppm * 100 * grain
+  starter = 40g
+  butter = 12%
+
+dough:
+  wet
+  dry
+  hydration = 80%
+  # 200g/L of flour
+  # total_flour = 660g # 13 inch
+  total_flour = 460g # 9 inch
+
+/*
+June 3, 2026
+
+Changes
+- Twist into milk bread
+
+Zoji pan weighs 773g. KA pan weighs 725g.
+
+Starter is 7 days old.
+
+I used the starter from fridge
+
+I started about 8:15
+
+Used the KA for mixing. Mixed about 8:40. Stopped after 3 minutes.
+DT after mixing is 65F. RT is 70F. 
+
+30 minute rest in fridge. After rest the dough is 59F.
+
+Kneaded 10 minutes in KA. Out at 9:30
+
+DT at end of kneading is 74F. Into the cambro for 60 minutes in the
+fridge. S&F, back to the fridge about 10:30.
+
+Shaped at 11:30 and into the pan. Proof at 76F.
+
+Baked at 14:30 for 45 minutes at 350F lid off.
+
+Great appearance. A little darker than I'd like but lots of sugar in
+this.
+
+*/
+
+┌─────────┬─────────┬──────────────────┬───────┬────────┬────────┐
+│   part  │  grams  │    ingredient    │   %   │ flour  │ water  │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ starter │   40.0  │                  │   8.7 │  20.0  │  20.0  │
+│         │   20.0  │ rye              │   4.3 │  20.0  │        │
+│         │   20.0  │ water            │   4.3 │        │  20.0  │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ grain   │  371    │                  │  80.7 │ 371    │        │
+│         │  371    │ prairie_gold     │  80.7 │ 371    │        │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ dry     │  494    │                  │ 107.5 │ 440    │        │
+│         │  371    │ grain            │  80.7 │ 371    │        │
+│         │   41.4  │ brown_sugar      │   9.0 │        │        │
+│         │   23.0  │ vwg              │   5.0 │  23.0  │        │
+│         │   46.0  │ potato_flakes_f  │  10.0 │  46.0  │        │
+│         │    4.60 │ yeast            │   1.0 │        │        │
+│         │    8.3  │ salt             │   1.8 │        │        │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ wet     │  488    │                  │ 106.0 │  20.0  │ 368    │
+│         │  338    │ milk             │  73.4 │        │ 297    │
+│         │   53.0  │ egg              │  11.5 │        │  40.3  │
+│         │    1.85 │ ascorbic_acid_1p │   0.4 │        │   1.85 │
+│         │   40.0  │ starter          │   8.7 │  20.0  │  20.0  │
+│         │   55.2  │ butter           │  12.0 │        │   8.8  │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ dough   │  982    │                  │ 213.5 │ 460    │ 368    │
+│         │  488    │ wet              │ 106.0 │  20.0  │ 368    │
+│         │  494    │ dry              │ 107.5 │ 440    │        │
+│         │         │ hydration        │  80.0 │        │        │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│         │   87.5  │ protein          │   9.8 │        │        │
+│         │   44.6  │ fiber            │   5.0 │        │        │
+│         │   69.7  │ fat              │   7.8 │        │        │
+│         │  394    │ carbs            │  44.1 │        │        │
+│         │ 2552    │ calories         │ 285.6 │        │        │
+└─────────┴─────────┴──────────────────┴───────┴────────┴────────┘
+
+
