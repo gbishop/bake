@@ -24,3 +24,18 @@ vim.api.nvim_create_autocmd({ "BufEnter", "TextChanged", "InsertLeave" }, {
 	pattern = "*.bake",
 	callback = throttle(apply_tags, 500),
 })
+
+local abbreviations = {
+	["pg"] = "prairie_gold",
+	["pr"] = "prairie_gold",
+	["ww"] = "whole_wheat",
+	["hr"] = "hard_red",
+	["bc"] = "bronze_chief",
+	["hy"] = "hydration",
+	["pf"] = "potato_flakes",
+	["fm"] = "flaxseed_meal",
+	["aa"] = "ascorbic_acid_1p",
+}
+for lhs, rhs in pairs(abbreviations) do
+	vim.keymap.set("ia", lhs, rhs, { buffer = true })
+end
