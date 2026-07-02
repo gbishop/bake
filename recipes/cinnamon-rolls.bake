@@ -1,46 +1,87 @@
 # Cinnamon rolls
 
-dough:
+wet:
   eggs = 20%
   milk
   butter = 17%
-  sugar = 13%
-  salt = 1.1%
-  potato_flakes = 4%
+
+dry:
   bread_flour
-  yeast = 1%
-  total_flour = 250g
-  hydration = 55%
+  sugar = 13%
+  potato_flakes_f = 4%
+  salt = 1.1%
+  yeast = 2%
+
+dough:
+  wet
+  dry
+  total_flour = 500g
+  hydration = 60%
 
 filling:
   butter = 6%
   sugar = 10%
   brown_sugar = 11%
   cinnamon = 3%
-  raisins = 15%
-  walnuts = 15%
+  # raisins = 15%
+  # walnuts = 15%
 
-/*+
-  part  | grams  |      name     |   %   | flour  | water  |
---------|--------|---------------|-------|--------|--------|
-dough   | 518    |               | 207.3 | 250    | 138    |
-        |  50.0  | eggs          |  20.0 |        |  38.0  |
-        | 128    | milk          |  51.2 |        | 113    |
-        |  42.5  | butter        |  17.0 |        |   6.8  |
-        |  32.5  | sugar         |  13.0 |        |        |
-        |   2.75 | salt          |   1.1 |        |        |
-        |  10.0  | potato flakes |   4.0 |        | -20.0  |
-        | 250    | bread flour   | 100.0 | 250    |        |
-        |   2.50 | yeast         |   1.0 |        |        |
-        |        | hydration     |  55.0 |        |        |
+filled:
+  dough
+  filling
 
-filling | 150    |               |  60.0 |        |   8.8  |
-        |  15.0  | butter        |   6.0 |        |   2.40 |
-        |  25.0  | sugar         |  10.0 |        |        |
-        |  27.5  | brown sugar   |  11.0 |        |        |
-        |   7.5  | cinnamon      |   3.0 |        |   0.82 |
-        |  37.5  | raisins       |  15.0 |        |   5.6  |
-        |  37.5  | walnuts       |  15.0 |        |        |
+/****
+June 26 for Ivy's porch ladies
 
-+*/
+Used the KA with cold milk and eggs. Mixed until it came together,
+let it rest for 30 minutes. Kneaded for 10 minutes. It was sticky
+but very smooth. Into the Cambro in the fridge at 12:20.
+
+Shaped and into the pan at 14:20, into the fridge. Out of the fridge
+and into the oven on proof at 16:00.
+
+Baked about 18:00? Turned out great. 
+
+Reheated next morning at 300F for 10 minutes. There were nicely
+soft.
+
+****/
+
+┌─────────┬─────────┬─────────────────┬───────┬────────┬────────┐
+│   part  │  grams  │    ingredient   │   %   │ flour  │ water  │
+├─────────┼─────────┼─────────────────┼───────┼────────┼────────┤
+│ wet     │  424    │                 │  84.8 │        │ 300    │
+│         │  100    │ eggs            │  20.0 │        │  76.0  │
+│         │  239    │ milk            │  47.8 │        │ 210    │
+│         │   85.0  │ butter          │  17.0 │        │  13.6  │
+├─────────┼─────────┼─────────────────┼───────┼────────┼────────┤
+│ dry     │  580    │                 │ 116.1 │ 500    │        │
+│         │  480    │ bread_flour     │  96.0 │ 480    │        │
+│         │   65.0  │ sugar           │  13.0 │        │        │
+│         │   20.0  │ potato_flakes_f │   4.0 │  20.0  │        │
+│         │    5.5  │ salt            │   1.1 │        │        │
+│         │   10.0  │ yeast           │   2.0 │        │        │
+├─────────┼─────────┼─────────────────┼───────┼────────┼────────┤
+│ dough   │ 1005    │                 │ 200.9 │ 500    │ 300    │
+│         │  424    │ wet             │  84.8 │        │ 300    │
+│         │  580    │ dry             │ 116.1 │ 500    │        │
+│         │         │ hydration       │  60.0 │        │        │
+├─────────┼─────────┼─────────────────┼───────┼────────┼────────┤
+│         │   87.6  │ protein         │   9.6 │        │        │
+│         │   15.6  │ fiber           │   1.7 │        │        │
+│         │   94.4  │ fat             │  10.3 │        │        │
+│         │  439    │ carbs           │  48.0 │        │        │
+│         │ 2955    │ calories        │ 323.2 │        │        │
+│ filling │  150    │                 │  30.0 │        │   4.80 │
+│         │   30.0  │ butter          │   6.0 │        │   4.80 │
+│         │   50.0  │ sugar           │  10.0 │        │        │
+│         │   55.0  │ brown_sugar     │  11.0 │        │        │
+│         │   15.0  │ cinnamon        │   3.0 │        │        │
+├─────────┼─────────┼─────────────────┼───────┼────────┼────────┤
+│ filled  │ 1155    │                 │ 230.9 │ 500    │ 305    │
+│         │ 1005    │ dough           │ 200.9 │ 500    │ 300    │
+│         │  150    │ filling         │  30.0 │        │   4.80 │
+├─────────┼─────────┼─────────────────┼───────┼────────┼────────┤
+└─────────┴─────────┴─────────────────┴───────┴────────┴────────┘
+
 
