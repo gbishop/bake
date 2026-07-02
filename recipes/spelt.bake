@@ -1,57 +1,135 @@
 # From: https://www.thefreshloaf.com/node/64417/100-sourdough-spelt-bread
 
+scald:
+  spelt = 93g # bran
+  boiling_water = 206g
+
 starter:
   rye
   water
   hydration = 100%
 
-leavenA:
-  starter = 15g
-  spelt = 60g
-  water = 40g
+leaven:
+  starter = 6g
+  scald
 
-leavenB:
-  leavenA
-  spelt = 60g
-  water = 40g
+dry:
+  spelt
+  potato_flakes = 5%
+  vwg = 5%
+  salt = 2%
+  yeast = 0.4%
+
+wet:
+  leaven
+  cold_water
+  ascorbic_acid_1p = 50ppm * 100 * 100%
+  honey = 5%
+  yogurt = 5%
+  olive_oil = 5%
 
 dough:
-  leavenB
-  spelt = 388g
-  water = 263g
-  salt = 6g
-  honey = 10g
+  wet
+  dry
+  hydration = 70%
+  total_flour = 500g
 
-┌─────────┬─────────┬────────────┬───────┬────────┬────────┐
-│   part  │  grams  │ ingredient │   %   │ flour  │ water  │
-├─────────┼─────────┼────────────┼───────┼────────┼────────┤
-│ starter │   15.0  │            │   2.9 │   7.5  │   7.5  │
-│         │    7.5  │ rye        │   1.5 │   7.5  │        │
-│         │    7.5  │ water      │   1.5 │        │   7.5  │
-├─────────┼─────────┼────────────┼───────┼────────┼────────┤
-│ leavenA │  115    │            │  22.3 │  67.5  │  47.5  │
-│         │   15.0  │ starter    │   2.9 │   7.5  │   7.5  │
-│         │   60.0  │ spelt      │  11.6 │  60.0  │        │
-│         │   40.0  │ water      │   7.8 │        │  40.0  │
-├─────────┼─────────┼────────────┼───────┼────────┼────────┤
-│ leavenB │  215    │            │  41.7 │ 127    │  87.5  │
-│         │  115    │ leavenA    │  22.3 │  67.5  │  47.5  │
-│         │   60.0  │ spelt      │  11.6 │  60.0  │        │
-│         │   40.0  │ water      │   7.8 │        │  40.0  │
-├─────────┼─────────┼────────────┼───────┼────────┼────────┤
-│ dough   │  882    │            │ 171.1 │ 515    │ 352    │
-│         │  215    │ leavenB    │  41.7 │ 127    │  87.5  │
-│         │  388    │ spelt      │  75.3 │ 388    │        │
-│         │  263    │ water      │  51.0 │        │ 263    │
-│         │    6.0  │ salt       │   1.2 │        │        │
-│         │   10.0  │ honey      │   1.9 │        │   1.70 │
-│         │         │ hydration  │  68.3 │        │        │
-├─────────┼─────────┼────────────┼───────┼────────┼────────┤
-│         │   74.9  │ protein    │   9.3 │        │        │
-│         │   55.5  │ fiber      │   6.9 │        │        │
-│         │   12.3  │ fat        │   1.5 │        │        │
-│         │  371    │ carbs      │  46.2 │        │        │
-│         │ 1893    │ calories   │ 235.8 │        │        │
-└─────────┴─────────┴────────────┴───────┴────────┴────────┘
+/*
+29 June 2026
+
+****
+
+Mariana’s Bran Extraction & Fermentation
+
+To eliminate the "harsh" or bitter qualities of bran while retaining
+its nutritional and color benefits, Mariana recommends sifting and
+treating the bran separately from the white endosperm.
+
+Bolting - Sift the whole grain flour through a fine mesh (e.g., #40
+or #50 mesh) to separate the large bran particles from the flour.
+
+Scalding - Combine the sifted bran with the boiling water from the
+recipe. Mariana suggests a "hot soak" or even "pre-boiling" the bran
+to extract its nutrients and color.
+
+Fermentation - Once the bran scald has cooled to 28–32°C (82–90°F),
+add a small portion of your starter or liquid sourdough "essence"
+(FLAS).
+
+Maturation - Allow the bran-water mix to ferment for 2–12 hours
+until it is highly acidic and fragrant.
+
+Integration - Return the fermented "bran slurry" to the main dough
+during the final mix.
+
+****
+
+Changes
+* bolt, scald and ferment the bran using Mariana's plan
+* increased hydration to 70%
+
+Day Before
+- 9:00 mixed 93g spelt bran with 206g boiling water and left to
+  cool.
+- 16:00 day before, mixed 6g starter into the cooled scald. Ferment
+  at RT overnight. pH next morning is 4.65 at 7:12. DT is 77F.
+  Produced 304g of leaven.
+
+On the day, started at 7:10. Mixed at 7:40, DT=71F. Rest for 30
+minutes. Into the fridge for 2 cycles of S&F.
+
+Into the pan about 10:15?
+
+Baked about 11:30 with dough barely at the top of the pan. Looks
+good. Good height and color. Height is about right.
+
+More acidic than previous attempts.
+
+This is really good! I'll bake this again for sure.
+
+
+*/
+
+┌─────────┬─────────┬──────────────────┬───────┬────────┬────────┐
+│   part  │  grams  │    ingredient    │   %   │ flour  │ water  │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ scald   │  299    │                  │  59.8 │  93.0  │ 206    │
+│         │   93.0  │ spelt            │  18.6 │  93.0  │        │
+│         │  206    │ boiling_water    │  41.2 │        │ 206    │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ starter │    6.0  │                  │   1.2 │   3.00 │   3.00 │
+│         │    3.00 │ rye              │   0.6 │   3.00 │        │
+│         │    3.00 │ water            │   0.6 │        │   3.00 │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ leaven  │  305    │                  │  61.0 │  96.0  │ 209    │
+│         │    6.0  │ starter          │   1.2 │   3.00 │   3.00 │
+│         │  299    │ scald            │  59.8 │  93.0  │ 206    │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ dry     │  441    │                  │  88.2 │ 404    │ -50.0  │
+│         │  379    │ spelt            │  75.8 │ 379    │        │
+│         │   25.0  │ potato_flakes    │   5.0 │        │ -50.0  │
+│         │   25.0  │ vwg              │   5.0 │  25.0  │        │
+│         │   10.0  │ salt             │   2.0 │        │        │
+│         │    2.00 │ yeast            │   0.4 │        │        │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ wet     │  546    │                  │ 109.2 │  96.0  │ 400    │
+│         │  305    │ leaven           │  61.0 │  96.0  │ 209    │
+│         │  163    │ cold_water       │  32.7 │        │ 163    │
+│         │    2.50 │ ascorbic_acid_1p │   0.5 │        │   2.50 │
+│         │   25.0  │ honey            │   5.0 │        │   4.25 │
+│         │   25.0  │ yogurt           │   5.0 │        │  21.0  │
+│         │   25.0  │ olive_oil        │   5.0 │        │        │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ dough   │  987    │                  │ 197.4 │ 500    │ 350    │
+│         │  546    │ wet              │ 109.2 │  96.0  │ 400    │
+│         │  441    │ dry              │  88.2 │ 404    │ -50.0  │
+│         │         │ hydration        │  70.0 │        │        │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│         │   91.8  │ protein          │  10.2 │        │        │
+│         │   53.4  │ fiber            │   5.9 │        │        │
+│         │   37.9  │ fat              │   4.2 │        │        │
+│         │  381    │ carbs            │  42.5 │        │        │
+│         │ 2234    │ calories         │ 248.8 │        │        │
+└─────────┴─────────┴──────────────────┴───────┴────────┴────────┘
 
 
