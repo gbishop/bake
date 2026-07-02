@@ -1,13 +1,14 @@
 # Everyday bake without preferment
 
 starter:
-  whole_wheat
+  rye
   water
-  hydration = 75%
+  hydration = 100%
 
 wet:
   starter = 30g # what I had in the fridge - 3g
   water
+  ascorbic_acid_1p = 50ppm * 100 * grain
   olive_oil = 5%
   honey = 5%
   yogurt = 5%
@@ -15,15 +16,13 @@ wet:
 grain:
   prairie_gold
   hard_red
-  spelt = 10%
+  spelt = 20%
 
 dry:
   grain
-  potato_flakes = 2%
-  flaxseed_meal = 5%
-  # half the water to milk
-  nido = 0.50 * 0.13 * dough.total_water
-  wgbi = 3%
+  potato_flakes = 19.5g # all I had left
+  flaxseed_meal_sr = 15%
+  vwg = 3%
   salt = 1.8%
   yeast = 0.5%
 
@@ -35,78 +34,71 @@ dough:
   total_flour = 200g * 2.3
 
 /*
-April 15, 2025, second try
+June 15 2026
+
+Next
+* lower hydration
 
 Changes
-* back to usual
+* More flaxseed
+* Cold proof
 
-Mixed at 15:25 rest in on counter for 20 minutes. Mixer worked
-very well. Dough was ready after 10 minutes at speed 1.
+Mixed for 3 minutes, then into the fridge for 45 minutes. Kneaded at
+speed 1 for 4 minutes, then speed 1.5 for 6 minutes. Quite sticky
+but it came together and mostly cleared the sides.
 
-17:00 Into buttered pan.
+Into the cambro and the fridge for 30 minutes. S&F. Back into the
+fridge.
 
-18:00 bake in 325F preheated convection oven. 45 minutes lid on.
+Into buttered pan.
 
-The top is ugly because of the breakdown. Hard to guess how it will
-slice. It clearly couldn't hold together before baking. Will it
-after?
+bake in 325F preheated convection oven. 45 minutes lid on.
 
-Some flash but otherwise OK. > 200F inside.
+Looks, ok. Clearly hydration was too high. My negative water for
+flaxseed_meal_sr and potato_flakes must be too large.
 
 Tastes fine, not sour.
 
 */
 
-/*+
-Nutrition
-    name     | per 100g |
--------------|----------|
-calcium      |     0.06 |
-calories     |   255    |
-carbohydrate |    44.5  |
-fat          |     6.0  |
-fiber        |     7.3  |
-monounsat    |     2.75 |
-polyunsat    |     1.60 |
-potassium    |     0.29 |
-protein      |     9.4  |
-saturated    |     1.19 |
-sodium       |     0.43 |
-sugars       |     4.27 |
-water        |    43.4  |
+┌─────────┬─────────┬──────────────────┬───────┬────────┬─────────┐
+│   part  │  grams  │    ingredient    │   %   │ flour  │  water  │
+├─────────┼─────────┼──────────────────┼───────┼────────┼─────────┤
+│ starter │   30.0  │                  │   6.5 │  15.0  │   15.0  │
+│         │   15.0  │ rye              │   3.3 │  15.0  │         │
+│         │   15.0  │ water            │   3.3 │        │   15.0  │
+├─────────┼─────────┼──────────────────┼───────┼────────┼─────────┤
+│ wet     │  511    │                  │ 111.2 │  15.0  │  451    │
+│         │   30.0  │ starter          │   6.5 │  15.0  │   15.0  │
+│         │  411    │ water            │  89.3 │        │  411    │
+│         │    1.81 │ ascorbic_acid_1p │   0.4 │        │    1.81 │
+│         │   23.0  │ olive_oil        │   5.0 │        │         │
+│         │   23.0  │ honey            │   5.0 │        │    3.91 │
+│         │   23.0  │ yogurt           │   5.0 │        │   19.3  │
+├─────────┼─────────┼──────────────────┼───────┼────────┼─────────┤
+│ grain   │  362    │                  │  78.7 │ 362    │         │
+│         │  135    │ prairie_gold     │  29.4 │ 135    │         │
+│         │  135    │ hard_red         │  29.4 │ 135    │         │
+│         │   92.0  │ spelt            │  20.0 │  92.0  │         │
+├─────────┼─────────┼──────────────────┼───────┼────────┼─────────┤
+│ dry     │  475    │                  │ 103.3 │ 445    │ -129    │
+│         │  362    │ grain            │  78.7 │ 362    │         │
+│         │   19.5  │ potato_flakes    │   4.2 │        │  -39.0  │
+│         │   69.0  │ flaxseed_meal_sr │  15.0 │  69.0  │  -89.7  │
+│         │   13.8  │ vwg              │   3.0 │  13.8  │         │
+│         │    8.3  │ salt             │   1.8 │        │         │
+│         │    2.30 │ yeast            │   0.5 │        │         │
+├─────────┼─────────┼──────────────────┼───────┼────────┼─────────┤
+│ dough   │  987    │                  │ 214.5 │ 460    │  322    │
+│         │  511    │ wet              │ 111.2 │  15.0  │  451    │
+│         │  475    │ dry              │ 103.3 │ 445    │ -129    │
+│         │         │ hydration        │  70.0 │        │         │
+├─────────┼─────────┼──────────────────┼───────┼────────┼─────────┤
+│         │   75.3  │ protein          │   8.4 │        │         │
+│         │   61.0  │ fiber            │   6.8 │        │         │
+│         │   61.9  │ fat              │   6.9 │        │         │
+│         │  335    │ carbs            │  37.3 │        │         │
+│         │ 2197    │ calories         │ 244.7 │        │         │
+└─────────┴─────────┴──────────────────┴───────┴────────┴─────────┘
 
-
-  part  | grams  |      name     |   %   | flour  | water  |
---------|--------|---------------|-------|--------|--------|
-starter |  30.0  |               |   6.5 |  17.1  |  12.9  |
-        |  17.1  | whole wheat   |   3.7 |  17.1  |        |
-        |  12.9  | water         |   2.8 |        |  12.9  |
-
-wet     | 383    |               |  83.3 |  17.1  | 321    |
-        |  30.0  | starter       |   6.5 |  17.1  |  12.9  |
-        | 284    | water         |  61.8 |        | 284    |
-        |  23.0  | olive oil     |   5.0 |        |        |
-        |  23.0  | honey         |   5.0 |        |   3.93 |
-        |  23.0  | yogurt        |   5.0 |        |  20.2  |
-
-grain   | 397    |               |  86.3 | 397    |        |
-        | 175    | prairie gold  |  38.1 | 175    |        |
-        | 175    | hard red      |  38.1 | 175    |        |
-        |  46.0  | spelt         |  10.0 |  46.0  |        |
-
-dry     | 474    |               | 103.1 | 443    |   0.65 |
-        | 397    | grain         |  86.3 | 397    |        |
-        |   9.2  | potato flakes |   2.0 |   9.2  |        |
-        |  23.0  | flaxseed meal |   5.0 |  23.0  |        |
-        |  20.9  | nido          |   4.5 |        |   0.52 |
-        |  13.8  | wgbi          |   3.0 |  13.8  |        |
-        |   8.3  | salt          |   1.8 |        |   0.02 |
-        |   2.30 | yeast         |   0.5 |        |   0.12 |
-
-dough   | 858    |               | 186.5 | 460    | 322    |
-        | 383    | wet           |  83.3 |  17.1  | 321    |
-        | 474    | dry           | 103.1 | 443    |   0.65 |
-        |        | hydration     |  70.0 |        |        |
-
-+*/
 

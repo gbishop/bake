@@ -6,22 +6,28 @@ starter:
   water
   hydration = 100%
 
+leaven:
+  ww = 61g
+  water = 27g
+  brown_sugar = 21g
+  starter = 21g
+
 grain:
   prairie_gold
 
 dry:
   grain
-  brown_sugar = 9%
+  sugar = 4%
   vwg = 5%
   potato_flakes_f = 10%
-  yeast = 1%
+  yeast = 0.5%
   salt = 1.8%
 
 wet:
   milk
   egg = 53g
   ascorbic_acid_1p = 50ppm * 100 * grain
-  starter = 40g
+  leaven
   butter = 12%
 
 dough:
@@ -33,73 +39,81 @@ dough:
   total_flour = 460g # 9 inch
 
 /*
-June 3, 2026
+June 7, 2026
 
 Changes
-- Twist into milk bread
+- Mixed stiff sweet leaven the night before
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-Starter is 7 days old.
+Starter is 4 days old. pH is 5.02, doubled overnight.
 
 I used the starter from fridge
 
-I started about 8:15
+I started about 7:15
 
-Used the KA for mixing. Mixed about 8:40. Stopped after 3 minutes.
-DT after mixing is 65F. RT is 70F. 
+Used the KA for mixing. Mixed about 7:40. Stopped after 3 minutes.
+DT after mixing is 68F. RT is 78F. 
 
 30 minute rest in fridge. After rest the dough is 59F.
 
-Kneaded 10 minutes in KA. Out at 9:30
+Kneaded 8 minutes in KA.
 
-DT at end of kneading is 74F. Into the cambro for 60 minutes in the
-fridge. S&F, back to the fridge about 10:30.
+DT at end of kneading is 74F. Into the cambro for 30 minutes in the
+fridge. S&F, back to the fridge
 
-Shaped at 11:30 and into the pan. Proof at 76F.
+Shaped at 11:50 and into the pan. Proof at RT about 78F.
 
-Baked at 14:30 for 45 minutes at 350F lid off.
+Baked at 14:40 for 45 minutes at 350F lid off.
 
-Great appearance. A little darker than I'd like but lots of sugar in
-this.
+I covered it with foil after 30 minutes and it is much less dark
+this time.
+
+Great appearance.
 
 */
 
 ┌─────────┬─────────┬──────────────────┬───────┬────────┬────────┐
 │   part  │  grams  │    ingredient    │   %   │ flour  │ water  │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ starter │   40.0  │                  │   8.7 │  20.0  │  20.0  │
-│         │   20.0  │ rye              │   4.3 │  20.0  │        │
-│         │   20.0  │ water            │   4.3 │        │  20.0  │
+│ starter │   21.0  │                  │   4.6 │  10.5  │  10.5  │
+│         │   10.5  │ rye              │   2.3 │  10.5  │        │
+│         │   10.5  │ water            │   2.3 │        │  10.5  │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ grain   │  371    │                  │  80.7 │ 371    │        │
-│         │  371    │ prairie_gold     │  80.7 │ 371    │        │
+│ leaven  │  130    │                  │  28.3 │  71.5  │  37.5  │
+│         │   61.0  │ ww               │  13.3 │  61.0  │        │
+│         │   27.0  │ water            │   5.9 │        │  27.0  │
+│         │   21.0  │ brown_sugar      │   4.6 │        │        │
+│         │   21.0  │ starter          │   4.6 │  10.5  │  10.5  │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ dry     │  494    │                  │ 107.5 │ 440    │        │
-│         │  371    │ grain            │  80.7 │ 371    │        │
-│         │   41.4  │ brown_sugar      │   9.0 │        │        │
+│ grain   │  320    │                  │  69.5 │ 320    │        │
+│         │  320    │ prairie_gold     │  69.5 │ 320    │        │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ dry     │  417    │                  │  90.8 │ 389    │        │
+│         │  320    │ grain            │  69.5 │ 320    │        │
+│         │   18.4  │ sugar            │   4.0 │        │        │
 │         │   23.0  │ vwg              │   5.0 │  23.0  │        │
 │         │   46.0  │ potato_flakes_f  │  10.0 │  46.0  │        │
-│         │    4.60 │ yeast            │   1.0 │        │        │
+│         │    2.30 │ yeast            │   0.5 │        │        │
 │         │    8.3  │ salt             │   1.8 │        │        │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ wet     │  488    │                  │ 106.0 │  20.0  │ 368    │
-│         │  338    │ milk             │  73.4 │        │ 297    │
+│ wet     │  558    │                  │ 121.2 │  71.5  │ 368    │
+│         │  318    │ milk             │  69.1 │        │ 280    │
 │         │   53.0  │ egg              │  11.5 │        │  40.3  │
-│         │    1.85 │ ascorbic_acid_1p │   0.4 │        │   1.85 │
-│         │   40.0  │ starter          │   8.7 │  20.0  │  20.0  │
+│         │    1.60 │ ascorbic_acid_1p │   0.3 │        │   1.60 │
+│         │  130    │ leaven           │  28.3 │  71.5  │  37.5  │
 │         │   55.2  │ butter           │  12.0 │        │   8.8  │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ dough   │  982    │                  │ 213.5 │ 460    │ 368    │
-│         │  488    │ wet              │ 106.0 │  20.0  │ 368    │
-│         │  494    │ dry              │ 107.5 │ 440    │        │
+│ dough   │  975    │                  │ 212.0 │ 460    │ 368    │
+│         │  558    │ wet              │ 121.2 │  71.5  │ 368    │
+│         │  417    │ dry              │  90.8 │ 389    │        │
 │         │         │ hydration        │  80.0 │        │        │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│         │   87.5  │ protein          │   9.8 │        │        │
-│         │   44.6  │ fiber            │   5.0 │        │        │
-│         │   69.7  │ fat              │   7.8 │        │        │
-│         │  394    │ carbs            │  44.1 │        │        │
-│         │ 2552    │ calories         │ 285.6 │        │        │
+│         │   86.8  │ protein          │   9.8 │        │        │
+│         │   43.9  │ fiber            │   4.9 │        │        │
+│         │   69.2  │ fat              │   7.8 │        │        │
+│         │  388    │ carbs            │  43.8 │        │        │
+│         │ 2524    │ calories         │ 284.4 │        │        │
 └─────────┴─────────┴──────────────────┴───────┴────────┴────────┘
 
 
