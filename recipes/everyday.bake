@@ -1,36 +1,31 @@
 # My everyday loaf based on morph
 
 starter:
-  rye
+  ap_flour
   water
   hydration = 100%
 
-leaven ^ 4g:
-  starter
-  whole_wheat = 4 * starter
+leaven:
+  starter = 20g
+  prairie_gold
   water
   hydration = 100%
 
 grain:
   prairie_gold
-  hard_red = prairie_gold
-  spelt = 10%
-  barley = 5%
-  buckwheat = 5%
+  hard_red = 65g
 
 dry:
   grain
   vwg = 3%
-  potato_flakes = 3%
-  # flaxseed_meal = 3%
+  potato_flakes_f = 5%
   yeast = 0.5%
   salt = 1.8%
 
 wet:
   water
-  egg = 53g
-  ascorbic_acid_1p = 50ppm * 100 * grain
-  leaven = 28%
+  ascorbic_acid_1p = 50ppm * 100 * 100%
+  leaven = 40%
   olive_oil = 5%
   honey = 5%
   yogurt = 5%
@@ -44,89 +39,85 @@ dough:
   total_flour = 500g # 9 inch
 
 /*
-July 8, 2026
+July 11, 2026
 
 Changes
-- back to whole_wheat in leaven
-- increase the size
+- going for more sour
+- use the Doc Dough style starter
+- use mostly prairie_gold this time
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-Starter is 2 days old.
+Starter is 1 day old.
 
-Mixed the leaven with cool water about 17:00 left at RT for 2 hours
-then 60F overnight.
+Mixed the leaven with cold water about 20:20 left at 70F overnight.
 
-Leaven pH = 4.09 at 8:07 dt is 74F.
+Leaven pH = 4.03 at 7:16 dt is 71F.
 
-I started about 7:00
+I started about 7:15
 
-Dry is 82F. Wet is 59F. Mix is 65F.
-
-Used the KA for mixing. Mixed about 8:17. Stopped after 3 minutes.
-DT after mixing is 72F. RT is 78F. 
+Used the KA for mixing. Mixed about 7:40. Stopped after 3 minutes.
+DT after mixing is 63.5F. RT is 78F. 
 
 30 minute rest in fridge.
 
 Kneaded 10 minutes in KA.
 
-Into the cambro and the fridge at 9:00.
+Into the cambro and the fridge at 8:20
 
-Into the pan about 13:30. Left on counter, RT is 78F.
+S&F at 9:20.
 
-Baked at 15:04 for 45 minutes at 350F lid off.
+Into the pan at 10:20. Into the fridge.
 
-Great appearance. Good flavor.
+Out of the fridge at 12:20 and onto the counter at 78F.
 
-Baked weight is 817g at 14:55
+Baked at 14:20 for 45 minutes at 350F lid off.
+
+Great appearance. Good flavor. Not especially sour.
 
 */
 
 ┌─────────┬─────────┬──────────────────┬───────┬────────┬────────┐
 │   part  │  grams  │    ingredient    │   %   │ flour  │ water  │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ starter │   15.6  │                  │   3.1 │   7.8  │   7.8  │
-│         │    7.8  │ rye              │   1.6 │   7.8  │        │
-│         │    7.8  │ water            │   1.6 │        │   7.8  │
+│ starter │   20.0  │                  │   4.0 │  10.0  │  10.0  │
+│         │   10.0  │ ap_flour         │   2.0 │  10.0  │        │
+│         │   10.0  │ water            │   2.0 │        │  10.0  │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ leaven  │  144    │ + 4.0g           │  28.0 │  70.0  │  70.0  │
-│         │   16.0  │ starter          │   3.1 │   7.8  │   7.8  │
-│         │   64.0  │ whole_wheat      │  12.4 │  62.2  │        │
-│         │   64.0  │ water            │  12.4 │        │  62.2  │
+│ leaven  │  200    │                  │  40.0 │ 100    │ 100    │
+│         │   20.0  │ starter          │   4.0 │  10.0  │  10.0  │
+│         │   90.0  │ prairie_gold     │  18.0 │  90.0  │        │
+│         │   90.0  │ water            │  18.0 │        │  90.0  │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ grain   │  415    │                  │  83.0 │ 415    │        │
-│         │  158    │ prairie_gold     │  31.5 │ 158    │        │
-│         │  158    │ hard_red         │  31.5 │ 158    │        │
-│         │   50.0  │ spelt            │  10.0 │  50.0  │        │
-│         │   25.0  │ barley           │   5.0 │  25.0  │        │
-│         │   25.0  │ buckwheat        │   5.0 │  25.0  │        │
+│ grain   │  360    │                  │  72.0 │ 360    │        │
+│         │  295    │ prairie_gold     │  59.0 │ 295    │        │
+│         │   65.0  │ hard_red         │  13.0 │  65.0  │        │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ dry     │  456    │                  │  91.3 │ 430    │ -30.0  │
-│         │  415    │ grain            │  83.0 │ 415    │        │
+│ dry     │  412    │                  │  82.3 │ 400    │        │
+│         │  360    │ grain            │  72.0 │ 360    │        │
 │         │   15.0  │ vwg              │   3.0 │  15.0  │        │
-│         │   15.0  │ potato_flakes    │   3.0 │        │ -30.0  │
+│         │   25.0  │ potato_flakes_f  │   5.0 │  25.0  │        │
 │         │    2.50 │ yeast            │   0.5 │        │        │
 │         │    9.0  │ salt             │   1.8 │        │        │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ wet     │  512    │                  │ 102.5 │  70.0  │ 380    │
-│         │  242    │ water            │  48.5 │        │ 242    │
-│         │   53.0  │ egg              │  10.6 │        │  40.3  │
-│         │    2.08 │ ascorbic_acid_1p │   0.4 │        │   2.08 │
-│         │  140    │ leaven           │  28.0 │  70.0  │  70.0  │
+│ wet     │  500    │                  │  99.9 │ 100    │ 350    │
+│         │  222    │ water            │  44.4 │        │ 222    │
+│         │    2.50 │ ascorbic_acid_1p │   0.5 │        │   2.50 │
+│         │  200    │ leaven           │  40.0 │ 100    │ 100    │
 │         │   25.0  │ olive_oil        │   5.0 │        │        │
 │         │   25.0  │ honey            │   5.0 │        │   4.25 │
 │         │   25.0  │ yogurt           │   5.0 │        │  21.0  │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ dough   │  969    │                  │ 193.8 │ 500    │ 350    │
-│         │  512    │ wet              │ 102.5 │  70.0  │ 380    │
-│         │  456    │ dry              │  91.3 │ 430    │ -30.0  │
+│ dough   │  911    │                  │ 182.2 │ 500    │ 350    │
+│         │  500    │ wet              │  99.9 │ 100    │ 350    │
+│         │  411    │ dry              │  82.3 │ 400    │        │
 │         │         │ hydration        │  70.0 │        │        │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│         │   83.5  │ protein          │   9.5 │        │        │
-│         │   54.4  │ fiber            │   6.2 │        │        │
-│         │   42.8  │ fat              │   4.9 │        │        │
-│         │  392    │ carbs            │  44.5 │        │        │
-│         │ 2288    │ calories         │ 259.5 │        │        │
+│         │   71.0  │ protein          │   8.6 │        │        │
+│         │   48.2  │ fiber            │   5.8 │        │        │
+│         │   35.8  │ fat              │   4.3 │        │        │
+│         │  390    │ carbs            │  47.0 │        │        │
+│         │ 2166    │ calories         │ 261.2 │        │        │
 └─────────┴─────────┴──────────────────┴───────┴────────┴────────┘
 
 
