@@ -3,75 +3,72 @@
 /* 
 The goal is maximizing lactic acid sourness without breakdown
 
-November 13, 2025
+July 13, 2026
 
 # https://gemini.google.com/app/e47193cd35efa43c
 */
 
 starter:
-  whole_wheat
+  ap_flour
   water
   hydration = 100%
 
-grind ^ 4g:
-  hard_red = leaven.hard_red + dry.hard_red
-  prairie_gold = leaven.prairie_gold + dry.prairie_gold
-
-leaven:
-  starter = 1 * _part
-  hard_red = 1 * _part
-  prairie_gold = 1 * _part
-  _part
+leaven ^ 10g:
+  starter
+  whole_wheat  = 5 * starter
   water
   total_flour = 10%
   hydration = 100%
 
+grain:
+  prairie_gold 
+  hard_red
+  spelt = 5%
+  buckwheat = 5%
+  barley = 5%
+
 wet:
   leaven
   cold_water
+  ascorbic_acid_1p = 50ppm * 100 * grain
+  salt = 0.018 * (100% + dry.potato_flakes)
   honey = 5%
   olive_oil = 5%
   yogurt = 5%
 
 dry:
-  hard_red
-  prairie_gold
+  grain
+  potato_flakes = 5%
   vwg = 3%
-  hard_red = prairie_gold
-  chickpea_flour = 7%
-  yeast = 0.2%
-  salt = 2%
+  yeast = 0.4%
 
 dough:
   wet
   dry
-  total_flour = 200 * 1
-  hydration = 80%
+  total_flour = 500g
+  hydration = 70%
+
 
 /****** Notes
 
-Third attempt, hoping for lower density.
+Fourth attempt, hoping for sour + low density.
 
 Changes:
-* use ice water
-* add a little yeast
+* lid off
+* leaven 1:5 ratio
+* use cold water
+* add more yeast
 * knead with the KA until about 72F or 10 minutes
 * measure rise from end of kneading.
-* use the proofer set for 78F
-* prepare leaven overnight?
 
-November 18
+8:22 the leaven + container weighs 135.99g. I marked the top of the
+dome with a rubber band. I used 1:5:5 as suggested by Doc. Left at
+RT=78F.
 
-
-Results:
-
-* 85% hydration is too high.
-
-******/
+I abandonded this later in the day.
 
 
-/*
-Method and Suggested Timeline
+Gemini Suggested Method and Suggested Timeline
 
 Step 1: Levain Preparation 
 
@@ -151,42 +148,50 @@ completely on a wire rack for at least 2 hours before slicing.
 
 */
 
-/*+
-  part  | grams  |      name      |   %   | flour  | water  |
---------|--------|----------------|-------|--------|--------|
-starter |   8.0  |                |   4.0 |   4.00 |   4.00 |
-        |   4.00 | whole wheat    |   2.0 |   4.00 |        |
-        |   4.00 | water          |   2.0 |        |   4.00 |
+┌─────────┬─────────┬──────────────────┬───────┬────────┬────────┐
+│   part  │  grams  │    ingredient    │   %   │ flour  │ water  │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ starter │    9.1  │                  │   1.8 │   4.55 │   4.55 │
+│         │    4.55 │ ap_flour         │   0.9 │   4.55 │        │
+│         │    4.55 │ water            │   0.9 │        │   4.55 │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ leaven  │  110    │ + 10.0g          │  20.0 │  50.0  │  50.0  │
+│         │   10.0  │ starter          │   1.8 │   4.55 │   4.55 │
+│         │   50.0  │ whole_wheat      │   9.1 │  45.5  │        │
+│         │   50.0  │ water            │   9.1 │        │  45.5  │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ grain   │  435    │                  │  87.0 │ 435    │        │
+│         │  180    │ prairie_gold     │  36.0 │ 180    │        │
+│         │  180    │ hard_red         │  36.0 │ 180    │        │
+│         │   25.0  │ spelt            │   5.0 │  25.0  │        │
+│         │   25.0  │ buckwheat        │   5.0 │  25.0  │        │
+│         │   25.0  │ barley           │   5.0 │  25.0  │        │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ wet     │  509    │                  │ 101.8 │  50.0  │ 400    │
+│         │  100    │ leaven           │  20.0 │  50.0  │  50.0  │
+│         │  323    │ cold_water       │  64.5 │        │ 323    │
+│         │    2.17 │ ascorbic_acid_1p │   0.4 │        │   2.17 │
+│         │    9.5  │ salt             │   1.9 │        │        │
+│         │   25.0  │ honey            │   5.0 │        │   4.25 │
+│         │   25.0  │ olive_oil        │   5.0 │        │        │
+│         │   25.0  │ yogurt           │   5.0 │        │  21.0  │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ dry     │  477    │                  │  95.4 │ 450    │ -50.0  │
+│         │  435    │ grain            │  87.0 │ 435    │        │
+│         │   25.0  │ potato_flakes    │   5.0 │        │ -50.0  │
+│         │   15.0  │ vwg              │   3.0 │  15.0  │        │
+│         │    2.00 │ yeast            │   0.4 │        │        │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ dough   │  986    │                  │ 197.2 │ 500    │ 350    │
+│         │  509    │ wet              │ 101.8 │  50.0  │ 400    │
+│         │  477    │ dry              │  95.4 │ 450    │ -50.0  │
+│         │         │ hydration        │  70.0 │        │        │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│         │   77.0  │ protein          │   8.6 │        │        │
+│         │   54.1  │ fiber            │   6.0 │        │        │
+│         │   37.7  │ fat              │   4.2 │        │        │
+│         │  401    │ carbs            │  44.7 │        │        │
+│         │ 2251    │ calories         │ 250.8 │        │        │
+└─────────┴─────────┴──────────────────┴───────┴────────┴────────┘
 
-grind   | 194    | + 4.0g         |  95.0 | 190    |        |
-        |  97.0  | hard red       |  47.5 |  95.0  |        |
-        |  97.0  | prairie gold   |  47.5 |  95.0  |        |
-
-leaven  |  40.0  |                |  20.0 |  20.0  |  20.0  |
-        |   8.0  | starter        |   4.0 |   4.00 |   4.00 |
-        |   8.0  | hard red       |   4.0 |   8.0  |        |
-        |   8.0  | prairie gold   |   4.0 |   8.0  |        |
-        |  16.0  | water          |   8.0 |        |  16.0  |
-
-wet     | 214    |                | 106.8 |  20.0  | 174    |
-        |  40.0  | leaven         |  20.0 |  20.0  |  20.0  |
-        | 143    | cold water     |  71.7 |        | 143    |
-        |  10.0  | honey          |   5.0 |        |   1.70 |
-        |  10.0  | olive oil      |   5.0 |        |        |
-        |  10.0  | yogurt         |   5.0 |        |   8.8  |
-
-dry     | 198    |                |  99.2 | 180    | -14.0  |
-        |  87.0  | hard red       |  43.5 |  87.0  |        |
-        |  87.0  | prairie gold   |  43.5 |  87.0  |        |
-        |   6.0  | vwg            |   3.0 |   6.0  |        |
-        |  14.0  | chickpea flour |   7.0 |        | -14.0  |
-        |   0.40 | yeast          |   0.2 |        |        |
-        |   4.00 | salt           |   2.0 |        |        |
-
-dough   | 412    |                | 206.0 | 200    | 160    |
-        | 214    | wet            | 106.8 |  20.0  | 174    |
-        | 198    | dry            |  99.2 | 180    | -14.0  |
-        |        | hydration      |  80.0 |        |        |
-
-+*/
 
