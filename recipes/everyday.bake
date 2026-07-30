@@ -6,8 +6,8 @@ starter:
   hydration = 100%
 
 leaven:
-  starter = 20g
-  bread_flour
+  starter
+  bread_flour = 10 * starter
   cold_water
   hydration = 100%
 
@@ -15,7 +15,8 @@ grain:
   prairie_gold
   hard_red
   barley = 5%
-  spelt = 5%
+  # spelt = 5%  # out of spelt
+  wheat_germ = 5%
   buckwheat = 5%
 
 dry:
@@ -40,106 +41,98 @@ dough:
   hydration = 70%
   # 200g/L of flour
   # total_flour = 660g # 13 inch
-  total_flour = 500g # 9 inch
+  # total_flour = 500g # 9 inch
+  total = 1086g
 
 /*
-July 17, 2026
+July 27, 2026
 
 Changes
-- going for more sour
-- use the Doc Dough style starter
-- use Mariana's flourless sd starter
-- back to typical mix
-- use bread flour in the leaven
-
-Next time
-- increase by leaven by 10g for losses
+- Only 9g of starter remaining!
+- Mix a larger than needed leaven and use the rest for starter
+- replace spelt with toasted wheat germ
+- increase total by 100g for old dough
 
 Zoji pan weighs 773g. KA pan weighs 725g.
 
-Starter is 3 days old.
+Starter is 8 days old.
 
-Mixed the leaven with cold water about 19:20 left at 65F overnight.
+Mixed the leaven about 16:20 left on the counter. Initial T is 76.4.
 
-Leaven pH = 3.95 at 7:30 dt is 70F.
+Leaven pH = 3.67 at 7:25 dt is 75F. It rose to the top of the 500ml
+container and had started to fall.
 
-The flourless starter pH is 3.3 less than 24 hours after making it.
+I started about 7:20
 
-I started about 7:10
-
-Used the KA for mixing. Mixed about 7:45. Stopped after 3 minutes.
-DT after mixing is 68.5F. RT is 78F. 
+Used the KA for mixing. Mixed about 7:34. Stopped after 2 minutes;
+it cleaned the bowl. DT after mixing is 72F. RT is 76F. 
 
 30 minute rest in fridge.
 
-Kneaded 9 minutes in KA.
+Kneaded 7 minutes in KA. It was cleaning the bowl and looking great.
 
-Into the cambro and the fridge at 8:34. S&F every 30 minutes.
+Into the cambro and the fridge at 8:20. S&F every 30 minutes.
 
-At 9:50 the pH is 5.21 and DT is 65F. It has risen about 20% in the
-cambro.
+Into the pan at 9:40. Left on the counter at 76F.
 
-Very easy to shape, not sticky.
+100g of dough into fridge.
 
-Into the pan at 9:54. Left on the counter at 78F.
+Baked at 12:20 for 45 minutes at 350F lid off.
 
-Baked at 11:47 for 45 minutes at 350F lid off. It was at the top of
-the pan when I started preheating and well above by the time the
-oven was ready. I should start preheating sooner.
+I added 100ml of water to the pan before preheating the oven.
 
-10 ice cubes inserted at about 175F lasted 10 minutes into the bake.
+I forgot about it and let it rise too far. It turned out great but
+hippy. 
 
-5.5 inches tall. Beautiful crust. The slash should have been deeper. 
-
-Super soft and delicious. This may be the best I have made.
+Super soft and delicious. Less sour than the last one.
 
 */
 
 ┌─────────┬─────────┬───────────────────┬───────┬────────┬────────┐
 │   part  │  grams  │     ingredient    │   %   │ flour  │ water  │
 ├─────────┼─────────┼───────────────────┼───────┼────────┼────────┤
-│ starter │   20.0  │                   │   4.0 │  10.0  │  10.0  │
-│         │   10.0  │ ap_flour          │   2.0 │  10.0  │        │
-│         │   10.0  │ water             │   2.0 │        │  10.0  │
+│ starter │   10.5  │                   │   1.9 │   5.2  │   5.2  │
+│         │    5.2  │ ap_flour          │   1.0 │   5.2  │        │
+│         │    5.2  │ water             │   1.0 │        │   5.2  │
 ├─────────┼─────────┼───────────────────┼───────┼────────┼────────┤
-│ leaven  │  200    │                   │  40.0 │ 100    │ 100    │
-│         │   20.0  │ starter           │   4.0 │  10.0  │  10.0  │
-│         │   90.0  │ bread_flour       │  18.0 │  90.0  │        │
-│         │   90.0  │ cold_water        │  18.0 │        │  90.0  │
+│ leaven  │  220    │                   │  40.0 │ 110    │ 110    │
+│         │   10.5  │ starter           │   1.9 │   5.2  │   5.2  │
+│         │  105    │ bread_flour       │  19.0 │ 105    │        │
+│         │  105    │ cold_water        │  19.0 │        │ 105    │
 ├─────────┼─────────┼───────────────────┼───────┼────────┼────────┤
-│ grain   │  385    │                   │  77.0 │ 385    │        │
-│         │  155    │ prairie_gold      │  31.0 │ 155    │        │
-│         │  155    │ hard_red          │  31.0 │ 155    │        │
-│         │   25.0  │ barley            │   5.0 │  25.0  │        │
-│         │   25.0  │ spelt             │   5.0 │  25.0  │        │
-│         │   25.0  │ buckwheat         │   5.0 │  25.0  │        │
+│ grain   │  424    │                   │  77.0 │ 424    │        │
+│         │  171    │ prairie_gold      │  31.0 │ 171    │        │
+│         │  171    │ hard_red          │  31.0 │ 171    │        │
+│         │   27.5  │ barley            │   5.0 │  27.5  │        │
+│         │   27.5  │ wheat_germ        │   5.0 │  27.5  │        │
+│         │   27.5  │ buckwheat         │   5.0 │  27.5  │        │
 ├─────────┼─────────┼───────────────────┼───────┼────────┼────────┤
-│ dry     │  437    │                   │  87.3 │ 400    │ -50.0  │
-│         │  385    │ grain             │  77.0 │ 385    │        │
-│         │   15.0  │ vwg               │   3.0 │  15.0  │        │
-│         │   25.0  │ potato_flakes     │   5.0 │        │ -50.0  │
-│         │    2.50 │ yeast             │   0.5 │        │        │
-│         │    9.0  │ salt              │   1.8 │        │        │
+│ dry     │  481    │                   │  87.3 │ 440    │ -55.1  │
+│         │  424    │ grain             │  77.0 │ 424    │        │
+│         │   16.5  │ vwg               │   3.0 │  16.5  │        │
+│         │   27.5  │ potato_flakes     │   5.0 │        │ -55.1  │
+│         │    2.75 │ yeast             │   0.5 │        │        │
+│         │    9.9  │ salt              │   1.8 │        │        │
 ├─────────┼─────────┼───────────────────┼───────┼────────┼────────┤
-│ wet     │  550    │                   │ 110.0 │ 100    │ 400    │
-│         │  223    │ cold_water        │  44.6 │        │ 223    │
-│         │   50.0  │ flourless_starter │  10.0 │        │  50.0  │
-│         │    1.92 │ ascorbic_acid_1p  │   0.4 │        │   1.92 │
-│         │  200    │ leaven            │  40.0 │ 100    │ 100    │
-│         │   25.0  │ olive_oil         │   5.0 │        │        │
-│         │   25.0  │ honey             │   5.0 │        │   4.25 │
-│         │   25.0  │ yogurt            │   5.0 │        │  21.0  │
+│ wet     │  605    │                   │ 110.0 │ 110    │ 440    │
+│         │  245    │ cold_water        │  44.6 │        │ 245    │
+│         │   55.1  │ flourless_starter │  10.0 │        │  55.1  │
+│         │    2.12 │ ascorbic_acid_1p  │   0.4 │        │   2.12 │
+│         │  220    │ leaven            │  40.0 │ 110    │ 110    │
+│         │   27.5  │ olive_oil         │   5.0 │        │        │
+│         │   27.5  │ honey             │   5.0 │        │   4.68 │
+│         │   27.5  │ yogurt            │   5.0 │        │  23.1  │
 ├─────────┼─────────┼───────────────────┼───────┼────────┼────────┤
-│ dough   │  986    │                   │ 197.3 │ 500    │ 350    │
-│         │  550    │ wet               │ 110.0 │ 100    │ 400    │
-│         │  437    │ dry               │  87.3 │ 400    │ -50.0  │
+│ dough   │ 1086    │                   │ 197.3 │ 551    │ 385    │
+│         │  605    │ wet               │ 110.0 │ 110    │ 440    │
+│         │  481    │ dry               │  87.3 │ 440    │ -55.1  │
 │         │         │ hydration         │  70.0 │        │        │
 ├─────────┼─────────┼───────────────────┼───────┼────────┼────────┤
-│         │   76.8  │ protein           │   8.6 │        │        │
-│         │   46.5  │ fiber             │   5.2 │        │        │
-│         │   36.9  │ fat               │   4.1 │        │        │
-│         │  400    │ carbs             │  44.6 │        │        │
-│         │ 2238    │ calories          │ 249.4 │        │        │
+│         │   87.9  │ protein           │   8.9 │        │        │
+│         │   51.0  │ fiber             │   5.2 │        │        │
+│         │   43.8  │ fat               │   4.4 │        │        │
+│         │  435    │ carbs             │  44.0 │        │        │
+│         │ 2485    │ calories          │ 251.4 │        │        │
 └─────────┴─────────┴───────────────────┴───────┴────────┴────────┘
 
 
