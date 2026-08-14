@@ -1,0 +1,108 @@
+# My everyday loaf based on morph
+
+grain:
+  prairie_gold
+  hard_red
+  barley = 5%
+  spelt = 5%
+  buckwheat = 5%
+
+dry:
+  grain
+  vwg = 3%
+  potato_flakes = 5%
+  yeast = 0.5%
+  salt = 1.8%
+
+wet:
+  cold_water
+  old_dough = 100g
+  flourless_starter = 20%
+  ascorbic_acid_1p = 50ppm * 100 * grain
+  olive_oil = 5%
+  honey = 5%
+  sour_cream = 5% # out of yogurt
+
+dough:
+  wet
+  dry
+  old_dough = 0 - wet.old_dough
+  hydration = 70%
+  # 200g/L of flour
+  # total_flour = 660g # 13 inch
+  total_flour = 500g # 9 inch
+  # total = 1086g
+
+/*
+August 7, 2026
+
+Changes
+- No leaven, I'm trying old dough and flourless starter only
+- double the flas
+
+I started about 7:35
+
+Dry T=92. Wet T=51. 
+
+Used the KA for mixing. Mixed about 8:04. Stopped after 2 minutes;
+it cleaned the bowl. DT after mixing is 70F. RT is 76F. 
+
+30 minute rest in fridge.
+
+8:38 Kneaded 10 minutes in KA. It was cleaning the bowl and looking great.
+
+Into the cambro and the fridge at 8:50. S&F every 30 minutes.
+
+Into the pan at 11:00. Left on the counter at 77F.
+
+100g of dough into fridge.
+
+Baked at 12:15 for 45 minutes at 350F lid off.
+
+I added 100ml of water to the pan before preheating the oven.
+
+Beautiful loaf.
+Super soft and delicious. Not sour.
+
+*/
+
+┌───────┬─────────┬───────────────────┬───────┬────────┬────────┐
+│  part │  grams  │     ingredient    │   %   │ flour  │ water  │
+├───────┼─────────┼───────────────────┼───────┼────────┼────────┤
+│ grain │  485    │                   │  97.0 │ 485    │        │
+│       │  205    │ prairie_gold      │  41.0 │ 205    │        │
+│       │  205    │ hard_red          │  41.0 │ 205    │        │
+│       │   25.0  │ barley            │   5.0 │  25.0  │        │
+│       │   25.0  │ spelt             │   5.0 │  25.0  │        │
+│       │   25.0  │ buckwheat         │   5.0 │  25.0  │        │
+├───────┼─────────┼───────────────────┼───────┼────────┼────────┤
+│ dry   │  537    │                   │ 107.3 │ 500    │ -50.0  │
+│       │  485    │ grain             │  97.0 │ 485    │        │
+│       │   15.0  │ vwg               │   3.0 │  15.0  │        │
+│       │   25.0  │ potato_flakes     │   5.0 │        │ -50.0  │
+│       │    2.50 │ yeast             │   0.5 │        │        │
+│       │    9.0  │ salt              │   1.8 │        │        │
+├───────┼─────────┼───────────────────┼───────┼────────┼────────┤
+│ wet   │  552    │                   │ 110.5 │        │ 400    │
+│       │  275    │ cold_water        │  55.0 │        │ 275    │
+│       │  100    │ old_dough         │  20.0 │        │        │
+│       │  100    │ flourless_starter │  20.0 │        │ 100    │
+│       │    2.43 │ ascorbic_acid_1p  │   0.5 │        │   2.43 │
+│       │   25.0  │ olive_oil         │   5.0 │        │        │
+│       │   25.0  │ honey             │   5.0 │        │   4.25 │
+│       │   25.0  │ sour_cream        │   5.0 │        │  18.5  │
+├───────┼─────────┼───────────────────┼───────┼────────┼────────┤
+│ dough │  989    │                   │ 197.8 │ 500    │ 350    │
+│       │  552    │ wet               │ 110.5 │        │ 400    │
+│       │  537    │ dry               │ 107.3 │ 500    │ -50.0  │
+│       │ -100    │ old_dough         │ -20.0 │        │        │
+│       │         │ hydration         │  70.0 │        │        │
+├───────┼─────────┼───────────────────┼───────┼────────┼────────┤
+│       │   76.8  │ protein           │   8.5 │        │        │
+│       │   54.4  │ fiber             │   6.0 │        │        │
+│       │   41.7  │ fat               │   4.6 │        │        │
+│       │  401    │ carbs             │  44.5 │        │        │
+│       │ 2285    │ calories          │ 254.0 │        │        │
+└───────┴─────────┴───────────────────┴───────┴────────┴────────┘
+
+
