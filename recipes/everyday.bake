@@ -33,43 +33,40 @@ dry:
   grain
   vwg = 3%
   potato_flakes = 5%
+  flaxseed_meal = 5%
   yeast = 0.5%
   salt = 1.8%
 
 dough:
   wet
   dry
-  old_dough = 0 - wet.old_dough
   hydration = 70%
+  # old_dough = 0 - wet.old_dough # forgot to remove it
   # 200g/L of flour
   # total_flour = 660g # 13 inch
   total_flour = 500g # 9 inch
   # total = 1086g
 
 /*
-August 1, 2026
+August 13, 2026
 
 Changes
-- Found my spelt!
+- Adding flaxseed meal
 - Use old dough and take it out at the end
-
-Next time
-- why was it 50g heavier than expected?
-- was that why it was sticky?
 
 Starter is 6 days old.
 
-I started about 7:20
+I started about 7:40
 
-Mixed the leaven about 20:10 left on the counter. Initial T is 76.4.
+Mixed the leaven about 21:50 left on the counter.
 
-Leaven pH = 3.67 at 7:58 dt is 75F. It rose to the top of the 500ml
+Leaven pH = 3.71 at 8:09 dt is 78F. It rose to the top of the 500ml
 container and had started to fall.
 
-Dry T=89. Wet T=60. 
+Dry T=84. Wet T=62. 
 
-Used the KA for mixing. Mixed about 8:13. Stopped after 2 minutes;
-it cleaned the bowl. DT after mixing is 72F. RT is 77F. 
+Used the KA for mixing. Mixed about 8:20. Stopped after 2 minutes;
+it cleaned the bowl. DT after mixing is 72F. RT is 78F. 
 
 30 minute rest in fridge.
 
@@ -77,18 +74,17 @@ Kneaded 7 minutes in KA. It was cleaning the bowl and looking great.
 
 Into the cambro and the fridge at 8:20. S&F every 30 minutes.
 
-Stickier than usual but managable. 
+Into the pan at 13:40. Left on the counter at 77F.
 
-Into the pan at 10:14. Left on the counter at 77F.
+Forgot to remove the old dough. Doh! 100g of dough into fridge.
 
-100g of dough into fridge.
+Let it rise too long!
 
-Baked at 11:45 for 45 minutes at 350F lid off.
+Baked at 16:25 for 45 minutes at 350F lid off.
 
 I added 100ml of water to the pan before preheating the oven.
 
-Beautiful loaf.
-Super soft and delicious. More sour than the last.
+Looks good but too large by 100g.
 
 */
 
@@ -109,37 +105,37 @@ Super soft and delicious. More sour than the last.
 │         │  213    │ cold_water        │  42.6 │        │ 213    │
 │         │  100    │ old_dough         │  20.0 │        │        │
 │         │   50.0  │ flourless_starter │  10.0 │        │  50.0  │
-│         │    1.87 │ ascorbic_acid_1p  │   0.4 │        │   1.87 │
+│         │    1.75 │ ascorbic_acid_1p  │   0.4 │        │   1.75 │
 │         │  200    │ leaven            │  40.0 │ 110    │ 110    │
 │         │   25.0  │ olive_oil         │   5.0 │        │        │
 │         │   25.0  │ honey             │   5.0 │        │   4.25 │
 │         │   25.0  │ yogurt            │   5.0 │        │  21.0  │
 ├─────────┼─────────┼───────────────────┼───────┼────────┼────────┤
-│ grain   │  375    │                   │  75.0 │ 375    │        │
-│         │  150    │ prairie_gold      │  30.0 │ 150    │        │
-│         │  150    │ hard_red          │  30.0 │ 150    │        │
+│ grain   │  350    │                   │  70.0 │ 350    │        │
+│         │  138    │ prairie_gold      │  27.5 │ 138    │        │
+│         │  138    │ hard_red          │  27.5 │ 138    │        │
 │         │   25.0  │ barley            │   5.0 │  25.0  │        │
 │         │   25.0  │ spelt             │   5.0 │  25.0  │        │
 │         │   25.0  │ buckwheat         │   5.0 │  25.0  │        │
 ├─────────┼─────────┼───────────────────┼───────┼────────┼────────┤
-│ dry     │  426    │                   │  85.3 │ 390    │ -50.0  │
-│         │  375    │ grain             │  75.0 │ 375    │        │
+│ dry     │  427    │                   │  85.3 │ 390    │ -50.0  │
+│         │  350    │ grain             │  70.0 │ 350    │        │
 │         │   15.0  │ vwg               │   3.0 │  15.0  │        │
 │         │   25.0  │ potato_flakes     │   5.0 │        │ -50.0  │
+│         │   25.0  │ flaxseed_meal     │   5.0 │  25.0  │        │
 │         │    2.50 │ yeast             │   0.5 │        │        │
 │         │    9.0  │ salt              │   1.8 │        │        │
 ├─────────┼─────────┼───────────────────┼───────┼────────┼────────┤
-│ dough   │  966    │                   │ 193.2 │ 500    │ 350    │
+│ dough   │ 1066    │                   │ 213.3 │ 500    │ 350    │
 │         │  640    │ wet               │ 128.0 │ 110    │ 400    │
-│         │  426    │ dry               │  85.3 │ 390    │ -50.0  │
-│         │ -100    │ old_dough         │ -20.0 │        │        │
+│         │  427    │ dry               │  85.3 │ 390    │ -50.0  │
 │         │         │ hydration         │  70.0 │        │        │
 ├─────────┼─────────┼───────────────────┼───────┼────────┼────────┤
-│         │   76.9  │ protein           │   8.7 │        │        │
-│         │   45.7  │ fiber             │   5.2 │        │        │
-│         │   36.8  │ fat               │   4.2 │        │        │
-│         │  400    │ carbs             │  45.4 │        │        │
-│         │ 2237    │ calories          │ 254.4 │        │        │
+│         │   78.3  │ protein           │   8.1 │        │        │
+│         │   49.9  │ fiber             │   5.1 │        │        │
+│         │   46.8  │ fat               │   4.8 │        │        │
+│         │  388    │ carbs             │  40.0 │        │        │
+│         │ 2288    │ calories          │ 235.8 │        │        │
 └─────────┴─────────┴───────────────────┴───────┴────────┴────────┘
 
 
