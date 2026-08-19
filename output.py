@@ -1,4 +1,5 @@
 import re
+
 import pandas as pd
 from rich.pretty import pprint
 
@@ -157,6 +158,8 @@ def format_table(solution: pd.DataFrame, allcolumns: bool):
 def output(
     text: str,
     solution: pd.DataFrame,
+    filename="",
+    inplace=False,
     errors=[],
     tobp=False,
     html="",
@@ -175,7 +178,11 @@ def output(
         # recipe = re.sub(r"^", "⚠ ", recipe, 0, re.M)
         recipe = f"{etext}\n{recipe}"
     result = f"{text}\n\n{recipe}\n"
-    print(result)
+    if inplace and filename:
+        with open(filename, "wt", encoding="utf-8") as fp:
+            print(result, file=fp)
+    else:
+        print(result)
 
     if html:
         with open(html, "wt") as fp:
