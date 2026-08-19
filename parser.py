@@ -161,7 +161,7 @@ class Convert(lark.Transformer):
         return None
 
 
-def parse(text: str):
+def parse(text: str) -> Recipe:
     parser = Lark(
         grammar,
         parser="lalr",

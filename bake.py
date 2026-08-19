@@ -1,12 +1,13 @@
-from tree import *
-from parser import parse
-import sys
 import argparse
-from output import output
-from solve import solve
+import os
 import sys
 import traceback
-import os
+
+from output import output
+from parser import parse
+from solve import solve
+from tree import *
+from convert import convert
 
 
 def lean_traceback(exc_type, exc_value, exc_traceback):
@@ -30,30 +31,31 @@ argparser = argparse.ArgumentParser(
     description="From formulas to recipes",
 )
 argparser.add_argument("filename", nargs="?", default="")
+argparser.add_argument("-i", "--inplace", action="store_true")
 argparser.add_argument("-R", "--rewrite", action="store_true")
 argparser.add_argument("--html")
 argparser.add_argument("-q", "--quiet", action="store_true")
 argparser.add_argument("-a", "--allcolumns", action="store_true")
 argparser.add_argument("-d", "--debug", action="store_true")
+argparser.add_argument("-c", "--convert", action="store_true")
 args = argparser.parse_args()
-if args.filename:
-    fp = open(args.filename, "rt", encoding="utf-8")
-else:
-    fp = sys.stdin
 
-text = fp.read()
+with open(args.filename, "rt", encoding="utf-8") if args.filename else sys.stdin as fp:
+    text = fp.read()
+    tree = parse(text)
+    solution, failed = solve(tree, args.debug)
 
-result = parse(text)
+    if args.convert and not failed:
+        convert(args.filename, text, tree, solution)
 
-# pprint(result)
-solution, failed = solve(result, args.debug)
-
-if not args.quiet:
-    output(
-        text,
-        solution,
-        errors=failed,
-        tobp=args.rewrite,
-        html=args.html,
-        allcolumns=args.allcolumns,
-    )
+    elif not args.quiet:
+        output(
+            text,
+            solution,
+            filename=args.filename,
+            inplace=args.inplace,
+            errors=failed,
+            tobp=args.rewrite,
+            html=args.html,
+            allcolumns=args.allcolumns,
+        )

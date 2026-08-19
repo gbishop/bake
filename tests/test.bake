@@ -7,53 +7,36 @@ starter ^ 5%:
 
 dough:
   starter = 10g
-  prairie_gold = 300% * _part
-  bronze_chief = 2 * _part
-  spelt = _part / 2
+  prairie_gold = 50%
+  bronze_chief
   water
   yeast = 0.4%
   hydration = 70%
-  _muffins = 10
-  _size = 46g
-  total_flour = 9 / 9 * _muffins * _size
+  total_flour = 400g
   salt = 2%
   # total = 793g
 
+┌─────────┬─────────┬──────────────┬───────┬────────┬────────┐
+│   part  │  grams  │  ingredient  │   %   │ flour  │ water  │
+├─────────┼─────────┼──────────────┼───────┼────────┼────────┤
+│ starter │   10.5  │ + 0.5g       │   2.5 │   5.0  │   5.0  │
+│         │    5.3  │ ww_flour     │   1.2 │   5.0  │        │
+│         │    5.3  │ water        │   1.2 │        │   5.0  │
+├─────────┼─────────┼──────────────┼───────┼────────┼────────┤
+│ dough   │  690    │              │ 172.4 │ 400    │ 280    │
+│         │   10.0  │ starter      │   2.5 │   5.0  │   5.0  │
+│         │  200    │ prairie_gold │  50.0 │ 200    │        │
+│         │  195    │ bronze_chief │  48.8 │ 195    │        │
+│         │  275    │ water        │  68.8 │        │ 275    │
+│         │    1.60 │ yeast        │   0.4 │        │        │
+│         │    8.0  │ salt         │   2.0 │        │        │
+│         │         │ hydration    │  70.0 │        │        │
+├─────────┼─────────┼──────────────┼───────┼────────┼────────┤
+│         │   50.6  │ protein      │   8.1 │        │        │
+│         │   42.4  │ fiber        │   6.8 │        │        │
+│         │    9.1  │ fat          │   1.5 │        │        │
+│         │  295    │ carbs        │  47.0 │        │        │
+│         │ 1463    │ calories     │ 233.2 │        │        │
+└─────────┴─────────┴──────────────┴───────┴────────┴────────┘
 
-/*+
-Nutrition
-    name     | per 100g |
--------------|----------|
-calcium      |          |
-calories     |   216    |
-carbohydrate |    47.2  |
-fat          |     1.12 |
-fiber        |     7.77 |
-monounsat    |     0.15 |
-polyunsat    |     0.48 |
-potassium    |     0.26 |
-protein      |     7.83 |
-saturated    |     0.19 |
-sodium       |     0.40 |
-sugars       |     0.63 |
-water        |    47.1  |
-
-
-  part  | grams  |     name     |   %   | flour  | water  |
---------|--------|--------------|-------|--------|--------|
-starter |  15.0  | + 5.0g       |   2.2 |   5.00 |   5.00 |
-        |   7.50 | ww flour     |   1.1 |   5.00 |        |
-        |   7.50 | water        |   1.1 |        |   5.00 |
-       
-dough   | 791    |              | 172.0 | 460    | 322    |
-        |  10.0  | starter      |   2.2 |   5.00 |   5.00 |
-        | 248    | prairie gold |  54.0 | 248    |        |
-        | 165    | bronze chief |  36.0 | 165    |        |
-        |  41.4  | spelt        |   9.0 |  41.4  |        |
-        | 317    | water        |  68.9 |        | 317    |
-        |   7.45 | salt         |   1.6 |        |        |
-        |   1.84 | yeast        |   0.4 |        |        |
-        |        | hydration    |  70.0 |        |        |
-       
-+*/
 
