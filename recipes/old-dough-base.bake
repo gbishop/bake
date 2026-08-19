@@ -1,0 +1,45 @@
+# Get the old-dough ball rolling
+
+starter:
+  bread_flour
+  water
+  hydration = 100%
+
+dough:
+  whole_wheat 
+  cold_water
+  starter = 10g
+  hydration = 70%
+  total = 110g
+
+/*
+August 14, 2026
+
+I forgot to remove the old dough from the last loaf so I'm going to
+fake a small one.
+
+Mixed about 15:40.
+
+*/
+
+┌─────────┬────────┬─────────────┬───────┬───────┬───────┐
+│   part  │ grams  │  ingredient │   %   │ flour │ water │
+├─────────┼────────┼─────────────┼───────┼───────┼───────┤
+│ starter │  10.0  │             │  15.5 │  5.0  │  5.0  │
+│         │   5.0  │ bread_flour │   7.7 │  5.0  │       │
+│         │   5.0  │ water       │   7.7 │       │  5.0  │
+├─────────┼────────┼─────────────┼───────┼───────┼───────┤
+│ dough   │ 110    │             │ 170.0 │ 64.7  │ 45.3  │
+│         │  59.7  │ whole_wheat │  92.3 │ 59.7  │       │
+│         │  40.3  │ cold_water  │  62.3 │       │ 40.3  │
+│         │  10.0  │ starter     │  15.5 │  5.0  │  5.0  │
+│         │        │ hydration   │  70.0 │       │       │
+├─────────┼────────┼─────────────┼───────┼───────┼───────┤
+│         │   8.5  │ protein     │   8.5 │       │       │
+│         │   6.5  │ fiber       │   6.5 │       │       │
+│         │   1.57 │ fat         │   1.6 │       │       │
+│         │  46.5  │ carbs       │  46.5 │       │       │
+│         │ 234    │ calories    │ 234.1 │       │       │
+└─────────┴────────┴─────────────┴───────┴───────┴───────┘
+
+

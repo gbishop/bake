@@ -6,10 +6,10 @@ dough:
   sunflower_seeds = 50%
   coconut = 50%
   almonds = 50%
-  maple_syrup = 67%
+  maple_syrup = 50%
   olive_oil = 25%
 
-  total_flour = 256g
+  total = 1567
 
 /*
 June 12, 2026
@@ -24,21 +24,21 @@ The slivered almonds are great in this.
 ┌───────┬─────────┬─────────────────┬───────┬────────┬───────┐
 │  part │  grams  │    ingredient   │   %   │ flour  │ water │
 ├───────┼─────────┼─────────────────┼───────┼────────┼───────┤
-│ dough │ 1004    │                 │ 392.0 │ 256    │ 54.9  │
-│       │  256    │ oats            │ 100.0 │ 256    │       │
-│       │  128    │ pumpkin_seeds   │  50.0 │        │       │
-│       │  128    │ sunflower_seeds │  50.0 │        │       │
-│       │  128    │ coconut         │  50.0 │        │       │
-│       │  128    │ almonds         │  50.0 │        │       │
-│       │  172    │ maple_syrup     │  67.0 │        │ 54.9  │
-│       │   64.0  │ olive_oil       │  25.0 │        │       │
-│       │         │ hydration       │  21.4 │        │       │
+│ dough │ 1567    │                 │ 375.0 │ 418    │ 66.9  │
+│       │  418    │ oats            │ 100.0 │ 418    │       │
+│       │  209    │ pumpkin_seeds   │  50.0 │        │       │
+│       │  209    │ sunflower_seeds │  50.0 │        │       │
+│       │  209    │ coconut         │  50.0 │        │       │
+│       │  209    │ almonds         │  50.0 │        │       │
+│       │  209    │ maple_syrup     │  50.0 │        │ 66.9  │
+│       │  104    │ olive_oil       │  25.0 │        │       │
+│       │         │ hydration       │  16.0 │        │       │
 ├───────┼─────────┼─────────────────┼───────┼────────┼───────┤
-│       │  130    │ protein         │  14.3 │        │       │
-│       │   72.1  │ fiber           │   7.9 │        │       │
-│       │  316    │ fat             │  34.6 │        │       │
-│       │  375    │ carbs           │  41.0 │        │       │
-│       │ 4866    │ calories        │ 532.9 │        │       │
+│       │  213    │ protein         │  14.9 │        │       │
+│       │  118    │ fiber           │   8.2 │        │       │
+│       │  516    │ fat             │  36.2 │        │       │
+│       │  564    │ carbs           │  39.6 │        │       │
+│       │ 7753    │ calories        │ 543.7 │        │       │
 └───────┴─────────┴─────────────────┴───────┴────────┴───────┘
 
 
