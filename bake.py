@@ -46,7 +46,11 @@ with open(args.filename, "rt", encoding="utf-8") if args.filename else sys.stdin
     solution, failed = solve(tree, args.debug)
 
     if args.convert and not failed:
-        convert(args.filename, text, tree, solution)
+        try:
+            convert(args.filename, text, tree, solution)
+        except ValueError as e:
+            print(e, file=sys.stderr)
+            sys.exit(1)
 
     elif not args.quiet:
         output(

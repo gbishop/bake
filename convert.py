@@ -95,9 +95,13 @@ def convert(filename: str, text: str, recipe: Recipe, solution: DataFrame):
 
         elif m := re.match(r"\s+(\w+)(\s*=\s*([a-zA-Z_0-9.\+\-\*\/()% ]+))?", line):
             ingredient, _, formula = m.groups()
+            if ingredient == "_part":
+                continue
             v = value(part, ingredient) if ingredient != "hydration" else ""
             ingredient = re.sub(r"\btotal\b", "total_mass", ingredient)
             if formula:
+                if "_part" in formula:
+                    formula = v
                 formula = re.sub(r"(\d+)ppm", "\\1e-6", formula)
                 formula = re.sub(r"(\w+)\.total\b", "\\1", formula)
                 formula = re.sub(r"\btotal\b", "total_mass", formula)
@@ -139,4 +143,5 @@ def convert(filename: str, text: str, recipe: Recipe, solution: DataFrame):
   </div>
 </body>"""
 
-    print(HTML.strip())
+    with open(filename.replace(".bake", ".html"), "wt") as fp:
+        print(HTML.strip(), file=fp)
