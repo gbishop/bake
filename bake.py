@@ -42,12 +42,14 @@ args = argparser.parse_args()
 
 with open(args.filename, "rt", encoding="utf-8") if args.filename else sys.stdin as fp:
     text = fp.read()
-    tree = parse(text)
-    solution, failed = solve(tree, args.debug)
+    recipe = parse(text)
+    solution, failed = solve(recipe, args.debug)
 
     if args.convert and not failed:
         try:
-            convert(args.filename, text, tree, solution)
+            r = convert(text, recipe, solution)
+            for row in r:
+                print(row["part"], row["name"], row["formula"])
         except ValueError as e:
             print(e, file=sys.stderr)
             sys.exit(1)
