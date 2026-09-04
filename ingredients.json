@@ -1,0 +1,1242 @@
+{
+  "almonds": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.212,
+    "fat": 0.499,
+    "carbs": 0.217,
+    "fiber": 0.125
+  },
+  "apple_butter": {
+    "flour": 0,
+    "water": 0.56,
+    "protein": 0.004,
+    "fat": 0.001,
+    "carbs": 0.44,
+    "fiber": 0.02
+  },
+  "apple_juice": {
+    "flour": 0,
+    "water": 0.88,
+    "protein": 0.001,
+    "fat": 0.001,
+    "carbs": 0.113,
+    "fiber": 0.002
+  },
+  "ap_flour": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.103,
+    "fat": 0.01,
+    "carbs": 0.763,
+    "fiber": 0.027
+  },
+  "ascorbic_acid": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 1,
+    "fiber": 0
+  },
+  "ascorbic_acid_1p": {
+    "flour": 0,
+    "water": 1,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "baking_powder": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0.44,
+    "fiber": 0
+  },
+  "baking_soda": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "banana": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.011,
+    "fat": 0.003,
+    "carbs": 0.228,
+    "fiber": 0.026
+  },
+  "barley": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.125,
+    "fat": 0.023,
+    "carbs": 0.735,
+    "fiber": 0.173
+  },
+  "barley_sr": {
+    "flour": 1,
+    "water": -1.38,
+    "protein": 0.125,
+    "fat": 0.023,
+    "carbs": 0.735,
+    "fiber": 0.173
+  },
+  "barley_sb": {
+    "flour": 1,
+    "water": -1.56,
+    "protein": 0.125,
+    "fat": 0.023,
+    "carbs": 0.735,
+    "fiber": 0.173
+  },
+  "bobs_mthc": {
+    "flour": 0,
+    "water": -1,
+    "protein": 0.12,
+    "fat": 0.03,
+    "carbs": 0.7,
+    "fiber": 0.1
+  },
+  "bobs_10_grain": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.125,
+    "fat": 0.025,
+    "carbs": 0.75,
+    "fiber": 0.125
+  },
+  "bran": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.156,
+    "fat": 0.043,
+    "carbs": 0.645,
+    "fiber": 0.428
+  },
+  "bran_sr": {
+    "flour": 1,
+    "water": -0.96,
+    "protein": 0.156,
+    "fat": 0.043,
+    "carbs": 0.645,
+    "fiber": 0.428
+  },
+  "bran_sb": {
+    "flour": 1,
+    "water": -1.68,
+    "protein": 0.156,
+    "fat": 0.043,
+    "carbs": 0.645,
+    "fiber": 0.428
+  },
+  "bran_wet": {
+    "flour": 1,
+    "water": -1.68,
+    "protein": 0.156,
+    "fat": 0.043,
+    "carbs": 0.645,
+    "fiber": 0.428
+  },
+  "bran_dry": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.156,
+    "fat": 0.043,
+    "carbs": 0.645,
+    "fiber": 0.428
+  },
+  "bread_flour": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.127,
+    "fat": 0.015,
+    "carbs": 0.71,
+    "fiber": 0.024
+  },
+  "bronze_chief": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.13,
+    "fat": 0.025,
+    "carbs": 0.72,
+    "fiber": 0.11
+  },
+  "brown_sugar": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0.98,
+    "fiber": 0
+  },
+  "buckwheat": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.133,
+    "fat": 0.034,
+    "carbs": 0.715,
+    "fiber": 0.1
+  },
+  "buckwheat_sr": {
+    "flour": 1,
+    "water": -0.88,
+    "protein": 0.133,
+    "fat": 0.034,
+    "carbs": 0.715,
+    "fiber": 0.1
+  },
+  "buckwheat_sb": {
+    "flour": 1,
+    "water": -0.91,
+    "protein": 0.133,
+    "fat": 0.034,
+    "carbs": 0.715,
+    "fiber": 0.1
+  },
+  "bulgur": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.123,
+    "fat": 0.013,
+    "carbs": 0.759,
+    "fiber": 0.183
+  },
+  "bulgur_sr": {
+    "flour": 1,
+    "water": -1.5,
+    "protein": 0.123,
+    "fat": 0.013,
+    "carbs": 0.759,
+    "fiber": 0.183
+  },
+  "bulgur_sb": {
+    "flour": 1,
+    "water": -1.5,
+    "protein": 0.123,
+    "fat": 0.013,
+    "carbs": 0.759,
+    "fiber": 0.183
+  },
+  "butter": {
+    "flour": 0,
+    "water": 0.16,
+    "protein": 0.009,
+    "fat": 0.811,
+    "carbs": 0.001,
+    "fiber": 0
+  },
+  "buttermilk": {
+    "flour": 0,
+    "water": 0.9,
+    "protein": 0.033,
+    "fat": 0.009,
+    "carbs": 0.048,
+    "fiber": 0
+  },
+  "caraway_seeds": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.198,
+    "fat": 0.146,
+    "carbs": 0.499,
+    "fiber": 0.38
+  },
+  "carrots": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.009,
+    "fat": 0.002,
+    "carbs": 0.096,
+    "fiber": 0.028
+  },
+  "chia_seeds": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.165,
+    "fat": 0.307,
+    "carbs": 0.421,
+    "fiber": 0.344
+  },
+  "chia_seeds_sr": {
+    "flour": 0,
+    "water": -2.37,
+    "protein": 0.165,
+    "fat": 0.307,
+    "carbs": 0.421,
+    "fiber": 0.344
+  },
+  "chia_seeds_sb": {
+    "flour": 1,
+    "water": -2.76,
+    "protein": 0.165,
+    "fat": 0.307,
+    "carbs": 0.421,
+    "fiber": 0.344
+  },
+  "chickpea_flour": {
+    "flour": 0,
+    "water": -1,
+    "protein": 0.224,
+    "fat": 0.067,
+    "carbs": 0.578,
+    "fiber": 0.108
+  },
+  "cider_vinegar": {
+    "flour": 0,
+    "water": 1,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0.009,
+    "fiber": 0
+  },
+  "cinnamon": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.04,
+    "fat": 0.012,
+    "carbs": 0.806,
+    "fiber": 0.531
+  },
+  "coconut": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.033,
+    "fat": 0.335,
+    "carbs": 0.152,
+    "fiber": 0.09
+  },
+  "coriander": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.124,
+    "fat": 0.178,
+    "carbs": 0.55,
+    "fiber": 0.419
+  },
+  "corn_meal": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.081,
+    "fat": 0.036,
+    "carbs": 0.769,
+    "fiber": 0.073
+  },
+  "corn_meal_sr": {
+    "flour": 0,
+    "water": -0.58,
+    "protein": 0.081,
+    "fat": 0.036,
+    "carbs": 0.769,
+    "fiber": 0.073
+  },
+  "corn_meal_sb": {
+    "flour": 1,
+    "water": -1.73,
+    "protein": 0.081,
+    "fat": 0.036,
+    "carbs": 0.769,
+    "fiber": 0.073
+  },
+  "cracked_rye": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.1,
+    "fat": 0.015,
+    "carbs": 0.76,
+    "fiber": 0.15
+  },
+  "cracked_rye_sr": {
+    "flour": 1,
+    "water": -0.68,
+    "protein": 0.1,
+    "fat": 0.015,
+    "carbs": 0.76,
+    "fiber": 0.15
+  },
+  "cracked_rye_sb": {
+    "flour": 1,
+    "water": -1.54,
+    "protein": 0.1,
+    "fat": 0.015,
+    "carbs": 0.76,
+    "fiber": 0.15
+  },
+  "cracked_wheat": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.132,
+    "fat": 0.025,
+    "carbs": 0.72,
+    "fiber": 0.107
+  },
+  "cracked_wheat_sr": {
+    "flour": 0,
+    "water": -1.73,
+    "protein": 0.132,
+    "fat": 0.025,
+    "carbs": 0.72,
+    "fiber": 0.107
+  },
+  "cracked_wheat_sb": {
+    "flour": 1,
+    "water": -2.25,
+    "protein": 0.132,
+    "fat": 0.025,
+    "carbs": 0.72,
+    "fiber": 0.107
+  },
+  "craisins": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.001,
+    "fat": 0.007,
+    "carbs": 0.828,
+    "fiber": 0.053
+  },
+  "diastatic_malt": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.05,
+    "fat": 0,
+    "carbs": 0.75,
+    "fiber": 0
+  },
+  "dried_apple": {
+    "flour": 0,
+    "water": -1,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "dried_orange_peel": {
+    "flour": 0,
+    "water": -1,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "egg": {
+    "flour": 0,
+    "water": 0.76,
+    "protein": 0.126,
+    "fat": 0.095,
+    "carbs": 0.007,
+    "fiber": 0
+  },
+  "egg_white": {
+    "flour": 0,
+    "water": 0.88,
+    "protein": 0.109,
+    "fat": 0.002,
+    "carbs": 0.007,
+    "fiber": 0
+  },
+  "egg_whites": {
+    "flour": 0,
+    "water": 0.88,
+    "protein": 0.126,
+    "fat": 0.095,
+    "carbs": 0.007,
+    "fiber": 0
+  },
+  "egg_yolk": {
+    "flour": 0,
+    "water": 0.52,
+    "protein": 0.159,
+    "fat": 0.265,
+    "carbs": 0.036,
+    "fiber": 0
+  },
+  "egg_yolks": {
+    "flour": 0,
+    "water": 0.52,
+    "protein": 0.126,
+    "fat": 0.095,
+    "carbs": 0.007,
+    "fiber": 0
+  },
+  "eggs": {
+    "flour": 0,
+    "water": 0.76,
+    "protein": 0.126,
+    "fat": 0.095,
+    "carbs": 0.007,
+    "fiber": 0
+  },
+  "evap_milk": {
+    "flour": 0,
+    "water": 0.74,
+    "protein": 0.068,
+    "fat": 0.076,
+    "carbs": 0.1,
+    "fiber": 0
+  },
+  "flas": {
+    "flour": 0,
+    "water": 1,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "flaxseed_meal": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.183,
+    "fat": 0.422,
+    "carbs": 0.289,
+    "fiber": 0.273
+  },
+  "flaxseed_meal_sr": {
+    "flour": 1,
+    "water": -1.3,
+    "protein": 0.183,
+    "fat": 0.422,
+    "carbs": 0.289,
+    "fiber": 0.273
+  },
+  "flaxseed_meal_sb": {
+    "flour": 1,
+    "water": -1.36,
+    "protein": 0.183,
+    "fat": 0.422,
+    "carbs": 0.289,
+    "fiber": 0.273
+  },
+  "flour": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.11,
+    "fat": 0.012,
+    "carbs": 0.74,
+    "fiber": 0.03
+  },
+  "flourless_starter": {
+    "flour": 0,
+    "water": 1,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "ginger_powder": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.09,
+    "fat": 0.042,
+    "carbs": 0.716,
+    "fiber": 0.141
+  },
+  "grape_nuts": {
+    "flour": 0,
+    "water": -1,
+    "protein": 0.124,
+    "fat": 0.015,
+    "carbs": 0.801,
+    "fiber": 0.11
+  },
+  "hard_red": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.132,
+    "fat": 0.025,
+    "carbs": 0.72,
+    "fiber": 0.107
+  },
+  "hard_white": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.12,
+    "fat": 0.02,
+    "carbs": 0.75,
+    "fiber": 0.1
+  },
+  "honey": {
+    "flour": 0,
+    "water": 0.17,
+    "protein": 0.003,
+    "fat": 0,
+    "carbs": 0.824,
+    "fiber": 0.002
+  },
+  "kamut": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.145,
+    "fat": 0.021,
+    "carbs": 0.706,
+    "fiber": 0.111
+  },
+  "lemon_juice": {
+    "flour": 0,
+    "water": 0.92,
+    "protein": 0.004,
+    "fat": 0.003,
+    "carbs": 0.069,
+    "fiber": 0.003
+  },
+  "lemon_zest": {
+    "flour": 0,
+    "water": 0.82,
+    "protein": 0.015,
+    "fat": 0.003,
+    "carbs": 0.16,
+    "fiber": 0.106
+  },
+  "malt_syrup": {
+    "flour": 0,
+    "water": 0.21,
+    "protein": 0.05,
+    "fat": 0,
+    "carbs": 0.75,
+    "fiber": 0
+  },
+  "maple_syrup": {
+    "flour": 0,
+    "water": 0.32,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0.67,
+    "fiber": 0
+  },
+  "masarepas": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.08,
+    "fat": 0.04,
+    "carbs": 0.77,
+    "fiber": 0.07
+  },
+  "milk": {
+    "flour": 0,
+    "water": 0.88,
+    "protein": 0.032,
+    "fat": 0.033,
+    "carbs": 0.048,
+    "fiber": 0
+  },
+  "millet": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.11,
+    "fat": 0.042,
+    "carbs": 0.729,
+    "fiber": 0.085
+  },
+  "millet_sr": {
+    "flour": 1,
+    "water": -0.48,
+    "protein": 0.11,
+    "fat": 0.042,
+    "carbs": 0.729,
+    "fiber": 0.085
+  },
+  "millet_sb": {
+    "flour": 1,
+    "water": -0.48,
+    "protein": 0.11,
+    "fat": 0.042,
+    "carbs": 0.729,
+    "fiber": 0.085
+  },
+  "molasses": {
+    "flour": 0,
+    "water": 0.22,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0.747,
+    "fiber": 0
+  },
+  "nido": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.257,
+    "fat": 0.282,
+    "carbs": 0.366,
+    "fiber": 0
+  },
+  "nutmeg": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.058,
+    "fat": 0.363,
+    "carbs": 0.493,
+    "fiber": 0.208
+  },
+  "oat_groats": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.132,
+    "fat": 0.065,
+    "carbs": 0.677,
+    "fiber": 0.101
+  },
+  "oat_groats_sr": {
+    "flour": 0,
+    "water": -0.6,
+    "protein": 0.132,
+    "fat": 0.065,
+    "carbs": 0.677,
+    "fiber": 0.101
+  },
+  "oat_groats_sb": {
+    "flour": 1,
+    "water": -0.85,
+    "protein": 0.132,
+    "fat": 0.065,
+    "carbs": 0.677,
+    "fiber": 0.101
+  },
+  "oats": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.132,
+    "fat": 0.065,
+    "carbs": 0.677,
+    "fiber": 0.101
+  },
+  "oats_sr": {
+    "flour": 1,
+    "water": -0.9,
+    "protein": 0.132,
+    "fat": 0.065,
+    "carbs": 0.677,
+    "fiber": 0.101
+  },
+  "oats_sb": {
+    "flour": 1,
+    "water": -2.06,
+    "protein": 0.132,
+    "fat": 0.065,
+    "carbs": 0.677,
+    "fiber": 0.101
+  },
+  "orange_marmalade": {
+    "flour": 0,
+    "water": 0.33,
+    "protein": 0.004,
+    "fat": 0.001,
+    "carbs": 0.6,
+    "fiber": 0.011
+  },
+  "ricotta": {
+    "flour": 0,
+    "water": 0.73,
+    "protein": 0.113,
+    "fat": 0.13,
+    "carbs": 0.03,
+    "fiber": 0
+  },
+  "rolled_oats": {
+    "flour": 0,
+    "water": -0.9,
+    "protein": 0.132,
+    "fat": 0.065,
+    "carbs": 0.677,
+    "fiber": 0.101
+  },
+  "oil": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0,
+    "fat": 1,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "olive_oil": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0,
+    "fat": 1,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "pecans": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.092,
+    "fat": 0.72,
+    "carbs": 0.139,
+    "fiber": 0.096
+  },
+  "pecan_butter": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.14,
+    "fat": 0.7,
+    "carbs": 0.1,
+    "fiber": 0.09
+  },
+  "polenta": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.08,
+    "fat": 0.01,
+    "carbs": 0.77,
+    "fiber": 0.07
+  },
+  "potato_flakes": {
+    "flour": 0,
+    "water": -2,
+    "protein": 0.083,
+    "fat": 0.005,
+    "carbs": 0.827,
+    "fiber": 0.067
+  },
+  "potato_flakes_f": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.083,
+    "fat": 0.005,
+    "carbs": 0.827,
+    "fiber": 0.067
+  },
+  "prairie_gold": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.12,
+    "fat": 0.02,
+    "carbs": 0.75,
+    "fiber": 0.1
+  },
+  "prunes": {
+    "flour": 0,
+    "water": 0.31,
+    "protein": 0.022,
+    "fat": 0.004,
+    "carbs": 0.639,
+    "fiber": 0.071
+  },
+  "pumpkin_seeds": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.302,
+    "fat": 0.491,
+    "carbs": 0.107,
+    "fiber": 0.06
+  },
+  "pumpkin_seeds_sr": {
+    "flour": 0,
+    "water": -0.38,
+    "protein": 0.302,
+    "fat": 0.491,
+    "carbs": 0.107,
+    "fiber": 0.06
+  },
+  "pumpkin_seeds_sb": {
+    "flour": 1,
+    "water": -0.48,
+    "protein": 0.302,
+    "fat": 0.491,
+    "carbs": 0.107,
+    "fiber": 0.06
+  },
+  "pumpkin_puree": {
+    "flour": 0,
+    "water": 0.9,
+    "protein": 0.01,
+    "fat": 0.001,
+    "carbs": 0.065,
+    "fiber": 0.005
+  },
+  "quark": {
+    "flour": 0,
+    "water": 0.5,
+    "protein": 0.12,
+    "fat": 0.002,
+    "carbs": 0.04,
+    "fiber": 0
+  },
+  "quinoa": {
+    "flour": 0,
+    "water": -1.04,
+    "protein": 0.141,
+    "fat": 0.061,
+    "carbs": 0.642,
+    "fiber": 0.07
+  },
+  "raisins": {
+    "flour": 0,
+    "water": 0.15,
+    "protein": 0.031,
+    "fat": 0.005,
+    "carbs": 0.792,
+    "fiber": 0.037
+  },
+  "red_rye_malt": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.09,
+    "fat": 0.015,
+    "carbs": 0.75,
+    "fiber": 0.1
+  },
+  "removed": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "removed_flour": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.11,
+    "fat": 0.012,
+    "carbs": 0.74,
+    "fiber": 0.03
+  },
+  "removed_bran": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "removed_water": {
+    "flour": 0,
+    "water": 1,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "rye": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.1,
+    "fat": 0.015,
+    "carbs": 0.76,
+    "fiber": 0.15
+  },
+  "rye_sr": {
+    "flour": 0,
+    "water": -0.68,
+    "protein": 0.1,
+    "fat": 0.015,
+    "carbs": 0.76,
+    "fiber": 0.15
+  },
+  "rye_sb": {
+    "flour": 1,
+    "water": -1.54,
+    "protein": 0.1,
+    "fat": 0.015,
+    "carbs": 0.76,
+    "fiber": 0.15
+  },
+  "rye_berries": {
+    "flour": 0,
+    "water": -0.68,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "rye_white": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "rye_whole": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "rye_medium": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "salt": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "semolina": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.127,
+    "fat": 0.011,
+    "carbs": 0.728,
+    "fiber": 0.039
+  },
+  "sesame_seeds": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.177,
+    "fat": 0.497,
+    "carbs": 0.235,
+    "fiber": 0.118
+  },
+  "sesame_seeds_sr": {
+    "flour": 0,
+    "water": -0.58,
+    "protein": 0.177,
+    "fat": 0.497,
+    "carbs": 0.235,
+    "fiber": 0.118
+  },
+  "sesame_seeds_sb": {
+    "flour": 1,
+    "water": -0.68,
+    "protein": 0.177,
+    "fat": 0.497,
+    "carbs": 0.235,
+    "fiber": 0.118
+  },
+  "skim_milk_powder": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.351,
+    "fat": 0,
+    "carbs": 0.5219,
+    "fiber": 0.0072
+  },
+  "sorghum": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.113,
+    "fat": 0.033,
+    "carbs": 0.746,
+    "fiber": 0.063
+  },
+  "sour_cream": {
+    "flour": 0,
+    "water": 0.74,
+    "protein": 0.024,
+    "fat": 0.193,
+    "carbs": 0.046,
+    "fiber": 0
+  },
+  "spelt": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.146,
+    "fat": 0.024,
+    "carbs": 0.702,
+    "fiber": 0.107
+  },
+  "steel_cut_oats": {
+    "flour": 0,
+    "water": -0.7,
+    "protein": 0.1689,
+    "fat": 0.106,
+    "carbs": 0.6627,
+    "fiber": 0.069
+  },
+  "sugar": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 1,
+    "fiber": 0
+  },
+  "sunflower_seeds": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.208,
+    "fat": 0.515,
+    "carbs": 0.2,
+    "fiber": 0.086
+  },
+  "sunflower_seeds_sr": {
+    "flour": 0,
+    "water": -0.8,
+    "protein": 0.208,
+    "fat": 0.515,
+    "carbs": 0.2,
+    "fiber": 0.086
+  },
+  "sunflower_seeds_sb": {
+    "flour": 1,
+    "water": -0.8,
+    "protein": 0.208,
+    "fat": 0.515,
+    "carbs": 0.2,
+    "fiber": 0.086
+  },
+  "sweet_potato": {
+    "flour": 0,
+    "water": 0.76,
+    "protein": 0.016,
+    "fat": 0.001,
+    "carbs": 0.201,
+    "fiber": 0.03
+  },
+  "vanilla_extract": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.001,
+    "fat": 0.001,
+    "carbs": 0.127,
+    "fiber": 0
+  },
+  "vinegar": {
+    "flour": 0,
+    "water": 1,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0.001,
+    "fiber": 0
+  },
+  "vital_wheat_gluten": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.752,
+    "fat": 0.019,
+    "carbs": 0.139,
+    "fiber": 0.006
+  },
+  "vwg": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.752,
+    "fat": 0.019,
+    "carbs": 0.139,
+    "fiber": 0.006
+  },
+  "unknown": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "walnuts": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.152,
+    "fat": 0.652,
+    "carbs": 0.137,
+    "fiber": 0.067
+  },
+  "water": {
+    "flour": 0,
+    "water": 1,
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "fiber": 0
+  },
+  "wgbi": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.7516,
+    "fat": 0.006,
+    "carbs": 0.7118,
+    "fiber": 0.0154
+  },
+  "wheat_bran": {
+    "flour": 0,
+    "water": -0.96,
+    "protein": 0.156,
+    "fat": 0.043,
+    "carbs": 0.645,
+    "fiber": 0.428
+  },
+  "wheat_flakes": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.1261,
+    "fat": 0.122,
+    "carbs": 0.7118,
+    "fiber": 0.0154
+  },
+  "wheat_flakes_sr": {
+    "flour": 0,
+    "water": -1,
+    "protein": 0.1261,
+    "fat": 0.122,
+    "carbs": 0.7118,
+    "fiber": 0.0154
+  },
+  "wheat_flakes_sb": {
+    "flour": 1,
+    "water": -1.8,
+    "protein": 0.1261,
+    "fat": 0.122,
+    "carbs": 0.7118,
+    "fiber": 0.0154
+  },
+  "wheat_germ": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.26,
+    "fat": 0.14,
+    "carbs": 0.51,
+    "fiber": 0.1
+  },
+  "whey": {
+    "flour": 0,
+    "water": 0.93,
+    "protein": 0.009,
+    "fat": 0.004,
+    "carbs": 0.051,
+    "fiber": 0
+  },
+  "whole_wheat": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.132,
+    "fat": 0.025,
+    "carbs": 0.72,
+    "fiber": 0.107
+  },
+  "ww": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.132,
+    "fat": 0.025,
+    "carbs": 0.72,
+    "fiber": 0.107
+  },
+  "ww_flour": {
+    "flour": 1,
+    "water": 0,
+    "protein": 0.132,
+    "fat": 0.025,
+    "carbs": 0.72,
+    "fiber": 0.107
+  },
+  "yeast": {
+    "flour": 0,
+    "water": 0,
+    "protein": 0.4,
+    "fat": 0.076,
+    "carbs": 0.412,
+    "fiber": 0.269
+  },
+  "yogurt": {
+    "flour": 0,
+    "water": 0.84,
+    "protein": 0.032,
+    "fat": 0.032,
+    "carbs": 0.091,
+    "fiber": 0
+  }
+}
