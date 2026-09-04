@@ -15,9 +15,8 @@ leaven:
 grain:
   prairie_gold
   hard_red
-  barley = 5%
   spelt = 5%
-  buckwheat = 5%
+  rye = 10%
 
 dry:
   grain
@@ -44,36 +43,41 @@ dough:
   total_flour = 500g # 9 inch
 
 /*
-August 16, 2026
+August 28, 2026
 
 Changes
-- Using leaven I mixed this morning
+* use rye instead of barley and buckwheat
 
-Starter is 4 days old.
+Next time
+* Knead less to avoid keyhole
 
-Mixed the leaven about 7:30 and into the proofer at 86F.
+Starter is 8 days old.
 
-Started on dough at 13:30.
+Mixed the leaven about 20:00 and onto the counter at 78F.
 
-Leaven pH = 3.70 at 13:55 dt is 78F. It rose to the top of the 500ml
+Started on dough at 8:00.
+
+Leaven pH = 3.65 at 8:30 DT is 78F. It rose to the top of the 500ml
 container and had started to fall.
 
-# Dry T=84. Wet T=62. 
+Dry T=84. Wet T=61. 
 
-Used the KA for mixing. Mixed about 14:05. Stopped after 2 minutes;
-it cleaned the bowl. DT after mixing is ?. RT is 78F. 
+Used the KA for mixing. Mixed about 8:40. Stopped after 3 minutes;
+it was well mixed. DT after mixing is 71F. RT is 78F. 
 
-long rest in fridge during a thunderstorm.
+30 minute rest in fridge.
 
 Kneaded 10 minutes in KA. It was cleaning the bowl and looking great.
 
-Into the cambro and onto the counter at 15:30.
+Into the cambro and into the fridge for 30 minutes.
 
-Into the pan at 16:30. Left on the counter at 77F.
+S&F at 10:00. DT = 72F. Left on counter.
 
-Baked at 17:35 for 45 minutes at 350F lid off.
+Into the pan at 11:00. Left on the counter at 78F.
 
-I added 100ml of water to the pan after preheating the oven.
+Baked at 12:30.
+
+I added 120ml of water to the pan before preheating the oven.
 
 
 */
@@ -93,12 +97,11 @@ I added 100ml of water to the pan after preheating the oven.
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
 │ grain   │  350    │                  │  70.0 │ 350    │        │
 │         │  137    │ prairie_gold     │  27.5 │ 137    │        │
-│         │  138    │ hard_red         │  27.5 │ 138    │        │
-│         │   25.0  │ barley           │   5.0 │  25.0  │        │
+│         │  137    │ hard_red         │  27.5 │ 137    │        │
 │         │   25.0  │ spelt            │   5.0 │  25.0  │        │
-│         │   25.0  │ buckwheat        │   5.0 │  25.0  │        │
+│         │   50.0  │ rye              │  10.0 │  50.0  │        │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ dry     │  427    │                  │  85.3 │ 390    │ -50.0  │
+│ dry     │  426    │                  │  85.3 │ 390    │ -50.0  │
 │         │  350    │ grain            │  70.0 │ 350    │        │
 │         │   15.0  │ vwg              │   3.0 │  15.0  │        │
 │         │   25.0  │ potato_flakes    │   5.0 │        │ -50.0  │
@@ -106,26 +109,26 @@ I added 100ml of water to the pan after preheating the oven.
 │         │    2.50 │ yeast            │   0.5 │        │        │
 │         │    9.0  │ salt             │   1.8 │        │        │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ wet     │  640    │                  │ 127.9 │ 110    │ 400    │
+│ wet     │  640    │                  │ 128.0 │ 110    │ 400    │
 │         │  263    │ cold_water       │  52.6 │        │ 263    │
 │         │  100    │ old_dough        │  20.0 │        │        │
-│         │    1.75 │ ascorbic_acid_1p │   0.3 │        │   1.75 │
+│         │    1.75 │ ascorbic_acid_1p │   0.4 │        │   1.75 │
 │         │  200    │ leaven           │  40.0 │ 110    │ 110    │
 │         │   25.0  │ olive_oil        │   5.0 │        │        │
 │         │   25.0  │ honey            │   5.0 │        │   4.25 │
 │         │   25.0  │ yogurt           │   5.0 │        │  21.0  │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│ dough   │  966    │                  │ 193.2 │ 500    │ 350    │
-│         │  640    │ wet              │ 127.9 │ 110    │ 400    │
-│         │  427    │ dry              │  85.3 │ 390    │ -50.0  │
+│ dough   │  966    │                  │ 193.3 │ 500    │ 350    │
+│         │  640    │ wet              │ 128.0 │ 110    │ 400    │
+│         │  426    │ dry              │  85.3 │ 390    │ -50.0  │
 │         │ -100    │ old_dough        │ -20.0 │        │        │
 │         │         │ hydration        │  70.0 │        │        │
 ├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
-│         │   78.3  │ protein          │   8.9 │        │        │
-│         │   49.9  │ fiber            │   5.7 │        │        │
-│         │   46.8  │ fat              │   5.3 │        │        │
-│         │  388    │ carbs            │  44.2 │        │        │
-│         │ 2288    │ calories         │ 260.2 │        │        │
+│         │   76.8  │ protein          │   8.7 │        │        │
+│         │   50.6  │ fiber            │   5.8 │        │        │
+│         │   46.1  │ fat              │   5.2 │        │        │
+│         │  390    │ carbs            │  44.4 │        │        │
+│         │ 2283    │ calories         │ 259.6 │        │        │
 └─────────┴─────────┴──────────────────┴───────┴────────┴────────┘
 
 

@@ -1,0 +1,124 @@
+# From: https://www.thefreshloaf.com/node/64417/100-sourdough-spelt-bread
+
+starter:
+  bread_flour
+  water
+  hydration = 100%
+
+leaven:
+  starter = 20g
+  water
+  bread_flour
+  extra = 0 - starter
+  hydration = 100%
+
+dry:
+  spelt
+  potato_flakes = 4%
+  vwg = 4%
+  salt = 2%
+  yeast = 0.4%
+
+wet:
+  cold_water
+  leaven = 100g
+  old_dough = 100g
+  ascorbic_acid_1p = 50ppm * 100 * dry.spelt
+  honey = 5%
+  yogurt = 5%
+  olive_oil = 5%
+
+dough:
+  wet
+  dry
+  # old_dough = 0 - wet.old_dough
+  hydration = 65%
+  total_flour = 400g
+
+/*
+4 September 2026
+
+Changes
+* My first boule with my new proofing basket
+* Guessing at 400g of flour for my 8.5" basket
+
+Next time.
+* Remember to remove the old dough!
+
+Day Before
+* 20:55, mixed leaven and left on the counter
+
+Baking day
+
+Started at 7:40. Mixed at 8:05, DT=70F. Rest for 30 minutes. Knead
+for 3 minutes. It cleaned the bowl.
+
+First rise in the cambro on the counter to 30%.
+
+Shaped and into the basket at 10:50 into the fridge covered with
+a shower cap. It was stickier than I expected but a little bench
+flour cured that.
+
+I forgot the remove the old dough!
+
+It came easily out of the basket onto the lifter. Placing it into
+the preheated cloche went fine.
+
+Baked at 12:25 for 20 minutes at 475F covered and 15 minutes at
+425F.
+
+When I removed the lid, the infrared thermometer indicated only
+about 400F. More preheat or stop caring.
+
+It looks great for my first try! 3.5 inches tall and 7.25 inches in
+diameter.
+
+205F inside.
+
+Looks and tastes great.
+
+
+*/
+
+┌─────────┬─────────┬──────────────────┬───────┬────────┬────────┐
+│   part  │  grams  │    ingredient    │   %   │ flour  │ water  │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ starter │   20.0  │                  │   5.0 │  10.0  │  10.0  │
+│         │   10.0  │ bread_flour      │   2.5 │  10.0  │        │
+│         │   10.0  │ water            │   2.5 │        │  10.0  │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ leaven  │  100    │                  │  25.0 │  60.0  │  60.0  │
+│         │   20.0  │ starter          │   5.0 │  10.0  │  10.0  │
+│         │   50.0  │ water            │  12.5 │        │  50.0  │
+│         │   50.0  │ bread_flour      │  12.5 │  50.0  │        │
+│         │  -20.0  │ extra            │  -5.0 │        │        │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ dry     │  366    │                  │  91.4 │ 340    │ -32.0  │
+│         │  324    │ spelt            │  81.0 │ 324    │        │
+│         │   16.0  │ potato_flakes    │   4.0 │        │ -32.0  │
+│         │   16.0  │ vwg              │   4.0 │  16.0  │        │
+│         │    8.0  │ salt             │   2.0 │        │        │
+│         │    1.60 │ yeast            │   0.4 │        │        │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ wet     │  472    │                  │ 118.0 │  60.0  │ 292    │
+│         │  210    │ cold_water       │  52.5 │        │ 210    │
+│         │  100    │ leaven           │  25.0 │  60.0  │  60.0  │
+│         │  100    │ old_dough        │  25.0 │        │        │
+│         │    1.62 │ ascorbic_acid_1p │   0.4 │        │   1.62 │
+│         │   20.0  │ honey            │   5.0 │        │   3.40 │
+│         │   20.0  │ yogurt           │   5.0 │        │  16.8  │
+│         │   20.0  │ olive_oil        │   5.0 │        │        │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│ dough   │  837    │                  │ 209.4 │ 400    │ 260    │
+│         │  472    │ wet              │ 118.0 │  60.0  │ 292    │
+│         │  366    │ dry              │  91.4 │ 340    │ -32.0  │
+│         │         │ hydration        │  65.0 │        │        │
+├─────────┼─────────┼──────────────────┼───────┼────────┼────────┤
+│         │   69.6  │ protein          │   9.1 │        │        │
+│         │   37.7  │ fiber            │   5.0 │        │        │
+│         │   29.8  │ fat              │   3.9 │        │        │
+│         │  304    │ carbs            │  40.0 │        │        │
+│         │ 1765    │ calories         │ 231.6 │        │        │
+└─────────┴─────────┴──────────────────┴───────┴────────┴────────┘
+
+
