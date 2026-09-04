@@ -2,12 +2,11 @@ import argparse
 import os
 import sys
 import traceback
+from pathlib import Path
+import re
 
-from output import output
-from parser import parse
-from solve import solve
-from tree import *
-from convert import convert
+from models import getRelations, formatRelations
+from solve import solveRelations
 
 
 def lean_traceback(exc_type, exc_value, exc_traceback):
@@ -32,36 +31,35 @@ argparser = argparse.ArgumentParser(
 )
 argparser.add_argument("filename", nargs="?", default="")
 argparser.add_argument("-i", "--inplace", action="store_true")
-argparser.add_argument("-R", "--rewrite", action="store_true")
-argparser.add_argument("--html")
 argparser.add_argument("-q", "--quiet", action="store_true")
-argparser.add_argument("-a", "--allcolumns", action="store_true")
-argparser.add_argument("-d", "--debug", action="store_true")
-argparser.add_argument("-c", "--convert", action="store_true")
+argparser.add_argument("-R", "--rewrite", action="store_true")
 args = argparser.parse_args()
 
-with open(args.filename, "rt", encoding="utf-8") if args.filename else sys.stdin as fp:
-    text = fp.read()
-    recipe = parse(text)
-    solution, failed = solve(recipe, args.debug)
+if args.filename:
+    text = Path(args.filename).resolve().read_text()
+else:
+    text = sys.stdin.read()
+    if not isinstance(text, str):
+        exit(1)
 
-    if args.convert and not failed:
-        try:
-            r = convert(text, recipe, solution)
-            for row in r:
-                print(row["part"], row["name"], row["formula"])
-        except ValueError as e:
-            print(e, file=sys.stderr)
-            sys.exit(1)
+text = text.strip()
 
-    elif not args.quiet:
-        output(
-            text,
-            solution,
-            filename=args.filename,
-            inplace=args.inplace,
-            errors=failed,
-            tobp=args.rewrite,
-            html=args.html,
-            allcolumns=args.allcolumns,
-        )
+# remove the grid at the bottom
+match = re.search(r"/\*\+|┌", text)
+if match:
+    text = text[0 : match.start()]
+
+# remove any old error messages
+text = re.sub("⚠.*\n", "", text)
+
+relations = getRelations(text)
+relations = solveRelations(relations, args.rewrite)
+table = formatRelations(relations)
+
+text = text.strip() + "\n\n" + table
+
+if args.inplace and args.filename:
+    Path(args.filename).resolve().write_text(text)
+
+elif not args.quiet:
+    print(text)

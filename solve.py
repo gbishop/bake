@@ -1,250 +1,178 @@
-from tree import *
 import numpy as np
-import pandas as pd
-import os
-from typing import cast
-from rich.pretty import pprint
-
-dir = os.path.dirname(os.path.abspath(__file__))
-map_path = os.path.join(dir, "data/enhanced-ingredients.csv")
-ingredients = pd.read_csv(map_path, index_col="index")
+from symbolTable import SymbolTable
+from formula import formulaV, formulaN, FormulaError
+from models import Relation
+import re
+from dataclasses import replace
 
 
-def getIngredient(name: str) -> pd.Series:
-    """Return the components for an ingredient"""
-    name = name.lower()
-    if name not in ingredients.index:
-        if "water_" in name or "_water" in name:
-            name = "water"
+def solveRelations(relations: list[Relation], convertToBP=False) -> list[Relation]:
+    if len(relations) == 0:
+        return []
 
-        elif name.endswith("_oil"):
-            name = "oil"
+    ST = SymbolTable()
 
-        elif name.endswith("_flour"):
-            name = "flour"
+    # collect the part names and add their total variables
+    for row in relations:
+        if row.part:
+            part = row.part
+            ST.part = part
+            for total in ST.totals:
+                ST.add(total)
 
-        else:
-            name = "unknown"
-    result = ingredients.loc[name]
-    result["total"] = 1
-    return result
+    # collect the unknowns
+    for row in relations:
+        if row.part:
+            ST.part = row.part
+        elif row.name and row.name != "hydration" and row.name not in ST.parts:
+            ST.add(row.name)
 
+    invalidFormulas = {}
+    M = []
 
-def total_(name: str):
-    if name == "total":
-        r = name
-    else:
-        r = f"total_{name}"
+    # Add the total rows first so I can block partition
+    for row in relations:
+        if row.part:
+            ST.part = row.part
+            for total in ST.totals:
+                M.append(ST.vector(total, -1))
 
-    return r
-
-
-def solve(tree: Recipe, debug: bool):
-    """Solve the system of equations"""
-
-    # gather the parts
-    parts = {part.name for part in tree.parts}
-
-    columns = list(ingredients.columns)
-    # nutrients such as protein, fiber, fat, carbs
-    nutrients = [column for column in columns if column not in ["flour", "water"]]
-
-    # qualify the variables
-    currentPart: Part | None = None
-    for node in tree.walk():
-        match node:
-            case Part() as part:
-                currentPart = part
-            case Var() as var:
-                if not var.part:
-                    if var.name in parts:
-                        var.part = var.name
-                        var.name = "total"
-                    elif currentPart:
-                        var.part = currentPart.name
-                        # implicitly declare variables with _
-                        if var.name.startswith("_"):
-                            currentPart.addVar(var.name)
-
-    # construct the solution dataframe
-    varList = [var.t for var in tree.vars()]
-    index = pd.MultiIndex.from_tuples(varList, names=["part", "name"])
-    solution = pd.DataFrame(
-        index=index,
-        columns=pd.Index(["value", "flour", "water", *nutrients]),
-        dtype=np.float64,
-    )
-    # add total relations and scale factors for nutrients
-    for part in tree.parts:
-        totalKeys = ["total_flour", "total_water", "total"]
-        totals = pd.Series({key: Sum() for key in totalKeys})
-        localVars = [var for var in part.vars if not var.name.startswith("total")]
-        for var in localVars:
-            if var.name in parts:
-                totals += pd.Series({key: Var(var.name, key) for key in totalKeys})
-                part.addRelation(Relation(var, Var(var.name, "total"), weight=1000.0))
-            elif var.name.startswith("_"):
-                continue
+    # Add rows for relations
+    partTotals = {}
+    for rowIndex, row in enumerate(relations):
+        formula_text = row.formula or ""
+        value = None
+        if formula_text:
+            try:
+                value = formulaV(ST, formula_text, row.name == "hydration")
+            except FormulaError as err:
+                invalidFormulas[rowIndex] = err.msg
+            except:
+                invalidFormulas[rowIndex] = "Internal Error"
+        if row.part:
+            ST.part = row.part
+            for total in ST.totals:
+                partTotals[total] = M[ST.index(total)]
+            if value is not None:
+                M.append(value - ST.vector("total_mass"))
+        elif row.name:
+            name = row.name
+            if name == "hydration":
+                if value is not None:
+                    M.append(value - ST.vector("total_water"))
             else:
-                info = getIngredient(var.name)
-                totals += (
-                    info.rename({"flour": "total_flour", "water": "total_water"}) * var
-                )
-                solution.loc[var.t] = info
-        for key in totalKeys:
-            part.addRelation(
-                Relation(
-                    Var(part.name, key),
-                    cast(Values, totals[key]),
-                    weight=1000.0,
-                )
+                profile = ST.profileVectors(name)
+                if not name.startswith("total"):
+                    for total in ST.totals:
+                        partTotals[total] += profile[total.replace("total_", "")]
+                if value is not None:
+                    M.append(value - profile["mass"])
+
+    if len(invalidFormulas) > 0:
+        updatedRelations = []
+        for rowIndex, row in enumerate(relations):
+            updatedRelations.append(
+                replace(row, _invalid=invalidFormulas.get(rowIndex, ""))
             )
+        return updatedRelations
 
-    # additional column for the constant terms
-    Ncolumns = len(solution) + 1
-
-    def constant(value) -> Vector:
-        """Create a vector representing a constant"""
-        r = np.zeros(Ncolumns)
-        r[Ncolumns - 1] = value
-        return r
-
-    def oneHot(var: Var, value: float = 1.0):
-        """Create a vector representing a variable"""
-        index = solution.index.get_loc(var.t)
-        r = np.zeros(Ncolumns)
-        r[index] = value
-        return r
-
-    def eval(value: Values) -> Vector | float:
-        """Recursively evaluate an equation"""
-        result: float | Vector
-        match value:
-            case Sum(lhs, rhs):
-                l = eval(lhs)
-                r = eval(rhs)
-                if isFloat(l) and isVector(r):
-                    result = constant(l) + r
-                elif isVector(l) and isFloat(r):
-                    result = l + constant(r)
-                else:
-                    result = l + r
-            case Difference(lhs, rhs):
-                l = eval(lhs)
-                r = eval(rhs)
-                if isFloat(l) and isVector(r):
-                    result = constant(l) - r
-                elif isVector(l) and isFloat(r):
-                    result = l - constant(r)
-                else:
-                    result = l - r
-            case Product(lhs, rhs):
-                l = eval(lhs)
-                r = eval(rhs)
-                if isVector(l) and isVector(r):
-                    raise NotImplementedError("Product")
-                result = l * r
-            case Var():
-                result = oneHot(value)
-            case float(value) | int(value):
-                result = float(value)
-
-        return result
-
-    # collect relations
-    relations = [relation for part in tree.parts for relation in part.relations]
-
-    if debug:
-        pprint(relations)
-
-    # Collect the rows for the matrix
-    rows = []
-    for relation in relations:
-        lhs = eval(relation.var)
-        rhs = eval(relation.value)
-        if not isVector(rhs):
-            rhs = constant(rhs)
-        rows.append(relation.weight * (lhs - rhs))
-
-    # build and slice up the matrix
-    M = np.array(rows)
+    M = np.array(M)
     A = M[:, :-1]
-    B = -M[:, -1]
-    # solve the system
-    r = np.linalg.lstsq(A, B, rcond=-1)
-    X = r[0]
-    residual = A @ X - B
+    b = -M[:, -1]
+    K = 3 * len(ST.parts)
 
-    # Attempt to detect failure to meet the constraints
-    # np.abs(A) @ np.abs(X) gives the sum of magnitudes for each equation
-    row_sums = np.abs(A) @ np.abs(X)
-    row_sums[row_sums < 1e-9] = 1.0
-    relative_errors = np.abs(residual) / row_sums
+    # partition into totals and ingredients so any least-squares
+    # tension doesn't get pushed into the totals
 
-    failed = False
-    errors = []
-    for i, re in enumerate(relative_errors):
-        if re > 0.001:
-            failed = True
-            errors.append(
-                f"{format(relations[i])} --> ({re*100:.1f}% {residual[i]:.2f})"
+    A_tt = A[:K, :K]  # totals related to other totals
+    A_ti = A[:K, K:]  # totals related to ingredients
+    A_it = A[K:, :K]  # ingredients related to totals
+    A_ii = A[K:, K:]  # ingredients related to ingredients
+    b_i = b[K:]  # constants for ingredients
+
+    # map from ingredients to totals
+    C = -np.linalg.solve(A_tt, A_ti)
+
+    # reduced equations for ingredients only
+    A_red = A_ii + A_it @ C
+    b_red = b_i
+
+    # solve for the ingredients using least squares
+    x_i = np.linalg.lstsq(A_red, b_red)[0]
+
+    x_i = np.round(x_i, decimals=1)
+
+    # compute the totals
+    x_t = C @ x_i
+
+    x_t = np.round(x_t, decimals=1)
+
+    # join them to form the solution vector
+    x = np.concatenate((x_t, x_i))
+
+    ST.setValues(x)
+
+    try:
+        TF = ST.value("total_flour", "dough")
+    except KeyError:
+        return relations
+
+    updatedRelations = []
+    for i, row in enumerate(relations):
+        name = ""
+        if row.part:
+            ST.part = row.part
+            name = row.part
+        elif row.name:
+            name = row.name
+        name = name.strip()
+        if name == "hydration":
+            pw = ST.value("total_water")
+            pf = ST.value("total_flour")
+
+            urow = replace(
+                row, bp=round((100 * pw) / pf, 1), _invalid=invalidFormulas.get(i, "")
             )
-    if failed:
-        errors.append("Inconsistent equations")
-        errors.append("")
+            updatedRelations.append(urow)
+        elif name:
+            profile = ST.profileValues(name)
+            urow = replace(
+                row,
+                mass=profile["mass"],
+                flour=profile["flour"],
+                water=profile["water"],
+                bp=round(profile["mass"] * 100 / TF, 1),
+                _invalid=invalidFormulas.get(i, ""),
+            )
+            updatedRelations.append(urow)
+        else:
+            updatedRelations.append(replace(row))
 
-    # finish filling in the solution
-    solution.value = X
-    to_scale = ["flour", "water", *nutrients]
-    solution[to_scale] = solution[to_scale].mul(solution["value"], axis=0)
-    solution = solution.fillna(0.0)
+    if convertToBP:
+        part = ""
+        for row in updatedRelations:
+            if row.part:
+                part = row.part
+            if part == "dough" and row.name == "total_flour":
+                row.formula = f"{TF}g"
+                continue
+            if row.formula:
+                if re.match(r"[-0-9.eg]+$", row.formula):
+                    row.formula = f"{round(row.bp, 1)}%"
 
-    # Build a dependency map: { 'dough': ['starter'], 'starter': [] }
-    deps = {
-        part: [ing for ing in solution.loc[part].index if ing in parts and ing != part]
-        for part in parts
-    }
+    # Validate the updated relations
+    for i, row in enumerate(updatedRelations):
+        if row.part:
+            ST.part = row.part
+        if row.formula:
+            fv = formulaN(ST, row.formula, row.name == "hydration")
+            if row.name == "hydration":
+                row._inconsistent = not np.isclose(
+                    fv, ST.value("total_water"), 1e-3, 0.1
+                )
+            else:
+                row._inconsistent = not np.isclose(fv, row.mass, 1e-3, 0.1)
+        else:
+            row._inconsistent = False
 
-    # Topological Sort (Kahn's Algorithm simplified)
-    ordered_stages = []
-    while deps:
-        # Find stages with no dependencies left
-        ready = [p for p, d in deps.items() if not d]
-        if not ready:
-            # If this happens, you have a circular dependency (e.g., A needs B, B needs A)
-            raise ValueError("Circular dependency detected!")
-
-        for p in ready:
-            ordered_stages.append(p)
-            del deps[p]
-            # Remove p from the dependency lists of other stages
-            for other in deps:
-                if p in deps[other]:
-                    deps[other].remove(p)
-
-    # Define your target columns
-
-    for stage in ordered_stages:
-        # 1. Identify which rows are actual inputs for this stage
-        exclude = ["total", "total_flour", "total_water", "_loss"]
-        ingredient_rows = solution.loc[stage].index.difference(exclude)
-
-        # 2. Sum the ingredients to get the nutrients for this part
-        sums = solution.loc[(stage, ingredient_rows), columns].sum()
-
-        solution.loc[(stage, "total"), columns] = sums
-
-        usage_mask = (solution.index.get_level_values(1) == stage) & (
-            solution.index.get_level_values(0) != stage
-        )
-
-        if usage_mask.any():
-            # Update the 'ingredient' row in the next stage with the 'total' from this stage
-            # We use .values to avoid index alignment issues
-            solution.loc[usage_mask, columns] = sums.values
-
-    solution["bp"] = (
-        solution["value"] / solution.loc[("dough", "total_flour"), "value"] * 100.0
-    )
-
-    return solution, errors
+    return updatedRelations
